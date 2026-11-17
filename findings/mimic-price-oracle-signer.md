@@ -25,7 +25,7 @@ families:
 - code: "0xda17f000985b2795b7b6c48384ba877f317e7dc5"
   name: Mimic PriceOracle clones (50 deployed by Deployer 0x849b7b1102b0dcf6ec10f98b81c8d1c38f7cbf24, all with signer 0xb3afb6db38a8e72905165c1fbb96772e63560790; value = the other 49 smart vaults)
   instances: 50
-  list: evidence/mimic-price-oracle-signer/escrow.json
+  list: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/mimic-price-oracle-signer/escrow.json
   upgradeable: config-only
   value_usd: 260219
   value_basis: escrow
@@ -36,22 +36,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/mimic-price-oracle-signer/classification.jsonl
-  - evidence/mimic-price-oracle-signer/onchain.json
-  - evidence/mimic-price-oracle-signer/activity.json
-  - evidence/mimic-price-oracle-signer/source-excerpts.md
-  - evidence/mimic-price-oracle-signer/escrow.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/mimic-price-oracle-signer
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review16 (verified source of PriceOracle and ParaswapV6Swapper; on-chain reads at blocks 26,431,537 and 26,431,656)
-  ref: evidence/mimic-price-oracle-signer/escrow.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/mimic-price-oracle-signer/escrow.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -86,13 +84,13 @@ the total exposed is above USD 50k, so step 5 does not lower it.
 - `setSigner(signer, allowed)` (line 193) and `setFeed` are `authP` through the Authorizer; the clone itself cannot
   be upgraded.
 
-Pattern PQ-4. Source excerpts: [`source-excerpts.md`](../evidence/mimic-price-oracle-signer/source-excerpts.md).
+Pattern PQ-4. Source excerpts: [`source-excerpts.md`](#source-excerpts-mimic-price-oracle-signer).
 
 ## Evidence
 
 - CHECKED (verified source, Sourcify for implementation `0xda17f000…` and Blockscout for ParaswapV6Swapper
   implementation `0x323d3d6a…`): the code path above.
-- CHECKED (precompile trace): ecrecover; `txs_y1` 27,227 (`data/report/curated_contracts.csv`).
+- CHECKED (precompile trace): ecrecover; `txs_y1` 27,227 (`studies/top-callers-classification/results/curated_contracts.csv`).
 - CHECKED (eth_call at block 26,431,537): oracle `getAllowedSigners()` = [`0xb3afb6db…`] (no code), `authorizer()` =
   `0xbbf43626…`, `pivot()` = `0x…0348`; smart vault `0x45a6e007…` `priceOracle()` = this oracle.
 - CHECKED (eth_call at block 26,431,656): `getFeed(WETH, USDC)`, `getFeed(USDC, WETH)` and both pivot feeds are zero,
@@ -111,7 +109,7 @@ Pattern PQ-4. Source excerpts: [`source-excerpts.md`](../evidence/mimic-price-or
   `exchange_rate`, read 2026-11-17; ETH at USD 1,811.62): 50 vaults hold USD 277,544 in total, 27 of them above zero;
   the largest are Paraswap Ltd USD 84.2k, Ledger USD 54.5k, OneKey USD 43.1k, Ledger/1inch USD 27.6k,
   paraswap-fee-collector-v3 (this oracle's vault) USD 17.3k, mostly USDC. Reads:
-  [`escrow.json`](../evidence/mimic-price-oracle-signer/escrow.json).
+  [`escrow.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/mimic-price-oracle-signer/escrow.json).
 - CHECKED (Xatu activity): oracle called in 1,083 transactions in 2026-10-16 to 2026-11-16, last 2026-11-16; the
   implementation 10,820.
 - INFERRED: with a forged price the attacker can route the swap through a pool it controls and keep the difference;
@@ -143,6 +141,55 @@ Pattern PQ-4. Source excerpts: [`source-excerpts.md`](../evidence/mimic-price-or
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review16): MEDIUM -> MEDIUM, step 4: fix is a new oracle deployment the vaults are repointed to, by Mimic's Safe and clients' admins; escrow measured (50 vaults, USD 277,544, so step 5 does not apply); alternative changed from alternative-exists to configurable-verifier (no on-chain feeds set for the main pairs), role auxiliary -> core (the price is the swap floor), admin set to the Authorizer and its Safes, family instances 29 -> 50.
+
+# Source excerpts: mimic-price-oracle-signer
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0xb04b7813bf44fa7bb5c8e8cfc38cd770ffb3ca38`
+
+No verified source on Sourcify or Blockscout.
+
+## Implementation `0xda17f000985b2795b7b6c48384ba877f317e7dc5` — PriceOracle (verified source via sourcify)
+
+### `contracts/PriceOracle.sol`
+
+```solidity
+   16  
+   17  import '@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol';
+   18  
+   19  import '@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol';
+   20  import '@openzeppelin/contracts/utils/cryptography/ECDSA.sol';
+   21  import '@openzeppelin/contracts/utils/math/SafeCast.sol';
+   22  import '@openzeppelin/contracts/utils/structs/EnumerableSet.sol';
+   23  import '@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol';
+   24  
+  ...
+  134       * @dev Tells the digest expected to be signed by the off-chain oracle signers for a list of prices
+  135       * @param prices List of prices to be signed
+  136       */
+  137      function getPricesDigest(PriceData[] memory prices) public pure override returns (bytes32) {
+  138          return ECDSA.toEthSignedMessageHash(keccak256(abi.encode(prices)));
+  139      }
+  140  
+  141      /**
+  142       * @dev Tells the price of a token (base) in a given quote. The response is expressed using the corresponding
+  ...
+  303      function _decodePricesData(bytes memory data) internal view returns (PriceData[] memory) {
+  304          if (!_isOffChainDataEncodedProperly(data)) return new PriceData[](0);
+  305  
+  306          (PriceData[] memory prices, bytes memory signature) = abi.decode(data, (PriceData[], bytes));
+  307          (address recovered, ECDSA.RecoverError error) = ECDSA.tryRecover(getPricesDigest(prices), signature);
+  308  
+  309          bool isSignerValid = error == ECDSA.RecoverError.NoError && isSignerAllowed(recovered);
+  310          if (!isSignerValid) revert PriceOracleInvalidSigner(recovered);
+  311          return prices;
+  312      }
+  313  
+  ...
+```
+
+Library files with the primitive itself (not excerpted): `@openzeppelin/contracts/utils/cryptography/ECDSA.sol`

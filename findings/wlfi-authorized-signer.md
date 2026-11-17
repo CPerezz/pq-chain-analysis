@@ -28,20 +28,18 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/wlfi-authorized-signer/classification.jsonl
-  - evidence/wlfi-authorized-signer/onchain.json
-  - evidence/wlfi-authorized-signer/activity.json
-  - evidence/wlfi-authorized-signer/source-excerpts.md
-  - evidence/wlfi-authorized-signer/onchain-review.md
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/wlfi-authorized-signer
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_2.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_2.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review15 (finding review)
   ref: findings/wlfi-authorized-signer.md
   date: 2026-11-17
@@ -73,19 +71,19 @@ through which nothing can be taken; the fix is an upgrade by a 3-of-5 Safe).
   key (`ownerSetAuthorizedSigner`).
 
 Pattern PQ-4 (operator key; here it gates eligibility, not value). Excerpt:
-[`source-excerpts.md`](../evidence/wlfi-authorized-signer/source-excerpts.md).
+[`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/wlfi-authorized-signer/source-excerpts.md).
 
 ## Evidence
 
 - CHECKED (verified source, Sourcify, implementation `0x73fe…fde7`): the paths above; `notBlacklisted` on `_update`.
-- CHECKED (block 26,431,555, [`onchain-review.md`](../evidence/wlfi-authorized-signer/onchain-review.md)): EIP-1967
+- CHECKED (block 26,431,555, [`onchain-review.md`](#on-chain-reads-review15-2026-11-17)): EIP-1967
   implementation `0x73fe14ff…`, admin ProxyAdmin `0x7f533afa…` whose `owner()` is Safe `0x5be9…7dbb` (threshold 3 of
   5, `onchain.json`); token `owner()` is the same Safe; `authorizedSigner()` = `0x006dad584e68225dae2a45731224b3b48ac57184`
   (code size 0, nonce 0: an off-chain signing key).
 - CHECKED (precompile trace to March 2026): `ecrecover`, 64,177 pre-quantum calls in the last year
   (`curated_contracts.csv`; this count covers every `ecrecover` made by the token across all its implementations).
 - CHECKED (Xatu, any function): 31,017 transactions 2026-10-16 to 2026-11-16; last active 2026-11-16
-  ([`activity.json`](../evidence/wlfi-authorized-signer/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/wlfi-authorized-signer/activity.json)).
 - INFERRED: the signer's vouchers are in activation calldata on-chain, so its public key is known.
 
 ## Impact and exposure
@@ -113,6 +111,21 @@ The `ERC20Permit` lines in `source-excerpts.md` come from the proxy's Sourcify c
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review15): MEDIUM -> LOW, step 4: the voucher only activates or elects for the caller's own account, so nothing can be taken (impact funds-loss -> none, role core -> auxiliary). Held USD 12.6k removed as not the exposure. Checked that the token has no `permit` (no selector in implementation 0x73fe14ff).
+
+# On-chain reads (Review15, 2026-11-17)
+
+RPC https://ethereum-rpc.publicnode.com, block 26,431,555. Proxy `0xda5e1988097297dcdc1f90d4dfe7909e847cbef6`.
+
+| Read | Result |
+|---|---|
+| EIP-1967 implementation slot | `0x73fe14ff5a25e4363a72828cccd8444f0748fde7` |
+| EIP-1967 admin slot | `0x7f533afa9e994b7e44673188034f9ce52886a0c0` |
+| ProxyAdmin `owner()` | `0x5be9a4959308a0d0c7bc0870e319314d8d957dbb` |
+| token `owner()` | `0x5be9a4959308a0d0c7bc0870e319314d8d957dbb` |
+| Safe `getThreshold()` | 3 (5 owners, `onchain.json`) |
+| `authorizedSigner()` | `0x006dad584e68225dae2a45731224b3b48ac57184` (code size 0, nonce 0) |
+| `VESTER()` / `REGISTRY()` | `0x74b4f6a2e579d730aacb9dd23cfbbaeb95029583` / `0x4f61a99e42e21ea3c3eaf9b1b30fb80a7900d3ce` |
+| `totalSupply()` | 96,722,743,250.5 WLFI |

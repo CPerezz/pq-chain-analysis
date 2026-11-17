@@ -54,22 +54,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/aligned-operator-bls-bn254/classification.jsonl
-  - evidence/aligned-operator-bls-bn254/onchain.json
-  - evidence/aligned-operator-bls-bn254/activity.json
-  - evidence/aligned-operator-bls-bn254/source-excerpts.md
-  - evidence/aligned-operator-bls-bn254/review-reads.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aligned-operator-bls-bn254
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review22)
-  ref: evidence/aligned-operator-bls-bn254/review-reads.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aligned-operator-bls-bn254/review-reads.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -99,7 +97,7 @@ that trusts `verifyBatchInclusion` would then accept them. The only on-chain con
 ## Evidence
 
 - CHECKED (verified source on Sourcify, implementation `0x4a5d61ab…`): the code path above.
-- CHECKED (RPC at block 26,431,523; [`review-reads.json`](../evidence/aligned-operator-bls-bn254/review-reads.json)):
+- CHECKED (RPC at block 26,431,523; [`review-reads.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aligned-operator-bls-bn254/review-reads.json)):
   EIP-1967 implementation `0x4a5d61ab…`, admin ProxyAdmin `0x487e0347…`, whose `owner()` is Safe `0xfc135a86…`
   (threshold 5, 8 owners), which is also the contract `owner()`; `alignedAggregator()` = `0xba9bae4c…` (EOA);
   `paused()` = 0; quorum count 1, 18 operators in quorum 0; balance 0.9487 ETH (batcher deposits). Second deployment
@@ -140,6 +138,6 @@ that trusts `verifyBatchInclusion` would then accept them. The only on-chain con
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review22): MEDIUM -> LOW, step 5: exposure measured as escrow: the only on-chain consumer of `verifyBatchInclusion` seen (VoteInbox 0x1870cfa5) holds $0, and the 0.95 ETH of batcher deposits cannot be taken by a forged quorum. Step 4 alone would be MEDIUM (upgrade by the 5-of-8 Safe). Noted that the aggregator EOA's ECDSA key is also needed.

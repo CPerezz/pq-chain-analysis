@@ -58,22 +58,20 @@ fix:
   protocol_change: helps
 evidence:
   level: source-read
-  links:
-  - evidence/ethena-token-permit-ecdsa-only/classification.jsonl
-  - evidence/ethena-token-permit-ecdsa-only/onchain.json
-  - evidence/ethena-token-permit-ecdsa-only/activity.json
-  - evidence/ethena-token-permit-ecdsa-only/source-excerpts.md
-  - evidence/ethena-token-permit-ecdsa-only/review.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/ethena-token-permit-ecdsa-only
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_1.jsonl,out_3.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_1.jsonl,out_3.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review10 (source and on-chain review)
-  ref: evidence/ethena-token-permit-ecdsa-only/review.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/ethena-token-permit-ecdsa-only/review.json
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
@@ -91,16 +89,16 @@ USDe, sUSDe, USDtb and sENA implement EIP-2612 `permit` with OpenZeppelin `ERC20
 - What it releases: an allowance on the holder's whole balance; the spender then calls `transferFrom`.
 - Pattern PQ-1. The (v, r, s) interface also rules out a post-quantum signature even if the holder has code.
 
-Source excerpts: [`source-excerpts.md`](../evidence/ethena-token-permit-ecdsa-only/source-excerpts.md).
+Source excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/ethena-token-permit-ecdsa-only/source-excerpts.md).
 
 ## Evidence
 
 - CHECKED (verified source, Sourcify: `USDe.sol`, `StakedUSDeV2.sol`, `StakedENA.sol`, `AnchorageTokenUSDtb.sol` with OZ `ERC20Permit` / `ERC20PermitUpgradeable`): the `permit` path above.
-- CHECKED (on-chain, block 26,431,494): USDe and sUSDe have no proxy (code read at block 26,431,214, [`onchain.json`](../evidence/ethena-token-permit-ecdsa-only/onchain.json)); sENA EIP-1967 implementation `0x7fd57b46…`, admin ProxyAdmin `0xf849d779…`, whose `owner()` is Safe `0x3b0aaf6e…` with threshold 5 of 10 ([`review.json`](../evidence/ethena-token-permit-ecdsa-only/review.json)). The draft named the timelock `0xe8dc0fab…` as ProxyAdmin owner; that is sENA's own `owner()`, not the proxy admin.
+- CHECKED (on-chain, block 26,431,494): USDe and sUSDe have no proxy (code read at block 26,431,214, [`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/ethena-token-permit-ecdsa-only/onchain.json)); sENA EIP-1967 implementation `0x7fd57b46…`, admin ProxyAdmin `0xf849d779…`, whose `owner()` is Safe `0x3b0aaf6e…` with threshold 5 of 10 ([`review.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/ethena-token-permit-ecdsa-only/review.json)). The draft named the timelock `0xe8dc0fab…` as ProxyAdmin owner; that is sENA's own `owner()`, not the proxy admin.
 - CHECKED (on-chain, block 26,431,788): USDtb EIP-1967 implementation `0x9d6d77a2…`, admin ProxyAdmin `0x3c405f68…`, whose `owner()` `0xd93826bb…` has no code (an EOA); `totalSupply()` 318.16M.
 - CHECKED (Blockscout token API, 2026-11-17): circulating market caps USDe $4,853,105,840, sUSDe $1,181,500,848, USDtb $317,905,055, sENA $109,914,767. USDtb's last transaction 2026-11-16.
-- CHECKED (precompile trace, last year, `data/report/curated_contracts.csv` `txs_y1`): USDe 22,708, sUSDe 3,882, sENA 4,542 transactions with an ecrecover call; USDtb 594 (`data/agg/y1_caller.parquet`).
-- CHECKED (Xatu, any function, 2026-10-16 to 2026-11-16): see table ([`activity.json`](../evidence/ethena-token-permit-ecdsa-only/activity.json)); USDtb's 30-day count was not measured.
+- CHECKED (precompile trace, last year, `studies/top-callers-classification/results/curated_contracts.csv` `txs_y1`): USDe 22,708, sUSDe 3,882, sENA 4,542 transactions with an ecrecover call; USDtb 594 (`data/agg/y1_caller.parquet`).
+- CHECKED (Xatu, any function, 2026-10-16 to 2026-11-16): see table ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/ethena-token-permit-ecdsa-only/activity.json)); USDtb's 30-day count was not measured.
 
 ## Impact and exposure
 
@@ -123,7 +121,7 @@ Source excerpts: [`source-excerpts.md`](../evidence/ethena-token-permit-ecdsa-on
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by upgrading the contract (admin or governance)).
 - 2026-11-17 review (Review10): MEDIUM -> HIGH, step 4: USDe ($4.85B) and sUSDe ($1.18B) are not upgradeable, so migrated holders stay forgeable unless every holder moves or EIP-8151 ships; only sENA can be upgraded. Corrected sENA's ProxyAdmin owner to Safe 0x3b0aaf6e (5 of 10), updated market caps, removed a family entry that mixed in USDtb, fix.layer contract-upgrade -> account-migration.
 - 2026-11-17 review follow-up (Review10): added USDtb `0xc139190f…` (same project and mechanism; upgradeable through an EOA-owned ProxyAdmin; market cap $317.9M). Rating stays HIGH (step 4, decided by USDe and sUSDe).

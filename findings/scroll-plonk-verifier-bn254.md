@@ -88,49 +88,48 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/scroll-plonk-verifier-bn254/classification.jsonl
-  - evidence/scroll-plonk-verifier-bn254/onchain.json
-  - evidence/scroll-plonk-verifier-bn254/activity.json
-  - evidence/scroll-plonk-verifier-bn254/source-excerpts.md
-  - evidence/scroll-plonk-verifier-bn254/escrow.json
-  - evidence/scroll-plonk-verifier-bn254/notes.md
-  - evidence/scroll-plonk-verifier-bn254/attribution-9f66505c.json
-  - evidence/scroll-plonk-verifier-bn254/attribution-39854df3.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/scroll-plonk-verifier-bn254
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_3.jsonl,out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_3.jsonl,out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode), for 0x9f66505c
-  ref: data/curation/out_1.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review13 (0x9f66505c deployer, wrapper and caller trace; Scroll verifier registry reads)
-  ref: evidence/scroll-plonk-verifier-bn254/attribution-9f66505c.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/scroll-plonk-verifier-bn254/attribution-9f66505c.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
 - by: ai-assisted
+  study: top-callers-classification
   who: Review14 (verified source of the current verifier, verifier registry and bridge reads)
-  ref: evidence/scroll-plonk-verifier-bn254/notes.md
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/scroll-plonk-verifier-bn254/notes.md
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode), for 0x39854df3
-  ref: data/curation/out_1.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review01 (0x39854df3 creator, last caller trace, bytecode constants, verifier registry reads)
-  ref: evidence/scroll-plonk-verifier-bn254/attribution-39854df3.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/scroll-plonk-verifier-bn254/attribution-39854df3.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -164,23 +163,23 @@ register new ones: rated MEDIUM (step 4: a new verifier the consumer points at).
 ## Evidence
 
 - CHECKED (Blockscout verified source of `0x0d2a59fd…`, read 2026-11-17): `OpenVmHalo2Verifier` + `Halo2Verifier`
-  with the BN254 pairing call ([`notes.md`](../evidence/scroll-plonk-verifier-bn254/notes.md)).
+  with the BN254 pairing call ([`notes.md`](#review-notes-scroll-plonk-verifier-bn254-2026-11-17-review14)).
 - CHECKED (Sourcify verified source of MultipleVersionRollupVerifier `0x4cea…` and ScrollChain implementation
   `0x0a2070…`): `getVerifier`, `verifyBundleProof`, `updateVerifier` (onlyOwner).
 - CHECKED (cast at block 26,431,492): `ScrollChain.verifier()` = `0x4cea…`; `latestVerifier(4..10)` and each
   wrapper's `plonkVerifier()`; `owner()` of `0x4cea…` = ScrollOwner `0x7985…26a6`; ScrollOwner
   `DEFAULT_ADMIN_ROLE` member TimelockController `0x3f90…a9fd`, `getMinDelay()` = 259200
-  ([`escrow.json`](../evidence/scroll-plonk-verifier-bn254/escrow.json)).
+  ([`escrow.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/scroll-plonk-verifier-bn254/escrow.json)).
 - CHECKED (Blockscout transactions and internal calls, 2026-11-17): 460 successful `finalizeBundlePostEuclidV2`
   transactions in blocks 26,208,000–26,423,999, the first and last both routed to `0x0d2a59fd…`.
 - INFERRED (bytecode only): `0x749fc77a…`, `0x8c1b5275…`, `0x7f1a3e12…` are snark-verifier Halo2/PLONK verifiers
   (fallback-only, BN254 constants, `ecpairing` in the trace); the trace attributes their calls to ScrollChain
-  finalizations ([`classification.jsonl`](../evidence/scroll-plonk-verifier-bn254/classification.jsonl)).
+  finalizations ([`classification.jsonl`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/scroll-plonk-verifier-bn254/classification.jsonl)).
 - CHECKED (Review13, Blockscout and cast at block 26,431,704): `0x9f66505c…` was created on 2025-04-23 by EOA
   `0x454e0a55…` together with L1ScrollMessenger implementation `0x84791281…` and ZkEvmVerifierPostEuclid
   `0x33996cc9…`, whose `plonkVerifier()` is `0x9f66505c…`; its 197 trace-year transactions (blocks 22,345,417 to
   22,564,303) are ScrollChain `finalizeBundlePostEuclidV2` calls; it is not the latest verifier for any version 0–10
-  ([`attribution-9f66505c.json`](../evidence/scroll-plonk-verifier-bn254/attribution-9f66505c.json)). Bytecode only;
+  ([`attribution-9f66505c.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/scroll-plonk-verifier-bn254/attribution-9f66505c.json)). Bytecode only;
   the draft's "identical code to `0x39854df3…`" is wrong (runtime code hashes differ).
 - CHECKED (Review01, precompile corpus, Blockscout and cast at block 26,431,788): `0x39854df3…` was created by
   `0xb1223481…` (tx `0xd899aecd…`); it made 4,367 `ecpairing`, 91,707 `ecadd`/`ecmul` and 13,101 `modexp` calls in
@@ -188,10 +187,10 @@ register new ones: rated MEDIUM (step 4: a new verifier the consumer points at).
   its runtime code (18.5 KB) contains the BN254 base-field modulus 7 times and the scalar-field modulus 4 times;
   `latestVerifier(7)` = (364,588, `0xc084a6de…`) and `latestVerifier(8)` = (0, `0xa8d4702a…`), both with
   `plonkVerifier()` = `0x39854df3…`
-  ([`attribution-39854df3.json`](../evidence/scroll-plonk-verifier-bn254/attribution-39854df3.json)). Bytecode only.
+  ([`attribution-39854df3.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/scroll-plonk-verifier-bn254/attribution-39854df3.json)). Bytecode only.
   Whether ScrollChain would still finalize a version-7 or 8 batch at its current index was not checked.
 - CHECKED (on-chain read at block 26,431,214): none of the verifiers holds ETH or tokens
-  ([`onchain.json`](../evidence/scroll-plonk-verifier-bn254/onchain.json)).
+  ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/scroll-plonk-verifier-bn254/onchain.json)).
 
 ## Impact and exposure
 
@@ -209,7 +208,7 @@ Escrow: the L1 bridge that pays out against finalized withdraw roots (routing fr
 L1ScrollMessenger `0x6774bcbd…b367` 9,539.6 ETH (USD 17.31M), L1StandardERC20Gateway `0xd8a791fe…f8f9` USD 4.43M,
 L1USDCGateway `0xf1af3b23…5c7b` USD 3.91M, wstETH gateway `0x6625c633…f504` USD 0.30M, DAI gateway `0x67260a8b…f515`
 USD 56k: USD 26.0M on 2026-11-17, a lower bound. Trace-year pairing calls: `0x749fc77a…` 3,223, `0x8c1b5275…` 835,
-`0x7f1a3e12…` 476, `0xd1638c0c…` 195, `0x9f66505c…` 197, `0x39854df3…` 4,367 (`data/report/curated_contracts.csv`,
+`0x7f1a3e12…` 476, `0xd1638c0c…` 195, `0x9f66505c…` 197, `0x39854df3…` 4,367 (`studies/top-callers-classification/results/curated_contracts.csv`,
 `txs_y1`; `data/agg/y1_tx_caller.parquet`).
 
 ## Remediation
@@ -222,8 +221,78 @@ USD 56k: USD 26.0M on 2026-11-17, a lower bound. Trace-year pairing calls: `0x74
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review14): MEDIUM kept, step 4 (ScrollOwner repoints MultipleVersionRollupVerifier). Added the live verifier `0x0d2a59fd…` (created 2026-09-15, not in the trace); escrow measured at USD 26.0M; listed the verifiers still registered for older versions.
 - 2026-11-17 merge (Review14): `unidentified-9f66505c-snark-verifier` merged into this finding on Main's instruction: contract `0x9f66505c…`, its evidence (classification row, on-chain and activity entries, source-excerpt header, `attribution-9f66505c.json`) and sources moved here. Its history: 2026-11-04 classified (hand classification pass); 2026-11-17 created by `scripts/15_findings.py`, rated LOW (step 1: last used 2025-05-26, holds nothing); 2026-11-17 review (Review13): LOW kept, step 1; identified as Scroll's Euclid verifier (deployer session, wrapper `plonkVerifier()`, ScrollChain callers), project unidentified-9f66505c -> scroll. This finding's MEDIUM is unchanged.
 - 2026-11-17 merge (Review01): `unidentified-39854df3-snark-verifier` merged into this finding on Main's instruction: contract `0x39854df3…`, its evidence (classification row, on-chain and activity entries, source-excerpt header, `attribution.json` as `attribution-39854df3.json`) and sources moved here. Its history: 2026-11-04 classified (hand classification pass); 2026-11-17 created by `scripts/15_findings.py`, rated MEDIUM (step 4: the consumer's admin points at a new verifier); 2026-11-17 review (Review01): MEDIUM kept, step 4; identified as Scroll's version-7/8 bundle verifier, still registered in MultipleVersionRollupVerifier; project unidentified-39854df3 -> scroll; status candidate -> confirmed (bytecode plus registry reads). This finding's MEDIUM is unchanged.
+
+# Source excerpts: scroll-plonk-verifier-bn254
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0x749fc77a1a131632a8b88e8703e489557660c75e`
+
+No verified source on Sourcify or Blockscout.
+
+
+## Contract `0x8c1b52757b5c571adcb5572e992679d4d48e30f7`
+
+No verified source on Sourcify or Blockscout.
+
+
+## Contract `0x7f1a3e1299f44baefe20cb2bcd62a75ca00c20d6`
+
+No verified source on Sourcify or Blockscout.
+
+
+## Contract `0xd1638c0c7bd6bf49d655d855d353ac8b4f949582` — Halo2Verifier (verified source via blockscout)
+
+## Contract `0x9f66505cb1626d06b50ef2597f41de6686e8f79a` — Halo2Verifier (verified source via blockscout)
+
+## Contract `0x39854df30b3482ef546f68b8981fae5a2c426ea4`
+
+No verified source on Sourcify or Blockscout.
+
+# Review notes: scroll-plonk-verifier-bn254 (2026-11-17, Review14)
+
+## Current verifier: OpenVmHalo2Verifier `0x0d2a59fd7060460f07c30c2817b4e79576da01c6`
+
+Verified on Blockscout (`src/v2.0-deferral/OpenVmHalo2Verifier.sol`, solc 0.8.19), created 2026-09-15 (block 25,979,805)
+by `0xff78606a67582974bbe3cfc5d5afb56485671cda`. Read from `/api/v2/smart-contracts/0x0d2a…`:
+
+- `OpenVmHalo2Verifier.verify(bytes publicValues, bytes proofData, bytes32 appExeCommit, bytes32 appVmCommit)` checks
+  lengths and that both commits are below `BN254_SCALAR_MODULUS`, builds the full proof and self-calls the
+  `Halo2Verifier` fallback (`staticcall(gas(), address(), proofPtr, fullProofLength, 0, 0)`); revert on failure.
+- `Halo2Verifier.sol` (snark-verifier generated Yul): `ecadd` (0x6) / `ecmul` (0x7) MSMs and, line 2120,
+  `success := and(eq(staticcall(gas(), 0x8, 0x64a0, 0x180, 0x64a0, 0x20), 1), success)`: the final BN254 pairing
+  check of the KZG (PLONK/SHPLONK) accumulator. `proofData` starts with the 12-limb KZG accumulator.
+
+## Path (block 26,431,492 unless stated)
+
+- `ScrollChain(0xa13b…).finalizeBundlePostEuclidV2` → `_finalizeBundlePostEuclidV2` →
+  `IRollupVerifier(verifier).verifyBundleProof(version, batchIndex, aggrProof, publicInputs)`; `verifier` is the
+  immutable `0x4cea3e866e7c57fd75cb0ca3e9f5f1151d4ead3f` (MultipleVersionRollupVerifier).
+- `MultipleVersionRollupVerifier.getVerifier(version, batchIndex)` returns `latestVerifier[version]` (or a legacy
+  entry for older batch indices); `updateVerifier` is `onlyOwner`; `owner()` = ScrollOwner `0x7985…26a6`.
+- `latestVerifier` and each wrapper's `plonkVerifier()`: see `escrow.json` (versions 7 and 8 → `0x39854df3…`,
+  9 → `0x749fc77a…`, 10 → `0x0d2a59fd…`).
+- Verifiers still registered in MultipleVersionRollupVerifier besides version 10: versions 4 (`0x8c1b5275…`),
+  6 (`0xd1638c0c…`), 7 and 8 (`0x39854df3…`), 9 (`0x749fc77a…`); `0x7f1a3e12…` is not registered as a latest
+  verifier for any version.
+- Last finalize at the read: tx `0x19c969ef…` (block 26,431,001, 2026-11-16): ScrollChain → `0x4cea…` →
+  ZkEvmVerifierPostFeynman `0xb1541712…` → `0x0d2a59fd…`. Earliest finalize in the window (block 26,208,020) used
+  wrapper `0x7966fe0d…` and the same plonk verifier `0x0d2a59fd…`.
+- ScrollOwner `DEFAULT_ADMIN_ROLE`: one member, `0x3f9041350b661c74c6cbe440c8bd6bc4c168a9fd`, `getMinDelay()` =
+  259200 (3 days). The per-function role that may call `updateVerifier` through ScrollOwner was not read.
+
+## Trace (data/agg/alltime_caller.parquet, to block 24,683,700)
+
+| Verifier | ecpairing calls | first block | last block |
+|---|---|---|---|
+| `0x8c1b5275…` | 6,846 | 20,662,129 | 22,282,589 (2025-04-16) |
+| `0xd1638c0c…` | 195 | 22,287,520 | 22,323,239 (2025-04-22) |
+| `0x7f1a3e12…` | 476 | 22,566,395 | 23,098,699 (2025-08-08) |
+| `0x39854df3…` | 4,367 | 23,105,047 | 24,023,851 (2025-12-16) |
+| `0x749fc77a…` | 3,223 | 24,023,854 | 24,683,566 (2026-03-18); activity.json: last call 2026-06-25 |
+| `0x0d2a59fd…` | not in trace (created 2026-09-15) | | |

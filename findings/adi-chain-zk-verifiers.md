@@ -68,20 +68,18 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/adi-chain-zk-verifiers/classification.jsonl
-  - evidence/adi-chain-zk-verifiers/onchain.json
-  - evidence/adi-chain-zk-verifiers/activity.json
-  - evidence/adi-chain-zk-verifiers/source-excerpts.md
-  - evidence/adi-chain-zk-verifiers/state.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/adi-chain-zk-verifiers
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_3.jsonl,out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_3.jsonl,out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review06 (Claude), 2026-11-17 review
   ref: Sourcify sources of the verifier and legs; cast reads of Bridgehub 0x7a38c18a…, diamond, governance and vault at block 26,431,772; Blockscout holdings
   date: 2026-11-17
@@ -118,8 +116,8 @@ ADI's Governance contract (behind a 2-of-3 Safe and a 3-day delay) can register 
 
 - CHECKED (Sourcify exact matches): `ZKsyncOSDualVerifier` 0xccbdfd7f…, `ZKsyncOSVerifierPlonk` 0xc1288a84…,
   `ZKsyncOSVerifierFflonk` 0xf6b3708b…; the two retired verifiers from the census excerpts
-  ([`source-excerpts.md`](../evidence/adi-chain-zk-verifiers/source-excerpts.md)).
-- CHECKED (cast, block 26,431,772; [`state.json`](../evidence/adi-chain-zk-verifiers/state.json)):
+  ([`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/adi-chain-zk-verifiers/source-excerpts.md)).
+- CHECKED (cast, block 26,431,772; [`state.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/adi-chain-zk-verifiers/state.json)):
   `Bridgehub 0x7a38c18a….getAllZKChainChainIDs()` = [36900]; diamond `getVerifier()` 0xccbdfd7f…, `getAdmin()`
   ChainAdminOwnable 0x0a8a2473… (owner Safe 0xf50293ac…, 2 of 3), protocol version 30.2, 16,700 batches executed,
   `settlementLayer(36900)` = 1. `ZKsyncOSDualVerifier.owner()` = Governance 0x8253f330…, `pendingOwner()` = 0; only
@@ -132,7 +130,7 @@ ADI's Governance contract (behind a 2-of-3 Safe and a 3-day delay) can register 
 - CHECKED (debug_traceTransaction of the retired verifiers' last proofs in the yearly data): both were called by
   diamond 0x0583ef2b…, through ZKsyncOSDualVerifier 0x5e7cf1c3… and DualVerifier 0x28e31e2b… respectively.
 - CHECKED (Xatu, any function): last calls 2026-09-09 and 2026-01-17 for the retired verifiers, none in the 30-day
-  window ([`activity.json`](../evidence/adi-chain-zk-verifiers/activity.json)). The live verifier and its legs were
+  window ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/adi-chain-zk-verifiers/activity.json)). The live verifier and its legs were
   deployed after the March 2026 trace; their activity was not measured.
 - INFERRED: the chain name from chainid.network (36900 = ADI Chain); the team behind the governance Safes is not
   named on-chain.
@@ -163,5 +161,5 @@ ADI's Governance contract (behind a 2-of-3 Safe and a 3-day delay) can register 
 
 ## History
 
-- 2026-11-04: the two retired verifiers were classified from verified source (hand classification pass; `data/curation/`) and grouped in `zksync-plonk-fflonk-verifier`.
+- 2026-11-04: the two retired verifiers were classified from verified source (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`) and grouped in `zksync-plonk-fflonk-verifier`.
 - 2026-11-17 review (Review06): finding created and rated MEDIUM (step 4: ADI's Governance can register a new verifier; escrow USD 5.43M). The two retired verifiers moved here from `zksync-plonk-fflonk-verifier` (rated MEDIUM there); added ADI Chain's live ZKsyncOSDualVerifier and its two legs.

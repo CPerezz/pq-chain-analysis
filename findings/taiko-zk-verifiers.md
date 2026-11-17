@@ -108,35 +108,27 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/taiko-zk-verifiers/classification.jsonl
-  - evidence/taiko-zk-verifiers/onchain.json
-  - evidence/taiko-zk-verifiers/activity.json
-  - evidence/taiko-zk-verifiers/source-excerpts.md
-  - evidence/taiko-zk-verifiers/escrow.json
-  - evidence/taiko-zk-verifiers/prove_scan.py
-  - evidence/taiko-zk-verifiers/fb3ca570-classification.jsonl
-  - evidence/taiko-zk-verifiers/fb3ca570-onchain.json
-  - evidence/taiko-zk-verifiers/fb3ca570-activity.json
-  - evidence/taiko-zk-verifiers/fb3ca570-source-excerpts.md
-  - evidence/taiko-zk-verifiers/fb3ca570-notes.md
-  - evidence/taiko-zk-verifiers/fb3ca570-merge-reads.md
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/taiko-zk-verifiers
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_1.jsonl,out_2.jsonl,out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl,out_2.jsonl,out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review16 (verified source of the Shasta inbox, ZkRequiredVerifier, SP1Verifier and Risc0Verifier wrappers; on-chain reads at block 26,431,535)
-  ref: evidence/taiko-zk-verifiers/escrow.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/taiko-zk-verifiers/escrow.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
 - by: ai-assisted
+  study: top-callers-classification
   who: Review15 (review of the former finding unidentified-fb3ca570-snark-verifier, merged here)
-  ref: evidence/taiko-zk-verifiers/fb3ca570-notes.md
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/taiko-zk-verifiers/fb3ca570-notes.md
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -167,32 +159,32 @@ The four originally listed contracts, plus two more Taiko-deployed RISC Zero cop
   `riscoGroth16Verifier()`, read at block 26,431,723). It was deployed at block 23,472,891 (2025-09-30) and never
   verified a proof: no pairing call in the precompile trace to block 24,683,719 (only `sha256` in its constructor
   transaction), and no call frame to it or to `0x73ee496d…` in Xatu traces for blocks 24,683,000–26,423,999
-  ([`fb3ca570-merge-reads.md`](../evidence/taiko-zk-verifiers/fb3ca570-merge-reads.md)). The live RISC Zero router
+  ([`fb3ca570-merge-reads.md`](#reads-for-the-fb3ca570-merge-review16-2026-11-17)). The live RISC Zero router
   routes the same selector `0x73c457ba` to estop `0x9f9994eb…`, not to `0x7cca385b…`.
 - `0xfb3ca570…` RISC Zero Groth16 (stock `risc0-ethereum` `RiscZeroGroth16Verifier`, same deployer `0xcdcebd75…`):
   the Pacaya `Risc0Verifier` proxy `0x73ee496d…` called it from block 22,679,611 to 22,986,441 (2025-07-24, 936
   transactions; last tx `0x1135dd3c…`: ProverSet `0x68d30f47…` -> Pacaya inbox `0x06a9ab27…` -> `MainnetVerifier`
   `0xb16931e7…` -> `0x73ee496d…` -> `staticcall 0xfb3ca570…`). The proxy was then upgraded to implementation
   `0xdf6327ca…`, whose immutable verifier is `0x7cca385b…`; its runtime code does not contain `0xfb3ca570…`
-  ([`fb3ca570-notes.md`](../evidence/taiko-zk-verifiers/fb3ca570-notes.md),
-  [`fb3ca570-source-excerpts.md`](../evidence/taiko-zk-verifiers/fb3ca570-source-excerpts.md)).
+  ([`fb3ca570-notes.md`](#review-reads-review15-2026-11-17),
+  [`fb3ca570-source-excerpts.md`](#source-excerpts-unidentified-fb3ca570-snark-verifier)).
 
 Both Pacaya wrappers sit in `MainnetVerifier` `0xb16931e7…`, which only the Pacaya inbox `0x06a9ab27…` (`inbox.based.taiko.eth`) calls. That path is retired: every Pacaya batch is verified, and after the Shasta fork timestamp the Pacaya inbox no longer writes to SignalService, which only accepts checkpoints from the Shasta inbox.
 
-Source excerpts: [`source-excerpts.md`](../evidence/taiko-zk-verifiers/source-excerpts.md).
+Source excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/taiko-zk-verifiers/source-excerpts.md).
 
 ## Evidence
 
 - CHECKED (precompile trace, all mainnet transactions to March 2026): `ecpairing`/`ecmul`/`ecadd` and BN254 field arithmetic in the four listed verifiers.
 - CHECKED (verified source, Sourcify and Blockscout): Shasta `MainnetInbox`/`Inbox` `0xa18431d4…`, `ZkRequiredVerifier`/`ComposeVerifier` `0x7284aac0…`, Taiko `SP1Verifier` `0x73a0db39…`, Taiko `Risc0Verifier` `0x059daf31…`, `SP1Verifier` v6.1.0 `0xc3c6ddda…` (`SP1VerifierPlonk.sol`), Pacaya `MainnetInbox` `0x38dd73fe…` and `MainnetVerifier` `0x8c520bb7…`, `TaikoDAOController` `0x4347df63…`.
-- CHECKED (on-chain reads at block 26,431,535, 2026-11-17; [`escrow.json`](../evidence/taiko-zk-verifiers/escrow.json)):
+- CHECKED (on-chain reads at block 26,431,535, 2026-11-17; [`escrow.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/taiko-zk-verifiers/escrow.json)):
   - Shasta inbox: `getConfig()`, `owner()`, EIP-1967 implementation.
   - ZkRequiredVerifier: the six verifier immutables; no EIP-1967 implementation, no owner.
   - Wrappers: `sp1RemoteVerifier()`, `riscoGroth16Verifier()`, `owner()`.
   - Routes: gateway `routes(0x5a093a2f)`, `routes(0x1b34fe11)` and `routes(0xd4e8ecd2)` (both frozen, to Succinct's own copies); router `getVerifier` for each listed selector; estop `paused()`.
   - `VERSION()`/`SELECTOR()`/`VERIFIER_HASH()` of the listed verifiers.
   - Pacaya `MainnetVerifier` sub-verifiers and wrapper targets; governance chain as in `taiko-sgx-instance-keys`.
-- CHECKED (proof composition; [`prove_scan.py`](../evidence/taiko-zk-verifiers/prove_scan.py), run on the remote box): decoded all 1,369 `prove` transactions to the Shasta inbox in blocks 26,208,000–26,431,535. 704 were SGX_GETH + SP1 (selector `0x5a093a2f`, last block 26,426,198); 665 were SGX_GETH + RISC0 (selector `0x73c457ba`, last block 26,325,763, 2026-11-02). In the 30-day window 2026-10-16 to 2026-11-16 there were 1,355 (690 SP1, 665 RISC0).
+- CHECKED (proof composition; [`prove_scan.py`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/taiko-zk-verifiers/prove_scan.py), run on the remote box): decoded all 1,369 `prove` transactions to the Shasta inbox in blocks 26,208,000–26,431,535. 704 were SGX_GETH + SP1 (selector `0x5a093a2f`, last block 26,426,198); 665 were SGX_GETH + RISC0 (selector `0x73c457ba`, last block 26,325,763, 2026-11-02). In the 30-day window 2026-10-16 to 2026-11-16 there were 1,355 (690 SP1, 665 RISC0).
 - CHECKED (Xatu activity, any function): no calls to the four listed verifiers in 2026-10-16 to 2026-11-16. `0xff5adab6…` was last called 2026-04-02; the other three have no call since 2026-03-18, and their last pre-quantum calls in the trace are listed above.
 - INFERRED: the ERC20Vault releases bridged tokens after `Bridge.processMessage` (standard Taiko design; vault source not read here).
 
@@ -239,8 +231,198 @@ The retired verifiers hold nothing and are reachable from no path that releases 
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review16): MEDIUM -> MEDIUM, step 4: none of the four listed verifiers is on the live path; all are retired. Added the live ZkRequiredVerifier `0x7284aac0…` and Taiko's SP1/Risc0 wrappers, and the retired Taiko-deployed RISC Zero 3.0.0 `0x7cca385b…`. The live legs route to vendor BN254 verifiers (SP1 v6.1.0 `0xc3c6ddda…`, RISC Zero 3.0.0 `0x2a098988…`). RISC0 + SP1 is accepted without SGX, and SGX + ZK falls too. Admin corrected from "none" to the Taiko DAO via TaikoDAOController (inbox upgrade); fix layer changed from onchain-config to contract-upgrade. Escrow measured: USD 9,946,783.
 - 2026-11-17 review (Review15, finding `unidentified-fb3ca570-snark-verifier`): LOW confirmed (step 1). Consumer identified as Taiko's Pacaya Risc0Verifier `0x73ee496d…` (project -> taiko), which no longer uses this verifier (impact funds-loss -> none, fix layer -> none). Belongs in taiko-zk-verifiers; successor `0x7cca385b…` missing there at the time.
-- 2026-11-17 merge (Review16): `unidentified-fb3ca570-snark-verifier` merged into this finding at Main's request; its contract `0xfb3ca570…` and evidence (`evidence/taiko-zk-verifiers/fb3ca570-*`) moved here, the source finding deleted. `0x7cca385b…` checked: it is the Pacaya Risc0Verifier's verifier, not on the live Shasta path (the live RISC Zero leg is wrapper `0x059daf31…` -> router `0x8eab2d97…` -> estop `0x9f9994eb…` -> `0x2a098988…`, read at block 26,431,723), and it never verified a proof (precompile trace and Xatu traces). Rating unchanged: MEDIUM (step 4) from the live path; the retired verifiers add no exposure.
+- 2026-11-17 merge (Review16): `unidentified-fb3ca570-snark-verifier` merged into this finding at Main's request; its contract `0xfb3ca570…` and evidence (`https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/taiko-zk-verifiers/fb3ca570-*`) moved here, the source finding deleted. `0x7cca385b…` checked: it is the Pacaya Risc0Verifier's verifier, not on the live Shasta path (the live RISC Zero leg is wrapper `0x059daf31…` -> router `0x8eab2d97…` -> estop `0x9f9994eb…` -> `0x2a098988…`, read at block 26,431,723), and it never verified a proof (precompile trace and Xatu traces). Rating unchanged: MEDIUM (step 4) from the live path; the retired verifiers add no exposure.
+
+# Source excerpts: unidentified-fb3ca570-snark-verifier
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0xfb3ca570a5348fd101e65303eecdb5bf43c5548a` — RiscZeroGroth16Verifier (verified source via sourcify)
+
+### `node_modules/risc0-ethereum/contracts/src/IRiscZeroVerifier.sol`
+
+```solidity
+  203      /// receipt is unconditional).
+  204      /// @param seal The encoded cryptographic proof (i.e. SNARK).
+  205      /// @param imageId The identifier for the guest program.
+  206      /// @param journalDigest The SHA-256 digest of the journal bytes.
+  207      function verify(bytes calldata seal, bytes32 imageId, bytes32 journalDigest) external view;
+  208  
+  209      /// @notice Verify that the given receipt is a valid RISC Zero receipt, ensuring the `seal` is
+  210      /// valid a cryptographic proof of the execution with the given `claim`. Reverts on failure.
+  211      /// @param receipt The receipt to be verified.
+  ...
+```
+
+### `node_modules/risc0-ethereum/contracts/src/groth16/Groth16Verifier.sol`
+
+```solidity
+   61      uint256 constant IC5y = 15060583660288623605191393599883223885678013570733629274538391874953353488393;
+   62  
+   63      // Memory data
+   64      uint16 constant pVk = 0;
+   65      uint16 constant pPairing = 128;
+   66  
+   67      uint16 constant pLastMem = 896;
+   68  
+   69      function verifyProof(
+   70          uint256[2] calldata _pA,
+   71          uint256[2][2] calldata _pB,
+   72          uint256[2] calldata _pC,
+   73          uint256[5] calldata _pubSignals
+  ...
+  105                      return(0, 0x20)
+  106                  }
+  107              }
+  108  
+  109              function checkPairing(pA, pB, pC, pubSignals, pMem) -> isOk {
+  110                  let _pPairing := add(pMem, pPairing)
+  111                  let _pVk := add(pMem, pVk)
+  112  
+  113                  mstore(_pVk, IC0x)
+  114                  mstore(add(_pVk, 32), IC0y)
+  ...
+  125  
+  126                  g1_mulAccC(_pVk, IC5x, IC5y, calldataload(add(pubSignals, 128)))
+  127  
+  128                  // -A
+  129                  mstore(_pPairing, calldataload(pA))
+  130                  mstore(add(_pPairing, 32), mod(sub(q, calldataload(add(pA, 32))), q))
+  131  
+  132                  // B
+  133                  mstore(add(_pPairing, 64), calldataload(pB))
+  134                  mstore(add(_pPairing, 96), calldataload(add(pB, 32)))
+  135                  mstore(add(_pPairing, 128), calldataload(add(pB, 64)))
+  136                  mstore(add(_pPairing, 160), calldataload(add(pB, 96)))
+  137  
+  138                  // alpha1
+  139                  mstore(add(_pPairing, 192), alphax)
+  140                  mstore(add(_pPairing, 224), alphay)
+  141  
+  142                  // beta2
+  143                  mstore(add(_pPairing, 256), betax1)
+  144                  mstore(add(_pPairing, 288), betax2)
+  145                  mstore(add(_pPairing, 320), betay1)
+  146                  mstore(add(_pPairing, 352), betay2)
+  147  
+  148                  // vk_x
+  149                  mstore(add(_pPairing, 384), mload(add(pMem, pVk)))
+  150                  mstore(add(_pPairing, 416), mload(add(pMem, add(pVk, 32))))
+  151  
+  152                  // gamma2
+  153                  mstore(add(_pPairing, 448), gammax1)
+  154                  mstore(add(_pPairing, 480), gammax2)
+  155                  mstore(add(_pPairing, 512), gammay1)
+  156                  mstore(add(_pPairing, 544), gammay2)
+  157  
+  158                  // C
+  159                  mstore(add(_pPairing, 576), calldataload(pC))
+  160                  mstore(add(_pPairing, 608), calldataload(add(pC, 32)))
+  161  
+  162                  // delta2
+  163                  mstore(add(_pPairing, 640), deltax1)
+  164                  mstore(add(_pPairing, 672), deltax2)
+  165                  mstore(add(_pPairing, 704), deltay1)
+  166                  mstore(add(_pPairing, 736), deltay2)
+  167  
+  168                  let success := staticcall(sub(gas(), 2000), 8, _pPairing, 768, _pPairing, 0x20)
+  169  
+  170                  isOk := and(success, mload(_pPairing))
+  171              }
+  172  
+  173              let pMem := mload(0x40)
+  174              mstore(0x40, add(pMem, pLastMem))
+  ...
+  185  
+  186              checkField(calldataload(add(_pubSignals, 128)))
+  187  
+  188              // Validate all evaluations
+  189              let isValid := checkPairing(_pA, _pB, _pC, _pubSignals, pMem)
+  190  
+  191              mstore(0, isValid)
+  192              return(0, 0x20)
+  193          }
+  ...
+```
+
+### `node_modules/risc0-ethereum/contracts/src/groth16/RiscZeroGroth16Verifier.sol`
+
+```solidity
+  140          return (bytes16(uint128(reversed)), bytes16(uint128(reversed >> 128)));
+  141      }
+  142  
+  143      /// @inheritdoc IRiscZeroVerifier
+  144      function verify(bytes calldata seal, bytes32 imageId, bytes32 journalDigest) external view {
+  145          _verifyIntegrity(seal, ReceiptClaimLib.ok(imageId, journalDigest).digest());
+  146      }
+  147  
+  148      /// @inheritdoc IRiscZeroVerifier
+  ...
+  161  
+  162          // Run the Groth16 verify procedure.
+  163          (bytes16 claim0, bytes16 claim1) = splitDigest(claimDigest);
+  164          Seal memory decodedSeal = abi.decode(seal[4:], (Seal));
+  165          bool verified = this.verifyProof(
+  166              decodedSeal.a,
+  167              decodedSeal.b,
+  168              decodedSeal.c,
+  169              [
+  ...
+```
+
+# Reads for the fb3ca570 merge (Review16, 2026-11-17)
+
+## On-chain (block 26,431,723, publicnode)
+
+| Read | Result |
+|---|---|
+| live wrapper `0x059daf31…` `riscoGroth16Verifier()` | `0x8eab2d97dfce405a1692a21b3ff3a172d593d319` (RiscZeroVerifierRouter) |
+| Pacaya wrapper proxy `0x73ee496d…` `riscoGroth16Verifier()` | `0x7cca385bdc790c25924333f5adb7f4967f5d1599` |
+| `0x73ee496d…` EIP-1967 implementation | `0xdf6327caafc5feb8910777ac811e0b1d27dcdf36` |
+| `0x7cca385b…` `VERSION()` / `SELECTOR()` | `3.0.0` / `0x73c457ba` |
+| router `getVerifier(0x73c457ba)` | `0x9f9994eb4cb5200198fefb470f8b50301662e696` (emergency-stop wrapper; not `0x7cca385b…`) |
+| `0x7cca385b…` ETH balance | 0 |
+
+Blockscout: `0x7cca385b…` created by `0xcdcebd75…` in tx `0x7aa251b9…` (block 23,472,891).
+
+## Precompile corpus (`data/agg/y1_tx_caller.parquet`, to block 24,683,719)
+
+| Caller | rows | first block | last block |
+|---|---|---|---|
+| `0x7cca385b…` | 1 (`sha256`, its creation tx) | 23,472,891 | 23,472,891 |
+| `0x73ee496d…` (Pacaya Risc0Verifier) | 2,965 | 22,530,964 | 23,483,499 |
+| `0xfb3ca570…` | 3,741 | 22,679,611 | 22,986,441 |
+
+## Xatu `canonical_execution_traces` (remote box)
+
+Call frames with `action_to` in {`0x7cca385b…`, `0x73ee496d…`, `0xfb3ca570…`}, partitions 24,683–26,423
+(blocks 24,683,000–26,423,999; 26,424+ not yet published): none.
+
+# Review reads (Review15, 2026-11-17)
+
+## Who called it
+
+`data/agg/y1_tx_caller.parquet`: 936 distinct transactions with pre-quantum calls from `0xfb3ca570…`, blocks
+22,679,611–22,986,441. Pre-quantum callers in those transactions: `0xfb3ca570…` (3,741 rows),
+`0x73ee496da20e5c65340c040b0d8c3c891c1f74ae` (935), `0x7e6409e9b6c5e2064064a6cc994f9a2e95680782` (935).
+
+Last transaction `0x1135dd3c77cdbd2f8b6a4a00f5e3038f1919be8255e9d0336b34e16d305210d7` (block 22,986,441):
+`proveBatches(bytes,bytes)` from `0xa5cb34b7…` to `0x68d30f47f19c07bccef4ac7fae2dc12fca3e0dc9` (`ERC1967Proxy` ->
+`ProverSet` `0xb8826b14…`). Blockscout internal calls: ProverSet -> inbox `0x06a9ab27c7e2255df1815e6cc0168d7755feb19a`
+-> `0xb16931e7…` -> `0x73ee496d…` (delegate `0xb1c6ff8d…`) -> `staticcall 0xfb3ca570…`; then `0x7e6409e9…`.
+
+ProverSet reads (eth.drpc.org): `inbox()` = `0x06a9ab27…`, `owner()` = `0x0f026a3e…`, `bondToken()` =
+`0x10dea674…` (TAIKO).
+
+## Current state (block 26,431,705)
+
+| Read | Result |
+|---|---|
+| `0x73ee496d…` EIP-1967 implementation | `0xdf6327caafc5feb8910777ac811e0b1d27dcdf36` (Blockscout/Sourcify: `Risc0Verifier`, `address public immutable riscoGroth16Verifier`) |
+| `0x73ee496d…` `riscoGroth16Verifier()` | `0x7cca385bdc790c25924333f5adb7f4967f5d1599` (Blockscout: `RiscZeroGroth16Verifier`, creator `0xcdcebd75…`) |
+| `0x73ee496d…` `owner()` | `0x75ba76403b13b26ad1bec70d6ee937314eeacd0a` |
+| implementation runtime code contains `fb3ca570…` | no |

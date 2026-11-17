@@ -98,22 +98,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/native-rfq-signer/classification.jsonl
-  - evidence/native-rfq-signer/onchain.json
-  - evidence/native-rfq-signer/activity.json
-  - evidence/native-rfq-signer/source-excerpts.md
-  - evidence/native-rfq-signer/review-notes.md
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/native-rfq-signer
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_1.jsonl,out_2.jsonl,out_3.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_1.jsonl,out_2.jsonl,out_3.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review17 (Sourcify source, on-chain and Blockscout reads)
-  ref: evidence/native-rfq-signer/review-notes.md
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/native-rfq-signer/review-notes.md
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -148,23 +146,23 @@ so the fix is new vault, router and pool deployments; rated MEDIUM (step 4: new 
 
 - CHECKED (Sourcify source of router `0x8a2ddc04…` with bundled pool and vault, pool `0xc419e673…`, and CreditVault
   `0xe3d41d19…` itself, exact match): the checks and transfers above
-  ([`review-notes.md`](../evidence/native-rfq-signer/review-notes.md),
-  [`source-excerpts.md`](../evidence/native-rfq-signer/source-excerpts.md)).
+  ([`review-notes.md`](#review-reads-native-rfq-signer-2026-11-17-review17),
+  [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/native-rfq-signer/source-excerpts.md)).
 - CHECKED (on-chain, latest blocks 26,431,551-26,431,705): no proxies; owner of all routers and pools = Safe
   `0x83fc28e6…` (3 of 5); pools' `treasury()` = CreditVault `0xe3d41d19…`; `creditPools` true for `0xc419e673…` and
   `0x5d1a3436…`, false for `0x9af2f3c0…`; vault USDC and WETH allowances to the two live pools are unlimited, to
   `0x9af2f3c0…` zero; routers `0x0f9f2366…` and `0xa42c9f74…` are paused.
 - CHECKED (Blockscout token holdings, 2026-11-17): CreditVault holds $6.79M (WETH $2.16M, USDT $2.02M, USDC $1.74M,
   cbBTC $506k, WBTC $351k).
-- CHECKED (block 26,431,214): routers and pools hold ~$0 ([`onchain.json`](../evidence/native-rfq-signer/onchain.json)).
+- CHECKED (block 26,431,214): routers and pools hold ~$0 ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/native-rfq-signer/onchain.json)).
 - CHECKED (latest block 26,431,766): CreditVault has no EIP-1967 implementation; `signer()` = `0x0b89c5eb…`; `owner()`
   = `0x9b9dc7c5…`, an unverified contract that is not a Safe and has no `getMinDelay`.
 - CHECKED (Blockscout, 2026-11-17): the vault's last direct transaction was `settle` on 2026-07-14; none
   2026-10-16 to 2026-11-16. INFERRED: it is called on every credit-pool trade through `swapCallback`, so its last
   call is the pools' last trade (2026-11-16); it is not in the Xatu activity data, so `txs_30d` is null.
-- CHECKED (Xatu, any function): activity per contract in the table ([`activity.json`](../evidence/native-rfq-signer/activity.json));
+- CHECKED (Xatu, any function): activity per contract in the table ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/native-rfq-signer/activity.json));
   `ecrecover` transactions in the yearly window: router `0xa540ec8c…` 455,212, pool `0x5d1a3436…` 454,724, router
-  `0x8a2ddc04…` 46,625, pool `0xc419e673…` 46,435 (`data/report/curated_contracts.csv`).
+  `0x8a2ddc04…` 46,625, pool `0xc419e673…` 46,435 (`studies/top-callers-classification/results/curated_contracts.csv`).
 - INFERRED: the router signer and market-maker keys have signed on-chain-submitted quotes, so their public keys are
   recoverable from calldata.
 
@@ -196,7 +194,55 @@ through both live pools and through its own signer-approved withdrawals.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review17): MEDIUM kept, step 4: fix by new router and pool deployments by the owner Safe. Escrow measured: CreditVault `0xe3d41d19…` $6.79M; noted that a trade needs both the router signer and a market-maker key.
 - 2026-11-17 review (Review17, follow-up): MEDIUM kept, step 4: the CreditVault is not upgradeable either, so the fix is still a new deployment. CreditVault `0xe3d41d19…` added to `contracts[]`, with its own signer path (`settle`, `removeCollateral`, `liquidate`); the $6.79M moved from the router's `escrow` value to the vault's `held` value.
+
+# Review reads: native-rfq-signer (2026-11-17, Review17)
+
+Sourcify sources: NativeRouter `0x8a2ddc0461fcf96f81a05529bed540d4f1eb2a00` (bundle includes NativeRFQPool and
+CreditVault) and NativeRFQPool `0xc419e67388df0c0cfad15584fc5fc7e67a234c17`.
+
+- `NativeRouter.tradeRFQT` requires `isNativePools[quote.pool]` and `_verifyRFQSignature(quote)`:
+  `ECDSA.recover(digest, quote.widgetFeeSignature)` must be in `signers` (owner `setSigner`). `externalSwap` uses
+  `_verifyExternalSwap`: `ECDSA.recover(digest, params.signature)` in `signers`.
+- `NativeRFQPool.tradeRFQT` (only callable by `router`): `_verifyPMMSignature` requires `rfqSigners[quote.signer]`
+  and `quote.signer == ECDSA.recover(digest, quote.signature)`; then, for a credit pool,
+  `ICreditVault(treasury).swapCallback(signer, …)` books the trade to the market maker's position and
+  `_transferFromTreasury` does `safeTransferFrom(treasury, recipient, buyerTokenAmount)`.
+- `CreditVault`: `swapCallback` only from `creditPools[msg.sender]`; `settle`, `removeCollateral`, `liquidate` check
+  `ECDSA.recover(digest, signature) == signer`.
+- No contract is a proxy (EIP-1967 implementation slot 0 on all four routers).
+
+On-chain reads, latest block 26,431,551-26,431,705 (2026-11-17):
+
+| Contract | treasury | router | creditPool in vault | vault USDC/WETH allowance to pool |
+|---|---|---|---|---|
+| pool `0xc419e673…` | `0xe3d41d19…` | `0x8a2ddc04…` | true | max / max |
+| pool `0x5d1a3436…` | `0xe3d41d19…` | `0xa540ec8c…` | true | max / max |
+| pool `0x9af2f3c0…` | `0xe3d41d19…` | `0x0f9f2366…` | false | 0 / 0 |
+
+- Routers: `owner()` of all four = Safe `0x83fc28e6962e41e38f7854308eff827e3f6b906b`, `getThreshold()` = 3, 5 owners.
+  `paused()`: `0x8a2ddc04…` false, `0xa540ec8c…` false, `0x0f9f2366…` true, `0xa42c9f74…` true.
+  `isNativePools`: `0x8a2ddc04…`→`0xc419e673…` true, `0xa540ec8c…`→`0x5d1a3436…` true, `0x0f9f2366…`→`0x9af2f3c0…` true.
+- Pools: `owner()` = Safe `0x83fc28e6…`.
+- CreditVault `0xe3d41d19564922c9952f692c5dd0563030f5f2ef`: `signer()` = `0x0b89c5eb76b15a4b09b05b01c953e19dedf80a5e`;
+  `owner()` = `0x9b9dc7c56e18cfda57d402ca7ded491b1544dc56` (contract, unverified, not a Safe, no `getMinDelay`); no
+  EIP-1967 implementation; ETH 0.
+- CreditVault ERC-20 holdings (Blockscout `/tokens`, priced, run on the remote box 2026-11-17): $6.79M — WETH $2.16M,
+  USDT $2.02M, USDC $1.74M, cbBTC $506k, WBTC $351k, others < $5k.
+
+## Follow-up: CreditVault in `contracts[]` (2026-11-17)
+
+- Sourcify exact match at the vault's own address (`src/CreditVault.sol:CreditVault`).
+  - `settle` (171), `removeCollateral` (203): `onlyTraderOrSettler(trader)` (620: `traders[trader]` and the caller is
+    the trader or its settler); signature check; `safeTransfer` to `traderToRecipient[trader]`; daily
+    `_updateRebalanceCap`.
+  - `liquidate` (250): `onlyLiquidator`; signature check; pays `liquidatorToRecipient[msg.sender]` and claimed
+    collateral.
+  - `_verifySettleSignature` (542), `_verifyRemoveCollateralSignature` (566), `_verifyLiquidationSignature` (590):
+    EIP-712 digest, `ECDSA.recover(digest, signature) == signer`.
+  - `setSigner`, `setCreditPool`, `setAllowance`, `setTrader`, `setLiquidator`, `supportMarket` are `onlyOwner`.
+- Latest block 26,431,766: EIP-1967 implementation slot 0 (not a proxy).
+- Blockscout direct transactions: last `settle` 2026-07-14 (block 25,531,299); none 2026-10-16 to 2026-11-16.

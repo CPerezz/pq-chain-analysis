@@ -38,22 +38,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/chainlink-vrf-secp256k1/classification.jsonl
-  - evidence/chainlink-vrf-secp256k1/onchain.json
-  - evidence/chainlink-vrf-secp256k1/activity.json
-  - evidence/chainlink-vrf-secp256k1/source-excerpts.md
-  - evidence/chainlink-vrf-secp256k1/notes.md
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/chainlink-vrf-secp256k1
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review11 (Claude), finding review
-  ref: evidence/chainlink-vrf-secp256k1/notes.md
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/chainlink-vrf-secp256k1/notes.md
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -83,14 +81,14 @@ the fix is a new coordinator with a post-quantum VRF that subscriptions and cons
 ## Evidence
 
 - CHECKED (verified source, Sourcify): `fulfillRandomWords` and `_getRandomnessFromProof` in VRFCoordinatorV2_5 and
-  VRFCoordinatorV2; VRF.sol ([`source-excerpts.md`](../evidence/chainlink-vrf-secp256k1/source-excerpts.md),
-  [`notes.md`](../evidence/chainlink-vrf-secp256k1/notes.md)).
+  VRFCoordinatorV2; VRF.sol ([`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/chainlink-vrf-secp256k1/source-excerpts.md),
+  [`notes.md`](#review-notes-chainlink-vrf-secp256k1-2026-11-17)).
 - CHECKED (on-chain read, block 26,431,454): V2.5 `owner()` = Safe `0xcc4b5b07…` (4 of 12); V2 `owner()` =
   `0x46321982…`, an unverified contract whose `owner()` is the same Safe. Neither coordinator is a proxy.
 - CHECKED (on-chain read, block 26,431,214): subscription balances held, V2.5 $519k and V2 $571k
-  ([`onchain.json`](../evidence/chainlink-vrf-secp256k1/onchain.json)); not the exposure.
+  ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/chainlink-vrf-secp256k1/onchain.json)); not the exposure.
 - CHECKED (Xatu, any function): V2.5 31,623 transactions 2026-10-16 to 2026-11-16, last 2026-11-16; V2 13, last
-  2026-11-05 ([`activity.json`](../evidence/chainlink-vrf-secp256k1/activity.json)).
+  2026-11-05 ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/chainlink-vrf-secp256k1/activity.json)).
 - INFERRED: `0x46321982…` is Chainlink's VRFOwner wrapper (selectors only).
 
 ## Impact and exposure
@@ -115,6 +113,35 @@ consumer and not measured here. Yearly pre-quantum counts from the census: V2.5 
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review11): MEDIUM unchanged (step 4: new coordinator that subscriptions and consumers move to). Removed the held values ($519k, $571k: subscription balances a forged proof cannot take); the attacker predicts, not chooses, the randomness. V2 owner traced to the same 4-of-12 Safe through 0x46321982….
+
+# Review notes: chainlink-vrf-secp256k1 (2026-11-17)
+
+Reads with `cast` against https://ethereum-rpc.publicnode.com at block 26,431,454; source from Sourcify.
+
+## Who can change it
+
+- VRFCoordinatorV2_5 `0xd7f86b4b8cae7d942340ff628f82735b7a20893a`: `owner()` = Safe `0xcc4b5b07316be81ed6edb44ca61e4cab28a1950d`
+  (GnosisSafe 1.3.0, threshold 4 of 12). No proxy.
+- VRFCoordinatorV2 `0x271682deb8c4e0901d1a1550ad2e64d568e69909`: `owner()` = `0x463219821e151c0c44364c27833e39386c48e64f`,
+  an unverified contract (7,626 bytes, created by `0xab42d8b7cbef1e4fe568a6b4edc8ecccb6c86a49`) whose selectors include
+  `owner()`, `acceptOwnership()`, `transferOwnership(address)`, `setAuthorizedSenders(address[])`; its `owner()` = the
+  same Safe `0xcc4b5b07…`. [INFERENCE: Chainlink's VRFOwner wrapper.] No proxy.
+
+## Mechanism (VRFCoordinatorV2_5.sol)
+
+- `fulfillRandomWords(Proof proof, RequestCommitmentV2Plus rc, bool onlyPremium)` (line 445) has no caller check. It calls
+  `_getRandomnessFromProof` (line 369): the proving key must be registered (`s_provingKeys[keyHash].exists`), the request
+  commitment must match, the seed is mixed with the request block's hash, and `VRF._randomValueFromVRFProof` verifies the
+  ECVRF proof on secp256k1 (ecrecover used as scalar multiplication, `modexp` for field square roots, VRF.sol).
+- Payment is charged to the subscription (`_chargePayment`) and credited to the protocol, not to the caller.
+- With a proving key's secret, anyone can compute the output for any pending request as soon as the request block's hash
+  is known, before the oracle fulfils it. ECVRF outputs are unique per key and seed, so the attacker predicts the value but
+  cannot choose it.
+
+## Holdings (not the exposure)
+
+From `onchain.json` (block 26,431,214): V2.5 $519k and V2 $571k (LINK and ETH subscription balances). Forging a VRF
+proof does not move these balances to the attacker.

@@ -28,16 +28,13 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/abstract-blob-kzg/classification.jsonl
-  - evidence/abstract-blob-kzg/onchain.json
-  - evidence/abstract-blob-kzg/activity.json
-  - evidence/abstract-blob-kzg/source-excerpts.md
-  - evidence/abstract-blob-kzg/escrow.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/abstract-blob-kzg
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
@@ -68,27 +65,27 @@ operator can already use in the deployed validator, and a forged opening only wi
 - For `PubdataSource.Calldata`, `CalldataDA._processCalldataDA` checks `keccak256(pubdata) == fullPubdataHash`
   (lines 86-113); no KZG is involved. The operator picks the source per batch, so a calldata path exists but does not
   remove the blob path.
-- Pattern PQ-8. The `Config.sol`/`IExecutor.sol` lines in [`source-excerpts.md`](../evidence/abstract-blob-kzg/source-excerpts.md)
+- Pattern PQ-8. The `Config.sol`/`IExecutor.sol` lines in [`source-excerpts.md`](#source-excerpts-abstract-blob-kzg)
   are the constants of the older in-diamond check; the current check lives in the DA validator above.
 
 ## Evidence
 
 - CHECKED (precompile trace, all mainnet transactions to March 2026): KZG point evaluation attributed to this
-  diamond, 415 calls in the year (`data/report/curated_contracts.csv`, `txs_y1`).
+  diamond, 415 calls in the year (`studies/top-callers-classification/results/curated_contracts.csv`, `txs_y1`).
 - CHECKED (verified source on Sourcify, read 2026-11-17): `RollupL1DAValidator.sol` and `CalldataDA.sol` of
   `0x1c715018…`, as quoted above.
 - CHECKED (`cast call` at block 26,431,459): `getChainId()` 2741, `getSemverProtocolVersion()` 0.33.0, `getAdmin()`
   ChainAdmin `0xa1f75f49…` (no pending admin), `getDAValidatorPair()` (`0x1c715018…`, `0x…03`), `getVerifier()`
   `0x5d5d33b1…`, `getChainTypeManager()` `0xc2ee6b6a…`, 94,265 batches committed / 94,240 executed; ChainAdmin
   `owner()` = Safe `0x7f3eab9c…` with threshold 4 of 8 owners; ChainTypeManager and Bridgehub `owner()` =
-  `0xe30dca30…`; ValidatorTimelock `0xc62bde55…` owner = the same Safe ([`escrow.json`](../evidence/abstract-blob-kzg/escrow.json)).
+  `0xe30dca30…`; ValidatorTimelock `0xc62bde55…` owner = the same Safe ([`escrow.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/abstract-blob-kzg/escrow.json)).
 - CHECKED (transactions 0x36f44e98… at block 26,431,431 and 0x42057d38… at block 26,431,188): Abstract commits are
   type-3 transactions to ValidatorTimelock carrying 6 and 5 blobs, and Blockscout shows the diamond calling
   `0x1c715018…` in them; blob DA is in use now.
 - CHECKED (escrow at block 26,431,459): `L1AssetTracker 0x7fd8b995….chainBalance(2741, assetId)` for the vault's main
   tokens; see the table below.
 - CHECKED (Xatu, any function): 2,800 transactions touched the diamond in 2026-10-16 to 2026-11-16; last 2026-11-16
-  ([`activity.json`](../evidence/abstract-blob-kzg/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/abstract-blob-kzg/activity.json)).
 - INFERRED: a forged opening only helps the party allowed to commit batches (the validator behind ValidatorTimelock);
   that key is itself ECDSA, so a quantum attacker who also forges it could do the same.
 
@@ -121,7 +118,7 @@ PQ-7) is not in any finding.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: depends on the KZG precompile; only a protocol change replaces it).
 - 2026-11-17 review (Review20): HIGH -> MEDIUM, step 4: the current check is in RollupL1DAValidator `0x1c715018…`,
   which also accepts keccak-checked calldata pubdata, so the chain admin can remove KZG by pointing at a calldata-only
@@ -129,3 +126,54 @@ PQ-7) is not in any finding.
   opening, to hide data; the SNARK still checks the state transition); `alternative` sole -> configurable-verifier;
   escrow measured at $8.80M in L1AssetTracker `0x7fd8b995…` for chain 2741 at block 26,431,459.
 - 2026-11-17 rubric correction: MEDIUM -> LOW, step 4: the deployed RollupL1DAValidator `0x1c715018…` already accepts `PubdataSource.Calldata`, which the committer chooses per batch, and a forged opening only withholds data (funds-locked); `alternative` configurable-verifier -> alternative-exists; `protocol_change` helps -> not-needed.
+
+# Source excerpts: abstract-blob-kzg
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0x2edc71e9991a962c7fe172212d1aa9e50480fbb9` — DiamondProxy (verified source via sourcify)
+
+### `contracts/common/Config.sol`
+
+```solidity
+   82  /// to obtain the L2 block timestamp. Applying this mask is equivalent to calculating modulo 2**128
+   83  uint256 constant PACKED_L2_BLOCK_TIMESTAMP_MASK = 0xffffffffffffffffffffffffffffffff;
+   84  
+   85  /// @dev Address of the point evaluation precompile used for EIP-4844 blob verification.
+   86  address constant POINT_EVALUATION_PRECOMPILE_ADDR = address(0x0A);
+   87  
+   88  /// @dev The overhead for a transaction slot in L2 gas.
+   89  /// It is roughly equal to 80kk/MAX_TRANSACTIONS_IN_BATCH, i.e. how many gas would an L1->L2 transaction
+   90  /// need to pay to compensate for the batch being closed.
+  ...
+```
+
+### `contracts/state-transition/chain-interfaces/IExecutor.sol`
+
+```solidity
+   54  uint256 constant L2_LOG_VALUE_OFFSET = 56;
+   55  
+   56  /// @dev BLS Modulus value defined in EIP-4844 and the magic value returned from a successful call to the
+   57  /// point evaluation precompile
+   58  uint256 constant BLS_MODULUS = 52435875175126190479447740508185965837690552500527637822603658699938581184513;
+   59  
+   60  /// @dev Packed pubdata commitments.
+   61  /// @dev Format: list of: opening point (16 bytes) || claimed value (32 bytes) || commitment (48 bytes) || proof (48 bytes)) = 144 bytes
+   62  uint256 constant PUBDATA_COMMITMENT_SIZE = 144;
+  ...
+```
+
+### `contracts/state-transition/chain-interfaces/IVerifier.sol`
+
+```solidity
+   15  interface IVerifier {
+   16      /// @dev Verifies a zk-SNARK proof.
+   17      /// @return A boolean value indicating whether the zk-SNARK proof is valid.
+   18      /// Note: The function may revert execution instead of returning false in some cases.
+   19      function verify(
+   20          uint256[] calldata _publicInputs,
+   21          uint256[] calldata _proof,
+   22          uint256[] calldata _recursiveAggregationInput
+   23      ) external view returns (bool);
+  ...
+```

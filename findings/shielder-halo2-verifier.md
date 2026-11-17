@@ -28,22 +28,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/shielder-halo2-verifier/classification.jsonl
-  - evidence/shielder-halo2-verifier/onchain.json
-  - evidence/shielder-halo2-verifier/activity.json
-  - evidence/shielder-halo2-verifier/source-excerpts.md
-  - evidence/shielder-halo2-verifier/onchain-review.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/shielder-halo2-verifier
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review02 (registry review)
-  ref: evidence/shielder-halo2-verifier/onchain-review.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/shielder-halo2-verifier/onchain-review.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -71,19 +69,19 @@ under USD 50k is exposed.
   (precompile 0x08) against a hard-coded G2 point from the KZG setup (e.g. `contracts/WithdrawVerifier.sol` lines
   69–2749). Linked library addresses (Sourcify compilation settings): Deposit `0x37aa4f68…`, Withdraw `0xd03dd8d2…`,
   NewAccount `0x04ebcacd…`.
-- Excerpts: [`source-excerpts.md`](../evidence/shielder-halo2-verifier/source-excerpts.md).
+- Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/shielder-halo2-verifier/source-excerpts.md).
 
 ## Evidence
 
 - CHECKED (verified source, Sourcify, implementation `0x52aff198…`): the path above; `_authorizeUpgrade` is
   `onlyOwner`; `pause()` is `onlyOwner` and both withdraw functions are `whenNotPaused`.
-- CHECKED (on-chain read at block 26,431,454, [`onchain-review.json`](../evidence/shielder-halo2-verifier/onchain-review.json)):
+- CHECKED (on-chain read at block 26,431,454, [`onchain-review.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/shielder-halo2-verifier/onchain-review.json)):
   EIP-1967 implementation slot = `0x52aff198…`; `owner()` = Safe `0x9dc4e0e4…`, `pendingOwner()` = 0; Safe threshold 2
   of 5 owners; `paused()` = false.
 - CHECKED (same block): the proxy holds 0.1254 ETH, 606.81 USDT, 25.57 USDC = USD 859 at ETH USD 1,811.62.
-- CHECKED (Xatu, [`activity.json`](../evidence/shielder-halo2-verifier/activity.json)): no transactions 2026-10-16 to
+- CHECKED (Xatu, [`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/shielder-halo2-verifier/activity.json)): no transactions 2026-10-16 to
   2026-11-16; last 2026-02-04. 72 pre-quantum transactions in the last year (`txs_y1`,
-  `data/report/curated_contracts.csv`).
+  `studies/top-callers-classification/results/curated_contracts.csv`).
 
 ## Impact and exposure
 
@@ -105,6 +103,6 @@ Shielder deployment was found in the census data.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review02): MEDIUM -> LOW, step 5: the pool itself holds what a forged withdraw releases, USD 859 at block 26,431,454 (under USD 50k); step 4 gives MEDIUM (UUPS upgrade by the 2-of-5 owner Safe).

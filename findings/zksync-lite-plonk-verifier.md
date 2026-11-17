@@ -28,20 +28,18 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/zksync-lite-plonk-verifier/classification.jsonl
-  - evidence/zksync-lite-plonk-verifier/onchain.json
-  - evidence/zksync-lite-plonk-verifier/activity.json
-  - evidence/zksync-lite-plonk-verifier/source-excerpts.md
-  - evidence/zksync-lite-plonk-verifier/state.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/zksync-lite-plonk-verifier
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_3.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_3.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review06 (Claude), 2026-11-17 review
   ref: Sourcify source of ZkSync implementation 0x803b96fa…; cast reads on 2026-11-17
   date: 2026-11-17
@@ -76,11 +74,11 @@ closed and nothing can be taken through it.
   guards above.
 - CHECKED (cast, 2026-11-17): `exodusMode()` = true; `totalBlocksCommitted/Proven/Executed` = 453,633 each; verifier
   proxy implementation 0x57b09100…, EIP-1967 admin and `getMaster()` = UpgradeGatekeeper 0x38a43f43…, whose master is
-  Safe 0xe24f4870… (1 of 1, owned by Safe 0x4e494334…, 4 of 7) ([`state.json`](../evidence/zksync-lite-plonk-verifier/state.json)).
+  Safe 0xe24f4870… (1 of 1, owned by Safe 0x4e494334…, 4 of 7) ([`state.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/zksync-lite-plonk-verifier/state.json)).
 - CHECKED (Blockscout, 2026-11-17): the zkSync Lite contract 0xabea9132… holds USD 23,510 (stETH USD 23,505); its
   latest logs are 50 `TokenMigrationExecuted` events on 2026-05-08.
 - CHECKED (Xatu, any function): last call to the verifier on 2026-05-04, none in 2026-10-16 to 2026-11-16
-  ([`activity.json`](../evidence/zksync-lite-plonk-verifier/activity.json)); `curated_contracts.csv`: 2,245 BN254
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/zksync-lite-plonk-verifier/activity.json)); `curated_contracts.csv`: 2,245 BN254
   calls in the last year.
 
 ## Impact and exposure
@@ -103,6 +101,6 @@ closed and nothing can be taken through it.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review06): MEDIUM -> LOW, step 4: zkSync Lite is in exodus mode (`proveBlocks` reverts) and its funds moved to a claim distributor on 2026-05-08, so a forged proof releases nothing (impact funds-loss -> none). Spurious proxy-bytecode family removed; admin chain read on-chain.

@@ -38,22 +38,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/zerodev-ecdsa-validator/classification.jsonl
-  - evidence/zerodev-ecdsa-validator/onchain.json
-  - evidence/zerodev-ecdsa-validator/activity.json
-  - evidence/zerodev-ecdsa-validator/source-excerpts.md
-  - evidence/zerodev-ecdsa-validator/notes.md
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/zerodev-ecdsa-validator
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_2.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_2.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review08 (verified validator and Kernel sources)
-  ref: evidence/zerodev-ecdsa-validator/notes.md
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/zerodev-ecdsa-validator/notes.md
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -78,18 +76,18 @@ HIGH assumed a fixed signer set.
 - The Kernel account calls the validator selected by the user-op nonce. Validators are per-account modules;
   `onInstall` sets the owner.
 
-Pattern PQ-12. Excerpts: [`source-excerpts.md`](../evidence/zerodev-ecdsa-validator/source-excerpts.md).
+Pattern PQ-12. Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/zerodev-ecdsa-validator/source-excerpts.md).
 
 ## Evidence
 
 - CHECKED (Sourcify verified source of both validators): the checks above.
 - CHECKED (Sourcify, Kernel v3.1 implementation `0xbac849bb…` and `0xd6cedde8…`): `changeRootValidator`,
   `uninstallValidation`, `invalidateNonce` and `uninstallModule` exist and are callable by the account through its
-  root validator ([`notes.md`](../evidence/zerodev-ecdsa-validator/notes.md)).
+  root validator ([`notes.md`](#review-notes-review08-2026-11-17)).
 - CHECKED (on-chain read, block 26,431,214): neither validator is a proxy and neither holds funds
-  ([`onchain.json`](../evidence/zerodev-ecdsa-validator/onchain.json)).
+  ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/zerodev-ecdsa-validator/onchain.json)).
 - CHECKED (Xatu, 2026-10-16 to 2026-11-16): 246 and 8,440 transactions called the two validators
-  ([`activity.json`](../evidence/zerodev-ecdsa-validator/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/zerodev-ecdsa-validator/activity.json)).
 - CHECKED (precompile trace, year to March 2026, `curated_contracts.csv`): 21,843 (MultiChainValidator) and 132,888
   (ECDSAValidator) transactions with `ecrecover` in these modules.
 - INFERRED: no post-quantum Kernel validator module is deployed on mainnet; ZeroDev's published alternatives
@@ -118,6 +116,26 @@ enumerated here.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: signer set fixed in code; funds must move, and many independent owners may not act).
 - 2026-11-17 review (Review08): HIGH -> MEDIUM, step 4: Kernel v3 accounts can change their root validator and uninstall these modules in place (owners migrating their accounts), and the funds are each owner's own, not pooled; the fix needs a post-quantum validator module first.
+
+# Review notes (Review08, 2026-11-17)
+
+Validators (Sourcify, verified):
+- `ECDSAValidator` `0x845adb2c…`: `validateUserOp` (lines 52-67) and `isValidSignatureWithSender` (69-85) return success
+  iff `ecdsaValidatorStorage[msg.sender].owner == ECDSA.recover(hash, sig)` (raw hash or eth-signed hash). Owner is set
+  by `onInstall` from the Kernel account; there is no other admin.
+- `MultiChainValidator` `0x5c97aa67…`: same check; a signature longer than 65 bytes signs a Merkle root of user-op
+  hashes across chains (lines 59-128).
+- Neither is a proxy; neither holds ETH or tokens (onchain.json, block 26,431,214).
+
+Kernel v3 accounts (Sourcify, `src/Kernel.sol`): implementation `0xbac849bb641841b44e965fb01a4bf5f074f84b4d` (v3.1)
+has `changeRootValidator` (line 124), `installValidations` (421), `uninstallValidation` (430), `invalidateNonce`
+(439), `uninstallModule` (443); implementation `0xd6cedde84be40893d153be9d467cd6ad37875b28` has the same functions
+(lines 135, 396, 405, 425, 429). All are `onlyEntryPointOrSelfOrRoot`: the account's current root validator (here the
+ECDSA owner) authorises the switch.
+
+Usage: `data/report/curated_contracts.csv`: `0x5c97aa67…` 21,843 transactions with `ecrecover` in the year to March
+2026; `0x845adb2c…` 132,888. The number of Kernel accounts with these validators installed and their balances were
+not enumerated.

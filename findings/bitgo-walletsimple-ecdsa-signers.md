@@ -264,22 +264,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/bitgo-walletsimple-ecdsa-signers/classification.jsonl
-  - evidence/bitgo-walletsimple-ecdsa-signers/onchain.json
-  - evidence/bitgo-walletsimple-ecdsa-signers/activity.json
-  - evidence/bitgo-walletsimple-ecdsa-signers/source-excerpts.md
-  - evidence/bitgo-walletsimple-ecdsa-signers/signers.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/bitgo-walletsimple-ecdsa-signers
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_1.jsonl,out_2.jsonl,out_3.jsonl,out_4.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_1.jsonl,out_2.jsonl,out_3.jsonl,out_4.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review23 (finding review)
-  ref: evidence/bitgo-walletsimple-ecdsa-signers/signers.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/bitgo-walletsimple-ecdsa-signers/signers.json
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
@@ -308,7 +306,7 @@ must move, and that depends on 23 independent owner groups (and BitGo for a wall
   none of the contracts is upgradeable.
 - `activateSafeMode` (any signer) only restricts sends to signer addresses; an attacker holding a signer key is such
   an address, so it does not protect the funds.
-- Pattern PQ-12. Excerpts: [`source-excerpts.md`](../evidence/bitgo-walletsimple-ecdsa-signers/source-excerpts.md).
+- Pattern PQ-12. Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/bitgo-walletsimple-ecdsa-signers/source-excerpts.md).
 
 ## Evidence
 
@@ -316,15 +314,15 @@ must move, and that depends on 23 independent owner groups (and BitGo for a wall
   `verifyMultiSig`), `FlattenedWalletSimple.sol` of `0xe8e847cf…` (same logic), `WalletSimple.sol` of `0x5b9e8728…`
   (constructor signers, `recoverAddressFromSignature` → `ecrecover`).
 - CHECKED (on-chain read, blocks 26,431,535 and 26,431,538): signers of all 23 wallets
-  ([`signers.json`](../evidence/bitgo-walletsimple-ecdsa-signers/signers.json)). Standalone wallets and the proxy:
+  ([`signers.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/bitgo-walletsimple-ecdsa-signers/signers.json)). Standalone wallets and the proxy:
   `signers(i)`; clones: candidates from the creation transaction (`createWallet` on BitGo `WalletFactory`
   `0xa7198f48…` or `0x9a0d6391…`), confirmed with `isSigner()`. Every wallet has exactly 3 signers; all 60 distinct
   signer addresses have no code (EOAs).
 - CHECKED: `0x1522900b…` is a 51-byte forwarder that delegatecalls the hard-coded `0x5b9e8728…` (bytecode read).
 - CHECKED (on-chain read, block 26,431,214): holdings, no EIP-1967 proxies
-  ([`onchain.json`](../evidence/bitgo-walletsimple-ecdsa-signers/onchain.json)).
+  ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/bitgo-walletsimple-ecdsa-signers/onchain.json)).
 - CHECKED (Xatu, any function): activity 2026-10-16 to 2026-11-16
-  ([`activity.json`](../evidence/bitgo-walletsimple-ecdsa-signers/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/bitgo-walletsimple-ecdsa-signers/activity.json)).
 - INFERRED: the co-signer's public key is recoverable from any `sendMultiSig` signature in calldata, and the sender's
   from its transactions, so for every wallet that has transacted both keys of a working pair are exposed; the
   never-used third (backup) key may still be unexposed.
@@ -380,6 +378,6 @@ but were active within the year. The same code runs in 1,868 clones of `0xe5dcdc
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: signer set fixed in code; funds must move, and many independent owners may not act).
 - 2026-11-17 review (Review23): HIGH kept, step 4: signer sets are fixed and the code is immutable, so only moving $712.8M out protects it, across 23 independent owner groups. Read all 69 signer slots (60 EOAs, none contracts) into `signers.json`; `0x1522900b…` given its delegatecall target as implementation.

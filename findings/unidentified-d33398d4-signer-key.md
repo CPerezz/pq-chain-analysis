@@ -25,7 +25,7 @@ families:
 - code: "0xba7b889588d6c449a30066344dd47759cfcb4fc0"
   name: ERC1967Proxy → same unverified hook implementation, same owner and approver
   instances: 8
-  list: evidence/unidentified-d33398d4-signer-key/onchain-review.json
+  list: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-d33398d4-signer-key/onchain-review.json
   upgradeable: "yes"
   value_usd: null
   value_basis: null
@@ -36,22 +36,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: bytecode
-  links:
-  - evidence/unidentified-d33398d4-signer-key/classification.jsonl
-  - evidence/unidentified-d33398d4-signer-key/onchain.json
-  - evidence/unidentified-d33398d4-signer-key/activity.json
-  - evidence/unidentified-d33398d4-signer-key/source-excerpts.md
-  - evidence/unidentified-d33398d4-signer-key/onchain-review.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-d33398d4-signer-key
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review02 (registry review)
-  ref: evidence/unidentified-d33398d4-signer-key/onchain-review.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-d33398d4-signer-key/onchain-review.json
   date: 2026-11-17
   verdict: reported
   rating: LOW
@@ -72,16 +70,16 @@ check, and one known owner can upgrade the hooks); status stays `candidate` beca
 
 - Implementation `0xba7b8895…` is unverified. The classifier found the selectors `beforeSwap`, `setApprover(address)`,
   `approver()`, `nextNonce(address)`, `whitelistTrader`/`whitelistRouter` and `upgradeToAndCall`
-  ([`classification.jsonl`](../evidence/unidentified-d33398d4-signer-key/classification.jsonl)); the precompile trace
+  ([`classification.jsonl`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-d33398d4-signer-key/classification.jsonl)); the precompile trace
   shows `ecrecover` in its calls. INFERRED: `beforeSwap` recovers the signer of an approval in the hook data (with a
   per-trader nonce) and reverts unless it equals `approver()`.
 - The hook address's low bits (`0x0fc0`) grant beforeAdd/afterAdd/beforeRemove/afterRemove liquidity and
   beforeSwap/afterSwap only, with no `*ReturnDelta` flag, so the hook cannot take or redirect swap amounts.
-- Excerpts: none (no verified source; [`source-excerpts.md`](../evidence/unidentified-d33398d4-signer-key/source-excerpts.md)).
+- Excerpts: none (no verified source; [`source-excerpts.md`](#source-excerpts-unidentified-d33398d4-signer-key)).
 
 ## Evidence
 
-- CHECKED (on-chain read at block 26,431,583, [`onchain-review.json`](../evidence/unidentified-d33398d4-signer-key/onchain-review.json)):
+- CHECKED (on-chain read at block 26,431,583, [`onchain-review.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-d33398d4-signer-key/onchain-review.json)):
   all 8 proxies have EIP-1967 implementation `0xba7b8895…`, `owner()` = `0xc5d3c245…` and `approver()` =
   `0x9af2ea55…`; `poolManager()` = Uniswap v4 PoolManager `0x00000000…4444…8a90`. The owner is an EOA with an
   EIP-7702 delegation (code `0xef0100…59501312…`, nonce 4,502); the approver has no code and nonce 0 (its key is
@@ -89,11 +87,11 @@ check, and one known owner can upgrade the hooks); status stays `candidate` beca
 - CHECKED (Blockscout): the proxy was created on 2026-02-10 by `0xfab0692c…`, whose only transaction it is; the
   implementation was created through the CREATE2 deployer `0x4e59b448…`. Latest swaps through each hook moved ELEVATE
   /USDT, RALLY/WIN, GROW/GULD, GULD/IZE, CDXR/ELMT, GREEN/GULD and CDXR/RALLY.
-- CHECKED (on-chain read at block 26,431,214, [`onchain.json`](../evidence/unidentified-d33398d4-signer-key/onchain.json)):
+- CHECKED (on-chain read at block 26,431,214, [`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-d33398d4-signer-key/onchain.json)):
   the hook holds nothing.
-- CHECKED (Xatu, [`activity.json`](../evidence/unidentified-d33398d4-signer-key/activity.json)): 4,654 transactions
+- CHECKED (Xatu, [`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-d33398d4-signer-key/activity.json)): 4,654 transactions
   2026-10-16 to 2026-11-16; 29,607 pre-quantum transactions in the last year (`txs_y1`,
-  `data/report/curated_contracts.csv`).
+  `studies/top-callers-classification/results/curated_contracts.csv`).
 - INFERRED: what the approval binds (trader, router, amount, fee) is not known without source.
 
 ## Impact and exposure
@@ -123,6 +121,16 @@ above, but neither the deployer nor the owner was linked to a named team, so `pr
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review02): MEDIUM -> LOW, step 4: the approver signature only gates access (no return-delta hook permissions, so nothing can be taken through it) and one known owner (EOA 0xc5d3c245…, read at block 26,431,583) can upgrade all 8 hooks. Impact funds-loss -> none. Family confirmed (8 proxies, same implementation, owner and approver). Operator still unidentified; pools trade ELEVATE and related tokens.
+
+# Source excerpts: unidentified-d33398d4-signer-key
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0xd33398d46cb5749c7319ae1fabc498cdeb0f0fc0` — ERC1967Proxy (verified source via sourcify)
+
+## Implementation `0xba7b889588d6c449a30066344dd47759cfcb4fc0`
+
+No verified source on Sourcify or Blockscout.

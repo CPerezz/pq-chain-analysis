@@ -28,22 +28,20 @@ fix:
   protocol_change: helps
 evidence:
   level: source-read
-  links:
-  - evidence/1inch-lop-order-sig-scheme-select/classification.jsonl
-  - evidence/1inch-lop-order-sig-scheme-select/onchain.json
-  - evidence/1inch-lop-order-sig-scheme-select/activity.json
-  - evidence/1inch-lop-order-sig-scheme-select/source-excerpts.md
-  - evidence/1inch-lop-order-sig-scheme-select/review-reads.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/1inch-lop-order-sig-scheme-select
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review09 (finding review)
-  ref: evidence/1inch-lop-order-sig-scheme-select/review-reads.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/1inch-lop-order-sig-scheme-select/review-reads.json
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
@@ -72,18 +70,18 @@ approved to the router. The exposure is makers' approvals to the router, which i
   attached permit) and pays the taker.
 - The router has no proxy; the owner can only `rescueFunds` (l.5765), `pause` and `unpause` (l.5772-5779).
 
-Pattern PQ-2. Excerpts: [`source-excerpts.md`](../evidence/1inch-lop-order-sig-scheme-select/source-excerpts.md).
+Pattern PQ-2. Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/1inch-lop-order-sig-scheme-select/source-excerpts.md).
 
 ## Evidence
 
 - CHECKED (Sourcify verified source, read 2026-11-17): both fill paths and the owner functions above
-  ([`review-reads.json`](../evidence/1inch-lop-order-sig-scheme-select/review-reads.json)).
+  ([`review-reads.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/1inch-lop-order-sig-scheme-select/review-reads.json)).
 - CHECKED (on-chain at block 26,431,457): no proxy (24,294 bytes of code); `owner()` = Safe `0x9f8102b1…`, threshold 3
   of 4; `paused()` = false.
 - CHECKED (precompile trace to March 2026): `ecrecover`; 1,240,719 pre-quantum calls in the year, in transactions
-  moving $206.8B (`data/report/curated_contracts.csv`, `txs_y1`, `usd_tx_y1`; the same money counted per transaction).
+  moving $206.8B (`studies/top-callers-classification/results/curated_contracts.csv`, `txs_y1`, `usd_tx_y1`; the same money counted per transaction).
 - CHECKED (Xatu, 2026-10-16 to 2026-11-16): 319,187 transactions called the router (any function)
-  ([`activity.json`](../evidence/1inch-lop-order-sig-scheme-select/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/1inch-lop-order-sig-scheme-select/activity.json)).
 - INFERRED: the share of fills that use `fillOrder` versus `fillContractOrder` was not measured.
 
 ## Impact and exposure
@@ -108,6 +106,6 @@ are affected: a fresh post-quantum smart account has no ECDSA key and cannot be 
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review09): HIGH kept (step 4). Both fill paths read in verified source (taker chooses the scheme; ERC-1271 path takes the full signature); owner Safe 3 of 4 re-read at block 26,431,457 and its powers limited to pause/unpause/rescueFunds.

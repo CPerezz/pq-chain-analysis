@@ -28,15 +28,13 @@ fix:
   protocol_change: helps
 evidence:
   level: source-read
-  links:
-  - evidence/bebop-order-sig-scheme-select/classification.jsonl
-  - evidence/bebop-order-sig-scheme-select/onchain.json
-  - evidence/bebop-order-sig-scheme-select/activity.json
-  - evidence/bebop-order-sig-scheme-select/source-excerpts.md
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/bebop-order-sig-scheme-select
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_3.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_3.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
@@ -65,7 +63,7 @@ in a contract with no admin.
   variants) check the taker signature when `msg.sender != order.taker_address`, then `_executeSingleOrder` etc. move
   the taker's tokens to the maker and the maker's tokens to `order.receiver` using the parties' ERC-20 approvals (or
   Permit2) to the settlement contract.
-- Pattern PQ-2 (signer chooses the scheme). Excerpts: [`source-excerpts.md`](../evidence/bebop-order-sig-scheme-select/source-excerpts.md).
+- Pattern PQ-2 (signer chooses the scheme). Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/bebop-order-sig-scheme-select/source-excerpts.md).
   The taker-permit helpers in `BebopTransfer.sol` call the token's own `permit`/Permit2; those checks belong to the
   token and Permit2, not to this finding.
 
@@ -74,11 +72,11 @@ in a contract with no admin.
 - CHECKED (verified source, Sourcify `match`, read 2026-11-17): `_validateSignature` and its callers as above; no
   `owner`, `onlyOwner` or upgrade function in `src/` (only the per-user `registerAllowedOrderSigner`).
 - CHECKED (on-chain read at block 26,431,214): 24,163 bytes of code, no EIP-1967 implementation or admin, no `owner()`;
-  holds 2e-18 ETH and under USD 0.01 in tokens ([`onchain.json`](../evidence/bebop-order-sig-scheme-select/onchain.json)).
+  holds 2e-18 ETH and under USD 0.01 in tokens ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/bebop-order-sig-scheme-select/onchain.json)).
 - CHECKED (precompile trace to March 2026): `ecrecover` calls; 195,818 pre-quantum calls in the last year
-  (`txs_y1`, `data/report/curated_contracts.csv`).
+  (`txs_y1`, `studies/top-callers-classification/results/curated_contracts.csv`).
 - CHECKED (Xatu, any function): 71,690 transactions called the contract 2026-10-16 to 2026-11-16; last 2026-11-16
-  ([`activity.json`](../evidence/bebop-order-sig-scheme-select/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/bebop-order-sig-scheme-select/activity.json)).
 - INFERRED: the amount users have approved to the contract; not read (would need every approver's allowance and
   balance per token).
 
@@ -110,7 +108,7 @@ in a contract with no admin.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review21): HIGH kept, step 4: source and on-chain state confirm no proxy and no owner; the
   signer-selected ECDSA types keep migrated addresses forgeable; approvals are the exposure and are not measured.

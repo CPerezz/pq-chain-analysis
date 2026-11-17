@@ -48,22 +48,20 @@ fix:
   protocol_change: helps
 evidence:
   level: source-read
-  links:
-  - evidence/etherfi-token-permit-ecdsa-only/classification.jsonl
-  - evidence/etherfi-token-permit-ecdsa-only/onchain.json
-  - evidence/etherfi-token-permit-ecdsa-only/activity.json
-  - evidence/etherfi-token-permit-ecdsa-only/source-excerpts.md
-  - evidence/etherfi-token-permit-ecdsa-only/admin.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/etherfi-token-permit-ecdsa-only
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_1.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review14 (verified source and upgrade-authority reads)
-  ref: evidence/etherfi-token-permit-ecdsa-only/admin.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/etherfi-token-permit-ecdsa-only/admin.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -95,16 +93,16 @@ ether.fi's 10-day timelock; rated MEDIUM (step 4: contract upgrade).
 
 - CHECKED (Sourcify verified source, read 2026-11-17): the three `permit` functions above; `_authorizeUpgrade(...)
   onlyUpgradeTimelock` in EETH (line 444) and WeETH (line 241)
-  ([`source-excerpts.md`](../evidence/etherfi-token-permit-ecdsa-only/source-excerpts.md)).
+  ([`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/etherfi-token-permit-ecdsa-only/source-excerpts.md)).
 - CHECKED (cast via eth.drpc.org at block 26,431,595): EIP-1967 implementations of eETH and weETH; `roleRegistry()` =
   `0x6224…7ce9`, whose `roleHolders(UPGRADE_TIMELOCK_ROLE)` = EtherFiTimelock `0x9f26…0761`, `getMinDelay()` = 864000 s;
   BoringVault `owner()` = 0, `authority()` = `0x485b…8122` (owner `0xd829…2c89`, `getMinDelay()` = 86400), `hook()` =
-  `0x9aa7…4734` ([`admin.json`](../evidence/etherfi-token-permit-ecdsa-only/admin.json)).
+  `0x9aa7…4734` ([`admin.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/etherfi-token-permit-ecdsa-only/admin.json)).
 - CHECKED (precompile trace, trace year): `ecrecover` transactions eETH 15,732, BoringVault 1,048, weETH 458
   (`data/agg/y1_caller.parquet`).
 - CHECKED (Xatu, any function, 2026-10-16 to 2026-11-16): transactions in the table
-  ([`activity.json`](../evidence/etherfi-token-permit-ecdsa-only/activity.json)).
-- CHECKED (`data/report/permit_tokens_market_cap.csv`): market caps used below.
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/etherfi-token-permit-ecdsa-only/activity.json)).
+- CHECKED (`studies/top-callers-classification/results/permit_tokens_market_cap.csv`): market caps used below.
 
 ## Impact and exposure
 
@@ -131,6 +129,6 @@ the exposure.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by upgrading the contract (admin or governance)).
 - 2026-11-17 review (Review14): MEDIUM kept, step 4 (EtherFiTimelock upgrade for weETH/eETH; BoringVault mitigable through its transfer hook). Upgrade authority read from RoleRegistry; BoringVault `upgradeable` set to config-only.

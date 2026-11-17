@@ -28,22 +28,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/gasp-finalizer-bls-bn254/classification.jsonl
-  - evidence/gasp-finalizer-bls-bn254/onchain.json
-  - evidence/gasp-finalizer-bls-bn254/activity.json
-  - evidence/gasp-finalizer-bls-bn254/source-excerpts.md
-  - evidence/gasp-finalizer-bls-bn254/consumer.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/gasp-finalizer-bls-bn254
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review01)
-  ref: evidence/gasp-finalizer-bls-bn254/consumer.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/gasp-finalizer-bls-bn254/consumer.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -79,7 +77,7 @@ Rolldown holds: USD 14.9k on 2026-11-17. The task manager's owner Safe can point
 - CHECKED (precompile corpus): last pairing call in tx `0x6cddb27c…` (block 24,283,072, 2026-01-21), a
   `respondToRdTask` sent by aggregator `0x3f261ad6…` to `0x150fe8db…`; 2,220 transactions in the trace year
   (`txs_y1`).
-- CHECKED (block 26,431,796, [`consumer.json`](../evidence/gasp-finalizer-bls-bn254/consumer.json)): task manager
+- CHECKED (block 26,431,796, [`consumer.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/gasp-finalizer-bls-bn254/consumer.json)): task manager
   `blsSignatureChecker()` = `0xc7bf5248…`, `rolldown()` = `0x79d968d9…`, `registryCoordinator()` = `0x9a986296…`,
   aggregator and generator `0x3f261ad6…`, not paused, last completed RD task 4,902 at block 24,283,072; proxy admin
   `0x00c62fbf…` and `owner()` both Safe `0xfc8151f1…` (4 of 7), which also holds Rolldown's `DEFAULT_ADMIN_ROLE`;
@@ -112,7 +110,7 @@ could also forge, which is a separate exposure.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review01): MEDIUM -> LOW, step 5: escrow measured (Gasp Rolldown, USD 14.9k at block 26,431,796); step 4 stays MEDIUM because the consumer's owner Safe can repoint the checker (the draft's "key-rotation-only, no admin" was wrong); project identified as Gasp.
 - 2026-11-17 integration: id renamed from `unidentified-c7bf5248-bls` (project identified).

@@ -38,22 +38,20 @@ fix:
   protocol_change: helps
 evidence:
   level: source-read
-  links:
-  - evidence/tokenlon-order-sig-ecdsa-first/classification.jsonl
-  - evidence/tokenlon-order-sig-ecdsa-first/onchain.json
-  - evidence/tokenlon-order-sig-ecdsa-first/activity.json
-  - evidence/tokenlon-order-sig-ecdsa-first/source-excerpts.md
-  - evidence/tokenlon-order-sig-ecdsa-first/onchain-review.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/tokenlon-order-sig-ecdsa-first
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_2.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_2.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review02 (registry review)
-  ref: evidence/tokenlon-order-sig-ecdsa-first/onchain-review.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/tokenlon-order-sig-ecdsa-first/onchain-review.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -87,22 +85,22 @@ Tokenlon's 3-of-5 operator multisig can disable them and point UserProxy at repl
   user signature to be 85 or 86 bytes, so the ERC-1271 path cannot carry a post-quantum signature (PQ-3 for PMM; a
   wallet that accepts pre-approved hashes can still use it). `spender.spendFromUser(user, ...)` pulls the tokens and
   `_settle` pays `receiver` (taken from the signature).
-- Excerpts: [`source-excerpts.md`](../evidence/tokenlon-order-sig-ecdsa-first/source-excerpts.md).
+- Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/tokenlon-order-sig-ecdsa-first/source-excerpts.md).
 
 ## Evidence
 
 - CHECKED (verified source, Sourcify, both contracts): the paths above; neither contract is a proxy and neither has a
   function that changes the signature check.
-- CHECKED (on-chain read at block 26,431,454, [`onchain-review.json`](../evidence/tokenlon-order-sig-ecdsa-first/onchain-review.json)):
+- CHECKED (on-chain read at block 26,431,454, [`onchain-review.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/tokenlon-order-sig-ecdsa-first/onchain-review.json)):
   UserProxy `0x03f34be1…` (TransparentUpgradeableProxy, implementation UserProxy 5.2.0 `0x0b9f13ff…`, EIP-1967 admin
   DelayedMultiSig `0x74c3ca94…`) returns `ammWrapperAddr()` = AMMWrapperWithPath and `pmmAddr()` = PMM, both enabled;
   its `operator()` is DelayedMultiSig `0x9afc226d…` (3 of 5, `secondsTimeLocked` 0), which also operates Spender
   `0x3c68dfc4…`; Spender `isAuthorized` is true for both contracts and its `allowanceTarget()` is `0x8a42d311…`.
 - CHECKED (UserProxy source): `upgradeAMMWrapper`, `upgradePMM`, `setAMMStatus`, `setPMMStatus` are `onlyOperator`;
   Spender `deauthorize` is `onlyOperator` without timelock (authorising a new caller goes through the timelock).
-- CHECKED (on-chain read at block 26,431,214, [`onchain.json`](../evidence/tokenlon-order-sig-ecdsa-first/onchain.json)):
+- CHECKED (on-chain read at block 26,431,214, [`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/tokenlon-order-sig-ecdsa-first/onchain.json)):
   the two contracts hold USD 102,046 and USD 44,143 in tokens and ETH.
-- CHECKED (Xatu, [`activity.json`](../evidence/tokenlon-order-sig-ecdsa-first/activity.json)): 5,138 and 2,331
+- CHECKED (Xatu, [`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/tokenlon-order-sig-ecdsa-first/activity.json)): 5,138 and 2,331
   transactions 2026-10-16 to 2026-11-16.
 - INFERRED: the contracts' own balances are fee and residual balances; a forged user signature pulls tokens from the
   user through Spender, not from these balances.
@@ -117,7 +115,7 @@ Tokenlon's 3-of-5 operator multisig can disable them and point UserProxy at repl
 The exposure is what users have approved to Tokenlon's AllowanceTarget `0x8a42d311d282bfcaa5133b2de0a8bcdbecea3073`
 (bounded by each user's balance), which needs a per-user allowance scan and is not measured; `value_usd` is null. The
 contracts' own holdings (block 26,431,214) are not what a forged signature releases and were removed as `held` values.
-Yearly counts are `txs_y1` from `data/report/curated_contracts.csv`.
+Yearly counts are `txs_y1` from `studies/top-callers-classification/results/curated_contracts.csv`.
 
 Siblings not checked: the same UserProxy routes to RFQ `0xfd6c2d24…`, RFQv2 `0x91c98670…` and LimitOrder
 `0x623a6b34…`, which are not in the census data.
@@ -136,6 +134,6 @@ Siblings not checked: the same UserProxy routes to RFQ `0xfd6c2d24…`, RFQv2 `0
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review02): HIGH -> MEDIUM, step 3: the contracts are immutable but the Tokenlon operator DelayedMultiSig 0x9afc226d… (3 of 5) can disable and replace both in UserProxy 0x03f34be1… and deauthorize them in Spender (read at block 26,431,454), so the fix is a new deployment by one team. Removed the `held` values (contract balances are not the exposure; the exposure is user approvals to AllowanceTarget, unmeasured). Added PQ-3 for PMM's 85/86-byte user-signature limit.

@@ -78,17 +78,13 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/gonka-bridge-bls12-381-group-key/classification.jsonl
-  - evidence/gonka-bridge-bls12-381-group-key/onchain.json
-  - evidence/gonka-bridge-bls12-381-group-key/activity.json
-  - evidence/gonka-bridge-bls12-381-group-key/source-excerpts.md
-  - evidence/gonka-bridge-bls12-381-group-key/bridge.json
-  - evidence/gonka-bridge-bls12-381-group-key/bridge-source.md
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/gonka-bridge-bls12-381-group-key
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_2.jsonl,out_3.jsonl,out_4.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_2.jsonl,out_3.jsonl,out_4.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
@@ -121,8 +117,8 @@ consensus migrates the locked funds to; no protocol change is needed.
   `mintWithSignature`, `withdraw`, `submitGroupKey`, `setGroupKey`, the same `GONKA_CHAIN_ID`; bytecode calls 0x0f and
   0x10 and contains the BLS12-381 field modulus).
 - Pattern PQ-6 (a threshold group key; one public key to break). Excerpts:
-  [`bridge-source.md`](../evidence/gonka-bridge-bls12-381-group-key/bridge-source.md); the generated
-  [`source-excerpts.md`](../evidence/gonka-bridge-bls12-381-group-key/source-excerpts.md) covers only the five unverified contracts.
+  [`bridge-source.md`](#bridgecontract-0x972a7a92d92796a98801a8818bcf91f1648f2f68-blockscout-verified-read-2026-11-17); the generated
+  [`source-excerpts.md`](#source-excerpts-gonka-bridge-bls12-381-group-key) covers only the five unverified contracts.
 
 ## Evidence
 
@@ -132,17 +128,17 @@ consensus migrates the locked funds to; no protocol change is needed.
 - CHECKED (on-chain read at block 26,431,539): no EIP-1967 implementation; `owner()` = Safe `0x1d806d0e…1768`, 2 of 3;
   `getCurrentState()` = 1 (`NORMAL_OPERATION`); latest epoch 460, submitted 2026-11-16; holds 0.0035 ETH; Blockscout
   token balances: 884,150.87 USDT, 647.74 USDC, 259.5 WGNK, dust WETH; WGNK supply 12,393,951.6 (9 decimals), 1,008
-  holders ([`bridge.json`](../evidence/gonka-bridge-bls12-381-group-key/bridge.json)).
+  holders ([`bridge.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/gonka-bridge-bls12-381-group-key/bridge.json)).
 - CHECKED (Blockscout transaction list): 843 direct transactions 2026-10-16 to 2026-11-16 (290 `mintWithSignature`,
   7 `withdraw`, 32 `submitGroupKey`, the rest WGNK transfers and approvals); last 2026-11-16. Created 2026-05-13 (block
   25,088,104), after the March 2026 precompile trace, which is why the census missed it.
 - CHECKED (earlier deployments, on-chain read at block 26,431,539 and 26,431,214): all in `NORMAL_OPERATION`, owners are
   EOAs, each holds USD 1–3 of USDT/USDC; their WGNK has one holder each and no market
-  ([`onchain.json`](../evidence/gonka-bridge-bls12-381-group-key/onchain.json), [`bridge.json`](../evidence/gonka-bridge-bls12-381-group-key/bridge.json)). Bytecode of
+  ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/gonka-bridge-bls12-381-group-key/onchain.json), [`bridge.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/gonka-bridge-bls12-381-group-key/bridge.json)). Bytecode of
   `0xb964f6fe…` read for the precompile calls.
 - CHECKED (precompile trace to March 2026, Xatu activity): the earlier deployments called BLS12-381 precompiles; last
   active 2025-11-21 to 2025-12-05, no transactions in the 30-day window
-  ([`activity.json`](../evidence/gonka-bridge-bls12-381-group-key/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/gonka-bridge-bls12-381-group-key/activity.json)).
 - INFERRED: Gonka's chain releases native GNK from escrow when WGNK is burned on Ethereum (from Gonka's documentation;
   not read on the Gonka chain).
 
@@ -177,9 +173,73 @@ consensus migrates the locked funds to; no protocol change is needed.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review21): MEDIUM kept, step 4: the verification is immutable, but Gonka's consensus can move the
   pooled funds to a new deployment. Added the production bridge `0x972a7a92…2f68` (deployed 2026-05-13, after the
   trace, named in Gonka's docs; USD 884k held); the five census contracts are earlier deployments holding USD 13.
   Source verified for the production bridge: `status` candidate -> confirmed, `evidence.level` bytecode -> source-read.
+
+# Source excerpts: gonka-bridge-bls12-381-group-key
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0xb964f6fed8e5f6a9b85c95241a1c268fae04de9b`
+
+No verified source on Sourcify or Blockscout.
+
+
+## Contract `0xab3883735707d751291833ebfa7932c4f60a5821`
+
+No verified source on Sourcify or Blockscout.
+
+
+## Contract `0xef3bba27779c4b08b3b3534407113747d6601180`
+
+No verified source on Sourcify or Blockscout.
+
+
+## Contract `0xdcd4cebe3917a8f1728b8af61299085edfd91f44`
+
+No verified source on Sourcify or Blockscout.
+
+
+## Contract `0x27261349a8a623b9c798f2ff9388eba22e5b0525`
+
+No verified source on Sourcify or Blockscout.
+
+# BridgeContract 0x972a7a92d92796a98801a8818bcf91f1648f2f68 (Blockscout verified, read 2026-11-17)
+
+Excerpt from `BridgeContract.sol` (line numbers of the Blockscout flattened source).
+
+```solidity
+1251    address constant BLS12_PAIRING = 0x000000000000000000000000000000000000000F;       // BLS12_PAIRING_CHECK
+1252    address constant BLS12_MAP_FP_TO_G1 = 0x0000000000000000000000000000000000000010;  // BLS12_MAP_FP_TO_G1
+...
+1346    function setGroupKey(uint64 epochId, bytes calldata groupPublicKey) external onlyOwner onlyAdminControl {
+...
+1402    function submitGroupKey(uint64 epochId, bytes calldata groupPublicKey, bytes calldata validationSig) public onlyNormalOperation {
+...         require(_verifyTransitionSignature(prevGroupKeyStruct, newGroupKeyStruct, validationSig, epochId - 1), "Invalid transition signature");
+...
+1449    function withdraw(WithdrawalCommand calldata cmd) external nonReentrant onlyNormalOperation {
+...         GroupKey memory groupKeyStruct = epochGroupKeys[cmd.epochId];
+...         bytes32 messageHash = keccak256(abi.encodePacked(cmd.epochId, GONKA_CHAIN_ID, cmd.requestId, ETHEREUM_CHAIN_ID,
+...             WITHDRAW_OPERATION, cmd.recipient, address(this), cmd.tokenContract, cmd.amount));
+...         if (!_verifyBLSSignature(groupKey, messageHash, cmd.signature)) revert InvalidSignature();
+...             IERC20(cmd.tokenContract).safeTransfer(cmd.recipient, cmd.amount);   // or ETH via call
+...
+1513    function mintWithSignature(MintCommand calldata cmd) external nonReentrant onlyNormalOperation {
+...         if (!_verifyBLSSignature(groupKey, messageHash, cmd.signature)) revert InvalidSignature();
+...         _mint(cmd.recipient, cmd.amount);
+...
+1601    function checkAndHandleTimeout() external {   // anyone; after 30 days without a new epoch -> ADMIN_CONTROL
+...
+1730    function _verifyBLSSignature(bytes memory groupPublicKey, bytes32 messageHash, bytes memory signature) internal view returns (bool) {
+...         bytes memory hG1 = _mapMessageToG1(messageHash);
+...         bytes memory negHG1 = _negateG1(hG1);
+...         bytes memory pairingInput = abi.encodePacked(signature, G2_GENERATOR, negHG1, groupPublicKey);
+...         (bool success, bytes memory result) = BLS12_PAIRING.staticcall(pairingInput);
+```
+
+No proxy, no upgrade function; the owner's only powers are `setGroupKey` and `resetToNormalOperation`, both
+`onlyAdminControl`.

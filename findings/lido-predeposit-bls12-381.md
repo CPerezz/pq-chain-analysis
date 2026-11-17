@@ -28,22 +28,20 @@ fix:
   protocol_change: helps
 evidence:
   level: source-read
-  links:
-  - evidence/lido-predeposit-bls12-381/classification.jsonl
-  - evidence/lido-predeposit-bls12-381/onchain.json
-  - evidence/lido-predeposit-bls12-381/activity.json
-  - evidence/lido-predeposit-bls12-381/source-excerpts.md
-  - evidence/lido-predeposit-bls12-381/notes.md
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/lido-predeposit-bls12-381
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_1.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review07 (registry review)
-  ref: evidence/lido-predeposit-bls12-381/notes.md
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/lido-predeposit-bls12-381/notes.md
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -69,12 +67,12 @@ node operator's depositor (line 406), locks 1 ETH of the operator's guarantee pe
 (BLS.sol lines 177–502). It then deposits `PREDEPOSIT_AMOUNT` = 1 ETH. If the validator turns out to have other
 withdrawal credentials, `proveInvalidValidatorWC` (line 563) pays the vault 1 ETH out of the operator's locked
 guarantee (lines 590–602). The pattern is PQ-6 (BLS), for a single validator signature, not a committee aggregate as
-drafted. Excerpt: [`source-excerpts.md`](../evidence/lido-predeposit-bls12-381/source-excerpts.md).
+drafted. Excerpt: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/lido-predeposit-bls12-381/source-excerpts.md).
 
 ## Evidence
 
 - CHECKED (verified source, Sourcify): the path above, the depositor-only restriction and the compensation from the
-  guarantee ([`notes.md`](../evidence/lido-predeposit-bls12-381/notes.md)).
+  guarantee ([`notes.md`](#review-reads-lido-predeposit-bls12-381-2026-11-17-review07)).
 - CHECKED (`cast` at block 26,431,616): implementation `0xe7871719…`; `proxy__getAdmin()` = Agent `0x3e40d73e…`;
   not ossified; not paused; 3.0 ETH held.
 - CHECKED (precompile trace to March 2026): 2 transactions with BLS12-381 pairing calls in the last year; Xatu: 4
@@ -104,8 +102,32 @@ a protocol-level exposure outside this registry.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review07): MEDIUM -> LOW, step 5: the exposure is the node operators' guarantees held in the
   contract (3 ETH, $5,435), under $50k. Trigger committee-keys -> operator-key (one validator's BLS key, not an
   aggregate); protocol change not-needed -> helps.
+
+# Review reads: lido-predeposit-bls12-381 (2026-11-17, Review07)
+
+## Source (Sourcify, implementation `0xe78717192c45736df0e4be55c0219ee7f9addd0d`, `PredepositGuarantee`)
+
+- `predeposit(_stakingVault, _deposits, _depositsY)` (PredepositGuarantee.sol line 397): `msg.sender` must be the
+  node operator's depositor (line 406, `NotDepositor`); each deposit must be `PREDEPOSIT_AMOUNT` = 1 ether (lines 91,
+  435); `verifyDepositMessage(...)` (line 438) → `BLS12_381.verifyDepositMessage` (line 275) checks the validator's
+  BLS12-381 deposit signature over (pubkey, withdrawal credentials, amount) with the EIP-2537 pairing precompile
+  (`contracts/common/lib/BLS.sol`, `BLS12_PAIRING_CHECK` 0x0f). The guarantor's 1 ETH per validator is locked.
+- `proveInvalidValidatorWC(_witness, _invalidWithdrawalCredentials)` (line 563): if a CL proof shows the
+  predeposited validator has other withdrawal credentials ("frontrun"), the vault is paid 1 ETH from the node
+  operator's locked guarantee (lines 590–602).
+- Upgrade: OssifiableProxy; admin can upgrade until ossified.
+
+## On-chain reads (`cast`, publicnode, block 26,431,616)
+
+- EIP-1967 implementation slot = `0xe78717192c45736df0e4be55c0219ee7f9addd0d`.
+- `proxy__getAdmin()` = `0x3e40d73eb977dc6a537af587d48316fee66e9c8c` (Lido Agent; same Aragon Kernel
+  `0xb8ffc3cd…` as stETH; Agent's `RUN_SCRIPT_ROLE`/`EXECUTE_ROLE` held by Dual Governance executor
+  `0x23e0b465633ff5178808f4a75186e2f2f9537021`, see `evidence/lido-steth-permit-code-first/notes.md`).
+- `proxy__getIsOssified()` = false; `isPaused()` = false.
+- ETH balance = 3.0 ETH (node operators' guarantee balances), $5,435 at $1,811.62.
+- Yearly pre-quantum use (`data/report/curated_contracts.csv`): `txs_y1` 2 (pairing calls), to March 2026.

@@ -28,20 +28,18 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/coinbase-commerce-operator-sig/classification.jsonl
-  - evidence/coinbase-commerce-operator-sig/onchain.json
-  - evidence/coinbase-commerce-operator-sig/activity.json
-  - evidence/coinbase-commerce-operator-sig/source-excerpts.md
-  - evidence/coinbase-commerce-operator-sig/notes.md
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/coinbase-commerce-operator-sig
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_2.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_2.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review12)
   ref: findings review 2026-11-17; Sourcify source, cast reads at block 26431459, Blockscout logs and transactions
   date: 2026-11-17
@@ -76,14 +74,14 @@ taken through the check (and step 5: under $50k held).
 ## Evidence
 
 - CHECKED (Sourcify full source, read 2026-11-17): the modifier and payment paths above
-  ([`notes.md`](../evidence/coinbase-commerce-operator-sig/notes.md), [`source-excerpts.md`](../evidence/coinbase-commerce-operator-sig/source-excerpts.md)).
+  ([`notes.md`](#review-notes-review12-2026-11-17), [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/coinbase-commerce-operator-sig/source-excerpts.md)).
 - CHECKED (cast at block 26,431,459): no proxy (on-chain read at block 26,431,214); `owner()` = `0x8899cecf…`, an EOA;
   `paused()` = false.
-- CHECKED (block 26,431,214): holds $136 (USDC $116, USDT $20) ([`onchain.json`](../evidence/coinbase-commerce-operator-sig/onchain.json)).
+- CHECKED (block 26,431,214): holds $136 (USDC $116, USDT $20) ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/coinbase-commerce-operator-sig/onchain.json)).
 - CHECKED (Blockscout logs): the last `Transferred` events are at block 24,787,942 (2026-04-01), all with operator
   `0x8fccc78dae0a8f93b0fe6799de888d4c57e273db` (no code). Later calls revert (2026-10-24, `ExpiredIntent()`).
 - CHECKED (Xatu, any function): 1 transaction 2026-10-16 to 2026-11-16, last 2026-10-24
-  ([`activity.json`](../evidence/coinbase-commerce-operator-sig/activity.json)); precompile trace, year to March 2026:
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/coinbase-commerce-operator-sig/activity.json)); precompile trace, year to March 2026:
   122,767 transactions calling `ecrecover`, $55.2M moved in them (`curated_contracts.csv`, `txs_y1`, `usd_tx_y1`).
 - INFERRED: whether Coinbase's off-chain system credits a merchant charge from a `Transferred` event without checking
   recipient and amount was not checked; if it does, forged intents under Coinbase's operator id could mark charges
@@ -111,6 +109,23 @@ taken through the check (and step 5: under $50k held).
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by a new deployment that the operator and users move to).
 - 2026-11-17 review (Review12): MEDIUM -> LOW, step 4: nothing can be taken through the operator check (intents are bound to and funded by the payer; operators self-register); also step 5, $136 held. Impact funds-loss -> liveness. Owner read from storage (EOA 0x8899cecf); last successful payment 2026-04-01.
+
+# Review notes (Review12, 2026-11-17)
+
+- Source: Sourcify full source of `0x1fa57f879417e029ef57d7ce915b0aa56a507c31`, `contracts/transfers/Transfers.sol`.
+  - `validIntent(_intent, sender)` (lines 79–124): hash of (recipientAmount, deadline, recipient, recipientCurrency,
+    refundDestination, feeAmount, id, operator, chainid, sender, this); `ECDSA.recover(...)` must equal
+    `_intent.operator`; then deadline, non-zero recipient, intent id not yet processed.
+  - `sender` is `_msgSender()` in every payment function (lines 153, 172, 225, 272, 298, 347, 390, 417, 463) except
+    `subsidizedTransferToken` (line 513), where it is the payer whose EIP-2612 permit is consumed.
+  - `operatorIsRegistered` (line 128) only requires `feeDestinations[operator] != 0`; `registerOperator()` /
+    `registerOperatorWithFeeDestination()` (lines 789–797) are permissionless.
+  - Owner: `pause`/`unpause` (lines 809–814), `setSweeper`; sweeper: `sweepETH` etc. (`Sweepable.sol`).
+- cast at block 26,431,459: `owner()` = 0x8899cecfd929504414696c734eaf6300fdbb428c (no code: EOA); `paused()` = false.
+- Blockscout logs (v2 `addresses/<addr>/logs`, read 2026-11-17): latest `Transferred` events are at block 24,787,942
+  (2026-04-01), operator 0x8fccc78dae0a8f93b0fe6799de888d4c57e273db.
+- Blockscout transactions: later calls revert (2026-10-24 `swapAndTransferUniswapV3Native`, revert `ExpiredIntent()`,
+  tx 0x9ebc6de5…; 2026-08-04 `sweepETH` reverts; 2026-07-21 reverted payment).

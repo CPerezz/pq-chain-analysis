@@ -36,17 +36,13 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/othentic-obls-bn254/classification.jsonl
-  - evidence/othentic-obls-bn254/onchain.json
-  - evidence/othentic-obls-bn254/activity.json
-  - evidence/othentic-obls-bn254/source-excerpts.md
-  - evidence/othentic-obls-bn254/consumers.json
-  - evidence/othentic-obls-bn254/ditto-accounts.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/othentic-obls-bn254
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_3.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_3.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
@@ -76,7 +72,7 @@ Othentic's Safe fixes all instances), lowered by step 5 (under USD 50k measured)
   `_beforeTaskSubmissionLogic` requires attesters 1 and 2 among the signers (`dittoAttestersMask` = 6), decodes
   `taskInfo.data` as a `PackedUserOperation`, marks its hash in `isApprovedUserOpHash` and calls
   `EntryPoint.handleOps`.
-- Pattern PQ-6. Excerpts: [`source-excerpts.md`](../evidence/othentic-obls-bn254/source-excerpts.md).
+- Pattern PQ-6. Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/othentic-obls-bn254/source-excerpts.md).
 
 ## Evidence
 
@@ -86,15 +82,15 @@ Othentic's Safe fixes all instances), lowered by step 5 (under USD 50k measured)
   is Safe `0x74d9fb2b…b214` (2 of 4), which also owns AttestationCenter beacon `0x0c294861…4142`; AttestationCenter
   `0x9969f9eb…afa8` has `obls()` = this proxy, `taskNumber()` = 1,575, 4 active operators, `avsTreasury()` =
   `0xc679a237…de5a` (0 ETH, no tokens), `avsLogic()` = Ditto hook (owner Safe `0x8560c667…1f6b`, 2 of 4)
-  ([`consumers.json`](../evidence/othentic-obls-bn254/consumers.json)).
+  ([`consumers.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/othentic-obls-bn254/consumers.json)).
 - CHECKED (EntryPoint `UserOperationEvent` logs in all 1,497 blocks with hook logs, 2026-01-29 to 2026-10-16): four
   senders, all Kernel accounts, holding USD 5.28 together on 2026-11-17
-  ([`ditto-accounts.json`](../evidence/othentic-obls-bn254/ditto-accounts.json)).
+  ([`ditto-accounts.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/othentic-obls-bn254/ditto-accounts.json)).
 - CHECKED (family): the same beacon serves `0x002311b5…5cbe` and `0xfc041081…19a0`; their AttestationCenters
   (`0xe73322ef…2750`, `VennAvsLogic` hook; `0x2ead6eb0…fa46`) processed 4 tasks each, last transactions 2025-04-29 and
   2025-08-11, and their treasuries hold nothing.
 - CHECKED (precompile trace and Xatu): 838 BN254 calls in the year to March 2026 (`txs_y1`); last call 2026-10-16, none
-  in 2026-10-16 to 2026-11-16 ([`activity.json`](../evidence/othentic-obls-bn254/activity.json)).
+  in 2026-10-16 to 2026-11-16 ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/othentic-obls-bn254/activity.json)).
 - INFERRED: Ditto's Kernel validator accepts an operation while the hook has its hash in `isApprovedUserOpHash`; the
   account-side validator was not read.
 
@@ -122,7 +118,7 @@ Othentic's Safe fixes all instances), lowered by step 5 (under USD 50k measured)
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review21): MEDIUM -> LOW, step 5: the funds a forged quorum reaches are Ditto's automated Kernel
   accounts (USD 5.28) and an empty reward treasury; the other two instances on the same beacon are dormant with empty

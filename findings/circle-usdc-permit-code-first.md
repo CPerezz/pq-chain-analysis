@@ -28,22 +28,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/circle-usdc-permit-code-first/classification.jsonl
-  - evidence/circle-usdc-permit-code-first/onchain.json
-  - evidence/circle-usdc-permit-code-first/activity.json
-  - evidence/circle-usdc-permit-code-first/source-excerpts.md
-  - evidence/circle-usdc-permit-code-first/review-reads.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/circle-usdc-permit-code-first
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_2.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_2.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review09 (finding review)
-  ref: evidence/circle-usdc-permit-code-first/review-reads.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/circle-usdc-permit-code-first/review-reads.json
   date: 2026-11-17
   verdict: confirmed
   rating: NONE
@@ -73,19 +71,19 @@ code checked first).
   staticcalls `isValidSignature(digest, signature)` with the full byte array.
 - What it releases: an allowance (`permit`) or a transfer of the signer's own USDC.
 
-Pattern PQ-13. Excerpts: [`source-excerpts.md`](../evidence/circle-usdc-permit-code-first/source-excerpts.md).
+Pattern PQ-13. Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/circle-usdc-permit-code-first/source-excerpts.md).
 
 ## Evidence
 
 - CHECKED (Sourcify verified source of `0x43506849…`, read 2026-11-17): `SignatureChecker.sol` and the four
   `bytes`-signature entry points above; ERC-1271 call passes the full signature
-  ([`review-reads.json`](../evidence/circle-usdc-permit-code-first/review-reads.json)).
+  ([`review-reads.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/circle-usdc-permit-code-first/review-reads.json)).
 - CHECKED (on-chain at block 26,431,457): implementation slot = `0x43506849…`; proxy admin `0x807a9628…` and owner
   `0xfcb19e6a…` are EOAs; `totalSupply()` = 44,379,756,452 USDC.
 - CHECKED (precompile trace to March 2026): `ecrecover` only; 921,052 pre-quantum calls in the year
-  (`data/report/curated_contracts.csv`, `txs_y1`).
+  (`studies/top-callers-classification/results/curated_contracts.csv`, `txs_y1`).
 - CHECKED (Xatu, 2026-10-16 to 2026-11-16): 9,852,443 transactions called the token (any function)
-  ([`activity.json`](../evidence/circle-usdc-permit-code-first/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/circle-usdc-permit-code-first/activity.json)).
 
 ## Impact and exposure
 
@@ -107,6 +105,6 @@ contract's own token balance ($0.29M of stray tokens sent to it) is not the expo
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated NONE (code checked first: no exposure beyond the account's own key).
 - 2026-11-17 review (Review09): NONE kept. Confirmed in verified source that the ERC-1271 path passes the full-length `bytes` signature (PQ-13, not PQ-3); value changed from the cross-chain market cap ($70.78B) to the mainnet `totalSupply` ($44.38B, block 26,431,457); admin and owner checked as EOAs.

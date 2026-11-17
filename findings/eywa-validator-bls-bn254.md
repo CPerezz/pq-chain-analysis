@@ -38,22 +38,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/eywa-validator-bls-bn254/classification.jsonl
-  - evidence/eywa-validator-bls-bn254/onchain.json
-  - evidence/eywa-validator-bls-bn254/activity.json
-  - evidence/eywa-validator-bls-bn254/source-excerpts.md
-  - evidence/eywa-validator-bls-bn254/escrow.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/eywa-validator-bls-bn254
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review16 (verified source of BridgeV2, BridgeV3, Receiver, UnifiedRouterV2, PortalV2; on-chain reads at block 26,431,537)
-  ref: evidence/eywa-validator-bls-bn254/escrow.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/eywa-validator-bls-bn254/escrow.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -89,14 +87,14 @@ admin points the Receiver at (MEDIUM, step 4), lowered one level because under U
 - Epoch keys rotate through `updateEpoch` (VALIDATOR_ROLE), which checks the new epoch announcement with the current
   epoch's BLS signature. The scheme is fixed in immutable code; only keys rotate.
 
-Pattern PQ-6. Source excerpts: [`source-excerpts.md`](../evidence/eywa-validator-bls-bn254/source-excerpts.md).
+Pattern PQ-6. Source excerpts: [`source-excerpts.md`](#source-excerpts-eywa-validator-bls-bn254).
 
 ## Evidence
 
 - CHECKED (verified source, Sourcify full match for BridgeV2 `0xece9cf6a…`, Blockscout for BridgeV3, Receiver,
   UnifiedRouterV2, PortalV2): the code path above.
 - CHECKED (precompile trace, all mainnet transactions to March 2026): BridgeV2 uses bn254 and sw_bn254
-  (`txs_y1` 2,592 in `data/report/curated_contracts.csv`). BridgeV3 was not in the classified set; its use of the same
+  (`txs_y1` 2,592 in `studies/top-callers-classification/results/curated_contracts.csv`). BridgeV3 was not in the classified set; its use of the same
   `Bls.sol` was read in source (INFERRED same primitives).
 - CHECKED (eth_call at block 26,431,537): BridgeV2 `state()` = 0 (Active), version 2.2.3, current epoch 303 with 21
   participants; roles as in the header; admin Safe `0x31bbfa95…` threshold 1 of 3 owners. BridgeV3 `state()` = 0,
@@ -117,7 +115,7 @@ Pattern PQ-6. Source excerpts: [`source-excerpts.md`](../evidence/eywa-validator
 - CHECKED (Blockscout token balances, `exchange_rate` per token, read 2026-11-17): PortalV2 holds DAI 844.30,
   USDC 626.23, TUSD 526.21 and dust = USD 1,996 priced, no ETH; plus unpriced Curve LP tokens crvUSDUSDT-f 312.32
   and crvUSDUSDC-f 77.63 (about USD 390 if near USD 1 each, INFERRED). SynthesisV2, Diamond, Receiver,
-  UnifiedRouterV2 hold nothing. Reads: [`escrow.json`](../evidence/eywa-validator-bls-bn254/escrow.json).
+  UnifiedRouterV2 hold nothing. Reads: [`escrow.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/eywa-validator-bls-bn254/escrow.json).
 - CHECKED (all SynthesisV2 logs from Blockscout; eth_call at block 26,431,656): 9 `SynthRegistered` synths (uniUSD,
   WXFI, XUSD, wuWBTC, wuUSDT, uUSDT, uUSDC, WUNIT0, rEYWA; origins EYWA chain 88811, CrossFi 4158, Arbitrum 42161).
   `cap()` is 2^256−1 for eight of them and 1e26 for rEYWA, so a forged `mint`/`emergencyMint` (`onlyRouter` = Diamond)
@@ -159,6 +157,77 @@ Pattern PQ-6. Source excerpts: [`source-excerpts.md`](../evidence/eywa-validator
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review16): MEDIUM -> LOW, step 5: whole Ethereum exposure measured: escrow PortalV2 `0xac8f44ce…` USD 1,996 at block 26,431,537, and SynthesisV2 synths mintable without limit but priced at USD 0 on Ethereum (no rate, no pool; block 26,431,656), Diamond holds nothing; added BridgeV3 `0x9291c558…`, the live successor with the same BLS check (BridgeV2's router is paused and PortalV2 moved to a new AddressBook on 2025-12-27); admin corrected from "AccessControl admin" to the role holders read on-chain; alternative changed to configurable-verifier (Receiver chooses its bridges).
+
+# Source excerpts: eywa-validator-bls-bn254
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0xece9cf6a8f2768a3b8b65060925b646afeaa5167` — BridgeV2 (verified source via sourcify)
+
+### `contracts/bridge/BridgeV2.sol`
+
+```solidity
+  214       * @param epoch current or previous epoch;
+  215       * @param params oracle tx params
+  216       */
+  217      function verifyEpoch(Bls.Epoch storage epoch, ReceiveParams calldata params) internal view {
+  218          Block.verify(
+  219              epoch,
+  220              params.blockHeader,
+  221              params.votersPubKey,
+  222              params.votersSignature,
+  ...
+```
+
+### `contracts/utils/Block.sol`
+
+```solidity
+   41          (newEpochParticipantsCount, off) = ZeroCopySource.NextUint8(payload, off);
+   42          (newKey, off) = ZeroCopySource.NextVarBytes(payload, off);
+   43      }
+   44  
+   45      function verify(
+   46          Bls.Epoch memory epoch,
+   47          bytes calldata blockHeader,
+   48          bytes calldata votersPubKey,
+   49          bytes calldata votersSignature,
+  ...
+```
+
+### `contracts/utils/Bls.sol`
+
+```solidity
+  139          e1points[2] = sum;
+  140          e2points[0] = G2();
+  141          e2points[1] = decodeE2Point(partPublicKey);
+  142          e2points[2] = epoch_.publicKey;
+  143          return pairing(e1points, e2points);
+  144      }
+  145  
+  146      /**
+  147       * @return The generator of E1.
+  ...
+  186       * @param _e1points List of points in E1;
+  187       * @param _e2points List of points in E2;
+  188       * @return True if pairing check succeeds.
+  189       */
+  190      function pairing(E1Point[] memory _e1points, E2Point[] memory _e2points) private view returns (bool) {
+  191          require(_e1points.length == _e2points.length, "Bls: point count mismatch");
+  192  
+  193          uint256 elements = _e1points.length;
+  194          uint256 inputSize = elements * 6;
+  ...
+  211              success := staticcall(sub(gas(), 2000), 8, add(input, 0x20), mul(inputSize, 0x20), out, 0x20)
+  212          }
+  213          // The pairing operation will fail if the input data isn't the correct size (this won't happen
+  214          // given the code above), or if one of the points isn't on the curve.
+  215          require(success, "Bls: pairing operation failed");
+  216          return out[0] != 0;
+  217      }
+  218  
+  219      /**
+  ...
+```

@@ -48,13 +48,13 @@ fix:
   protocol_change: helps
 evidence:
   level: source-read
-  links:
-  - evidence/aztec-blob-kzg/notes.md
-  - evidence/aztec-blob-kzg/aztec-system.json
+  block: 26431459
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aztec-blob-kzg
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: Review00 (verified source of rollup versions 0, 2 and 3; Registry, GSE and portal reads; Xatu activity); split from the committee-attestation classification, which noted the blob opening
-  ref: evidence/aztec-blob-kzg/notes.md
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aztec-blob-kzg/notes.md
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
@@ -85,7 +85,7 @@ calldata DA; step 5 does not lower it, USD 81k exposed).
   published ones. v2 (line 149) and version 0 (`BlobLib.sol` line 149, `EpochProofLib.sol` line 365) are the same.
 - Who can use a forged opening: anyone can submit an epoch proof (no caller check); the blobs are published by whoever
   sends `propose` under the slot proposer's signature, or by the escape hatch's designated proposer.
-- Pattern PQ-8. Details and line references: [`notes.md`](../evidence/aztec-blob-kzg/notes.md).
+- Pattern PQ-8. Details and line references: [`notes.md`](#review00-notes-aztec-blob-kzg-2026-11-17).
 
 ## Evidence
 
@@ -93,7 +93,7 @@ calldata DA; step 5 does not lower it, USD 81k exposed).
   v3 build's `@aztec-blob-lib` remapping points at a wrapper that calls the core `BlobLib` on mainnet.
 - CHECKED (`eth_call`, block 26,431,459): Registry `0x35b22e09…` canonical rollup `0xe37a2663…`; v2 and v3 have
   pending checkpoints beyond the proven ones (running); version 0 is halted (proven = pending block 139,350, no
-  attesters) ([`aztec-system.json`](../evidence/aztec-blob-kzg/aztec-system.json)).
+  attesters) ([`aztec-system.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aztec-blob-kzg/aztec-system.json)).
 - CHECKED (Xatu call frames, blocks 26,208,000–26,423,999): portals using each version's Inbox and Outbox, holdings
   from Blockscout on 2026-11-17; rollup activity as in the table.
 - CHECKED (precompile trace to March 2026): version 0 called the point-evaluation precompile (classification of
@@ -132,3 +132,46 @@ are not affected.
   transition and a forged opening only lets the blob publisher withhold data; exposure USD 81k escrow, so step 5
   does not lower it.
 - 2026-11-17 rubric correction: HIGH -> MEDIUM, step 4: the deployed rollups have no calldata mode, but Aztec Governance registers new rollup versions, which can use calldata DA (a governance vote plus a new deployment that portals and users move to); exposure USD 81k is above USD 50k, so step 5 does not lower it; `fix.layer` protocol -> new-deployment, `protocol_change` required -> helps.
+
+# Review00 notes: Aztec blob KZG (2026-11-17)
+
+Sources: Rollup v3 `0xe37a2663cc9c119ba41572c40fab0bbb23a5402f` and v2 `0x91ff8bbd8ebb07893010d50a48a1609e5ebd8e34`
+(Blockscout verified, solc 0.8.30); Rollup v0 `0x603bb2c05d474794ea97805e8de69bccfb3bca12` (Sourcify). The v3 build
+remaps `@aztec-blob-lib/` to `src/mock/libraries/`, whose `BlobLib` forwards to the core `BlobLib` unless the Foundry
+cheat-code address has code (never on mainnet).
+
+## Propose (blob commitments)
+
+- `RollupCore.propose` passes `checkBlob` (v3 `RollupCore.sol` line 601) to `ProposeLib`, which calls
+  `BlobLib.validateBlobs(_blobsInput, checkBlob)` (`ProposeLib.sol` line 205).
+- `BlobLib.validateBlobs` (v3 `BlobLib.sol` lines 80–112): for each 48-byte KZG commitment in the input,
+  `calculateBlobHash(commitment)` must equal `blobhash(i)` of the transaction (lines 101–105). The commitments are
+  accumulated into `blobCommitmentsHash`.
+- `bool public checkBlob = true;` (v3 `RollupCore.sol` line 214; v0 line 198): no function writes it ("gets unset
+  only via state overrides during offchain simulations"). There is no calldata path: every checkpoint must carry
+  EIP-4844 blobs.
+
+## Epoch proof (KZG opening)
+
+- `EpochProofLib.verifyEpochRootProof` (v3 line 594; v0 line 365) calls `BlobLib.validateBatchedBlob(blobInputs)`
+  before the Honk verifier.
+- `BlobLib.validateBatchedBlob` (v3 lines 148–152; v2 line 149; v0 line 149): `staticcall` to the point-evaluation
+  precompile `0x0a` with the batched commitment `C`, challenge `z`, value `y` and opening proof `Q`;
+  `require(success, Rollup__InvalidBlobProof)`. `z`, `y` and `blobCommitmentsHash` are public inputs of the epoch
+  proof, so the opening ties the transaction effects the circuit used to the blobs published on L1.
+- `submitEpochRootProof` has no caller restriction (no `msg.sender` check in `EpochProofLib`): any prover submits.
+
+## Effect of a forged opening
+
+The SNARK still checks every state transition. A false opening only breaks the link between the proven data and the
+published blobs: the checkpoint's blob publisher (the proposer, whose signature authorises `propose`, or the escape
+hatch's designated proposer, who must send the transaction) can publish blobs without the real transaction effects,
+and anyone holding the trapdoor can still prove the epoch. The chain then finalizes state that cannot be rebuilt from
+L1 data (data withholding): funds locked, not taken.
+
+## Fallback
+
+None the admin can switch to: `checkBlob` has no setter, there is no calldata DA mode, and the verifier circuit
+consumes blob commitments. Replacing blobs needs either an Ethereum protocol change (post-quantum data availability)
+or a new rollup version with a different data-publication design and circuits, registered by Governance
+`0x1102471eb3378fee427121c9efcea452e4b6b75e`.

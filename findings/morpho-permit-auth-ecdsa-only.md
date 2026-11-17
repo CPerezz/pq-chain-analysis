@@ -68,22 +68,20 @@ fix:
   protocol_change: helps
 evidence:
   level: source-read
-  links:
-  - evidence/morpho-permit-auth-ecdsa-only/classification.jsonl
-  - evidence/morpho-permit-auth-ecdsa-only/onchain.json
-  - evidence/morpho-permit-auth-ecdsa-only/activity.json
-  - evidence/morpho-permit-auth-ecdsa-only/source-excerpts.md
-  - evidence/morpho-permit-auth-ecdsa-only/notes.md
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/morpho-permit-auth-ecdsa-only
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_1.jsonl,out_2.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_1.jsonl,out_2.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review23 (finding review)
-  ref: evidence/morpho-permit-auth-ecdsa-only/notes.md
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/morpho-permit-auth-ecdsa-only/notes.md
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
@@ -114,20 +112,20 @@ the contracts are immutable, so only every user moving or a protocol change (EIP
   (excerpt line 61), then `_approve`. A forged permit lets the attacker `transferFrom` and `redeem` the holder's shares.
 - Alternatives exist: `setAuthorization` and `approve` work by `msg.sender`, so post-quantum accounts are not locked
   out; the problem is only the old key of migrated addresses.
-- Pattern PQ-1. Excerpts: [`source-excerpts.md`](../evidence/morpho-permit-auth-ecdsa-only/source-excerpts.md).
+- Pattern PQ-1. Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/morpho-permit-auth-ecdsa-only/source-excerpts.md).
 
 ## Evidence
 
 - CHECKED (verified source, Sourcify `src/Morpho.sol`): `setAuthorizationWithSig`, `_isSenderAuthorized`, `borrow`,
   `withdrawCollateral` health checks; owner functions cannot touch the signature check
-  ([`notes.md`](../evidence/morpho-permit-auth-ecdsa-only/notes.md)).
+  ([`notes.md`](#review-notes-review23-2026-11-17)).
 - CHECKED (verified source excerpts): the four vaults use OpenZeppelin `ERC20Permit` with `ECDSA.recover` only.
 - CHECKED (on-chain read, block 26,431,214): no proxy on any of the five; owners are Safes (Morpho 6/10,
   `0xd6307011` 2/5, `0x777791c4` 2/3, `0xbeefff20` and `0xbeef0173` 5/10); Morpho Blue holds $3.19B
-  ([`onchain.json`](../evidence/morpho-permit-auth-ecdsa-only/onchain.json)).
+  ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/morpho-permit-auth-ecdsa-only/onchain.json)).
 - CHECKED (on-chain read, block 26,431,500): vault `asset()` = USDC and `totalAssets()` for each vault (table below).
 - CHECKED (Xatu, any function): 30-day transactions in the table, 2026-10-16 to 2026-11-16
-  ([`activity.json`](../evidence/morpho-permit-auth-ecdsa-only/activity.json)). Pre-quantum use over a year
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/morpho-permit-auth-ecdsa-only/activity.json)). Pre-quantum use over a year
   (`curated_contracts.csv`, `txs_y1`): Morpho 11,559; vaults 5,632, 2,385, 2,368, 1,811 ecrecover transactions.
 
 ## Impact and exposure
@@ -161,6 +159,42 @@ were in the census.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review23): HIGH kept, step 4: immutable contracts, users' own funds forgeable after migration. Checked that a forged `setAuthorizationWithSig` reaches only the authorizer's positions (health check on `onBehalf`), so Morpho Blue's $3.19B is an upper bound on users' own funds, not a pooled loss. `alternative` sole -> alternative-exists (`setAuthorization`, `approve`). Vault values re-measured as `totalAssets` (two were missing).
+
+# Review notes (Review23, 2026-11-17)
+
+## Morpho Blue `0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb` (verified source, Sourcify `src/Morpho.sol`)
+
+- `setAuthorizationWithSig(Authorization, Signature)` (line 446): deadline, `nonce[authorizer]++`,
+  `ecrecover(digest, v, r, s)`, requires `signatory != 0 && signatory == authorization.authorizer`, then sets
+  `isAuthorized[authorizer][authorized]`. No ERC-1271, no code check. `setAuthorization` (line 437) is the
+  msg.sender alternative.
+- `_isSenderAuthorized(onBehalf)` = `msg.sender == onBehalf || isAuthorized[onBehalf][msg.sender]` gates exactly
+  `withdraw` (line 212), `borrow` (line 247) and `withdrawCollateral` (line 331); each acts on `position[id][onBehalf]`
+  and sends to an arbitrary `receiver`.
+- `borrow` and `withdrawCollateral` require `_isHealthy(marketParams, id, onBehalf)`: the debt is the authorizer's and
+  is bounded by the authorizer's collateral times LLTV; `withdraw` is bounded by the authorizer's supply shares (and
+  market liquidity). So a forged authorization takes at most that user's own positions (supply + collateral);
+  other users' supply is only lent against the victim's collateral under the normal health check.
+- Owner-only functions (`setOwner`, `enableIrm`, `enableLltv`, `setFee`, `setFeeRecipient`) cannot change the
+  signature check. Not a proxy. Owner Safe `0xcba28b38…` (6 of 10, onchain.json).
+
+## MetaMorpho vaults (OpenZeppelin v5 `ERC20Permit.permit`: `ECDSA.recover(hash, v, r, s) == owner`)
+
+Reads at block 26,431,500 (2026-11-17 01:32 UTC), https://ethereum-rpc.publicnode.com:
+
+| Vault | name() | asset | totalAssets (USDC) | owner() |
+|---|---|---|---|---|
+| 0xd63070114470f685b75b74d60eec7c1113d33a3d | Usual Boosted USDC | USDC | 1,804,165.58 | 0x38afc3aa… (Safe 2/5) |
+| 0x777791c4d6dc2ce140d00d2828a7c93503c67777 | Hyperithm USDC Apex | USDC | 1,207,041.11 | 0xee7e9bb2… (Safe 2/3) |
+| 0xbeefff209270748ddd194831b3fa287a5386f5bc | Smokehouse USDC | USDC | 10,453,910.41 | 0x0a0e559b… (Safe 5/10) |
+| 0xbeef01735c132ada46aa9aa4c54623caa92a64cb | Steakhouse USDC | USDC | 71,854,433.22 | 0x0a0e559b… (Safe 5/10) |
+
+A forged `permit` gives the attacker an allowance over the holder's vault shares; `transferFrom` + `redeem` takes
+them. The vaults' USDC sits in Morpho Blue as the vault's own supply positions (the vault is a contract and signs
+nothing), so the vault value overlaps with Morpho Blue's holdings and is not additive.
+
+Yearly pre-quantum use (`data/report/curated_contracts.csv`, `txs_y1` ecrecover transactions):
+Morpho 11,559; 0xd6307011 5,632; 0x777791c4 2,385; 0xbeefff20 2,368; 0xbeef0173 1,811.

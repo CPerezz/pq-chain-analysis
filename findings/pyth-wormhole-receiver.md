@@ -48,20 +48,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/pyth-wormhole-receiver/classification.jsonl
-  - evidence/pyth-wormhole-receiver/onchain.json
-  - evidence/pyth-wormhole-receiver/review-notes.md
+  block: 26431744
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/pyth-wormhole-receiver
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode), for 0x74f09cb3
-  ref: data/curation/out_0.jsonl,out_2.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_2.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review17 (PythLazer source, bytecode selectors, on-chain reads, Blockscout internal calls)
-  ref: evidence/pyth-wormhole-receiver/review-notes.md
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/pyth-wormhole-receiver/review-notes.md
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -93,17 +93,17 @@ contract upgrade); the value that relies on these prices was not measured.
 ## Evidence
 
 - CHECKED (Sourcify exact match of PythLazer implementation `0xa089a10d…`): `verifyUpdate`, `updateTrustedSigner`,
-  `_authorizeUpgrade` ([`review-notes.md`](../evidence/pyth-wormhole-receiver/review-notes.md)).
+  `_authorizeUpgrade` ([`review-notes.md`](#review-reads-pyth-wormhole-receiver-2026-11-17-review17)).
 - CHECKED (bytecode selectors, latest block): both receivers have `parseAndVerifyVM` and `submitNewGuardianSet` and no
   upgrade selector; the executor and the Pyth implementation have `upgradeTo`; Pyth has `executeGovernanceInstruction`
-  ([`onchain.json`](../evidence/pyth-wormhole-receiver/onchain.json)).
+  ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/pyth-wormhole-receiver/onchain.json)).
 - CHECKED (on-chain, block 26,431,744): `0x3a2dd09b…` guardian set 1 = 5 keys;
   `0x74f09cb3…` set 7 identical to the core's; Pyth `wormhole()` = `0x3a2dd09b…`; PythLazer `owner()` = executor,
   executor `owner()` = itself; one Lazer trusted signer.
 - CHECKED (Blockscout internal calls of tx `0x960a2d4c…`, block 26,306,172): executor → `0x74f09cb3…` → PythLazer.
 - CHECKED (Blockscout, 2026-11-17): Pyth 866 direct transactions 2026-10-16 to 2026-11-16; `0x3a2dd09b…` and PythLazer
   called internally up to 2026-11-17 (their 30-day counts were not established); `0x74f09cb3…` 2 transactions in the
-  Xatu window, last 2026-10-30 (`evidence/wormhole-guardian-signatures/activity.json`).
+  Xatu window, last 2026-10-30 (`https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/wormhole-guardian-signatures/activity.json`).
 - INFERRED: the receivers' implementations follow Wormhole's core `Messages` logic (same selectors and getters);
   their source is not verified.
 
@@ -133,5 +133,38 @@ not show; `value_usd` is null and the value step lowers nothing.
 
 ## History
 
-- 2026-11-04: `0x74f09cb3…` classified from bytecode in the hand classification pass (`data/curation/`), grouped under Wormhole.
+- 2026-11-04: `0x74f09cb3…` classified from bytecode in the hand classification pass (`https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`), grouped under Wormhole.
 - 2026-11-17 review (Review17): finding created; `0x74f09cb3…` moved here from `wormhole-guardian-signatures` (it is Pyth's receiver), and `0x3a2dd09b…` and PythLazer `0xacea761c…` added. Rated MEDIUM, step 4: Pyth governance can upgrade or repoint every contract; exposure unmeasured, so step 5 does not apply.
+
+# Review reads: pyth-wormhole-receiver (2026-11-17, Review17)
+
+On-chain values are in [`onchain.json`](onchain.json) (latest block 26,431,744-26,431,775).
+
+## How the contracts connect
+
+- Pyth price-feed contract `0x4305fb66…` (EIP-1967 proxy, implementation `0x3f38404a…`, unverified) returns
+  `wormhole()` = `0x3a2dd09b…`. Its implementation has `updatePriceFeeds(bytes[])`, `executeGovernanceInstruction(bytes)`
+  and `upgradeTo(address)`; governance data source = chain 1, emitter `0x5635979a…`; price data source = chain 26.
+  Blockscout: 866 direct transactions 2026-10-16 to 2026-11-16, last `updatePriceFeedsIfNecessary` 2026-11-17.
+- `0x3a2dd09b…` (EIP-1967 proxy, implementation `0x8d289cdd…`, unverified; Sourcify matched only the generic proxy)
+  has `parseAndVerifyVM` and `submitNewGuardianSet` and no upgrade selector. Current guardian set index 1 with 5 keys
+  (quorum `5 * 2 / 3 + 1` = 4 if it uses Wormhole's `quorum()`; INFERRED, source not available). Blockscout: last
+  direct transaction `submitNewGuardianSet` 2026-09-04 (relayed
+  by `0x78357316…`); called internally up to 2026-11-17.
+- Pyth executor `0xccd7e24e…` (EIP-1967 proxy, implementation `0x395921b6…`, unverified) is its own `owner()` and has
+  `execute(bytes)`, `getOwnerChainId()` = 1, `upgradeTo`, `upgradeToAndCall`. Tx `0x960a2d4c…` (block 26,306,172,
+  Blockscout internal calls): executor staticcalls `0x74f09cb3…` (which delegatecalls `0x87047526…`) and then calls
+  PythLazer `0xacea761c…`.
+- `0x74f09cb3…`: guardian set index 7, 19 keys, identical to the Wormhole core's set 7; `parseAndVerifyVM`,
+  `submitNewGuardianSet`, no upgrade selector. Creator `0x78357316…`, which relayed its `submitNewGuardianSet` VAAs
+  (2023-08-09 to 2026-06-25).
+- PythLazer `0xacea761c…` (UUPS, implementation `0xa089a10d…`, Sourcify exact match `src/PythLazer.sol`, version
+  0.3.0): `owner()` = executor; `_authorizeUpgrade` is `onlyOwner`; `updateTrustedSigner` is `onlyOwner`.
+  `verifyUpdate(update)` (lines 130-172): `ECDSA.tryRecover(keccak256(payload), v, r, s)` and
+  `isValidSigner(signer)` (trusted and not expired). One trusted signer: `0x26fb61a8…`, expiry 2077357410 (2035-10-30).
+  `verification_fee` = 0. Blockscout: last direct `verifyUpdate` 2026-10-30; called internally up to 2026-11-17.
+
+## Not measured
+
+What Pyth prices secure in Ethereum protocols (lending collateral, perps) is not measurable from these contracts; the
+contracts hold 0.0034 ETH (Pyth) and 59,200 wei (PythLazer).

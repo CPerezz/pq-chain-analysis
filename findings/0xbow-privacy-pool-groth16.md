@@ -38,22 +38,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/0xbow-privacy-pool-groth16/classification.jsonl
-  - evidence/0xbow-privacy-pool-groth16/onchain.json
-  - evidence/0xbow-privacy-pool-groth16/activity.json
-  - evidence/0xbow-privacy-pool-groth16/source-excerpts.md
-  - evidence/0xbow-privacy-pool-groth16/escrow.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/0xbow-privacy-pool-groth16
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_3.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_3.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review01)
-  ref: evidence/0xbow-privacy-pool-groth16/escrow.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/0xbow-privacy-pool-groth16/escrow.json
   date: 2026-11-17
   verdict: confirmed
   rating: CRITICAL
@@ -87,7 +85,7 @@ all be counted on to move).
 - `State.sol` lines 46–48, 92–93: `WITHDRAWAL_VERIFIER` and `RAGEQUIT_VERIFIER` are `immutable`, set in the
   constructor. `windDown()` (only the Entrypoint) sets `dead`, which stops deposits only.
 
-Source excerpts: [`source-excerpts.md`](../evidence/0xbow-privacy-pool-groth16/source-excerpts.md).
+Source excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/0xbow-privacy-pool-groth16/source-excerpts.md).
 
 ## Evidence
 
@@ -98,13 +96,13 @@ Source excerpts: [`source-excerpts.md`](../evidence/0xbow-privacy-pool-groth16/s
   24,435,268.
 - CHECKED (`eth_call` at block 26,431,492): every one of the 14 pools returns `WITHDRAWAL_VERIFIER() = 0x022891f9…`
   and `RAGEQUIT_VERIFIER() = 0xa45aca86…`; none is `dead`; balances of each pool's asset as listed in
-  [`escrow.json`](../evidence/0xbow-privacy-pool-groth16/escrow.json).
+  [`escrow.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/0xbow-privacy-pool-groth16/escrow.json).
 - CHECKED (block 26,431,492): Entrypoint `0x6818809e…` is an ERC-1967 proxy, implementation `0x15e35502…`; `OWNER_ROLE`
   is held by `0xad7f9a19…` (`hasRole` true), a Safe with threshold 2 of 4; the earlier holder `0x1f4fe25c…` was
   revoked at block 22,169,228.
-- CHECKED (block 26,431,214, [`onchain.json`](../evidence/0xbow-privacy-pool-groth16/onchain.json)): both
+- CHECKED (block 26,431,214, [`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/0xbow-privacy-pool-groth16/onchain.json)): both
   verifiers have no proxy, owner or holdings.
-- CHECKED (Xatu, [`activity.json`](../evidence/0xbow-privacy-pool-groth16/activity.json)): 925 and 26 transactions
+- CHECKED (Xatu, [`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/0xbow-privacy-pool-groth16/activity.json)): 925 and 26 transactions
   reached the verifiers in 2026-10-16 to 2026-11-16; yearly pre-quantum calls (`curated_contracts.csv`, `txs_y1`):
   3,974 and 286.
 - INFERRED (from source): an Entrypoint upgrade that makes `latestRoot()` revert would freeze `withdraw` for everyone,
@@ -144,6 +142,6 @@ these verifiers was looked for.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated CRITICAL (step 4: pooled funds released by a forged proof or attestation, and the verification cannot change).
 - 2026-11-17 review (Review01): CRITICAL kept, step 4: pool source read (verifiers immutable, no admin path moves pooled funds, ragequit bypasses the Entrypoint); escrow measured across the 14 registered pools (USD 8.4M at block 26,431,492); Entrypoint owner recorded.

@@ -35,7 +35,7 @@ families:
 - code: "0x9cbdbd7fa768ad6e9546ff57238722fa9b925329"
   name: SimpleMultiSig (same runtime code, same deployer; the 12 instances not listed above)
   instances: 12
-  list: evidence/simplemultisig-owner-keys/siblings.json
+  list: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/simplemultisig-owner-keys/siblings.json
   upgradeable: "no"
   value_usd: 15838067
   value_basis: held
@@ -46,22 +46,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/simplemultisig-owner-keys/classification.jsonl
-  - evidence/simplemultisig-owner-keys/onchain.json
-  - evidence/simplemultisig-owner-keys/activity.json
-  - evidence/simplemultisig-owner-keys/source-excerpts.md
-  - evidence/simplemultisig-owner-keys/siblings.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/simplemultisig-owner-keys
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_3.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_3.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review18 (full Sourcify source, owner/threshold reads, deployer's 3,146 creations grouped by code hash)
-  ref: evidence/simplemultisig-owner-keys/siblings.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/simplemultisig-owner-keys/siblings.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -86,7 +84,7 @@ Christian Lundkvist's SimpleMultiSig; the party that must act is the unidentifie
   and at least `threshold` signatures; it then calls `destination` with `value` and `data`.
 - `threshold`, `isOwner` and `ownersArr` are set only in the constructor; there is no function to change owners,
   no ERC-1271 path and no module. `executor` may be `address(0)`, so anyone holding the signatures can submit.
-- Pattern PQ-12. Excerpts: [`source-excerpts.md`](../evidence/simplemultisig-owner-keys/source-excerpts.md).
+- Pattern PQ-12. Excerpts: [`source-excerpts.md`](#source-excerpts-simplemultisig-owner-keys).
 
 ## Evidence
 
@@ -98,13 +96,13 @@ Christian Lundkvist's SimpleMultiSig; the party that must act is the unidentifie
   signatures appear only in `execute` calldata, which is enough to derive their public keys.
 - CHECKED (Blockscout txlist + `scripts/rpc.py` probe, block 26,431,532): the deployer created 3,146 contracts; 14
   have this runtime code, 3,128 are `Forwarder` deposit contracts (`flushTokens`)
-  ([`siblings.json`](../evidence/simplemultisig-owner-keys/siblings.json)).
+  ([`siblings.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/simplemultisig-owner-keys/siblings.json)).
 - CHECKED (Blockscout): every recent `execute` on `0x9cbdbd7f…`, `0xc82abe4d…`, `0x47a0b4fa…`, `0x26cce142…` and
   `0xacf38570…` was sent by the deployer EOA; `0xacf38570…` and `0x26cce142…` share owner `0x1c2d661d…` with
   `0x9cbdbd7f…`.
 - CHECKED (on-chain, block 26,431,214): holdings of the two listed wallets
-  ([`onchain.json`](../evidence/simplemultisig-owner-keys/onchain.json)); Xatu activity
-  ([`activity.json`](../evidence/simplemultisig-owner-keys/activity.json)).
+  ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/simplemultisig-owner-keys/onchain.json)); Xatu activity
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/simplemultisig-owner-keys/activity.json)).
 - INFERRED: the deployer is a custodian or exchange back end (deposit forwarders swept into multisig wallets holding
   PAXG, RLUSD, USDG, USDC, USDT); its identity was not found (no ENS, tags or source attribution).
 
@@ -118,7 +116,7 @@ Christian Lundkvist's SimpleMultiSig; the party that must act is the unidentifie
 
 Held value is ETH plus priced tokens (2026-11-17). Among the 12 other instances, three hold value: `0xacf38570…`
 USD 12.5M RLUSD, `0x47a0b4fa…` USD 2.02M (2-of-n), `0x26cce142…` USD 1.32M USDG; the other nine hold under USD 200
-together. Total about USD 57.6M. Yearly pre-quantum calls (`data/report/curated_contracts.csv`, `txs_y1`): 3,625
+together. Total about USD 57.6M. Yearly pre-quantum calls (`studies/top-callers-classification/results/curated_contracts.csv`, `txs_y1`): 3,625
 `ecrecover` calls on `0x9cbdbd7f…`, 25 on `0xc82abe4d…`.
 
 ## Remediation
@@ -132,9 +130,48 @@ keys that only sign off-chain.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: signer set fixed in code; funds must move, and many independent owners may not act).
 - 2026-11-17 review (Review18): HIGH -> MEDIUM, step 4: all 14 wallets are deployed and operated by one active EOA
   (`0x339257cb…` submits every `execute`), so the fix is one operator moving funds to a new deployment, not many
   independent owners. Project changed from `simple-multisig` (Christian Lundkvist, who cannot act) to
   `unidentified-9cbdbd7f`; added the 12 other same-code wallets (USD 15.8M) as a family; `fix.layer` new-deployment.
+
+# Source excerpts: simplemultisig-owner-keys
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0x9cbdbd7fa768ad6e9546ff57238722fa9b925329` — SimpleMultiSig (verified source via sourcify)
+
+### `source/SimpleMultiSig-v2.0.1.sol`
+
+```solidity
+   67          for (uint256 i = 0; i < sigR.length; i++) {
+   68              if (uint256(sigS[i]) > 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5D576E7357A4501DDFE92F46681B20A0) {
+   69                  revert HighSValue();
+   70              }
+   71              address recovered = ecrecover(totalHash, sigV[i], sigR[i], sigS[i]);
+   72              if (recovered <= lastAdd) {
+   73                  revert InvalidSignature();
+   74              }
+   75              if (!isOwner[recovered]) {
+  ...
+```
+
+
+## Contract `0xc82abe4dfa94b9b5453d31274fb7500459a0d12d` — SimpleMultiSig (verified source via sourcify)
+
+### `source/SimpleMultiSig-v2.0.1.sol`
+
+```solidity
+   67          for (uint256 i = 0; i < sigR.length; i++) {
+   68              if (uint256(sigS[i]) > 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5D576E7357A4501DDFE92F46681B20A0) {
+   69                  revert HighSValue();
+   70              }
+   71              address recovered = ecrecover(totalHash, sigV[i], sigR[i], sigS[i]);
+   72              if (recovered <= lastAdd) {
+   73                  revert InvalidSignature();
+   74              }
+   75              if (!isOwner[recovered]) {
+  ...
+```

@@ -58,22 +58,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/intmax-snark-verifiers/classification.jsonl
-  - evidence/intmax-snark-verifiers/onchain.json
-  - evidence/intmax-snark-verifiers/activity.json
-  - evidence/intmax-snark-verifiers/source-excerpts.md
-  - evidence/intmax-snark-verifiers/consumers.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/intmax-snark-verifiers
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_1.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review01)
-  ref: evidence/intmax-snark-verifiers/consumers.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/intmax-snark-verifiers/consumers.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -121,7 +119,7 @@ not lower it).
 - CHECKED (Xatu call frames, then transaction `to`): the last calls reaching the verifiers came through
   `MinterV1V3.claimTokens` (`0x38de07d2…`, block 25,069,553) and `proveTransferRoot` on the zERC20 Verifier proxies
   `0xfb786b5e…` and `0xdcc76deb…` (blocks 26,340,240 and 26,291,544).
-- CHECKED (block 26,431,757, [`consumers.json`](../evidence/intmax-snark-verifiers/consumers.json)): `verifier()` of
+- CHECKED (block 26,431,757, [`consumers.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/intmax-snark-verifiers/consumers.json)): `verifier()` of
   the minter = `0x2ae060a8…`; `token()` = ITX `0xe24e207c…`, balance 162,063,166 ITX of 767,507,813 supply;
   `DEFAULT_ADMIN_ROLE` held by Safe `0xcca94a45…` (2 of 2, from `RoleGranted` logs and `hasRole`).
 - CHECKED (block 26,431,757): both zERC20 proxies have `rootDecider()` = `0x1a44abb1…`, implementation `0x6b4aafeb…`,
@@ -163,7 +161,7 @@ not lower it).
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review01): MEDIUM kept, step 4: consumers identified (MinterV1V3, two zERC20 Verifier proxies) and both can repoint their verifiers; ITX exposure unpriced so step 5 does not lower; status candidate -> confirmed, evidence level bytecode -> source-read (both verifiers verified on Sourcify).
 - 2026-11-17 review (Review01): added the zERC20 single-teleport Groth16 verifiers `0xf0ddf241…` and `0x304141bb…` on Main's instruction (singleWithdraw verifiers of both zERC20 proxies, reachable by anyone through `singleTeleport`); same escrow, MEDIUM unchanged.

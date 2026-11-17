@@ -58,22 +58,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/taiko-sgx-instance-keys/classification.jsonl
-  - evidence/taiko-sgx-instance-keys/onchain.json
-  - evidence/taiko-sgx-instance-keys/activity.json
-  - evidence/taiko-sgx-instance-keys/source-excerpts.md
-  - evidence/taiko-sgx-instance-keys/escrow.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/taiko-sgx-instance-keys
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_1.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_1.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review16 (verified source of the Shasta inbox, ZkRequiredVerifier and SecureSgxVerifier; on-chain reads at block 26,431,535)
-  ref: evidence/taiko-sgx-instance-keys/escrow.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/taiko-sgx-instance-keys/escrow.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -102,19 +100,19 @@ Retired path (Pacaya): the old inbox `0x06a9ab27…` (`inbox.based.taiko.eth`) c
 
 A forged proof on this path releases nothing.
 
-Source excerpts: [`source-excerpts.md`](../evidence/taiko-sgx-instance-keys/source-excerpts.md). Pattern PQ-4 in `patterns.md`.
+Source excerpts: [`source-excerpts.md`](#source-excerpts-taiko-sgx-instance-keys). Pattern PQ-4 in `patterns.md`.
 
 ## Evidence
 
 - CHECKED (precompile trace, all mainnet transactions to March 2026): `ecrecover` used by the Pacaya SGX verifiers.
 - CHECKED (verified source, Sourcify): Shasta `MainnetInbox` `0xa18431d4…` (`Inbox.prove`), `ZkRequiredVerifier` `0x7284aac0…`, `SecureSgxVerifier`/`SgxVerifier` `0x41e79eb4…`, Pacaya `MainnetInbox` `0x38dd73fe…`, `MainnetVerifier` `0x8c520bb7…`, SgxVerifier `0xdb7aee4f…` and `0x8addcf5d…`, `TaikoDAOController` `0x4347df63…`, `AutomataDcapV3Attestation` `0x5e46443b…`. Also read: `SigVerifyLib` `0x47bb416e…` (Blockscout), SignalService `0x1a068329…` and Bridge `0xe6bf63dc…` (relevant functions only).
-- CHECKED (on-chain reads at block 26,431,535, 2026-11-17; [`escrow.json`](../evidence/taiko-sgx-instance-keys/escrow.json)):
+- CHECKED (on-chain reads at block 26,431,535, 2026-11-17; [`escrow.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/taiko-sgx-instance-keys/escrow.json)):
   - Shasta inbox: proxy `0x6f21c543…` (found from SignalService `CheckpointSaved` logs), `owner()` = TaikoDAOController, `getConfig().proofVerifier` = `0x7284aac0…`.
   - ZkRequiredVerifier: sub-verifier immutables; not a proxy, no owner.
   - SecureSgxVerifier ×2: `owner()`, `registrar()`, `automataDcapAttestation()`, `nextInstanceId` = 4, one valid instance each.
   - Pacaya inbox: `verifier()`, `shastaForkTimestamp()`, `getStats2()`; `MainnetVerifier` sub-verifiers.
   - Governance: EIP-1967 slots and `owner()` of every proxy above. `0x75ba7640…` = TaikoDAOController (`controller.taiko.eth`), owner `0x9cdf589c…` (Aragon DAO, `dao.taiko.eth`). The DAO executes only through OptimisticTokenVotingPlugin `0x989e3482…` (all `Executed` events). Multisig `0xd7da1c25…` (minApprovals 3) and EmergencyMultisig `0x2affadeb…` (minApprovals 4) share a signer list of 5. Registrar Safe `0x9cbee534…` has threshold 4 of 6.
-- CHECKED (proof composition, [`escrow.json`](../evidence/taiko-sgx-instance-keys/escrow.json) `proofs_30d`): all 1,369 `prove` transactions in blocks 26,208,000–26,431,535 were decoded. Every one carried an SGX_GETH sub-proof from `0x41e79eb4…`: 704 with SP1 and 665 with RISC Zero. SGX_RETH was never used. All came from prover EOA `0xa5cb34b7…`, which is whitelisted in ProverWhitelist `0xea798547…` (2 provers).
+- CHECKED (proof composition, [`escrow.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/taiko-sgx-instance-keys/escrow.json) `proofs_30d`): all 1,369 `prove` transactions in blocks 26,208,000–26,431,535 were decoded. Every one carried an SGX_GETH sub-proof from `0x41e79eb4…`: 704 with SP1 and 665 with RISC Zero. SGX_RETH was never used. All came from prover EOA `0xa5cb34b7…`, which is whitelisted in ProverWhitelist `0xea798547…` (2 provers).
 - CHECKED: SGX instances are rotated. On both live verifiers the DAO deleted the instance at block 26,223,334 and the registrar Safe registered a new one at block 26,223,342 (2026-10-19). Each new key then signs every proof, so its public key is exposed straight away.
 - CHECKED (Xatu activity, any function): Pacaya proxies last called 2026-04-02 (`0x7e6409e9…`) and 2026-06-22 (`0x9e322fc5…`, `registerInstance`). No calls in 2026-10-16 to 2026-11-16.
 - INFERRED: the ERC20Vault releases bridged tokens after `Bridge.processMessage` (standard Taiko design; vault source not read here).
@@ -156,6 +154,115 @@ The Pacaya inbox still holds 812,589 TAIKO in liveness bonds (about USD 47k). No
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review16): MEDIUM -> MEDIUM, step 4: the listed SgxVerifier proxies are on the retired Pacaya path. Added the live SecureSgxVerifiers `0x41e79eb4…`/`0x9d3c595b…` used by Shasta `ZkRequiredVerifier`. Alternative changed from key-rotation-only to configurable-verifier (the DAO can upgrade the inbox to a new verifier set). Admin confirmed as TaikoDAOController owned by the Taiko DAO. Escrow measured: USD 9,946,783 (Bridge plus ERC20Vault). SGX alone is insufficient but the required ZK leg is BN254, so both fall to a CRQC. Noted the DCAP (P-256) attestation dependency.
+
+# Source excerpts: taiko-sgx-instance-keys
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0x7e6409e9b6c5e2064064a6cc994f9a2e95680782` — ERC1967Proxy (verified source via blockscout)
+
+## Implementation `0xdb7aee4fa967c2ab0ec28f63c8675224e59340a5` — SgxVerifier (verified source via sourcify)
+
+### `contracts/layer1/verifiers/IVerifier.sol`
+
+```solidity
+   15  
+   16      /// @notice Verifies multiple proofs. This function must throw if the proof cannot be verified.
+   17      /// @param _ctxs The array of contexts for the proof verifications.
+   18      /// @param _proof The batch proof to verify.
+   19      function verifyProof(Context[] calldata _ctxs, bytes calldata _proof) external;
+   20  }
+  ...
+```
+
+### `contracts/layer1/verifiers/SgxVerifier.sol`
+
+```solidity
+    1  // SPDX-License-Identifier: MIT
+    2  pragma solidity ^0.8.24;
+    3  
+    4  import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+    5  import "src/shared/common/EssentialContract.sol";
+    6  import "src/shared/libs/LibStrings.sol";
+    7  import "../automata-attestation/interfaces/IAttestation.sol";
+    8  import "../automata-attestation/lib/QuoteV3Auth/V3Struct.sol";
+  ...
+  144          return _addInstances(addresses, false)[0];
+  145      }
+  146  
+  147      /// @inheritdoc IVerifier
+  148      function verifyProof(
+  149          Context[] calldata _ctxs,
+  150          bytes calldata _proof
+  151      )
+  152          external
+  ...
+  176  
+  177          bytes32 signatureHash = keccak256(abi.encodePacked(publicInputs));
+  178          // Verify the blocks
+  179          bytes memory signature = _proof[44:];
+  180          require(oldInstance == ECDSA.recover(signatureHash, signature), SGX_INVALID_PROOF());
+  181  
+  182          uint32 id = uint32(bytes4(_proof[:4]));
+  183          require(_isInstanceValid(id, oldInstance), SGX_INVALID_INSTANCE());
+  184  
+  ...
+```
+
+Library files with the primitive itself (not excerpted): `node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol`
+
+
+## Contract `0x9e322fc59b8f4a29e6b25c3a166ac1892aa30136` — ERC1967Proxy (verified source via blockscout)
+
+## Implementation `0x8addcf5d4cd7bd9da1ce62ef84aee22c9e2bfba5` — SgxVerifier (verified source via sourcify)
+
+### `contracts/layer1/verifiers/IVerifier.sol`
+
+```solidity
+   15  
+   16      /// @notice Verifies multiple proofs. This function must throw if the proof cannot be verified.
+   17      /// @param _ctxs The array of contexts for the proof verifications.
+   18      /// @param _proof The batch proof to verify.
+   19      function verifyProof(Context[] calldata _ctxs, bytes calldata _proof) external;
+   20  }
+  ...
+```
+
+### `contracts/layer1/verifiers/SgxVerifier.sol`
+
+```solidity
+    1  // SPDX-License-Identifier: MIT
+    2  pragma solidity ^0.8.24;
+    3  
+    4  import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+    5  import "src/shared/common/EssentialContract.sol";
+    6  import "src/shared/libs/LibStrings.sol";
+    7  import "../automata-attestation/interfaces/IAttestation.sol";
+    8  import "../automata-attestation/lib/QuoteV3Auth/V3Struct.sol";
+  ...
+  144          return _addInstances(addresses, false)[0];
+  145      }
+  146  
+  147      /// @inheritdoc IVerifier
+  148      function verifyProof(
+  149          Context[] calldata _ctxs,
+  150          bytes calldata _proof
+  151      )
+  152          external
+  ...
+  176  
+  177          bytes32 signatureHash = keccak256(abi.encodePacked(publicInputs));
+  178          // Verify the blocks
+  179          bytes memory signature = _proof[44:];
+  180          require(oldInstance == ECDSA.recover(signatureHash, signature), SGX_INVALID_PROOF());
+  181  
+  182          uint32 id = uint32(bytes4(_proof[:4]));
+  183          require(_isInstanceValid(id, oldInstance), SGX_INVALID_INSTANCE());
+  184  
+  ...
+```
+
+Library files with the primitive itself (not excerpted): `node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol`

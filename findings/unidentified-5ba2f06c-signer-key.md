@@ -28,22 +28,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: bytecode
-  links:
-  - evidence/unidentified-5ba2f06c-signer-key/classification.jsonl
-  - evidence/unidentified-5ba2f06c-signer-key/onchain.json
-  - evidence/unidentified-5ba2f06c-signer-key/activity.json
-  - evidence/unidentified-5ba2f06c-signer-key/source-excerpts.md
-  - evidence/unidentified-5ba2f06c-signer-key/rfq.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-5ba2f06c-signer-key
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_1.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review04)
-  ref: evidence/unidentified-5ba2f06c-signer-key/rfq.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-5ba2f06c-signer-key/rfq.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -70,13 +68,13 @@ contract that verifies a different scheme), lowered at step 5 (measured exposure
 - Settlement path (sample transaction `0x1b2fd2d8…`, 2026-03-18): `RelayRouterV3` → caller `0x63242a4e…` →
   `0x5ba2f06c…`, which calls `USDC.transferFrom` (taker to vault) and `POL.transferFrom` (vault to taker).
 - The signer list can be rotated by the owner (`setSigners`), but only to other ECDSA keys.
-- No verified source ([`source-excerpts.md`](../evidence/unidentified-5ba2f06c-signer-key/source-excerpts.md)).
+- No verified source ([`source-excerpts.md`](#source-excerpts-unidentified-5ba2f06c-signer-key)).
 
 ## Evidence
 
 - CHECKED (bytecode selector scan and 4byte lookup, block 26,431,578): the selectors above.
 - CHECKED (precompile trace): the contract called `ecrecover` in 22,092 transactions in the year to March 2026
-  (`txs_y1`, `data/report/curated_contracts.csv`), last block 24,683,714.
+  (`txs_y1`, `studies/top-callers-classification/results/curated_contracts.csv`), last block 24,683,714.
 - CHECKED (`eth_call` at block 26,431,578): `signers(0) = 0xfc7993707b79f25a937c8e5ba0357c52f680a1d2`,
   `signers(1)` reverts (one signer); `owner() = 0xc493f943…` (EOA); `counterparty(0x63242a4e…) = true`.
 - CHECKED (Blockscout): contract and vault `0x9ba0cf15…` both created by EOA `0x9e056868…`; no name, tag or ENS
@@ -84,9 +82,9 @@ contract that verifies a different scheme), lowered at step 5 (measured exposure
 - CHECKED (90 receipts: 80 random and the last 10 of the year's transactions): vault `0x9ba0cf15…` is a transfer
   party in 83 of them; the caller `0x63242a4e…` in 87.
 - CHECKED (`allowance`, balances at block 26,431,578): vault approves this contract for unlimited USDC, USDT, WETH and
-  POL; it holds 0 ETH and none of those tokens (USD 1.46 of other tokens) ([`rfq.json`](../evidence/unidentified-5ba2f06c-signer-key/rfq.json)).
-- CHECKED (on-chain read at block 26,431,214): the contract holds nothing ([`onchain.json`](../evidence/unidentified-5ba2f06c-signer-key/onchain.json));
-  CHECKED (Xatu): last call 2026-05-07, none in 2026-10-16 to 2026-11-16 ([`activity.json`](../evidence/unidentified-5ba2f06c-signer-key/activity.json)).
+  POL; it holds 0 ETH and none of those tokens (USD 1.46 of other tokens) ([`rfq.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-5ba2f06c-signer-key/rfq.json)).
+- CHECKED (on-chain read at block 26,431,214): the contract holds nothing ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-5ba2f06c-signer-key/onchain.json));
+  CHECKED (Xatu): last call 2026-05-07, none in 2026-10-16 to 2026-11-16 ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-5ba2f06c-signer-key/activity.json)).
 - INFERRED: the counterparty allowlist means an attacker also needs an allowlisted caller (or the owner key, also
   ECDSA, to add one); this does not change the rating.
 
@@ -108,6 +106,14 @@ the vault without changing the contract, the exposure returns at that size.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review04): MEDIUM -> LOW, step 5: the funds at risk sit in maker vault 0x9ba0cf15, which approves the contract for unlimited USDC/USDT/WETH/POL but holds none (block 26,431,578); measured exposure USD 0. Status candidate -> confirmed (bytecode plus precompile trace and on-chain reads).
+
+# Source excerpts: unidentified-5ba2f06c-signer-key
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0x5ba2f06c91be4495243ffdc9faa9618ca0f5f2ae`
+
+No verified source on Sourcify or Blockscout.

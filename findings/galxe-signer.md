@@ -48,22 +48,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/galxe-signer/classification.jsonl
-  - evidence/galxe-signer/onchain.json
-  - evidence/galxe-signer/activity.json
-  - evidence/galxe-signer/source-excerpts.md
-  - evidence/galxe-signer/review-reads.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/galxe-signer
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_1.jsonl,out_4.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl,out_4.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review09 (finding review)
-  ref: evidence/galxe-signer/review-reads.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/galxe-signer/review-reads.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -93,20 +91,20 @@ else's funds. All three hold about $0 now, and none was called in the last
   (l.593-603) pays treasurers from `msg.sender` or from the ETH sent with the call.
 - `setSigner` (`onlyOwner`) on each contract only rotates the ECDSA key.
 
-Pattern PQ-4. Excerpts: [`source-excerpts.md`](../evidence/galxe-signer/source-excerpts.md).
+Pattern PQ-4. Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/galxe-signer/source-excerpts.md).
 
 ## Evidence
 
 - CHECKED (Sourcify verified source, read 2026-11-17): the functions and lines above
-  ([`review-reads.json`](../evidence/galxe-signer/review-reads.json)).
+  ([`review-reads.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/galxe-signer/review-reads.json)).
 - CHECKED (on-chain at block 26,431,457): owners (`0x62e3bab5…` and `0x78a6c322…` EOAs; Safe `0x73eb342e…`, 3 of 5)
   and signers; no proxies.
 - CHECKED (Blockscout, 2026-11-17): VestingEarndrop holds 675,468 GTSI (no market price) and no ETH; the Treasurer
   0.0002 ETH; GeneralInstantPaymentLSD under $0.01.
 - CHECKED (precompile trace to March 2026): 38,361, 29,234 and 26,583 pre-quantum calls in the year
-  (`data/report/curated_contracts.csv`, `txs_y1`).
+  (`studies/top-callers-classification/results/curated_contracts.csv`, `txs_y1`).
 - CHECKED (Xatu, 2026-10-16 to 2026-11-16): no transactions; last activity 2025-10-09, 2026-07-06 and 2025-12-03
-  ([`activity.json`](../evidence/galxe-signer/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/galxe-signer/activity.json)).
 - INFERRED: forged deposit authorisations would let an attacker credit tasks or skip task fees in Galxe's off-chain
   accounting; that effect is outside these contracts.
 
@@ -130,6 +128,6 @@ If Galxe funds new earndrops in it, its pooled balance becomes the exposure.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review09): MEDIUM -> LOW, step 5: measured holdings of all three contracts are about $0 (block 26,431,457), so the redeploy case (MEDIUM, step 4) drops one level. Mechanism read in verified source: only VestingEarndrop pools other people's tokens behind the signer check; deposit contracts move only the caller's funds.

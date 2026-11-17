@@ -28,22 +28,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: bytecode
-  links:
-  - evidence/unidentified-049a6f30-signer-key/classification.jsonl
-  - evidence/unidentified-049a6f30-signer-key/onchain.json
-  - evidence/unidentified-049a6f30-signer-key/activity.json
-  - evidence/unidentified-049a6f30-signer-key/source-excerpts.md
-  - evidence/unidentified-049a6f30-signer-key/escrow.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-049a6f30-signer-key
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review16)
-  ref: evidence/unidentified-049a6f30-signer-key/escrow.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-049a6f30-signer-key/escrow.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -75,7 +73,7 @@ only rotates to another ECDSA key, so the fix is a new wallet: MEDIUM (step 4). 
 - `setOwner(address,address)` and `setExecutor(uint256,address)` replace keys, but the new owner is again compared
   with an `ecrecover` result, so only another ECDSA key can sign: `alternative: key-rotation-only`.
 - Pattern PQ-4 (one key signs RFQ quotes). No verified source exists
-  ([`source-excerpts.md`](../evidence/unidentified-049a6f30-signer-key/source-excerpts.md)).
+  ([`source-excerpts.md`](#source-excerpts-unidentified-049a6f30-signer-key)).
 
 ## Evidence
 
@@ -90,12 +88,12 @@ only rotates to another ECDSA key, so the fix is a new wallet: MEDIUM (step 4). 
   `setOwner`/`setExecutor`/`approve`/`withdrawTokens`/`withdrawETH` succeed from the owner and the manager and revert
   (`0x1f6078af`) from `executor0` and from an unrelated address.
 - CHECKED (`eth_call` at block 26,431,537): token balances and Permit2 allowances (all max) in
-  [`escrow.json`](../evidence/unidentified-049a6f30-signer-key/escrow.json); prices from Blockscout `exchange_rate`.
+  [`escrow.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-049a6f30-signer-key/escrow.json); prices from Blockscout `exchange_rate`.
 - CHECKED (Blockscout): created 2024-09-09 by `0x9e995485…` with constructor arguments (owner `0x595744b0…`, manager
   `0xda010308…`). The same creator created HashflowPool `0xfbf37e48…` (pool `name()` = "ant", `operations()` = the
   creator) through HashflowFactory and called `updateSigner` on it. No ENS name or explorer tag for the wallet, creator,
   owner or manager; a web search for the address found nothing. `findings_map.csv` has no note for this address.
-- CHECKED (Blockscout token transfers; [`activity.json`](../evidence/unidentified-049a6f30-signer-key/activity.json)):
+- CHECKED (Blockscout token transfers; [`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-049a6f30-signer-key/activity.json)):
   last value-moving transaction 2026-07-01 (block 25,440,961); later entries are unsolicited token airdrops
   (2026-07-23 to 2026-10-19) and two address-poisoning transactions (2026-01-17). No transaction in 2026-10-16 to
   2026-11-16. Yearly pre-quantum calls (`curated_contracts.csv`, `txs_y1`): 84,885.
@@ -127,6 +125,14 @@ so rubric step 1 does not apply. The maker's Hashflow pool `0xfbf37e48…` is a 
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review16): MEDIUM -> MEDIUM, step 4: signer check confirmed by trace and `eth_call` replay (ECDSA against `owner()` `0x595744b0…`, no ERC-1271 forwarding); code is fixed, so the fix is a new wallet; USD 121,368 held at block 26,431,537 (over USD 50k, step 5 does not lower); active until 2026-07-01 (step 1 does not apply). Corrected admin (owner and manager EOAs, both able to withdraw directly; `executor0` cannot), fix.who_acts, title; status candidate -> confirmed. Operator not identified (creator also runs Hashflow pool "ant").
+
+# Source excerpts: unidentified-049a6f30-signer-key
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0x049a6f30a91cdad18473739a69f957175acb83d3`
+
+No verified source on Sourcify or Blockscout.

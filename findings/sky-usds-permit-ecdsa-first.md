@@ -38,20 +38,18 @@ fix:
   protocol_change: helps
 evidence:
   level: source-read
-  links:
-  - evidence/sky-usds-permit-ecdsa-first/classification.jsonl
-  - evidence/sky-usds-permit-ecdsa-first/onchain.json
-  - evidence/sky-usds-permit-ecdsa-first/activity.json
-  - evidence/sky-usds-permit-ecdsa-first/source-excerpts.md
-  - evidence/sky-usds-permit-ecdsa-first/governance.md
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/sky-usds-permit-ecdsa-first
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_1.jsonl,out_2.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl,out_2.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review15 (finding review)
   ref: findings/sky-usds-permit-ecdsa-first.md
   date: 2026-11-17
@@ -78,7 +76,7 @@ otherwise, if `owner.code.length > 0`, it calls `IERC1271.isValidSignature(diges
 valid permit sets `allowance[owner][spender] = value`, after which the spender can `transferFrom` the owner's balance.
 Pattern PQ-2: the ERC-1271 path is full-length (post-quantum accounts are not locked out), but the ECDSA branch comes
 first, so an EIP-7702/8141 account with code is still accepted with its old key. Excerpt:
-[`source-excerpts.md`](../evidence/sky-usds-permit-ecdsa-first/source-excerpts.md).
+[`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/sky-usds-permit-ecdsa-first/source-excerpts.md).
 
 ## Evidence
 
@@ -88,12 +86,12 @@ first, so an EIP-7702/8141 account with code is still accepted with its old key.
   are zero (UUPS). `wards(pause proxy) = 1` on both; `Rely`/`Deny` logs (Blockscout) leave wards USDS = {pause proxy,
   UsdsJoin `0x3c0f…7feb`} and sUSDS = {pause proxy, SPBEAM `0x36b0…2b22`} (the deployers' wards were denied at blocks
   20,663,732 and 20,677,436). Pause proxy `owner()` = DSPause `0xbe28…38f3`, whose `authority()` = Chief
-  `0x929d…a6f9` and `delay()` = 172,800 s ([`governance.md`](../evidence/sky-usds-permit-ecdsa-first/governance.md)).
+  `0x929d…a6f9` and `delay()` = 172,800 s ([`governance.md`](#governance-reads-review15-2026-11-17)).
 - CHECKED (`totalSupply()` at block 26,431,426): 5,234,715,755 USDS; sUSDS `totalAssets()` = 3,687,043,328 USDS.
 - CHECKED (precompile trace to March 2026): `ecrecover` only; in the last year 8,048 pre-quantum calls through USDS
   (USD 4.80B transferred in those transactions) and 788 through sUSDS (USD 112M) (`curated_contracts.csv`).
 - CHECKED (Xatu, any function, 2026-10-16 to 2026-11-16): 132,728 transactions called USDS and 28,038 called sUSDS;
-  both last active 2026-11-16 ([`activity.json`](../evidence/sky-usds-permit-ecdsa-first/activity.json)).
+  both last active 2026-11-16 ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/sky-usds-permit-ecdsa-first/activity.json)).
 - INFERRED: UsdsJoin and SPBEAM are fixed-code contracts with no call path to `upgradeToAndCall`, so in practice only
   governance can upgrade (not checked in their source).
 
@@ -120,6 +118,35 @@ contracts' own token holdings (USD 48 in USDS) are not the exposure. DAI, the pr
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by upgrading the contract (admin or governance)).
 - 2026-11-17 review (Review15): MEDIUM confirmed (step 4). Market caps replaced by on-chain `totalSupply`/`totalAssets` at block 26,431,426 (USDS 9.57B -> 5.23B, sUSDS 4.51B -> 3.69B); wards and governance chain read from storage and logs; linked to the DAI finding.
+
+# Governance reads (Review15, 2026-11-17)
+
+RPC: https://ethereum-rpc.publicnode.com, block 26,431,426 unless noted. Logs: Blockscout `module=logs&action=getLogs`.
+
+| Read | Result |
+|---|---|
+| USDS `0xdc03…384f` EIP-1967 impl slot | `0x1923dfee706a8e78157416c29cbccfde7cdf4102` |
+| USDS EIP-1967 admin slot | 0 (UUPS) |
+| sUSDS `0xa393…7fbd` EIP-1967 impl slot | `0x4e7991e5c547ce825bdeb665ee14a3274f9f61e0` |
+| sUSDS EIP-1967 admin slot | 0 (UUPS) |
+| USDS `wards(0xbe8e3e3618f7474f8cb1d074a26affef007e98fb)` | 1 |
+| USDS `wards(0x3c0f895007ca717aa01c8693e59df1e8c3777feb)` (UsdsJoin) | 1 |
+| sUSDS `wards(0xbe8e3e3618f7474f8cb1d074a26affef007e98fb)` | 1 |
+| sUSDS `wards(0x36b072ed8afe665e3aa6daba79decbec63752b22)` (SPBEAM) | 1 |
+| pause proxy `owner()` | `0xbe286431454714f511008713973d3b053a2d38f3` (DSPause) |
+| DSPause `authority()` | `0x929d9a1435662357f54adcf64dcee4d6b867a6f9` (Chief) |
+| DSPause `delay()` | 172800 |
+| Chief `hat()` | `0xabc702420dcc1868f7f8df06a89da766bcb01136` (DssSpell) |
+| USDS `totalSupply()` | 5,234,715,755.42 |
+| sUSDS `totalSupply()` / `totalAssets()` | 3,302,025,810.68 shares / 3,687,043,328.19 USDS |
+| DAI `totalSupply()` | 4,435,351,448.85 |
+
+`Rely(address)` logs: USDS: `0x4ec216c4…` (20,663,730), pause proxy (20,663,731), UsdsJoin (20,770,191);
+`Deny`: `0x4ec216c4…` (20,663,732). sUSDS: `0xd6ec7a1b…` (20,677,434), pause proxy (20,677,435), SPBEAM (22,317,839);
+`Deny`: `0xd6ec7a1b…` (20,677,436).
+
+Source: `Usds.sol` line 73 and `SUsds.sol` line 132: `function _authorizeUpgrade(address newImplementation) internal
+override auth {}`; `_isValidSignature` branch `if (signature.length == 65)` at lines 196 / 415.

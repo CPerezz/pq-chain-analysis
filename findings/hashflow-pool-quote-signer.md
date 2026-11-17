@@ -66,22 +66,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/hashflow-pool-quote-signer/classification.jsonl
-  - evidence/hashflow-pool-quote-signer/onchain.json
-  - evidence/hashflow-pool-quote-signer/activity.json
-  - evidence/hashflow-pool-quote-signer/source-excerpts.md
-  - evidence/hashflow-pool-quote-signer/review-reads.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/hashflow-pool-quote-signer
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_1.jsonl,out_4.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_1.jsonl,out_4.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review22)
-  ref: evidence/hashflow-pool-quote-signer/review-reads.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/hashflow-pool-quote-signer/review-reads.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -116,7 +114,7 @@ key, so Hashflow must ship a new pool implementation and each market maker must 
 
 - CHECKED (verified source on Sourcify, implementation `0xca310b1b…`; HashflowRouter `0x55084ee0…` on Blockscout): the
   code paths above.
-- CHECKED (RPC at block 26,431,523; [`review-reads.json`](../evidence/hashflow-pool-quote-signer/review-reads.json)):
+- CHECKED (RPC at block 26,431,523; [`review-reads.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/hashflow-pool-quote-signer/review-reads.json)):
   per pool `signerConfiguration` (all enabled), `operations` and `router` = `0x55084ee0…`; all four are EIP-1167
   clones of `0xca310b1b…` and hold 0 ETH and no tokens. Router `owner()` = `0xac6a83b2…`, an EOA with an EIP-7702
   delegation (EIP7702StatelessDeleGator), not a Safe.
@@ -157,6 +155,6 @@ key, so Hashflow must ship a new pool implementation and each market maker must 
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review22): stays MEDIUM, step 4: signer rotation only; fix is a new pool implementation from Hashflow plus each market maker moving. Exposure measured as external-account approvals ($10.1M behind Kipseli), so step 5 does not lower it. Admins corrected to per-pool `operations` and the router owner's killswitch.

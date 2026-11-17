@@ -28,23 +28,20 @@ fix:
   protocol_change: helps
 evidence:
   level: source-read
-  links:
-  - evidence/biconomy-ecdsa-validator/classification.jsonl
-  - evidence/biconomy-ecdsa-validator/onchain.json
-  - evidence/biconomy-ecdsa-validator/activity.json
-  - evidence/biconomy-ecdsa-validator/source-excerpts.md
-  - evidence/biconomy-ecdsa-validator/review-reads.json
-  - evidence/biconomy-ecdsa-validator/accounts.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/biconomy-ecdsa-validator
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_2.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_2.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review22)
-  ref: evidence/biconomy-ecdsa-validator/accounts.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/biconomy-ecdsa-validator/accounts.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -70,17 +67,17 @@ LOW (step 4: MEDIUM, owners migrate their accounts in place; step 5: under $50k)
   the owner cannot be a post-quantum contract signer. If no owner is stored, `getOwner` returns the account itself
   (lines 229-232): the EIP-7702 case, where the key is the account's own EOA key.
 
-Excerpts: [`source-excerpts.md`](../evidence/biconomy-ecdsa-validator/source-excerpts.md).
+Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/biconomy-ecdsa-validator/source-excerpts.md).
 
 ## Evidence
 
 - CHECKED (verified source on Blockscout, solc 0.8.27): the paths above; no proxy, no owner.
 - CHECKED (RPC at block 26,431,523): no EIP-1967 implementation slot
-  ([`review-reads.json`](../evidence/biconomy-ecdsa-validator/review-reads.json)).
+  ([`review-reads.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/biconomy-ecdsa-validator/review-reads.json)).
 - CHECKED (Xatu call frames since block 24,700,000; 661 transactions): the candidate accounts are `handleOps` senders,
   direct callees and contracts created in those transactions (279). Of these, 40 have `isInitialized` = true; they hold
   0.015 ETH and 6 USDT, about $33 (RPC and Multicall3 `balanceOf` for eight major tokens, about block 26,431,523;
-  [`accounts.json`](../evidence/biconomy-ecdsa-validator/accounts.json)).
+  [`accounts.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/biconomy-ecdsa-validator/accounts.json)).
 - CHECKED (Xatu, any function): 32 transactions in 2026-10-16 to 2026-11-16. There were 58,326 pre-quantum calls in the
   year to March 2026 (`curated_contracts.csv` `txs_y1`).
 - INFERRED: accounts that used the validator only before block 24,700,000, and EIP-7702 accounts with no stored owner
@@ -106,7 +103,7 @@ The validator holds nothing; the value is in the accounts that use it.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: signer set fixed in code; funds must move, and many independent owners may not act).
 - 2026-11-17 review (Review22): HIGH -> MEDIUM, step 4: both are pluggable account modules; each owner can install a post-quantum validator and remove this one in place, so funds do not have to move. `0xba418fa6…` identified as a third-party fork (deployer 0xac6a87, with an ECDSA co-signer), not Biconomy's module; `protocol_change` set to helps (EIP-8151).
 - 2026-11-17 review (Review22): module `0xba418fa6…` moved to `unidentified-1c6ad754-signer-key` (same deployer 0xac6a87), with its evidence. MEDIUM -> LOW, step 5: K1MeeValidator accounts measured (40 initialized accounts, about $33).

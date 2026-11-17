@@ -28,22 +28,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/keyring-rsa-credentials/classification.jsonl
-  - evidence/keyring-rsa-credentials/onchain.json
-  - evidence/keyring-rsa-credentials/activity.json
-  - evidence/keyring-rsa-credentials/source-excerpts.md
-  - evidence/keyring-rsa-credentials/onchain-review.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/keyring-rsa-credentials
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review02 (registry review)
-  ref: evidence/keyring-rsa-credentials/onchain-review.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/keyring-rsa-credentials/onchain-review.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -68,7 +66,7 @@ admin Safe can switch the checker with one setting, and nothing can be taken thr
 - `RSASignatureChecker.checkSignature` packs the message and calls `pkcs1Sha256Raw(message, signature, e = 0x03, key)`,
   which runs `modexp` (precompile 0x05) with the issuer's modulus and compares the PKCS#1 SHA-256 encoding
   (`src/signatureCheckers/RSASignatureChecker.sol` lines 56–113;
-  [`source-excerpts.md`](../evidence/keyring-rsa-credentials/source-excerpts.md)).
+  [`source-excerpts.md`](#source-excerpts-keyring-rsa-credentials)).
 - `setSignatureChecker(address)` is `onlyRole(DEFAULT_ADMIN_ROLE)` (line 111); `registerKey`/`revokeKey` are
   `onlyRole(KEY_MANAGER_ROLE)`; upgrades need `UPGRADER_ROLE`.
 
@@ -76,17 +74,17 @@ admin Safe can switch the checker with one setting, and nothing can be taken thr
 
 - CHECKED (verified source: checker on Blockscout, KeyringCore implementation `0x2b3cf9e7…` on Sourcify): the path
   above.
-- CHECKED (on-chain read at block 26,431,454, [`onchain-review.json`](../evidence/keyring-rsa-credentials/onchain-review.json)):
+- CHECKED (on-chain read at block 26,431,454, [`onchain-review.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/keyring-rsa-credentials/onchain-review.json)):
   KeyringCore proxy `0xb0b5e217…` (found from the last recorded call, a `createCredential` transaction in block
   26,385,463) has EIP-1967 implementation `0x2b3cf9e7…` and `signatureChecker()` = `0x899cbf89…`;
   `DEFAULT_ADMIN_ROLE` is held by Safe `0x39e9922a…` (2 of 4), `UPGRADER_ROLE` by Safe `0xec0fdc75…` (1 of 1),
   `KEY_MANAGER_ROLE` by Safe `0x4173b602…` (1 of 2). Role holders were checked for the addresses in the proxy's
   initialisation calldata; later grants were not enumerated.
-- CHECKED (on-chain read at block 26,431,214, [`onchain.json`](../evidence/keyring-rsa-credentials/onchain.json)): the
+- CHECKED (on-chain read at block 26,431,214, [`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/keyring-rsa-credentials/onchain.json)): the
   checker is a plain contract holding nothing.
-- CHECKED (Xatu, [`activity.json`](../evidence/keyring-rsa-credentials/activity.json)): 23 transactions 2026-10-16 to
+- CHECKED (Xatu, [`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/keyring-rsa-credentials/activity.json)): 23 transactions 2026-10-16 to
   2026-11-16, last 2026-11-10; 383 pre-quantum transactions in the last year (`txs_y1`,
-  `data/report/curated_contracts.csv`).
+  `studies/top-callers-classification/results/curated_contracts.csv`).
 - INFERRED: KeyringCore's 0.32 ETH balance is credential fees for `OPERATOR_ROLE`; a forged credential does not
   release it.
 
@@ -113,6 +111,43 @@ checked.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review02): MEDIUM -> LOW, step 4: one known admin (KeyringCore DEFAULT_ADMIN_ROLE Safe 0x39e9922a…, 2 of 4, read at block 26,431,454) switches the checker with `setSignatureChecker`, and a forged credential bypasses compliance without taking funds. Impact unknown -> none; checker upgradeable "no" -> config-only.
+
+# Source excerpts: keyring-rsa-credentials
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0x899cbf89b644e79f9042c4c96fc513d31063872b` — RSASignatureChecker (verified source via blockscout)
+
+### `src/interfaces/ISignatureChecker.sol`
+
+```solidity
+    1  // SPDX-License-Identifier: MIT
+    2  pragma solidity ^0.8.19;
+    3  
+    4  interface ISignatureChecker {
+    5      /**
+    6       * @dev Verifies the authenticity of a message using RSA signature.
+    7       * @param tradingAddress The trading address.
+    8       * @param policyId The policy ID.
+  ...
+```
+
+### `src/signatureCheckers/RSASignatureChecker.sol`
+
+```solidity
+   28      
+   29   */
+   30  
+   31  import "./../MessagePacker.sol";
+   32  import "../interfaces/ISignatureChecker.sol";
+   33  
+   34  contract RSASignatureChecker is ISignatureChecker, MessagePacker {
+   35      uint256 constant sha256ExplicitNullParamByteLen = 17;
+   36      bytes32 constant sha256ExplicitNullParam = 0x3031300d06096086480165030402010500000000000000000000000000000000;
+   37      bytes32 constant sha256ExplicitNullParamMask = 0xffffffffffffffffffffffffffffffffff000000000000000000000000000000;
+   38  
+  ...
+```

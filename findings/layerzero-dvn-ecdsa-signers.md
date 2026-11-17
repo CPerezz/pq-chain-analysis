@@ -498,22 +498,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/layerzero-dvn-ecdsa-signers/classification.jsonl
-  - evidence/layerzero-dvn-ecdsa-signers/onchain.json
-  - evidence/layerzero-dvn-ecdsa-signers/activity.json
-  - evidence/layerzero-dvn-ecdsa-signers/source-excerpts.md
-  - evidence/layerzero-dvn-ecdsa-signers/escrow-and-dvns.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/layerzero-dvn-ecdsa-signers
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_1.jsonl,out_2.jsonl,out_3.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_1.jsonl,out_2.jsonl,out_3.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review04)
-  ref: evidence/layerzero-dvn-ecdsa-signers/escrow-and-dvns.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/layerzero-dvn-ecdsa-signers/escrow-and-dvns.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -543,7 +541,7 @@ configs) point at them.
   does not also need an admin key. `setSigner`/`setQuorum` are `onlySelf`: signers can rotate, but only to other
   ECDSA keys.
 - `0xd56e4eab…` is the older `VerifierNetwork` contract with the same `uln/MultiSig.verifySignatures` logic.
-- Pattern PQ-5. Source excerpts: [`source-excerpts.md`](../evidence/layerzero-dvn-ecdsa-signers/source-excerpts.md).
+- Pattern PQ-5. Source excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/layerzero-dvn-ecdsa-signers/source-excerpts.md).
 
 ## Evidence
 
@@ -568,10 +566,10 @@ configs) point at them.
   2,982,176 USDT; native `0x77b20437…` 3,641.55 ETH.
 - CHECKED (precompile trace `data/agg/y1_caller.parquet` against the metadata list): 48 mainnet DVNs called
   `ecrecover`; the first eight account for 2,010,380 transactions, the other 40 for 105,851
-  ([`escrow-and-dvns.json`](../evidence/layerzero-dvn-ecdsa-signers/escrow-and-dvns.json)).
+  ([`escrow-and-dvns.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/layerzero-dvn-ecdsa-signers/escrow-and-dvns.json)).
 - CHECKED (ETH balance and Blockscout ERC-20 balances): none of the 48 holds anything but token dust (under USD 0.01).
-- CHECKED (on-chain read at block 26,431,214): DVNs hold nothing ([`onchain.json`](../evidence/layerzero-dvn-ecdsa-signers/onchain.json));
-  CHECKED (Xatu): activity in [`activity.json`](../evidence/layerzero-dvn-ecdsa-signers/activity.json).
+- CHECKED (on-chain read at block 26,431,214): DVNs hold nothing ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/layerzero-dvn-ecdsa-signers/onchain.json));
+  CHECKED (Xatu): activity in [`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/layerzero-dvn-ecdsa-signers/activity.json).
 
 ## Impact and exposure
 
@@ -648,7 +646,7 @@ configs) point at them.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review04): MEDIUM kept (step 4: new DVN deployments plus config changes by LayerZero's OneSig and OApp delegates; no protocol change). `alternative` key-rotation-only -> configurable-verifier (OApps repoint their DVN set); operators named from LayerZero metadata (0xa59ba433 is Twinstake, not Nethermind); escrow example Stargate V2 USD 51.3M added; 40 uncovered mainnet DVNs reported, Canary 0xa4fe5a5b should be added here.
 - 2026-11-17 review (Review04, second pass): added the other 40 mainnet DVNs that called ecrecover (Canary 0xa4fe5a5b, TSS proxy 0x5a54fe52 and 38 more) with quorum, signer count and upgradeability read at block 26,431,701. MEDIUM kept, step 4: every one is a standard LayerZero DVN whose operator redeploys and whose consumers repoint (TSS is additionally upgradeable by its ProxyAdmin owner); none holds value, so step 5 changes nothing.

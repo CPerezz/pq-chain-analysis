@@ -68,22 +68,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/foom-lottery-groth16/classification.jsonl
-  - evidence/foom-lottery-groth16/onchain.json
-  - evidence/foom-lottery-groth16/activity.json
-  - evidence/foom-lottery-groth16/source-excerpts.md
-  - evidence/foom-lottery-groth16/escrow.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/foom-lottery-groth16
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_1.jsonl,out_2.jsonl,out_4.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl,out_2.jsonl,out_4.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review02 (registry review)
-  ref: evidence/foom-lottery-groth16/escrow.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/foom-lottery-groth16/escrow.json
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
@@ -114,7 +112,7 @@ measured escrow is under USD 50k.
 - Each verifier's `verifyProof` is the snarkjs template: it folds the public signals into `vk_x` with `ecMul`/`ecAdd`
   and calls the pairing precompile `staticcall(..., 8, _pPairing, 768, ...)` against hard-coded `alpha`, `beta`,
   `gamma`, `delta` (e.g. `src/Withdraw.sol` lines 77–208, `src/Update5.sol` lines 83–222; see
-  [`source-excerpts.md`](../evidence/foom-lottery-groth16/source-excerpts.md)). The trapdoor of that setup makes proofs
+  [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/foom-lottery-groth16/source-excerpts.md)). The trapdoor of that setup makes proofs
   of false statements verify.
 
 ## Evidence
@@ -122,7 +120,7 @@ measured escrow is under USD 50k.
 - CHECKED (verified source, Sourcify): all five verifiers are snarkjs Groth16 verifiers calling precompile 0x08;
   FoomLottery `0x239af915…` (`src/FoomLottery.sol`) declares `withdraw`, `cancel`, `update1` … `update179` as
   `immutable` and has no function that changes them; it is not a proxy.
-- CHECKED (on-chain read at block 26,431,454, 2026-11-17, [`escrow.json`](../evidence/foom-lottery-groth16/escrow.json)):
+- CHECKED (on-chain read at block 26,431,454, 2026-11-17, [`escrow.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/foom-lottery-groth16/escrow.json)):
   FoomLottery's `withdraw()`, `update1()`, `update3()`, `update5()`, `update11()` return the five verifier addresses in
   this finding; EIP-1967 implementation slot is zero; `owner()` = `0x5f3dbd36…` (no code, nonce 5); `commitHash()` = 2
   (closed); `D().betsLimit` = 0 (no new tickets); `D().commitBlock` = 24,540,485 (2026-02-26), so `adminwithdraw()` is
@@ -131,9 +129,9 @@ measured escrow is under USD 50k.
   about USD 0.000001.
 - CHECKED (Blockscout creator and transactions): all verifiers and FoomLottery were created by `0x442de4b6…`; the
   lottery's FOOM was paid out between 2026-02-26 and 2026-02-28; its last transaction is a `payOut` on 2026-03-03.
-- CHECKED (on-chain read at block 26,431,214, [`onchain.json`](../evidence/foom-lottery-groth16/onchain.json)): the
+- CHECKED (on-chain read at block 26,431,214, [`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/foom-lottery-groth16/onchain.json)): the
   verifiers hold nothing and have no proxy, owner or Safe.
-- CHECKED (Xatu, [`activity.json`](../evidence/foom-lottery-groth16/activity.json)): no transactions to the verifiers
+- CHECKED (Xatu, [`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/foom-lottery-groth16/activity.json)): no transactions to the verifiers
   2026-10-16 to 2026-11-16; last activity 2026-02-27 to 2026-03-02.
 
 ## Impact and exposure
@@ -146,7 +144,7 @@ measured escrow is under USD 50k.
 | `0x26fb9b04…` Update3G16Verifier | no | 0 | 2026-02-27 | 0 | 699 |
 | `0xcd6a87d3…` Update1G16Verifier | no | 0 | 2026-02-28 | 0 | 294 |
 
-Yearly counts are `txs_y1` from `data/report/curated_contracts.csv`.
+Yearly counts are `txs_y1` from `studies/top-callers-classification/results/curated_contracts.csv`.
 
 Escrow: FoomLottery `0x239af915abcd0a5dcb8566e863088423831951f8` holds 15.32 FOOM (about USD 0, block 26,431,454);
 recorded as `value_usd: 0` (basis `escrow`) on the WithdrawG16Verifier entry. The lottery is closed, but `collect()`
@@ -171,6 +169,6 @@ had no transaction since 2025-07-02.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated CRITICAL (step 4: pooled funds released by a forged proof or attestation, and the verification cannot change).
 - 2026-11-17 review (Review02): CRITICAL -> HIGH, step 5: escrow FoomLottery 0x239af915… measured at 15.32 FOOM (about USD 0) at block 26,431,454 after the lottery was closed on 2026-02-26; step 4 alone gives CRITICAL (immutable verifiers in an immutable consumer). Evidence level bytecode -> source-read (all five verifiers verified on Sourcify); status candidate -> confirmed.

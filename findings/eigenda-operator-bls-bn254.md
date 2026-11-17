@@ -28,20 +28,18 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/eigenda-operator-bls-bn254/classification.jsonl
-  - evidence/eigenda-operator-bls-bn254/onchain.json
-  - evidence/eigenda-operator-bls-bn254/activity.json
-  - evidence/eigenda-operator-bls-bn254/source-excerpts.md
-  - evidence/eigenda-operator-bls-bn254/notes.md
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/eigenda-operator-bls-bn254
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_1.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review12)
   ref: findings review 2026-11-17; Sourcify source of 0xae448d00, cast reads at block 26431570
   date: 2026-11-17
@@ -76,13 +74,13 @@ upgrade the implementation.
 
 - CHECKED (Sourcify full source of implementation `0xae448d008b6f69033afda361b46b36c472b6fee0`, read 2026-11-17):
   `confirmBatch`, `onlyBatchConfirmer` (lines 40–43, `isBatchConfirmer[msg.sender]`), `setBatchConfirmer` (`onlyOwner`,
-  line 143) ([`source-excerpts.md`](../evidence/eigenda-operator-bls-bn254/source-excerpts.md)).
+  line 143) ([`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/eigenda-operator-bls-bn254/source-excerpts.md)).
 - CHECKED (cast at block 26,431,570): EIP-1967 implementation `0xae448d00…`; ProxyAdmin `0x8247ef57…` `owner()` and
   ServiceManager `owner()` are both Safe `0x002721b4…`, threshold 2 of 4 owners; `paused()` = 0; `taskNumber()`
-  (next batch id) = 153,155 ([`notes.md`](../evidence/eigenda-operator-bls-bn254/notes.md)).
-- CHECKED (on-chain read at block 26,431,214): holds nothing ([`onchain.json`](../evidence/eigenda-operator-bls-bn254/onchain.json)).
+  (next batch id) = 153,155 ([`notes.md`](#review-notes-review12-2026-11-17)).
+- CHECKED (on-chain read at block 26,431,214): holds nothing ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/eigenda-operator-bls-bn254/onchain.json)).
 - CHECKED (Xatu, any function): 2 transactions 2026-10-16 to 2026-11-16, none sent to it directly; last 2026-11-03
-  ([`activity.json`](../evidence/eigenda-operator-bls-bn254/activity.json)); precompile trace, year to March 2026:
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/eigenda-operator-bls-bn254/activity.json)); precompile trace, year to March 2026:
   73,222 transactions with BN254 pairing calls (`curated_contracts.csv`, `txs_y1`).
 - INFERRED: V1 batch confirmation has mostly stopped (no direct calls in the window); EigenDA V2 certificates are
   verified by separate certificate-verifier contracts, not part of this finding and not checked here.
@@ -112,6 +110,24 @@ upgrade the implementation.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review12): MEDIUM -> MEDIUM, step 4: upgrade by Safe 0x002721b4 (2 of 4). Impact funds-loss -> funds-locked (a forged certificate makes unavailable data look available; consumers' value not established). Owner and ProxyAdmin owner read at block 26,431,570; removed the family entry.
+
+# Review notes (Review12, 2026-11-17)
+
+- Source: Sourcify full source of implementation 0xae448d008b6f69033afda361b46b36c472b6fee0,
+  `src/core/EigenDAServiceManager.sol`:
+  - `onlyBatchConfirmer` (lines 40–43): `require(isBatchConfirmer[msg.sender])`.
+  - `confirmBatch` (lines 88–140): `require(tx.origin == msg.sender)`; reference-block window; `checkSignatures(...)`
+    (BLSSignatureChecker, BN254 pairing); per-quorum signed-stake threshold; stores `batchIdToBatchMetadataHash`;
+    emits `BatchConfirmed`.
+  - `setBatchConfirmer` (line 143): `onlyOwner`, toggles an address.
+- cast (https://eth.drpc.org) at block 26,431,570 on proxy 0x870679e138bcdf293b7ff14dd44b70fc97e12fc0:
+  - EIP-1967 implementation = 0xae448d008b6f69033afda361b46b36c472b6fee0.
+  - `owner()` = 0x002721b4790d97dc140a049936aa710152ba92d5; ProxyAdmin 0x8247ef5705d3345516286b72bfe6d690197c2e99
+    `owner()` = the same Safe; `getThreshold()` = 2; owners 0xb646a087…, 0x1b6cc4c0…, 0x403f4d49…, 0x891bbcfe….
+  - `paused()` = 0; `taskNumber()` = 153,155.
+- Census grouping: family `code:0x6fba24f6…` (proxy bytecode) has 3 members: 0x00a5fd09f6cee6ae9c8b0e5e33287f7c82880505,
+  0x0baac79acd45a023e19345c352d8a7a83c4e5656 and this proxy; the other two were not checked.
+- Recent `BatchConfirmed` events could not be listed: public RPC log ranges are limited and Blockscout rate-limited.

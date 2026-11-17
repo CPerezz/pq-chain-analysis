@@ -28,13 +28,13 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/sorare-starkex-dac-signers/review.json
-  - evidence/sorare-starkex-dac-signers/source-excerpts.md
+  block: 26431780
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/sorare-starkex-dac-signers
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: Review10 (source and on-chain review)
-  ref: evidence/sorare-starkex-dac-signers/review.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/sorare-starkex-dac-signers/review.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -47,13 +47,13 @@ This StarkWare committee contract is the data availability committee of Sorare's
 
 ## Mechanism
 
-- `verifyAvailabilityProof(claimHash, availabilityProofs)`: for each of the first `signaturesRequired` 65-byte (r, s, v) entries, `ecrecover(claimHash, v, r, s)` must be a member and addresses must be strictly increasing; then `registerFact(claimHash)` ([`source-excerpts.md`](../evidence/sorare-starkex-dac-signers/source-excerpts.md)).
+- `verifyAvailabilityProof(claimHash, availabilityProofs)`: for each of the first `signaturesRequired` 65-byte (r, s, v) entries, `ecrecover(claimHash, v, r, s)` must be a member and addresses must be strictly increasing; then `registerFact(claimHash)` ([`source-excerpts.md`](#source-excerpts-sorare-starkex-dac-signers)).
 - The StarkExchange's `updateState` (operator only) requires that fact from a registered availability verifier, alongside the STARK fact from SHARP. Forging attestations therefore needs the members' keys and the operator key (`0x63881ac4…`, which submits the committee calls); both are ECDSA keys with public signatures.
 - The 2019 `Committee` has no admin functions: members and threshold are fixed at deployment.
 
 ## Evidence
 
-- CHECKED (verified source, Sourcify): `Committee.sol` of `0x879cd579…` as above; `identify()` returns the version string in [`review.json`](../evidence/sorare-starkex-dac-signers/review.json).
+- CHECKED (verified source, Sourcify): `Committee.sol` of `0x879cd579…` as above; `identify()` returns the version string in [`review.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/sorare-starkex-dac-signers/review.json).
 - CHECKED (on-chain, block 26,431,780): committee `signaturesRequired()` 2; `isMember(0x0)` false; exchange `0xf5c9f957…`: implementation `0xdf2f2475…` (StarkExchange); isFrozen() true; getRegisteredAvailabilityVerifiers() = [committee]; getSequenceNumber() 25,418; proxy governors SorareAdminMultisig 0xcc928977e4a75d25099e7da7b6fd79dac2f9fd2b (2 of 3) and EOA 0x5918481f777dbe437de249492b90affb4e655de4 (proxyIsGovernor true for both), upgrade activation delay 0.
 - CHECKED (Blockscout, 2026-11-17): the committee's recent transactions are all `verifyAvailabilityProof` from operator `0x63881ac4…`, the last on 2026-05-31; the exchange holds 1747.158 ETH ($3.17M at $1,814.71) and $7k of priced ERC-20 tokens (complete first page); NFTs: ERC-721 collections (SOR, SON, SOB, SNS).
 - CHECKED (precompile trace): 5,385 transactions with ecrecover in the year to 2026-03-18 (`data/agg/y1_caller.parquet`).
@@ -79,3 +79,47 @@ This StarkWare committee contract is the data availability committee of Sorare's
 ## History
 
 - 2026-11-17: created in review (Review10) from the alltime precompile trace (StarkEx committees missing from the curated set), verified source, on-chain reads at block 26,431,780 and Blockscout holdings. Rated LOW (step 4: the exchange is frozen, so no state update can use the attestations, and the committee holds nothing).
+
+# Source excerpts: sorare-starkex-dac-signers
+
+Committee `0x879cd57975d596004863d30c59d579ef78bbbe32` — verified source via Sourcify, read 2026-11-17 by Review10.
+
+### `Committee.sol` (Sourcify, 0x879cd57975d596004863d30c59d579ef78bbbe32)
+
+```solidity
+   65      function verifyAvailabilityProof(
+   66          bytes32 claimHash,
+   67          bytes calldata availabilityProofs
+   68      )
+   69          external override
+   70      {
+   71          require(
+   72              availabilityProofs.length >= signaturesRequired * SIGNATURE_LENGTH,
+   73              "INVALID_AVAILABILITY_PROOF_LENGTH");
+   74  
+   75          uint256 offset = 0;
+   76          address prevRecoveredAddress = address(0);
+   77          for (uint256 proofIdx = 0; proofIdx < signaturesRequired; proofIdx++) {
+   78              bytes32 r = bytesToBytes32(availabilityProofs, offset);
+   79              bytes32 s = bytesToBytes32(availabilityProofs, offset + 32);
+   80              uint8 v = uint8(availabilityProofs[offset + 64]);
+   81              offset += SIGNATURE_LENGTH;
+   82              address recovered = ecrecover(
+   83                  claimHash,
+   84                  v,
+   85                  r,
+   86                  s
+   87              );
+   88              // Signatures should be sorted off-chain before submitting to enable cheap uniqueness
+   89              // check on-chain.
+   90              require(isMember[recovered], "AVAILABILITY_PROVER_NOT_IN_COMMITTEE");
+   91              require(recovered > prevRecoveredAddress, "NON_SORTED_SIGNATURES");
+   92              prevRecoveredAddress = recovered;
+   93          }
+   94          registerFact(claimHash);
+   95      }
+   96  
+   97      function bytesToBytes32(bytes memory array, uint256 offset)
+   98          private pure
+```
+

@@ -38,22 +38,20 @@ fix:
   protocol_change: helps
 evidence:
   level: source-read
-  links:
-  - evidence/kyberswap-order-sig-ecdsa-first/classification.jsonl
-  - evidence/kyberswap-order-sig-ecdsa-first/onchain.json
-  - evidence/kyberswap-order-sig-ecdsa-first/activity.json
-  - evidence/kyberswap-order-sig-ecdsa-first/source-excerpts.md
-  - evidence/kyberswap-order-sig-ecdsa-first/reads.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/kyberswap-order-sig-ecdsa-first
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_1.jsonl,out_3.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl,out_3.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review13 (re-read verified source on Sourcify; storage, owner and maker reads)
-  ref: evidence/kyberswap-order-sig-ecdsa-first/reads.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/kyberswap-order-sig-ecdsa-first/reads.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -83,14 +81,14 @@ move to and repoint the limit-order cosigner; the draft's "fix by upgrade" was w
   1403-1408). The embedded OpenZeppelin `SignatureChecker` (lines 587-602) tries `ECDSA.tryRecover` before ERC-1271.
   `_dsOrderSigner` is set by `updateDSOrderSigner` (`onlyOwner`, line 1318).
 - Pattern PQ-2 (the RFQ length check also has the effect of PQ-3 for contract makers). Excerpts:
-  [`source-excerpts.md`](../evidence/kyberswap-order-sig-ecdsa-first/source-excerpts.md).
+  [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/kyberswap-order-sig-ecdsa-first/source-excerpts.md).
 
 ## Evidence
 
 - CHECKED (verified source, Sourcify, re-read 2026-11-17): the two code paths above.
 - CHECKED (on-chain, block 26,431,214): neither contract is a proxy; both hold under USD 0.01
-  ([`onchain.json`](../evidence/kyberswap-order-sig-ecdsa-first/onchain.json)).
-- CHECKED (on-chain, block 26,431,552, [`reads.json`](../evidence/kyberswap-order-sig-ecdsa-first/reads.json)):
+  ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/kyberswap-order-sig-ecdsa-first/onchain.json)).
+- CHECKED (on-chain, block 26,431,552, [`reads.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/kyberswap-order-sig-ecdsa-first/reads.json)):
   KyberSwapRFQ `admin()` = `0xbe2f0354d970265bfc36d383af77f72736b81b54`, an EOA with an EIP-7702 delegation. DSLOProtocol
   storage (layout from Sourcify): `_owner` = `0x2475039bf2ecdce2ee4c82954e64be9674f43546`
   (MultiSigWalletWithDailyLimit, `required()` 2 of 3 owners, one of them `0xbe2f0354…`), not paused; `_dsOrderSigner`
@@ -100,7 +98,7 @@ move to and repoint the limit-order cosigner; the draft's "fix by upgrade" was w
 - CHECKED (precompile trace, 12 months to March 2026, `curated_contracts.csv` `txs_y1`): `ecrecover` in 138,854
   transactions through KyberSwapRFQ and 23,279 through DSLOProtocol.
 - CHECKED (Xatu, any function, 2026-10-16 to 2026-11-16): 8,672 and 31,492 transactions
-  ([`activity.json`](../evidence/kyberswap-order-sig-ecdsa-first/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/kyberswap-order-sig-ecdsa-first/activity.json)).
 - INFERRED: the attribution of DSLOProtocol to KyberSwap follows the source (`KyberSwapRole`, KyberSwap limit-order
   types); the deployer was not traced.
 
@@ -132,6 +130,6 @@ has signed on-chain and is equally recoverable.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by upgrading the contract (admin or governance)).
 - 2026-11-17 review (Review13): MEDIUM unchanged, step 4, reason corrected: neither contract is upgradeable; the fix is a new RFQ deployment that the few makers move to, and a DSLO cosigner change by the 2-of-3 owner multisig. Read admin, owner, `_dsOrderSigner` (an EOA) and recent RFQ makers.

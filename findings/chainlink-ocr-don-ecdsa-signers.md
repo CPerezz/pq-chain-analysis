@@ -78,24 +78,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/chainlink-ocr-don-ecdsa-signers/classification.jsonl
-  - evidence/chainlink-ocr-don-ecdsa-signers/onchain.json
-  - evidence/chainlink-ocr-don-ecdsa-signers/activity.json
-  - evidence/chainlink-ocr-don-ecdsa-signers/source-excerpts.md
-  - evidence/chainlink-ocr-don-ecdsa-signers/notes.md
-  - evidence/chainlink-ocr-don-ecdsa-signers/ccip-pools.json
-  - evidence/chainlink-ocr-don-ecdsa-signers/offramp-2.0.0-trace.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/chainlink-ocr-don-ecdsa-signers
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_1.jsonl,out_2.jsonl,out_3.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl,out_2.jsonl,out_3.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review11 (Claude), finding review
-  ref: evidence/chainlink-ocr-don-ecdsa-signers/notes.md
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/chainlink-ocr-don-ecdsa-signers/notes.md
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -137,22 +133,22 @@ resolver, registries and forwarders, but CRE receivers and upkeeps must move wit
 ## Evidence
 
 - CHECKED (verified source, Sourcify): the signature loops above
-  ([`source-excerpts.md`](../evidence/chainlink-ocr-don-ecdsa-signers/source-excerpts.md)).
+  ([`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/chainlink-ocr-don-ecdsa-signers/source-excerpts.md)).
 - CHECKED (on-chain read, block 26,431,454): owners and owner types, OffRamp source-chain configs and commit OCR config,
-  Router off-ramp list, CommitStore lane and paused state ([`notes.md`](../evidence/chainlink-ocr-don-ecdsa-signers/notes.md)).
+  Router off-ramp list, CommitStore lane and paused state ([`notes.md`](#review-notes-chainlink-ocr-don-ecdsa-signers-2026-11-17)).
 - CHECKED (on-chain read, block 26,431,750): OffRamp 2.0.0 owner, static config and 69 lane configs; resolver inbound
-  implementations; CommitteeVerifier signature configs for every lane ([`notes.md`](../evidence/chainlink-ocr-don-ecdsa-signers/notes.md)).
+  implementations; CommitteeVerifier signature configs for every lane ([`notes.md`](#review-notes-chainlink-ocr-don-ecdsa-signers-2026-11-17)).
 - CHECKED (`trace_filter`, blocks 23,803,750–26,431,750): OffRamp 2.0.0 called by 18,234 transactions, 9,354 in the
   last 216,000 blocks (about 30 days; trace count, not Xatu), last block 26,431,750
-  ([`offramp-2.0.0-trace.json`](../evidence/chainlink-ocr-don-ecdsa-signers/offramp-2.0.0-trace.json)).
+  ([`offramp-2.0.0-trace.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/chainlink-ocr-don-ecdsa-signers/offramp-2.0.0-trace.json)).
 - CHECKED (TokenAdminRegistry + Blockscout, block 26,431,528): 564 pools hold $1,189,948,228 of their own tokens
-  ([`ccip-pools.json`](../evidence/chainlink-ocr-don-ecdsa-signers/ccip-pools.json)).
+  ([`ccip-pools.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/chainlink-ocr-don-ecdsa-signers/ccip-pools.json)).
 - CHECKED (on-chain read, block 26,431,214): KeeperRegistry 2.1 holds $171k of LINK
-  ([`onchain.json`](../evidence/chainlink-ocr-don-ecdsa-signers/onchain.json)).
+  ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/chainlink-ocr-don-ecdsa-signers/onchain.json)).
 - CHECKED (Blockscout logs, latest 50): `0x0b93082d…` delivered reports to `CREReceiver` `0xc2e34e3d…`,
   `DataFeedsCache` `0x402641d8…`, `MyWriterTrigger` `0x218283ec…` and two `Machine` beacon proxies.
 - CHECKED (Xatu, any function): activity per contract in the table
-  ([`activity.json`](../evidence/chainlink-ocr-don-ecdsa-signers/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/chainlink-ocr-don-ecdsa-signers/activity.json)).
 - INFERRED: which pools a forged message on a given lane can reach (pools release only for remote chains they support),
   so the pool total is an upper bound for the OffRamp.
 
@@ -192,7 +188,85 @@ resolver, registries and forwarders, but CRE receivers and upkeeps must move wit
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review11): MEDIUM unchanged (step 4: Chainlink deploys new verification and repoints; receivers and upkeeps move). Escrow measured: CCIP pools $1.19B (upper bound) on the OffRamp; RMN blessing found disabled on all 37 OffRamp lanes; owners resolved (two RBACTimelocks, a 4-of-12 Safe, one EOA); CommitStore lane still live on the Router. OffRamp 2.0.0 0x408428bc… noted as unreviewed.
 - 2026-11-17 follow-up (Review11): added CCIP OffRamp 2.0.0 `0x408428bc…` (69 lanes, default CCV resolver `0x2caafd3b…` -> CommitteeVerifier 2.0.0 `0x7bce1a32…`, 9 of 14–16 `ecrecover` signers per lane, owner RBACTimelock `0x44835bbb…`; 9,354 transactions in about 30 days by trace). MEDIUM re-checked and unchanged (step 4: the timelock swaps in a new verifier implementation; same pools, value not added again).
+
+# Review notes: chainlink-ocr-don-ecdsa-signers (2026-11-17)
+
+Reads with `cast` against https://ethereum-rpc.publicnode.com at block 26,431,454; source from Sourcify.
+
+## Owners
+
+| Contract | `typeAndVersion()` | `owner()` | Owner type |
+|---|---|---|---|
+| `0x26d3681d…` OffRamp | OffRamp 1.6.0 | `0x44835bbba9d40deda9b64858095ecfb2693c9449` | RBACTimelock (verified), `getMinDelay()` = 10,800 s |
+| `0xe4167750…` CommitStore | CommitStore 1.5.0 | `0x44835bbba9d40deda9b64858095ecfb2693c9449` | same RBACTimelock |
+| `0x6593c7de…` KeeperRegistry2_1 | KeeperRegistry 2.1.0 | `0xcc4b5b07316be81ed6edb44ca61e4cab28a1950d` | Safe 1.3.0, 4 of 12 |
+| `0x0b93082d…` KeystoneForwarder | KeystoneForwarder 1.0.0 | `0x4044a864754760c37200e3a76d1953512ee18da8` | RBACTimelock (verified), `getMinDelay()` = 3,600 s |
+| `0xa68a99c6…` KeystoneForwarder | KeystoneForwarder 1.0.0 | `0xf99aa0a78d1eeb619f0e548465f6d67debcecc98` | EOA (no code) |
+
+None is a proxy.
+
+## CCIP OffRamp 1.6.0 `0x26d3681d…`
+
+- `getStaticConfig()`: chain selector 5009297550715157269 (Ethereum), RMNRemote `0x411de17f12d1a34ecc7f45f49844626267c75e81`,
+  TokenAdminRegistry `0xb22764f98dd05c789929716d677382df22c05cb6`, NonceManager `0x1f128f883bb9f8facfeee04674a35fa96fa3af52`.
+- `getAllSourceChainConfigs()`: 37 source chains, all `isEnabled = true` and all `isRMNVerificationDisabled = true`
+  (36 with router `0x80226fc0ee2b096224eeac085bb9a8cba1146f7d`, 1 with router `0x3237c0d7b58bec8dc17f00103b784bd6678f789e`).
+  With RMN disabled, `commit` accepts the roots on the OCR signatures alone (OffRamp.sol line 818 calls
+  `RMNRemote.verify` only for `blessedMerkleRoots`).
+- `latestConfigDetails(0)` (commit plugin): F = 5, 16 signers, signature verification enabled: 6 signer keys (plus one
+  transmitter key, also ECDSA) forge a commit report. `MultiOCR3Base._transmit` line 318: `ecrecover` per signature.
+- Router `0x80226fc0…` `getOffRamps()`: 180 (source chain, offRamp) entries; 36 point to this OffRamp, 69 to
+  `0x408428bca0e24a25ac8baac1b70f64af257717c3` ("OffRamp 2.0.0", verified; verifies through external cross-chain
+  verifier contracts, not in this finding or the census), the rest to older 1.5 EVM2EVMOffRamps.
+
+## CommitStore 1.5.0 `0xe4167750…`
+
+- `getStaticConfig()`: source chain 6916147374840168594, onRamp `0x02b60267bceeafdc45005e0fa0dd783efebc9f1b`, RMN proxy
+  `0x411de17f…`. `isUnpausedAndNotCursed()` = true, `paused()` = false.
+- Router lists EVM2EVMOffRamp 1.5.0 `0x9a3ed7007809cfd666999e439076b4ce4120528d` for that source chain; its
+  `getStaticConfig()` names this CommitStore. The lane can still release tokens from pools on a forged commit.
+
+## Escrow: CCIP token pools
+
+`ccip-pools.json`: TokenAdminRegistry `getAllConfiguredTokens` → 590 tokens, `getPools` → 564 pools; each pool's balance
+of its own token from Blockscout `token-balances` with Blockscout prices, block 26,431,528. Sum $1,189,948,228; largest:
+syrupUSDG pool $238.2M, syrupUSDC $204.8M, USDf $164.6M, syrupUSDT $67.5M, WLFI $64.3M, GHO $61.4M, AXS $61.0M.
+This is an upper bound for one OffRamp: a pool releases only for remote chains it supports. Burn/mint pools hold nothing
+but mint on a forged message (not measurable).
+
+## KeeperRegistry 2.1 `0x6593c7de…`
+
+- `transmit` (KeeperRegistry2_1.sol lines 67–185): requires `s_transmitters[msg.sender].active`, f+1 signatures
+  (`_verifyReportSignature`), then calls each upkeep's forwarder with the report's `performData` and charges the
+  upkeep's LINK balance using the report's `fastGasWei` and `linkNative`; reimbursement goes to `msg.sender`'s
+  transmitter balance (line 177).
+- LINK `balanceOf` = 18,825.37 LINK; held $171,311 at block 26,431,214 (`onchain.json`).
+
+## Follow-up: CCIP OffRamp 2.0.0 `0x408428bca0e24a25ac8baac1b70f64af257717c3` (block 26,431,750)
+
+- Verified on Sourcify (`contracts/offRamp/OffRamp.sol`). `typeAndVersion` "OffRamp 2.0.0"; `owner()` = RBACTimelock
+  `0x44835bbb…`; no proxy. `getStaticConfig()`: Ethereum selector, RMNRemote `0x411de17f…`, TokenAdminRegistry
+  `0xb22764f9…` (same pools as OffRamp 1.6.0).
+- `execute(encodedMessage, ccvs, verifierResults, gasLimitOverride)` (line 188) is permissionless; it checks the RMN
+  curse (`isCursed`, line 199; no blessing step), the lane config and the onRamp, then `executeSingleMessage` (line 308)
+  gathers the required cross-chain verifiers (receiver, pool, lane-mandated, default; `_ensureCCVQuorumIsReached`) and
+  for each calls `ICrossChainVerifierResolver.getInboundImplementation(verifierResults)` and
+  `ICrossChainVerifierV1.verifyMessage` (lines 342–352); then releases or mints the token through the pool and calls the
+  receiver through the Router.
+- `getAllSourceChainConfigs()`: 69 source chains, all enabled, router `0x80226fc0…`; every lane has the same
+  `defaultCCVs` = [`0x2caafd3b4cf606220580c885bd2b448fb93dc03b`] and no lane-mandated CCVs.
+- `0x2caafd3b…` VersionedVerifierResolver 2.0.0 (verified), `owner()` = RBACTimelock `0x44835bbb…`;
+  `getAllInboundImplementations()` = [(`0xe9a05a20`, CommitteeVerifier 2.0.0 `0x7bce1a3297604cafa601f05799b6ed98e8c01b7f`)];
+  the owner can change it with `applyInboundImplementationUpdates`.
+- CommitteeVerifier `0x7bce1a32…` (verified, owner RBACTimelock `0x44835bbb…`): `verifyMessage` (CommitteeVerifier.sol
+  line 85) → `SignatureQuorumValidator._validateSignatures` (line 62): `ecrecover` per signature (line 88), at least
+  `threshold` distinct configured signers. `getSignatureConfig` for the 69 lanes: threshold 9 with 15 signers (55 lanes),
+  16 signers (11) or 14 signers (3); 33 distinct signer addresses, none shared with OffRamp 1.6.0's commit signers.
+- Pools can require their own CCVs for token-only transfers (`requiredPoolCCVs`); pools' CCV settings were not read
+  (INFERRED: most use the default committee).
+- `trace_filter` blocks 23,803,750–26,431,750 (`offramp-2.0.0-trace.json`): 18,234 transactions, 9,354 in the last
+  216,000 blocks (about 30 days), last block 26,431,750; callers are executor EOAs.

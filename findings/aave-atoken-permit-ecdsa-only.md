@@ -144,16 +144,13 @@ fix:
   protocol_change: helps
 evidence:
   level: source-read
-  links:
-  - evidence/aave-atoken-permit-ecdsa-only/classification.jsonl
-  - evidence/aave-atoken-permit-ecdsa-only/onchain.json
-  - evidence/aave-atoken-permit-ecdsa-only/activity.json
-  - evidence/aave-atoken-permit-ecdsa-only/source-excerpts.md
-  - evidence/aave-atoken-permit-ecdsa-only/supply.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aave-atoken-permit-ecdsa-only
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_2.jsonl,out_3.jsonl,out_4.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_2.jsonl,out_3.jsonl,out_4.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
@@ -179,7 +176,7 @@ through the PoolConfigurator).
   lines 170 and 195), so a forged key also moves the holder's Aave governance voting and proposition power.
 - What it releases: the allowance lets the attacker `transferFrom` the holder's aTokens, redeemable for the underlying
   through the Pool.
-- Pattern PQ-1; excerpts in [`source-excerpts.md`](../evidence/aave-atoken-permit-ecdsa-only/source-excerpts.md).
+- Pattern PQ-1; excerpts in [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aave-atoken-permit-ecdsa-only/source-excerpts.md).
 
 ## Evidence
 
@@ -193,11 +190,11 @@ through the PoolConfigurator).
   `getPoolConfigurator()` `0x64b761d8…`; `owner()` and `getACLAdmin()` of the provider = `0x5300a1a1…` (Blockscout:
   Executor), whose `owner()` is `0xdabad81a…`.
 - CHECKED (`totalSupply()`/`decimals()` at block 26,431,537, prices from Blockscout `exchange_rate` of the underlying on
-  2026-11-17): the table below ([`supply.json`](../evidence/aave-atoken-permit-ecdsa-only/supply.json)).
+  2026-11-17): the table below ([`supply.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aave-atoken-permit-ecdsa-only/supply.json)).
 - CHECKED (precompile trace, year to March 2026): `ecrecover` calls per contract, e.g. aEthWETH 29,250, aEthUSDC
   16,249, aEthUSDT 14,935, aEthWBTC 11,919 (`curated_contracts.csv`, `txs_y1`).
 - CHECKED (Xatu, any function, 2026-10-16 to 2026-11-16): 30-day transactions and last activity in the table
-  ([`activity.json`](../evidence/aave-atoken-permit-ecdsa-only/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aave-atoken-permit-ecdsa-only/activity.json)).
 - INFERRED: only holders whose public key is on-chain can be forged; holders that are contracts (Safes, vaults) are not
   exposed through permit at all.
 
@@ -236,7 +233,7 @@ mechanism and the governance fix and are not measured here.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by upgrading the contract (admin or governance)).
 - 2026-11-17 review (Review20): MEDIUM -> HIGH, step 4: GhoToken `0x40d16fc0…` has no proxy (no EIP-1967 slots, no
   admin over `permit`), so holders' GHO stays forgeable after migration in a contract that cannot change; the 11 aTokens

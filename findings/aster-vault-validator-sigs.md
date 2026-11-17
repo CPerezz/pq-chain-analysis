@@ -28,22 +28,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/aster-vault-validator-sigs/classification.jsonl
-  - evidence/aster-vault-validator-sigs/onchain.json
-  - evidence/aster-vault-validator-sigs/activity.json
-  - evidence/aster-vault-validator-sigs/source-excerpts.md
-  - evidence/aster-vault-validator-sigs/review.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aster-vault-validator-sigs
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review10 (source and on-chain review)
-  ref: evidence/aster-vault-validator-sigs/review.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aster-vault-validator-sigs/review.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -61,14 +59,14 @@ AstherusVault, Aster's Ethereum deposit vault, releases funds through two `withd
 - Both paths then `checkLimit` (USD value via price feed against `hourlyLimit`; above it the vault pauses) and `_transfer` the token to the receiver.
 - The user signature on path 2 can be the attacker's own; the keys that guard pooled funds are the business and ledger signers, the validator set, and an OPERATE_ROLE EOA.
 
-Source excerpts: [`source-excerpts.md`](../evidence/aster-vault-validator-sigs/source-excerpts.md).
+Source excerpts: [`source-excerpts.md`](#source-excerpts-aster-vault-validator-sigs).
 
 ## Evidence
 
 - CHECKED (verified source, Sourcify: AstherusVault implementation `0x2cc878ac…`, AsterWithdrawValidator `0x10065113…`, AstherusTimelock `0x20f4e8cb…`): the two paths above; `_authorizeUpgrade` is `onlyTimeLock`; `TIMELOCK_ADDRESS` and `WITHDRAW_VALIDATOR` are immutables.
-- CHECKED (on-chain, block 26,431,494): EIP-1967 implementation `0x2cc878ac…`; `WITHDRAW_VALIDATOR()` `0x10065113…`; `hourlyLimit()` 6e14 (USD with 8 decimals, $6,000,000 per hour); not paused; OPERATE_ROLE 5 EOAs; DEFAULT_ADMIN_ROLE and ADMIN_ROLE Safe `0x1fe3fe2d…` (v1.3.0, 4 of 7); timelock `getMinDelay()` 86,400 s, proposer and executor the same Safe; `BUSINESS_SIGNER` `0x71c91e0c…`, `LEDGER_SIGNER` `0xa35eb116…` ([`review.json`](../evidence/aster-vault-validator-sigs/review.json)).
+- CHECKED (on-chain, block 26,431,494): EIP-1967 implementation `0x2cc878ac…`; `WITHDRAW_VALIDATOR()` `0x10065113…`; `hourlyLimit()` 6e14 (USD with 8 decimals, $6,000,000 per hour); not paused; OPERATE_ROLE 5 EOAs; DEFAULT_ADMIN_ROLE and ADMIN_ROLE Safe `0x1fe3fe2d…` (v1.3.0, 4 of 7); timelock `getMinDelay()` 86,400 s, proposer and executor the same Safe; `BUSINESS_SIGNER` `0x71c91e0c…`, `LEDGER_SIGNER` `0xa35eb116…` ([`review.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aster-vault-validator-sigs/review.json)).
 - CHECKED (Blockscout, 2026-11-17): tokens $202.84M (USDT $157.0M, USDC $18.5M, WBTC $16.2M, USD1 $10.8M) plus 934.97 ETH. Last 50 transactions: 18 withdrawals, all through path 2; none through path 1.
-- CHECKED (precompile trace, last year): 57,561 transactions with ecrecover (`txs_y1`); Xatu: 10,385 transactions 2026-10-16 to 2026-11-16 ([`activity.json`](../evidence/aster-vault-validator-sigs/activity.json)).
+- CHECKED (precompile trace, last year): 57,561 transactions with ecrecover (`txs_y1`); Xatu: 10,385 transactions 2026-10-16 to 2026-11-16 ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aster-vault-validator-sigs/activity.json)).
 - NOT ESTABLISHED: which validator sets are registered for path 1 (hash-keyed mapping; the event-log scan did not finish on public RPCs).
 
 ## Impact and exposure
@@ -89,6 +87,48 @@ Source excerpts: [`source-excerpts.md`](../evidence/aster-vault-validator-sigs/s
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review10): MEDIUM confirmed, step 4 (UUPS upgrade through the timelock by the 4-of-7 Safe). Added the AsterWithdrawValidator path (business and ledger signer keys, PQ-4), which carries all recent withdrawals; named the timelock's proposer Safe; value recomputed at 2026-11-17.
+
+# Source excerpts: aster-vault-validator-sigs
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0x604dd02d620633ae427888d41bfd15e38483736e` — ERC1967Proxy (verified source via sourcify)
+
+## Implementation `0x2cc878ac49c3bf8b0f2b053af7845ba6590eec4f` — AstherusVault (verified source via sourcify)
+
+### `contracts/AstherusVault.sol`
+
+```solidity
+    9  import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+   10  import "@openzeppelin/contracts-upgradeable/access/extensions/AccessControlEnumerableUpgradeable.sol";
+   11  import "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
+   12  import "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
+   13  import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+   14  import "./interfaces/IAsterWithdrawValidator.sol";
+   15  import "./libraries/SignatureChecker.sol";
+   16  
+   17  contract AstherusVault is Initializable, PausableUpgradeable, AccessControlEnumerableUpgradeable, UUPSUpgradeable, ReentrancyGuardUpgradeable {
+   18      using Address for address payable;
+   19      using SafeERC20 for IERC20;
+   20      using SignatureChecker for address;
+   21      using ECDSA for bytes32;
+   22  
+   23      bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
+   24      bytes32 public constant PAUSE_ROLE = keccak256("PAUSE_ROLE");
+  ...
+  430          uint power = 0;
+  431          uint validatorIndex = 0;
+  432          bytes32 validatorDigest = MessageHashUtils.toEthSignedMessageHash(digest);
+  433          for (uint i = 0; i < validatorSignatures.length && validatorIndex < validators.length; i ++) {
+  434              address recover = validatorDigest.recover(validatorSignatures[i]);
+  435              if (recover == address(0)) {
+  436                  continue;
+  437              }
+  438              while (validatorIndex < validators.length) {
+  ...
+```
+
+Library files with the primitive itself (not excerpted): `contracts/libraries/SignatureChecker.sol`, `@openzeppelin/contracts/utils/cryptography/ECDSA.sol`

@@ -28,22 +28,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/espresso-light-client-plonk/classification.jsonl
-  - evidence/espresso-light-client-plonk/onchain.json
-  - evidence/espresso-light-client-plonk/activity.json
-  - evidence/espresso-light-client-plonk/source-excerpts.md
-  - evidence/espresso-light-client-plonk/escrow.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/espresso-light-client-plonk
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_3.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_3.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review13 (re-read LightClientV3 and RewardClaim source; timelock, prover and RewardClaim reads)
-  ref: evidence/espresso-light-client-plonk/escrow.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/espresso-light-client-plonk/escrow.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -73,12 +71,12 @@ through its timelock and Safes.
   with seven inputs must equal `lightClient.authRoot()`) and then calls `espToken.mint(claimer, amount)`, subject to
   `dailyLimitWei`.
 - The verifying key is a library constant, so changing the proof system needs an implementation upgrade. Pattern PQ-7.
-  Excerpts: [`source-excerpts.md`](../evidence/espresso-light-client-plonk/source-excerpts.md).
+  Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/espresso-light-client-plonk/source-excerpts.md).
 
 ## Evidence
 
 - CHECKED (verified source, Sourcify and Blockscout, read 2026-11-17): the two paths above.
-- CHECKED (on-chain, block 26,431,581, [`escrow.json`](../evidence/espresso-light-client-plonk/escrow.json)): proxy
+- CHECKED (on-chain, block 26,431,581, [`escrow.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/espresso-light-client-plonk/escrow.json)): proxy
   implementation `0x0177b586…` (`getVersion` 3.0.0); `owner()` = SafeExitTimelock `0x67861f1e…`, `getMinDelay` 172,800 s;
   its proposers (RoleGranted logs, block 24,348,349) are two 3-of-5 Safes `0x5e37b803…` and `0x34f5af51…`;
   `permissionedProver()` = `0x4fd0ac6922da5c96b6f94202ece60e8fe3bf3947`, code size 0 (an EOA).
@@ -89,7 +87,7 @@ through its timelock and Safes.
 - CHECKED (Blockscout, 2026-11-17): ESP price USD 0.073184; circulating market cap USD 53.9M.
 - CHECKED (precompile trace, 12 months to March 2026, `curated_contracts.csv` `txs_y1`): BN254 precompiles in 774
   transactions. Xatu: 367 transactions 2026-10-16 to 2026-11-16, last 2026-11-15
-  ([`activity.json`](../evidence/espresso-light-client-plonk/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/espresso-light-client-plonk/activity.json)).
 - INFERRED: the StakeTable does not release staked ESP on light-client state (withdrawals are by the delegator's own
   transaction); not read in source. Which integrated chains read the light client on mainnet was not established.
 
@@ -114,6 +112,6 @@ client holds nothing itself. The finding has no other mainnet deployments.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review13): MEDIUM unchanged, step 4: UUPS upgrade by the Espresso timelock and Safes. Found the consumer: RewardClaim `0x67c966a0…` mints ESP against `authRoot` (35.9M ESP per day cap, about USD 2.63M, set as `escrow`); read timelock roles and the permissioned prover (an EOA).

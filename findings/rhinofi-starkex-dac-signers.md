@@ -28,13 +28,13 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/rhinofi-starkex-dac-signers/review.json
-  - evidence/rhinofi-starkex-dac-signers/source-excerpts.md
+  block: 26431780
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/rhinofi-starkex-dac-signers
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: Review10 (source and on-chain review)
-  ref: evidence/rhinofi-starkex-dac-signers/review.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/rhinofi-starkex-dac-signers/review.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -47,13 +47,13 @@ This StarkWare committee contract is the data availability committee of rhino.fi
 
 ## Mechanism
 
-- `verifyAvailabilityProof(claimHash, availabilityProofs)`: for each of the first `signaturesRequired` 65-byte (r, s, v) entries, `ecrecover(claimHash, v, r, s)` must be a member and addresses must be strictly increasing; then `registerFact(claimHash)` ([`source-excerpts.md`](../evidence/rhinofi-starkex-dac-signers/source-excerpts.md)).
+- `verifyAvailabilityProof(claimHash, availabilityProofs)`: for each of the first `signaturesRequired` 65-byte (r, s, v) entries, `ecrecover(claimHash, v, r, s)` must be a member and addresses must be strictly increasing; then `registerFact(claimHash)` ([`source-excerpts.md`](#source-excerpts-rhinofi-starkex-dac-signers)).
 - The StarkExchange's `updateState` (operator only) requires that fact from a registered availability verifier, alongside the STARK fact from SHARP. Forging attestations therefore needs the members' keys and the operator key (`0x8a6c80aa…`, which submits the committee calls); both are ECDSA keys with public signatures.
 - The 2019 `Committee` has no admin functions: members and threshold are fixed at deployment.
 
 ## Evidence
 
-- CHECKED (verified source, Sourcify): `Committee.sol` of `0x28780349…` as above; `identify()` returns the version string in [`review.json`](../evidence/rhinofi-starkex-dac-signers/review.json).
+- CHECKED (verified source, Sourcify): `Committee.sol` of `0x28780349…` as above; `identify()` returns the version string in [`review.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/rhinofi-starkex-dac-signers/review.json).
 - CHECKED (on-chain, block 26,431,780): committee `signaturesRequired()` 4; `isMember(0x0)` false; exchange `0x5d22045d…`: implementation `0x57998f22…` (ConstantRetrieverRestricted); isFrozen() false; StarkEx getters revert (implementation replaced); proxy governor RhinofiAdminMultisig 0xcca5de1e10c05c50c51ac551d9182cd31aca1889 (4 of 6; proxyIsGovernor true).
 - CHECKED (Blockscout, 2026-11-17): the committee's recent transactions are all `verifyAvailabilityProof` from operator `0x8a6c80aa…`, the last on 2025-03-05; the exchange holds 0.000 ETH ($0 at $1,814.71) and $0 of priced ERC-20 tokens (no priced holdings); NFTs: none listed.
 - CHECKED (precompile trace): 0 transactions with ecrecover in the year to 2026-03-18 (`data/agg/y1_caller.parquet`).
@@ -79,3 +79,47 @@ This StarkWare committee contract is the data availability committee of rhino.fi
 ## History
 
 - 2026-11-17: created in review (Review10) from the alltime precompile trace (StarkEx committees missing from the curated set), verified source, on-chain reads at block 26,431,780 and Blockscout holdings. Rated LOW (step 1: no committee activity since 2025-03-05 and the exchange holds nothing).
+
+# Source excerpts: rhinofi-starkex-dac-signers
+
+Committee `0x28780349a33eee56bb92241baab8095449e24306` — verified source via Sourcify, read 2026-11-17 by Review10.
+
+### `Committee.sol` (Sourcify, 0x28780349a33eee56bb92241baab8095449e24306)
+
+```solidity
+   63      function verifyAvailabilityProof(
+   64          bytes32 claimHash,
+   65          bytes calldata availabilityProofs
+   66      )
+   67          external
+   68      {
+   69          require(
+   70              availabilityProofs.length >= signaturesRequired * SIGNATURE_LENGTH,
+   71              "INVALID_AVAILABILITY_PROOF_LENGTH");
+   72  
+   73          uint256 offset = 0;
+   74          address prevRecoveredAddress = address(0);
+   75          for (uint256 proofIdx = 0; proofIdx < signaturesRequired; proofIdx++) {
+   76              bytes32 r = bytesToBytes32(availabilityProofs, offset);
+   77              bytes32 s = bytesToBytes32(availabilityProofs, offset + 32);
+   78              uint8 v = uint8(availabilityProofs[offset + 64]);
+   79              offset += SIGNATURE_LENGTH;
+   80              address recovered = ecrecover(
+   81                  claimHash,
+   82                  v,
+   83                  r,
+   84                  s
+   85              );
+   86              // Signatures should be sorted off-chain before submitting to enable cheap uniqueness
+   87              // check on-chain.
+   88              require(isMember[recovered], "AVAILABILITY_PROVER_NOT_IN_COMMITTEE");
+   89              require(recovered > prevRecoveredAddress, "NON_SORTED_SIGNATURES");
+   90              prevRecoveredAddress = recovered;
+   91          }
+   92          registerFact(claimHash);
+   93      }
+   94  
+   95      function bytesToBytes32(bytes memory array, uint256 offset)
+   96          private pure
+```
+

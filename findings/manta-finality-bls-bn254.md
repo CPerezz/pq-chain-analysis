@@ -38,35 +38,34 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/manta-finality-bls-bn254/classification.jsonl
-  - evidence/manta-finality-bls-bn254/onchain.json
-  - evidence/manta-finality-bls-bn254/activity.json
-  - evidence/manta-finality-bls-bn254/source-excerpts.md
-  - evidence/manta-finality-bls-bn254/consumer.json
-  - evidence/manta-finality-bls-bn254/consumer-a80f2401.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/manta-finality-bls-bn254
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_2.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_2.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode), for 0xa80f2401
-  ref: data/curation/out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review21 (0xa80f2401 registry, manager and Manta Pacific L2OutputOracle reads)
-  ref: evidence/manta-finality-bls-bn254/consumer-a80f2401.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/manta-finality-bls-bn254/consumer-a80f2401.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review01)
-  ref: evidence/manta-finality-bls-bn254/consumer.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/manta-finality-bls-bn254/consumer.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -98,7 +97,7 @@ Nothing is held and nothing can be taken through either. Rated LOW (step 4: the 
 - 2025 deployment: manager `0x3df6605c…` (whitelist manager EOA `0xe63c14b9…`) → oracle `0x9dac8be6…`, whose
   implementation `0x8a6e0334…` still has the hook, but the portal reads `0x30c78967…`, not this oracle.
 
-Excerpts (both implementations): [`source-excerpts.md`](../evidence/manta-finality-bls-bn254/source-excerpts.md). For
+Excerpts (both implementations): [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/manta-finality-bls-bn254/source-excerpts.md). For
 `0x33ade04d…` the proxy section shows unrelated sources (`CubeCore`, VRF) that Blockscout returned for the proxy
 address; the implementation section is the relevant code.
 
@@ -106,12 +105,12 @@ address; the implementation section is the relevant code.
 
 - CHECKED (verified source, Blockscout/Sourcify): both `BLSApkRegistry` implementations, `FinalityRelayerManager`
   (`0x9d6def8b…`) and Manta Pacific's current `L2OutputOracle` as above.
-- CHECKED (Review21, block 26,431,575, [`consumer-a80f2401.json`](../evidence/manta-finality-bls-bn254/consumer-a80f2401.json)):
+- CHECKED (Review21, block 26,431,575, [`consumer-a80f2401.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/manta-finality-bls-bn254/consumer-a80f2401.json)):
   registry implementation `0x8ad2384a…`, ProxyAdmin `0xab64a3da…` whose `owner()` is EOA `0xbfda2df9…` (nonce 153),
   also owner of the registry and of manager `0x8e132b3b…`; manager `l2OutputOracle()` = `0x30c78967…`,
   `confirmBatchId()` = 13,890; oracle `FINALIZATION_PERIOD_SECONDS` = 259,200, outputs still proposed (last
   2026-11-16); last `VerifyFinalitySig` event at block 25,286,243; 9,361 BN254 calls in the trace year.
-- CHECKED (Review01, block 26,431,811, [`consumer.json`](../evidence/manta-finality-bls-bn254/consumer.json)):
+- CHECKED (Review01, block 26,431,811, [`consumer.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/manta-finality-bls-bn254/consumer.json)):
   `0x33ade04d…` implementation `0x2423a4a6…`, `owner()` of registry, manager `0x3df6605c…` and ProxyAdmin
   `0xcfd3871e…` = EOA `0x4e3321e3…` (nonce 550); manager `l2OutputOracle()` = `0x9dac8be6…`; oracle `PROPOSER()` =
   `CHALLENGER()` = `0x4e3321e3…`, `finalityProvider()` = `0x3df6605c…`, last output 483 at L2 block 6,213,240
@@ -120,7 +119,7 @@ address; the implementation section is the relevant code.
 - CHECKED (Blockscout, contracts created by `0x4e3321e3…`): an earlier registry/manager pair (`0x5a5c1dfb…`,
   `0x496f02f6…`, block 23,159,620) has no precompile calls.
 - CHECKED: registries, managers and the 2025 oracle hold no ETH or tokens
-  ([`onchain.json`](../evidence/manta-finality-bls-bn254/onchain.json)).
+  ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/manta-finality-bls-bn254/onchain.json)).
 - INFERRED: `0x9dac8be6…` is a staging or abandoned oracle; no consumer reading it was found, but not every contract on
   mainnet was checked.
 
@@ -148,7 +147,7 @@ portal does not read.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated LOW (step 1: no activity in the last 12 months and nothing held).
 - 2026-11-17 review (Review01): LOW kept, step 1: last use 2025-08-28, nothing held; consumer traced to FinalityRelayerManager 0x3df6605c… and an L2OutputOracle 0x9dac8be6… that Manta Pacific's portal does not read, so impact set to none; production registry 0xa80f2401… belongs here.
 - 2026-11-17 merge (Review01): `unidentified-a80f2401-bls` merged into this finding on Main's instruction: contract `0xa80f2401…`, its evidence (classification row, on-chain and activity entries, source-excerpt section, `consumer.json` as `consumer-a80f2401.json`) and sources moved here. Its history: 2026-11-04 classified (hand classification pass); 2026-11-17 created by `scripts/15_findings.py`, rated MEDIUM (step 4); 2026-11-17 review (Review21): MEDIUM -> LOW, step 4: Manta's L2OutputOracle implementation `0xc9e9b111…` no longer has the finality hook, so the BLS check releases nothing (dormant path, holds nothing); impact funds-loss -> none; identified as Manta. With both registries the rating is LOW (step 4: dormant path, holds nothing).

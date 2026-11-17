@@ -38,22 +38,20 @@ fix:
   protocol_change: helps
 evidence:
   level: source-read
-  links:
-  - evidence/opensea-seaport-order-sig/classification.jsonl
-  - evidence/opensea-seaport-order-sig/onchain.json
-  - evidence/opensea-seaport-order-sig/activity.json
-  - evidence/opensea-seaport-order-sig/source-excerpts.md
-  - evidence/opensea-seaport-order-sig/conduit.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/opensea-seaport-order-sig
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_1.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review13 (re-read verified source on Sourcify; on-chain reads of the OpenSea conduit)
-  ref: evidence/opensea-seaport-order-sig/conduit.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/opensea-seaport-order-sig/conduit.json
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
@@ -85,7 +83,7 @@ EIP-8151, protects them.
   directly (approval to Seaport) or through a conduit named by the order's `conduitKey` (approval to the conduit).
 - Seaport 1.5 (`0x00000000000000adc04c56bf30ac9d3c0aaf14dc`) has the same `_assertValidSignature` (same line
   `success := and(eq(signer, recoveredSigner), gt(signer, 0))` followed by the ERC-1271 fallback).
-- Pattern PQ-2. Excerpts: [`source-excerpts.md`](../evidence/opensea-seaport-order-sig/source-excerpts.md).
+- Pattern PQ-2. Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/opensea-seaport-order-sig/source-excerpts.md).
 
 ## Evidence
 
@@ -93,18 +91,18 @@ EIP-8151, protects them.
   `SignatureVerification._assertValidSignature` for Seaport 1.6, lines as above; the same check in Seaport 1.5's
   verified source (`data/sourcify/0x00000000000000adc04c56bf30ac9d3c0aaf14dc.json`).
 - CHECKED (on-chain, block 26,431,214): Seaport 1.6 has no proxy, admin, owner or Safe; holds about USD 0.06
-  ([`onchain.json`](../evidence/opensea-seaport-order-sig/onchain.json)). EIP-1967 implementation slot is zero at
+  ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/opensea-seaport-order-sig/onchain.json)). EIP-1967 implementation slot is zero at
   block 26,431,457.
 - CHECKED (on-chain, block 26,431,457): the OpenSea conduit `0x1e0049783f008a0085193e00003d00cd54003c71` is owned in
   the ConduitController by ConduitCaptain `0x0000000000d132a69d773c838080dc4fa478388f`, whose owner is the 5-of-7 Safe
   `0xc669b5f25f03be2ac0323037cb57f49eb543657a` and whose revoker is `0x21b8846849061a470b5177806896616cc1562abc`;
   open channels: Seaport 1.5, TransferHelper `0x0000000000c2d145a2526bd8c716263bfebe1a72`, Seaport 1.6
-  ([`conduit.json`](../evidence/opensea-seaport-order-sig/conduit.json)).
+  ([`conduit.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/opensea-seaport-order-sig/conduit.json)).
 - CHECKED (precompile trace, 12 months to March 2026, `data/agg/y1_caller.parquet`): `ecrecover` in 2,002,784
   transactions through Seaport 1.6 (`txs_y1` in `curated_contracts.csv`, with USD 1.51B of transfers in those
   transactions) and 7,735 through Seaport 1.5; Seaport 1.4 and 1.1 had 3 and 8.
 - CHECKED (Xatu, any function): Seaport 1.6 called in 192,074 transactions 2026-10-16 to 2026-11-16
-  ([`activity.json`](../evidence/opensea-seaport-order-sig/activity.json)). Seaport 1.5 last direct transaction
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/opensea-seaport-order-sig/activity.json)). Seaport 1.5 last direct transaction
   2026-11-13 (Blockscout, block 26,404,850); its 30-day count was not measured.
 - INFERRED: approvals to the OpenSea conduit are the main route for OpenSea listings (default `conduitKey`
   `0x0000007b…250f0000`); the share of value approved to Seaport directly or to other marketplaces' conduits is not
@@ -142,6 +140,6 @@ Siblings: Seaport 1.5 is added here (same code path, open channel on the OpenSea
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review13): HIGH unchanged, step 4: Seaport 1.6 and 1.5 are immutable; OpenSea can close their channels on its own conduit, but approvals to Seaport directly and to other conduits stay forgeable until every user acts or EIP-8151. Added Seaport 1.5 (same check, open channel on the OpenSea conduit); added the conduit admin reads.

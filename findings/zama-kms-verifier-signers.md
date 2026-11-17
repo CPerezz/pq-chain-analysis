@@ -28,12 +28,13 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/zama-kms-verifier-signers/review-reads.json
+  block: 26431457
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/zama-kms-verifier-signers
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: Review09 (finding review)
-  ref: evidence/zama-kms-verifier-signers/review-reads.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/zama-kms-verifier-signers/review-reads.json
   date: 2026-11-17
   verdict: reported
   rating: MEDIUM
@@ -64,7 +65,7 @@ least $38.5M of priced underlying tokens, plus about 42M units of tokens without
 - KMSVerifier `_authorizeUpgrade` (l.371) and ProtocolConfig `defineNewKmsContext` / `destroyKmsContext` / threshold
   updates and upgrade (l.139-163, l.425) are `onlyACLOwner`.
 
-Pattern PQ-5. Source and lines: [`review-reads.json`](../evidence/zama-kms-verifier-signers/review-reads.json).
+Pattern PQ-5. Source and lines: [`review-reads.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/zama-kms-verifier-signers/review-reads.json).
 
 ## Evidence
 

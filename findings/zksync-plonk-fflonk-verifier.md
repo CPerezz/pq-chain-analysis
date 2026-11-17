@@ -308,21 +308,18 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/zksync-plonk-fflonk-verifier/classification.jsonl
-  - evidence/zksync-plonk-fflonk-verifier/onchain.json
-  - evidence/zksync-plonk-fflonk-verifier/activity.json
-  - evidence/zksync-plonk-fflonk-verifier/source-excerpts.md
-  - evidence/zksync-plonk-fflonk-verifier/zk-stack-state.json
-  - evidence/zksync-plonk-fflonk-verifier/retired-paths.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/zksync-plonk-fflonk-verifier
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_1.jsonl,out_2.jsonl,out_3.jsonl,out_4.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_1.jsonl,out_2.jsonl,out_3.jsonl,out_4.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review06 (Claude), 2026-11-17 review
   ref: Sourcify/Blockscout sources of DualVerifier, ZKsyncOSDualVerifier and legs; Bridgehub and diamond reads at block 26,431,458; traces of the retired verifiers' last proofs
   date: 2026-11-17
@@ -362,7 +359,7 @@ swap the verifier leg), without an Ethereum protocol change.
 
 ## Evidence
 
-- CHECKED (block 26,431,458; [`zk-stack-state.json`](../evidence/zksync-plonk-fflonk-verifier/zk-stack-state.json)):
+- CHECKED (block 26,431,458; [`zk-stack-state.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/zksync-plonk-fflonk-verifier/zk-stack-state.json)):
   `Bridgehub 0x303a465b….getAllZKChainChainIDs()` and, per chain, `getZKChain`, `getVerifier`, `getProtocolVersion`,
   `getChainTypeManager`, `getAdmin`, `getTotalBatchesExecuted`; `FFLONK_VERIFIER()`/`PLONK_VERIFIER()` of each
   DualVerifier; `fflonkVerifiers`/`plonkVerifiers(0..8)` and `owner()` of the ZKsyncOSDualVerifier. No verifier has an
@@ -375,10 +372,10 @@ swap the verifier leg), without an Ethereum protocol change.
   2.8M, BEAM 2.0M, WBTC 1.4M, …); per-chain ETH and USDC balances from `L1AssetTracker` 0x7fd8b995…. Every chain's
   `settlementLayer` is 1 (Ethereum), so no chain's funds are behind the Gateway.
 - CHECKED (debug_traceTransaction of each retired verifier's last proof in the yearly data;
-  [`retired-paths.json`](../evidence/zksync-plonk-fflonk-verifier/retired-paths.json)): which diamond called it (see the
+  [`retired-paths.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/zksync-plonk-fflonk-verifier/retired-paths.json)): which diamond called it (see the
   table).
 - CHECKED (Xatu, any function): last calls and 30-day transactions in the table
-  ([`activity.json`](../evidence/zksync-plonk-fflonk-verifier/activity.json)). The DualVerifiers and new legs were
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/zksync-plonk-fflonk-verifier/activity.json)). The DualVerifiers and new legs were
   deployed after the March 2026 trace; their activity was not measured (null).
 - INFERRED: chain names from chainid.network (324 ZKsync Era, 388 Cronos zkEVM, 50104 Sophon, 543210 ZERO Network,
   2741 Abstract, 325 GRVT, 61166 Treasure, 320 ZKcandy, 232 Lens, 375 zkXPLA, 51888 Memento, 36900 ADI Chain); 9075 is
@@ -430,7 +427,7 @@ Retired census verifiers (no registered chain points at them now; nothing expose
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review06): MEDIUM confirmed (step 4: governance repoints verifiers; escrow USD 127.05M in L1NativeTokenVault). Added the 16 live verifiers (7 DualVerifiers, the ZKsyncOSDualVerifier and 8 legs) that were deployed after the census; marked 7 census verifiers retired with the chain that last used them; 2 of those served ADI Chain on a separate Bridgehub.
 - 2026-11-17 review (Review06): moved the two ADI Chain verifiers (0x08513a46…, 0x8f870cf6…) to `adi-chain-zk-verifiers`, because ADI Chain's own governance, not ZKsync governance, controls that chain's verifier. Rating unchanged: MEDIUM (step 4).

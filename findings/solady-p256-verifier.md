@@ -24,26 +24,24 @@ contracts:
 families: []
 fix:
   layer: account-migration
-  who_acts: owners of the wallets that verify passkeys through it (59 in the trace, list in evidence/solady-p256-verifier/wallets.json), by adding a post-quantum signer and removing the passkey; Solady (Vectorized) can ship a post-quantum verifier library
+  who_acts: owners of the wallets that verify passkeys through it (59 in the trace, list in https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/solady-p256-verifier/wallets.json), by adding a post-quantum signer and removing the passkey; Solady (Vectorized) can ship a post-quantum verifier library
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/solady-p256-verifier/classification.jsonl
-  - evidence/solady-p256-verifier/onchain.json
-  - evidence/solady-p256-verifier/activity.json
-  - evidence/solady-p256-verifier/source-excerpts.md
-  - evidence/solady-p256-verifier/wallets.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/solady-p256-verifier
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review04)
-  ref: evidence/solady-p256-verifier/wallets.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/solady-p256-verifier/wallets.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -67,7 +65,7 @@ post-quantum signers), lowered at step 5 (measured exposure under USD 50k).
 - The wallet supplies the public key and decides what a valid signature allows; the verifier only does the curve
   arithmetic. INFERRED from Solady's `P256` library: it tries the precompile at `0x100` first and calls this
   contract only when the precompile returns nothing, which matches the trace (below).
-- Source excerpts: [`source-excerpts.md`](../evidence/solady-p256-verifier/source-excerpts.md).
+- Source excerpts: [`source-excerpts.md`](#source-excerpts-solady-p256-verifier).
 
 ## Evidence
 
@@ -79,10 +77,10 @@ post-quantum signers), lowered at step 5 (measured exposure under USD 50k).
   (21), Kernel `0xbac849bb…` (10), SimpleAccount `0x68641de7…` (4), 23 without an EIP-1967 implementation
   (12 minimal proxies, 3 Safe proxies), 1 EIP-7702 account. 4 of them later used the precompile directly.
 - CHECKED (`eth_getBalance` at block 26,431,608, Blockscout priced ERC-20 balances): the 59 wallets hold USD 380 in
-  total (0.0245 ETH and USD 335 in tokens; largest `0x49cd6a44…` USD 252) ([`wallets.json`](../evidence/solady-p256-verifier/wallets.json)).
-- CHECKED (on-chain read at block 26,431,214): the verifier holds nothing ([`onchain.json`](../evidence/solady-p256-verifier/onchain.json));
+  total (0.0245 ETH and USD 335 in tokens; largest `0x49cd6a44…` USD 252) ([`wallets.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/solady-p256-verifier/wallets.json)).
+- CHECKED (on-chain read at block 26,431,214): the verifier holds nothing ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/solady-p256-verifier/onchain.json));
   CHECKED (Xatu, any function): last transaction touching it 2026-06-03, none in 2026-10-16 to 2026-11-16
-  ([`activity.json`](../evidence/solady-p256-verifier/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/solady-p256-verifier/activity.json)).
 
 ## Impact and exposure
 
@@ -105,6 +103,27 @@ not this contract.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated LOW (step 4: stateless verifier library; the exposure is rated on the wallets that use it).
 - 2026-11-17 review (Review04): LOW kept, deciding step changed to step 5: step 4 gives MEDIUM (wallet owners migrate), and the 59 wallets that used the verifier hold USD 380 (block 26,431,608). fix.layer new-deployment -> account-migration; who_acts set.
+
+# Source excerpts: solady-p256-verifier
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0x000000000000d01ea45f9efd5c54f037fa57ea1a` — P256Verifier (verified source via sourcify)
+
+### `src/P256Verifier.sol`
+
+```solidity
+    9  /// Unlike RIP-7212, this verifier returns `uint256(0)` on failure instead of empty return data.
+   10  /// This contract will never revert.
+   11  /// About 168k gas per call.
+   12  /// For more details on the math, please refer to the comments in OpenZeppelin's implementation.
+   13  contract P256Verifier {
+   14      uint256 private constant GX = 0x6B17D1F2E12C4247F8BCE6E563A440F277037D812DEB33A0F4A13945D898C296;
+   15      uint256 private constant GY = 0x4FE342E2FE1A7F9B8EE7EB4A7C0F9E162BCE33576B315ECECBB6406837BF51F5;
+   16      uint256 private constant P = 0xFFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF; // `A = P - 3`.
+   17      uint256 private constant N = 0xFFFFFFFF00000000FFFFFFFFFFFFFFFFBCE6FAADA7179E84F3B9CAC2FC632551;
+  ...
+```

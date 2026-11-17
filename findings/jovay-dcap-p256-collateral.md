@@ -38,18 +38,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/jovay-dcap-p256-collateral/review-reads.json
+  block: 26431961
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/jovay-dcap-p256-collateral
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode), filed under daimo-p256-verifier
-  ref: data/curation/out_0.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review22)
-  ref: evidence/jovay-dcap-p256-collateral/review-reads.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/jovay-dcap-p256-collateral/review-reads.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -89,7 +91,7 @@ and finalize a false state root, then withdraw from the L1 bridge. The L1 escrow
 - CHECKED (verified source: Rollup implementation `0xbf55506b…` and AutomataFmspcTcbDao `0xee73475b…` on Blockscout,
   `0x78337799…` on Sourcify; bytecode selectors for `0xa7aded12…`, `0x5d3009d5…` and the quote verifiers): the paths
   above.
-- CHECKED (RPC at block 26,431,961; [`review-reads.json`](../evidence/jovay-dcap-p256-collateral/review-reads.json)):
+- CHECKED (RPC at block 26,431,961; [`review-reads.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/jovay-dcap-p256-collateral/review-reads.json)):
   Rollup `tee_verifier` = `0xa7aded12…`, `zk_verifier` = `0xb941a925…`, `mode` = 0, `lastZkVerifiedBatch` = 0,
   `lastFinalizedBatchIndex` = `lastTeeVerifiedBatch` = 10,106, `layer2ChainId` = 5,734,951, `owner()` = EOA
   `0xa1e7758a…`; `DCAPAttestationRouter.dcapAttestation()` = `0x5d3009d5…`; quote verifiers v4/v5 `P256_VERIFIER()` =
@@ -127,6 +129,6 @@ and finalize a false state root, then withdraw from the L1 bridge. The L1 escrow
 
 ## History
 
-- 2026-11-04: `0x78337799…` classified as a Daimo passkey verifier (hand classification pass; `data/curation/`), filed under `daimo-p256-verifier`.
+- 2026-11-04: `0x78337799…` classified as a Daimo passkey verifier (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`), filed under `daimo-p256-verifier`.
 - 2026-11-17 review (Review22): moved here from `daimo-p256-verifier` at Main's request; identified as the P-256 verifier of Jovay's first Automata PCCS (Intel collateral, issuer keys); added Jovay's live TEE verifier `0xa7aded12…` (P256VERIFY precompile). Rated LOW, step 4: one known operator (Jovay owner EOA) can require ZK proofs with `setMode(1)`; step 5 would also apply (escrow $13k).
 - 2026-11-17 integration: id renamed from `automata-dcap-p256-collateral` (project is Jovay, not Automata).

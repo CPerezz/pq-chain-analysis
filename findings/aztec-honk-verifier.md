@@ -48,22 +48,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/aztec-honk-verifier/classification.jsonl
-  - evidence/aztec-honk-verifier/onchain.json
-  - evidence/aztec-honk-verifier/activity.json
-  - evidence/aztec-honk-verifier/source-excerpts.md
-  - evidence/aztec-honk-verifier/aztec-system.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aztec-honk-verifier
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review00 (verified source of the three verifiers and their rollups; Registry, GSE and portal reads; Xatu activity)
-  ref: evidence/aztec-honk-verifier/aztec-system.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aztec-honk-verifier/aztec-system.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -102,7 +100,7 @@ rollup version that portals and users move to; USD 81k exposed, so step 5 does n
   `EpochProofLib` returns an empty committee instead of verifying attestations (lines 258–268). The bond is kept if
   the proposed checkpoint is proven, else `FAILED_HATCH_PUNISHMENT` (9.6M AZTEC) is taken (lines 284–350). So the
   proof is the only cryptographic gate on that path.
-- Pattern PQ-7. Excerpts: [`source-excerpts.md`](../evidence/aztec-honk-verifier/source-excerpts.md).
+- Pattern PQ-7. Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aztec-honk-verifier/source-excerpts.md).
 
 ## Evidence
 
@@ -111,7 +109,7 @@ rollup version that portals and users move to; USD 81k exposed, so step 5 does n
 - CHECKED (`eth_call`, block 26,431,459): `getEpochProofVerifier()` of Rollup v3 `0xe37a2663…` = `0x09ae3b03…`, of
   Rollup v2 `0x91ff8bbd…` = `0x098f47c0…`; v2 constructor argument `_epochProofVerifier` = `0x098f47c0…`
   (Blockscout); Registry `0x35b22e09…` lists 4 versions with `0xe37a2663…` canonical; Registry, GSE and rollups
-  owned by Governance `0x1102471e…` ([`aztec-system.json`](../evidence/aztec-honk-verifier/aztec-system.json)).
+  owned by Governance `0x1102471e…` ([`aztec-system.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aztec-honk-verifier/aztec-system.json)).
 - CHECKED (same block): version 0 has proven = pending block 139,350 and no attesters, so nothing is left to prove.
 - CHECKED (`eth_call`, latest block, and Blockscout constructor arguments): v3 `getEscapeHatch()` = `0x613ff7d1…`
   (rollup `0xe37a2663…`, bond 332M AZTEC, frequency 112, active duration 2, punishment 9.6M AZTEC, 0 candidates,
@@ -157,7 +155,7 @@ FeeJuicePortal `0xe05dc9d5…` holds nothing.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated CRITICAL (step 4: pooled funds released by a forged proof or attestation, and the verification cannot change).
 - 2026-11-17 review (Review00): CRITICAL -> MEDIUM, step 4: each rollup's verifier is immutable, but Governance
   replaces whole rollup versions through the Registry and GSE (three times since launch, stake following

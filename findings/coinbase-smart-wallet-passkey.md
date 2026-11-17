@@ -94,20 +94,18 @@ fix:
   protocol_change: helps
 evidence:
   level: source-read
-  links:
-  - evidence/coinbase-smart-wallet-passkey/classification.jsonl
-  - evidence/coinbase-smart-wallet-passkey/onchain.json
-  - evidence/coinbase-smart-wallet-passkey/activity.json
-  - evidence/coinbase-smart-wallet-passkey/source-excerpts.md
-  - evidence/coinbase-smart-wallet-passkey/owners.md
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/coinbase-smart-wallet-passkey
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_1.jsonl,out_2.jsonl,out_3.jsonl,out_4.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_1.jsonl,out_2.jsonl,out_3.jsonl,out_4.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review12)
   ref: findings review 2026-11-17; Sourcify source of 0x000100ab, cast owner reads at block 26431561
   date: 2026-11-17
@@ -140,11 +138,11 @@ MEDIUM, step 4: each owner can fix it by adding a post-quantum signer and removi
 ## Evidence
 
 - CHECKED (Sourcify full source of implementation `0x000100abaad02f1cfc8bbe32bd5a564817339e72`; excerpt of
-  `0x00000110…`): the paths above ([`source-excerpts.md`](../evidence/coinbase-smart-wallet-passkey/source-excerpts.md)).
+  `0x00000110…`): the paths above ([`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/coinbase-smart-wallet-passkey/source-excerpts.md)).
 - CHECKED (cast at block 26,431,561): implementation slots and owners of the six sample wallets: each has a passkey at
-  index 0; five have an EOA owner, one a contract owner ([`owners.md`](../evidence/coinbase-smart-wallet-passkey/owners.md)).
+  index 0; five have an EOA owner, one a contract owner ([`owners.md`](#owner-reads-review12-2026-11-17)).
 - CHECKED (on-chain read at block 26,431,214): holdings $0–13 per sample wallet
-  ([`onchain.json`](../evidence/coinbase-smart-wallet-passkey/onchain.json)).
+  ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/coinbase-smart-wallet-passkey/onchain.json)).
 - CHECKED (precompile trace, year to March 2026): P-256 verifications per sample wallet (`curated_contracts.csv`
   `cats`: 0x1631adb3 p256 585 / sw_p256 312; 0xef765c7e 146 / 1,433; 0x0b7920a4 68 / 492; 0x3aa9add3 648 / 673;
   0x2ea269e0 512 / 38; 0xea03aa1a 6 / 538).
@@ -178,6 +176,29 @@ MEDIUM, step 4: each owner can fix it by adding a post-quantum signer and removi
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by upgrading the contract (admin or governance)).
 - 2026-11-17 review (Review12): MEDIUM -> MEDIUM, step 4: owners migrating their accounts (add post-quantum signer, remove passkey/EOA owners). Added PQ-12 and `ecrecover` (sample wallets have EOA owners, checked ecrecover-first); fix.layer contract-upgrade -> account-migration; owners read at block 26,431,561.
+
+# Owner reads (Review12, 2026-11-17)
+
+`cast` against https://eth.drpc.org at block 26,431,561: EIP-1967 implementation slot, `nextOwnerIndex()`,
+`ownerCount()`, `ownerAtIndex(i)` (64 bytes = P-256 public key (x, y); 32 bytes = address owner), and `eth_getCode` of
+address owners (latest block).
+
+| Wallet | Implementation | Owners |
+|---|---|---|
+| 0x1631adb3e1fdb65e7936272c89861cb2aac2906a | 0x00000110dcdedc9581cb5ecb8467282f2926534d | [0] passkey; [1] 0x6d0738b778dd5fff419da8ed5d6e6add3b6c12e2 (EOA) |
+| 0xef765c7e05fdb747c9d6a6f4d48e5214d52d4fbb | 0x000100abaad02f1cfc8bbe32bd5a564817339e72 | [0] passkey |
+| 0x0b7920a49953cba15f9188f6bd4c0be66421bfc0 | 0x00000110dcdedc9581cb5ecb8467282f2926534d | [0] passkey; [1] 0xff814427528f33a2165305f6d8db30dd1bd8ba4e (EOA) |
+| 0x3aa9add3f321db2a99bf394f75b6def1cd47fc80 | 0x00000110dcdedc9581cb5ecb8467282f2926534d | [0] passkey; [1] 0x21df70d85ef9af19c3ee797500b3d1423f634036 (EOA) |
+| 0x2ea269e0102e70817be5929662e47ee7a0980b95 | 0x00000110dcdedc9581cb5ecb8467282f2926534d | [0] passkey; [1] 0x221a9de3d666bdac71d0e6fa4c5ff6587136606a (EOA); [2] 0x4de99b804bda114135e4dba5780f86a08e87dbc1 (EOA) |
+| 0xea03aa1a0e629c171c9681deba61aae72aa1ed1a | 0x000100abaad02f1cfc8bbe32bd5a564817339e72 | [0] passkey; [1] 0xf85210b21cc50302f477ba56686d2019dc9b67ad (contract) |
+
+Source (Sourcify, implementation 0x000100ab…; the 0x00000110… excerpt has the same `_isValidSignature`):
+- `CoinbaseSmartWallet._isValidSignature` (lines 297–325): 32-byte owner → solady
+  `SignatureCheckerLib.isValidSignatureNow` (ecrecover first for 64/65-byte signatures, then ERC-1271 with the full
+  signature); 64-byte owner → `WebAuthn.verify` (P-256 via precompile 0x100, FreshCryptoLib fallback).
+- `_authorizeUpgrade` is `onlyOwner` (line 331); `MultiOwnable.onlyOwner` (line 93) accepts any single owner or the
+  wallet itself; `addOwnerAddress`, `addOwnerPublicKey`, `removeOwnerAtIndex`, `removeLastOwner`, `upgradeToAndCall`
+  may be replayed across chains (`canSkipChainIdValidation`, lines 260–271).

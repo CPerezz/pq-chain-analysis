@@ -28,22 +28,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/rarimo-blob-kzg/classification.jsonl
-  - evidence/rarimo-blob-kzg/onchain.json
-  - evidence/rarimo-blob-kzg/activity.json
-  - evidence/rarimo-blob-kzg/source-excerpts.md
-  - evidence/rarimo-blob-kzg/review-reads.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/rarimo-blob-kzg
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_2.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_2.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review16 (chain reads, Sourcify source, Rarimo docs)
-  ref: evidence/rarimo-blob-kzg/review-reads.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/rarimo-blob-kzg/review-reads.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -87,10 +85,10 @@ step 5 (under USD 50k).
   ProxyAdmin `owner()` EOA `0xbbef10ce…` (no code); `0xbbef10ce…` holds `DEFAULT_ADMIN_ROLE`, `PAUSE_ALL_ROLE`,
   `PAUSE_BLOB_SUBMISSION_ROLE`, `PAUSE_FINALIZATION_ROLE`; `OPERATOR_ROLE` held by `0x3cbe03d5…`, `0x558abe76…`, and
   granted on 2025-11-11 to `0x62c5d5d8…` and `0xc29ef98e…`; `isPaused(1..8)` all false; balance 1.6818 ETH
-  ([`review-reads.json`](../evidence/rarimo-blob-kzg/review-reads.json)).
+  ([`review-reads.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/rarimo-blob-kzg/review-reads.json)).
 - CHECKED (Blockscout transaction list): 322 `submitBlobs` (last 2026-04-28) and 321 `finalizeBlocks` (last
   2026-04-28); the last transaction is a `sendMessage` deposit on 2026-07-20; 252 point-evaluation calls in the year to
-  March 2026 (`data/report/curated_contracts.csv`, `txs_y1`).
+  March 2026 (`studies/top-callers-classification/results/curated_contracts.csv`, `txs_y1`).
 - CHECKED (identification): Rarimo's docs ([network info](https://docs.rarimo.com/zk-registry/network-info/)) list
   RollupProxy `0x2f3c2056…`, Deployer and RollupSecurityCouncil `0xbbef10ce…`, FinalizationOperator `0x3cbe03d5…`,
   BlobSubmissionOperator `0x558abe76…`; Blockscout shows `0xbbef10ce…` created the proxy, ProxyAdmin, implementation,
@@ -118,7 +116,7 @@ itself.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: depends on the KZG precompile; only a protocol change replaces it).
 - 2026-11-17 review (Review16): HIGH -> LOW, step 5: `submitDataAsCalldata` is an unpaused fallback in the same contract (step 4 MEDIUM under the KZG-fallback rule), and the rollup holds USD 3,047. Impact funds-loss -> funds-locked: a forged opening allows data withholding, not theft (the SNARK still checks execution). Alternative sole -> alternative-exists. Project identified as Rarimo ZK rollup (docs address book, Blockscout creator).
 - 2026-11-17 integration: id renamed from `unidentified-2f3c2056-blob-kzg` (project identified).

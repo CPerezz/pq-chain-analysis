@@ -78,22 +78,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/aztec-committee-attestations/classification.jsonl
-  - evidence/aztec-committee-attestations/onchain.json
-  - evidence/aztec-committee-attestations/activity.json
-  - evidence/aztec-committee-attestations/source-excerpts.md
-  - evidence/aztec-committee-attestations/aztec-system.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aztec-committee-attestations
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_4.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_4.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review00 (Sourcify/Blockscout source of rollup versions 0, 2 and 3; Registry, GSE, Governance and portal reads; Xatu activity of the new contracts)
-  ref: evidence/aztec-committee-attestations/aztec-system.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aztec-committee-attestations/aztec-system.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -132,7 +130,7 @@ move to; USD 81k exposed, so step 5 does not lower it).
   attester keys add the other 110 epochs and the slashing votes.
 - Pattern PQ-5. The proposal also opens EIP-4844 blob commitments with the point-evaluation precompile (`BlobLib`
   line 150 in v3); that PQ-8 dependency is [aztec-blob-kzg](aztec-blob-kzg.md). Excerpts:
-  [`source-excerpts.md`](../evidence/aztec-committee-attestations/source-excerpts.md).
+  [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aztec-committee-attestations/source-excerpts.md).
 
 ## Evidence
 
@@ -141,7 +139,7 @@ move to; USD 81k exposed, so step 5 does not lower it).
 - CHECKED (`eth_call`, block 26,431,459): Registry `0x35b22e09…` lists 4 versions, canonical `0xe37a2663…`;
   Registry, GSE and all live rollups are owned by Governance `0x1102471e…`; GSE `getLatestRollup()` = `0xe37a2663…`;
   active attesters: v3 3,049 (stake that follows the latest rollup, 608.9M AZTEC), v2 50 (10M AZTEC), versions 0
-  and 1 none ([`aztec-system.json`](../evidence/aztec-committee-attestations/aztec-system.json)).
+  and 1 none ([`aztec-system.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aztec-committee-attestations/aztec-system.json)).
 - CHECKED (same block): version 0 has proven = pending block 139,350 and no attesters, so no committee can be sampled
   and it can no longer propose; v2 and v3 have pending checkpoints beyond the proven ones (still running).
 - CHECKED (Xatu call frames, blocks 26,208,000–26,423,999): contracts calling each version's Inbox or Outbox (the
@@ -191,7 +189,7 @@ attesters) checked and left out.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated CRITICAL (step 4: pooled funds released by a forged proof or attestation, and the verification cannot change).
 - 2026-11-17 review (Review00): CRITICAL -> MEDIUM, step 4: Governance can replace the rollup (it registered versions
   on 2026-03-04, 2026-06-30 and 2026-10-10, and the latest-following stake moved with it), so the fix is a vote plus

@@ -38,22 +38,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/uniswap-permit2-code-first/classification.jsonl
-  - evidence/uniswap-permit2-code-first/onchain.json
-  - evidence/uniswap-permit2-code-first/activity.json
-  - evidence/uniswap-permit2-code-first/source-excerpts.md
-  - evidence/uniswap-permit2-code-first/notes.md
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/uniswap-permit2-code-first
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_3.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_3.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review07 (registry review)
-  ref: evidence/uniswap-permit2-code-first/notes.md
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/uniswap-permit2-code-first/notes.md
   date: 2026-11-17
   verdict: confirmed
   rating: NONE
@@ -74,7 +72,7 @@ Every signature path (`AllowanceTransfer.permit`, `SignatureTransfer.permitTrans
 `permitWitnessTransferFrom`) calls `SignatureVerification.verify(signature, hash, claimedSigner)` (lines 21–46): if
 `claimedSigner.code.length == 0` it accepts a 65- or 64-byte (EIP-2098) ECDSA signature through `ecrecover`, else it
 calls `IERC1271(claimedSigner).isValidSignature(hash, signature)` with the whole signature. Pattern PQ-13. Lines:
-[`notes.md`](../evidence/uniswap-permit2-code-first/notes.md).
+[`notes.md`](#review-reads-uniswap-permit2-code-first-2026-11-17-review07).
 
 ## Evidence
 
@@ -106,7 +104,37 @@ own key.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated NONE (code checked first: no exposure beyond the account's own key).
 - 2026-11-17 review (Review07): NONE unchanged. Both sources read; held $133k removed from `value_usd` (Permit2's own
   stray balance, not an exposure); related UniswapX finding linked.
+
+# Review reads: uniswap-permit2-code-first (2026-11-17, Review07)
+
+## Source (Sourcify, both addresses)
+
+`SignatureVerification.verify(signature, hash, claimedSigner)` (lines 21–46, identical in
+`0x000000000022d473030f116ddee9f6b43ac78ba3` `src/libraries/SignatureVerification.sol` and
+`0x31c2f6fcff4f8759b3bd5bf0e1084a055615c768` `contracts/libraries/SignatureVerification.sol`, solc 0.8.17):
+
+```solidity
+   26          if (claimedSigner.code.length == 0) {
+   27              if (signature.length == 65) { ... } else if (signature.length == 64) { ... EIP-2098 ... }
+   39              address signer = ecrecover(hash, v, r, s);
+   41              if (signer != claimedSigner) revert InvalidSigner();
+   42          } else {
+   43              bytes4 magicValue = IERC1271(claimedSigner).isValidSignature(hash, signature);
+   44              if (magicValue != IERC1271.isValidSignature.selector) revert InvalidContractSignature();
+```
+
+The ERC-1271 branch forwards the full `bytes signature`, so post-quantum smart accounts (and EIP-7702 accounts,
+which have code) are verified by their own code; `ecrecover` is reached only for addresses without code.
+
+## On-chain and explorer reads
+
+- `onchain.json` (block 26,431,214): both contracts are not proxies (code 9,152 and 7,020 bytes), no owner.
+- Blockscout: both deployed through the CREATE2 factory `0x4e59b448…956c`; canonical by
+  tx `0xf2f1fe96…d377`; `0x31c2f6fc…` on 2023-09-27 by `0xa4c0028748d8f534e6d7bab20d9b696f750f114d` (deployer not
+  identified; Uniswap's code, not Uniswap's canonical address).
+- Yearly pre-quantum use (`data/report/curated_contracts.csv`): canonical 3,840,821 `ecrecover` transactions;
+  `0x31c2f6fc…` 41,477.

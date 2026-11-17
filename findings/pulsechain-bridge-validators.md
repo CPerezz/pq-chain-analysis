@@ -28,14 +28,13 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/pulsechain-bridge-validators/classification.jsonl
-  - evidence/pulsechain-bridge-validators/onchain.json
-  - evidence/pulsechain-bridge-validators/activity.json
+  block: 26431561
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/pulsechain-bridge-validators
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_2.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_2.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
@@ -69,12 +68,12 @@ single EOA. Rated MEDIUM: step 4 (fix by a contract upgrade by one known owner).
 - CHECKED (`cast call` at block 26,431,561): `implementation()` `0xe9869995…`, `sourceChainId()` 1,
   `destinationChainId()` 369 (PulseChain), `upgradeabilityOwner()` `0xdf5d165a…`, `owner()` `0x0fb17adb…` (both EOAs
   with nonce 0), `validatorContract()` `0x2fa878ab…` with `requiredSignatures()` 5 and 8 validators, owned by EOA
-  `0x3ea02ef8…`; `hashiManager()` reverts ([`onchain.json`](../evidence/pulsechain-bridge-validators/onchain.json)).
+  `0x3ea02ef8…`; `hashiManager()` reverts ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/pulsechain-bridge-validators/onchain.json)).
 - CHECKED (Blockscout, 2026-11-17): the AMB and both Omnibridges were created by `0x30e22ab6…`; both Omnibridges
   return `bridgeContract()` = this AMB; owner `0x610094ab…` and upgradeabilityOwner `0x13a9594a…` are EOAs.
 - CHECKED (precompile trace): 98,579 `ecrecover` calls in the year to March 2026 (`curated_contracts.csv`, `txs_y1`).
 - CHECKED (Xatu, any function): 6,574 transactions in 2026-10-16 to 2026-11-16, last 2026-11-16
-  ([`activity.json`](../evidence/pulsechain-bridge-validators/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/pulsechain-bridge-validators/activity.json)).
 - INFERRED: the owner EOAs have never sent an Ethereum transaction, so their public keys are not exposed on Ethereum;
   PulseChain copied Ethereum's state, so they may be exposed there. Omnibridge per-token daily execution limits, which
   would slow a drain, were not read.
@@ -103,7 +102,7 @@ to chain 369 and is run by PulseChain's deployer.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`), as part of
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`), as part of
   `gnosis-bridge-validators`.
 - 2026-11-17 review (Review20): split out of `gnosis-bridge-validators` (attribution: destinationChainId 369,
   PulseChain deployer `0x30e22ab6…`). Rated MEDIUM, step 4: upgradeable proxy, one EOA upgrades; escrow measured at

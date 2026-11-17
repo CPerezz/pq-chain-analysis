@@ -28,12 +28,13 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/circle-gateway-minter-attestation-key/review-reads.json
+  block: 26431457
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/circle-gateway-minter-attestation-key
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: Review09 (finding review)
-  ref: evidence/circle-gateway-minter-attestation-key/review-reads.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/circle-gateway-minter-attestation-key/review-reads.json
   date: 2026-11-17
   verdict: reported
   rating: MEDIUM
@@ -59,7 +60,7 @@ contract, and Circle as master minter can cut the allowances.
   `_authorizeUpgrade` (GatewayCommon.sol l.72) are `onlyOwner`. Rotating signers does not change the scheme.
 
 Pattern PQ-4. Source: Sourcify, implementation `0xc2ff6806…` (lines in
-[`review-reads.json`](../evidence/circle-gateway-minter-attestation-key/review-reads.json)).
+[`review-reads.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/circle-gateway-minter-attestation-key/review-reads.json)).
 
 ## Evidence
 

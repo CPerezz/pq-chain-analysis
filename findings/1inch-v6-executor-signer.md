@@ -38,39 +38,34 @@ fix:
   protocol_change: not-needed
 evidence:
   level: bytecode
-  links:
-  - evidence/1inch-v6-executor-signer/classification.jsonl
-  - evidence/1inch-v6-executor-signer/onchain.json
-  - evidence/1inch-v6-executor-signer/activity.json
-  - evidence/1inch-v6-executor-signer/source-excerpts.md
-  - evidence/1inch-v6-executor-signer/review-reads.json
-  - evidence/1inch-v6-executor-signer/27934db9-classification.jsonl
-  - evidence/1inch-v6-executor-signer/27934db9-onchain.json
-  - evidence/1inch-v6-executor-signer/27934db9-activity.json
-  - evidence/1inch-v6-executor-signer/27934db9-source-excerpts.md
-  - evidence/1inch-v6-executor-signer/27934db9-attribution.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/1inch-v6-executor-signer
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review09 (finding review)
-  ref: evidence/1inch-v6-executor-signer/review-reads.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/1inch-v6-executor-signer/review-reads.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode), for 0x27934db9
-  ref: data/curation/out_0.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review21 (finding review), for 0x27934db9
-  ref: evidence/1inch-v6-executor-signer/27934db9-attribution.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/1inch-v6-executor-signer/27934db9-attribution.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -101,14 +96,14 @@ by 1inch would fix it (MEDIUM, step 4), lowered by step 5 because the measured e
 - The precompile trace also shows 3 `p256` (`0x100`) calls by this contract in the year; their purpose was not
   established.
 
-Pattern PQ-4. The source is not verified; [`source-excerpts.md`](../evidence/1inch-v6-executor-signer/source-excerpts.md)
+Pattern PQ-4. The source is not verified; [`source-excerpts.md`](#source-excerpts-1inch-v6-executor-signer)
 has no excerpt.
 
 ## Evidence
 
 - CHECKED (trace of tx `0xa675f17a…`, block 24,700,004, `debug_traceTransaction` callTracer): `execute` -> `ecrecover`
   -> `0x4447696e…`; another executor called in the same transaction (`0x990636ec…`) does not verify a signature
-  ([`review-reads.json`](../evidence/1inch-v6-executor-signer/review-reads.json)).
+  ([`review-reads.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/1inch-v6-executor-signer/review-reads.json)).
 - CHECKED (runtime code at block 26,431,457): the signer appears as a `PUSH32` constant followed by a mask and
   comparison; no EIP-1967 slots, no `owner()`; the signer `0x4447696e…` has no code.
 - CHECKED (Blockscout): created 2025-12-16 (tx `0xf01355e6…`) by EOA `0x56e44874…` through Create3Deployer `0xd935a2bb…`.
@@ -117,7 +112,7 @@ has no excerpt.
   deployer; INFERRED that 1inch operates the executor.
 - CHECKED (pipeline read at block 26,431,214): 1 wei ETH and about $0.06 of tokens held.
 - CHECKED (precompile trace to March 2026): 110,900 `ecrecover` and 3 `p256` calls in the year
-  (`data/report/curated_contracts.csv`, `txs_y1`).
+  (`studies/top-callers-classification/results/curated_contracts.csv`, `txs_y1`).
 - CHECKED (Xatu, 2026-10-16 to 2026-11-16): 1 transaction touched it: `0xcb67c79a…` (2026-11-15), an EIP-7702 account
   `0xe71e46a8…` sweeping token leftovers out via Multicall3 `aggregate3`; no router swaps through it in the window.
 - CHECKED (predecessor `0x27934db9…`): bytecode read 2026-11-17 (signer constant and selector set as above); created
@@ -125,9 +120,9 @@ has no excerpt.
   both listed in 1inch repositories (`1inch/limit-order-protocol`, `1inch/fusion-protocol`, `1inch/cross-chain-swap`);
   no proxy, no `owner()`, USD 0.04 held at block 26,431,214; 67,185 pre-quantum calls in the year to March 2026
   (`txs_y1`); last called 2025-12-16, none in the 30-day window
-  ([`27934db9-attribution.json`](../evidence/1inch-v6-executor-signer/27934db9-attribution.json),
-  [`27934db9-onchain.json`](../evidence/1inch-v6-executor-signer/27934db9-onchain.json),
-  [`27934db9-activity.json`](../evidence/1inch-v6-executor-signer/27934db9-activity.json)).
+  ([`27934db9-attribution.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/1inch-v6-executor-signer/27934db9-attribution.json),
+  [`27934db9-onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/1inch-v6-executor-signer/27934db9-onchain.json),
+  [`27934db9-activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/1inch-v6-executor-signer/27934db9-activity.json)).
 - INFERRED: the signature binds the route calldata; the exact signed payload was not decoded.
 
 ## Impact and exposure
@@ -156,9 +151,25 @@ establish that it is 1inch's.
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by a new deployment that the operator and users move to).
 - 2026-11-17 review (Review09): MEDIUM -> LOW, step 5: measured exposure is the executor's own balance (about $0); the signature gates use of the executor, and users' funds are only inside it during their own router call. Mechanism confirmed by trace (ecrecover on `execute` against a signer hard-coded in the bytecode, so `alternative: sole` stands and key rotation is impossible); 1inch attribution confirmed through the deployer EOA, which owns 1inch's OffchainOracle; status candidate -> confirmed (bytecode plus trace).
-- 2026-11-04 (merged from `unidentified-27934db9-signer-key`): `0x27934db9…` classified from bytecode (hand classification pass; `data/curation/out_0.jsonl`); drafted 2026-11-17 by `scripts/15_findings.py` as MEDIUM (step 4).
+- 2026-11-04 (merged from `unidentified-27934db9-signer-key`): `0x27934db9…` classified from bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl`); drafted 2026-11-17 by `scripts/15_findings.py` as MEDIUM (step 4).
 - 2026-11-17 review (Review21) of `0x27934db9…`: MEDIUM -> LOW, step 5: holds USD 0.04 and replaced (last call 2025-12-16); identified as 1inch through the deployer EOA and Create3Deployer; same selectors and same hard-coded signer `0x4447696e…` as `0x0bb7a4fd…`.
 - 2026-11-17 (Review21): merged `unidentified-27934db9-signer-key` into this finding (contract, evidence files `27934db9-*`, sources, History). LOW kept: combined held value about USD 0.10.
+
+# Source excerpts: unidentified-27934db9-signer-key
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0x27934db9cd07e6368900d99047c0b39e2a6664ce`
+
+No verified source on Sourcify or Blockscout.
+
+# Source excerpts: 1inch-v6-executor-signer
+
+Lines around the pre-quantum checks in verified source (Sourcify, else Blockscout). Generated by scripts/14_excerpts.py.
+
+## Contract `0x0bb7a4fdea32910038dec59c20ccae3a6e66b09f`
+
+No verified source on Sourcify or Blockscout.

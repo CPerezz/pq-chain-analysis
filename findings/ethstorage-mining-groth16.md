@@ -28,20 +28,18 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/ethstorage-mining-groth16/classification.jsonl
-  - evidence/ethstorage-mining-groth16/onchain.json
-  - evidence/ethstorage-mining-groth16/activity.json
-  - evidence/ethstorage-mining-groth16/source-excerpts.md
-  - evidence/ethstorage-mining-groth16/onchain-review.md
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/ethstorage-mining-groth16
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_1.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review15 (finding review)
   ref: findings/ethstorage-mining-groth16.md
   date: 2026-11-17
@@ -73,7 +71,7 @@ calls `Decoder2.verifyProof`, a snarkjs Groth16 verifier whose `checkPairing` ca
 
 With the Groth16 trapdoor, the masks need not derive from the miner's encoding key, so a miner who holds only the raw
 blob data (or another miner's copy) passes. Pattern PQ-7. Excerpt:
-[`source-excerpts.md`](../evidence/ethstorage-mining-groth16/source-excerpts.md).
+[`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/ethstorage-mining-groth16/source-excerpts.md).
 
 The same path also depends on KZG blob openings (PQ-8, `EthStorageContract.sol` 108–155) for samples that land on a
 stored blob; with `_dataHash == 0` (an empty entry) `checkInclusive` returns `decodedData == 0` without the precompile.
@@ -84,7 +82,7 @@ point-evaluation call from this contract in the last year. That mechanism is rat
 ## Evidence
 
 - CHECKED (verified source, Sourcify, implementation `0x99f5…df33`, `version() = 0.2.1`): the path above.
-- CHECKED (block 26,431,543, [`onchain-review.md`](../evidence/ethstorage-mining-groth16/onchain-review.md)):
+- CHECKED (block 26,431,543, [`onchain-review.md`](#on-chain-reads-review15-2026-11-17)):
   EIP-1967 implementation `0x99f5cc6a…`, admin `0x654dd564…` (ProxyAdmin) whose `owner()` is Safe `0xa10d…9f3c`,
   threshold 1 of 2 owners (both EOAs); the Safe has `DEFAULT_ADMIN_ROLE` and is `treasury()`;
   `enforceMinerRole() = true`; balance 0.17725 ETH.
@@ -92,7 +90,7 @@ point-evaluation call from this contract in the last year. That mechanism is rat
   BN254-field `modexp`; 260 pre-quantum calls in the last year (`curated_contracts.csv`); no `pointEval` call.
 - CHECKED (block ~26,431,608): `kvEntryCount() = 3338`, `shardEntryBits() = 22`.
 - CHECKED (Xatu, any function): 94 transactions 2026-10-16 to 2026-11-16, last 2026-11-15
-  ([`activity.json`](../evidence/ethstorage-mining-groth16/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/ethstorage-mining-groth16/activity.json)).
 - INFERRED: an outside attacker who is not whitelisted gains nothing: `mine` pays the `miner` argument, which must hold
   `MINER_ROLE`. The number of whitelisted miners was not enumerated.
 
@@ -117,6 +115,23 @@ stake: a cheating miner keeps being paid while not storing the replica, which th
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review15): MEDIUM -> LOW, step 5: the reward pool (contract balance, USD 321) is the measured exposure, and only whitelisted miners can be paid. The KZG (PQ-8) opening on the same path is now ethstorage-blob-kzg.
+
+# On-chain reads (Review15, 2026-11-17)
+
+RPC https://ethereum-rpc.publicnode.com, block 26,431,543. Proxy `0xf0193d6e8fc186e77b6e63af4151db07524f6a7a`.
+
+| Read | Result |
+|---|---|
+| EIP-1967 implementation slot | `0x99f5cc6ad111584c88891b4c6fff5784a46adf33` |
+| EIP-1967 admin slot | `0x654dd56444856e928917549263aac6f9d6a96372` |
+| ProxyAdmin `owner()` | `0xa10d87502a0d8fce45610c6028f0756383649f3c` |
+| Safe `getThreshold()` / `getOwners()` | 1 / `0x6fd772e4f7129c259a3c10650a24acc61802971f` (EOA, nonce 12), `0x905d49785b3d28714a9bc7532f74c5a2228e0602` (EOA, nonce 1) |
+| `hasRole(DEFAULT_ADMIN_ROLE, Safe)` | true |
+| `treasury()` | `0xa10d87502a0d8fce45610c6028f0756383649f3c` |
+| `enforceMinerRole()` | true |
+| `accPrepaidAmount()` / `prepaidAmount()` | 1.4723 ETH / 25.1658 ETH |
+| ETH balance | 0.177249 ETH |
+| `version()` | 0.2.1 |

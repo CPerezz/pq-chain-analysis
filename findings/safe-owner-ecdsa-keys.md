@@ -522,22 +522,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/safe-owner-ecdsa-keys/classification.jsonl
-  - evidence/safe-owner-ecdsa-keys/onchain.json
-  - evidence/safe-owner-ecdsa-keys/activity.json
-  - evidence/safe-owner-ecdsa-keys/source-excerpts.md
-  - evidence/safe-owner-ecdsa-keys/safes.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/safe-owner-ecdsa-keys
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_0.jsonl,out_1.jsonl,out_2.jsonl,out_3.jsonl,out_4.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl,out_1.jsonl,out_2.jsonl,out_3.jsonl,out_4.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: review (Review04)
-  ref: evidence/safe-owner-ecdsa-keys/safes.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/safe-owner-ecdsa-keys/safes.json
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
@@ -568,13 +566,13 @@ for post-quantum signer contracts in place.
 - Owners and singleton change only through the Safe calling itself (`swapOwner`, `addOwnerWithThreshold`,
   `removeOwner`, `changeThreshold`, `changeMasterCopy`), which needs the same threshold. Enabled modules execute
   without owner signatures under their own rules.
-- Source excerpts: [`source-excerpts.md`](../evidence/safe-owner-ecdsa-keys/source-excerpts.md).
+- Source excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/safe-owner-ecdsa-keys/source-excerpts.md).
 
 ## Evidence
 
 - CHECKED (Sourcify/Blockscout-verified singletons `0x41675c09…` 1.4.1, `0xd9db270c…` 1.3.0, `0x34cfac64…` 1.1.1,
   `0xff51a589…` 1.5.0): `checkNSignatures` as above.
-- CHECKED (`eth_call` and storage at block 26,431,566; [`safes.json`](../evidence/safe-owner-ecdsa-keys/safes.json)):
+- CHECKED (`eth_call` and storage at block 26,431,566; [`safes.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/safe-owner-ecdsa-keys/safes.json)):
   for every Safe `getThreshold`, `getOwners`, `VERSION`, singleton (slot 0), guard slot, `getModulesPaginated`.
   Versions: 22 × 1.3.0, 20 × 1.4.1, 5 × 1.1.1, 1 × 1.5.0. No Safe has a guard set. Modules on 14 Safes:
   AllowanceModule `0xcfbfac74…` (12), Zodiac Roles (2: `0xdca57e6e…`, `0xc3c2b189…`), CoboSafeAccount
@@ -585,8 +583,8 @@ for post-quantum signer contracts in place.
 - CHECKED (draft corrections): `0x2bf916f8…` runs Safe 1.5.0 (singleton `0xff51a589…`), not 1.3.0;
   `0x0632dcc3…` is a 110-byte non-standard proxy whose slot 0 is the 1.3.0 singleton `0xd9db270c…` and answers
   `VERSION() = 1.3.0`.
-- CHECKED (on-chain read at block 26,431,214): holdings ([`onchain.json`](../evidence/safe-owner-ecdsa-keys/onchain.json));
-  CHECKED (Xatu, any function): activity ([`activity.json`](../evidence/safe-owner-ecdsa-keys/activity.json)).
+- CHECKED (on-chain read at block 26,431,214): holdings ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/safe-owner-ecdsa-keys/onchain.json));
+  CHECKED (Xatu, any function): activity ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/safe-owner-ecdsa-keys/activity.json)).
 - CHECKED (precompile trace): the three family counts below are SafeProxy instances of each singleton that called
   `ecrecover` in the trace.
 
@@ -673,6 +671,6 @@ Signer sets run from 1 to 11 owners (`0x81ad394c…` 6 of 11). A one-owner thres
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: owners can move to post-quantum signers in place (contract owners, modules or upgrade)).
 - 2026-11-17 review (Review04): MEDIUM kept (step 4: each Safe's owners can swap EOA owners for post-quantum signer contracts in place). Re-read threshold, owners, version, singleton, guard and modules of all 48 Safes at block 26,431,566 and typed all 219 owners; corrected 0x2bf916f8 (Safe 1.5.0) and 0x0632dcc3 (implementation 0xd9db270c).

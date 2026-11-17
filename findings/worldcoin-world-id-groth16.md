@@ -98,22 +98,20 @@ fix:
   protocol_change: not-needed
 evidence:
   level: source-read
-  links:
-  - evidence/worldcoin-world-id-groth16/classification.jsonl
-  - evidence/worldcoin-world-id-groth16/onchain.json
-  - evidence/worldcoin-world-id-groth16/activity.json
-  - evidence/worldcoin-world-id-groth16/source-excerpts.md
-  - evidence/worldcoin-world-id-groth16/escrow.json
+  block: 26431214
+  raw: https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/worldcoin-world-id-groth16
 sources:
 - by: ai-assisted
+  study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
-  ref: data/curation/out_1.jsonl,out_2.jsonl,out_3.jsonl,out_5.jsonl
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_1.jsonl,out_2.jsonl,out_3.jsonl,out_5.jsonl
   date: 2026-11-04
   verdict: reported
   rating: ''
 - by: ai-assisted
+  study: top-callers-classification
   who: Review16 (verified source of WorldIDIdentityManagerImplV2, WorldIDRouterImplV1, VerifierLookupTable, SemaphoreVerifier; on-chain reads; Xatu scan for consumers)
-  ref: evidence/worldcoin-world-id-groth16/escrow.json
+  ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/worldcoin-world-id-groth16/escrow.json
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
@@ -151,8 +149,8 @@ swap verifiers or upgrade the managers), step 5 lowers it for a measured exposur
   (`Ownable2Step`) `addVerifier`/`updateVerifier`/`disableVerifier` are `onlyOwner`; managers and router are UUPS
   proxies.
 
-Pattern PQ-7. Source excerpts: [`source-excerpts.md`](../evidence/worldcoin-world-id-groth16/source-excerpts.md);
-all reads: [`escrow.json`](../evidence/worldcoin-world-id-groth16/escrow.json).
+Pattern PQ-7. Source excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/worldcoin-world-id-groth16/source-excerpts.md);
+all reads: [`escrow.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/worldcoin-world-id-groth16/escrow.json).
 
 ## Evidence
 
@@ -180,7 +178,7 @@ all reads: [`escrow.json`](../evidence/worldcoin-world-id-groth16/escrow.json).
 - CHECKED (holdings, block 26,431,214/26,431,535 and Blockscout 2026-11-17): verifiers, router and managers hold
   0 ETH; the managers hold only 1 HEX of spam (USD 0.0005).
 - CHECKED (Xatu, 2026-10-16 to 2026-11-16): batch verifier activity in the table below
-  ([`activity.json`](../evidence/worldcoin-world-id-groth16/activity.json)).
+  ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/worldcoin-world-id-groth16/activity.json)).
 - INFERRED (not read on mainnet): World ID roots are relayed from these managers to L2s (World Chain, Optimism,
   Base) by state-bridge contracts, and WLD grants (RecurringGrantDrop) and most World ID apps run on those L2s with
   their own Groth16 verifiers; those are outside this mainnet registry.
@@ -226,6 +224,6 @@ calls), `0x805dd45f…` (insertion 1200, 45 calls, last block 24,284,180), `0x49
 
 ## History
 
-- 2026-11-04: classified from verified source or bytecode (hand classification pass; `data/curation/`).
+- 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review16): MEDIUM -> LOW, step 5: step 4 stays MEDIUM (Safe 0xc534a745, 4 of 6, must swap verifiers or upgrade the UUPS managers/router), but the measured exposure is USD 0: no mainnet transaction has consumed a membership proof since 2023-08-22 and batch updates are `onlyIdentityOperator`. Added the three SemaphoreVerifiers (the membership-proof verifiers), mapped each batch verifier to its group and lookup table, set impact `none` and fix.layer `contract-upgrade`.
