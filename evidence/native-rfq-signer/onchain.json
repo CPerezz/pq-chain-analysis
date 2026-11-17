@@ -1,0 +1,182 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0xa540ec8c73322200d68e1b86c471a5c850854f22": {
+   "code_size": 12565,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x83fc28e6962e41e38f7854308eff827e3f6b906b",
+   "safe": null,
+   "controller_safe": {
+    "address": "0x83fc28e6962e41e38f7854308eff827e3f6b906b",
+    "threshold": 3,
+    "owners": [
+     "0x3f1dc467a002504030c0402e1b544a447be9d1e1",
+     "0x6044eef7179034319e2c8636ea885b37cbfa9aba",
+     "0xb3e1859e64a0001f7812017652f7ca0087398621",
+     "0x861c373ea4e04b1736e2aeadf68cd42fc0af28ee",
+     "0x011c99220db1b61d535e4615710cacf158f9911f"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 0.0019995872940000003,
+   "top_tokens": [
+    [
+     "USDT",
+     0
+    ]
+   ],
+   "held_usd": 0
+  },
+  "0x5d1a34369686ae59ac97ae4e1df5635ffda9ee7c": {
+   "code_size": 9478,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x83fc28e6962e41e38f7854308eff827e3f6b906b",
+   "safe": null,
+   "controller_safe": {
+    "address": "0x83fc28e6962e41e38f7854308eff827e3f6b906b",
+    "threshold": 3,
+    "owners": [
+     "0x3f1dc467a002504030c0402e1b544a447be9d1e1",
+     "0x6044eef7179034319e2c8636ea885b37cbfa9aba",
+     "0xb3e1859e64a0001f7812017652f7ca0087398621",
+     "0x861c373ea4e04b1736e2aeadf68cd42fc0af28ee",
+     "0x011c99220db1b61d535e4615710cacf158f9911f"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  },
+  "0x8a2ddc0461fcf96f81a05529bed540d4f1eb2a00": {
+   "code_size": 15637,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x83fc28e6962e41e38f7854308eff827e3f6b906b",
+   "safe": null,
+   "controller_safe": {
+    "address": "0x83fc28e6962e41e38f7854308eff827e3f6b906b",
+    "threshold": 3,
+    "owners": [
+     "0x3f1dc467a002504030c0402e1b544a447be9d1e1",
+     "0x6044eef7179034319e2c8636ea885b37cbfa9aba",
+     "0xb3e1859e64a0001f7812017652f7ca0087398621",
+     "0x861c373ea4e04b1736e2aeadf68cd42fc0af28ee",
+     "0x011c99220db1b61d535e4615710cacf158f9911f"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 0.001465894,
+   "top_tokens": [
+    [
+     "USDT",
+     0
+    ],
+    [
+     "HEX",
+     0
+    ]
+   ],
+   "held_usd": 0
+  },
+  "0xc419e67388df0c0cfad15584fc5fc7e67a234c17": {
+   "code_size": 9478,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x83fc28e6962e41e38f7854308eff827e3f6b906b",
+   "safe": null,
+   "controller_safe": {
+    "address": "0x83fc28e6962e41e38f7854308eff827e3f6b906b",
+    "threshold": 3,
+    "owners": [
+     "0x3f1dc467a002504030c0402e1b544a447be9d1e1",
+     "0x6044eef7179034319e2c8636ea885b37cbfa9aba",
+     "0xb3e1859e64a0001f7812017652f7ca0087398621",
+     "0x861c373ea4e04b1736e2aeadf68cd42fc0af28ee",
+     "0x011c99220db1b61d535e4615710cacf158f9911f"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  },
+  "0x0f9f2366c6157f2acd3c2bfa45cd9031c152d2cf": {
+   "code_size": 12475,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x83fc28e6962e41e38f7854308eff827e3f6b906b",
+   "safe": null,
+   "controller_safe": {
+    "address": "0x83fc28e6962e41e38f7854308eff827e3f6b906b",
+    "threshold": 3,
+    "owners": [
+     "0x3f1dc467a002504030c0402e1b544a447be9d1e1",
+     "0x6044eef7179034319e2c8636ea885b37cbfa9aba",
+     "0xb3e1859e64a0001f7812017652f7ca0087398621",
+     "0x861c373ea4e04b1736e2aeadf68cd42fc0af28ee",
+     "0x011c99220db1b61d535e4615710cacf158f9911f"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  },
+  "0x9af2f3c0cd35283e13f7087e2b34b1444b57a44c": {
+   "code_size": 9381,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x83fc28e6962e41e38f7854308eff827e3f6b906b",
+   "safe": null,
+   "controller_safe": {
+    "address": "0x83fc28e6962e41e38f7854308eff827e3f6b906b",
+    "threshold": 3,
+    "owners": [
+     "0x3f1dc467a002504030c0402e1b544a447be9d1e1",
+     "0x6044eef7179034319e2c8636ea885b37cbfa9aba",
+     "0xb3e1859e64a0001f7812017652f7ca0087398621",
+     "0x861c373ea4e04b1736e2aeadf68cd42fc0af28ee",
+     "0x011c99220db1b61d535e4615710cacf158f9911f"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  },
+  "0xa42c9f74ac8cb3d957ec1bd1c96b9ccecc1950aa": {
+   "code_size": 16333,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x83fc28e6962e41e38f7854308eff827e3f6b906b",
+   "safe": null,
+   "controller_safe": {
+    "address": "0x83fc28e6962e41e38f7854308eff827e3f6b906b",
+    "threshold": 3,
+    "owners": [
+     "0x3f1dc467a002504030c0402e1b544a447be9d1e1",
+     "0x6044eef7179034319e2c8636ea885b37cbfa9aba",
+     "0xb3e1859e64a0001f7812017652f7ca0087398621",
+     "0x861c373ea4e04b1736e2aeadf68cd42fc0af28ee",
+     "0x011c99220db1b61d535e4615710cacf158f9911f"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  }
+ }
+}

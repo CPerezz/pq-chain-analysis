@@ -1,0 +1,40 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x88649f4743a758171077b98ee2003f1989b1615a": {
+   "code_size": 130,
+   "kind": "eip1967",
+   "implementation": "0x471a8de3eec36775d230070f9704cc86bf0f360d",
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 0.001000000000000013,
+   "tokens_usd": 622814.5227905639,
+   "top_tokens": [
+    [
+     "USDT",
+     565871
+    ],
+    [
+     "USDC",
+     56877
+    ],
+    [
+     "XAUT",
+     63
+    ],
+    [
+     "RFUEL",
+     4
+    ],
+    [
+     "ZIK",
+     0
+    ]
+   ],
+   "held_usd": 622816
+  }
+ }
+}

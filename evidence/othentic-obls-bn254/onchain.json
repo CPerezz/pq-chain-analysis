@@ -1,0 +1,20 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x08525854f4974054efd772d0f203abd77a199a95": {
+   "code_size": 295,
+   "kind": "beacon",
+   "implementation": "0xc7172c5dc062dedfaed4a91be7ae2f7c96b4b9aa",
+   "admin": null,
+   "beacon": "0x8f13034feab511161b833dadc8e23c6892e07ea4",
+   "owner": null,
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  }
+ }
+}

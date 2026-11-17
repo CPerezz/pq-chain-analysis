@@ -1,0 +1,39 @@
+{
+ "block": 26431536,
+ "as_of": "2026-11-17",
+ "clone": "0x28be6260dbb7872de5effc9a4a73c85b7405a8c0",
+ "eip1167_target": "0x11077eddfc6db5abfdb9e019a64172b5d8e81a3a (LegionPreLiquidSaleV2, verified on Sourcify)",
+ "creation_tx": "0xd1867eeb512f650046af791087b6083e84bec54ba9d4c53d256d7a4b096e77d0",
+ "LegionAddressesSynced_at_creation": {
+  "legionBouncer": "0x4a7aca57a685c9e893f60a716415e5e588500533 (LegionBouncer contract, verified)",
+  "legionSigner": "0x18eafffa3238251e5cdd1293e61218849fd64916 (EOA, no code, nonce 0)",
+  "legionFeeReceiver": "0x17c61f4a7f41b96eb9c0d8805255b8411387c63b",
+  "vestingFactory": "0x7832d6730aa93f6954ca158e392b21d0a95e9e5f"
+ },
+ "saleConfiguration()": {
+  "startTime": "1759151291 (2025-09-29)",
+  "endTime": "1759922579 (2025-10-08)",
+  "refundEndTime": "1761132179 (2025-10-22)",
+  "lockupEndTime": "1761132179",
+  "legionFeeOnCapitalRaisedBps": 250,
+  "legionFeeOnTokensSoldBps": 250
+ },
+ "saleStatusDetails()": {
+  "totalCapitalInvested": "5222545005000 (5,222,545.005 USDC)",
+  "totalTokensAllocated": 0,
+  "totalCapitalRaised": 0,
+  "totalCapitalWithdrawn": 0,
+  "claimTokensMerkleRoot": "0x0",
+  "acceptedCapitalMerkleRoot": "0x6989716c0e954b527a4f4d746242653a17b2d1f6e7d58eabbfaa612309acf5d9",
+  "isCanceled": false,
+  "tokensSupplied": false,
+  "capitalWithdrawn": false
+ },
+ "preLiquidSaleConfiguration()": {
+  "refundPeriodSeconds": 1209600,
+  "lockupPeriodSeconds": 3600,
+  "hasEnded": true
+ },
+ "USDC_balanceOf_block_26431597": "527696797686 (527,696.80 USDC)",
+ "precompile_trace": "64,450 transactions with ecrecover, blocks 23,469,130 (2025-09-29) to 23,761,386 (2025-11-09)"
+}

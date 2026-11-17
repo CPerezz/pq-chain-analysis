@@ -1,0 +1,51 @@
+{
+ "block_note": "Blockscout balances read 2026-11-17 (chain head ~26431454)",
+ "escrow": "0x5fbe74a283f7954f10aa04c2edf55578811aeb03",
+ "escrow_name": "UCS03Zkgm (ERC1967Proxy)",
+ "eth": 0.0,
+ "tokens": [
+  {
+   "symbol": "UNIBTC",
+   "amount": 0.07447697,
+   "usd": 5228.21,
+   "token": "0x004E9C3EF86bc1ca1f0bB5C7662861Ee93350568"
+  },
+  {
+   "symbol": "U",
+   "amount": 63898501.16195977,
+   "usd": 3961.07,
+   "token": "0xba5eD44733953d79717F6269357C77718C8Ba5ed"
+  },
+  {
+   "symbol": "LBTC",
+   "amount": 0.01858783,
+   "usd": 1202.58,
+   "token": "0x8236a87084f8B84306f72007F36F2618A5634494"
+  },
+  {
+   "symbol": "SOLVBTC",
+   "amount": 0.013277523049018115,
+   "usd": 848.27,
+   "token": "0x7A56E1C57C7475CCf742a1832B028F0456652F97"
+  },
+  {
+   "symbol": "WETH",
+   "amount": 0.3432815633213598,
+   "usd": 622.96,
+   "token": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+  },
+  {
+   "symbol": "EBTC",
+   "amount": 0.000105,
+   "usd": 6.8,
+   "token": "0x657e8C867D8B37dCC18fA4Caead9C45EB088C642"
+  },
+  {
+   "symbol": "XSOLVBTC",
+   "amount": 4e-06,
+   "usd": 0.26,
+   "token": "0xd9D920AA40f578ab794426F5C90F6C731D159DEf"
+  }
+ ],
+ "tokens_usd": 11870.14
+}

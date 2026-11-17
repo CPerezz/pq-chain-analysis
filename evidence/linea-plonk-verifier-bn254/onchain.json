@@ -1,0 +1,91 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x8f8ec9608223c0b8d13238950c03f5d42ceebb9b": {
+   "code_size": 9060,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  },
+  "0x9473c37a9fe76fbbc3fd7d3b59e1b550415bd873": {
+   "code_size": 9060,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  },
+  "0xed39c0c41a7651006953ab58ecb3039363620995": {
+   "code_size": 9056,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  },
+  "0xa12e79c375fb0aaddfda597bbe7b4e9a92e9b3de": {
+   "code_size": 9060,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  },
+  "0x814d80782aa8c508ababe9c6956d8f1f90e5177a": {
+   "code_size": 9060,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  },
+  "0xbff4a03a355eef7da720bbc7878f9bdbbe81fe6f": {
+   "code_size": 8695,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  },
+  "0x41a4d93d09f4718fe899d12a4ad2c8a09104bdc7": {
+   "code_size": 9058,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  }
+ }
+}

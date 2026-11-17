@@ -1,0 +1,40 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x6b175474e89094c44da98b954eedeac495271d0f": {
+   "code_size": 7904,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 4459958.248923698,
+   "top_tokens": [
+    [
+     "DAI",
+     4436920
+    ],
+    [
+     "USDC",
+     12351
+    ],
+    [
+     "USDT",
+     10265
+    ],
+    [
+     "CDAI",
+     290
+    ],
+    [
+     "WBTC",
+     66
+    ]
+   ],
+   "held_usd": 4459958
+  }
+ }
+}

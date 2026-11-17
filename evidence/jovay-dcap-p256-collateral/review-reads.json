@@ -1,0 +1,137 @@
+{
+ "note": "reads by reviewer Review22, 2026-11-17 (RPC latest unless a block is given)",
+ "block": 26431981,
+ "jovay": {
+  "source": "docs.jovay.io/developer/network-information: chain 5734951, L1 bridge 0x922248db\u2026, L1 ERC20 bridge 0xbb2517a6\u2026",
+  "Rollup proxy 0xe0a28b8918a62edb825055221a1df12c7c81bac1": {
+   "tee_verifier": "0xA7aded125cB4663C0DdB1A563D03dF158B191C0b",
+   "zk_verifier": "0xb941A92539a214426e3350A61AaA9AA55c5bA2ff",
+   "mode": "0",
+   "layer2ChainId": "5734951 [5.734e6]",
+   "owner": "0xA1e7758a84B40Ba7AA1a80b3D3096E918A7950bB",
+   "lastFinalizedBatchIndex": "10106 [1.01e4]",
+   "lastTeeVerifiedBatch": "10106 [1.01e4]",
+   "lastZkVerifiedBatch": "0",
+   "paused": "false",
+   "l1_mail_box": "0x9869A90FDAc287519E48aff4cCE329907a995162",
+   "lastFinalizedTimestamp": "1794883151 [1.794e9]",
+   "CONTRACT_VERSION": "\"0.15.0-beta03\"",
+   "admin": "0xe2f33bd70b301f53f61cb7b22d852bc8e3d95e2b"
+  },
+  "L1ETHBridge proxy 0x922248db4a99bb542539ae7165fb9d7a546fb9f1": {
+   "rollup": "0xe0a28b89\u2026",
+   "mailBox": "0x9869a90f\u2026",
+   "owner": "0xa1e7758a\u2026",
+   "eth": "0",
+   "tokens_usd": 0
+  },
+  "L1Mailbox proxy 0x9869a90fdac287519e48aff4cce329907a995162": {
+   "eth": "7.167413500663300000",
+   "tokens_usd": 0
+  },
+  "L1ERC20Bridge proxy 0xbb2517a6ab344e01daee71f59d64bdef3c42911d": {
+   "tokens_usd": 0
+  },
+  "ProxyAdmin 0xe2f33bd70b301f53f61cb7b22d852bc8e3d95e2b owner": "0x4815b8773E6686d0b6Ee16191Aef1ae6c50d6B77 (TransparentUpgradeableProxy; implementation 0x3d99cac6\u2026, not a Safe)",
+  "deployer/owner 0xa1e7758a84b40ba7aa1a80b3d3096e918a7950bb": "EOA (no code); owner of Rollup, bridges, DCAP routers, AutomataDcapAttestationFee, PCCSRouter, AutomataDaoStorage"
+ },
+ "live_tee_path": {
+  "DCAPAttestationRouter 0xa7aded125cb4663c0ddb1a563d03df158b191c0b": {
+   "dcapAttestation": "0x5D3009d5cD6aEdf5f49873a5fb094514Ba31480F",
+   "owner": "0xA1e7758a84B40Ba7AA1a80b3D3096E918A7950bB"
+  },
+  "AutomataDcapAttestationFee 0x5d3009d5cd6aedf5f49873a5fb094514ba31480f": {
+   "owner": "0xA1e7758a84B40Ba7AA1a80b3D3096E918A7950bB",
+   "quoteVerifier v4": "0x8fC21fFd4222427D526DCdAe18e8ACA0E0690a00",
+   "quoteVerifier v5": "0xCC710c10A27Aa1F4Efc37D02b2A620fA26125Ed7",
+   "P256_VERIFIER": "0x0000000000000000000000000000000000000100",
+   "pccsRouter": "0x3A8e4A1379b7E80e7A76557041D85984f0022019"
+  },
+  "trace verifyBatch tx 0x2c70b465481bf7f8c8ef42ffdbb112356d9cd41a0211bbd334b674b2fe1b074e (2026-11-17)": "Rollup.verifyBatch -> DCAPAttestationRouter.verifyProof -> MeasurementRegistry 0x835bbb2d.verifyMeasurementTDX -> TEECacheVerifier 0xea9363d7.parseAttestationKey / contains (cached attestation key) / verifyAndAttestOnChain -> P256VERIFY precompile 0x100"
+ },
+ "old_path_using_0x78337799": {
+  "DcapAttestationRouter 0x238f4dafc22013a864f85a54e276ac99975566fa dcapAttestation": "0xb3a96165caf30F8F7cE9BCfdaaAe99BA93C1A6F9",
+  "AutomataDcapAttestationFee 0xb3a96165 quote verifiers": {
+   "old_fee_qv3": "0x5b0Fe3DfF4b12479664Cf85951C813641C9deB31",
+   "old_fee_qv3_P256": "0x783377992FCA09009eaD952D4fBa6519e25726b4",
+   "old_fee_qv3_pccs": "0x2857B2EA9eDB2688675cF0F5D9188b8E82418bFA",
+   "old_fee_qv4": "0x883D6d9A21747aD0F5DF5e538C071236EDD1A4EA",
+   "old_fee_qv4_P256": "0x783377992FCA09009eaD952D4fBa6519e25726b4",
+   "old_fee_qv4_pccs": "0x2857B2EA9eDB2688675cF0F5D9188b8E82418bFA",
+   "old_fee_qv5": "0x878AAE2015c258367F7c2C9024Aa68795ac4ba58",
+   "old_fee_qv5_P256": "0x783377992FCA09009eaD952D4fBa6519e25726b4",
+   "old_fee_qv5_pccs": "0x2857B2EA9eDB2688675cF0F5D9188b8E82418bFA"
+  },
+  "PCCS (deployed 2025-09-20, block 23404839-23404868)": {
+   "block": 26431961,
+   "0xee73475ba0f853a5eaf44f6cdf1b895d09925ebd": {
+    "P256_VERIFIER": "0x783377992FCA09009eaD952D4fBa6519e25726b4",
+    "resolver": "0x983ad4E3C1786BE9fA440C43a5B8B293b67Ce28F",
+    "owner": "Error: server returned an error response: error code 3: execution reverted, data: \"0x\"",
+    "x509": "0x547Cf6836E5882d632A446a0E2E8BbFc2f44814C"
+   },
+   "0x5ecf7a66f816872c315bbf1ff6141df35597cf4b": {
+    "P256_VERIFIER": "0x783377992FCA09009eaD952D4fBa6519e25726b4",
+    "resolver": "0x983ad4E3C1786BE9fA440C43a5B8B293b67Ce28F",
+    "owner": "Error: server returned an error response: error code 3: execution reverted, data: \"0x\"",
+    "x509": "0x547Cf6836E5882d632A446a0E2E8BbFc2f44814C"
+   },
+   "0xb22d72dfbafe1f7579be56c73ba74994a06d8e77": {
+    "P256_VERIFIER": "0x783377992FCA09009eaD952D4fBa6519e25726b4",
+    "resolver": "0x983ad4E3C1786BE9fA440C43a5B8B293b67Ce28F",
+    "owner": "Error: server returned an error response: error code 3: execution reverted, data: \"0x\"",
+    "x509": "0x547Cf6836E5882d632A446a0E2E8BbFc2f44814C"
+   },
+   "0x983ad4e3c1786be9fa440c43a5b8b293b67ce28f": {
+    "owner": "0xA1e7758a84B40Ba7AA1a80b3D3096E918A7950bB",
+    "paused": "false"
+   }
+  },
+  "AutomataDaoStorage 0x983ad4e3 authorization events": [
+   {
+    "block": 23404868,
+    "kind": "reader",
+    "address": "0x2857b2ea9edb2688675cf0f5d9188b8e82418bfa"
+   },
+   {
+    "block": 23404851,
+    "kind": "writer(DAO)",
+    "address": "0xb22d72dfbafe1f7579be56c73ba74994a06d8e77"
+   },
+   {
+    "block": 23404850,
+    "kind": "writer(DAO)",
+    "address": "0xee73475ba0f853a5eaf44f6cdf1b895d09925ebd"
+   },
+   {
+    "block": 23404848,
+    "kind": "writer(DAO)",
+    "address": "0xa6d7ceae318c3feff8d02304f58bc0375692341c"
+   },
+   {
+    "block": 23404847,
+    "kind": "writer(DAO)",
+    "address": "0x5ecf7a66f816872c315bbf1ff6141df35597cf4b"
+   },
+   {
+    "block": 23404840,
+    "kind": "reader",
+    "address": "0x0000000000000000000000000000000000000000"
+   }
+  ],
+  "PCCSRouter 0x2857b2ea": {
+   "owner": "0xa1e7758a\u2026",
+   "fmspcTcbDao": "0xee73475b\u2026",
+   "pcsDao": "0x5ecf7a66\u2026",
+   "qeIdDao": "0xb22d72df\u2026",
+   "pckDao": "0xa6d7ceae\u2026"
+  },
+  "calls to 0x78337799 since block 24,700,000": "3 txs (Xatu): upsertEnclaveIdentity on 0xb22d72df, upsertFmspcTcb on 0xee73475b, upsertPckCrl on 0x5ecf7a66; last 2026-03-25 block 24733336 tx 0x65220ac40aad109e83b445952c145bc146cb1126aabae96beffbcb39880b0020",
+  "txs_y1 (curated_contracts.csv)": 3958
+ },
+ "new_pccs_2026_03": {
+  "FmspcTcbDao 0x4731d06e": "P256_VERIFIER 0x100, resolver 0x3b5d2d91",
+  "EnclaveIdentityDao 0x8ae9d48f": "P256_VERIFIER 0x100",
+  "PcsDao 0x4ab85b12": "P256_VERIFIER 0x100"
+ }
+}

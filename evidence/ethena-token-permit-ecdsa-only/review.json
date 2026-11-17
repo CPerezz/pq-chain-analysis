@@ -1,0 +1,54 @@
+{
+ "reviewer": "Review10",
+ "date": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "block": 26431494,
+ "reads": {
+  "sENA proxy 0x8be3460a480c80728a8c4d7a5d5303c85ba7b3b9": {
+   "eip1967.implementation": "0x7fd57b46ae1a7b14f6940508381877ee03e1018b",
+   "eip1967.admin": "0xf849d7792ff9b30a57656ee10a2776bcb49f4fe4",
+   "totalSupply": "945491608593774073631920064"
+  },
+  "ProxyAdmin 0xf849d7792ff9b30a57656ee10a2776bcb49f4fe4": {
+   "owner()": "0x3b0aaf6e6fcd4a7ceef8c92c32dfea9e64dc1862"
+  },
+  "Safe 0x3b0aaf6e6fcd4a7ceef8c92c32dfea9e64dc1862": {
+   "getThreshold()": 5,
+   "owners": 10
+  },
+  "USDe 0x4c9edd5852cd905f086c759e8383e09bff1e68b3": {
+   "totalSupply": "4874948212940067595823503861",
+   "owner()": "0xe8dc0fab349ea169283c48ccfd09d797e6db7c94"
+  },
+  "sUSDe 0x9d39a5de30e57443bff2a8307a4256c8797a3497": {
+   "totalSupply": "939250593660521386992571200",
+   "totalAssets()": "1182196428486019842592474856"
+  }
+ },
+ "blockscout_market_caps_2026-11-17": {
+  "USDE": 4853105840,
+  "SUSDE": 1181500848,
+  "SENA": 109914767
+ },
+ "reads_usdtb": {
+  "block": 26431788,
+  "USDtb proxy 0xc139190f447e929f090edeb554d95abb8b18ac1c": {
+   "eip1967.implementation": "0x9d6d77a21702b9afcf924983fbfb84aaaae79589 (AnchorageTokenUSDtb, Sourcify; inherits OZ v4 ERC20PermitUpgradeable, no permit override)",
+   "eip1967.admin": "0x3c405f68d5c6ece868e5646cac926679839acd68",
+   "totalSupply": "318164251456182572000000000"
+  },
+  "ProxyAdmin 0x3c405f68d5c6ece868e5646cac926679839acd68": {
+   "owner()": "0xd93826bb299765c87d13aeba2a7e5d9b27a03956 (no code)"
+  },
+  "blockscout": {
+   "circulating_market_cap": 317905055,
+   "exchange_rate": 0.999192,
+   "holders": 293761,
+   "last_tx": "2026-11-16"
+  },
+  "trace_y1": {
+   "ecrecover_txs": 594,
+   "last_block": 24682757
+  }
+ }
+}

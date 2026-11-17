@@ -1,0 +1,24 @@
+{
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "note": "cast reads by reviewer Review22, 2026-11-17",
+ "reads": {
+  "block": 26431523,
+  "memecoin_owner": "0x06b1BA8c14D3DD9486012D2Bc962a5A58eC6eaA7",
+  "memecoin_tokenPool": "0x32C1F663919102Dc032Dc3C22FE434Af686f3b15",
+  "delegate_owner": "0x873bcbC76C0970E47933CD9f0Ad326F8cadD5AeB",
+  "delegate_authorized": "[0xC059A531B4234D05E9ef4ac51028F7E6156E2CCe, 0x71a41517Fe65890fE835d67fce17a9747112696C]",
+  "delegate_memecoin": "0xb131f4A55907B10d1F0A50d8ab8FA09EC342cd74",
+  "0x06b1ba8c14d3dd9486012d2bc962a5a58ec6eaa7": {
+   "threshold": "2",
+   "owners": "[0xA473496dD4fDb711Ab6cEf5df201A2114095c751, 0x34Ce7b3624E432dDa75707aF3eCC159fD926EfE1, 0x9470e8D5b2143750dDac74cdc3929F98deC4135a]"
+  },
+  "0x873bcbc76c0970e47933cd9f0ad326f8cadd5aeb": {
+   "threshold": "2",
+   "owners": "[0x31D0590bEf8E06b6dFe73E22d27a0B5BeaF2Cc79, 0xDd8F79957ECd97A703d67935196ACa93C68E3A2D, 0x602fbc36215570d6EAcd86E5aA0b74f05E1e7780]"
+  },
+  "staking_impl": "0x000000000000000000000000319e9a7a3d4cf01625379e3c75ef7ae2e70960b2",
+  "staking_owner": "0x549F4b7a62BE75D34F7455C4581C513ef692F903",
+  "totalSupply": "69000000000000000000000000000 [6.9e28]",
+  "staking_upgrader": "0x0000000000000000000000000000000000000000"
+ }
+}

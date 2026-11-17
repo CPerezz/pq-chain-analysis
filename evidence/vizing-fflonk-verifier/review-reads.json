@@ -1,0 +1,50 @@
+{
+ "block": 26431457,
+ "date": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "method": "cast call / eth_getStorageAt at the block; Blockscout v2 API for creators, logs and token balances",
+ "reads": {
+  "0x283286888a834a60fb0ded64bfbc246ab175950b": {
+   "name": "TransparentUpgradeableProxy -> CDKValidium 0xe2c688df3f4569d0f510553f94b47eb32cf9d177",
+   "networkName()": "Vizing Mainnet",
+   "trustedSequencerURL()": "https://rpc.vizing.com",
+   "chainID()": 28518,
+   "forkID()": 6,
+   "rollupVerifier()": "0x985e89135fb4968bca0db46422dc1ed31b985d52",
+   "admin()": "0xcfaa0033c766d95190e612f52009a87cf8eacadd (EOA)",
+   "trustedSequencer()": "0x416b8cb5766f44db355206e11919a4dddd338617",
+   "trustedAggregator()": "0xdc543a9cc856717cedf796cfce32a0bfa010a510",
+   "trustedAggregatorTimeout()": 604799,
+   "lastBatchSequenced()": 69633,
+   "lastVerifiedBatch()": 69633,
+   "isEmergencyState()": false,
+   "dataCommitteeAddress()": "0xdd9eb731a15db512093925499a93ae9ba75ac972",
+   "bridgeAddress()": "0x44db454c15846c5521d4c9581b31b5c359518c73",
+   "eip1967_admin": "0xe9175f66c79664114a7aa8c86997b74c5775e1af (ProxyAdmin)",
+   "last txs": "2026-03-25 sequenceBatches / verifyBatchesTrustedAggregator"
+  },
+  "0xe9175f66c79664114a7aa8c86997b74c5775e1af": {
+   "owner()": "0x1ef0eff8cdb4df5ced75a3afd7c6e71e03568cac (CDKValidiumTimelock)"
+  },
+  "0x1ef0eff8cdb4df5ced75a3afd7c6e71e03568cac": {
+   "getMinDelay()": 86400,
+   "PROPOSER_ROLE": "0x8ae7370cdbd0382d82e171dee7186c65348df287 (EOA)",
+   "EXECUTOR_ROLE": "0x7932a59d1b92d4be1b7f968e24157cde7a85a35b (EOA)",
+   "TIMELOCK_ADMIN_ROLE": "0xcfaa0033c766d95190e612f52009a87cf8eacadd (EOA) and itself (RoleGranted logs at block 19474791)"
+  },
+  "0x44db454c15846c5521d4c9581b31b5c359518c73": {
+   "name": "TransparentUpgradeableProxy -> PolygonZkEVMBridge 0x67037d1a56b755de5cd18a3d0a81027238ee6d60",
+   "proxy admin": "0xe9175f66\u2026 (same ProxyAdmin)",
+   "ETH": 0.07694278,
+   "tokens": "20 USDC, 6 USDT, dust",
+   "total_usd": "~165 (ETH at $1,811.62)",
+   "last txs": "2026-03-25 claimAsset"
+  },
+  "trace": {
+   "tx": "0xbd34eb33e025a30b9658c2b785051ebd56bacde4c29952c28058171788f3ac13",
+   "block": 24732176,
+   "path": "trustedAggregator 0xdc543a9c\u2026 -> proxy 0x28328688\u2026.verifyBatchesTrustedAggregator (0x2b0006fa) -> delegatecall CDKValidium 0xe2c688df\u2026 -> STATICCALL FflonkVerifier 0x985e8913\u2026.verifyProof (0x9121da8a) -> ecMul/ecAdd/ecPairing precompiles"
+  },
+  "creator": "CDKValidium 0xe2c688df\u2026 and FflonkVerifier created by 0x661d94814db578ddea934d3b438f588f397a72a3"
+ }
+}

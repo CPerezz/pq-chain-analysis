@@ -1,0 +1,41 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x807cf9a772d5a3f9cefbc1192e939d62f0d9bd38": {
+   "code_size": 2673,
+   "kind": "eip1967",
+   "implementation": "0xbe4e645caaae7c1d0874bb8d1c8d337f31d79dd8",
+   "admin": "0x291baf88f60e8f83de7568ae56280a3e29ac725e",
+   "owner": "0xbc33a1f908612640f2849b56b67a4de4d179c151",
+   "safe": null,
+   "admin_owner": "0xbc33a1f908612640f2849b56b67a4de4d179c151",
+   "eth": 5.8999999999522e-05,
+   "tokens_usd": 152.3318542656863,
+   "top_tokens": [
+    [
+     "RENDER",
+     49
+    ],
+    [
+     "ETHFI",
+     37
+    ],
+    [
+     "LOOM",
+     22
+    ],
+    [
+     "CHKN",
+     17
+    ],
+    [
+     "ANT",
+     13
+    ]
+   ],
+   "held_usd": 152
+  }
+ }
+}

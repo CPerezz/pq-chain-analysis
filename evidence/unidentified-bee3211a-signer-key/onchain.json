@@ -1,0 +1,41 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0xbee3211ab312a8d065c4fef0247448e17a8da000": {
+   "code_size": 1855,
+   "kind": "eip1967",
+   "implementation": "0xe89e1c84076dbd917f6d71608db579d3f4995487",
+   "admin": "0x29dfb2d5341fd10cb99f191970d8ac85948fbf44",
+   "owner": "0x97f7d4093e5bdd0776e2ca90c90124c5e16ca569",
+   "safe": null,
+   "admin_owner": "0x97f7d4093e5bdd0776e2ca90c90124c5e16ca569",
+   "eth": 0.0,
+   "tokens_usd": 10724261.515747642,
+   "top_tokens": [
+    [
+     "USDT",
+     4241006
+    ],
+    [
+     "WETH",
+     2752162
+    ],
+    [
+     "USDC",
+     2070191
+    ],
+    [
+     "BBTC",
+     298099
+    ],
+    [
+     "WBTC",
+     231390
+    ]
+   ],
+   "held_usd": 10724262
+  }
+ }
+}

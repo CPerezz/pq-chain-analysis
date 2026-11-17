@@ -1,0 +1,23 @@
+{
+ "block": 26431605,
+ "as_of": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "TransitSwapRouterV5 0x00000047bb99ea4d791bb749d970de71ee0b1a34": {
+  "transitProxyAddress()": {
+   "bridgeProxy": "0x9e836967d37b29066d451d214037244153fa4b61",
+   "feeSigner": "0x01c54379c4323844273a7ce865fbd94d77f78849 (code size 0: EOA)"
+  },
+  "transitFee()": {"aggregate_fee_bps": 30, "cross_fee_bps": 20},
+  "executor()": "0x7b570fec1f31a971d9fc77def3c3c17bd9440711",
+  "paused()": true,
+  "executor safe": {
+   "getThreshold()": 2,
+   "getOwners()": [
+    "0x490494393fb90599365c1303e486afe52bbab866",
+    "0x74f85fe5538dbfcf3b46399e121c3ba83f695f91",
+    "0xd989f7b4320c6e69cea3d914444c19ab67d3a35e"
+   ]
+  }
+ },
+ "source": "whenNotPaused appears once in each of AggregateRouter.sol, UniswapV2Router.sol, UniswapV3Router.sol, CrossRouter.sol (verified source, Sourcify)"
+}

@@ -83,6 +83,12 @@ h1 { font: 500 clamp(34px, 4.8vw, 56px)/1.06 var(--serif); letter-spacing: -.02e
 .r-verdict { margin-top: var(--s6); padding: var(--s1) 0 var(--s1) var(--s5); border-left: 4px solid var(--c); }
 .r-verdict .t { font: 500 24px/1.25 var(--serif); color: var(--c); }
 .r-verdict .s { font-size: 15px; color: var(--ink2); margin-top: var(--s2); max-width: var(--prose); }
+.r-finding { display: flex; gap: var(--s3); align-items: baseline; margin-top: var(--s5); padding: var(--s3) var(--s4); border: 1px solid var(--rule2); border-radius: 10px; text-decoration: none; color: var(--ink); }
+.r-finding:hover { border-color: var(--ink); }
+.sev { display: inline-block; font: 600 11.5px/1 var(--sans); letter-spacing: .06em; padding: 5px 8px; border-radius: 5px; color: #fff; white-space: nowrap; }
+.sev.CRITICAL { background: #7a1f16; } .sev.HIGH { background: var(--sole); } .sev.MEDIUM { background: var(--rot); }
+.sev.LOW { background: var(--ver); } .sev.NONE { background: var(--alt); } .sev.UNRATED { background: var(--muted); }
+.r-finding .ft { font-size: 14.5px; line-height: 1.4; } .r-finding .ft small { display: block; color: var(--muted); font-size: 12.5px; margin-top: 2px; }
 .r-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s5); margin-top: var(--s6); }
 .r-facts > div { border-top: 1px solid var(--rule); padding-top: var(--s3); }
 .r-facts .k { font-size: 12px; color: var(--muted); margin-bottom: var(--s1); }
@@ -458,6 +464,15 @@ const FUNC = {
 const SIGNER = { end_user: ['User signs', '--ink'], protocol_operator_single_key: ['Operator key', '--rot'], committee_multisig_threshold: ['Committee', '--ver'], prover_proof: ['Proof', '--alt'], mixed: ['Mixed', '--muted'], unknown: ['Unknown', '--muted'] };
 
 const dataP = fetch('data.json').then(r => r.json());
+let FIND = null;
+dataP.then(D => { FIND = D; });
+const REPO = 'https://github.com/kevaundray/pq-chain-analysis/blob/main/';
+function findingBadge(a) {
+  const id = FIND?.finding_of?.[a], f = id && FIND.findings[id];
+  if (!f) return '';
+  return `<a class="r-finding" href="${REPO}findings/${id}.md" target="_blank" rel="noopener"><span class="sev ${f.severity}">${f.severity}</span>` +
+    `<span class="ft">${esc(f.title)}<small>Finding <span class="mono">${id}</span> · ${f.status} · read the evidence, who can fix it, and the rating ↗</small></span></a>`;
+}
 
 // ======================= lookup =======================
 const ADDR_RE = /^(0x)?[0-9a-fA-F]{40}$/;
@@ -678,6 +693,7 @@ function renderResult(a, meta, fams, rec, cur, live, tgtRec, label) {
   let h = `<div class="r-head"><div><div class="r-name">${esc(name)}</div><div class="r-addr">${a}</div></div>
     <div class="r-links"><a href="https://etherscan.io/address/${a}" target="_blank" rel="noopener">Etherscan ↗</a><button type="button" id="lkCopy">Copy link</button></div></div>
     <div class="r-verdict" style="--c: var(${col === '--ink' ? '--ink' : col})"><div class="t">${title}</div><div class="s">${sub}</div></div>
+    ${findingBadge(a)}
     <div class="r-facts">${facts.map(([k, v]) => `<div><div class="k">${k}</div><div class="v">${v}</div></div>`).join('')}</div>`;
 
   if (cats.length) h += `<div class="r-sec"><h3>What it used</h3><table class="r-use"><thead><tr><th>Primitive</th><th>Transactions, year</th><th class="hide-sm">Calls, all time</th><th class="hide-sm">First used</th><th>Last used</th></tr></thead><tbody>` +
@@ -938,13 +954,15 @@ dataP.then(D => {
   $('#nAll').textContent = all.length;
   for (const [id, labels] of [['#fRel', Object.fromEntries(Object.entries(REL).map(([k, v]) => [k, v[0]]))], ['#fUpg', UPG]])
     Object.entries(labels).forEach(([k, v]) => $(id).insertAdjacentHTML('beforeend', `<option value="${k}">${v}</option>`));
-  let sortKey = 'usd_tx_y1', dir = -1, showAll = false;
-  const COLS = [['protocol', 'Contract'], ['reliance', 'Reliance'], ['upgradeability', 'Code', 'hide-sm'], ['txs_y1', 'Transactions', 'n hide-sm'], ['usd_tx_y1', 'Value / year', 'n'], ['usd_held_now', 'Held', 'n hide-sm']];
+  const SEV_ORDER = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', 'NONE', 'UNRATED'];
+  for (const r of all) { r.severity = D.findings[D.finding_of[r.address]]?.severity || 'UNRATED'; r.sev_rank = SEV_ORDER.indexOf(r.severity); }
+  let sortKey = 'sev_rank', dir = 1, showAll = false;
+  const COLS = [['protocol', 'Contract'], ['sev_rank', 'Severity'], ['reliance', 'Reliance', 'hide-sm'], ['upgradeability', 'Code', 'hide-sm'], ['txs_y1', 'Transactions', 'n hide-sm'], ['usd_tx_y1', 'Value / year', 'n'], ['usd_held_now', 'Held', 'n hide-sm']];
   function render() {
     const q = $('#q').value.trim().toLowerCase(), fr = $('#fRel').value, fu = $('#fUpg').value, fk = $('#fKind').value;
     const list = all.filter(r => (!fk || (fk === 'acct') === r.is_account) && (!fr || r.reliance === fr) && (!fu || r.upgradeability === fu) &&
       (!q || [r.address, r.protocol, r.contract_name, r.evidence, r.pq_replacement, FUNC[r.function]].join(' ').toLowerCase().includes(q)));
-    list.sort((a, b) => { const x = a[sortKey], y = b[sortKey]; if (x == null) return 1; if (y == null) return -1; return (typeof x === 'number' ? x - y : String(x).localeCompare(String(y))) * dir; });
+    list.sort((a, b) => { const x = a[sortKey], y = b[sortKey]; if (x == null) return 1; if (y == null) return -1; const d = (typeof x === 'number' ? x - y : String(x).localeCompare(String(y))) * dir; return d || ((b.usd_tx_y1 || 0) - (a.usd_tx_y1 || 0)); });
     $('#exCount').textContent = `${list.length} contract${list.length === 1 ? '' : 's'}`;
     const shown = showAll || q ? list : list.slice(0, 20);
     $('#more').style.display = shown.length < list.length ? '' : 'none';
@@ -952,7 +970,7 @@ dataP.then(D => {
     $('#ext').innerHTML = '<thead><tr>' + COLS.map(([k, t, cls]) => `<th data-k="${k}" class="${cls || ''}">${t}${k === sortKey ? (dir < 0 ? ' ↓' : ' ↑') : ''}</th>`).join('') + '</tr></thead><tbody>' +
       shown.map(r => { const rel = REL[r.reliance] || ['—', '', '--muted'];
         return `<tr class="r" data-a="${r.address}"><td><span class="p">${esc(r.protocol)}</span><span class="f">${esc(FUNC[r.function] || r.function)}${r.confidence === 'low' ? ' · low confidence' : ''}</span></td>
-          <td><span class="dot" style="background:var(${rel[2]})"></span>${rel[0]}</td><td class="hide-sm">${UPG[r.upgradeability] || '—'}</td>
+          <td><span class="sev ${r.severity}">${r.severity}</span></td><td class="hide-sm"><span class="dot" style="background:var(${rel[2]})"></span>${rel[0]}</td><td class="hide-sm">${UPG[r.upgradeability] || '—'}</td>
           <td class="n hide-sm">${fmtN(r.txs_y1)}</td><td class="n">${fmtUSD(r.usd_tx_y1)}</td><td class="n hide-sm">${fmtUSD(r.usd_held_now)}</td></tr>`; }).join('') + '</tbody>';
     $('#ext').querySelectorAll('th').forEach(th => th.onclick = () => { const k = th.dataset.k; dir = k === sortKey ? -dir : (['txs_y1', 'usd_tx_y1', 'usd_held_now'].includes(k) ? -1 : 1); sortKey = k; render(); });
     $('#ext').querySelectorAll('tr.r').forEach(tr => tr.onclick = () => openLookup(tr.dataset.a));

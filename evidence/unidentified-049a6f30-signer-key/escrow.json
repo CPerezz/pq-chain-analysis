@@ -1,0 +1,87 @@
+{
+ "reviewer": "Review16",
+ "date": "2026-11-17",
+ "block": 26431537,
+ "block_timestamp": 1794879587,
+ "rpc": "https://ethereum-rpc.publicnode.com (eth_call at block 26431537); traces: https://eth.drpc.org debug_traceTransaction callTracer",
+ "contract": "0x049a6f30a91cdad18473739a69f957175acb83d3",
+ "creation": {
+  "creator": "0x9e9954856cb2082ce6e0e4bcc99bb3f6fcb37589",
+  "tx": "0x41ec9bbe2dc7381660440de3022cabea22fc70d92039a9a1fa738c3a53efce40",
+  "block": 20710032,
+  "date": "2024-09-09",
+  "constructor_args": ["0x595744b06ee5df7c88b65ef5894fae36f2fc4a59", "0xda01030801473ab96af1b6121251bad6f9dcb114"]
+ },
+ "creator_other_activity": {
+  "hashflow_pool": "0xfbf37e48236cecca4d48d2411e7fbd9e7c9742dc",
+  "hashflow_pool_name": "ant",
+  "hashflow_pool_operations": "0x9e9954856cb2082ce6e0e4bcc99bb3f6fcb37589",
+  "note": "creator called HashflowFactory 0xde828fdc… createPool (blocks 20647299, 20660525) and updateSigner on pool 0xfbf37e48 (block 20696073); also created unverified 0x0fa4d8d3cf667636d5794b6732674ba6d8717157 and 0xfb4251e39f92cabd66b68238d357f758e6f62951. No ENS, no Blockscout tags for creator, owner or admin."
+ },
+ "bytecode": {
+  "code_size": 3763,
+  "delegatecall": false,
+  "selectors_resolved": {
+   "0x1626ba7e": "isValidSignature(bytes32,bytes)",
+   "0x8da5cb5b": "owner()",
+   "0x299a7bcc": "setOwner(address,address)",
+   "0xc37874cb": "setExecutor(uint256,address)",
+   "0x93ed3e1b": "executor0()",
+   "0x4d02c117": "executor1()",
+   "0x8801393f": "executor2()",
+   "0x7e5465ba": "approve(address,address)",
+   "0x5ecb16cd": "withdrawTokens(address[])",
+   "0xe086e5ec": "withdrawETH()",
+   "0xfc4dd333": "withdrawWETH(uint256)",
+   "0x66dd0f24": "depositWETH(uint256)",
+   "0xbc157ac1": "deposit(uint256,address,uint256)"
+  },
+  "signature_check": "isValidSignature ends in OpenZeppelin-style ECDSA.tryRecover (ecrecover precompile 0x01; OZ error selectors 0xf645eedf ECDSAInvalidSignature and 0xfce698f7 ECDSAInvalidSignatureLength in the code); the only other STATICCALL is ERC-20 balanceOf (withdrawTokens), so no ERC-1271 forwarding to a contract owner"
+ },
+ "state": {
+  "owner()": "0x595744b06ee5df7c88b65ef5894fae36f2fc4a59",
+  "0xe73c35eb()": "0xda01030801473ab96af1b6121251bad6f9dcb114",
+  "executor0()": "0x9e9954856cb2082ce6e0e4bcc99bb3f6fcb37589",
+  "executor1()": "0x0000000000000000000000000000000000000000",
+  "executor2()": "0x0000000000000000000000000000000000000000",
+  "code_at_owner": "0x",
+  "code_at_0xda01": "0x",
+  "owner_tx_count_blockscout": 0,
+  "0xda01_last_tx": "2024-12-06"
+ },
+ "access_control_simulation": {
+  "functions": ["setOwner(address,address)", "setExecutor(uint256,address)", "approve(address,address)", "withdrawTokens(address[])", "withdrawETH()"],
+  "succeeds_from": ["0x595744b06ee5df7c88b65ef5894fae36f2fc4a59", "0xda01030801473ab96af1b6121251bad6f9dcb114"],
+  "reverts_0x1f6078af_from": ["0x9e9954856cb2082ce6e0e4bcc99bb3f6fcb37589", "0x1111111111111111111111111111111111111111"],
+  "withdrawTokens_recipient": "msg.sender (tx 0x2379f7d03e8cd934d332e2cd5fb92c73c0cb87bb30e81e22135f53dedfa614a1 sent 652,665 USDT and 641,173 USDC to 0xda01…)"
+ },
+ "signature_trace": {
+  "tx": "0x30dab5e5f2fd506601568a2f495fc627cf0133a09c2ec28d3421a7dd5e6a9bf1",
+  "block": 25440961,
+  "date": "2026-07-01",
+  "path": "RelayRouterV3 0xb92fe925… -> MainnetSettler 0x7f54f056… -> Permit2 0x000000000022d473….permitWitnessTransferFrom (0x137c29fe) -> 0x049a6f30.isValidSignature -> ecrecover returns 0x595744b0… (owner) -> Permit2 pulls 3.23 USDC from 0x049a6f30",
+  "replay_isValidSignature_same_input_at_26431537": "0x1626ba7e (still valid)",
+  "replay_with_altered_hash_at_26431537": "0xffffffff (rejected)"
+ },
+ "holdings": {
+  "eth": 0.004600000000000004,
+  "eth_usd_price": 1811.62,
+  "tokens": [
+   {"symbol": "PENDLE", "address": "0x808507121b80c02388fad14726482e061b8da827", "raw": "38014772361204652484376", "decimals": 18, "rate": 1.44, "usd": 54741.27, "permit2_allowance": "max"},
+   {"symbol": "AAVE", "address": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9", "raw": "298635418250867788858", "decimals": 18, "rate": 108.42, "usd": 32378.05, "permit2_allowance": "max"},
+   {"symbol": "USDT", "address": "0xdac17f958d2ee523a2206206994597c13d831ec7", "raw": "12035793353", "decimals": 6, "rate": 0.999294, "usd": 12027.30, "permit2_allowance": "max"},
+   {"symbol": "NEIRO", "address": "0x812ba41e071c7b7fa4ebcfb62df5f45f6fa853ee", "raw": "234410160153343545", "decimals": 9, "rate": 0.00004906, "usd": 11500.16, "permit2_allowance": "max"},
+   {"symbol": "WETH", "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2", "raw": "4035253786277434423", "decimals": 18, "rate": 1814.71, "usd": 7322.82, "permit2_allowance": "max"},
+   {"symbol": "USDC", "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", "raw": "3380924161", "decimals": 6, "rate": 0.999622, "usd": 3379.65, "permit2_allowance": "max"}
+  ],
+  "other_tokens_usd": 10.56,
+  "tokens_usd_blockscout": 121359.80,
+  "total_usd": 121368,
+  "rate_source": "Blockscout token exchange_rate, 2026-11-17; balances and Permit2 allowances read with eth_call at block 26431537"
+ },
+ "activity": {
+  "last_value_moving_tx": "2026-07-01 (block 25440961, RFQ fill via MainnetSettler)",
+  "later_incoming": "only unsolicited token transfers (TENDIE, ODYSSEY, ALPHA, … 2026-07-23 to 2026-10-19) and two address-poisoning txs 2026-01-17",
+  "yearly_prequantum": {"txs_y1": 84885, "source": "data/report/curated_contracts.csv"}
+ }
+}

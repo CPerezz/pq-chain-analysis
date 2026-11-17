@@ -1,0 +1,24 @@
+{
+ "date": "2026-11-17",
+ "block": 26431594,
+ "rpc": "https://ethereum-rpc.publicnode.com / https://eth.drpc.org",
+ "proxy": "0xe6961dca8d597136fad600cf9ae4be2eb6254b30",
+ "eip1967_implementation": "0x2f4a01b9de95889f8c6dadda579a3b7dddef600e",
+ "startTime": {
+  "raw": 1752762600,
+  "utc": "2025-07-17T14:30:00Z"
+ },
+ "endTime": {
+  "raw": 1753920000,
+  "utc": "2025-07-31T00:00:00Z"
+ },
+ "paused": false,
+ "token": "0xe2ad0bf751834f2fbdc62a41014f84d67ca1de2a (ERA)",
+ "airdropVault": "0xf50ca866cdf7e810c17b267553595656ad78f606",
+ "owner()": "0xf50ca866cdf7e810c17b267553595656ad78f606 (Safe, threshold 3 of 5)",
+ "githubSigner": "0xfc6e83ba54bb230523edfef11ac5dee24e14dd68 (EOA, nonce 0)",
+ "ERA_allowance_vault_to_airdrop": "48809752.030772",
+ "ERA_balance_vault": "29744.330772",
+ "ERA_price_usd_blockscout": 0.074364,
+ "releasable_if_reopened_usd": 2211.91
+}

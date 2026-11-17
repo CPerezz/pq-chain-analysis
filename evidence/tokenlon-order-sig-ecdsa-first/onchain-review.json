@@ -1,0 +1,52 @@
+{
+  "reviewer": "Review02",
+  "date": "2026-11-17",
+  "block": 26431454,
+  "rpc": "https://ethereum-rpc.publicnode.com",
+  "strategies": {
+    "0x4a14347083b80e5216ca31350a2d21702ac3650d": {
+      "name": "AMMWrapperWithPath (verified, Sourcify)",
+      "userProxy()": "0x03f34be1bf910116595db1b11e9d1b2ca5d59659",
+      "spender()": "0x3c68dfc45dc92c9c605d92b49858073e10b857a6",
+      "operator()": "0x63ef071b8a69c52a88dca4a844286aeff195129f (GnosisSafeProxy, 3 of 5)",
+      "proxy": "none (plain contract)"
+    },
+    "0x8d90113a1e286a5ab3e496fbd1853f265e5913c6": {
+      "name": "PMM 5.0.0 (verified, Sourcify)",
+      "userProxy()": "0x03f34be1bf910116595db1b11e9d1b2ca5d59659",
+      "spender()": "0x3c68dfc45dc92c9c605d92b49858073e10b857a6",
+      "operator()": "0x63ef071b8a69c52a88dca4a844286aeff195129f",
+      "proxy": "none (plain contract)",
+      "user_signature_length": "85 or 86 bytes required (LibDecoder.decodeUserSignatureWithoutSign)"
+    }
+  },
+  "user_proxy": {
+    "address": "0x03f34be1bf910116595db1b11e9d1b2ca5d59659",
+    "name": "Tokenlon (TransparentUpgradeableProxy), implementation UserProxy 5.2.0",
+    "eip1967_implementation": "0x0b9f13ffab8448089f50073cf24bbe5c7bd8675a",
+    "eip1967_admin": "0x74c3ca9431c009dc35587591dc90780078174f8a (DelayedMultiSig, 3 of 5, secondsTimeLocked 0)",
+    "operator()": "0x9afc226dc049b99342ad6774eeb08bfa2f874465 (DelayedMultiSig, 3 of 5, secondsTimeLocked 0)",
+    "ammWrapperAddr()": "0x4a14347083b80e5216ca31350a2d21702ac3650d",
+    "isAMMEnabled()": true,
+    "pmmAddr()": "0x8d90113a1e286a5ab3e496fbd1853f265e5913c6",
+    "isPMMEnabled()": true,
+    "rfqAddr()": "0xfd6c2d2499b1331101726a8ac68ccc9da3fab54f",
+    "rfqv2Addr()": "0x91c986709bb4fe0763edf8e2690ee9d5019bea4a",
+    "limitOrderAddr()": "0x623a6b3424f3d5e2ec677d5bb92ba12a9dc4f71a"
+  },
+  "spender": {
+    "address": "0x3c68dfc45dc92c9c605d92b49858073e10b857a6",
+    "operator()": "0x9afc226dc049b99342ad6774eeb08bfa2f874465",
+    "allowanceTarget()": "0x8a42d311d282bfcaa5133b2de0a8bcdbecea3073",
+    "timelockActivated()": true,
+    "isAuthorized(AMMWrapperWithPath)": true,
+    "isAuthorized(PMM)": true
+  },
+  "multisig_owners (both DelayedMultiSig and the Safe)": [
+    "0xb9e29984fe50602e7a619662ebed4f90d93824c7",
+    "0xb7c7124c1edf51378994f877d2a17ecd6b7901a3",
+    "0xcb50bb8da47becfed8a5fb78f089f0a1b19b99b3",
+    "0x636e1a283f753e347d7c64eb5cc12bc5314a82dd",
+    "0xcc734cebf6bd685e1d74ac6b09bf2fca867d7791"
+  ]
+}

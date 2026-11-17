@@ -1,0 +1,28 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0xf1abf110d1b6ff0e2e8c05dd64fbf9eba4d8af98": {
+   "code_size": 3469,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0xeef6520437a6545b4f325f6675c4cd49812d457b",
+   "safe": null,
+   "controller_safe": {
+    "address": "0xeef6520437a6545b4f325f6675c4cd49812d457b",
+    "threshold": 2,
+    "owners": [
+     "0xf0e5b92cd828c83be6c737c5f0d8d1ba680ad562",
+     "0xacee765b53fdccee504adb26897d0be84b5a3ab0",
+     "0xb0bbff6311b7f245761a7846d3ce7b1b100c1836"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  }
+ }
+}

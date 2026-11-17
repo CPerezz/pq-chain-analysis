@@ -1,0 +1,174 @@
+{
+ "note": "Reads by Review06 on 2026-11-17 (cast via eth.drpc.org at block 26431623; holdings from Blockscout).",
+ "bridge_v2": {
+  "address": "0x5523985926aa12ba58dc5ad00ddca99678d7227e",
+  "mpc()": "0x0b420240b32dd8722b869ae6d9ca9e3b9169ec08",
+  "mpc_code": "none (EOA)",
+  "owner()": "0x5112eba9bc2468bb5134cbfbeab9334edae7106a",
+  "pauser()": "0x3e4adcf98e77f6d8022639f7135be4a3850033ed",
+  "newMPCEffectiveTime": 1794812495,
+  "isTransmitter": {
+   "0xb8f275fbf7a959f4bce59999a2ef122a099e81a8": true,
+   "0x416ebf83677c0bb2638028d11d9077cab2f13afc": true
+  },
+  "recent_50_txs_to_bridge": "47 receiveRequestV2Signed to Portal 0xb8f275fb\u2026, 3 to SynthesisBTC 0x416ebf83\u2026, all sent by 0x67f9b3e561383493b3f874feae0c53c2cd23851d (Blockscout, 2026-11-17)"
+ },
+ "portal": {
+  "address": "0xb8f275fbf7a959f4bce59999a2ef122a099e81a8",
+  "implementation_name": "Portal",
+  "bridge()": "0x5523985926aa12ba58dc5ad00ddca99678d7227e"
+ },
+ "synthesis_btc": {
+  "address": "0x416ebf83677c0bb2638028d11d9077cab2f13afc",
+  "implementation_name": "SynthesisBTC",
+  "bridge()": "0x5523985926aa12ba58dc5ad00ddca99678d7227e"
+ },
+ "holdings": {
+  "eth_usd_price": 1811.62,
+  "source": "Blockscout /api/v2 addresses + tokens (exchange_rate)",
+  "date": "2026-11-17",
+  "holdings": {
+   "0xb8f275fbf7a959f4bce59999a2ef122a099e81a8": {
+    "address": "0xb8f275fbf7a959f4bce59999a2ef122a099e81a8",
+    "name": "TransparentUpgradeableProxy",
+    "eth": 0.0,
+    "eth_usd": 0.0,
+    "tokens_usd": 1420204.12,
+    "n_tokens": 66,
+    "top_tokens": [
+     {
+      "symbol": "USDC",
+      "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "balance": 973199.297297,
+      "usd": 972831.43,
+      "rate": "0.999622",
+      "volume_24h": "14124439251"
+     },
+     {
+      "symbol": "WETH",
+      "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "balance": 105.96722288392625,
+      "usd": 192299.78,
+      "rate": "1814.71",
+      "volume_24h": "306334815"
+     },
+     {
+      "symbol": "SIS",
+      "address": "0xd38bb40815d2b0c2d2c866e0c72c5728ffc76dd9",
+      "balance": 9702412.021475632,
+      "usd": 146025.57,
+      "rate": "0.01505044",
+      "volume_24h": "67688"
+     },
+     {
+      "symbol": "USDT",
+      "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "balance": 73501.131533,
+      "usd": 73449.24,
+      "rate": "0.999294",
+      "volume_24h": "50642452479"
+     },
+     {
+      "symbol": "PUFETH",
+      "address": "0xd9a442856c234a39a81a089c06451ebaa4306a72",
+      "balance": 10.934883339771615,
+      "usd": 21552.33,
+      "rate": "1970.97",
+      "volume_24h": "3461.48"
+     },
+     {
+      "symbol": "G",
+      "address": "0x9c7beba8f6ef6643abd725e45a4e8387ef260649",
+      "balance": 5089202.301953875,
+      "usd": 13538.55,
+      "rate": "0.00266025",
+      "volume_24h": "3400695"
+     },
+     {
+      "symbol": "FRAX",
+      "address": "0x853d955acef822db058eb8505911ed77f175b99e",
+      "balance": 351.8798304203291,
+      "usd": 348.64,
+      "rate": "0.99078",
+      "volume_24h": "309236"
+     },
+     {
+      "symbol": "APE",
+      "address": "0x4d224452801aced8b2f0aebe155379bb5d594381",
+      "balance": 1983.2542414823142,
+      "usd": 155.0,
+      "rate": "0.078154",
+      "volume_24h": "11556579"
+     },
+     {
+      "symbol": "LADYS",
+      "address": "0x12970e6868f88f6557b76120662c1b3e50a646bf",
+      "balance": 482926220.50120264,
+      "usd": 2.11,
+      "rate": "4.364E-9",
+      "volume_24h": "104240"
+     },
+     {
+      "symbol": "WBTC",
+      "address": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+      "balance": 2.141e-05,
+      "usd": 1.38,
+      "rate": "64633",
+      "volume_24h": "177164161"
+     },
+     {
+      "symbol": "MTV",
+      "address": "0x6226e00bcac68b0fe55583b90a1d727c14fab77f",
+      "balance": 1000.0,
+      "usd": 0.09,
+      "rate": "0.00008836",
+      "volume_24h": "24241"
+     },
+     {
+      "symbol": "GRG",
+      "address": "0x4fbb350052bca5417566f188eb2ebce5b19bc964",
+      "balance": 0.025,
+      "usd": 0.0,
+      "rate": "0.063155",
+      "volume_24h": "14.97"
+     },
+     {
+      "symbol": "HEX",
+      "address": "0x2b591e99afe9f32eaa6214f7b7629768c40eeb39",
+      "balance": 1.0,
+      "usd": 0.0,
+      "rate": "0.0004666",
+      "volume_24h": "29628"
+     },
+     {
+      "symbol": "USDTB",
+      "address": "0xc139190f447e929f090edeb554d95abb8b18ac1c",
+      "balance": 0.0001,
+      "usd": 0.0,
+      "rate": "0.999192",
+      "volume_24h": "1277550"
+     },
+     {
+      "symbol": "GRAM",
+      "address": "0x582d872a1b094fc48f5de31d3b73f2d9be47def1",
+      "balance": 3.4e-08,
+      "usd": 0.0,
+      "rate": "1.05",
+      "volume_24h": "35007668"
+     }
+    ],
+    "total_usd": 1420204.12
+   },
+   "0x416ebf83677c0bb2638028d11d9077cab2f13afc": {
+    "address": "0x416ebf83677c0bb2638028d11d9077cab2f13afc",
+    "name": "TransparentUpgradeableProxy",
+    "eth": 0.0,
+    "eth_usd": 0.0,
+    "tokens_usd": 0,
+    "n_tokens": 0,
+    "top_tokens": [],
+    "total_usd": 0.0
+   }
+  }
+ }
+}

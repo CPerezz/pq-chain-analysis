@@ -1,0 +1,57 @@
+{
+ "block": 26431527,
+ "date": "2026-11-17",
+ "rpc": "https://eth.drpc.org / https://ethereum-rpc.publicnode.com",
+ "eth_usd": 1811.62,
+ "proxy": "0x2cc0c7981d846b9f2a16276556f6e8cb52bfb633",
+ "eip1967_implementation": "0xb4e809ab8e9990ab0465a2edb80a907aa5c2a3e4",
+ "eip1967_admin": "0x0",
+ "implementation_created": {
+  "block": 26401282,
+  "date": "2026-11-12",
+  "tx": "0x31641768e7ca8dabbdd4a937cd36c95a3a35885aa79ed1a614f4d8234673ec7a",
+  "from": "0x4f0cf2a1d11de183e989ff6287cc0973670f0583",
+  "via": "CREATE2 deployer 0x4e59b44847b379578588920ca78fbf26c0b4956c"
+ },
+ "proxy_created": {
+  "block": 19677788,
+  "date": "2024-04-17",
+  "tx": "0x6639839dd74450ddaddf2d3732cab4f3506958547f0b332cfa4250473aeaf7dc",
+  "from": "0xddf32240b4ca3184de7ec8f0d5aba27dec8b7a5c"
+ },
+ "owner()": "0xddf32240b4ca3184de7ec8f0d5aba27dec8b7a5c",
+ "owner_code": "0x",
+ "owner_nonce": 127,
+ "verifyingSigner()": "0x13dc4c4458941ef33e02c9b5a34c4d55b6f5dbc2",
+ "signer_code": "0x",
+ "signer_nonce": 0,
+ "entryPoint()": "0x0000000071727de22e5e9d8baf0edac6f37da032",
+ "entrypoint_getDepositInfo": {
+  "deposit_wei": "643645460126593557",
+  "staked": true,
+  "stake_wei": "100000000000000000",
+  "unstakeDelaySec": 86400,
+  "withdrawTime": 0
+ },
+ "deposit_usd": 1166.04,
+ "impl_selectors_present": [
+  "verifyingSigner()",
+  "updateVerifyingSigner(address)",
+  "owner()",
+  "transferOwnership(address)",
+  "entryPoint()",
+  "validatePaymasterUserOp(PackedUserOperation,bytes32,uint256) 0x52b7512c",
+  "postOp(uint8,bytes,uint256,uint256)",
+  "upgradeToAndCall(address,bytes)",
+  "proxiableUUID()",
+  "withdrawTo(address,uint256)",
+  "getDeposit()",
+  "addStake(uint32)",
+  "deposit()"
+ ],
+ "impl_constants_present": [
+  "\\x19Ethereum Signed Message:\\n32",
+  "secp256k1 n/2 (OZ ECDSA malleability check)"
+ ],
+ "attribution": "third-party code on GitHub labels it the Alchemy paymaster (AvaProtocol/EigenLayer-AVS FINDINGS_AA23_FACTORY_MISMATCH.md, satoraHQ/satora-sdk); Alchemy docs not found to list it"
+}

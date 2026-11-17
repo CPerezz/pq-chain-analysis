@@ -1,0 +1,23 @@
+{
+  "reviewer": "Review02",
+  "date": "2026-11-17",
+  "block": 26431583,
+  "rpc": "https://ethereum-rpc.publicnode.com",
+  "hook_permissions_from_address_bits": "low 14 bits 0x0fc0: beforeAddLiquidity, afterAddLiquidity, beforeRemoveLiquidity, afterRemoveLiquidity, beforeSwap, afterSwap; no *ReturnDelta flags",
+  "hooks (same implementation, owner, approver)": {
+    "0xd33398d46cb5749c7319ae1fabc498cdeb0f0fc0": "last swap tokens: USDT, ELEVATE 0x888888888887715fb9d9f84175af9e6cce46807e (tx 0x3bff407d08249d5b6313e91982e1da4191a6bb2c143eacab4da12b9ee21c5f37, 2026-11-17, via UniversalRouter)",
+    "0x00d4e856914b2248939801c5aa25af380ca00fc0": "RALLY 0x19640000000ba88d36206beb10d0e86011c8d08c, WIN 0xb10cb07ca2cdac77fbb5707f6690301f9d036f45",
+    "0x55f5894d7c4bc1f510f95445d18a7ebb2e0c8fc0": "GROW 0x1223334444a7466fbf985b14e1f4edaf3883bca6, GULD 0x14d6c649292c5c9790c5196d1a9ea039307947a1",
+    "0x2208b3994b6b4f818352e34fbf1d53ea0e340fc0": "GULD, IZE 0xf7e945fce8f19302aacc7e1418b0a0bdef89327b",
+    "0x1141a66ef7b9909aba530c90ab53fe4485b08fc0": "CDXR 0x40aaf75454036bed56f3266ccf18f6b7befd6aca, ELMT 0x600d601d8b9eb5de5ac90fefc68d0d08801bfd3f",
+    "0x44b9bdeb28c01f30e587b1bbf87770bec9958fc0": "GREEN 0xb2089a7069861c8d90c8da3aacab8e9188c0c531, GULD",
+    "0x88c948a03139d64c2195a0189da9ddbbf3328fc0": "CDXR, RALLY",
+    "0x9911257313b106976beacb8589e10771c3f38fc0": "no token transfer in its latest internal call (2026-11-14)"
+  },
+  "eip1967_implementation (all 8)": "0xba7b889588d6c449a30066344dd47759cfcb4fc0 (unverified; created via CREATE2 deployer 0x4e59b448…)",
+  "owner() (all 8)": "0xc5d3c245acb2f3eb41e19a609f9bf06ef77dd21d (EOA with EIP-7702 delegation 0xef0100 59501312a46b1e9cde57c835c7c2ac2e0da95615, nonce 4502)",
+  "approver() (all 8)": "0x9af2ea5565594df91d14c95f48de6b59ea2fae45 (no code, nonce 0)",
+  "poolManager()": "0x000000000004444c5dc75cb358380d2e3de08a90",
+  "proxy_deployer": "0xfab0692c06e6d30037c12f1577b301be8ed333cb (single transaction: this proxy's creation, 2026-02-10)",
+  "elevate_token": "ELEVATE 0x888888888887715fb9d9f84175af9e6cce46807e (name 'Elevate' on Blockscout; coinstats and app.uniswap.org list Elevate at this address); 8 decimals, total supply 5,864,909,300; last swap price about USD 0.032"
+}

@@ -1,0 +1,54 @@
+{
+ "hook_blocks": 1497,
+ "first": 24337862,
+ "last": 26201398,
+ "senders": {
+  "0xed0836b2925c9b318396eca7ec71784d19bae470": {
+   "ops": 1479,
+   "first_block": 24337862,
+   "last_block": 26201398,
+   "impl": [
+    "Kernel"
+   ],
+   "eth": 0.00183872730917174,
+   "tokens": [],
+   "usd": 3.33
+  },
+  "0xb5ee57085872075e0aff15a0a13925ff5eaadc13": {
+   "ops": 6,
+   "first_block": 24628121,
+   "last_block": 24640954,
+   "impl": [
+    "Kernel"
+   ],
+   "eth": 1.7188720574893e-05,
+   "tokens": [],
+   "usd": 0.03
+  },
+  "0x051386b38fbcee818b035d257c4e58db40fc6439": {
+   "ops": 12,
+   "first_block": 24649479,
+   "last_block": 24657180,
+   "impl": [
+    "Kernel"
+   ],
+   "eth": 0.000307106843395442,
+   "tokens": [],
+   "usd": 0.56
+  },
+  "0x41305e11290f64b2a9e32b584bdf1a036f7abe80": {
+   "ops": 3,
+   "first_block": 25295702,
+   "last_block": 25295780,
+   "impl": [
+    "Kernel"
+   ],
+   "eth": 0.000753987884235598,
+   "tokens": [],
+   "usd": 1.37
+  }
+ },
+ "total_usd": 5.28,
+ "eth_usd": 1811.62,
+ "date": "2026-11-17"
+}

@@ -1,0 +1,11 @@
+{
+ "block": 26431523,
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "note": "reads by reviewer Review22, 2026-11-17; module 0xba418fa6 reads moved to evidence/unidentified-1c6ad754-signer-key/module-0xba418fa6.json",
+ "0x00000000d12897ddadc2044614a9677b191a2d95": {
+  "verified": "K1MeeValidator (Blockscout, solc 0.8.27)",
+  "owner_rule": "onInstall/transferOwnership require !_isContract(newOwner) (NewOwnerIsContract); getOwner returns the account itself when no owner is stored (EIP-7702 accounts)",
+  "proxy": "none (no EIP-1967 slots, no owner)",
+  "eip1967_impl": "0x0000000000000000000000000000000000000000000000000000000000000000"
+ }
+}

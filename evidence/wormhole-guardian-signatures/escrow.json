@@ -1,0 +1,72 @@
+{
+ "read": "2026-11-17, Blockscout /api/v2/addresses/<a>/tokens?type=ERC-20 (up to 7 pages, priced tokens with reputation ok, value <= 1.05x circulating market cap) and /addresses/<a>, run on a remote host",
+ "eth_usd": 1811.62,
+ "escrows": {
+  "0x3ee18b2214aff97000d974cf647e7c347e8fa585": {
+   "name": "TokenBridge (Portal), proxy -> BridgeImplementation 0x381752f5458282d317d12c30d2bd4d6e1fd8841e",
+   "wormhole()": "0x98f3c9e6e3face36baad05fe09d375ef1464288b",
+   "erc20_usd": 997566972,
+   "priced_tokens": 297,
+   "pages_read": 7,
+   "pages_note": "page limit reached; unpriced or further tokens not counted, so this is a lower bound",
+   "eth": 3.2974,
+   "eth_usd_value": 5974,
+   "top": [
+    [
+     "RENDER",
+     "0x6De037ef9aD2725EB40118Bb1702EBb27e4Aeb24",
+     627804599
+    ],
+    [
+     "WBTC",
+     "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+     158583943
+    ],
+    [
+     "WETH",
+     "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+     87127721
+    ],
+    [
+     "SPX",
+     "0xE0f63A424a4439cBE457D80E4f4b51aD25b2c56C",
+     31940093
+    ],
+    [
+     "DEXE",
+     "0xde4EE8057785A7e8e800Db58F9784845A5C2Cbd6",
+     24238743
+    ],
+    [
+     "TBTC",
+     "0x18084fbA666a33d37592fA2633fD49a74DD93a88",
+     12367509
+    ],
+    [
+     "USDC",
+     "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+     7826514
+    ],
+    [
+     "NPC",
+     "0x8eD97a637A790Be1feff5e888d43629dc05408F6",
+     5722836
+    ],
+    [
+     "NST",
+     "0x70Bef3bB2f001dA2fDDb207dAe696cD9FAFf3f5d",
+     5421481
+    ],
+    [
+     "BSB",
+     "0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411",
+     5023463
+    ]
+   ]
+  }
+ },
+ "not_measured": {
+  "0x6ffd7ede62328b3af38fcd61461bbfc52f5651fe": "NFT bridge, wormhole() = core; NFTs not priced",
+  "other consumers": "NTT managers, CCTP integrations, relayers and Pyth receivers verify against the same guardian keys; not summed"
+ }
+}

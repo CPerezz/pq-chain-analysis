@@ -1,0 +1,43 @@
+{
+ "block": 26431457,
+ "date": "2026-11-17",
+ "rpc": "https://eth.drpc.org (archive) at the block",
+ "method": "cast call / eth_getStorageAt at the block; Blockscout v2 API for creators, logs and token balances",
+ "reads": {
+  "0x2222222d7164433c4c09b0b0d809a9b52c04c205": {
+   "eip1967_implementation": "0xc2ff68068362aea1ca22a3896d05b2b812ce51b1 (GatewayMinter, Sourcify verified)",
+   "eip1967_admin": "0x0 (UUPS; GatewayCommon.sol _authorizeUpgrade onlyOwner l.72)",
+   "owner()": "0x3c54ffa14d01ef3a555106007a4fed6e8964aab6 (EOA, no code)",
+   "pendingOwner()": "0x0",
+   "pauser()": "0x6fa314d4dce1d49233c329a60fdbd96a6bcbe6fb",
+   "paused()": false,
+   "attestation signers": "AttestationSignerAdded(0x311ac5f3a327c18e27ea544694e20abd15caa85d) at block 22969188; no AttestationSignerRemoved logs (Blockscout); isAttestationSigner(0x311ac5f3\u2026)=true; 0x311ac5f3\u2026 has no code",
+   "supported tokens (TokenSupported logs)": {
+    "USDC 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+     "block": 22969188,
+     "tokenMintAuthority": "0x0 (mints directly)",
+     "isMinter": true,
+     "minterAllowance": "95245156.439433",
+     "price_usd": 0.999622
+    },
+    "EURC 0x1abaea1f7c830bd89acc67ec4af516284b1bc33c": {
+     "block": 26150487,
+     "tokenMintAuthority": "0x0",
+     "isMinter": true,
+     "minterAllowance": "20000099.79",
+     "price_usd": 1.099
+    },
+    "cirBTC 0x72dfb2e44f59c5ad2bafe84314e5b99a7cd5075e": {
+     "block": 26134968,
+     "tokenMintAuthority": "0x0",
+     "isMinter": true,
+     "minterAllowance": "300.000994 (8 decimals)",
+     "price_usd": 64537
+    }
+   },
+   "escrow_usd": "USDC 95,209,155 + EURC 21,980,110 + cirBTC 19,361,164 = 136,550,429 (Blockscout exchange rates 2026-11-17)",
+   "activity": "Blockscout: 29,103 transactions to the minter in total; last 50 are all gatewayMint, from 2026-11-16 21:30 to 2026-11-17 01:48 (block 26431580); 30-day count not measured"
+  },
+  "source": "Sourcify GatewayMinter 0xc2ff6806\u2026: Mints.sol gatewayMint l.161-193 -> _verifyAttestationSignature l.256-261 (ECDSA.recover(keccak256(attestation).toEthSignedMessageHash(), signature) must be an attestation signer), _validateAttestationNotExpired l.269, _validateAttestationTransferSpec l.284-327, _mint l.333-353 (IMintableToken(token or mintAuthority).mint(recipient, value)); addAttestationSigner l.231 / removeAttestationSigner l.243 / updateMintAuthority l.217 onlyOwner; TokenSupport.addSupportedToken l.66 onlyOwner"
+ }
+}

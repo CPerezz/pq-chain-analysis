@@ -1,0 +1,50 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x35d8949372d46b7a3d5a56006ae77b215fc69bc0": {
+   "code_size": 1129,
+   "kind": "eip1967",
+   "implementation": "0x9f2bd21bf8012fce0d5845537c1deff3a89bc85b",
+   "admin": "0x65a7042460932a8e7b6aa9c765c2bae5f4535c22",
+   "owner": null,
+   "safe": null,
+   "admin_owner": "0xaada24358620d4638a2ee8788244c6f4b197ca16",
+   "controller_safe": {
+    "address": "0xaada24358620d4638a2ee8788244c6f4b197ca16",
+    "threshold": 8,
+    "owners": [
+     "0xebc9b8f11da82cc17ffec763de7eb1daa735bb3c",
+     "0xdf758f044e3761ad52e1b96e1a468f03f565334b",
+     "0x8d08338c592cf18c586c43d6b567cb938614f6b8",
+     "0x6bc737ad5213ea26a3a1bb73431598af2167cdbd",
+     "0xd09c7955c38b9acdc293e006bd5d0c059a57699a",
+     "0xfe45baf0f18c207152a807c1b05926583cfe2e4b",
+     "0x533c0b7959eb6f042e19ca40700a7af22f69e2d8",
+     "0x23f3967415290fbf7ec6768f562128cdbd351bee",
+     "0x118d6dcf55a0dfbc3d1052fbd41a483f8a6a68b3",
+     "0x3b9eaf01facee23846cea722a92e853bee064d69",
+     "0xda1a7e2d400f09292f22d02343e9bf8445eaa71c",
+     "0x91c5da0cefc781545b6b9ad0438d1a944b6ddc52",
+     "0x1f7f8786d8699cc4d722aeaed5797a6d8a6815d5",
+     "0xd0f657d3cebb51ceea20dfb3af6213fa1cecd5a7",
+     "0xeb6927e3599d1ee873b348efc99e81b36179cdaf"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 499664040.6890457,
+   "top_tokens": [
+    [
+     "USD0",
+     499664041
+    ],
+    [
+     "HEX",
+     0
+    ]
+   ],
+   "held_usd": 499664041
+  }
+ }
+}

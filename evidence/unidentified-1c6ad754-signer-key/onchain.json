@@ -1,0 +1,61 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x1c6ad754810b4385ec3c46b0340e2954350c3e00": {
+   "code_size": 6682,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0xbe4c70a00dcc0c0757257740e4e6f3f57d9a7c85",
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  },
+  "0x3762a79b34dfb6774cfd45dbf5fd9a2780873783": {
+   "code_size": 1159,
+   "kind": "eip1967",
+   "implementation": "0xab8a2cfc2e4ca8f44cbd0bce309a361bb4c9aeb5",
+   "admin": "0x166fd12e962290250aebf178f60ff0a250e2159c",
+   "owner": "0x82d04d2b250c3e017fcc2e333ec043b6b9bf7c77",
+   "safe": null,
+   "admin_owner": "0xd77dbd0699582ca487f8519d2fecc4c0b41b78f9",
+   "eth": 0.0,
+   "tokens_usd": 0.0880294492,
+   "top_tokens": [
+    [
+     "ZIK",
+     0
+    ],
+    [
+     "HEX",
+     0
+    ],
+    [
+     "WETH",
+     0
+    ],
+    [
+     "TUSD",
+     0
+    ]
+   ],
+   "held_usd": 0
+  },
+  "0x82eace5d23ef8fc5e825a05e8eacd908289ee4dc": {
+   "code_size": 1694,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  }
+ }
+}

@@ -1,0 +1,1593 @@
+{
+ "blocks": {
+  "oracle_and_authorizer_reads": 26431537,
+  "task_and_feed_reads": 26431656,
+  "vault_holdings_eth_call": 26431537
+ },
+ "as_of": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "eth_usd": 1811.62,
+ "oracle": {
+  "address": "0xb04b7813bf44fa7bb5c8e8cfc38cd770ffb3ca38",
+  "implementation": "0xda17f000985b2795b7b6c48384ba877f317e7dc5",
+  "authorizer()": "0xbbf4362611804c9f7856574889e3a5de6673b08b",
+  "getAllowedSigners()": [
+   "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+  ],
+  "pivot()": "0x0000000000000000000000000000000000000348",
+  "getFeed(WETH,USDC)": "0x0",
+  "getFeed(USDC,WETH)": "0x0",
+  "getFeed(WETH,pivot)": "0x0",
+  "getFeed(USDC,pivot)": "0x0",
+  "getPrice(WETH,USDC) without data": "reverts (no on-chain feed)",
+  "deployed": {
+   "tx": "0x72a29e0a0193b2133b5f41cf704b521b316a255f991cf513a151f555165e9e6e",
+   "block": 18594597,
+   "deployer": "0x849b7b1102b0dcf6ec10f98b81c8d1c38f7cbf24",
+   "namespace": "paraswap-fee-collector-v3",
+   "SignerSet": "0xb3afb6db38a8e72905165c1fbb96772e63560790 true"
+  }
+ },
+ "signer": {
+  "address": "0xb3afb6db38a8e72905165c1fbb96772e63560790",
+  "codesize": 0,
+  "Relayer.isExecutorAllowed": true,
+  "note": "same EOA submits Relayer.execute txs (e.g. 0x61be0760... block 26430224)"
+ },
+ "relayer": {
+  "address": "0x9e0a538749a486bbf127f8848a6f2cf4e1e92dbd",
+  "owner()": "0x6c0542daee8cc6866529d4a68163eb157fb78999",
+  "getSmartVaultBalance(0x45a6...)": "122886743322278630"
+ },
+ "smart_vault": {
+  "address": "0x45a6e007c874ffc6321d6fb90eac272dd6864bfa",
+  "priceOracle()": "0xb04b7813bf44fa7bb5c8e8cfc38cd770ffb3ca38",
+  "authorizer()": "0xbbf4362611804c9f7856574889e3a5de6673b08b"
+ },
+ "authorizer": {
+  "address": "0xbbf4362611804c9f7856574889e3a5de6673b08b",
+  "method": "Authorized/Unauthorized event replay (Blockscout logs, 377 events)",
+  "authorize_permission_holders": {
+   "0x619bbf92fd6ba59893327676b2685a3762a49a33": {
+    "type": "Safe",
+    "threshold": 3,
+    "owners": 9
+   },
+   "0x26a0c29261d18c49e6cf0cee175018274d58f90c": {
+    "type": "Safe",
+    "threshold": 2,
+    "owners": 5
+   }
+  },
+  "setSigner_on_oracle_granted_to": [],
+  "setPriceOracle_on_vault_granted_to": [],
+  "paraswap_swapper_v6_call_granted_to": [
+   "0x9e0a538749a486bbf127f8848a6f2cf4e1e92dbd (Relayer)"
+  ]
+ },
+ "sample_tasks": {
+  "ParaswapV6Swapper 0xb149056572829f50eef04fd7c01ba0581e80d646": {
+   "smartVault": "0x45a6e007c874ffc6321d6fb90eac272dd6864bfa",
+   "defaultTokenOut": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+   "defaultMaxSlippage": "2e16"
+  },
+  "relayer-funder-swapper-v3 0xd4e3ddfccffbea694e78c71a679ef8de53949359": {
+   "smartVault": "0x45a6e007c874ffc6321d6fb90eac272dd6864bfa",
+   "defaultTokenOut": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+   "defaultMaxSlippage": "2e16"
+  }
+ },
+ "other_authorizers_sample": {
+  "paraswap-ltd-fee-collector": [
+   "0x26a0c29261d18c49e6cf0cee175018274d58f90c",
+   "0x81037e7be71bce9591de0c54bb485ad3e048b8de"
+  ],
+  "ledger-fee-collector": [
+   "0x26a0c29261d18c49e6cf0cee175018274d58f90c",
+   "0x4e81d1192482bf85c04d21c6cff9d0c616e74f92"
+  ],
+  "onekey-fee-collector": [
+   "0x26a0c29261d18c49e6cf0cee175018274d58f90c",
+   "0x465db8d76518af835d5eef2daa0488eca087b977"
+  ],
+  "exodus-fee-collector-bitget": [
+   "0x26a0c29261d18c49e6cf0cee175018274d58f90c",
+   "0xd1303ee256605e352116a2d53d6092efc7bb4bcd"
+  ]
+ },
+ "family": {
+  "source": "PriceOracleDeployed events of Deployer 0x849b7b1102b0dcf6ec10f98b81c8d1c38f7cbf24 (all 50 use implementation 0xda17f000...)",
+  "instances": 50,
+  "all_signers": {
+   "0xb3afb6db38a8e72905165c1fbb96772e63560790": 50
+  },
+  "vaults_total_usd": 277543.96,
+  "main_vault_usd": 17324.74,
+  "other_vaults_usd": 260219.22,
+  "vaults": [
+   {
+    "ns": "paraswap-ltd-fee-collector",
+    "oracle": "0xeb2602de8f2f042a0de965743b5afb633f40ee6a",
+    "smart_vault": "0xc85f5d432b7fa25287c7e0cb88139a1a4c37f565",
+    "sv_priceOracle": "0xeb2602de8f2f042a0de965743b5afb633f40ee6a",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 84156.61,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 84054.412933,
+      "exchange_rate": 0.999622,
+      "usd": 84022.64
+     },
+     {
+      "token": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+      "symbol": "ETHDYDX",
+      "amount": 482.0384388624299,
+      "exchange_rate": 0.080042,
+      "usd": 38.58
+     },
+     {
+      "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "symbol": "WETH",
+      "amount": 0.01842289532829906,
+      "exchange_rate": 1814.71,
+      "usd": 33.43
+     },
+     {
+      "token": "0x49fb8ad7578148e17c3ef0c344ce23a66ed372c4",
+      "symbol": "TAOBOT",
+      "amount": 240.1877745193417,
+      "exchange_rate": 0.03451855,
+      "usd": 8.29
+     },
+     {
+      "token": "0x5702a4487da07c827cde512e2d5969cb430cd839",
+      "symbol": "ERBB",
+      "amount": 12.259233894567531,
+      "exchange_rate": 0.643286,
+      "usd": 7.89
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 84156.61
+   },
+   {
+    "ns": "ledger-fee-collector",
+    "oracle": "0xec77222c9a2342c09a64097bcad0c1b3a3bba857",
+    "smart_vault": "0xa9298e4ab79e68d69069039cb149c2c2ff3d6f0a",
+    "sv_priceOracle": "0xec77222c9a2342c09a64097bcad0c1b3a3bba857",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 54530.22,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 53870.508643,
+      "exchange_rate": 0.999622,
+      "usd": 53850.15
+     },
+     {
+      "token": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+      "symbol": "ETHDYDX",
+      "amount": 3395.3325806065695,
+      "exchange_rate": 0.080042,
+      "usd": 271.77
+     },
+     {
+      "token": "0xa47c8bf37f92abed4a126bda807a7b7498661acd",
+      "symbol": "USTC",
+      "amount": 11354.798731313535,
+      "exchange_rate": 0.01140375,
+      "usd": 129.49
+     },
+     {
+      "token": "0x49fb8ad7578148e17c3ef0c344ce23a66ed372c4",
+      "symbol": "TAOBOT",
+      "amount": 2657.4495744408646,
+      "exchange_rate": 0.03451855,
+      "usd": 91.73
+     },
+     {
+      "token": "0x75231f58b43240c9718dd58b4967c5114342a86c",
+      "symbol": "OKB",
+      "amount": 0.7216738444467665,
+      "exchange_rate": 85.56,
+      "usd": 61.75
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 54530.22
+   },
+   {
+    "ns": "onekey-fee-collector",
+    "oracle": "0xe2a94756fd9488a74354f33ab34db10a3bb0a4a9",
+    "smart_vault": "0x0dcbfc7af3cd4fc5cbb8ff0c2cb82012be3709af",
+    "sv_priceOracle": "0xe2a94756fd9488a74354f33ab34db10a3bb0a4a9",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.004449508346328646,
+    "tokens_usd": 43116.75,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 42882.572515,
+      "exchange_rate": 0.999622,
+      "usd": 42866.36
+     },
+     {
+      "token": "0xbc33b4d48f76d17a1800afcb730e8a6aaada7fe5",
+      "symbol": "VDOT",
+      "amount": 27.096023138810096,
+      "exchange_rate": 1.22,
+      "usd": 33.06
+     },
+     {
+      "token": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+      "symbol": "ETHDYDX",
+      "amount": 322.45109883115,
+      "exchange_rate": 0.080042,
+      "usd": 25.81
+     },
+     {
+      "token": "0x4a220e6096b25eadb88358cb44068a3248254675",
+      "symbol": "QNT",
+      "amount": 0.1405397351,
+      "exchange_rate": 153.46,
+      "usd": 21.57
+     },
+     {
+      "token": "0x45804880de22913dafe09f4980848ece6ecbaf78",
+      "symbol": "PAXG",
+      "amount": 0.00461135875,
+      "exchange_rate": 3843.42,
+      "usd": 17.72
+     }
+    ],
+    "eth_usd": 8.06,
+    "total_usd": 43124.81
+   },
+   {
+    "ns": "ledger-fee-collector-1inch",
+    "oracle": "0x8cbf50387097d7fd88dad5a0231fa7ba263c6894",
+    "smart_vault": "0xcffcc5d1957761adcd5ee0a9e13ff22d7a314792",
+    "sv_priceOracle": "0x8cbf50387097d7fd88dad5a0231fa7ba263c6894",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 27601.01,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 24738.86448,
+      "exchange_rate": 0.999622,
+      "usd": 24729.51
+     },
+     {
+      "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "symbol": "WETH",
+      "amount": 0.3825847793779627,
+      "exchange_rate": 1814.71,
+      "usd": 694.28
+     },
+     {
+      "token": "0x4f3b49ac895a29c0908c57538932967cdc8e3c80",
+      "symbol": "ENPHON",
+      "amount": 27.609402353633065,
+      "exchange_rate": 24.87,
+      "usd": 686.65
+     },
+     {
+      "token": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+      "symbol": "ETHDYDX",
+      "amount": 3702.2107081526888,
+      "exchange_rate": 0.080042,
+      "usd": 296.33
+     },
+     {
+      "token": "0xb8c77482e45f1f44de1745f52c74426c631bdd52",
+      "symbol": "BNB",
+      "amount": 0.418945409835011,
+      "exchange_rate": 589.39,
+      "usd": 246.92
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 27601.01
+   },
+   {
+    "ns": "paraswap-fee-collector-v3",
+    "oracle": "0xb04b7813bf44fa7bb5c8e8cfc38cd770ffb3ca38",
+    "smart_vault": "0x45a6e007c874ffc6321d6fb90eac272dd6864bfa",
+    "sv_priceOracle": "0xb04b7813bf44fa7bb5c8e8cfc38cd770ffb3ca38",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 17324.74,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 16862.57943,
+      "exchange_rate": 0.999622,
+      "usd": 16856.21
+     },
+     {
+      "token": "0x80122c6a83c8202ea365233363d3f4837d13e888",
+      "symbol": "M87",
+      "amount": 7257586.705753539,
+      "exchange_rate": 1.017e-05,
+      "usd": 73.81
+     },
+     {
+      "token": "0xcf0c122c6b73ff809c693db761e7baebe62b6a2e",
+      "symbol": "FLOKI",
+      "amount": 3178850.521797449,
+      "exchange_rate": 1.84e-05,
+      "usd": 58.49
+     },
+     {
+      "token": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+      "symbol": "ETHDYDX",
+      "amount": 612.4269951865286,
+      "exchange_rate": 0.080042,
+      "usd": 49.02
+     },
+     {
+      "token": "0x49fb8ad7578148e17c3ef0c344ce23a66ed372c4",
+      "symbol": "TAOBOT",
+      "amount": 1417.1549632514564,
+      "exchange_rate": 0.03451855,
+      "usd": 48.92
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 17324.74
+   },
+   {
+    "ns": "tangem-fee-collector",
+    "oracle": "0x4d427a3d1956f174a06f7b75c0222e6979a70ee5",
+    "smart_vault": "0xa3752af0d28549a04b2bb90c9fb5533d380c8ffa",
+    "sv_priceOracle": "0x4d427a3d1956f174a06f7b75c0222e6979a70ee5",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 1e-09,
+    "tokens_usd": 12250.11,
+    "top_tokens": [
+     {
+      "token": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+      "symbol": "ETHDYDX",
+      "amount": 21897.230852441462,
+      "exchange_rate": 0.080042,
+      "usd": 1752.7
+     },
+     {
+      "token": "0xb8c77482e45f1f44de1745f52c74426c631bdd52",
+      "symbol": "BNB",
+      "amount": 2.031279033603794,
+      "exchange_rate": 589.39,
+      "usd": 1197.22
+     },
+     {
+      "token": "0x45804880de22913dafe09f4980848ece6ecbaf78",
+      "symbol": "PAXG",
+      "amount": 0.10667365698370565,
+      "exchange_rate": 3843.42,
+      "usd": 409.99
+     },
+     {
+      "token": "0xe28b3b32b6c345a34ff64674606124dd5aceca30",
+      "symbol": "INJ",
+      "amount": 55.86043071713774,
+      "exchange_rate": 6.87,
+      "usd": 383.76
+     },
+     {
+      "token": "0xae78736cd615f374d3085123a210448e74fc6393",
+      "symbol": "RETH",
+      "amount": 0.1529173546489702,
+      "exchange_rate": 2134.25,
+      "usd": 326.36
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 12250.11
+   },
+   {
+    "ns": "ledger-fee-collector-lifi",
+    "oracle": "0x0e2ee0be8ce5fcb7a15bf64d0e4eeb154538584c",
+    "smart_vault": "0x2d1c5382748559ba877246db753cacbc54d5b9b4",
+    "sv_priceOracle": "0x0e2ee0be8ce5fcb7a15bf64d0e4eeb154538584c",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 8312.72,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 7754.618844,
+      "exchange_rate": 0.999622,
+      "usd": 7751.69
+     },
+     {
+      "token": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+      "symbol": "ETHDYDX",
+      "amount": 2715.602416160014,
+      "exchange_rate": 0.080042,
+      "usd": 217.36
+     },
+     {
+      "token": "0xc845b2894dbddd03858fd2d643b4ef725fe0849d",
+      "symbol": "NVDAX",
+      "amount": 0.4628218682530937,
+      "exchange_rate": 156.3,
+      "usd": 72.34
+     },
+     {
+      "token": "0x68fa48b1c2fe52b3d776e1953e0e782b5044ce28",
+      "symbol": "SPCXX",
+      "amount": 0.37361010974,
+      "exchange_rate": 137.51,
+      "usd": 51.38
+     },
+     {
+      "token": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+      "symbol": "CBETH",
+      "amount": 0.01039083094,
+      "exchange_rate": 2078.45,
+      "usd": 21.6
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 8312.72
+   },
+   {
+    "ns": "bt-fee-collector",
+    "oracle": "0xdb27e6060b5875081b89082dc3cfd006c3a92010",
+    "smart_vault": "0xb16ad1a21185823c780d0a69b777dbdcb9ab87d1",
+    "sv_priceOracle": "0xdb27e6060b5875081b89082dc3cfd006c3a92010",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 8205.59,
+    "top_tokens": [
+     {
+      "token": "0xb8c77482e45f1f44de1745f52c74426c631bdd52",
+      "symbol": "BNB",
+      "amount": 11.038049478904297,
+      "exchange_rate": 589.39,
+      "usd": 6505.72
+     },
+     {
+      "token": "0x0ff6ffcfda92c53f615a4a75d982f399c989366b",
+      "symbol": "LAYER",
+      "amount": 6526.5666453612275,
+      "exchange_rate": 0.04496321,
+      "usd": 293.46
+     },
+     {
+      "token": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+      "symbol": "ETHDYDX",
+      "amount": 2378.697891199499,
+      "exchange_rate": 0.080042,
+      "usd": 190.4
+     },
+     {
+      "token": "0xa2b4c0af19cc16a6cfacce81f192b024d625817d",
+      "symbol": "KISHU",
+      "amount": 3743876200044.305,
+      "exchange_rate": 4.3315e-11,
+      "usd": 162.17
+     },
+     {
+      "token": "0x3ed3b47dd13ec9a98b44e6204a523e766b225811",
+      "symbol": "AUSDT",
+      "amount": 102.344207,
+      "exchange_rate": 0.992752,
+      "usd": 101.6
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 8205.59
+   },
+   {
+    "ns": "balancer-fee-collector",
+    "oracle": "0xfdb4b7683faadfb2524066348383cc2811377b4a",
+    "smart_vault": "0x9e5d6427d2cdadc68870197b099c2df535ec3c97",
+    "sv_priceOracle": "0xfdb4b7683faadfb2524066348383cc2811377b4a",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 5352.72,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 2034.08163,
+      "exchange_rate": 0.999622,
+      "usd": 2033.31
+     },
+     {
+      "token": "0xba100000625a3754423978a60c9317c58a424e3d",
+      "symbol": "BAL",
+      "amount": 8522.82544645506,
+      "exchange_rate": 0.115084,
+      "usd": 980.84
+     },
+     {
+      "token": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+      "symbol": "WSTETH",
+      "amount": 0.29594061887717726,
+      "exchange_rate": 2265.04,
+      "usd": 670.32
+     },
+     {
+      "token": "0x6982508145454ce325ddbe47a25d4ec3d2311933",
+      "symbol": "PEPE",
+      "amount": 65369117.93545411,
+      "exchange_rate": 3.89e-06,
+      "usd": 254.29
+     },
+     {
+      "token": "0x18084fba666a33d37592fa2633fd49a74dd93a88",
+      "symbol": "TBTC",
+      "amount": 0.003471108030043228,
+      "exchange_rate": 64415.0,
+      "usd": 223.59
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 5352.72
+   },
+   {
+    "ns": "exodus-fee-collector-lifi-intl",
+    "oracle": "0xa30148cbc1e3ab24940042210ea6ae9922fee1f2",
+    "smart_vault": "0x4dd665c59007fd825d98fddabf7759f650f2ace0",
+    "sv_priceOracle": "0xa30148cbc1e3ab24940042210ea6ae9922fee1f2",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 4441.08,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 1055.187946,
+      "exchange_rate": 0.999622,
+      "usd": 1054.79
+     },
+     {
+      "token": "0x0ff6ffcfda92c53f615a4a75d982f399c989366b",
+      "symbol": "LAYER",
+      "amount": 1441.8535396043246,
+      "exchange_rate": 0.04496321,
+      "usd": 64.83
+     },
+     {
+      "token": "0x80122c6a83c8202ea365233363d3f4837d13e888",
+      "symbol": "M87",
+      "amount": 5684409.359160957,
+      "exchange_rate": 1.017e-05,
+      "usd": 57.81
+     },
+     {
+      "token": "0x8e870d67f660d95d5be530380d0ec0bd388289e1",
+      "symbol": "USDP",
+      "amount": 47.78616152699433,
+      "exchange_rate": 0.991695,
+      "usd": 47.39
+     },
+     {
+      "token": "0xfa2b947eec368f42195f24f36d2af29f7c24cec2",
+      "symbol": "USDF",
+      "amount": 47.41432310049219,
+      "exchange_rate": 0.995563,
+      "usd": 47.2
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 4441.08
+   },
+   {
+    "ns": "mimic-fee-collector",
+    "oracle": "0xecbee3deb073b87416e30276b49fb28e93a6f468",
+    "smart_vault": "0x42e5f12db51e0494800119f47ac03ae1e9c489ad",
+    "sv_priceOracle": "0xecbee3deb073b87416e30276b49fb28e93a6f468",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.04980229777696273,
+    "tokens_usd": 2138.18,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 2097.599133,
+      "exchange_rate": 0.999622,
+      "usd": 2096.81
+     },
+     {
+      "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "symbol": "WETH",
+      "amount": 0.022796486528516267,
+      "exchange_rate": 1814.71,
+      "usd": 41.37
+     }
+    ],
+    "eth_usd": 90.22,
+    "total_usd": 2228.4
+   },
+   {
+    "ns": "exodus-fee-collector-lifi",
+    "oracle": "0x785c9c87f550516a4b1c3e9988d21bd194e42b4f",
+    "smart_vault": "0xe405c31032054ccebe1a94a4b65b0c510537dfae",
+    "sv_priceOracle": "0x785c9c87f550516a4b1c3e9988d21bd194e42b4f",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 2196.75,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 332.977095,
+      "exchange_rate": 0.999622,
+      "usd": 332.85
+     },
+     {
+      "token": "0x62d0a8458ed7719fdaf978fe5929c6d342b0bfce",
+      "symbol": "BEAM",
+      "amount": 12849.384077652776,
+      "exchange_rate": 0.00386651,
+      "usd": 49.68
+     },
+     {
+      "token": "0x320623b8e4ff03373931769a31fc52a4e78b5d70",
+      "symbol": "RSR",
+      "amount": 33483.18097996298,
+      "exchange_rate": 0.00130679,
+      "usd": 43.76
+     },
+     {
+      "token": "0x046eee2cc3188071c02bfc1745a6b17c656e3f3d",
+      "symbol": "RLB",
+      "amount": 609.703989560376,
+      "exchange_rate": 0.068562,
+      "usd": 41.8
+     },
+     {
+      "token": "0x8292bb45bf1ee4d140127049757c2e0ff06317ed",
+      "symbol": "RLUSD",
+      "amount": 38.935470807487036,
+      "exchange_rate": 0.999927,
+      "usd": 38.93
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 2196.75
+   },
+   {
+    "ns": "ledger-fee-collector-okx",
+    "oracle": "0x67c48af927201b15c25854ae17bb8c2fb57940c1",
+    "smart_vault": "0x764d8c21fd57db1101bbe274c0534cac63d2f5ef",
+    "sv_priceOracle": "0x67c48af927201b15c25854ae17bb8c2fb57940c1",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 2165.24,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 1323.276274,
+      "exchange_rate": 0.999622,
+      "usd": 1322.78
+     },
+     {
+      "token": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+      "symbol": "ETHDYDX",
+      "amount": 4036.940892825569,
+      "exchange_rate": 0.080042,
+      "usd": 323.12
+     },
+     {
+      "token": "0x9cf0ed013e67db12ca3af8e7506fe401aa14dad6",
+      "symbol": "SPECTRE",
+      "amount": 406.7655608264511,
+      "exchange_rate": 0.588817,
+      "usd": 239.51
+     },
+     {
+      "token": "0xa3d4bee77b05d4a0c943877558ce21a763c4fa29",
+      "symbol": "ROOT",
+      "amount": 2140628.65479,
+      "exchange_rate": 8.418e-05,
+      "usd": 180.2
+     },
+     {
+      "token": "0xf1df7305e4bab3885cab5b1e4dfc338452a67891",
+      "symbol": "PALM",
+      "amount": 2289.80893207,
+      "exchange_rate": 0.0414656,
+      "usd": 94.95
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 2165.24
+   },
+   {
+    "ns": "ledger-fee-collector-button",
+    "oracle": "0x416b837ce1075a754146c3e67e9c45c90bda2585",
+    "smart_vault": "0x2d8a8521e027763c6bdb9bf0be474cb4306adb24",
+    "sv_priceOracle": "0x416b837ce1075a754146c3e67e9c45c90bda2585",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 1480.36,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 1480.708141,
+      "exchange_rate": 0.999622,
+      "usd": 1480.15
+     },
+     {
+      "token": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+      "symbol": "STETH",
+      "amount": 0.000102297727451334,
+      "exchange_rate": 1813.23,
+      "usd": 0.19
+     },
+     {
+      "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "symbol": "WETH",
+      "amount": 1.171420708864e-05,
+      "exchange_rate": 1814.71,
+      "usd": 0.02
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 1480.36
+   },
+   {
+    "ns": "trezor-fee-collector",
+    "oracle": "0xd3bd37da397f1f3ccfd5a66494a9a7ac8521b968",
+    "smart_vault": "0xbac87742e5b9b226437981c0ae52ca0426ad4553",
+    "sv_priceOracle": "0xd3bd37da397f1f3ccfd5a66494a9a7ac8521b968",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 1352.45,
+    "top_tokens": [
+     {
+      "token": "0xb8c77482e45f1f44de1745f52c74426c631bdd52",
+      "symbol": "BNB",
+      "amount": 1.9304351019564758,
+      "exchange_rate": 589.39,
+      "usd": 1137.78
+     },
+     {
+      "token": "0xb22d83e228c4266075ec75c32acc3bc059b6f248",
+      "symbol": "OPENON",
+      "amount": 65.77655156330398,
+      "exchange_rate": 1.18,
+      "usd": 77.62
+     },
+     {
+      "token": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+      "symbol": "ETHDYDX",
+      "amount": 887.4064846248407,
+      "exchange_rate": 0.080042,
+      "usd": 71.03
+     },
+     {
+      "token": "0x0ce36d199bd6851788e03392568849394cbde722",
+      "symbol": "PALLON",
+      "amount": 0.6903650556331609,
+      "exchange_rate": 90.2,
+      "usd": 62.27
+     },
+     {
+      "token": "0xf0f9d895aca5c8678f706fb8216fa22957685a13",
+      "symbol": "CULT",
+      "amount": 6473227.477167925,
+      "exchange_rate": 5.20086e-07,
+      "usd": 3.37
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 1352.45
+   },
+   {
+    "ns": "zerion-fee-collector-1inch",
+    "oracle": "0x9d0d0b3af6adb3f92f318011b0ab1c69e55f1eb3",
+    "smart_vault": "0x047f40ec37009df8e74c6ba5ed1ee380857a2480",
+    "sv_priceOracle": "0x9d0d0b3af6adb3f92f318011b0ab1c69e55f1eb3",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 1218.72,
+    "top_tokens": [
+     {
+      "token": "0xb8c77482e45f1f44de1745f52c74426c631bdd52",
+      "symbol": "BNB",
+      "amount": 1.027417976298639,
+      "exchange_rate": 589.39,
+      "usd": 605.55
+     },
+     {
+      "token": "0x199e2cfaf8b4f2cc5423971ef3749d1c89cf815c",
+      "symbol": "OPAL",
+      "amount": 1246.8094861197803,
+      "exchange_rate": 0.128472,
+      "usd": 160.18
+     },
+     {
+      "token": "0x11fa1193743061591cbe47c9e0765eaebaa3a046",
+      "symbol": "NKP",
+      "amount": 30688.886954859205,
+      "exchange_rate": 0.00199391,
+      "usd": 61.19
+     },
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 31.802943,
+      "exchange_rate": 0.999622,
+      "usd": 31.79
+     },
+     {
+      "token": "0x8eef5a82e6aa222a60f009ac18c24ee12dbf4b41",
+      "symbol": "TXL",
+      "amount": 22812.322867947474,
+      "exchange_rate": 0.00128955,
+      "usd": 29.42
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 1218.72
+   },
+   {
+    "ns": "exodus-fee-collector-mayan-intl",
+    "oracle": "0x52eae276f68ac1ef7916e4a0769d329cc9f51d5f",
+    "smart_vault": "0x86f5279c787a84f6cedcea8a752ff1b497c79203",
+    "sv_priceOracle": "0x52eae276f68ac1ef7916e4a0769d329cc9f51d5f",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 668.77,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 483.54662,
+      "exchange_rate": 0.999622,
+      "usd": 483.36
+     },
+     {
+      "token": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+      "symbol": "ETHDYDX",
+      "amount": 2202.9694106195598,
+      "exchange_rate": 0.080042,
+      "usd": 176.33
+     },
+     {
+      "token": "0xdef1b2d939edc0e4d35806c59b3166f790175afe",
+      "symbol": "INX",
+      "amount": 2449.300096323756,
+      "exchange_rate": 0.00343729,
+      "usd": 8.42
+     },
+     {
+      "token": "0x6967f0974d76d34e140cae27efea32cdf546b58e",
+      "symbol": "GMRT",
+      "amount": 1820.0583321339755,
+      "exchange_rate": 0.00033115,
+      "usd": 0.6
+     },
+     {
+      "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "symbol": "WETH",
+      "amount": 3.4918101348008e-05,
+      "exchange_rate": 1814.71,
+      "usd": 0.06
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 668.77
+   },
+   {
+    "ns": "mana-swapper",
+    "oracle": "0x4e6d4a50a33325f3ffd3c4b878ec0120a022edc6",
+    "smart_vault": "0x58c23f9316af2b8e124603eac2124dc25fd4bfc2",
+    "sv_priceOracle": "0x4e6d4a50a33325f3ffd3c4b878ec0120a022edc6",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 275.99,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 276.096084,
+      "exchange_rate": 0.999622,
+      "usd": 275.99
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 275.99
+   },
+   {
+    "ns": "ledger-live-fee-distribution",
+    "oracle": "0x6b5590d7422d0e656902a12c447dc20b0f47da2b",
+    "smart_vault": "0x9cd6abd67960ee65157eccc39dcfcdbf7b6beef8",
+    "sv_priceOracle": "0x6b5590d7422d0e656902a12c447dc20b0f47da2b",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 155.8,
+    "top_tokens": [
+     {
+      "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "symbol": "WETH",
+      "amount": 0.07882704951359965,
+      "exchange_rate": 1814.71,
+      "usd": 143.05
+     },
+     {
+      "token": "0xa4bc2b90743294e5e6fd3321a9a131947f7785db",
+      "symbol": "JEST",
+      "amount": 3.883506489,
+      "exchange_rate": 0.470314,
+      "usd": 1.83
+     },
+     {
+      "token": "0x97b65710d03e12775189f0d113202cc1443b0aa2",
+      "symbol": "ELONONE",
+      "amount": 14578401549.681202,
+      "exchange_rate": 1.15755e-10,
+      "usd": 1.69
+     },
+     {
+      "token": "0x0b61c4f33bcdef83359ab97673cb5961c6435f4e",
+      "symbol": "EARN",
+      "amount": 870.3348377406517,
+      "exchange_rate": 0.00104524,
+      "usd": 0.91
+     },
+     {
+      "token": "0x02e7f808990638e9e67e1f00313037ede2362361",
+      "symbol": "KIBSHI",
+      "amount": 605390.2181358015,
+      "exchange_rate": 1.43e-06,
+      "usd": 0.87
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 155.8
+   },
+   {
+    "ns": "exodus-fee-collector",
+    "oracle": "0x8a3f979ba2e082913c0b6501dfdf1fce8b307044",
+    "smart_vault": "0x139af0e04478c5428ba64e093658d39a5f35de0c",
+    "sv_priceOracle": "0x8a3f979ba2e082913c0b6501dfdf1fce8b307044",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 134.62,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 83.460365,
+      "exchange_rate": 0.999622,
+      "usd": 83.43
+     },
+     {
+      "token": "0xba386a4ca26b85fd057ab1ef86e3dc7bdeb5ce70",
+      "symbol": "JESUS",
+      "amount": 727013133.5965165,
+      "exchange_rate": 1.2592e-08,
+      "usd": 9.15
+     },
+     {
+      "token": "0x8eef5a82e6aa222a60f009ac18c24ee12dbf4b41",
+      "symbol": "TXL",
+      "amount": 6566.6664,
+      "exchange_rate": 0.00128955,
+      "usd": 8.47
+     },
+     {
+      "token": "0x94a8b4ee5cd64c79d0ee816f467ea73009f51aa0",
+      "symbol": "RIO",
+      "amount": 224.99742003384,
+      "exchange_rate": 0.03277745,
+      "usd": 7.37
+     },
+     {
+      "token": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+      "symbol": "STETH",
+      "amount": 0.003030931764590756,
+      "exchange_rate": 1813.23,
+      "usd": 5.5
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 134.62
+   },
+   {
+    "ns": "zerion-fee-collector-0x",
+    "oracle": "0x7733a6447ce36e6e5e1f03d1cc0ab19595d9f7ac",
+    "smart_vault": "0xdfc9b8c40a8b99943245e18cfdf80c88e6fbfae4",
+    "sv_priceOracle": "0x7733a6447ce36e6e5e1f03d1cc0ab19595d9f7ac",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 106.52,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 106.558451,
+      "exchange_rate": 0.999622,
+      "usd": 106.52
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 106.52
+   },
+   {
+    "ns": "rainbow-fee-collector",
+    "oracle": "0x9352ec1824b60bebaa8509e3218de9d0a4c8244d",
+    "smart_vault": "0xce4c24c2a44e4ab92cb1b0cfddac314971430e66",
+    "sv_priceOracle": "0x9352ec1824b60bebaa8509e3218de9d0a4c8244d",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 80.8,
+    "top_tokens": [
+     {
+      "token": "0x80122c6a83c8202ea365233363d3f4837d13e888",
+      "symbol": "M87",
+      "amount": 2718123.3275,
+      "exchange_rate": 1.017e-05,
+      "usd": 27.64
+     },
+     {
+      "token": "0x49fb8ad7578148e17c3ef0c344ce23a66ed372c4",
+      "symbol": "TAOBOT",
+      "amount": 441.88811659404945,
+      "exchange_rate": 0.03451855,
+      "usd": 15.25
+     },
+     {
+      "token": "0x9cf0ed013e67db12ca3af8e7506fe401aa14dad6",
+      "symbol": "SPECTRE",
+      "amount": 25.525857385948846,
+      "exchange_rate": 0.588817,
+      "usd": 15.03
+     },
+     {
+      "token": "0x0b38210ea11411557c13457d4da7dc6ea731b88a",
+      "symbol": "API3",
+      "amount": 42.5,
+      "exchange_rate": 0.186945,
+      "usd": 7.95
+     },
+     {
+      "token": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+      "symbol": "ETHDYDX",
+      "amount": 84.00618024625491,
+      "exchange_rate": 0.080042,
+      "usd": 6.72
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 80.8
+   },
+   {
+    "ns": "zapper-fee-collector",
+    "oracle": "0xf6f3f0e853e56668c9fe7b5885cd3077aac31068",
+    "smart_vault": "0xa756ff534af05105012034b53990b264ac5efe18",
+    "sv_priceOracle": "0xf6f3f0e853e56668c9fe7b5885cd3077aac31068",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 69.86,
+    "top_tokens": [
+     {
+      "token": "0x49fb8ad7578148e17c3ef0c344ce23a66ed372c4",
+      "symbol": "TAOBOT",
+      "amount": 318.0715173075312,
+      "exchange_rate": 0.03451855,
+      "usd": 10.98
+     },
+     {
+      "token": "0x0ff6ffcfda92c53f615a4a75d982f399c989366b",
+      "symbol": "LAYER",
+      "amount": 193.28,
+      "exchange_rate": 0.04496321,
+      "usd": 8.69
+     },
+     {
+      "token": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+      "symbol": "ETHDYDX",
+      "amount": 89.33514970067151,
+      "exchange_rate": 0.080042,
+      "usd": 7.15
+     },
+     {
+      "token": "0x62d0a8458ed7719fdaf978fe5929c6d342b0bfce",
+      "symbol": "BEAM",
+      "amount": 597.6843100118773,
+      "exchange_rate": 0.00386651,
+      "usd": 2.31
+     },
+     {
+      "token": "0x626e8036deb333b408be468f951bdb42433cbf18",
+      "symbol": "AIOZ",
+      "amount": 27.99989391119053,
+      "exchange_rate": 0.078311,
+      "usd": 2.19
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 69.86
+   },
+   {
+    "ns": "exodus-fee-collector-mayan-us",
+    "oracle": "0xb2df49023fb18c7581a1865e0cbe9dc5b1053ad0",
+    "smart_vault": "0x9545d986f7c10554e79e40ee064dacbee776ba25",
+    "sv_priceOracle": "0xb2df49023fb18c7581a1865e0cbe9dc5b1053ad0",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 51.58,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 51.537594,
+      "exchange_rate": 0.999622,
+      "usd": 51.52
+     },
+     {
+      "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "symbol": "WETH",
+      "amount": 3.4778713122616e-05,
+      "exchange_rate": 1814.71,
+      "usd": 0.06
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 51.58
+   },
+   {
+    "ns": "sys-fee-collector",
+    "oracle": "0x47d1b49a73584424251227d48d0dafbb24bea738",
+    "smart_vault": "0xd48bc93b9ca80a3ab7e5520bd52efa5e14558939",
+    "sv_priceOracle": "0x47d1b49a73584424251227d48d0dafbb24bea738",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 33.07,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 33.082918,
+      "exchange_rate": 0.999622,
+      "usd": 33.07
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 33.07
+   },
+   {
+    "ns": "ledger-connect-fee-distribution",
+    "oracle": "0x416277d867e161263babb864cc45e050c13eb76f",
+    "smart_vault": "0x2657b0c5b709630f2e0dd14872c0ee8f472da58a",
+    "sv_priceOracle": "0x416277d867e161263babb864cc45e050c13eb76f",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.002496330147608929,
+    "tokens_usd": 14.33,
+    "top_tokens": [
+     {
+      "token": "0x68749665ff8d2d112fa859aa293f07a622782f38",
+      "symbol": "XAUT",
+      "amount": 0.002151,
+      "exchange_rate": 3842.34,
+      "usd": 8.26
+     },
+     {
+      "token": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+      "symbol": "WSTETH",
+      "amount": 0.002681155854087573,
+      "exchange_rate": 2265.04,
+      "usd": 6.07
+     }
+    ],
+    "eth_usd": 4.52,
+    "total_usd": 18.85
+   },
+   {
+    "ns": "consensys-fee-collector",
+    "oracle": "0xae7a74c658c114815efcb2f9b3b4927dfeecaa98",
+    "smart_vault": "0x2bacf90db12d0039b04fa22538c314ef2f398809",
+    "sv_priceOracle": "0xae7a74c658c114815efcb2f9b3b4927dfeecaa98",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 6.57,
+    "top_tokens": [
+     {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "amount": 6.568777,
+      "exchange_rate": 0.999622,
+      "usd": 6.57
+     }
+    ],
+    "eth_usd": 0.0,
+    "total_usd": 6.57
+   },
+   {
+    "ns": "exodus-fee-collector-bitget",
+    "oracle": "0x50d8ef905b1fb2e1c308bba491b726e2db00fc73",
+    "smart_vault": "0x930548658e996a8ccade6faf95ebd201a69073fc",
+    "sv_priceOracle": "0x50d8ef905b1fb2e1c308bba491b726e2db00fc73",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "ledger-fee-collector-button-okx",
+    "oracle": "0xe37c1ced7faf25befa4f1f182d9c339aaf79d24b",
+    "smart_vault": "0xe6cd36548a2d55e744a54d2c8a90f003d4f091cf",
+    "sv_priceOracle": "0xe37c1ced7faf25befa4f1f182d9c339aaf79d24b",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "cache-wallet-fee-collector",
+    "oracle": "0x43d1a0cfe1f49fabc137461a3448ab01b0f46bb6",
+    "smart_vault": "0xcae9452eaee3dea9e27dd5f9895cb917fcf068e0",
+    "sv_priceOracle": "0x43d1a0cfe1f49fabc137461a3448ab01b0f46bb6",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "exodus-fee-collector-relay-intl",
+    "oracle": "0xaf7a9112c5227dbb6bbdf9cb3d6bf08397e9f620",
+    "smart_vault": "0x97400878d7e5e90f168c42b1f38ff5c1b11a0f9f",
+    "sv_priceOracle": "0xaf7a9112c5227dbb6bbdf9cb3d6bf08397e9f620",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "indexcoop-fee-collector",
+    "oracle": "0x7637748affa4d4ba1381a867d745ee54166cef02",
+    "smart_vault": "0x1129fb8d5eef56f0bb0d8e8b55a74619ce88d8fe",
+    "sv_priceOracle": "0x7637748affa4d4ba1381a867d745ee54166cef02",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "nansen-fee-collector",
+    "oracle": "0x3a03b978336de4294e4e609642533a8b5adef8b8",
+    "smart_vault": "0x055f0155e9dcb9cff1abbf9fde4525b21a8fbaff",
+    "sv_priceOracle": "0x3a03b978336de4294e4e609642533a8b5adef8b8",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "ledger-fee-collector-button-ps",
+    "oracle": "0x8814634c2894cd4f6d87bf7feb9f2b7064b001cb",
+    "smart_vault": "0x822e1c97c18563c09c69b1555213121956fc5761",
+    "sv_priceOracle": "0x8814634c2894cd4f6d87bf7feb9f2b7064b001cb",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "exodus-fee-collector-relay",
+    "oracle": "0xbaa2299589214829f125611a7f666095bffdbf84",
+    "smart_vault": "0x750826b3031f0abc0e17919d581a9ab608b8bf86",
+    "sv_priceOracle": "0xbaa2299589214829f125611a7f666095bffdbf84",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "ledger-fee-collector-multisig",
+    "oracle": "0x697f678a8d168d61d88a0b716482b7fb75fb22c7",
+    "smart_vault": "0x066d5ae97ee100a02cff904d486dd5f8a42f7cfd",
+    "sv_priceOracle": "0x697f678a8d168d61d88a0b716482b7fb75fb22c7",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "exodus-fee-collector-debridge-intl",
+    "oracle": "0x5a9ca66dc9070edff89c5c71e0b29dfac6fa1dde",
+    "smart_vault": "0x08f2a03872f226ae209c95323b4cc9d846c41cf2",
+    "sv_priceOracle": "0x5a9ca66dc9070edff89c5c71e0b29dfac6fa1dde",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "exodus-fee-collector-debridge-us",
+    "oracle": "0x71cb4b3c47713ded55426ca9b52b3d08204fe6c9",
+    "smart_vault": "0x313369076eef78c3b989d44169a3ea9485565f77",
+    "sv_priceOracle": "0x71cb4b3c47713ded55426ca9b52b3d08204fe6c9",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "onekey-fee-collector-socket",
+    "oracle": "0xd8292b552434f1750fa7a9e2f44704725c334c66",
+    "smart_vault": "0x6f6847e528e509a05ff5618e46213bc0a6e4abfc",
+    "sv_priceOracle": "0xd8292b552434f1750fa7a9e2f44704725c334c66",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "balancer-fee-collector-v3",
+    "oracle": "0xf61da46c4c5fc6607c4cbee8066a0ba510d1b76f",
+    "smart_vault": "0x1d8e78300db118dce5d8176c93bef1d6028d74eb",
+    "sv_priceOracle": "0xf61da46c4c5fc6607c4cbee8066a0ba510d1b76f",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "bt-public-swapper",
+    "oracle": "0x59a888d8a4d42a6ba6c4c8a25fc71b414caf1bdf",
+    "smart_vault": "0x932a2970155c589f26f2914b5326bf9e3d6773b1",
+    "sv_priceOracle": "0x59a888d8a4d42a6ba6c4c8a25fc71b414caf1bdf",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "layer3-fee-collector",
+    "oracle": "0x8f2882bbb12a3ce904519f8cce11950f629b8c01",
+    "smart_vault": "0x6ec624f938a16cd6ee04c2c61c555f60c4b3b8a6",
+    "sv_priceOracle": "0x8f2882bbb12a3ce904519f8cce11950f629b8c01",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "zapper-fee-collector-socket",
+    "oracle": "0x410025f61fedf745d5ffbaf9af7c9172c4cdb5b0",
+    "smart_vault": "0x0b529b148c025371b6f6a9287a8f9e6e07d1ad7b",
+    "sv_priceOracle": "0x410025f61fedf745d5ffbaf9af7c9172c4cdb5b0",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "blink-fee-distribution-trial",
+    "oracle": "0xac2a0773b5be852828f3cfdce72a54d3218e41f3",
+    "smart_vault": "0xf9b210f81b649cb1388339907ee4da174bdfa32e",
+    "sv_priceOracle": "0xac2a0773b5be852828f3cfdce72a54d3218e41f3",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "safe-fee-collector-1inch",
+    "oracle": "0x856c2d5d82a48e11ccdc6306b53314187bf25392",
+    "smart_vault": "0x316027646c242c018322d948c7c0bc2ddda180bc",
+    "sv_priceOracle": "0x856c2d5d82a48e11ccdc6306b53314187bf25392",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "exodus-fee-collector-non-inch",
+    "oracle": "0x874f5cf97f1e4562b8416bbbcaf8ea97d3e6add0",
+    "smart_vault": "0x60d1994b91cb8566de1b2200bdf8d94e9e76b267",
+    "sv_priceOracle": "0x874f5cf97f1e4562b8416bbbcaf8ea97d3e6add0",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "wallet-connect-fee-collector",
+    "oracle": "0xbc5f9f64400bb306230da0ebf9667b0f5c52b923",
+    "smart_vault": "0x31bcfe88888e7c1c8bb361e12db37e7bc43bb989",
+    "sv_priceOracle": null,
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "1inch-wallet-fee-collector",
+    "oracle": "0xb6a63e45869e563f6dda9ec2ebf7cca978bb8ab6",
+    "smart_vault": "0x45e14f8d35e6cb1e7937177ee83282fb47f148f9",
+    "sv_priceOracle": "0xb6a63e45869e563f6dda9ec2ebf7cca978bb8ab6",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "1inch-tw-airdropper-v2",
+    "oracle": "0xb3d9b59545e41ac9572a0d51d327fbf3bf40968f",
+    "smart_vault": "0x815e48655e9282e5a6957878d266ba7ed6f93ce5",
+    "sv_priceOracle": "0xb3d9b59545e41ac9572a0d51d327fbf3bf40968f",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   },
+   {
+    "ns": "paraswap-fee-collector",
+    "oracle": "0xe64476e428142b5ed3dea893dd9231630f140edd",
+    "smart_vault": "0x4b30e33c1f78aa107cf8c5c27ea5b7e68243bc87",
+    "sv_priceOracle": "0xe64476e428142b5ed3dea893dd9231630f140edd",
+    "oracle_signers": [
+     "0xb3afb6db38a8e72905165c1fbb96772e63560790"
+    ],
+    "sv_eth": 0.0,
+    "tokens_usd": 0,
+    "top_tokens": [],
+    "eth_usd": 0.0,
+    "total_usd": 0.0
+   }
+  ]
+ }
+}

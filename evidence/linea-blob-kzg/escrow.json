@@ -1,0 +1,172 @@
+{
+ "block": 26431459,
+ "as_of": "2026-11-17",
+ "source": "cast (publicnode) at block 26431459; Blockscout v2 address + ERC-20 tokens (first page, sorted by fiat value; tokens with reputation != ok or value > market cap skipped)",
+ "linea_rollup": "0xd19d4b5d358258f05d7b411e21a1460d11b0876f",
+ "eip1967_implementation": "0x052b73d934e9412045bf731574463fd026d74645",
+ "eip1967_admin": "0xf5058616517c068c7b8c7ebc69ff636ade9066d6",
+ "proxyadmin_owner": "0xd6b95c960779c72b8c6752119849318e5d550574 (TimeLock, getMinDelay() = 0)",
+ "timelock_proposer_executor": "0x892bb7eed71efb060ab90140e7825d8127991dd3 (Safe, threshold 5 of 9 owners)",
+ "roles_on_linea_rollup": {
+  "DEFAULT_ADMIN_ROLE": [
+   "0x892bb7eed71efb060ab90140e7825d8127991dd3"
+  ],
+  "VERIFIER_SETTER_ROLE": [
+   "0xd6b95c960779c72b8c6752119849318e5d550574"
+  ],
+  "VERIFIER_UNSETTER_ROLE": [
+   "0x892bb7eed71efb060ab90140e7825d8127991dd3"
+  ],
+  "OPERATOR_ROLE (checked holders)": [
+   "0x46d2f319fd42165d4318f099e143dea8124e9e3e (EOA, sends submitBlobs)",
+   "0x52ff08f313a00a54e3beffb5c4a7f7446efb6754 (EOA, sends finalizeBlocks)"
+  ]
+ },
+ "verifiers_mapping": {
+  "0": "0x0b3943f4b1397c7a9f268d8b84f127a78c66414c",
+  "1": "0x1d930e3fac9fbc7026ec17962d2f57d558d37532",
+  "2..10": "0x0"
+ },
+ "sample_finalize_tx": {
+  "hash": "0x9b63dd0677db7603b3bcbc4c4e0657d58fd4d9b48977a059416295bd268e6ca6",
+  "block": 26430204,
+  "proofType": 0
+ },
+ "token_bridge": {
+  "address": "0x051f1d88f0af5763fb888ec4378b4d8b29ea3319",
+  "messageService()": "0xd19d4b5d358258f05d7b411e21a1460d11b0876f"
+ },
+ "legacy_usdc_bridge": {
+  "address": "0x504a330327a089d8364c4ab3811ee26976d388ce",
+  "messageService()": "0xd19d4b5d358258f05d7b411e21a1460d11b0876f",
+  "total_usd": 36
+ },
+ "yield_manager": {
+  "address": "0xeb63cabdd78537b9b72a2afb573f7caa91bd8d94",
+  "eth": 0.0,
+  "tokens_usd": 0
+ },
+ "holdings": [
+  {
+   "address": "0xd19d4b5d358258f05d7b411e21a1460d11b0876f",
+   "name": "TransparentUpgradeableProxy",
+   "eth": 19599.407636751872,
+   "eth_usd_rate": 1814.67,
+   "eth_usd": 35566457,
+   "tokens_usd": 2,
+   "total_usd": 35566459,
+   "top_tokens": [
+    [
+     "KEN",
+     "0x5f602133653237F362eb69826BA8237f4F7aB0c3",
+     2
+    ],
+    [
+     "DECT",
+     "0xDB99B0477574Ac0B2d9c8cec56B42277DA3fdb82",
+     0
+    ],
+    [
+     "CANA",
+     "0x01995A697752266d8E748738aAa3F06464B8350B",
+     0
+    ],
+    [
+     "FTMX",
+     "0x45510DB2481353178db5ABb87C96805fADad0724",
+     0
+    ],
+    [
+     "Q*",
+     "0x9ABFc0f085C82Ec1Be31D30843965FCC63053fFe",
+     0
+    ],
+    [
+     "WETH",
+     "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+     0
+    ],
+    [
+     "HOKK",
+     "0x4f2CeF6F39114adE3d8AF4020fa1De1d064cadAF",
+     0
+    ]
+   ],
+   "token_page_has_more": false
+  },
+  {
+   "address": "0x051f1d88f0af5763fb888ec4378b4d8b29ea3319",
+   "name": "TransparentUpgradeableProxy",
+   "eth": 0.0,
+   "eth_usd_rate": 1817.25,
+   "eth_usd": 0,
+   "tokens_usd": 10610894,
+   "total_usd": 10610894,
+   "top_tokens": [
+    [
+     "USDT",
+     "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+     6911811
+    ],
+    [
+     "WBTC",
+     "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+     1872110
+    ],
+    [
+     "WSTETH",
+     "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+     1527472
+    ],
+    [
+     "SNT",
+     "0x744d70FDBE2Ba4CF95131626614a1763DF805B9E",
+     126814
+    ],
+    [
+     "DAI",
+     "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+     98805
+    ],
+    [
+     "COMP",
+     "0xc00e94Cb662C3520282E6f5717214004A7f26888",
+     26760
+    ],
+    [
+     "XMT",
+     "0x3E5D9D8a63CC8a88748f229999CF59487e90721e",
+     7825
+    ],
+    [
+     "XFIT",
+     "0x4aa41bC1649C9C3177eD16CaaA11482295fC7441",
+     6811
+    ],
+    [
+     "LUSD",
+     "0x5f98805A4E8be255a32880FDeC7F6728C6568bA0",
+     6003
+    ],
+    [
+     "SIS",
+     "0xd38BB40815d2B0c2d2c866e0c72c5728ffC76dd9",
+     5705
+    ]
+   ],
+   "token_page_has_more": true
+  },
+  {
+   "address": "0xeb63cabdd78537b9b72a2afb573f7caa91bd8d94",
+   "name": "TransparentUpgradeableProxy",
+   "eth": 0.0,
+   "eth_usd_rate": 1817.25,
+   "eth_usd": 0,
+   "tokens_usd": 0,
+   "total_usd": 0,
+   "top_tokens": [],
+   "token_page_has_more": false
+  }
+ ],
+ "escrow_total_usd": 46177353
+}

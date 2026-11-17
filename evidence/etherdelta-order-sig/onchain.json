@@ -1,0 +1,40 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x8d12a197cb00d4747a1fe03395095ce2a5cc6819": {
+   "code_size": 6613,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 15154.042813590417,
+   "tokens_usd": 12374158.556696074,
+   "top_tokens": [
+    [
+     "LINK",
+     4737902
+    ],
+    [
+     "BNB",
+     4483495
+    ],
+    [
+     "P2PS",
+     1820086
+    ],
+    [
+     "TRAC",
+     434148
+    ],
+    [
+     "NEXO",
+     114321
+    ]
+   ],
+   "held_usd": 39827526
+  }
+ }
+}

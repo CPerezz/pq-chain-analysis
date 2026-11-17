@@ -1,0 +1,73 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x4a14347083b80e5216ca31350a2d21702ac3650d": {
+   "code_size": 19897,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 0.016598979296659183,
+   "tokens_usd": 102015.5877753922,
+   "top_tokens": [
+    [
+     "UNI",
+     24175
+    ],
+    [
+     "DAI",
+     17949
+    ],
+    [
+     "PEPE",
+     12419
+    ],
+    [
+     "WETH",
+     9139
+    ],
+    [
+     "USDT",
+     6730
+    ]
+   ],
+   "held_usd": 102046
+  },
+  "0x8d90113a1e286a5ab3e496fbd1853f265e5913c6": {
+   "code_size": 9355,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 2.167961781575322,
+   "tokens_usd": 40215.52387513743,
+   "top_tokens": [
+    [
+     "WETH",
+     20542
+    ],
+    [
+     "USDT",
+     8402
+    ],
+    [
+     "UNI",
+     5573
+    ],
+    [
+     "PEPE",
+     3070
+    ],
+    [
+     "USDC",
+     1057
+    ]
+   ],
+   "held_usd": 44143
+  }
+ }
+}

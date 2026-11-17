@@ -1,0 +1,14 @@
+{
+ "block": 26431457,
+ "date": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "method": "cast call / eth_getStorageAt at the block; Blockscout v2 API for creators, logs and token balances",
+ "reads": {
+  "0x111111125421ca6dc452d289314280a0f8842a65": {
+   "owner()": "0x9f8102b1bb05785bad2874f2c7b1aaea4c6d976a (Safe, threshold 3 of 4: 0xc2cce431\u2026, 0x8822b82d\u2026, 0xd6970196\u2026, 0x223c0ef3\u2026)",
+   "paused()": false,
+   "proxy": "none (24,294 bytes of runtime code, no EIP-1967 slots)"
+  },
+  "source": "Sourcify AggregationRouterV6.mainnet.sol: _fillOrder l.3814 `maker != ECDSA.recover(orderHash, r, vs)` with no code check; _fillContractOrder l.3875 `ECDSA.isValidSignature(maker, orderHash, signature)` (ERC-1271 staticcall with full calldata signature, l.1097-1117); owner-only functions: rescueFunds l.5765, pause()/unpause() l.5772-5779 (no upgrade path)"
+ }
+}

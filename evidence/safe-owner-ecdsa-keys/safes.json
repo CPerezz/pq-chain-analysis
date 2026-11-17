@@ -1,0 +1,1319 @@
+{
+ "block": 26431566,
+ "as_of": "2026-11-17",
+ "method": "eth_call getThreshold/getOwners/VERSION/nonce/getModulesPaginated(0x1,20), storage slot 0 (singleton), guard slot 0x4a204f62\u2026, fallback-handler slot 0x6c9a6c4a\u2026, owner eth_getCode/eth_getTransactionCount via ethereum-rpc.publicnode.com; held_usd from onchain.json (block 26,431,214)",
+ "safes": {
+  "0xf20b338752976878754518183873602902360704": {
+   "threshold": 3,
+   "owners": [
+    "0xf42bcfd3dd5fcdd984d24fd2787383195c7f2b51",
+    "0xd5b443e22f71c36456b75528d7605614d610ab8e",
+    "0xdd964ff80aede0f4408cf8102e7d8cc626e04d7e",
+    "0xd007058e9b58e74c33c6bf6fbcd38baab813cbb6"
+   ],
+   "version": "1.4.1",
+   "nonce": 1721,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [],
+   "code_size": 170,
+   "held_usd": 0,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xf42bcfd3dd5fcdd984d24fd2787383195c7f2b51": "eoa",
+    "0xd5b443e22f71c36456b75528d7605614d610ab8e": "eoa",
+    "0xdd964ff80aede0f4408cf8102e7d8cc626e04d7e": "eoa",
+    "0xd007058e9b58e74c33c6bf6fbcd38baab813cbb6": "eoa"
+   }
+  },
+  "0x5b92e431f93024ea3ec20b311d83ac6035bd50e1": {
+   "threshold": 2,
+   "owners": [
+    "0xac4348b9769810e5aa72b50ae4a45b1440b7ae66",
+    "0x8003356716caa7107b772107f627fdfe1b905c45",
+    "0xe5f481112b5e6cd2a59a3697369918e39d13a104"
+   ],
+   "version": "1.3.0",
+   "nonce": 703,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 2666692,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xac4348b9769810e5aa72b50ae4a45b1440b7ae66": "eoa",
+    "0x8003356716caa7107b772107f627fdfe1b905c45": "eoa",
+    "0xe5f481112b5e6cd2a59a3697369918e39d13a104": "eoa"
+   }
+  },
+  "0x4353e2df4e3444e97e20b2bda165bdd9a23913ab": {
+   "threshold": 3,
+   "owners": [
+    "0x66e2a637cc99dd0bfe1922a77cf747de727836b0",
+    "0x85af4b64a0d98fd9a0ef9b473dd50008f8624b8a",
+    "0x947fd96e803d6ab91f9621547cedc5f7c2840688",
+    "0x04c2fa4871ddfea6ce098679a1dacdb17fff2c9a"
+   ],
+   "version": "1.4.1",
+   "nonce": 1237,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [
+    "0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134"
+   ],
+   "code_size": 171,
+   "held_usd": 290,
+   "modules_named": [
+    "AllowanceModule"
+   ],
+   "owner_kinds": {
+    "0x66e2a637cc99dd0bfe1922a77cf747de727836b0": "eoa",
+    "0x85af4b64a0d98fd9a0ef9b473dd50008f8624b8a": "eoa",
+    "0x947fd96e803d6ab91f9621547cedc5f7c2840688": "eoa",
+    "0x04c2fa4871ddfea6ce098679a1dacdb17fff2c9a": "eoa"
+   }
+  },
+  "0x7ee29373f075ee1d83b1b93b4fe94ae242df5178": {
+   "threshold": 3,
+   "owners": [
+    "0xfb528e61ba53f15bbca95cc651b72acdfd5223db",
+    "0x1af9fbf40b4361442318cda24b00fe96b1174db5",
+    "0xbbbb5ebdc5f75dfa3723df38fb7eae587692df23",
+    "0xee1a28b54f3532927950cba66a2cda33c69a8107",
+    "0xc6badce2f5e10db90d74dbe023768259ec4699c7"
+   ],
+   "version": "1.4.1",
+   "nonce": 114,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0x2f55e8b20d0b9fefa187aa7d00b6cbe563605bf5",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 90140738,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xfb528e61ba53f15bbca95cc651b72acdfd5223db": "eoa",
+    "0x1af9fbf40b4361442318cda24b00fe96b1174db5": "eoa",
+    "0xbbbb5ebdc5f75dfa3723df38fb7eae587692df23": "eoa",
+    "0xee1a28b54f3532927950cba66a2cda33c69a8107": "eoa",
+    "0xc6badce2f5e10db90d74dbe023768259ec4699c7": "eoa"
+   }
+  },
+  "0x2bf916f8169ed2a77324d3e168284fc252ae4087": {
+   "threshold": 2,
+   "owners": [
+    "0x2b6c7dd3aeb3a9793151156ad124368b58891af2",
+    "0x7b904b0ebbdeac5798c4207d8eb838568feee40f",
+    "0xb0555c4c2f8ad5a562a69f217598eee0585cc8d3",
+    "0xdf69ab7105b93c6db657cd314b10d89a5b3bd017"
+   ],
+   "version": "1.5.0",
+   "nonce": 45,
+   "singleton": "0xff51a5898e281db6dfc7855790607438df2ca44b",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0x3efcbb83a4a7afcb4f68d501e2c2203a38be77f4",
+   "modules": [
+    "0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134"
+   ],
+   "code_size": 171,
+   "held_usd": 48973864,
+   "modules_named": [
+    "AllowanceModule"
+   ],
+   "owner_kinds": {
+    "0x2b6c7dd3aeb3a9793151156ad124368b58891af2": "eoa",
+    "0x7b904b0ebbdeac5798c4207d8eb838568feee40f": "eoa",
+    "0xb0555c4c2f8ad5a562a69f217598eee0585cc8d3": "eoa",
+    "0xdf69ab7105b93c6db657cd314b10d89a5b3bd017": "eoa"
+   }
+  },
+  "0x0632dcc37b1fabf2cad20538a5390d23c830962e": {
+   "threshold": 2,
+   "owners": [
+    "0x2116f47005053ff548386cb0cc902a2141d50caa",
+    "0x2e39edd055956913f4fbe6a328106b6b83f97ddb",
+    "0xe3c0f7db1643b1fc69e5555c307b172922b56719"
+   ],
+   "version": "1.3.0",
+   "nonce": 201,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [
+    "0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134"
+   ],
+   "code_size": 110,
+   "held_usd": 32919368,
+   "modules_named": [
+    "AllowanceModule"
+   ],
+   "owner_kinds": {
+    "0x2116f47005053ff548386cb0cc902a2141d50caa": "eoa",
+    "0x2e39edd055956913f4fbe6a328106b6b83f97ddb": "eoa",
+    "0xe3c0f7db1643b1fc69e5555c307b172922b56719": "eoa"
+   }
+  },
+  "0x7440cd37c794c4bcf1748915098280706c9b6099": {
+   "threshold": 2,
+   "owners": [
+    "0xb11ec9a19d440e63407d10a5bd6655b1bb497b7e",
+    "0x614dd2d230be276af5532105901e63accc9a7fbd",
+    "0xcb1085e1b8d8b08a637d50ef601bd2781e6792a0"
+   ],
+   "version": "1.4.1",
+   "nonce": 1,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 39855640,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xb11ec9a19d440e63407d10a5bd6655b1bb497b7e": "eoa",
+    "0x614dd2d230be276af5532105901e63accc9a7fbd": "eoa",
+    "0xcb1085e1b8d8b08a637d50ef601bd2781e6792a0": "eoa"
+   }
+  },
+  "0x738744237b7fd97af670d9ddf54390c24263cea8": {
+   "threshold": 2,
+   "owners": [
+    "0xb42d4ba63b4f93b3995b55eb5c13ea4346a95229",
+    "0xa0d43822175af83d9b1833eeec918f02833ce2b5",
+    "0x1bdb4c119225abaca0bfe12610789902851221ab"
+   ],
+   "version": "1.3.0",
+   "nonce": 480,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0x2f55e8b20d0b9fefa187aa7d00b6cbe563605bf5",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 779,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xb42d4ba63b4f93b3995b55eb5c13ea4346a95229": "eoa",
+    "0xa0d43822175af83d9b1833eeec918f02833ce2b5": "eoa",
+    "0x1bdb4c119225abaca0bfe12610789902851221ab": "eoa"
+   }
+  },
+  "0x3f963b4c8e2473683c9d48189e27440f76307214": {
+   "threshold": 2,
+   "owners": [
+    "0xe2d605f9e12e3bef50c6b7ee83f390d9e0c179fa",
+    "0xf48ad6b78e573a5a4182e8526ce3809439e2e23c",
+    "0xcd7fc9147d413586080062a6bf9863fbc373d56b",
+    "0xf53d00a30679864e73e4875c2563870e264a1fe7"
+   ],
+   "version": "1.4.1",
+   "nonce": 196,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 23418484,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xe2d605f9e12e3bef50c6b7ee83f390d9e0c179fa": "eoa",
+    "0xf48ad6b78e573a5a4182e8526ce3809439e2e23c": "eoa",
+    "0xcd7fc9147d413586080062a6bf9863fbc373d56b": "eoa",
+    "0xf53d00a30679864e73e4875c2563870e264a1fe7": "eoa"
+   }
+  },
+  "0x690f0581ececcf8389c223170778cd9d029606f2": {
+   "threshold": 3,
+   "owners": [
+    "0x08cb835bd7d1d39c87b272e57878d02bfd889580",
+    "0x866b3c4994e1416b7c738b9818b31dc246b95eee",
+    "0x311a9ef07f16ad45e6aa6b9787e0e173e3ce3623",
+    "0xb8c2c29ee19d8307cb7255e1cd9cbde883a267d5",
+    "0xb6e040c9ecaae172a89bd561c5f73e1c48d28cd9",
+    "0x36aac472c224440741f292895bd659bca997309a",
+    "0x82eb45562f991329ed2867f43fc60f0ba52c3dab"
+   ],
+   "version": "1.3.0",
+   "nonce": 522,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [
+    "0xdca57e6e47dc0fdda693ce4884ec0e274a6ffbda",
+    "0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134"
+   ],
+   "code_size": 170,
+   "held_usd": 18007930,
+   "modules_named": [
+    "Zodiac Roles",
+    "AllowanceModule"
+   ],
+   "owner_kinds": {
+    "0x08cb835bd7d1d39c87b272e57878d02bfd889580": "eoa",
+    "0x866b3c4994e1416b7c738b9818b31dc246b95eee": "eoa",
+    "0x311a9ef07f16ad45e6aa6b9787e0e173e3ce3623": "eoa",
+    "0xb8c2c29ee19d8307cb7255e1cd9cbde883a267d5": "eoa",
+    "0xb6e040c9ecaae172a89bd561c5f73e1c48d28cd9": "eoa",
+    "0x36aac472c224440741f292895bd659bca997309a": "eoa",
+    "0x82eb45562f991329ed2867f43fc60f0ba52c3dab": "eip7702-delegated-eoa"
+   }
+  },
+  "0x9fc3dc011b461664c835f2527fffb1169b3c213e": {
+   "threshold": 3,
+   "owners": [
+    "0x5ed8cee6b63b1c6afce3ad7c92f4fd7e1b8fad9f",
+    "0x379be87394421b6a18b19ba47cd98cc8d26b1f7a",
+    "0x24bbc568dc89e4e57baf23b759989f3d6113bbaa",
+    "0x26c3f6fd4f53a03ec8e54aca0c356112ca3ddec8",
+    "0xd779332c5a52566dada11a075a735b18daa6c1f4"
+   ],
+   "version": "1.4.1",
+   "nonce": 62,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0x2f55e8b20d0b9fefa187aa7d00b6cbe563605bf5",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 80595314,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x5ed8cee6b63b1c6afce3ad7c92f4fd7e1b8fad9f": "eoa",
+    "0x379be87394421b6a18b19ba47cd98cc8d26b1f7a": "eoa",
+    "0x24bbc568dc89e4e57baf23b759989f3d6113bbaa": "eoa",
+    "0x26c3f6fd4f53a03ec8e54aca0c356112ca3ddec8": "eoa",
+    "0xd779332c5a52566dada11a075a735b18daa6c1f4": "eoa"
+   }
+  },
+  "0x7ce3ec6845780e8f69b1a19edf8148d7cbb77a7d": {
+   "threshold": 2,
+   "owners": [
+    "0x7f97049269bcb015745dd785e5d9486155f3d362",
+    "0xfb11198645b0aab4b191d202146f54903cc7ec7a",
+    "0x560da9271cfc2c4be8cbfb6f8848ef304b02cca6",
+    "0xdf1a03f881950ae8e5a87e22d35e145ebdac6516"
+   ],
+   "version": "1.3.0",
+   "nonce": 82,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 24862867,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x7f97049269bcb015745dd785e5d9486155f3d362": "eoa",
+    "0xfb11198645b0aab4b191d202146f54903cc7ec7a": "eoa",
+    "0x560da9271cfc2c4be8cbfb6f8848ef304b02cca6": "eoa",
+    "0xdf1a03f881950ae8e5a87e22d35e145ebdac6516": "eoa"
+   }
+  },
+  "0x56e60979d5934a05d22606b0455d52f59f20a6a0": {
+   "threshold": 2,
+   "owners": [
+    "0x92b7b5bb5af30b5ac5cc8f49bfa96a3fdb10a44f",
+    "0xf9051920ff0c979bde2dc06e7a8f252f5748c9a3",
+    "0x180f8ea8e39e9ce3c30ee547b060ae5ce68f0194",
+    "0x87e29a64c7921a46fa570c65d883581e92d46f54"
+   ],
+   "version": "1.3.0",
+   "nonce": 66,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [
+    "0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134"
+   ],
+   "code_size": 171,
+   "held_usd": 22430971,
+   "modules_named": [
+    "AllowanceModule"
+   ],
+   "owner_kinds": {
+    "0x92b7b5bb5af30b5ac5cc8f49bfa96a3fdb10a44f": "eoa",
+    "0xf9051920ff0c979bde2dc06e7a8f252f5748c9a3": "eoa",
+    "0x180f8ea8e39e9ce3c30ee547b060ae5ce68f0194": "eoa",
+    "0x87e29a64c7921a46fa570c65d883581e92d46f54": "eoa"
+   }
+  },
+  "0x2291f52bddc937b5b840d15e551e1da8c80c2b3c": {
+   "threshold": 1,
+   "owners": [
+    "0xaad32a32f5d977c03cab04ae41207bc4d9e8a622"
+   ],
+   "version": "1.4.1",
+   "nonce": 524,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0x2f55e8b20d0b9fefa187aa7d00b6cbe563605bf5",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 23676376,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xaad32a32f5d977c03cab04ae41207bc4d9e8a622": "eoa"
+   }
+  },
+  "0xa7b84c346fda049715a0ca9e7310d272545a338b": {
+   "threshold": 2,
+   "owners": [
+    "0xbdc95dfe2fe8a680d877010e3a7a0317e4a4ed47",
+    "0x39293844ac0b633eaef7c6c26b067516de274c89",
+    "0x040f8c28dcc90f5ec0b95c338299c345584ff929"
+   ],
+   "version": "1.4.1",
+   "nonce": 2,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 0,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xbdc95dfe2fe8a680d877010e3a7a0317e4a4ed47": "eoa",
+    "0x39293844ac0b633eaef7c6c26b067516de274c89": "eoa",
+    "0x040f8c28dcc90f5ec0b95c338299c345584ff929": "eoa"
+   }
+  },
+  "0xc61b9bb3a7a0767e3179713f3a5c7a9aedce193c": {
+   "threshold": 3,
+   "owners": [
+    "0x61d5a4d5bd270e59e9320243e574288e2a199fed",
+    "0xeb1ff14852661aa18e61a47a6b0f382adc8a02d2",
+    "0x37e3ce6b3de70b95afb3d2de645e0d755d007c96",
+    "0x3c1138b7ad4bd293faf933626f196fcac98d7d5d",
+    "0x23d9c69ef0e20f783b81781517e75420eaef5a99"
+   ],
+   "version": "1.1.1",
+   "nonce": 48,
+   "singleton": "0x34cfac646f301356faa8b21e94227e3583fe3f5f",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xd5d82b6addc9027b22dca772aa68d5d74cdbdf44",
+   "modules": [],
+   "code_size": 170,
+   "held_usd": 6065465698,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x61d5a4d5bd270e59e9320243e574288e2a199fed": "eoa",
+    "0xeb1ff14852661aa18e61a47a6b0f382adc8a02d2": "eoa",
+    "0x37e3ce6b3de70b95afb3d2de645e0d755d007c96": "eoa",
+    "0x3c1138b7ad4bd293faf933626f196fcac98d7d5d": "eoa",
+    "0x23d9c69ef0e20f783b81781517e75420eaef5a99": "eoa"
+   }
+  },
+  "0x4e8a4894275780f571aad53122e641d9f50ff04f": {
+   "threshold": 3,
+   "owners": [
+    "0x5d2ddd8f998f95eaa77742907744149a7b16f9a7",
+    "0xf8e42f2cf5beea920d7e7a71ca30b62f978ca8d5",
+    "0xa295fdb1d6a1107d99fbc7e489fb5d7e96f99ff1",
+    "0x9e2c1defda18e17e9e68fb64914027d5d584b98d",
+    "0x33c3eea787cd02f23d14e1481558a6e5a3298b3e"
+   ],
+   "version": "1.3.0",
+   "nonce": 1343,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 1,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x5d2ddd8f998f95eaa77742907744149a7b16f9a7": "eoa",
+    "0xf8e42f2cf5beea920d7e7a71ca30b62f978ca8d5": "eoa",
+    "0xa295fdb1d6a1107d99fbc7e489fb5d7e96f99ff1": "eoa",
+    "0x9e2c1defda18e17e9e68fb64914027d5d584b98d": "eoa",
+    "0x33c3eea787cd02f23d14e1481558a6e5a3298b3e": "eoa"
+   }
+  },
+  "0x225d3822de44e58ee935440e0c0b829c4232086e": {
+   "threshold": 3,
+   "owners": [
+    "0xd8a6a3ca1739423de5f634dfaa8ba224eaf16d0e",
+    "0x223c0ef36fee905a40175d92704b1d3624218ee7",
+    "0xd6970196ff8cef3cdd61256c1841a085eecd3ae8",
+    "0x18b7ff0370456db6b7710714d9dcc25a0a3b3016"
+   ],
+   "version": "1.4.1",
+   "nonce": 454,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [],
+   "code_size": 170,
+   "held_usd": 45025379,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xd8a6a3ca1739423de5f634dfaa8ba224eaf16d0e": "eoa",
+    "0x223c0ef36fee905a40175d92704b1d3624218ee7": "eoa",
+    "0xd6970196ff8cef3cdd61256c1841a085eecd3ae8": "eoa",
+    "0x18b7ff0370456db6b7710714d9dcc25a0a3b3016": "eoa"
+   }
+  },
+  "0x0cb1d4a24292bb89862f599ac5b10f42b6de07e4": {
+   "threshold": 2,
+   "owners": [
+    "0xc1b591fc2d133c410f0a9f5469d9be1b0894e0d1",
+    "0xde5c171ff4443eec57bfbd2124a49637affd535e",
+    "0x10c961e952fec4901f3ba80eec475cf55f169382",
+    "0x9ed07b5db7dad3c9a0baa3e320e68ce779063249"
+   ],
+   "version": "1.1.1",
+   "nonce": 208,
+   "singleton": "0x34cfac646f301356faa8b21e94227e3583fe3f5f",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0x0000000000000000000000000000000000000000",
+   "modules": [
+    "0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134"
+   ],
+   "code_size": 170,
+   "held_usd": 41302508,
+   "modules_named": [
+    "AllowanceModule"
+   ],
+   "owner_kinds": {
+    "0xc1b591fc2d133c410f0a9f5469d9be1b0894e0d1": "eoa",
+    "0xde5c171ff4443eec57bfbd2124a49637affd535e": "eoa",
+    "0x10c961e952fec4901f3ba80eec475cf55f169382": "eoa",
+    "0x9ed07b5db7dad3c9a0baa3e320e68ce779063249": "eoa"
+   }
+  },
+  "0xee136c0389733849dd710ac7104e92c6bf497574": {
+   "threshold": 4,
+   "owners": [
+    "0xc9180ff81675b86a73a02e61233e6145658f4488",
+    "0x7fd82ad94cf5d9d947beb7ce3328300aa34acb3c",
+    "0x84fd60540cab330011812cb5e342a6db45095fa1",
+    "0x859003b39a165bb775b04657826c397ad84fe208",
+    "0xec224d0dc9d80c1f6d5a486efe2667f040834130",
+    "0x42c979dbbd691fda334807fd4c3ffe67ea3df9aa",
+    "0x27619cacedcd18a08a1cdcb206a6f14196210fce"
+   ],
+   "version": "1.3.0",
+   "nonce": 17,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 226776613,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xc9180ff81675b86a73a02e61233e6145658f4488": "eoa",
+    "0x7fd82ad94cf5d9d947beb7ce3328300aa34acb3c": "eoa",
+    "0x84fd60540cab330011812cb5e342a6db45095fa1": "eoa",
+    "0x859003b39a165bb775b04657826c397ad84fe208": "eoa",
+    "0xec224d0dc9d80c1f6d5a486efe2667f040834130": "eoa",
+    "0x42c979dbbd691fda334807fd4c3ffe67ea3df9aa": "eoa",
+    "0x27619cacedcd18a08a1cdcb206a6f14196210fce": "eoa"
+   }
+  },
+  "0xdca6ab9508d28c0eb7b120b8252041edcb56753f": {
+   "threshold": 2,
+   "owners": [
+    "0x6fbdecf45442977e9b7d15f80613edb596400144",
+    "0x7a7033d0b3177e4c71b5cae48247e4c3ba9b9cee",
+    "0x92df32b7684173727c6b7e1a84da7875dc2ecdef"
+   ],
+   "version": "1.1.1",
+   "nonce": 29,
+   "singleton": "0x34cfac646f301356faa8b21e94227e3583fe3f5f",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xd5d82b6addc9027b22dca772aa68d5d74cdbdf44",
+   "modules": [
+    "0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134"
+   ],
+   "code_size": 170,
+   "held_usd": 86998241,
+   "modules_named": [
+    "AllowanceModule"
+   ],
+   "owner_kinds": {
+    "0x6fbdecf45442977e9b7d15f80613edb596400144": "eoa",
+    "0x7a7033d0b3177e4c71b5cae48247e4c3ba9b9cee": "eoa",
+    "0x92df32b7684173727c6b7e1a84da7875dc2ecdef": "eoa"
+   }
+  },
+  "0xd67f25ef2399a0c769b1a35634c5ce77166714db": {
+   "threshold": 4,
+   "owners": [
+    "0xc9180ff81675b86a73a02e61233e6145658f4488",
+    "0x7fd82ad94cf5d9d947beb7ce3328300aa34acb3c",
+    "0x84fd60540cab330011812cb5e342a6db45095fa1",
+    "0x859003b39a165bb775b04657826c397ad84fe208",
+    "0xec224d0dc9d80c1f6d5a486efe2667f040834130",
+    "0x42c979dbbd691fda334807fd4c3ffe67ea3df9aa",
+    "0x27619cacedcd18a08a1cdcb206a6f14196210fce"
+   ],
+   "version": "1.4.1",
+   "nonce": 6,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 88066789,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xc9180ff81675b86a73a02e61233e6145658f4488": "eoa",
+    "0x7fd82ad94cf5d9d947beb7ce3328300aa34acb3c": "eoa",
+    "0x84fd60540cab330011812cb5e342a6db45095fa1": "eoa",
+    "0x859003b39a165bb775b04657826c397ad84fe208": "eoa",
+    "0xec224d0dc9d80c1f6d5a486efe2667f040834130": "eoa",
+    "0x42c979dbbd691fda334807fd4c3ffe67ea3df9aa": "eoa",
+    "0x27619cacedcd18a08a1cdcb206a6f14196210fce": "eoa"
+   }
+  },
+  "0xcde525bd723090284ee2f958c729d83cf117aff9": {
+   "threshold": 3,
+   "owners": [
+    "0x705199fe234a7a2f1bc8b95dd7d08284c8f467f1",
+    "0x0c047b2464b7808eea627226f45fad5aadcb0002",
+    "0xa9759e90a05561eee54bbde65cf93d76d75500fa",
+    "0xdf6bb6cfe86f0c320940eca1cc239e477bc9c777",
+    "0x261fca35b06afa59ea446c1f679f32f58b9536f6",
+    "0x3d7a4667db561aeb767dfab018f6afe791a0e04d"
+   ],
+   "version": "1.3.0",
+   "nonce": 30,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 36236922,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x705199fe234a7a2f1bc8b95dd7d08284c8f467f1": "contract",
+    "0x0c047b2464b7808eea627226f45fad5aadcb0002": "eoa",
+    "0xa9759e90a05561eee54bbde65cf93d76d75500fa": "eoa",
+    "0xdf6bb6cfe86f0c320940eca1cc239e477bc9c777": "eoa",
+    "0x261fca35b06afa59ea446c1f679f32f58b9536f6": "eoa",
+    "0x3d7a4667db561aeb767dfab018f6afe791a0e04d": "eoa"
+   }
+  },
+  "0x4fb312915b779b1339388e14b6d079741ca83128": {
+   "threshold": 3,
+   "owners": [
+    "0x02177e3cf0592c6fdde8a6e1e429db3cda4bf7ca",
+    "0x53ce11837e3e4830baa205e43e2aac68ff7764b0",
+    "0x18709e89bd403f470088abdacebe86cc60dda12e",
+    "0x406ea8f3c6464171f3deccf6ba99748d9487cd52",
+    "0xd0388ddedf55c5a0f962ca9405fb088d5303614a",
+    "0x1452cc00d05498d937de975591709855f4c5627c"
+   ],
+   "version": "1.3.0",
+   "nonce": 25210,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 459408,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x02177e3cf0592c6fdde8a6e1e429db3cda4bf7ca": "eoa",
+    "0x53ce11837e3e4830baa205e43e2aac68ff7764b0": "eoa",
+    "0x18709e89bd403f470088abdacebe86cc60dda12e": "eoa",
+    "0x406ea8f3c6464171f3deccf6ba99748d9487cd52": "eoa",
+    "0xd0388ddedf55c5a0f962ca9405fb088d5303614a": "eoa",
+    "0x1452cc00d05498d937de975591709855f4c5627c": "eoa"
+   }
+  },
+  "0x29065a4c1f2f20d1e263930088890d6f49fe715a": {
+   "threshold": 3,
+   "owners": [
+    "0x6681dea3dd94bb180c28f15549b5abdba2c36907",
+    "0xb3210148232278fd771524f7a405d75c49b3a2e4",
+    "0x2c573180816adad0c8ecd9248fd6f9cb94a1cb8d",
+    "0x176f3dab24a159341c0509bb36b833e7fdd0a132",
+    "0x96e06fe977740ed4827df980c0bdb39235d0a9d3",
+    "0x8ffba55dc041675cbf8e5d5a0ba08df5dc3ac6da"
+   ],
+   "version": "1.3.0",
+   "nonce": 6147,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 31933111,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x6681dea3dd94bb180c28f15549b5abdba2c36907": "eoa",
+    "0xb3210148232278fd771524f7a405d75c49b3a2e4": "eoa",
+    "0x2c573180816adad0c8ecd9248fd6f9cb94a1cb8d": "eoa",
+    "0x176f3dab24a159341c0509bb36b833e7fdd0a132": "eoa",
+    "0x96e06fe977740ed4827df980c0bdb39235d0a9d3": "eoa",
+    "0x8ffba55dc041675cbf8e5d5a0ba08df5dc3ac6da": "eoa"
+   }
+  },
+  "0x81ad394c0fa87e99ca46e1aca093bee020f203f4": {
+   "threshold": 6,
+   "owners": [
+    "0x4ee1bb0a1bf6e95e6fa0d8fba262048db1a35654",
+    "0xe1283ec932b395847c702cfadbe48139b70a3f9a",
+    "0xfe45baf0f18c207152a807c1b05926583cfe2e4b",
+    "0xecfbc878f60017b642bb3c21533654a49a9d4b6f",
+    "0xdfb9c5ec2289e9c15454d8cf1a8dfb2fc1211f1c",
+    "0x1ad6427bb9023128eb1a5ea2425ce76e16b14c64",
+    "0xd0f657d3cebb51ceea20dfb3af6213fa1cecd5a7",
+    "0x118d6dcf55a0dfbc3d1052fbd41a483f8a6a68b3",
+    "0xedf83afca6952cb97f78cb0f93a8500139527d57",
+    "0xbb1ac2f5916fa346820bac5df11a72c805cf6dcb",
+    "0x80c8f7fd6416aae6a666b903f82bf4f8e97b35f4"
+   ],
+   "version": "1.4.1",
+   "nonce": 447,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 978683,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x4ee1bb0a1bf6e95e6fa0d8fba262048db1a35654": "eoa",
+    "0xe1283ec932b395847c702cfadbe48139b70a3f9a": "eoa",
+    "0xfe45baf0f18c207152a807c1b05926583cfe2e4b": "eoa",
+    "0xecfbc878f60017b642bb3c21533654a49a9d4b6f": "eoa",
+    "0xdfb9c5ec2289e9c15454d8cf1a8dfb2fc1211f1c": "eoa",
+    "0x1ad6427bb9023128eb1a5ea2425ce76e16b14c64": "eoa",
+    "0xd0f657d3cebb51ceea20dfb3af6213fa1cecd5a7": "eoa",
+    "0x118d6dcf55a0dfbc3d1052fbd41a483f8a6a68b3": "eoa",
+    "0xedf83afca6952cb97f78cb0f93a8500139527d57": "eoa",
+    "0xbb1ac2f5916fa346820bac5df11a72c805cf6dcb": "eoa",
+    "0x80c8f7fd6416aae6a666b903f82bf4f8e97b35f4": "eoa"
+   }
+  },
+  "0x69d1bbd881817795811e3e2973716ddc98bfe9b2": {
+   "threshold": 1,
+   "owners": [
+    "0x66e2a637cc99dd0bfe1922a77cf747de727836b0",
+    "0x947fd96e803d6ab91f9621547cedc5f7c2840688"
+   ],
+   "version": "1.4.1",
+   "nonce": 412,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [
+    "0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134"
+   ],
+   "code_size": 171,
+   "held_usd": 0,
+   "modules_named": [
+    "AllowanceModule"
+   ],
+   "owner_kinds": {
+    "0x66e2a637cc99dd0bfe1922a77cf747de727836b0": "eoa",
+    "0x947fd96e803d6ab91f9621547cedc5f7c2840688": "eoa"
+   }
+  },
+  "0x52cfa98fb7339f6e2e70f2f68acbb7b7dcebe46a": {
+   "threshold": 2,
+   "owners": [
+    "0xe2d605f9e12e3bef50c6b7ee83f390d9e0c179fa",
+    "0x647946c28a4f03f695a89dd16cfa032fc88c63d8",
+    "0x56bf69843265e66a92d6b7c52b0bf5897074974c",
+    "0xa6fc9b18a06f5d2c8ea150a6134b5b8033250e8e",
+    "0xbe01115590d88e4001a656d5272c05f10cad2eeb"
+   ],
+   "version": "1.3.0",
+   "nonce": 455,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [
+    "0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134"
+   ],
+   "code_size": 171,
+   "held_usd": 31550968,
+   "modules_named": [
+    "AllowanceModule"
+   ],
+   "owner_kinds": {
+    "0xe2d605f9e12e3bef50c6b7ee83f390d9e0c179fa": "eoa",
+    "0x647946c28a4f03f695a89dd16cfa032fc88c63d8": "eoa",
+    "0x56bf69843265e66a92d6b7c52b0bf5897074974c": "eoa",
+    "0xa6fc9b18a06f5d2c8ea150a6134b5b8033250e8e": "eoa",
+    "0xbe01115590d88e4001a656d5272c05f10cad2eeb": "eoa"
+   }
+  },
+  "0x7c697d6cff279f3f9c2401d0ea2ac7e7ede0e2c3": {
+   "threshold": 3,
+   "owners": [
+    "0xc6b8888454be7e59649331a073e8a6fb4efb9c67",
+    "0x656d9d575f904f63687a4ea8e2a6bc80922e94bc",
+    "0xd5012982682bc33b86d25abf371496375ae2264d",
+    "0x7c9dbe208859e571adbd9ec7692772bb8395cad9",
+    "0xe72a0b45bbc48d9e10e9921ea1c6bd5cfa509f13"
+   ],
+   "version": "1.3.0",
+   "nonce": 85,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 83435860,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xc6b8888454be7e59649331a073e8a6fb4efb9c67": "eoa",
+    "0x656d9d575f904f63687a4ea8e2a6bc80922e94bc": "eoa",
+    "0xd5012982682bc33b86d25abf371496375ae2264d": "eoa",
+    "0x7c9dbe208859e571adbd9ec7692772bb8395cad9": "eoa",
+    "0xe72a0b45bbc48d9e10e9921ea1c6bd5cfa509f13": "eoa"
+   }
+  },
+  "0x748aed55d2a85d84e30558ed4798b0a47cb7dde6": {
+   "threshold": 3,
+   "owners": [
+    "0x541e228201276c95045bf4ef0e75084839df7b68",
+    "0xfa03cfe0f70643f2a77e3c6d40b46d170e64b678",
+    "0x968bd8add74981d707ceabed72248b5793f6d38d",
+    "0xac18293ebdc70a8fd9d394887324db12785d330b",
+    "0xf515556fb9b6e4a5b05c6a1df0a89961b0410594"
+   ],
+   "version": "1.4.1",
+   "nonce": 18,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 21703295,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x541e228201276c95045bf4ef0e75084839df7b68": "eoa",
+    "0xfa03cfe0f70643f2a77e3c6d40b46d170e64b678": "eoa",
+    "0x968bd8add74981d707ceabed72248b5793f6d38d": "eoa",
+    "0xac18293ebdc70a8fd9d394887324db12785d330b": "eoa",
+    "0xf515556fb9b6e4a5b05c6a1df0a89961b0410594": "eoa"
+   }
+  },
+  "0xf95334a86d09a6eec74d69da344efaca424b13a9": {
+   "threshold": 4,
+   "owners": [
+    "0xc9180ff81675b86a73a02e61233e6145658f4488",
+    "0x7fd82ad94cf5d9d947beb7ce3328300aa34acb3c",
+    "0x84fd60540cab330011812cb5e342a6db45095fa1",
+    "0x859003b39a165bb775b04657826c397ad84fe208",
+    "0xec224d0dc9d80c1f6d5a486efe2667f040834130",
+    "0x42c979dbbd691fda334807fd4c3ffe67ea3df9aa",
+    "0x27619cacedcd18a08a1cdcb206a6f14196210fce"
+   ],
+   "version": "1.4.1",
+   "nonce": 5,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 68080904,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xc9180ff81675b86a73a02e61233e6145658f4488": "eoa",
+    "0x7fd82ad94cf5d9d947beb7ce3328300aa34acb3c": "eoa",
+    "0x84fd60540cab330011812cb5e342a6db45095fa1": "eoa",
+    "0x859003b39a165bb775b04657826c397ad84fe208": "eoa",
+    "0xec224d0dc9d80c1f6d5a486efe2667f040834130": "eoa",
+    "0x42c979dbbd691fda334807fd4c3ffe67ea3df9aa": "eoa",
+    "0x27619cacedcd18a08a1cdcb206a6f14196210fce": "eoa"
+   }
+  },
+  "0xdb6e9e7390e9acc34619e56efa48ade01cff6f12": {
+   "threshold": 3,
+   "owners": [
+    "0xc81ba3e8cdcd66e12d74f3432b51c8dce3050290",
+    "0x723f375d4d726d5d5ef1691c38a9184b5eae1666",
+    "0xedbf07188b43510afa94b668d7c5385683c24282",
+    "0xf01cc1ca141054f68023038f85c4d38d5e28d5c3",
+    "0xe3eff7331db8c00591e341078dc3f51223e5c4e1"
+   ],
+   "version": "1.4.1",
+   "nonce": 1847,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0x2f55e8b20d0b9fefa187aa7d00b6cbe563605bf5",
+   "modules": [
+    "0xc3c2b18940474c10bdb718ee04da22032fd9e8b6"
+   ],
+   "code_size": 171,
+   "held_usd": 2401510,
+   "modules_named": [
+    "Zodiac Roles"
+   ],
+   "owner_kinds": {
+    "0xc81ba3e8cdcd66e12d74f3432b51c8dce3050290": "eoa",
+    "0x723f375d4d726d5d5ef1691c38a9184b5eae1666": "eoa",
+    "0xedbf07188b43510afa94b668d7c5385683c24282": "eoa",
+    "0xf01cc1ca141054f68023038f85c4d38d5e28d5c3": "eoa",
+    "0xe3eff7331db8c00591e341078dc3f51223e5c4e1": "eoa"
+   }
+  },
+  "0xfa771871d3d5c85e156d3d379e2ff7699c4d6a66": {
+   "threshold": 4,
+   "owners": [
+    "0x418dfc379bd6c0964d7b47f0c14fce71084811a6",
+    "0xe1bb6d44e9e9ba5f59deaa89af0970020a9a9722",
+    "0xd92b6fb17777a6e1bb7709250aa4e60472c77e7d",
+    "0x82a5aad82f309d476565ef20e9768fddd7c37231",
+    "0x1cd3586bac47e31c070fa5cdf54def0d1519daa9",
+    "0x80eef36e9963b92373da348ce1543357cbaaac62"
+   ],
+   "version": "1.3.0",
+   "nonce": 2202,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 1,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x418dfc379bd6c0964d7b47f0c14fce71084811a6": "eoa",
+    "0xe1bb6d44e9e9ba5f59deaa89af0970020a9a9722": "eoa",
+    "0xd92b6fb17777a6e1bb7709250aa4e60472c77e7d": "eoa",
+    "0x82a5aad82f309d476565ef20e9768fddd7c37231": "eoa",
+    "0x1cd3586bac47e31c070fa5cdf54def0d1519daa9": "eoa",
+    "0x80eef36e9963b92373da348ce1543357cbaaac62": "eoa"
+   }
+  },
+  "0xe40d278afd00e6187db21ff8c96d572359ef03bf": {
+   "threshold": 2,
+   "owners": [
+    "0x93a53ff6f963cd2bf69ac57ed7bdabb897668d6f",
+    "0x2fce55e9f3d2bc1daffc2cddab4cf7593e9a3424",
+    "0x0fc4b69958cb2fa320a96d54168b89953a953fbf",
+    "0x69e8372ed157e9b93145ae6ad189debb1689b6b1",
+    "0x200768d3f9c819f3430827c291c399ab9509f061"
+   ],
+   "version": "1.3.0",
+   "nonce": 582,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 65266334,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x93a53ff6f963cd2bf69ac57ed7bdabb897668d6f": "eoa",
+    "0x2fce55e9f3d2bc1daffc2cddab4cf7593e9a3424": "eoa",
+    "0x0fc4b69958cb2fa320a96d54168b89953a953fbf": "eoa",
+    "0x69e8372ed157e9b93145ae6ad189debb1689b6b1": "eoa",
+    "0x200768d3f9c819f3430827c291c399ab9509f061": "eoa"
+   }
+  },
+  "0x507b3f6d4f85c451f7914006c647391a1afb96d6": {
+   "threshold": 3,
+   "owners": [
+    "0xc1233286acdb6bed1a1c902d3ed01960aaf34e0d",
+    "0xe2be74a8bbcc84da849d97a7cfc477142ad584ba",
+    "0x69ea6e7a43ca2f76f2ce3d618d6241516ee5e93e",
+    "0xeb8219b8e0f580b462dc10c0698bdb53f04512f3",
+    "0x05bdfb8e9da07f761da0cf5bacd44bb734a4cd41",
+    "0xb78af8abcdcfe57857fad49342a236c884710d11",
+    "0xaf7cb287d3cf918debca3553f855eda635e9b9ac"
+   ],
+   "version": "1.4.1",
+   "nonce": 164,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 28386257,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xc1233286acdb6bed1a1c902d3ed01960aaf34e0d": "eoa",
+    "0xe2be74a8bbcc84da849d97a7cfc477142ad584ba": "eoa",
+    "0x69ea6e7a43ca2f76f2ce3d618d6241516ee5e93e": "eoa",
+    "0xeb8219b8e0f580b462dc10c0698bdb53f04512f3": "eoa",
+    "0x05bdfb8e9da07f761da0cf5bacd44bb734a4cd41": "eoa",
+    "0xb78af8abcdcfe57857fad49342a236c884710d11": "eoa",
+    "0xaf7cb287d3cf918debca3553f855eda635e9b9ac": "eoa"
+   }
+  },
+  "0x2195cb272e3302dd234867bc85ca67b8560e3cdd": {
+   "threshold": 2,
+   "owners": [
+    "0x4e999d6741d118b688db3e1744fed3079cf951af",
+    "0xaddfe0273926fb862816a9e451312999aa6fb4ef",
+    "0xeca4765e66aa1d95a768871d12d3f7552c6a1021"
+   ],
+   "version": "1.3.0",
+   "nonce": 63,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0x0000000000000000000000000000000000000000",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 10212,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x4e999d6741d118b688db3e1744fed3079cf951af": "eoa",
+    "0xaddfe0273926fb862816a9e451312999aa6fb4ef": "eoa",
+    "0xeca4765e66aa1d95a768871d12d3f7552c6a1021": "eoa"
+   }
+  },
+  "0xc06145782f31030db1c40b203be6b0fd53410b6d": {
+   "threshold": 4,
+   "owners": [
+    "0x5ed8cee6b63b1c6afce3ad7c92f4fd7e1b8fad9f",
+    "0xa0988fafe56f4e103c8a592257c1af3f17890597",
+    "0x6d288a7299838ca5ffe759cf4ca320e05a832f59",
+    "0x3644220f89edf06ff8ae85d2652d985c831e6ff4",
+    "0xd3b6160001a6e1941f077ec7a1dd8c05e35d2f68",
+    "0x46df87617f7bc93371c6d969bdbee8c998fc0555",
+    "0xba6be667fc0045f15535f576533fc0cf436905b9"
+   ],
+   "version": "1.4.1",
+   "nonce": 18,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [
+    "0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134"
+   ],
+   "code_size": 171,
+   "held_usd": 123837415,
+   "modules_named": [
+    "AllowanceModule"
+   ],
+   "owner_kinds": {
+    "0x5ed8cee6b63b1c6afce3ad7c92f4fd7e1b8fad9f": "eoa",
+    "0xa0988fafe56f4e103c8a592257c1af3f17890597": "eoa",
+    "0x6d288a7299838ca5ffe759cf4ca320e05a832f59": "eoa",
+    "0x3644220f89edf06ff8ae85d2652d985c831e6ff4": "eoa",
+    "0xd3b6160001a6e1941f077ec7a1dd8c05e35d2f68": "eoa",
+    "0x46df87617f7bc93371c6d969bdbee8c998fc0555": "eoa",
+    "0xba6be667fc0045f15535f576533fc0cf436905b9": "eoa"
+   }
+  },
+  "0x2a7bc14200aafde5b8541683f7131c8117079b59": {
+   "threshold": 2,
+   "owners": [
+    "0x7161d289261a7814b447d3c078fbb4a2908ec994",
+    "0xb29ebfdc14b1a1161c81c4bb79e713e6655023ac",
+    "0xa005b5bb7ec1d57e20dcf92e03f2589b2c2beacf"
+   ],
+   "version": "1.4.1",
+   "nonce": 2,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 0,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x7161d289261a7814b447d3c078fbb4a2908ec994": "eoa",
+    "0xb29ebfdc14b1a1161c81c4bb79e713e6655023ac": "eoa",
+    "0xa005b5bb7ec1d57e20dcf92e03f2589b2c2beacf": "eoa"
+   }
+  },
+  "0x96f49d0e9724dfd8780fa667ac37a993f005cb94": {
+   "threshold": 3,
+   "owners": [
+    "0xfe7f55df1f6c9a5932393f61a2a3b0fee67176eb",
+    "0x85af4b64a0d98fd9a0ef9b473dd50008f8624b8a",
+    "0x947fd96e803d6ab91f9621547cedc5f7c2840688",
+    "0x04c2fa4871ddfea6ce098679a1dacdb17fff2c9a"
+   ],
+   "version": "1.4.1",
+   "nonce": 666,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 181,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xfe7f55df1f6c9a5932393f61a2a3b0fee67176eb": "eoa",
+    "0x85af4b64a0d98fd9a0ef9b473dd50008f8624b8a": "eoa",
+    "0x947fd96e803d6ab91f9621547cedc5f7c2840688": "eoa",
+    "0x04c2fa4871ddfea6ce098679a1dacdb17fff2c9a": "eoa"
+   }
+  },
+  "0x5be9a4959308a0d0c7bc0870e319314d8d957dbb": {
+   "threshold": 3,
+   "owners": [
+    "0x0cb30cc659e9cfa2a4bea140eb3577a51aa2f661",
+    "0xc0670953bc75aaa28f93464bb6907154a035b576",
+    "0x2adacc76089b26b03189d999991134052458e515",
+    "0x2652067bc90dd89bb67ae6f08a723d58b05e543b",
+    "0x407f66afb4f9876637accc3246099a2f9705c178"
+   ],
+   "version": "1.3.0",
+   "nonce": 517,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0x2f55e8b20d0b9fefa187aa7d00b6cbe563605bf5",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 580183371,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x0cb30cc659e9cfa2a4bea140eb3577a51aa2f661": "eoa",
+    "0xc0670953bc75aaa28f93464bb6907154a035b576": "eoa",
+    "0x2adacc76089b26b03189d999991134052458e515": "eoa",
+    "0x2652067bc90dd89bb67ae6f08a723d58b05e543b": "eoa",
+    "0x407f66afb4f9876637accc3246099a2f9705c178": "eoa"
+   }
+  },
+  "0x245cc372c84b3645bf0ffe6538620b04a217988b": {
+   "threshold": 4,
+   "owners": [
+    "0xb7eb90494b0312407afb40f2b5f203a038e9d1e8",
+    "0x680ff9bd827abe38212fc7d447fb8545eea47ff3",
+    "0xf0be8f756389c2d22dd644cc9a3c979f568f3454",
+    "0x746c8c5edb4f568f3d88e3db2adefe0dfe9a1c02",
+    "0x7f7500fe67f6992549376ed9c89360a236468508",
+    "0xcb4524b63f2c532ff52fcbbbcd3c137d32c1d966",
+    "0xd8eb6d9b93b6cbb39abf62b719bbcccd2b16f56b",
+    "0x131bd1a2827cceb2945b2e3b91ee1bf736ccbf80"
+   ],
+   "version": "1.3.0",
+   "nonce": 2000,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0x2f55e8b20d0b9fefa187aa7d00b6cbe563605bf5",
+   "modules": [],
+   "code_size": 170,
+   "held_usd": 58161525,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xb7eb90494b0312407afb40f2b5f203a038e9d1e8": "eoa",
+    "0x680ff9bd827abe38212fc7d447fb8545eea47ff3": "eoa",
+    "0xf0be8f756389c2d22dd644cc9a3c979f568f3454": "eoa",
+    "0x746c8c5edb4f568f3d88e3db2adefe0dfe9a1c02": "eoa",
+    "0x7f7500fe67f6992549376ed9c89360a236468508": "eoa",
+    "0xcb4524b63f2c532ff52fcbbbcd3c137d32c1d966": "eoa",
+    "0xd8eb6d9b93b6cbb39abf62b719bbcccd2b16f56b": "eoa",
+    "0x131bd1a2827cceb2945b2e3b91ee1bf736ccbf80": "eoa"
+   }
+  },
+  "0x8180d59b7175d4064bdfa8138a58e9babffda44a": {
+   "threshold": 2,
+   "owners": [
+    "0x363605c0bde9f1f5053ada30618d95dbfc109bf5",
+    "0xcc400c09ecbac3e0033e4587bdfaabb26223e37d",
+    "0x72b32c1a6a75cbafae36c0ca8e763946d370e766",
+    "0x837219d7a9c666f5542c4559bf17d7b804e5c5fe"
+   ],
+   "version": "1.3.0",
+   "nonce": 1056,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [],
+   "code_size": 170,
+   "held_usd": 29241665,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x363605c0bde9f1f5053ada30618d95dbfc109bf5": "eoa",
+    "0xcc400c09ecbac3e0033e4587bdfaabb26223e37d": "eoa",
+    "0x72b32c1a6a75cbafae36c0ca8e763946d370e766": "eoa",
+    "0x837219d7a9c666f5542c4559bf17d7b804e5c5fe": "eoa"
+   }
+  },
+  "0x705199fe234a7a2f1bc8b95dd7d08284c8f467f1": {
+   "threshold": 3,
+   "owners": [
+    "0x2149ea7bd59c0e3fc1c7f162efd8721e2d399e3d",
+    "0x96a670afc529bad89a48919e7ce383c9dad11620",
+    "0x3dd4b4dbe6aee6f49a65f0c1ac508deff761c195",
+    "0x2f10e2358594fd72c7d9e2eea137ef1222c03bd5",
+    "0x18c04b30c3bc7f49b9cb7483da349d757b50b54a",
+    "0x828424517f9f04015db02169f4026d57b2b07229",
+    "0x2cdd560058d5ac32dc416aaa09eaf93230c0b7b3",
+    "0x3cc3a225769900e003e264dd4cb43e90896bc21a",
+    "0xd367f8322b64f29faf71ddb5c1877dc9ed6ec644",
+    "0xe3df2cceac61b1afa311372ecc5b40a3a6585a9e"
+   ],
+   "version": "1.3.0",
+   "nonce": 212,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [],
+   "code_size": 171,
+   "held_usd": 32582036,
+   "modules_named": [],
+   "owner_kinds": {
+    "0x2149ea7bd59c0e3fc1c7f162efd8721e2d399e3d": "eoa",
+    "0x96a670afc529bad89a48919e7ce383c9dad11620": "eoa",
+    "0x3dd4b4dbe6aee6f49a65f0c1ac508deff761c195": "eoa",
+    "0x2f10e2358594fd72c7d9e2eea137ef1222c03bd5": "eoa",
+    "0x18c04b30c3bc7f49b9cb7483da349d757b50b54a": "eoa",
+    "0x828424517f9f04015db02169f4026d57b2b07229": "eoa",
+    "0x2cdd560058d5ac32dc416aaa09eaf93230c0b7b3": "eoa",
+    "0x3cc3a225769900e003e264dd4cb43e90896bc21a": "eoa",
+    "0xd367f8322b64f29faf71ddb5c1877dc9ed6ec644": "eoa",
+    "0xe3df2cceac61b1afa311372ecc5b40a3a6585a9e": "eoa"
+   }
+  },
+  "0xa99f29a2fbdcafbf057b3d8efc47cfcee670bb43": {
+   "threshold": 5,
+   "owners": [
+    "0xa1b3b49d539e453adafede608a2ba960b58be057",
+    "0xf5aef65b7e493a5a8725842528d81561ed2cbc6e",
+    "0x1c1b26b373878e6f32ce9a02c1bc8c7eab0876fa",
+    "0x7e982d89f10b60ccd0614ffa0f0e4f93a5b2b102",
+    "0xedd9369a2d8c05c60880b89999b160a815071fdd",
+    "0x15af80290f04ba73edfd912b31452354eb5a4e2a",
+    "0x998c367e519f85e77bf2161c1c38bb9e0f54a79a",
+    "0x08b308c486d7b9a9f9dcac1a0dc80d9d523a6967",
+    "0xc3e7fc60622a8c190132f919a4f3409be2a8f6f2"
+   ],
+   "version": "1.3.0",
+   "nonce": 280,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [
+    "0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134"
+   ],
+   "code_size": 171,
+   "held_usd": 42390098,
+   "modules_named": [
+    "AllowanceModule"
+   ],
+   "owner_kinds": {
+    "0xa1b3b49d539e453adafede608a2ba960b58be057": "eoa",
+    "0xf5aef65b7e493a5a8725842528d81561ed2cbc6e": "eoa",
+    "0x1c1b26b373878e6f32ce9a02c1bc8c7eab0876fa": "eoa",
+    "0x7e982d89f10b60ccd0614ffa0f0e4f93a5b2b102": "eoa",
+    "0xedd9369a2d8c05c60880b89999b160a815071fdd": "eip7702-delegated-eoa",
+    "0x15af80290f04ba73edfd912b31452354eb5a4e2a": "eoa",
+    "0x998c367e519f85e77bf2161c1c38bb9e0f54a79a": "eoa",
+    "0x08b308c486d7b9a9f9dcac1a0dc80d9d523a6967": "eoa",
+    "0xc3e7fc60622a8c190132f919a4f3409be2a8f6f2": "eoa"
+   }
+  },
+  "0xacce2d0b77bcb844a1b95c64696b071ab8c7ada3": {
+   "threshold": 2,
+   "owners": [
+    "0x5420d11f25899022a9ec4ea756ad11a8a2fb0e50",
+    "0x3c9aad80b153f8028ebb85aa1641f94ff786caf2",
+    "0x1e56e1cc029669d3e735c7b9f9ce584d64b169f8",
+    "0x67ef83702452f3ffe07da0e26b12f909658df3b3"
+   ],
+   "version": "1.3.0",
+   "nonce": 59,
+   "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xf48f2b2d2a534e402487b3ee7c18c33aec0fe5e4",
+   "modules": [
+    "0xe232760363e8972af8fb973fe88615c720a7a613"
+   ],
+   "code_size": 171,
+   "held_usd": 1,
+   "modules_named": [
+    "CoboSafeAccount"
+   ],
+   "owner_kinds": {
+    "0x5420d11f25899022a9ec4ea756ad11a8a2fb0e50": "eoa",
+    "0x3c9aad80b153f8028ebb85aa1641f94ff786caf2": "eoa",
+    "0x1e56e1cc029669d3e735c7b9f9ce584d64b169f8": "eoa",
+    "0x67ef83702452f3ffe07da0e26b12f909658df3b3": "eoa"
+   }
+  },
+  "0x68a99f89e475a078645f4bac491360afe255dff1": {
+   "threshold": 4,
+   "owners": [
+    "0xb6cc72aef30880ed2029870eb0615bab40ce0586",
+    "0xaf020b1b281f59141da21094386dabf5437412ea",
+    "0x03f8009226ad399ce9193ed0b94e5ced0a33c79c",
+    "0x8d365687a75dc7688864822869ae0551bb6fc105",
+    "0x93798852ed213e90787f7823f285240a306cbdb6",
+    "0x5c9e5571b17d91e6accd4f0c29bbe199af1f7b09",
+    "0x087a7afb6975a2837453be685eb6272576c0bc06"
+   ],
+   "version": "1.1.1",
+   "nonce": 116,
+   "singleton": "0x34cfac646f301356faa8b21e94227e3583fe3f5f",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xd5d82b6addc9027b22dca772aa68d5d74cdbdf44",
+   "modules": [],
+   "code_size": 170,
+   "held_usd": 115470261,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xb6cc72aef30880ed2029870eb0615bab40ce0586": "eoa",
+    "0xaf020b1b281f59141da21094386dabf5437412ea": "eoa",
+    "0x03f8009226ad399ce9193ed0b94e5ced0a33c79c": "eoa",
+    "0x8d365687a75dc7688864822869ae0551bb6fc105": "eoa",
+    "0x93798852ed213e90787f7823f285240a306cbdb6": "eoa",
+    "0x5c9e5571b17d91e6accd4f0c29bbe199af1f7b09": "eoa",
+    "0x087a7afb6975a2837453be685eb6272576c0bc06": "eoa"
+   }
+  },
+  "0x63b2c1985e1d061fe3ff050ef44c7174292d7334": {
+   "threshold": 2,
+   "owners": [
+    "0x013026a1e49de86672f1312d9b98707f3d39ce26",
+    "0x4550ee9d322a49c0e9675b7702c1d30c8d1c8bb2"
+   ],
+   "version": "1.4.1",
+   "nonce": 16,
+   "singleton": "0x41675c099f32341bf84bfc5382af534df5c7461a",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xfd0732dc9e303f09fcef3a7388ad10a83459ec99",
+   "modules": [
+    "0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134"
+   ],
+   "code_size": 171,
+   "held_usd": 29720216,
+   "modules_named": [
+    "AllowanceModule"
+   ],
+   "owner_kinds": {
+    "0x013026a1e49de86672f1312d9b98707f3d39ce26": "eoa",
+    "0x4550ee9d322a49c0e9675b7702c1d30c8d1c8bb2": "eoa"
+   }
+  },
+  "0x220866b1a2219f40e72f5c628b65d54268ca3a9d": {
+   "threshold": 4,
+   "owners": [
+    "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+    "0xb1edfe0273e46d4368e8032408cc87d3ed86ce36",
+    "0x97adc5f09e167127e40004b6a8b5742fc336ae28",
+    "0xbf6d39a24b0c416fda5c487bb6a563928b34ba7d",
+    "0x1affd7e547ed7a464b81ea423cf6defa5047ea66",
+    "0x4e5c743a824595c249f85d6807ac5e397cd8df1b"
+   ],
+   "version": "1.1.1",
+   "nonce": 20,
+   "singleton": "0x34cfac646f301356faa8b21e94227e3583fe3f5f",
+   "guard": "0x0000000000000000000000000000000000000000",
+   "fallback_handler": "0xd5d82b6addc9027b22dca772aa68d5d74cdbdf44",
+   "modules": [],
+   "code_size": 170,
+   "held_usd": 406208184,
+   "modules_named": [],
+   "owner_kinds": {
+    "0xd8da6bf26964af9d7eed9e03e53415d37aa96045": "eip7702-delegated-eoa",
+    "0xb1edfe0273e46d4368e8032408cc87d3ed86ce36": "eoa",
+    "0x97adc5f09e167127e40004b6a8b5742fc336ae28": "eoa",
+    "0xbf6d39a24b0c416fda5c487bb6a563928b34ba7d": "eoa",
+    "0x1affd7e547ed7a464b81ea423cf6defa5047ea66": "eoa",
+    "0x4e5c743a824595c249f85d6807ac5e397cd8df1b": "eoa"
+   }
+  }
+ },
+ "owners_total": 219,
+ "owner_kinds": {
+  "eoa": 215,
+  "contract": 1,
+  "eip7702-delegated-eoa": 3
+ }
+}

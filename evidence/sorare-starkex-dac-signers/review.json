@@ -1,0 +1,151 @@
+{
+ "reviewer": "Review10",
+ "date": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "block": 26431780,
+ "eth_usd_blockscout": 1814.71,
+ "committee": {
+  "address": "0x879cd57975d596004863d30c59d579ef78bbbe32",
+  "signaturesRequired()": "2",
+  "identify()": "\"StarkWare_Committee_2019_1\"",
+  "isFinalized()": "Error: server returned an error response: error code 3: exec",
+  "blockscout_name": "Committee",
+  "verified": true,
+  "creator": "0x3DE55343499f59CEB3f1dE47F2Cd7Eab28F2F5C6",
+  "last_txs": [
+   [
+    "2026-05-31T10:03:23.000000Z",
+    "verifyAvailabilityProof",
+    "0x63881ac44293E22F3c3183a0C4113586ABb3e653"
+   ],
+   [
+    "2026-05-31T10:03:11.000000Z",
+    "verifyAvailabilityProof",
+    "0x63881ac44293E22F3c3183a0C4113586ABb3e653"
+   ],
+   [
+    "2026-05-31T10:02:47.000000Z",
+    "verifyAvailabilityProof",
+    "0x63881ac44293E22F3c3183a0C4113586ABb3e653"
+   ]
+  ],
+  "callers_last_50": [
+   "0x63881ac44293E22F3c3183a0C4113586ABb3e653"
+  ],
+  "isMember(0x0)": false,
+  "trace_y1_ecrecover_txs": 5385
+ },
+ "exchange": {
+  "address": "0xf5c9f957705bea56a7e806943f98f7777b995826",
+  "implementation_slot": "0x000000000000000000000000df2f24751f7e84ccdcd39e7b49904fab0fb0f583",
+  "blockscout_implementations": [
+   {
+    "address_hash": "0xdF2f24751F7e84ccDCD39e7b49904FAB0Fb0f583",
+    "name": "StarkExchange"
+   }
+  ],
+  "reads": {
+   "getRegisteredAvailabilityVerifiers()(address[])": "[0x879cD57975d596004863D30c59d579ef78BBbe32]",
+   "isFrozen()(bool)": "true",
+   "getSequenceNumber()(uint256)": "25418 [2.541e4]",
+   "getLastBatchId()(uint256)": "25550 [2.555e4]",
+   "identify()(string)": "- server returned an error response: error code 3: execution reverted: NO_CONTRACT_FOR_FUNCTION, data: \"0x08c379a0000000",
+   "getUpgradeActivationDelay()(uint256)": "0",
+   "isFinalized()(bool)": "- server returned an error response: error code 3: execution reverted: NO_CONTRACT_FOR_FUNCTION, data: \"0x08c379a0000000",
+   "getRegisteredVerifiers()(address[])": "[0xbcc17446B99465fF01E6816d9bcb2d8b1D7cEdB1]",
+   "getVaultRoot()(uint256)": "Error: server returned an error response: error code 3: execution reverted, data: \"0x\"",
+   "getOrderRoot()(uint256)": "2578560839281154554828276804183764325502642166024090578361019673777577717445 [2.578e75]",
+   "getValidiumVaultRoot()(uint256)": "1647550381925021870822633630762851051786315410478757708937678185667674948958 [1.647e75]"
+  },
+  "eth": "1747.157929930000000000",
+  "tokens_usd_page1": 6997,
+  "top_tokens": [
+   [
+    "USDT",
+    6702
+   ],
+   [
+    "USDC",
+    283
+   ],
+   [
+    "WXRP",
+    6
+   ],
+   [
+    "SHIB",
+    3
+   ],
+   [
+    "COMP",
+    1
+   ],
+   [
+    "SAND",
+    1
+   ],
+   [
+    "00",
+    0
+   ],
+   [
+    "DECT",
+    0
+   ]
+  ],
+  "tokens_next_page": null,
+  "erc721": [
+   [
+    "SOR",
+    "345"
+   ],
+   [
+    "SON",
+    "48"
+   ],
+   [
+    "SOB",
+    "36"
+   ],
+   [
+    "SNS",
+    "23"
+   ]
+  ],
+  "last_txs": [
+   [
+    null,
+    "depositEth",
+    "0x91EF78df45Dc36986ED4A2F7fb9e2A939B58F488"
+   ],
+   [
+    null,
+    "depositEth",
+    "0xA3c10167B0E910c19CCc3f4b63E6d3960Df39bb9"
+   ],
+   [
+    "2026-11-16T20:27:35.000000Z",
+    "withdrawWithFeeToBaseBank",
+    "0x19f494583c7C933be7B0eE58104DDaFac1E8aDfA"
+   ],
+   [
+    "2026-11-16T20:25:35.000000Z",
+    "escape",
+    "0x19f494583c7C933be7B0eE58104DDaFac1E8aDfA"
+   ],
+   [
+    "2026-11-16T20:16:11.000000Z",
+    "0xbea84187",
+    "0x19f494583c7C933be7B0eE58104DDaFac1E8aDfA"
+   ]
+  ]
+ },
+ "governance": "proxy governors SorareAdminMultisig 0xcc928977e4a75d25099e7da7b6fd79dac2f9fd2b (2 of 3) and EOA 0x5918481f777dbe437de249492b90affb4e655de4 (proxyIsGovernor true for both), upgrade activation delay 0",
+ "escrow_usd": {
+  "eth_usd": 3170585,
+  "tokens_usd": 6997,
+  "total": 3177582,
+  "note": "complete first page"
+ },
+ "external": "L2BEAT project page (l2beat.com/layer2s/projects/sorare.md), DAC threshold 2/4"
+}

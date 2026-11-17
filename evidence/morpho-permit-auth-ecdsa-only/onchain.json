@@ -1,0 +1,192 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb": {
+   "code_size": 15623,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0xcba28b38103307ec8da98377fff9816c164f9afa",
+   "safe": null,
+   "controller_safe": {
+    "address": "0xcba28b38103307ec8da98377fff9816c164f9afa",
+    "threshold": 6,
+    "owners": [
+     "0xad0e1b385a6e2d5aa4c72f37dcdd4dafd63ced8f",
+     "0xe0aeb6811d33df42a09066857cdafca16b506086",
+     "0x84d3e4ee550dd5f99e76a548ac59a6be1c8dcf79",
+     "0xc100c251bdd297a66795112f04356e6ba5f89d80",
+     "0x264c86dbbd2e4165fbbf0c35b0ddf0e00aec6b31",
+     "0x30e7c016fc702cde9a50720a469d418490b7b652",
+     "0x8f02b4a44eacd9b8ee7739aa0ba58833dd45d002",
+     "0xcf263cee139763114faafc5f52865135412f50ec",
+     "0x69fcefde2b48503d675181448b3d4272128bca9c",
+     "0x13ca8756e9470b71b8e998352c8741706217f963"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 3194144814.9346557,
+   "top_tokens": [
+    [
+     "CBBTC",
+     631045854
+    ],
+    [
+     "WSTETH",
+     421229554
+    ],
+    [
+     "WBTC",
+     405730143
+    ],
+    [
+     "KBTC",
+     374641016
+    ],
+    [
+     "PRIME",
+     221402136
+    ]
+   ],
+   "held_usd": 3194144815
+  },
+  "0xd63070114470f685b75b74d60eec7c1113d33a3d": {
+   "code_size": 19340,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x38afc3aa2c76b4ca1f8e1daba68e998e1f4782db",
+   "safe": null,
+   "controller_safe": {
+    "address": "0x38afc3aa2c76b4ca1f8e1daba68e998e1f4782db",
+    "threshold": 2,
+    "owners": [
+     "0xb9e913157fb2aa18175982fb7792316999dc49de",
+     "0x82362918071ec32823cd0144257663f52f022b47",
+     "0xa832e7afb91c8083d42474faaf05f9abfaf8abf8",
+     "0x10f97841d3232bfbc62bc07e258e7c3ef129ae03",
+     "0x382547a89309e686c69d1a578d649e508b4e1e33"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 2.0713375790259083,
+   "top_tokens": [
+    [
+     "WBETH",
+     2
+    ],
+    [
+     "HEX",
+     0
+    ]
+   ],
+   "held_usd": 2
+  },
+  "0x777791c4d6dc2ce140d00d2828a7c93503c67777": {
+   "code_size": 19730,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0xee7e9bb21d5589bf657b94083db2fa349a3918c8",
+   "safe": null,
+   "controller_safe": {
+    "address": "0xee7e9bb21d5589bf657b94083db2fa349a3918c8",
+    "threshold": 2,
+    "owners": [
+     "0x270427b58d0faf37eeb5c5bced0bb8aee696520b",
+     "0x56666f39d20ffe3ea2d07c717ec7d7f8e6ff514a",
+     "0x065c24b9508b82f465500256949799684e823fb0"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 0.055187907524,
+   "top_tokens": [
+    [
+     "USDC",
+     0
+    ],
+    [
+     "HEX",
+     0
+    ]
+   ],
+   "held_usd": 0
+  },
+  "0xbeefff209270748ddd194831b3fa287a5386f5bc": {
+   "code_size": 19340,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x0a0e559bc3b0950a7e448f0d4894db195b9cf8dd",
+   "safe": null,
+   "controller_safe": {
+    "address": "0x0a0e559bc3b0950a7e448f0d4894db195b9cf8dd",
+    "threshold": 5,
+    "owners": [
+     "0xc04f9610694a9e07e0d6a361bec53abeadf9cf9e",
+     "0x005398827d00c2951ffb52bd91164ef402bcf105",
+     "0x2e8c25a6f7f7f34666b998813abf97d8b617f111",
+     "0x5571a6fef340a9d26f1428684b9e893ea84b46ac",
+     "0x32e5cb1a68761a0cff88d4baa21e398422b5166e",
+     "0x21c1e5be991bf1544ca9759a601f66dc60083f7d",
+     "0x9a86713145f38cd688969c0ecc87b314b23254b2",
+     "0xbc27046213d34d4a153cf57a48c74d74239e8968",
+     "0x394e6ef80c6f4ad14a891a3987d8bd1387afa0b1",
+     "0x86bd534a95fb2cc36d526ba149464c4477315c32"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 0.005065860822,
+   "top_tokens": [
+    [
+     "USDC",
+     0
+    ],
+    [
+     "HEX",
+     0
+    ]
+   ],
+   "held_usd": 0
+  },
+  "0xbeef01735c132ada46aa9aa4c54623caa92a64cb": {
+   "code_size": 19340,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x0a0e559bc3b0950a7e448f0d4894db195b9cf8dd",
+   "safe": null,
+   "controller_safe": {
+    "address": "0x0a0e559bc3b0950a7e448f0d4894db195b9cf8dd",
+    "threshold": 5,
+    "owners": [
+     "0xc04f9610694a9e07e0d6a361bec53abeadf9cf9e",
+     "0x005398827d00c2951ffb52bd91164ef402bcf105",
+     "0x2e8c25a6f7f7f34666b998813abf97d8b617f111",
+     "0x5571a6fef340a9d26f1428684b9e893ea84b46ac",
+     "0x32e5cb1a68761a0cff88d4baa21e398422b5166e",
+     "0x21c1e5be991bf1544ca9759a601f66dc60083f7d",
+     "0x9a86713145f38cd688969c0ecc87b314b23254b2",
+     "0xbc27046213d34d4a153cf57a48c74d74239e8968",
+     "0x394e6ef80c6f4ad14a891a3987d8bd1387afa0b1",
+     "0x86bd534a95fb2cc36d526ba149464c4477315c32"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 0.0064753278420000004,
+   "top_tokens": [
+    [
+     "USDC",
+     0
+    ],
+    [
+     "HEX",
+     0
+    ]
+   ],
+   "held_usd": 0
+  }
+ }
+}

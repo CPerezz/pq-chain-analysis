@@ -1,0 +1,23 @@
+{
+ "block": 26431552,
+ "as_of": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "UniswapV4KEMHook 0x4440854b2d02c57a0dc5c58b7a884562d875c0c4": {
+  "quoteSigner()": "0xa99a99ee4f63474e8ab3dfff0a716174e786a751 (code size 0: EOA)",
+  "owner()": "0xbe2f0354d970265bfc36d383af77f72736b81b54 (EOA with EIP-7702 delegation to 0x63c0c19a…; also KyberSwapRFQ admin)",
+  "egRecipient()": "0x9ed9afb6b4cafbdfb2d833b0e70845997300f6b9"
+ },
+ "executor 0x63242a4ea82847b20e506b63b0e2e2eff0cc6cb0": {
+  "verified": false,
+  "creator (Blockscout)": "0x47dfaa2f1bce620865d3f1234bc8edd66d695a65 (contract)",
+  "defaultAdmin()": "0x697161a9ece8afd6ae30946d790077050f993cbc (code size 0: EOA)",
+  "owner()": "0x697161a9ece8afd6ae30946d790077050f993cbc",
+  "SIGNER_ROLE()": "0xe2f4eaae4a9751e85a3e4a7b9587827a877f29914755229b07a7b2da98285f70",
+  "sample ecrecover tx (data/agg/y1_tx_caller.parquet)": {
+   "tx": "0x67c241f8884d6e83246483748d803d377dbdb783974b4d0ea0bce4abed8a84aa",
+   "block": 24683719,
+   "call path (Blockscout internal transactions)": "PendleRouterV4 0x888888888889758f76e7103c6cbf23abbf58f946 -> 0xd4f480965d… -> 0x6131b5fae1… (KyberSwap MetaAggregationRouterV2) -> 0x63242a4e… (executor)"
+  },
+  "ecrecover txs y1 (blocks 23416114-24683719)": 1085101
+ }
+}

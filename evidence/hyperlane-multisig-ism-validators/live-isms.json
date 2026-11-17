@@ -1,0 +1,2315 @@
+{
+ "note": "Live multisig ISMs under the Mailbox default ISM 0xb05bbc47... -> routing ISM 0xb9343ec5... (owner Safe 0x562dfaac...). Read with eth_call (domains(), module(uint32), moduleType(), modulesAndThreshold(bytes), validatorsAndThreshold(bytes), eth_getCode) at the block below via https://ethereum-rpc.publicnode.com. Each origin domain maps to an aggregation ISM (threshold 1 of 2: one merkle-root and one message-id multisig clone with the same validators).",
+ "block": 26431755,
+ "mailbox": "0xc005dc82818d67af737725bd4bf75435d065d239",
+ "default_ism": "0xb05bbc4793d8db2b87115bb7e6304f0216a8c6eb",
+ "routing_ism": "0xb9343ec5ca3e46cd47a0fb7122d733a15e88c72a",
+ "origin_domains": [
+  2741,
+  1634493807,
+  33139,
+  42161,
+  5042,
+  43114,
+  8453,
+  81457,
+  60808,
+  56,
+  1128614981,
+  42220,
+  4114,
+  2632500,
+  1408864445,
+  52014,
+  99901,
+  173,
+  25363,
+  252,
+  613419,
+  100,
+  999,
+  38833,
+  57073,
+  747474,
+  1783,
+  1983,
+  1264145989,
+  52924,
+  59144,
+  1135,
+  42,
+  5000,
+  5888,
+  1000001750,
+  1088,
+  124816,
+  2288,
+  34443,
+  143,
+  41443,
+  41444,
+  3946,
+  10,
+  514051890,
+  9745,
+  137,
+  369,
+  1633970780,
+  4663,
+  1399811149,
+  1936682104,
+  5031,
+  1868,
+  146,
+  507150715,
+  988,
+  358974494,
+  964,
+  6122,
+  4217,
+  728126428,
+  130,
+  88,
+  480,
+  196,
+  16661
+ ],
+ "aggregation_per_origin": {
+  "2741": {
+   "aggregation": "0x52f66868cd110dee92a35eab6e474e24a6407588",
+   "threshold": 1,
+   "modules": [
+    "0x4bf5bea3fea4444649319fadc8c1112e1b892acf",
+    "0x5d9244ec6d4f6b748fdafe17fd2971098f74a329"
+   ]
+  },
+  "1634493807": {
+   "aggregation": "0xb357df70cc6ece91d012b9c028a5dafbc767fa71",
+   "threshold": 1,
+   "modules": [
+    "0x11f145b615f8f7854bdbe08727b7e90fcdf55bec",
+    "0x6a59e9cd52006ed0fe622c6c817de277ab21b10f"
+   ]
+  },
+  "33139": {
+   "aggregation": "0x52f66868cd110dee92a35eab6e474e24a6407588",
+   "threshold": 1,
+   "modules": [
+    "0x4bf5bea3fea4444649319fadc8c1112e1b892acf",
+    "0x5d9244ec6d4f6b748fdafe17fd2971098f74a329"
+   ]
+  },
+  "42161": {
+   "aggregation": "0x68150c9184c14e82a9172e40b00552697a33b2f5",
+   "threshold": 1,
+   "modules": [
+    "0x56842e28fd9cdd67f89259399e302dbd011ab2bb",
+    "0xdc7486f672a19660616add5d4b753c46a3b5d01b"
+   ]
+  },
+  "5042": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "43114": {
+   "aggregation": "0x8ee4cf34afa7191841da1ae60fd51872afbc8546",
+   "threshold": 1,
+   "modules": [
+    "0x062750269c37cf8d71128723a14f79281b4ea12f",
+    "0xb206d4a298abe1a27ac7e13876c6ebdc4c14bac8"
+   ]
+  },
+  "8453": {
+   "aggregation": "0x53718f08187a75325fa5383cc1cef135510e48a0",
+   "threshold": 1,
+   "modules": [
+    "0x5eb42b1b45c70b56a4d5f4d7cd874b5863933bd5",
+    "0xeb2a48ddc7d660ffb79a71b201cb6fd8daba850f"
+   ]
+  },
+  "81457": {
+   "aggregation": "0x605c6c9c95f7cb12e4f9a61d29ed7cb11b53b912",
+   "threshold": 1,
+   "modules": [
+    "0x205c1935e36df95319698b923c434d1632365294",
+    "0x6976391cd50cceb8de4e46bedb226762a86bf780"
+   ]
+  },
+  "60808": {
+   "aggregation": "0xe7c6e7b505de5a28730bd49ef8176af315246160",
+   "threshold": 1,
+   "modules": [
+    "0x23c712f82ea520b5461c2f8244107704b6b25c23",
+    "0x913875a156e1e0b98f450b075dd90fb898fee77c"
+   ]
+  },
+  "56": {
+   "aggregation": "0x1982b03dbbcd3e96b6951755574b80d56da298fa",
+   "threshold": 1,
+   "modules": [
+    "0x7dc64c96f11eeb76ae8a24c8006261d7c753fcf2",
+    "0x969e8a227e1547658c4e2ce46559fda67da69806"
+   ]
+  },
+  "1128614981": {
+   "aggregation": "0x96638d023d65b1d296c760bcdcc86bf8cd4bc065",
+   "threshold": 1,
+   "modules": [
+    "0x00123b82b27c57d32e0bd19a6e8b528425f4ec5c",
+    "0x3516a79e417e4a4b128f8f63cf0445cb9764fb98"
+   ]
+  },
+  "42220": {
+   "aggregation": "0x2f0239b508a85dc1aa2e33ce2b77e0d4b6600cd3",
+   "threshold": 1,
+   "modules": [
+    "0xab5c9a5704f9d542caa5c972813a51f85f9931c6",
+    "0xd92ef12e4c97194dbd4d37ced21bb367e18401af"
+   ]
+  },
+  "4114": {
+   "aggregation": "0x2a481c78331332c557a1b579e4d9ada50b906ca1",
+   "threshold": 1,
+   "modules": [
+    "0x9e2da262fe04b8f96ef3ef99ed9c00a48a690db5",
+    "0xf63348536c1c02f614939156cafedefd86bca135"
+   ]
+  },
+  "2632500": {
+   "aggregation": "0x52f66868cd110dee92a35eab6e474e24a6407588",
+   "threshold": 1,
+   "modules": [
+    "0x4bf5bea3fea4444649319fadc8c1112e1b892acf",
+    "0x5d9244ec6d4f6b748fdafe17fd2971098f74a329"
+   ]
+  },
+  "1408864445": {
+   "aggregation": "0x3bb2f54d35c001e14e72d855c7cae1e01a437d0c",
+   "threshold": 1,
+   "modules": [
+    "0x1def2b7ed8fbdedfcc041ef88d4646e9f51acc8d",
+    "0x22a4ee3b0e7ecfc4e0fcb12a979ce365532de497"
+   ]
+  },
+  "52014": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "99901": {
+   "aggregation": "0x30222a4d0e08573c344cbe5afcbac6dc0d3cd7ca",
+   "threshold": 1,
+   "modules": [
+    "0x9a82a974d2835205a42d9c5bd54f22c067524cd6",
+    "0xcfe4e352a33ea81ebfdfb34cdb253076ef28cf64"
+   ]
+  },
+  "173": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "25363": {
+   "aggregation": "0x9c3ad71fdc00c359f95dad734e390384785281a0",
+   "threshold": 1,
+   "modules": [
+    "0x062e4f7e9fd43cd6c2e6cf544c3d7c8bf40e0717",
+    "0x08d3c8c05e16e0f88b02d043768fd80056e654d2"
+   ]
+  },
+  "252": {
+   "aggregation": "0xdf49e296a14ab72ebc3aca7d37102e7b117ffb5d",
+   "threshold": 1,
+   "modules": [
+    "0x3787cccaece8c3272e961c73fead2e36573d7fad",
+    "0xb40c52ccd1f4dd19b681afecbe28e79ac541e313"
+   ]
+  },
+  "613419": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "100": {
+   "aggregation": "0x1298c6e0c62bdf4023c3c0af697acecaf6205219",
+   "threshold": 1,
+   "modules": [
+    "0x168d9c10834d677c0d7157b6c8b459abfcdf6093",
+    "0xf1bcad47ca09525b6a0ffd667d79a8a54fdd0f78"
+   ]
+  },
+  "999": {
+   "aggregation": "0x313230333b25ae66ad0299edff4b1487c5ee5267",
+   "threshold": 1,
+   "modules": [
+    "0xb132f197e02acf6f7654376856acdb680c4bc9b9",
+    "0xc81a345004b8d3d681b271bf0f5b37a2ae99123e"
+   ]
+  },
+  "38833": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "57073": {
+   "aggregation": "0x8faa65c1808e7dedccde0f482b939c4a39f8238e",
+   "threshold": 1,
+   "modules": [
+    "0x41d0b6d171daacd35b65e7cfd37153f500aa9fd6",
+    "0x8d2a454c38599de222414ed73a8e207d0748cab1"
+   ]
+  },
+  "747474": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "1783": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "1983": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "1264145989": {
+   "aggregation": "0x52f66868cd110dee92a35eab6e474e24a6407588",
+   "threshold": 1,
+   "modules": [
+    "0x4bf5bea3fea4444649319fadc8c1112e1b892acf",
+    "0x5d9244ec6d4f6b748fdafe17fd2971098f74a329"
+   ]
+  },
+  "52924": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "59144": {
+   "aggregation": "0x07b1dd32f04fa09bd4913d77fb2ca124c159f461",
+   "threshold": 1,
+   "modules": [
+    "0x20962487898611373d7bc7382d5f44a8c8f98566",
+    "0x90a9554e10fdc9569f1cbb4cda6b4f87cc814fa4"
+   ]
+  },
+  "1135": {
+   "aggregation": "0xaefb3d93fb82d8ac2198dbab1af6afbc3b7abdf4",
+   "threshold": 1,
+   "modules": [
+    "0x653e9e0314bcfe644aa53ef41502ab6f992b4084",
+    "0x65ac9322b22d55d606789f8a417a3e7d2c51dbd1"
+   ]
+  },
+  "42": {
+   "aggregation": "0x7192d55c88f1b5b0e00fe9189db721981bbde37b",
+   "threshold": 1,
+   "modules": [
+    "0x5016fe59fa8d2d96687eb9b4a552e09fbd0d9c91",
+    "0x59d94f3e44dacf6d62977838d1db93383dbfd455"
+   ]
+  },
+  "5000": {
+   "aggregation": "0x076f8cae54f3e30e7e69f1faaedc90616961389e",
+   "threshold": 1,
+   "modules": [
+    "0x01cd3cf63fa17e9cff521b0f51eefbf861efa85a",
+    "0x3c021b02e07c3199a07b1bf11dc82881f2bbe232"
+   ]
+  },
+  "5888": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "1000001750": {
+   "aggregation": "0x0ef9f689baa3cbec63f4d0e737c2bac5356da369",
+   "threshold": 1,
+   "modules": [
+    "0x3e328ba1eb9b64e906e24e192869231a244212e2",
+    "0x8e698bc3b03190cd41f29ddb96a576bd6555ac00"
+   ]
+  },
+  "1088": {
+   "aggregation": "0x3d597286e9ea5fe84f82630fe86ff17bb2ff110b",
+   "threshold": 1,
+   "modules": [
+    "0xb24538e3b293e2fc06225c03acb2386994806d06",
+    "0xe6546c0e91fe54a5788071f5472b85e430ebf08c"
+   ]
+  },
+  "124816": {
+   "aggregation": "0xce6027984a42b101103a95d8d70b5d092034fe4a",
+   "threshold": 1,
+   "modules": [
+    "0x4042f8e0701e81bbbf749cb8cc3b7db90b31e777",
+    "0xc44760cb390d802df4a65f35a2a8c21d09c1982f"
+   ]
+  },
+  "2288": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "34443": {
+   "aggregation": "0xd927917eb30ac4be2555ebaf57330e74e702bd0a",
+   "threshold": 1,
+   "modules": [
+    "0x7cdc3fb5b7b96a8b42855a0e5e698a6c827ef6ab",
+    "0xff3798c3a8478f1f16f4f23ea46927a3dfc0f9db"
+   ]
+  },
+  "143": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "41443": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "41444": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "3946": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "10": {
+   "aggregation": "0xc2b912f994798851c1221b1a6932e6c5dd681253",
+   "threshold": 1,
+   "modules": [
+    "0x8d90ce9b24f877eb6e7b328169d6a085868425e5",
+    "0xaccb77f2a6282107dc4c074731824c542fe2f06e"
+   ]
+  },
+  "514051890": {
+   "aggregation": "0xb3e7472225b63556196af4bfb09fcdd4ce4953e2",
+   "threshold": 1,
+   "modules": [
+    "0xce0f3b2266b000b2f88a1917245bc91030c51049",
+    "0xd3471cfef0b0ddaeef99eba7bd28defb1bef5fda"
+   ]
+  },
+  "9745": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "137": {
+   "aggregation": "0xf31e242e0be22595a809086e8cb1d4e70fb7d2f9",
+   "threshold": 1,
+   "modules": [
+    "0x4712e96086e3f79da18c32425b2220e82ef9fe28",
+    "0x6ff31fdea233b938f0dd8e6d16c8b8fb6bf03474"
+   ]
+  },
+  "369": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "1633970780": {
+   "aggregation": "0x7954665de081393266ce512464635ae49193667b",
+   "threshold": 1,
+   "modules": [
+    "0x35d1bb6d2f02c2d028faac590b4986ee99ded6cb",
+    "0xe50d5fc69b9eda8697d1d4233796971503f62943"
+   ]
+  },
+  "4663": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "1399811149": {
+   "aggregation": "0x9680b054742e709b7d3c471bc59297649f81e999",
+   "threshold": 1,
+   "modules": [
+    "0x0684cd5879e2a4bcb33c58c18f0e7d92a432644d",
+    "0x8eafe86d8ad2ba180fe57d3e7ac3319f13e57d60"
+   ]
+  },
+  "1936682104": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "5031": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "1868": {
+   "aggregation": "0xee93a55405e906e6398bea531a03d50f471c2c4b",
+   "threshold": 1,
+   "modules": [
+    "0x1df08ab637fbcdb37bee4f325f82aee6684ec5b2",
+    "0x724ebee61777f7836a5f806f253a9224bba60161"
+   ]
+  },
+  "146": {
+   "aggregation": "0xfd9ec80e89fbaaa1a7c6821e87da88161e7545be",
+   "threshold": 1,
+   "modules": [
+    "0x1c8a2768a58e9761a6b45b7f771502588557301e",
+    "0xfea1594bca6a3a73f1721bb33276ae2707d04ee1"
+   ]
+  },
+  "507150715": {
+   "aggregation": "0x81f0b4e520d6863560f17be7b55f1faa8bf5abf4",
+   "threshold": 1,
+   "modules": [
+    "0x330c240438874831ee74da12a2470b5ab538a76f",
+    "0x39ebb037f0740e27683caebf477c717f546a3f99"
+   ]
+  },
+  "988": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "358974494": {
+   "aggregation": "0x47d06f46ac146815ae68b227916ef79e4f7b5501",
+   "threshold": 1,
+   "modules": [
+    "0x650e241590dbaace6bc94b66ab582daef47b35dd",
+    "0x95560fad0945adf1f09551580c92d274f8538dac"
+   ]
+  },
+  "964": {
+   "aggregation": "0x59ba623f3f89ad94c879430bf9d9edd0c3d04cfa",
+   "threshold": 1,
+   "modules": [
+    "0x1b8074c672552fd1f9b1ac6a39561fd85ea15dbb",
+    "0x4272826fbec1bb0c1addffb7c2d056ae5ab9acf0"
+   ]
+  },
+  "6122": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "4217": {
+   "aggregation": "0x602dac35e0159e009abeb6f52958612fba9cc955",
+   "threshold": 1,
+   "modules": [
+    "0xb4017cb11313da30503e9448724dc9036571dcb0",
+    "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7"
+   ]
+  },
+  "728126428": {
+   "aggregation": "0xe864bff963aca51004bcfafedbca309a655e006f",
+   "threshold": 1,
+   "modules": [
+    "0x662770e39bd9023c4a8f6b999b38812ac52993e1",
+    "0x891458e81a164d83932b9f9487211e336fdc2f8b"
+   ]
+  },
+  "130": {
+   "aggregation": "0x1ca2acb8ebaf41e480c2d4e95dabd96f8b580fd2",
+   "threshold": 1,
+   "modules": [
+    "0x6e4fa5121860c6b38a252e299a58e1f054df1f32",
+    "0x7f3484031676dee95956db3f215475971b2417a2"
+   ]
+  },
+  "88": {
+   "aggregation": "0x956bff4a880089c3cc88607d2ea8d6f0dace2bb3",
+   "threshold": 1,
+   "modules": [
+    "0x2ad9a6b53ec5b4cffec346c34aa2e63e39db6e5e",
+    "0xa3e869fe55072dade41ce9b1527dd9d3686078f9"
+   ]
+  },
+  "480": {
+   "aggregation": "0xd61aa10bc5070962e679fc10bfd9b4b315f9cb0e",
+   "threshold": 1,
+   "modules": [
+    "0x95d6f544c89d4ee713a0397a7f46570d96c8fa11",
+    "0xafdc0567489621eb5a8efb665e7fd5260e0fbd17"
+   ]
+  },
+  "196": {
+   "aggregation": "0x52f66868cd110dee92a35eab6e474e24a6407588",
+   "threshold": 1,
+   "modules": [
+    "0x4bf5bea3fea4444649319fadc8c1112e1b892acf",
+    "0x5d9244ec6d4f6b748fdafe17fd2971098f74a329"
+   ]
+  },
+  "16661": {
+   "aggregation": "0x409f28aa7949412aac9cc0f8bcea04a1296b9139",
+   "threshold": 1,
+   "modules": [
+    "0x20f47986f1bb870e61f0a206a1055bca93451a5c",
+    "0x6f66b63afbf50766fb40fac0e432cae8bab4f419"
+   ]
+  }
+ },
+ "multisig_isms": [
+  {
+   "origin_domain": 2741,
+   "kind": "message-id",
+   "address": "0x4bf5bea3fea4444649319fadc8c1112e1b892acf",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 2741,
+   "kind": "merkle-root",
+   "address": "0x5d9244ec6d4f6b748fdafe17fd2971098f74a329",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 1634493807,
+   "kind": "message-id",
+   "address": "0x11f145b615f8f7854bdbe08727b7e90fcdf55bec",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x98ea4149045841d5d0423198bc3ad754227e8185",
+    "0x9a400971b5ae35bafb9d0bfaba49b45cdac6e8ef",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 1634493807,
+   "kind": "merkle-root",
+   "address": "0x6a59e9cd52006ed0fe622c6c817de277ab21b10f",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x98ea4149045841d5d0423198bc3ad754227e8185",
+    "0x9a400971b5ae35bafb9d0bfaba49b45cdac6e8ef",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 33139,
+   "kind": "message-id",
+   "address": "0x4bf5bea3fea4444649319fadc8c1112e1b892acf",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 33139,
+   "kind": "merkle-root",
+   "address": "0x5d9244ec6d4f6b748fdafe17fd2971098f74a329",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 42161,
+   "kind": "merkle-root",
+   "address": "0x56842e28fd9cdd67f89259399e302dbd011ab2bb",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0x57ddf0cd46f31ead8084069ce481507f4305c716",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xde6c50c3e49852dd9fe0388166ebc1ba39ad8505"
+   ]
+  },
+  {
+   "origin_domain": 42161,
+   "kind": "message-id",
+   "address": "0xdc7486f672a19660616add5d4b753c46a3b5d01b",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0x57ddf0cd46f31ead8084069ce481507f4305c716",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xde6c50c3e49852dd9fe0388166ebc1ba39ad8505"
+   ]
+  },
+  {
+   "origin_domain": 5042,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 5042,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 43114,
+   "kind": "merkle-root",
+   "address": "0x062750269c37cf8d71128723a14f79281b4ea12f",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x4488dbc191c39ae026b4a1fdb2aefe21960226d5",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x74de235ace64fa8a3d5e3d5e414360888e655c62",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 43114,
+   "kind": "message-id",
+   "address": "0xb206d4a298abe1a27ac7e13876c6ebdc4c14bac8",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x4488dbc191c39ae026b4a1fdb2aefe21960226d5",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x74de235ace64fa8a3d5e3d5e414360888e655c62",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 8453,
+   "kind": "merkle-root",
+   "address": "0x5eb42b1b45c70b56a4d5f4d7cd874b5863933bd5",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x34a14934d7c18a21440b59dfe9bf132ce601457d",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xb8cf45d7bab79c965843206d5f4d83bb866d6e86",
+    "0xe957310e17730f29862e896709cce62d24e4b773"
+   ]
+  },
+  {
+   "origin_domain": 8453,
+   "kind": "message-id",
+   "address": "0xeb2a48ddc7d660ffb79a71b201cb6fd8daba850f",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x34a14934d7c18a21440b59dfe9bf132ce601457d",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xb8cf45d7bab79c965843206d5f4d83bb866d6e86",
+    "0xe957310e17730f29862e896709cce62d24e4b773"
+   ]
+  },
+  {
+   "origin_domain": 81457,
+   "kind": "message-id",
+   "address": "0x205c1935e36df95319698b923c434d1632365294",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x54bb0036f777202371429e062fe6aee0d59442f9",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 81457,
+   "kind": "merkle-root",
+   "address": "0x6976391cd50cceb8de4e46bedb226762a86bf780",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x54bb0036f777202371429e062fe6aee0d59442f9",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 60808,
+   "kind": "message-id",
+   "address": "0x23c712f82ea520b5461c2f8244107704b6b25c23",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x53d2738453c222e49c556d937bcef3f80f1c2eec",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xb574b2b5822a8cb9ca071e7d43865694f23b0bde",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 60808,
+   "kind": "merkle-root",
+   "address": "0x913875a156e1e0b98f450b075dd90fb898fee77c",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x53d2738453c222e49c556d937bcef3f80f1c2eec",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xb574b2b5822a8cb9ca071e7d43865694f23b0bde",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 56,
+   "kind": "merkle-root",
+   "address": "0x7dc64c96f11eeb76ae8a24c8006261d7c753fcf2",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 4,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x24c1506142b2c859aee36474e59ace09784f71e8",
+    "0x2d74f6edfd08261c927ddb6cb37af57ab89f0eff",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xc67789546a7a983bf06453425231ab71c119153f"
+   ]
+  },
+  {
+   "origin_domain": 56,
+   "kind": "message-id",
+   "address": "0x969e8a227e1547658c4e2ce46559fda67da69806",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 4,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x24c1506142b2c859aee36474e59ace09784f71e8",
+    "0x2d74f6edfd08261c927ddb6cb37af57ab89f0eff",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xc67789546a7a983bf06453425231ab71c119153f"
+   ]
+  },
+  {
+   "origin_domain": 1128614981,
+   "kind": "message-id",
+   "address": "0x00123b82b27c57d32e0bd19a6e8b528425f4ec5c",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x21e93a81920b73c0e98aed8e6b058dae409e4909",
+    "0x9a8e2a9726ea990b5770830bd32d27b1e0434ee4",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xa6c998f0db2b56d7a63faf30a9b677c8b9b6faab",
+    "0xe3a63fcd0348b0caee7894664e9ce5815e21362d"
+   ]
+  },
+  {
+   "origin_domain": 1128614981,
+   "kind": "merkle-root",
+   "address": "0x3516a79e417e4a4b128f8f63cf0445cb9764fb98",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x21e93a81920b73c0e98aed8e6b058dae409e4909",
+    "0x9a8e2a9726ea990b5770830bd32d27b1e0434ee4",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xa6c998f0db2b56d7a63faf30a9b677c8b9b6faab",
+    "0xe3a63fcd0348b0caee7894664e9ce5815e21362d"
+   ]
+  },
+  {
+   "origin_domain": 42220,
+   "kind": "message-id",
+   "address": "0xab5c9a5704f9d542caa5c972813a51f85f9931c6",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x033e391e9fc57a7b5dd6c91b69be9a1ed11c4986",
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x4a2423ef982b186729e779b6e54b0e84efea7285",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 42220,
+   "kind": "merkle-root",
+   "address": "0xd92ef12e4c97194dbd4d37ced21bb367e18401af",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x033e391e9fc57a7b5dd6c91b69be9a1ed11c4986",
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x4a2423ef982b186729e779b6e54b0e84efea7285",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 4114,
+   "kind": "merkle-root",
+   "address": "0x9e2da262fe04b8f96ef3ef99ed9c00a48a690db5",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xd2e26f9089e9ff6a1ea9f7e90575e985cfea7f03"
+   ]
+  },
+  {
+   "origin_domain": 4114,
+   "kind": "message-id",
+   "address": "0xf63348536c1c02f614939156cafedefd86bca135",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xd2e26f9089e9ff6a1ea9f7e90575e985cfea7f03"
+   ]
+  },
+  {
+   "origin_domain": 2632500,
+   "kind": "message-id",
+   "address": "0x4bf5bea3fea4444649319fadc8c1112e1b892acf",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 2632500,
+   "kind": "merkle-root",
+   "address": "0x5d9244ec6d4f6b748fdafe17fd2971098f74a329",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 1408864445,
+   "kind": "merkle-root",
+   "address": "0x1def2b7ed8fbdedfcc041ef88d4646e9f51acc8d",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x3571223e745dc0fcbdefa164c9b826b90c0d2dac",
+    "0x4d4629f5bfeabe66edc7a78da26ef5273c266f97",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 1408864445,
+   "kind": "message-id",
+   "address": "0x22a4ee3b0e7ecfc4e0fcb12a979ce365532de497",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x3571223e745dc0fcbdefa164c9b826b90c0d2dac",
+    "0x4d4629f5bfeabe66edc7a78da26ef5273c266f97",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 52014,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 52014,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 99901,
+   "kind": "message-id",
+   "address": "0x9a82a974d2835205a42d9c5bd54f22c067524cd6",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x49ed767e8e971cf77413e3114f8de0b3c34205f9",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 99901,
+   "kind": "merkle-root",
+   "address": "0xcfe4e352a33ea81ebfdfb34cdb253076ef28cf64",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x49ed767e8e971cf77413e3114f8de0b3c34205f9",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 173,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 173,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 25363,
+   "kind": "message-id",
+   "address": "0x062e4f7e9fd43cd6c2e6cf544c3d7c8bf40e0717",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x6a07e3406536d3a117f41850e69c70961d002efe",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 25363,
+   "kind": "merkle-root",
+   "address": "0x08d3c8c05e16e0f88b02d043768fd80056e654d2",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x6a07e3406536d3a117f41850e69c70961d002efe",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 252,
+   "kind": "merkle-root",
+   "address": "0x3787cccaece8c3272e961c73fead2e36573d7fad",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x1c3c3013b863cf666499da1a61949ae396e3ab82",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 252,
+   "kind": "message-id",
+   "address": "0xb40c52ccd1f4dd19b681afecbe28e79ac541e313",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x1c3c3013b863cf666499da1a61949ae396e3ab82",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 613419,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 613419,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 100,
+   "kind": "merkle-root",
+   "address": "0x168d9c10834d677c0d7157b6c8b459abfcdf6093",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 100,
+   "kind": "message-id",
+   "address": "0xf1bcad47ca09525b6a0ffd667d79a8a54fdd0f78",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 999,
+   "kind": "merkle-root",
+   "address": "0xb132f197e02acf6f7654376856acdb680c4bc9b9",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x04d949c615c9976f89595ddcb9008c92f8ba7278",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 999,
+   "kind": "message-id",
+   "address": "0xc81a345004b8d3d681b271bf0f5b37a2ae99123e",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x04d949c615c9976f89595ddcb9008c92f8ba7278",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 38833,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 38833,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 57073,
+   "kind": "merkle-root",
+   "address": "0x41d0b6d171daacd35b65e7cfd37153f500aa9fd6",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa40203b5301659f1e201848d92f5e81f64f206f5",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xff9c1e7b266a36eda0d9177d4236994d94819dc0"
+   ]
+  },
+  {
+   "origin_domain": 57073,
+   "kind": "message-id",
+   "address": "0x8d2a454c38599de222414ed73a8e207d0748cab1",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa40203b5301659f1e201848d92f5e81f64f206f5",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xff9c1e7b266a36eda0d9177d4236994d94819dc0"
+   ]
+  },
+  {
+   "origin_domain": 747474,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 747474,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 1783,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 1783,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 1983,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 1983,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 1264145989,
+   "kind": "message-id",
+   "address": "0x4bf5bea3fea4444649319fadc8c1112e1b892acf",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 1264145989,
+   "kind": "merkle-root",
+   "address": "0x5d9244ec6d4f6b748fdafe17fd2971098f74a329",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 52924,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 52924,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 59144,
+   "kind": "message-id",
+   "address": "0x20962487898611373d7bc7382d5f44a8c8f98566",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 4,
+   "validators": [
+    "0x0c760f4bcb508db9144b0579e26f5ff8d94daf4d",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0x6fbceb2680c8181acf3d1b5f0189e3beaa985338",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 59144,
+   "kind": "merkle-root",
+   "address": "0x90a9554e10fdc9569f1cbb4cda6b4f87cc814fa4",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 4,
+   "validators": [
+    "0x0c760f4bcb508db9144b0579e26f5ff8d94daf4d",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0x6fbceb2680c8181acf3d1b5f0189e3beaa985338",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 1135,
+   "kind": "message-id",
+   "address": "0x653e9e0314bcfe644aa53ef41502ab6f992b4084",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 4,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x3da4ee2801ec6cc5fad73dbb94b10a203adb3d9e",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xead4141b6ea149901ce4f4b556953f66d04b1d0c",
+    "0xf0da628f3fb71652d48260bad4691054045832ce"
+   ]
+  },
+  {
+   "origin_domain": 1135,
+   "kind": "merkle-root",
+   "address": "0x65ac9322b22d55d606789f8a417a3e7d2c51dbd1",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 4,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x3da4ee2801ec6cc5fad73dbb94b10a203adb3d9e",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xead4141b6ea149901ce4f4b556953f66d04b1d0c",
+    "0xf0da628f3fb71652d48260bad4691054045832ce"
+   ]
+  },
+  {
+   "origin_domain": 42,
+   "kind": "merkle-root",
+   "address": "0x5016fe59fa8d2d96687eb9b4a552e09fbd0d9c91",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x101ce77261245140a0871f9407d6233c8230ec47",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 42,
+   "kind": "message-id",
+   "address": "0x59d94f3e44dacf6d62977838d1db93383dbfd455",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x101ce77261245140a0871f9407d6233c8230ec47",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 5000,
+   "kind": "message-id",
+   "address": "0x01cd3cf63fa17e9cff521b0f51eefbf861efa85a",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 4,
+   "validators": [
+    "0x332b3710e56b843027d4c6da7bca219ece7099b0",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcd3b3a2007aab3b00418fbac12bea19d04243497",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 5000,
+   "kind": "merkle-root",
+   "address": "0x3c021b02e07c3199a07b1bf11dc82881f2bbe232",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 4,
+   "validators": [
+    "0x332b3710e56b843027d4c6da7bca219ece7099b0",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcd3b3a2007aab3b00418fbac12bea19d04243497",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 5888,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 5888,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 1000001750,
+   "kind": "merkle-root",
+   "address": "0x3e328ba1eb9b64e906e24e192869231a244212e2",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x05d91f80377ff5e9c6174025ffaf094c57a4766a",
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xaba06266f47e3ef554d218b879bd86114a8dabd4"
+   ]
+  },
+  {
+   "origin_domain": 1000001750,
+   "kind": "message-id",
+   "address": "0x8e698bc3b03190cd41f29ddb96a576bd6555ac00",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x05d91f80377ff5e9c6174025ffaf094c57a4766a",
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xaba06266f47e3ef554d218b879bd86114a8dabd4"
+   ]
+  },
+  {
+   "origin_domain": 1088,
+   "kind": "message-id",
+   "address": "0xb24538e3b293e2fc06225c03acb2386994806d06",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 4,
+   "validators": [
+    "0x4272e7b93e127da5bc7cee617febf47bcad20def",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xad1df94ae078631bfea1623520125e93a6085555",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 1088,
+   "kind": "merkle-root",
+   "address": "0xe6546c0e91fe54a5788071f5472b85e430ebf08c",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 4,
+   "validators": [
+    "0x4272e7b93e127da5bc7cee617febf47bcad20def",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xad1df94ae078631bfea1623520125e93a6085555",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 124816,
+   "kind": "merkle-root",
+   "address": "0x4042f8e0701e81bbbf749cb8cc3b7db90b31e777",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x340058f071e8376c2ecff219e1e6620deea8a3c7",
+    "0x401f25ff73769ed85bdb449a4347a4fd2678acfe",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 124816,
+   "kind": "message-id",
+   "address": "0xc44760cb390d802df4a65f35a2a8c21d09c1982f",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x340058f071e8376c2ecff219e1e6620deea8a3c7",
+    "0x401f25ff73769ed85bdb449a4347a4fd2678acfe",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 2288,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 2288,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 34443,
+   "kind": "message-id",
+   "address": "0x7cdc3fb5b7b96a8b42855a0e5e698a6c827ef6ab",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x485a4f0009d9afbbf44521016f9b8cdd718e36ea",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0x65c140e3a05f33192384affef985696fe3cdde42",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 34443,
+   "kind": "merkle-root",
+   "address": "0xff3798c3a8478f1f16f4f23ea46927a3dfc0f9db",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x485a4f0009d9afbbf44521016f9b8cdd718e36ea",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0x65c140e3a05f33192384affef985696fe3cdde42",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 143,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 143,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 41443,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 41443,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 41444,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 41444,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 3946,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 3946,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 10,
+   "kind": "merkle-root",
+   "address": "0x8d90ce9b24f877eb6e7b328169d6a085868425e5",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xd8c1ccbff28413ce6c6ebe11a3e29b0d8384edbb",
+    "0xf9dfaa5c20ae1d84da4b2696b8dc80c919e48b12"
+   ]
+  },
+  {
+   "origin_domain": 10,
+   "kind": "message-id",
+   "address": "0xaccb77f2a6282107dc4c074731824c542fe2f06e",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xd8c1ccbff28413ce6c6ebe11a3e29b0d8384edbb",
+    "0xf9dfaa5c20ae1d84da4b2696b8dc80c919e48b12"
+   ]
+  },
+  {
+   "origin_domain": 514051890,
+   "kind": "message-id",
+   "address": "0xce0f3b2266b000b2f88a1917245bc91030c51049",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xc36fe08e2c06ca51f6c3523e54e33505b7aaba37"
+   ]
+  },
+  {
+   "origin_domain": 514051890,
+   "kind": "merkle-root",
+   "address": "0xd3471cfef0b0ddaeef99eba7bd28defb1bef5fda",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xc36fe08e2c06ca51f6c3523e54e33505b7aaba37"
+   ]
+  },
+  {
+   "origin_domain": 9745,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 9745,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 137,
+   "kind": "merkle-root",
+   "address": "0x4712e96086e3f79da18c32425b2220e82ef9fe28",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x008f24cbb1cc30ad0f19f2516ca75730e37efb5f",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 137,
+   "kind": "message-id",
+   "address": "0x6ff31fdea233b938f0dd8e6d16c8b8fb6bf03474",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x008f24cbb1cc30ad0f19f2516ca75730e37efb5f",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 369,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 369,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 1633970780,
+   "kind": "message-id",
+   "address": "0x35d1bb6d2f02c2d028faac590b4986ee99ded6cb",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xc61209c6b133791c729d0cbe49d6da96c30a515f"
+   ]
+  },
+  {
+   "origin_domain": 1633970780,
+   "kind": "merkle-root",
+   "address": "0xe50d5fc69b9eda8697d1d4233796971503f62943",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xc61209c6b133791c729d0cbe49d6da96c30a515f"
+   ]
+  },
+  {
+   "origin_domain": 4663,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 4663,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 1399811149,
+   "kind": "message-id",
+   "address": "0x0684cd5879e2a4bcb33c58c18f0e7d92a432644d",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcb6bcbd0de155072a7ff486d9d7286b0f71dcc2d",
+    "0xd90ea26ff731d967c5ea660851f7d63cb04ab820"
+   ]
+  },
+  {
+   "origin_domain": 1399811149,
+   "kind": "merkle-root",
+   "address": "0x8eafe86d8ad2ba180fe57d3e7ac3319f13e57d60",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcb6bcbd0de155072a7ff486d9d7286b0f71dcc2d",
+    "0xd90ea26ff731d967c5ea660851f7d63cb04ab820"
+   ]
+  },
+  {
+   "origin_domain": 1936682104,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 1936682104,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 5031,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 5031,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 1868,
+   "kind": "merkle-root",
+   "address": "0x1df08ab637fbcdb37bee4f325f82aee6684ec5b2",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0x6c5f6ab7a369222e6691218ad981fe08a5def094",
+    "0x8d2f8ebd61d055d58768cf3b07cb2fb565d87716",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 1868,
+   "kind": "message-id",
+   "address": "0x724ebee61777f7836a5f806f253a9224bba60161",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0x6c5f6ab7a369222e6691218ad981fe08a5def094",
+    "0x8d2f8ebd61d055d58768cf3b07cb2fb565d87716",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 146,
+   "kind": "merkle-root",
+   "address": "0x1c8a2768a58e9761a6b45b7f771502588557301e",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 4,
+   "validators": [
+    "0x4e3d1c926843dcc8ff47061bbd7143a2755899f3",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0x7f0e75c5151d0938eaa9ab8a30f9ddbd74c4ebef",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 146,
+   "kind": "message-id",
+   "address": "0xfea1594bca6a3a73f1721bb33276ae2707d04ee1",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 4,
+   "validators": [
+    "0x4e3d1c926843dcc8ff47061bbd7143a2755899f3",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0x7f0e75c5151d0938eaa9ab8a30f9ddbd74c4ebef",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 507150715,
+   "kind": "merkle-root",
+   "address": "0x330c240438874831ee74da12a2470b5ab538a76f",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x85c7a16790cfd9dad6d4abdd4e2d3f1d550c7606",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 507150715,
+   "kind": "message-id",
+   "address": "0x39ebb037f0740e27683caebf477c717f546a3f99",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x85c7a16790cfd9dad6d4abdd4e2d3f1d550c7606",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 988,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 988,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 358974494,
+   "kind": "merkle-root",
+   "address": "0x650e241590dbaace6bc94b66ab582daef47b35dd",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xb3ac35d3988bca8c2ffd195b1c6bee18536b317b"
+   ]
+  },
+  {
+   "origin_domain": 358974494,
+   "kind": "message-id",
+   "address": "0x95560fad0945adf1f09551580c92d274f8538dac",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xb3ac35d3988bca8c2ffd195b1c6bee18536b317b"
+   ]
+  },
+  {
+   "origin_domain": 964,
+   "kind": "merkle-root",
+   "address": "0x1b8074c672552fd1f9b1ac6a39561fd85ea15dbb",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 964,
+   "kind": "message-id",
+   "address": "0x4272826fbec1bb0c1addffb7c2d056ae5ab9acf0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 6122,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 6122,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 4217,
+   "kind": "message-id",
+   "address": "0xb4017cb11313da30503e9448724dc9036571dcb0",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 4217,
+   "kind": "merkle-root",
+   "address": "0xf1ba8ffa2cf032758d110a6730c242f6e2058fb7",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 728126428,
+   "kind": "merkle-root",
+   "address": "0x662770e39bd9023c4a8f6b999b38812ac52993e1",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x28e00979336d4faef1eed9ac35ad3adc5e5ec5bd",
+    "0x3c9a49f0e601c186e134aee2c75c482869dc0dc6",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 728126428,
+   "kind": "message-id",
+   "address": "0x891458e81a164d83932b9f9487211e336fdc2f8b",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x28e00979336d4faef1eed9ac35ad3adc5e5ec5bd",
+    "0x3c9a49f0e601c186e134aee2c75c482869dc0dc6",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 130,
+   "kind": "merkle-root",
+   "address": "0x6e4fa5121860c6b38a252e299a58e1f054df1f32",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xbcbed4d11e946844162cd92c6d09d1cf146b4006"
+   ]
+  },
+  {
+   "origin_domain": 130,
+   "kind": "message-id",
+   "address": "0x7f3484031676dee95956db3f215475971b2417a2",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x0d4c1394a255568ec0ecd11795b28d1bda183ca4",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xbcbed4d11e946844162cd92c6d09d1cf146b4006"
+   ]
+  },
+  {
+   "origin_domain": 88,
+   "kind": "message-id",
+   "address": "0x2ad9a6b53ec5b4cffec346c34aa2e63e39db6e5e",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x6d113ae51bfea7b63a8828f97e9dce393b25c189",
+    "0xa3f93fe365bf99f431d8fde740b140615e24f99b",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 88,
+   "kind": "merkle-root",
+   "address": "0xa3e869fe55072dade41ce9b1527dd9d3686078f9",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x6d113ae51bfea7b63a8828f97e9dce393b25c189",
+    "0xa3f93fe365bf99f431d8fde740b140615e24f99b",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03"
+   ]
+  },
+  {
+   "origin_domain": 480,
+   "kind": "message-id",
+   "address": "0x95d6f544c89d4ee713a0397a7f46570d96c8fa11",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 3,
+   "validators": [
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0x698810f8ae471f7e34860b465aeeb03df407be47",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xc1545f9fe903736b2e438b733740bd3516486da5",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 480,
+   "kind": "merkle-root",
+   "address": "0xafdc0567489621eb5a8efb665e7fd5260e0fbd17",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 3,
+   "validators": [
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0x698810f8ae471f7e34860b465aeeb03df407be47",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xc1545f9fe903736b2e438b733740bd3516486da5",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 196,
+   "kind": "message-id",
+   "address": "0x4bf5bea3fea4444649319fadc8c1112e1b892acf",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 196,
+   "kind": "merkle-root",
+   "address": "0x5d9244ec6d4f6b748fdafe17fd2971098f74a329",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 2,
+   "validators": [
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xcf0211fafbb91fd9d06d7e306b30032dc3a1934f"
+   ]
+  },
+  {
+   "origin_domain": 16661,
+   "kind": "merkle-root",
+   "address": "0x20f47986f1bb870e61f0a206a1055bca93451a5c",
+   "implementation": "0xd4dacca08737d2a910b4ad401f805f83d0c170f3",
+   "threshold": 4,
+   "validators": [
+    "0x25c5fc524ac7ef5e7868644fbe68793e5eb179ea",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0x782ac2b5244b69779bd7214a2d60212fb35c3ae7",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xd3e6a4e61b5d902a63df6dac9db5585d9f319b09"
+   ]
+  },
+  {
+   "origin_domain": 16661,
+   "kind": "message-id",
+   "address": "0x6f66b63afbf50766fb40fac0e432cae8bab4f419",
+   "implementation": "0x5371942d3ed75b10d77f0f4184ddc85cc35a1420",
+   "threshold": 4,
+   "validators": [
+    "0x25c5fc524ac7ef5e7868644fbe68793e5eb179ea",
+    "0x4f977a59fdc2d9e39f6d780a84d5b4add1495a36",
+    "0x5450447aee7b544c462c9352bef7cad049b0c2dc",
+    "0x782ac2b5244b69779bd7214a2d60212fb35c3ae7",
+    "0xa5962efa3ec138bf7ca8f7fde86b7ee32e24bf03",
+    "0xd3e6a4e61b5d902a63df6dac9db5585d9f319b09"
+   ]
+  }
+ ]
+}

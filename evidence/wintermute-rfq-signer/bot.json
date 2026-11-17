@@ -1,0 +1,47 @@
+{
+ "as_of": "2026-11-17",
+ "rpc_block": 26431604,
+ "identification": {
+  "blockscout_tags": "Market Maker: 0x51c7...2a7f; MEV Bot; Wintermute_1",
+  "arkham": "Wintermute: Market Maker (0x51C)",
+  "source_header": "Blockscout-verified (partial match, 2026-11-07) reconstruction `Bot`: 'MEV bot and contract wallet ... successor of the bot at 0x8712aa5033e65d3cacf45d18f9c7094039cb6256'"
+ },
+ "reads": {
+  "multiSigOwner": "0xce466fc694c971b95bb1193e494942e22197f759 (GnosisSafeProxy, 4 of 10)",
+  "accessControlRegistry": "0x7ff4ed8ab94c849b812622eb462682208be06b93 (unverified, creator 0x1589d12517e67d2c4dd2376493b34fed9c55cb9b)",
+  "getTimelockDelay": 86400,
+  "isActive": true,
+  "_rfqSigner": "0xa0f1898fb62aee04f9aa1aa5866bc48e6b4cb1d8 (no code)",
+  "_approvedAirswapContract": "0xd82e10b9a4107939e55fcca9b53a9ede6cf2fc46",
+  "_approvedZeroexContract": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+  "getAllApprovedSpenders": [
+   "0x149d330c8b9352573d17bc184b7a426ea020b38e",
+   "0x000000000022d473030f116ddee9f6b43ac78ba3",
+   "0xec6fc9be2d5e505b40a2df8b0622cd25333823db",
+   "0x93c30e6e09f698cfea99b09b5166ed90cfaedd17",
+   "0x1111111254eeb25477b68fb85ed929f73a960582",
+   "0xa8c1c98aaf99a5dfc907d61b892b2ad624901185",
+   "0xbbbbbbb520d69a9775e85b458c58c648259fad5f",
+   "0xba47cbfdd61029833841fcaa2ec2591ddfa87e51",
+   "0x53bcdcc18f3bada2cd749a72b28d55eb7abb3dd2",
+   "0x225a38bc71102999dd13478bfabd7c4d53f2dc17"
+  ],
+  "_approvedRfqCallers": {
+   "0xbbbbbbb520d69a9775e85b458c58c648259fad5f (BebopSettlement)": true,
+   "0x000000000022d473030f116ddee9f6b43ac78ba3 (Permit2)": true,
+   "0x1111111254eeb25477b68fb85ed929f73a960582 (1inch v5)": true,
+   "0x111111125421ca6dc452d289314280a0f8842a65 (1inch v6)": true,
+   "others in approved spenders": false
+  },
+  "allowances": {
+   "USDC->BebopSettlement": "max",
+   "USDT->BebopSettlement": "max",
+   "WETH->BebopSettlement": "max",
+   "USDC->Permit2": "9,497,179.32",
+   "USDT->Permit2": "8,300,492.95",
+   "WETH->Permit2": "2,758.79",
+   "USDC/USDT/WETH->0x, AirSwap, 1inch v5": "0"
+  }
+ },
+ "holdings_block_26431214_usd": 70639811
+}

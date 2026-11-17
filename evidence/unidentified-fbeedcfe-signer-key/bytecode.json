@@ -1,0 +1,26 @@
+{
+ "address": "0xfbeedcfe378866dab6abbafd8b2986f5c1768737",
+ "code_size": 20373,
+ "staticcall_near_push1_01": 0,
+ "has_1271_selector_1626ba7e": false,
+ "push20_addresses": [
+  "c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+  "fffd8963efd1fc6a506488495d951d5263988d25"
+ ],
+ "selectors": {
+  "0x022c0d9f": "swap(uint256,uint256,address,bytes)",
+  "0x0902f1ac": "getReserves()",
+  "0x095ea7b3": "approve(address,uint256)",
+  "0x128acb08": "swap(address,bool,int256,uint160,bytes)",
+  "0x2e1a7d4d": "withdraw(uint256)",
+  "0x3850c7bd": "slot0()",
+  "0x3c8a7d8d": "mint(address,int24,int24,uint128,bytes)",
+  "0x4903b0d1": "balances(uint256)",
+  "0x4f1eb3d8": "collect(address,int24,int24,uint128,uint128)",
+  "0x70a08231": "balanceOf(address)",
+  "0xa34123a7": "burn(int24,int24,uint128)",
+  "0xa9059cbb": "transfer(address,uint256)",
+  "0xd0e30db0": "deposit()",
+  "0xffffffff": "LOCK8605463013()"
+ }
+}

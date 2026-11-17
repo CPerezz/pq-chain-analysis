@@ -1,0 +1,304 @@
+{
+ "block": 26431459,
+ "as_of": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com (eth_call at block 26431459)",
+ "aztec_usd": 0.01013502,
+ "aztec_price_source": "Blockscout /api/v2/tokens/0xa27ec0006e59f245217ff08cd52a7e8b169e62d2 exchange_rate, 2026-11-17",
+ "token": {
+  "address": "0xa27ec0006e59f245217ff08cd52a7e8b169e62d2",
+  "symbol": "AZTEC",
+  "decimals": 18
+ },
+ "governance": {
+  "address": "0x1102471eb3378fee427121c9efcea452e4b6b75e",
+  "contract": "Governance (verified, non-proxy)",
+  "AZTEC_held": 705930724.09,
+  "usd": 7154622,
+  "governanceProposer()": "0x06ef1dcf87e419c48b94a331b252819fadbd63ef",
+  "getConfiguration": {
+   "proposeWithLock.lockDelay_s": 7776000,
+   "votingDelay_s": 259200,
+   "votingDuration_s": 604800,
+   "executionDelay_s": 172800,
+   "gracePeriod_s": 604800,
+   "quorum": "20%",
+   "requiredYeaMargin": "33%",
+   "minimumVotes_AZTEC": 100000000
+  },
+  "execute_guard": "Governance.execute rejects actions whose target is ASSET (Governance__CannotCallAsset)",
+  "totalPowerNow_AZTEC (latest block)": 619750182.24,
+  "powerNow(GSE)_AZTEC (latest block)": 618318000,
+  "proposalCount()": 7
+ },
+ "registry": {
+  "address": "0x35b22e09ee0390539439e24f06da43d83f90e298",
+  "owner()": "0x1102471eb3378fee427121c9efcea452e4b6b75e",
+  "getGovernance()": "0x1102471eb3378fee427121c9efcea452e4b6b75e",
+  "numberOfVersions()": 4,
+  "getCanonicalRollup()": "0xe37a2663cc9c119ba41572c40fab0bbb23a5402f",
+  "versions": {
+   "0": "0x603bb2c05d474794ea97805e8de69bccfb3bca12",
+   "2934756905": "0xae2001f7e21d5ecabf6234e9fdd1e76f50f74962",
+   "4248422647": "0x91ff8bbd8ebb07893010d50a48a1609e5ebd8e34",
+   "2070860440": "0xe37a2663cc9c119ba41572c40fab0bbb23a5402f"
+  }
+ },
+ "gse": {
+  "address": "0xa92ecfd0e70c9cd5e5cd76c50af0f7da93567a4f",
+  "owner()": "0x1102471eb3378fee427121c9efcea452e4b6b75e",
+  "getLatestRollup()": "0xe37a2663cc9c119ba41572c40fab0bbb23a5402f",
+  "totalSupply_AZTEC": 618916000,
+  "supplyOf(bonus 0x9064fb41156d300196d5eb95e0b3c1f08ebc39a8)_AZTEC": 608916000,
+  "supplyOf(v2)_AZTEC": 10000000,
+  "supplyOf(v0)": 0,
+  "supplyOf(v3 own)": 0,
+  "note": "GSE deposits stake into Governance; GSE token balance 0",
+  "bn254LibWrapper": "0x656f9140b9e2d3769d47b575512d46039dcab4d3 (created by GSE in its constructor, immutable BN254_LIB_WRAPPER)"
+ },
+ "reward_distributor_v3": {
+  "address": "0x555baac4757a89f1ce0c84fa35afe9dd7aa8e1d3",
+  "REGISTRY()": "0x35b22e09ee0390539439e24f06da43d83f90e298",
+  "AZTEC_held": 61998900,
+  "usd": 628360,
+  "recoverFrom": "callable by Ownable(REGISTRY).owner() = Governance"
+ },
+ "rollups": {
+  "v0": {
+   "address": "0x603bb2c05d474794ea97805e8de69bccfb3bca12",
+   "deployed": "2025-11 (block 23786836)",
+   "owner()": "0x1102471eb3378fee427121c9efcea452e4b6b75e",
+   "epochProofVerifier": "0x77e3ba096355510e0e9f60d292010b42d662d2b5 (constructor-only)",
+   "slasher": "0x91a3745c685c220595b997e53311ebf660144889",
+   "slashingProposer": "0x7a318c3daa9f21f8fc8238c65755eb0394fbf189",
+   "getActiveAttesterCount()": 0,
+   "proven=pending block": 139350,
+   "AZTEC_held": 7045514.04,
+   "usd": 71406,
+   "feeJuicePortal": "0xe05dc9d5969272831757181fff1532b066254bf1",
+   "fjp_AZTEC": 0,
+   "inbox": "0x15c718c05b8c0dbec4d648b6711d6ce8793969ee",
+   "outbox": "0xf006c41097861afeb18b05e586b921c081411ee9",
+   "state": "halted: no attesters, so no committee can be sampled and no block can be proposed"
+  },
+  "v1": {
+   "address": "0xae2001f7e21d5ecabf6234e9fdd1e76f50f74962",
+   "deployed": "2026-03-04 (tx 0xf109fbae)",
+   "owner()": "0x0000000000000000000000000000000000000000",
+   "getActiveAttesterCount()": 0,
+   "proven=pending checkpoint": 116725,
+   "AZTEC_held": 7498490.09,
+   "usd": 75997,
+   "feeJuicePortal": "0x2891f8b941067f8b5a3f34545a30cf71e3e23617",
+   "fjp_AZTEC": 27279.41,
+   "state": "halted",
+   "txs_30d": 92
+  },
+  "v2": {
+   "address": "0x91ff8bbd8ebb07893010d50a48a1609e5ebd8e34",
+   "deployed": "2026-06-30 (tx 0x096bfc58)",
+   "owner()": "0x1102471eb3378fee427121c9efcea452e4b6b75e",
+   "epochProofVerifier": "0x098f47c00f4df22a8030746eb11378236c24b4bc",
+   "slashingProposer": "0x8a36b8f2ca71d8d8bd98e03ebf8b4d0939daf0ba",
+   "slasher": "0xcd6855470a01abcd989126a1183fb50673952548",
+   "getActiveAttesterCount()": 50,
+   "proven/pending checkpoint": [
+    143207,
+    143240
+   ],
+   "AZTEC_held": 11701514.65,
+   "usd": 118595,
+   "feeJuicePortal": "0xaf73dd51d1eb8a079bb097f39c832cdd00ac691c",
+   "fjp_AZTEC": 181593.33,
+   "fjp_usd": 1840,
+   "inbox": "0x7d4ef0676c2032bbcc09227501d34d86641ab8ca",
+   "outbox": "0x5b062ab5fd3a66bc7e73b04ced38587673b6a2d7",
+   "escapeHatch": "0xf459348962f5ea3a9a101826b03a2ce1f459e51a"
+  },
+  "v3": {
+   "address": "0xe37a2663cc9c119ba41572c40fab0bbb23a5402f",
+   "deployed": "2026-10-10 (block 26160102)",
+   "owner()": "0x1102471eb3378fee427121c9efcea452e4b6b75e",
+   "epochProofVerifier": "0x09ae3b0362bcce6e447ce4130c4963630b5a67db (EPOCH_PROOF_VERIFIER immutable, getEpochProofVerifier())",
+   "slashingProposer": "0xa2ff1bf784d6b1d7ba1bfd67c3538b85f9f85295 (QUORUM 65, ROUND_SIZE 128)",
+   "slasher": "0x08b364720b6e4c2089fbdd8a6a722f474013a2b7 (VETOER Safe 0xbbb4af368d02827945748b28cd4b2d42e4a37480, 5-of-9; slashing enabled)",
+   "getActiveAttesterCount()": 3049,
+   "targetCommitteeSize": 48,
+   "proven/pending checkpoint": [
+    24557,
+    24582
+   ],
+   "AZTEC_held": 7262092.9,
+   "usd": 73601,
+   "feeJuicePortal": "0x534361be805ca30bdb6404ec5e6cdaffb3e9f3b3",
+   "fjp_AZTEC": 22591.64,
+   "fjp_usd": 229,
+   "inbox": "0x603b06cecc1d537aad83f1d46651e32014c5b6ad",
+   "outbox": "0xfd2a12658a82d7156da56c7a8d49a69fc966c8d1",
+   "escapeHatch": "0x613ff7d166c834816384feaea2b48568363a4d57",
+   "getExitDelay()_s": 345600
+  }
+ },
+ "portals": {
+  "method": "contracts seen calling the version's Inbox or Outbox in Xatu call frames, blocks 26,208,000-26,423,999; ERC-20 holdings from Blockscout /addresses/<a>/tokens with Blockscout exchange rates, 2026-11-17",
+  "v3": {
+   "0xcb99c58fe81ae6b2cb4835e46f7b703745879042": [
+    "OxidePortal",
+    44692
+   ],
+   "0x2ebfee284babf94869fac44bc85edb3c34e536d8": [
+    "OxidePortal",
+    16779
+   ],
+   "0x2ab479ba9d6997eaea5c83aea8ceafbbb25d254f": [
+    "TokenPortal",
+    245
+   ],
+   "0x32548cfb68d0ee0a32b5aed7aec390099a542a73": [
+    "TokenPortal",
+    139
+   ],
+   "0x6c34d66633ffc36be2dfddc7b0c652fbb305e74c": [
+    "TokenPortal",
+    116
+   ],
+   "0xae3b5c52aee124f0c9466b8d57f1eed17ccebf6d": [
+    "ERC1967Proxy->TokenPortal",
+    47
+   ],
+   "0x158161b257f9bad34c12dd8d52638424b216c3a2": [
+    "NamePortal",
+    0
+   ],
+   "0xe5a16035ac5566b4e7cc48ab439813e5bef20c34": [
+    "TokenVaultPortal",
+    0
+   ],
+   "0x10aac939e544646d2c1a28d3bc59ae75568d212b": [
+    "ReceiverFactory",
+    0
+   ],
+   "0xc00f0a4eee332405540a6b2ef15d19d23368bc91": [
+    "unverified",
+    0
+   ]
+  },
+  "v3_total_usd": 62018,
+  "v2": {
+   "0xdf410ad448a0f7165181fbdb32f8896f4a0d9449": [
+    "OxidePortal",
+    14707
+   ],
+   "0xd7ae00b91ba0b8e0240b22cd75fe447d177c260f": [
+    "OxidePortal",
+    1010
+   ],
+   "0xe2b92ac0bd9fb204b29fd367a59a8de9748daff3": [
+    "TokenPortal",
+    740
+   ],
+   "0xea6c6b75286082173b8b58c773112e91bd60d67e": [
+    "TokenPortal",
+    348
+   ],
+   "0x1e1174112b10d541b7ce807d622b49ff5a563ccc": [
+    "TokenPortal",
+    210
+   ],
+   "0x274c2ba82f4b609b5dc51a74d7710b9eba7f73e9": [
+    "TokenPortal",
+    109
+   ],
+   "0x575755d70b26b2263b9737686a3cc86786de3359": [
+    "TokenPortal",
+    6
+   ],
+   "0xd8ee899c28b7fd3cd47f39b7de82cf57116b910b": [
+    "NamePortal",
+    0
+   ],
+   "0xd0b1f7fb4ad13b97acdae0b70422709442a180d0": [
+    "TokenVaultPortal",
+    0
+   ]
+  },
+  "v2_total_usd": 17130
+ },
+ "escrow_usd": {
+  "v3": 62247,
+  "v2": 18970,
+  "v0": 0
+ },
+ "activity_xatu_blocks_26208000_26423999": {
+  "0xe37a2663cc9c119ba41572c40fab0bbb23a5402f": {
+   "txs_30d": 44053,
+   "direct": 15148,
+   "last": "2026-11-16"
+  },
+  "0x09ae3b0362bcce6e447ce4130c4963630b5a67db": {
+   "txs_30d": 17156,
+   "last": "2026-11-16"
+  },
+  "0xa2ff1bf784d6b1d7ba1bfd67c3538b85f9f85295": {
+   "txs_30d": 7807,
+   "last": "2026-11-16"
+  },
+  "0x91ff8bbd8ebb07893010d50a48a1609e5ebd8e34": {
+   "txs_30d": 44350,
+   "direct": 5964,
+   "last": "2026-11-16"
+  },
+  "0x098f47c00f4df22a8030746eb11378236c24b4bc": {
+   "txs_30d": 8569,
+   "last": "2026-11-16"
+  },
+  "0x8a36b8f2ca71d8d8bd98e03ebf8b4d0939daf0ba": {
+   "txs_30d": 4903,
+   "last": "2026-10-29"
+  },
+  "0xae2001f7e21d5ecabf6234e9fdd1e76f50f74962": {
+   "txs_30d": 92,
+   "direct": 51,
+   "last": "2026-11-13"
+  }
+ },
+ "escape_hatch": {
+  "v3": {
+   "address": "0x613ff7d166c834816384feaea2b48568363a4d57",
+   "contract": "EscapeHatch (Blockscout verified, src/core/EscapeHatch.sol)",
+   "getRollup()": "0xe37a2663cc9c119ba41572c40fab0bbb23a5402f",
+   "constructor": {
+    "_bondToken": "0xa27ec0006e59f245217ff08cd52a7e8b169e62d2",
+    "_bondSize_AZTEC": 332000000,
+    "_withdrawalTax_AZTEC": 1660000,
+    "_failedHatchPunishment_AZTEC": 9600000,
+    "_frequency_epochs": 112,
+    "_activeDuration_epochs": 2,
+    "_lagInHatches": 1,
+    "_proposingExitDelay_s": 2592000
+   },
+   "getCandidateCount() (latest)": 0,
+   "getCurrentHatch() (latest)": 12,
+   "AZTEC_held": 0,
+   "bond_usd": 3364827
+  },
+  "v2": {
+   "address": "0xf459348962f5ea3a9a101826b03a2ce1f459e51a",
+   "getRollup()": "0x91ff8bbd8ebb07893010d50a48a1609e5ebd8e34",
+   "getBondSize()_AZTEC": 332000000,
+   "getFrequency()": 112,
+   "getActiveDuration()": 2,
+   "getFailedHatchPunishment()_AZTEC": 9600000,
+   "getCandidateCount() (latest)": 0,
+   "getCurrentHatch() (latest)": 46
+  },
+  "source_points_v3": {
+   "ProposeLib.sol 216-227": "escape hatch looked up per epoch; committee setup skipped when open",
+   "ProposeLib.sol 251-256": "during an open hatch only msg.sender == designated proposer may propose",
+   "EpochProofLib.sol 258-267": "attestation verification skipped for escape-hatch epochs",
+   "InvalidateLib.sol 215-223": "escape-hatch checkpoints cannot be invalidated",
+   "EscapeHatch.sol 149-168": "joinCandidateSet: anyone, transfers BOND_SIZE",
+   "EscapeHatch.sol 284-350": "validateProofSubmission: bond kept if the proposed checkpoint is proven, else FAILED_HATCH_PUNISHMENT",
+   "EscapeHatch.sol 357-366": "isHatchOpen: epoch % FREQUENCY < ACTIVE_DURATION and a designated proposer exists"
+  }
+ }
+}

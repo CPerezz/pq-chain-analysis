@@ -1,0 +1,41 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+   "code_size": 2186,
+   "kind": "zos",
+   "implementation": "0x43506849d7c04f9138d1a2050bbf3a0c054402dd",
+   "admin": "0x807a96288a1a408dbc13de2b1d087d10356395d2",
+   "owner": "0xfcb19e6a322b27c06842a71e8c725399f049ae3a",
+   "safe": null,
+   "admin_owner": null,
+   "eth": 0.0,
+   "tokens_usd": 294801.9371767653,
+   "top_tokens": [
+    [
+     "USDT",
+     226967
+    ],
+    [
+     "WBTC",
+     44643
+    ],
+    [
+     "LIT",
+     9228
+    ],
+    [
+     "EURC",
+     2593
+    ],
+    [
+     "CUSDC",
+     1944
+    ]
+   ],
+   "held_usd": 294802
+  }
+ }
+}

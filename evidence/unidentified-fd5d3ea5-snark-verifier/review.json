@@ -1,0 +1,38 @@
+{
+ "reviewer": "Review10",
+ "date": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "block": 26431710,
+ "reads": {
+  "pool proxy 0x428c850be686e933dd641ee43574ba35f550c94c": {
+   "eip1967.implementation": "0xf176dd06697aca8210172caee63d6ce3ba264d9e (unverified)",
+   "eip1967.admin": "0xb5161775ded280eb0e8e07ed2eadf7f1d324f142",
+   "TRANSFER_VERIFIER()": "0xfd5d3ea58cce8da4b1606db610c8129eca278ac7",
+   "WITHDRAW_VERIFIER()": "0xb5ebd94b3c69c3449a64e67b055298e588f2434a",
+   "POSEIDON2()": "0x55b9d3016adc4501819db58878461364af361d22",
+   "totalPools()": 3,
+   "totalElements()": 552,
+   "eth": 0.0304,
+   "tokens": {
+    "USDT": 80.42,
+    "USDC": 21.46
+   },
+   "creator": "0x3c72eb2c7d1758ed019ab450d02711f7334ffccc",
+   "last tx (Blockscout)": "2026-07-26"
+  },
+  "ProxyAdmin 0xb5161775ded280eb0e8e07ed2eadf7f1d324f142": {
+   "owner()": "0xf31620437c3b2aec737d12b325d56c546d0c6646"
+  },
+  "Safe 0xf31620437c3b2aec737d12b325d56c546d0c6646": {
+   "getThreshold()": 2,
+   "getOwners()": [
+    "0x4d2f86b064657caf88c6e8c6a77152f4fef53c6e",
+    "0x557b10c07cd34acbe377c065a59ae9b17b5cd623",
+    "0x8c231736a8bf9fa61e3898ebb0c0ff040f35dbe7"
+   ]
+  }
+ },
+ "bytecode": "implementation embeds both verifier addresses and POSEIDON2 as PUSH20 constants (immutables); selectors resolved: registerUser(bytes), commitments, nullifiers, merkleRoots, getLastRoot, frontier, pools, getPoolInfo, setPoolFees, claimProtocolFees, claimRelayerFees, userKeys; verifier 0xfd5d3ea5: compressProof(uint256[8]) 0x44f63692 (gnark Groth16 export), BN254 constants; 0xb5ebd94b: same compressProof selector",
+ "trace": "y1 trace: 0xfd5d3ea5 220 txs (ecadd, ecmul, ecpairing), last block 24339519; 0xb5ebd94b ecpairing calls (alltime), last block 24339528; sample 0x8c1568ec\u2026 Multicall3 aggregate3 into 0x428c850b selector 0x881a00d4",
+ "not_in_finding_before": "0xb5ebd94b3c69c3449a64e67b055298e588f2434a was not in any finding; added here (same project, same mechanism)"
+}

@@ -1,0 +1,69 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x9cbdbd7fa768ad6e9546ff57238722fa9b925329": {
+   "code_size": 4607,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 4152.795958107586,
+   "tokens_usd": 17751784.2305264,
+   "top_tokens": [
+    [
+     "PAXG",
+     5084691
+    ],
+    [
+     "USDC",
+     4119368
+    ],
+    [
+     "RLUSD",
+     3696127
+    ],
+    [
+     "USDT",
+     2250953
+    ],
+    [
+     "LINK",
+     1050156
+    ]
+   ],
+   "held_usd": 25275072
+  },
+  "0xc82abe4dfa94b9b5453d31274fb7500459a0d12d": {
+   "code_size": 4607,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 8480.11,
+   "tokens_usd": 1165690.4300997208,
+   "top_tokens": [
+    [
+     "UNI",
+     594308
+    ],
+    [
+     "LINK",
+     571383
+    ],
+    [
+     "ZIK",
+     0
+    ],
+    [
+     "WETH",
+     0
+    ]
+   ],
+   "held_usd": 16528427
+  }
+ }
+}

@@ -1,0 +1,28 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x2c158bc456e027b2affccadf1bdbd9f5fc4c5c8c": {
+   "code_size": 12828,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.104335322776,
+   "top_tokens": [
+    [
+     "USDC",
+     0
+    ],
+    [
+     "HEX",
+     0
+    ]
+   ],
+   "held_usd": 0
+  }
+ }
+}

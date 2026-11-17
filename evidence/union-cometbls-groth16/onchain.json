@@ -1,0 +1,19 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x7700ea295f62989d2c98721389a521c96fe3c4c0": {
+   "code_size": 141,
+   "kind": "eip1967",
+   "implementation": "0xf2b24b085080cef91f7bffdc6358fe054999e15f",
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 0
+  }
+ }
+}

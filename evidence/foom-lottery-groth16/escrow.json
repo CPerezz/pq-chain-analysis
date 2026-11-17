@@ -1,0 +1,48 @@
+{
+  "reviewer": "Review02",
+  "date": "2026-11-17",
+  "block": 26431454,
+  "rpc": "https://ethereum-rpc.publicnode.com",
+  "consumer": {
+    "address": "0x239af915abcd0a5dcb8566e863088423831951f8",
+    "name": "FoomLottery (verified on Sourcify, src/FoomLottery.sol)",
+    "deployer": "0x442de4b67b9cb75f73b33df3b11f694c89f811c2",
+    "deployed": "2025-07-02",
+    "eip1967_implementation_slot": "0x0",
+    "immutables": {
+      "withdraw()": "0xc043865fb4d542e2bc5ed5ed9a2f0939965671a6",
+      "cancel()": "0x64eb221c93eb4a5efefda0fed6d49cfd3506ef14",
+      "update1()": "0xcd6a87d333c9c3bf9302b04ad36928eec5bba587",
+      "update3()": "0x26fb9b040a680e800db862d4b1479269a4cba356",
+      "update5()": "0xad61d88f29dd1c598dd683ad69375cdf45fbf769",
+      "update11()": "0xdbf505b7f76075f699efc66ab0868e6bbce4084c",
+      "update21()": "0xdb203504ba1fea79164af3ceffba88c59ee8aafd",
+      "update44()": "0x5b7f3691675affedcb357a15951dd3965ee9bf4b",
+      "update89()": "0x252073bd4e91d99cf136c3e61dd7a42321eceb7b",
+      "update179()": "0x326b83865cdbeccc1e24a583f3b32e2303ea2850",
+      "token()": "0xd0d56273290d339aaf1417d9bfa1bb8cfe8a0933",
+      "betMin()": "1000000000000000000000000"
+    },
+    "owner()": "0x5f3dbd36c6c04c34da658540c7bba8261c2634d3 (EOA: no code, nonce 5)",
+    "generator()": "0x8c1ec61c722ff48531c84d4769bfbfe291015511",
+    "commitHash()": "2 (= _closed: close() was called)",
+    "D().commitBlock": "24540485 (2026-02-26 10:26 UTC, the close() block); adminwithdraw() allowed after block 26642885",
+    "D().betsLimit": 0,
+    "holdings": {
+      "eth": "0",
+      "weth": "0",
+      "FOOM": "15318394467147939628 wei = 15.32 FOOM",
+      "FOOM_usd_rate_blockscout": 4.0474e-8,
+      "usd": 0.0000006
+    },
+    "token_transfers_blockscout": "FOOM paid out of the lottery between 2026-02-26 and 2026-02-28 (collect, payOut and contract-creation transactions); last call 2026-03-03 payOut"
+  },
+  "older_deployment": {
+    "address": "0xd5a3bbb90f919bb7eb53c0909f4e62f42f087add",
+    "name": "FoomLottery (2025-06-30, own verifier set)",
+    "commitHash()": "1 (open)",
+    "FOOM": "3000000000000000000000000 wei = 3,000,000 FOOM (~USD 0.12)",
+    "eth": "0",
+    "last_tx_blockscout": "2025-07-02 playAndPray"
+  }
+}

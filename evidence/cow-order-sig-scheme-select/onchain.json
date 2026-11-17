@@ -1,0 +1,40 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x9008d19f58aabd9ed0d60971565aa8510560ab41": {
+   "code_size": 16165,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 0.000129717146680756,
+   "tokens_usd": 455234.94946326653,
+   "top_tokens": [
+    [
+     "TRU",
+     441087
+    ],
+    [
+     "GULD",
+     1172
+    ],
+    [
+     "OPAL",
+     783
+    ],
+    [
+     "YVUSDC",
+     695
+    ],
+    [
+     "ANKRETH",
+     572
+    ]
+   ],
+   "held_usd": 455235
+  }
+ }
+}

@@ -1,0 +1,1396 @@
+{
+ "reviewer": "Review02",
+ "date": "2026-11-17",
+ "block": 26431454,
+ "note": "The draft's family 'code:0x4d9be648\u2026' (148 classified / 319 callers) groups every proxy with the same TransparentUpgradeableProxy runtime code; at block 26,431,454 these 319 proxies point at 261 different implementations and 184 different admins. Only 0xd72a6ba4\u2026 runs EthereumMultiFeedAdapterWithoutRoundsV3. The proxies below share RedStone's ProxyAdmin 0x8223a627\u2026; implementation names from Blockscout.",
+ "redstone_proxies_same_proxyadmin": {
+  "0x19219bc90f48dee4d5cf202e09c438faacfd8bea": {
+   "impl": "0xf4f4632f87dc6c62721788e09eff05c8da01b0f5",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "MergedAdapterWithRoundsApxethethV1"
+  },
+  "0xb347d2e3524d0f9e2321d84a2e9b2e60cbc4a836": {
+   "impl": "0x5c9f404daec8c0365be0e948fdccf16d77205d33",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": null
+  },
+  "0xa736eae8805ddeffba40cab8c99bcb309deabd9b": {
+   "impl": "0x1b7406b06ce2ff145c274f39941211c2a146194a",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "TerminatedContract"
+  },
+  "0x3a236f67fce401d87d7215695235e201966576e4": {
+   "impl": "0xb60224122830fd6cf5119f548477a190310d2c94",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "EthereumPriceFeedRswethFundamentalWithoutRoundsV2"
+  },
+  "0x17350e8433f109e1da3dbd4f8b1e75759243572d": {
+   "impl": "0x5e667aab698a34661b4b9cdc20d2175195bf8df8",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "PriceFeedsAdapterVenusMainnetXvsV2"
+  },
+  "0x66ac817f997efd114edfcccdce99f3268557b32c": {
+   "impl": "0x4c1332a70a49fdbb6fcba847a5eed5b44c927b2c",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "EthereumPriceFeedOsethethWithoutRoundsV1"
+  },
+  "0x8751f736e94f6cd167e8c5b97e245680fbd9cc36": {
+   "impl": "0xa2b0067002df61df015c11b2cf0be4f34fc41cf8",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "EthereumPriceFeedWeethethWithoutRoundsV1"
+  },
+  "0xf9dfbf71f2d9c8a4e565e1346aeb2c3e1dc765de": {
+   "impl": "0x26dc62470d4fa7f9cbcd597f9862345a2b3515aa",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "MergedAdapterWithoutRoundsPufStakingV1"
+  },
+  "0x9e37dbf40fe5fe9320e45fe6b95b000aa05459a9": {
+   "impl": "0x14449cc3185dec0421c3cb37074215f1aacb97f9",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "EthereumMergedAdapterWithRoundsSpkccNavV1"
+  },
+  "0x1b9b4b6705797968954a597362898ace5f30c1c5": {
+   "impl": "0x8d6d49ddd5fe84b6b43d9420d1dac96b88dba9a1",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "PriceFeedsAdapterWithoutRoundsUsdeSusdeV2"
+  },
+  "0x4b2c406f0dbf7624a32971277da7b4c43a7a942b": {
+   "impl": "0xa219348b7c00118fe143c484d79248bc74fdd3be",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "EthereumMergedAdapterWithRoundsEurspkccNavV1"
+  },
+  "0x76a495b0bffb53ef3f0e94ef0763e03ce410835c": {
+   "impl": "0xa41107f9259bb835275eacaad8048307b80d7c00",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "MergedAdapterWithRoundsPufethethV1"
+  },
+  "0xd72a6ba4a87ddb33e801b3f1c7750b2d0911fc6c": {
+   "impl": "0x0c6c73865429e1d87b7b817b95bb1f38f2136529",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "EthereumMultiFeedAdapterWithoutRoundsV3"
+  },
+  "0x3b9c09bde7776c32c518e2e787412a9bbaa7685f": {
+   "impl": "0xf57ba29437c130e155ca4b65128630777638f05d",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "MergedAdapterWithRoundsEthplusethV1"
+  },
+  "0xfcf1cbead3daefe4f345442c5fb8fdb08757478a": {
+   "impl": "0x5f2041733b06dd040e3e46158ba93a04767427b6",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "PriceFeedsAdapterStaderEthxWithoutRoundsV3"
+  },
+  "0xddb6f90ffb4d3257dd666b69178e5b3c5bf41136": {
+   "impl": "0x0c2c7ded01ccdfab16f04aff82af766b23d6be0a",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "MergedAdapterWithRoundsWeethV1"
+  },
+  "0x5beefefe23aecccc77d164ab8e9ff74e056588f1": {
+   "impl": "0x564d81b839573761b38ceeb4c0142d1222c588b5",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "PriceFeedsAdapterAngleEthV2"
+  },
+  "0xdd60c54115c19e0c6360ad4762b88bb8076d50a8": {
+   "impl": "0x52dd721bdb9b115c4770a614b704dfdc38388cfc",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "EthereumPriceFeedSfrxethethWithoutRoundsV1"
+  },
+  "0xf4a3e183f59d2599ee3df213ff78b1b3b1923696": {
+   "impl": "0x3d3344c8f4abb279e192007f7b68eade3c8a5b28",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "MergedAdapterWithRoundsEzethethV1"
+  },
+  "0xf3eb387ac1317fbc7e2efd82214ee1e148f0fe00": {
+   "impl": "0x2a9e09ede0e569223f05737f846b51591a04e5cf",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "PriceFeedsAdapterStaderEthxWithRoundsV2"
+  },
+  "0x68ba9602b2aee30847412109d2ee89063bf08ec2": {
+   "impl": "0x293af9ca6c6f4b1ec799328d1759ef213a5e57a3",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "PriceFeedsAdapterSwellWithRoundsV5"
+  },
+  "0xc799194caa24e2874efa89b4bf5c92a530b047ff": {
+   "impl": "0xe8db0a2c50e68d42e0f6e1776766b803597714c7",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573",
+   "impl_name": "EthereumPriceFeedEthxethWithoutRoundsV1"
+  }
+ },
+ "all_319": {
+  "0x8da537b4806962951de147880f15d87e9a761a7d": {
+   "impl": "0xe47c3eff13b5c38743caa2ef340962daf335ffed",
+   "admin": "0xa5050ef49e8a3d6adb0bd55c37b8efb05ff619a9"
+  },
+  "0x9de8a77d6419492d145d576146c44b011ae52bba": {
+   "impl": "0x2d68676c40bf820eb84e3b7d8d77a1c473b08b61",
+   "admin": "0x7f1f792660088be32cc796c45b8e3db18485ac2d"
+  },
+  "0xde417ea3a884a34a8f2dc32b4b0a1a9c3c9b61a0": {
+   "impl": "0xe02a2ccadab3e071ec43c3ee350a79b7a09d8155",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x6ceb28afb6e2ffaf0fcea00e0c54a718e80f2a7b": {
+   "impl": "0xb57d345f87172dc7a5d81ef0f4619d43d91d4cc3",
+   "admin": "0x84058daef2fd663e0f0c6415748929492a761ae0"
+  },
+  "0x12617f31a29dccff3790e4767239a7b00928d43b": {
+   "impl": "0x919f2936d0de29f56d723db1d35ec239b397083d",
+   "admin": "0xeb5e772919661f455619a4cabd9b2b64715505e6"
+  },
+  "0x820375e78b4f9e070f12af95532ddccf5474de22": {
+   "impl": "0xf2ecf6e87f4f07596472b1908d7bd124b74bdc77",
+   "admin": "0x07be2cfb0c845d366c8b6a76bb7fed11c1561ebc"
+  },
+  "0x546e4af01b390a4b8b6d370e01ca57ec99828c44": {
+   "impl": "0x1be45ecb079e4d5f71bb2bb2356040dee48746cf",
+   "admin": "0x3c475ab324c5fc74c715c17c3297e8ced1e02071"
+  },
+  "0xf2a7d953b2d7d821cade13f8a3af257b092cfe71": {
+   "impl": "0xe497ba440e2e878d6defd2d91683c52d45385aa3",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x19219bc90f48dee4d5cf202e09c438faacfd8bea": {
+   "impl": "0xf4f4632f87dc6c62721788e09eff05c8da01b0f5",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0xb347d2e3524d0f9e2321d84a2e9b2e60cbc4a836": {
+   "impl": "0x5c9f404daec8c0365be0e948fdccf16d77205d33",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0xa736eae8805ddeffba40cab8c99bcb309deabd9b": {
+   "impl": "0x1b7406b06ce2ff145c274f39941211c2a146194a",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0xf9f2f26da42dec96d22b7e0459dd41e5dd104c3c": {
+   "impl": "0x58e9852c1ccb58fd168730b3dbd8d0a75799466f",
+   "admin": "0xc136ec46727cb7edb3b950fc63e93d436b906552"
+  },
+  "0x8f9259a355933737f8f11f95d32460ecd5ed0706": {
+   "impl": "0x57f841c0a9c22ef1f0d8a1604b6388bfa3536932",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0xe7761436b3ce4a690cec3555f845e3dc52050291": {
+   "impl": "0x38974455f07c67bd959942d1e17b971d76392599",
+   "admin": "0x4f644a0f2ce372a3ec70a06e9494b0c6ae4bb138"
+  },
+  "0x2baaa3fa09f54b1d45eeaa0e43534a00faba055a": {
+   "impl": "0xd81f354d55b843af7afc3e03d616f18e48ab1753",
+   "admin": "0xf0b2f53bee90fd5139f3cd93fe2f24801acdb685"
+  },
+  "0x6bc86c92d8e378222ae616a4ef1aff9e47b7d7cc": {
+   "impl": "0x562fd4007f7e5c4f25359d8b577a98276e8764b4",
+   "admin": "0x7d1db4aa379e899f13bc6d8211645ec51458de4d"
+  },
+  "0x3a236f67fce401d87d7215695235e201966576e4": {
+   "impl": "0xb60224122830fd6cf5119f548477a190310d2c94",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0x2ff45e654929b8eb049e52b55f1178e76528f45f": {
+   "impl": "0x62597017ac31967b259e07be2a06f07d2e7009db",
+   "admin": "0x26e8ecd1e5e95ab3ba7788fdd681618acd7edb38"
+  },
+  "0x1361fa1398c22d6644dcc1aa619f1b84f6db4366": {
+   "impl": "0xa065585ce98cab62c4f1aff3c26ef4316ee72178",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x481639c53723d82f1f4d62722a22a093f2c7b803": {
+   "impl": "0xa53696b14bf7935e80bb8cf52011f58267729b01",
+   "admin": "0xff65fd0dda71651d4268a5ce288da21b1af86874"
+  },
+  "0x2b0243f5a0f8c690bcdae0e00c669e45e44d6a0d": {
+   "impl": "0x79436b6e87b7360b72a2bcafea2367581697ba08",
+   "admin": "0x5aabeabcb964533e3bda32c7944ef56f764fa659"
+  },
+  "0xef356dc3b8bc8e69b572dc84e4e85754c9545081": {
+   "impl": "0x2e076465c7915bb86de9d875588e86894e124105",
+   "admin": "0xca7f1944386656a1bea1e9d6cc6019e6aa552201"
+  },
+  "0xbaf6c103c8d1d1e8bf7d81ec684cb8136fe06f61": {
+   "impl": "0x69d86c4753da76706044904c103c9f853393acc9",
+   "admin": "0xdcab7668574b37f89567098e2935ba798a749ac4"
+  },
+  "0x37ed9fb736bf48b8bceba599938372cbd70fb378": {
+   "impl": "0x2e23fdeff3db5ed4b52eabc11e9d09aead05823c",
+   "admin": "0x3f5b5c8847bac8928e72c7484f3b4d3527e9269f"
+  },
+  "0x76cda4e918581c4a57cb3e65975768c5f295f4d9": {
+   "impl": "0x5d69c4ac749c9e76f15f566c227fcc1f9df1592a",
+   "admin": "0x53e3a7ece7555c5bc69afbd8df8df7b056339ab0"
+  },
+  "0x35baf6b5a4181cec1e994316292ccd43f72097d6": {
+   "impl": "0x1d50541b33e5eb51b2a9b20be946ed2da2bd0091",
+   "admin": "0xc136ec46727cb7edb3b950fc63e93d436b906552"
+  },
+  "0x622ccb3c38502dd9175b347fd32bb327a7175ffd": {
+   "impl": "0xbbd734583344d7cfdbdcac597e83486dfdf297f4",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x879f5504acdaa8529618be136b3672be583ebb93": {
+   "impl": "0x1caf435a693c5c24e2c48c35ab15d9737ef86911",
+   "admin": "0xf1f78417795565b7d710c7f3f8a203f586d5e12f"
+  },
+  "0x28df32a104d3657c2f3f715c01bae19bd8187f8a": {
+   "impl": "0x94508b90fb6b9379b6546b840f9793346e98457e",
+   "admin": "0x6658d918470c3a36922c0bdcb1c82801eea9f861"
+  },
+  "0x17350e8433f109e1da3dbd4f8b1e75759243572d": {
+   "impl": "0x5e667aab698a34661b4b9cdc20d2175195bf8df8",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0x38f5dbbbb65be0af97f5e7c9e89e1012c0dc0163": {
+   "impl": "0xc6abc7f942ba3e60988cb3edea188c8b8310dfb3",
+   "admin": "0x887299115ea707f5e9d592eb4dd6b9b87d30c158"
+  },
+  "0x9eead9ce15383caeed975427340b3a369410cfbf": {
+   "impl": "0xbf83f8436ac46a8b1da5a9348ed84f68aee07b98",
+   "admin": "0xd32645695868555918c5c0c8339c71b84c9240de"
+  },
+  "0xd8ea7a2f786a8baddfd14dfc4a836bd4761e05fa": {
+   "impl": "0xeeced64e1b63e529a55777d33c145ea46e857dd3",
+   "admin": "0x2761cf05d747d15126e268f36593988e43ce4011"
+  },
+  "0xe3891562b339ba8d99a450005e3e71823598c092": {
+   "impl": "0x04a8369f292641f93201841bc80b9dfea591effb",
+   "admin": "0x4cd0c9fc031fbe2801d53d4518e1e77a7445c239"
+  },
+  "0x42657c96c24027a77d8e24afbdf9ec22d95daefc": {
+   "impl": "0xd057133afbfe6e60e5ddfece288ea05117fb1bf3",
+   "admin": "0x9396953b3543c6d3f4a3eb5a62485e94c849919a"
+  },
+  "0x5a5e6c694f5fb177805f509786853385302abede": {
+   "impl": "0x66c8406abaf2f4866ec6466a572d5557005d1603",
+   "admin": "0x19dff5dbbab1c0da24f01c2779c687142156387f"
+  },
+  "0xe1fdfd38620c7cbe2779059f61b0e61c74487834": {
+   "impl": "0x7543ae7d0d0eacc59d36b3a91a4e0ab5fc83df38",
+   "admin": "0x2ef4b7b70dadd90115896e288126d13f84225e97"
+  },
+  "0x2e1461aed9400444f5d98a805bb0c1e1f657c341": {
+   "impl": "0x27a58daaf0f81fb9d3567aec8ef372bf353420ea",
+   "admin": "0x28e514297ed6aea05e17bd96ddc9ce32fd0fc49b"
+  },
+  "0x3abc7053ec29e26c1429195fd971f280422eca80": {
+   "impl": "0x57f841c0a9c22ef1f0d8a1604b6388bfa3536932",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x27336c194f4dbef2119ee57adadee1f04948f72c": {
+   "impl": "0xabc90a2f8e73e8418cf8b99dbd7e3c6e57b192b6",
+   "admin": "0xfa96447dfb9d0ae9f1f31ea1bd3832ecec6bc700"
+  },
+  "0x147597b1662fbea8f5a4ccea8c538410c26b91cb": {
+   "impl": "0xc27d4d350be3dfb83b13dee076ba158442aaeb71",
+   "admin": "0xe4fc651f392deccf158a168525c6a92486c3e847"
+  },
+  "0xfc1759e75180aee982dc08d0d6d365ebfa0296a7": {
+   "impl": "0x4b6224425a698c0a0e10e4e3ed82259ea977d402",
+   "admin": "0xa0acf085b324491227f353613e39b11705497c51"
+  },
+  "0x09077de8678a34075037c20feb63ceb833bfd1a8": {
+   "impl": "0x9df7f09f0c42600ce4cbb32ae730c5ee6da22217",
+   "admin": "0xfab383d576f48d9ab41a2fd6efcbbc47d4f8872a"
+  },
+  "0x13ef7013e98197ef850969a21ef1b42e71dd6cfa": {
+   "impl": "0xfce59048fe68f07a9872a678332667a7d7c1749e",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x7e05352ca04c5968aa0183001a18e7cdb3b0e52a": {
+   "impl": "0x4fee63ae0b2b8a7656bdaeaa883060452a0cc362",
+   "admin": "0xa1a48cc4155758945073d789ed0a8f33f6737f73"
+  },
+  "0x1f519b172917cfd6b7a69ef9d37e13ac7dff5e39": {
+   "impl": "0x8e0899469545251267346ea58ebe3f43c483a93b",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x9c5d3c3abd633b8ea68c5a51325f8630dc620ad9": {
+   "impl": "0x6e72c8726c71a4cbc6e31ff7d47b399fa983c7b8",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x5e5e689284a614127af9dea546b8d943b8b80e5c": {
+   "impl": "0xe02a2ccadab3e071ec43c3ee350a79b7a09d8155",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x2a21854ae41577cc39ea8a0d6b4d2e3e4784d208": {
+   "impl": "0x4d35cae069211507dd04eca3151fdaf04664f58f",
+   "admin": "0x4fed0b99a0ca65360dadc888a83b7cb6907fd4c5"
+  },
+  "0x9a5a4a85d66eb504182005635bfa52dea24adbfc": {
+   "impl": "0x68ff0e259a43fbaeff0f528a8bf447a16dfb6303",
+   "admin": "0x7061563dfbf0a4e8fe9d017e29eae026a55aead2"
+  },
+  "0xea24f553cbe9c102b14954a1bac2ca88f8ba4fb7": {
+   "impl": "0xe3f189d7889d7492a3aee87641bd957fe773d797",
+   "admin": "0x8f1b386f7fa56f762a6695581467ca66172da736"
+  },
+  "0xbefb3aad1dfb1660444f0d76a91261ef755b2b86": {
+   "impl": "0xf82491af99d6eee7fb7a964bb8bf6edc67a230f0",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0xa626f60ccb081c47c7f43f0bb1e40d67e10a5052": {
+   "impl": "0x606490b252c69f075c8ff48db21e42f758255afc",
+   "admin": "0x1b8260b6a0eb0d6d2389e1cbd451d164c9c6e58b"
+  },
+  "0x41350da0c6ca2842b567799e7dac6e24f43aca69": {
+   "impl": "0x18d04735d18495b5336e00cd092c5d17c9e5a0b4",
+   "admin": "0x005a5956c22c142175b49e7916b7e0ebfe56b34a"
+  },
+  "0x0c5e8068bb4edbc6512eff42da1f40e67081e3d1": {
+   "impl": "0xe41352732d7987fffa2d2666977646fdecadb95f",
+   "admin": "0x69ee50320ac8adac004563d11473ebe3ffc81893"
+  },
+  "0x25ba7858b4592b777a2ff3f7da79cb080aab15c8": {
+   "impl": "0x2db26dd090adf2cc23c3506cb2f0646c517c93fb",
+   "admin": "0xb3f294daed917b33ffcc687dffb8cd77565ff54a"
+  },
+  "0xd860cf29b7ca5fee448c9503772a6a84a28a4eb5": {
+   "impl": "0x8a281c0ebce92af83351825b0e30f23b3c263ce6",
+   "admin": "0x1a8d485e038bf714363c9c79c57cfca5434d7dc0"
+  },
+  "0x6aca7ad5ac6a1aad50f7f7c1f03a71d56540a455": {
+   "impl": "0x56c8fcd761ab988b508437157f2c0b5e36488f5f",
+   "admin": "0xd7bc4897e26d1b87e147ba294ba919ccd883343f"
+  },
+  "0x50efd1c87be8f115bfbe4b54afcbb4185dc50c79": {
+   "impl": "0xf7fbc96efb3ed07594194d0d6badd5f79706d338",
+   "admin": "0xb42e6aaef3d33b79a6b304bf40924af1c27f731f"
+  },
+  "0x66ac817f997efd114edfcccdce99f3268557b32c": {
+   "impl": "0x4c1332a70a49fdbb6fcba847a5eed5b44c927b2c",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0x1c2c6dbe2d5ff93a30b65c9590362d72cbb6b6a7": {
+   "impl": "0x454e23f3fade47db8ec1b080f167098b5637f7f8",
+   "admin": "0x0f39310186ba10f9e979228f65a159f3668f0cf8"
+  },
+  "0x22915fbfcf8a6cb7613ca33e742bd09ea3c1228a": {
+   "impl": "0xf45bc14559336854105965377296f7ebfee1074e",
+   "admin": "0x9a0f7dd7f74d27943f90ae73c299552a7143862b"
+  },
+  "0x3bfe113fe756a66c96a8945e00474b1b2377bfb1": {
+   "impl": "0xc2062859de628958f68c97a06fcbdd22120bfd38",
+   "admin": "0x664360ca82acde97f0a6ff8542db108a46836488"
+  },
+  "0x4de9d93993c1d4944fb6044a2dd8877d945fd43c": {
+   "impl": "0x3400f3a1822e17db576fe9bba4774123a5febdbb",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x141b893e4ae446e634e92116000e54d7fc72bc65": {
+   "impl": "0x2b7b938717ca07970e9768db98f7e7541d3638b7",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x2f1c60ba96ec6925fa9bbbfc9eb7908bd35bc224": {
+   "impl": "0x6e72c8726c71a4cbc6e31ff7d47b399fa983c7b8",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x50752522d249230fe60c855098bb4a7a0974e746": {
+   "impl": "0x8ea01d16882596863d215640451287b44077df0f",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x98582296f119d8a2ef805397aef0c98ba2af2d1a": {
+   "impl": "0xaeda8d788d0200a8de871ce8748b91eff1489f2e",
+   "admin": "0x653d08acc6c3ec4405e6b26d1a5e673f2afad16d"
+  },
+  "0xb9ea61fcec36a01663a0eba5429092a162398e3e": {
+   "impl": "0xdaaf9d554a7d5e2107bf2541d301e3aec3018edb",
+   "admin": "0xe7d44b7d21a273f651e06188af61e92b59e58ae4"
+  },
+  "0x35009e41121ffebaa412e4c257d5634daf8bf0b1": {
+   "impl": "0xc38eb82ae302b5b3ef4f3cb66a4155d1947090b1",
+   "admin": "0xfab383d576f48d9ab41a2fd6efcbbc47d4f8872a"
+  },
+  "0xda4a41aa0782ee899815652ef8a179a943f9623f": {
+   "impl": "0x3d3ea1f4f5ad69ddc548c39c2bc025f7f81eb344",
+   "admin": "0xb0234705bb76f19e44e923d68da13e97ed1ed9b2"
+  },
+  "0xc9aa266e2e50ec2474cd881566845480f8dae931": {
+   "impl": "0x60feed62c193f886971cb96f9099c0f01bb8e8c0",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x00b6fbe04a57fb36468be94d7f5012a7b5dc1d7a": {
+   "impl": "0xca3143878a96108c0f42d6298d7914030f895d87",
+   "admin": "0x0f2a560dfb53ef83b4e6af9bba3c7652038ebc2f"
+  },
+  "0xf6c70b5f034070001e833c9ebc6a3a0176b683a6": {
+   "impl": "0x72e0906558e4ee528974cd7803bff12d9f2869c3",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x9c3386dbd53e593c0ee667d962aee41cee0cf043": {
+   "impl": "0xe02a2ccadab3e071ec43c3ee350a79b7a09d8155",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x8751f736e94f6cd167e8c5b97e245680fbd9cc36": {
+   "impl": "0xa2b0067002df61df015c11b2cf0be4f34fc41cf8",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0xb168615d5e3f8c8e58ca9a48aaa7d936bb77cc6e": {
+   "impl": "0x9e1579e329f7f3558c317988a8076528af1d4725",
+   "admin": "0xeba5c66565569a6f16cdf1083d5b4adb0ad6ce55"
+  },
+  "0x9ccd205052c732ac1df2cf7bf8aacc0e371ee0b0": {
+   "impl": "0xf4e87685e323818e0ae35dcdfc3b65106002e456",
+   "admin": "0x1963d7b78e75a5edff9e5376e7a07a935fb3d50d"
+  },
+  "0x75e26a2996deaba20386b6f3c1c957efadb3f6e8": {
+   "impl": "0xa36afb6b79a3d164a3d12c141c916becc6e012d8",
+   "admin": "0xada59d145126a746976f0f56477aaffeb3acc8e3"
+  },
+  "0x2a5de8de26fcb48938ceea142a68401f6e1e1727": {
+   "impl": "0x4ede9a9a38a0bf63949819674693d82ed0bc1f28",
+   "admin": "0x674a1c66ff698fc19a0249706594306403d501c6"
+  },
+  "0x0425316c73ca605001aef4d7ea9602160ff45aa1": {
+   "impl": "0xb57d345f87172dc7a5d81ef0f4619d43d91d4cc3",
+   "admin": "0x84058daef2fd663e0f0c6415748929492a761ae0"
+  },
+  "0x1e6db36f24317b6070ef6f56b330e6ffb6501ad2": {
+   "impl": "0xdf6c24e8a743b28e6d5cb241c91c1c3cf107257a",
+   "admin": "0x36ab4e55c4b3389bba59ce76b514c3ba96d99d6a"
+  },
+  "0x81ed11567b73043ad7f05d4531ba431811029452": {
+   "impl": "0xbbd734583344d7cfdbdcac597e83486dfdf297f4",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0xfeb0441ab16a26880955d43c8e63b90cd7b95fdf": {
+   "impl": "0xe02a2ccadab3e071ec43c3ee350a79b7a09d8155",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0xae3aaeb5e4b6298430e8d97452a0f524dba3237a": {
+   "impl": "0x85c9bec5f8291b987befe66cc8896b68d60340c6",
+   "admin": "0x8f1b386f7fa56f762a6695581467ca66172da736"
+  },
+  "0x1fa6bb8f5caf47e5b8d28b2a46caff4a57c44a62": {
+   "impl": "0xc06117f570fb7f828e1186882f6d99eaa87aa870",
+   "admin": "0xc996406130b46836702e9f2c2c73196a2059e1c1"
+  },
+  "0xd4262391e0e6965343af986e891fbfeb9c091047": {
+   "impl": "0xc0385404f5859415ee0b2433ac620bf56c7c5d43",
+   "admin": "0x00ab853eee52fa7731cb94493203b1626b62b9c5"
+  },
+  "0xeecacc0d50f26fee5aa1afba83e8c4e77eba162c": {
+   "impl": "0x060c233146eaed1eff8bef320aaa224377bf76d3",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0xa564de1b600e99704c412460cfec1e32185484e1": {
+   "impl": "0xf90f420c3d795584a2cd9168e9a2e3a3f648aa7c",
+   "admin": "0x1aaa466460034d13b15382bb73a59375776081f9"
+  },
+  "0x046eee2cc3188071c02bfc1745a6b17c656e3f3d": {
+   "impl": "0x0d9bdd2d61a37bc074e59b2801f32deee01307e5",
+   "admin": "0x61772739d588c2e047013a329aa208848550ee5e"
+  },
+  "0xf9dfbf71f2d9c8a4e565e1346aeb2c3e1dc765de": {
+   "impl": "0x26dc62470d4fa7f9cbcd597f9862345a2b3515aa",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0x362950d5ebba5714ec78a5dc024b8386500379a0": {
+   "impl": "0xe02a2ccadab3e071ec43c3ee350a79b7a09d8155",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x26cb2f1f3f0450d17cc86c72193d2e67601e6d35": {
+   "impl": "0xe1eeaa8a6f12256eac3f6630dac437c5757c7cd1",
+   "admin": "0x33a50b00b02233094c603428496cf62bd286294d"
+  },
+  "0x3a55cec40e9724ed06badb776e71e396f37e3760": {
+   "impl": "0x4b768ecc79d90e4e6efe04134fbb8557ceddca27",
+   "admin": "0xe4fc651f392deccf158a168525c6a92486c3e847"
+  },
+  "0x5bbeb889339ce028dc57a1c9a721eaa085be2368": {
+   "impl": "0xe497ba440e2e878d6defd2d91683c52d45385aa3",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x2bdbdb994fb7e7772eaa16ccc41430e095d0706a": {
+   "impl": "0xe02a2ccadab3e071ec43c3ee350a79b7a09d8155",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x0b4dccabf3c011b168574c70d395d6133a14ddc2": {
+   "impl": "0xc91736585bf0869ba685452cf5cbe7b7f5091b3e",
+   "admin": "0x143fc65c6fd89d738e7a6c15ab0db58ff4724b8c"
+  },
+  "0x61adbe5ce5650f77f7941165365a39a678196457": {
+   "impl": "0xc5b7540f98ad4e15891374b5115a49927c9ff754",
+   "admin": "0xdc984d84dd89b611583921903537a1169fed5f8b"
+  },
+  "0xc0f6d3b7b4073df68db5897c0884264d03a780c1": {
+   "impl": "0x2b7b938717ca07970e9768db98f7e7541d3638b7",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x3b95e322517a33e232510274a2d1fc12532b6a19": {
+   "impl": "0xc2566ab41f4b2e7e10fe0a4fa8fb16a3f9d44845",
+   "admin": "0x22a55d9fccf4b0b11d2a7147c3b0314aeb22c6dc"
+  },
+  "0xa51c4cc91bd13fb5a932c5309fafd2c31626f56b": {
+   "impl": "0x09ac7d5890214ce76276844938dcca84e9e94f9b",
+   "admin": "0x33a50b00b02233094c603428496cf62bd286294d"
+  },
+  "0xb0fd8ba20b1c178b14dd2a02f4e72c03fda626f8": {
+   "impl": "0xd26b535ad58715c4c2fffac32908b13674533dae",
+   "admin": "0x8cc10554b5c7d322e6a7f33cbb584c7c5fdba039"
+  },
+  "0xf5bf8aa4b571ff2be9905289bfcebc1d46408d9f": {
+   "impl": "0xfa19cf314cb0ddd21a9f993f4619ef4fc77e06e5",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x3f3e6c463f55c2ce92c55c665bf23cb734f4788b": {
+   "impl": "0xd5213a33a003aab14d42f38047de53a8b239000d",
+   "admin": "0xb54e8fddd270ab1fb55c7ec173264f40f1b0e15a"
+  },
+  "0xbda626a974b442af2c5736a63959161aad5f2e41": {
+   "impl": "0xbaa35225e92dbf1db56fb429c309aaa4671e19bf",
+   "admin": "0x6a5b8158f44140dad82f8413fdd36b003bfe7a35"
+  },
+  "0xab18c95a8dbe89cc9bfbd421216aef5d7fd0710d": {
+   "impl": "0x253e482cdd76e1a892368ccdb608857a57bc7ec8",
+   "admin": "0xdff62007959bf1650fdecbca3abd45d327768db4"
+  },
+  "0x75a6e4a7c8faa162192fad6c1f7a6d48992c619a": {
+   "impl": "0x82fddf79765ed75325bcbdf65f67df0879aabe8c",
+   "admin": "0x37169570d846cc05d5848aaa30194d308b355638"
+  },
+  "0x22d6201ff78854713ced5542658f16244335ae69": {
+   "impl": "0xe497ba440e2e878d6defd2d91683c52d45385aa3",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0xb26d47c4910909b4366d6fd87c13178ae9c265b9": {
+   "impl": "0x3b6a7e2cee4d6aad08a18d5ffeef3f17e8c26ce8",
+   "admin": "0x5fa3422b1b919bab1b0fd31cc2716a90b86f73a1"
+  },
+  "0x1466cee94d903e4f445030c862d4dddb13f01cd4": {
+   "impl": "0x57982d9d541bd92ba5a20f1c958c886f9bf9c605",
+   "admin": "0x027883a50ac0fadef614dc45e85f8eaf43668f62"
+  },
+  "0x21a1405b9f8a1a07befd1bd39af1785a10c1bff0": {
+   "impl": "0x767174f60edc0bb0203a2f8e081af20d2da667aa",
+   "admin": "0x98e6eb0874f35bff6a6bbf66ab8aba24b95e09e7"
+  },
+  "0x9832e7e40d5a1495ca7bdbcd6a5c0a90d28f6cfa": {
+   "impl": "0xfa19cf314cb0ddd21a9f993f4619ef4fc77e06e5",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x122d06a722f3ee4afa33d3b19aba0671bfc98581": {
+   "impl": "0x108379f8561c8f1a0e6fff22465bf1e533b1d23e",
+   "admin": "0xbce5d3d18a26ce37c8808aedda9ad22841d8a202"
+  },
+  "0x04471c1a8d9e89017191672b59115c07a446bd6a": {
+   "impl": "0xf434a895af022415b600733adf512af31ae04215",
+   "admin": "0xb639b62eada8b916acce5ec14e57ba612b98f330"
+  },
+  "0x20a82619fcd300f3e0028db6353d38e3cc3b9e14": {
+   "impl": "0x8e0899469545251267346ea58ebe3f43c483a93b",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0xe8f4cef205adcae6521da662954ebc6fe4497968": {
+   "impl": "0xbbd734583344d7cfdbdcac597e83486dfdf297f4",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0xf462413315ee37aebd0f5ca4296d9f3f3d9c4a59": {
+   "impl": "0x1fe7385497a45191c5321fdd903d880491e47dd7",
+   "admin": "0xd5d30fafca5a5d371a46f77cacc4db5f811ef917"
+  },
+  "0xe6d5667b269e308df8dec230f397d9eb0613f55a": {
+   "impl": "0x4d85e38d2703c9626ecd5899764595669c419d72",
+   "admin": "0x290e56f47ab8ff3e5d67b230f19fd72aea462eb5"
+  },
+  "0x1d4e5ef6ab195134021408b361fcd518180504d0": {
+   "impl": "0xfdd60ae1b4825aead6a52981339f4eacf73e60b5",
+   "admin": "0xfb992c975e160cd360d51f184a8f5a45edd223b3"
+  },
+  "0x6c41e4dd0f8e423b9c66561018d1c619e810fc47": {
+   "impl": "0x4408f14c69f513ba135fbd2787ee551728cefa28",
+   "admin": "0xd9bb6872d0184ce5edf80124c0372594d1c82a35"
+  },
+  "0x72a9b1c9b191781bb15f1b98f443a1d916557c92": {
+   "impl": "0x86a23db252fdc79a54d6f29fbbcd081c434f9823",
+   "admin": "0x5620fd6284499a8c768d54590cd892ed43370757"
+  },
+  "0x73ebdabff6461c13bf90c8430ad9348721ff52a1": {
+   "impl": "0xeb3a1f6cf9c9ade5c0fa6934bb66316eec491fc7",
+   "admin": "0xb54e8fddd270ab1fb55c7ec173264f40f1b0e15a"
+  },
+  "0x3d18ad735f949febd59bbfcb5864ee0157607616": {
+   "impl": "0x987efaf33812745da619372c4af7a4fbaf787fc6",
+   "admin": "0x8eb3e786b3a6abb5206856285b9b5c46b0bf90a6"
+  },
+  "0xa1f563b1a471ff796683a19cb1adc8162eeeb879": {
+   "impl": "0xbee50bfb28d21627b17f3ad5fa8a72e4b4eb366a",
+   "admin": "0x4bd367de3efdca2cad9066dd0d794296dffd2e84"
+  },
+  "0x9377f17abde96887943e5fcc92db034c76820529": {
+   "impl": "0x72e0906558e4ee528974cd7803bff12d9f2869c3",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0xbfd58c8150cf7048d5c149fa2baddd194b8416fe": {
+   "impl": "0xf82491af99d6eee7fb7a964bb8bf6edc67a230f0",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0xc8988276ea572f363afac4f0213a3c561021a30a": {
+   "impl": "0x796dedb5fa4bc5a8a37ba4f0f4ee03c848e55687",
+   "admin": "0xf1f78417795565b7d710c7f3f8a203f586d5e12f"
+  },
+  "0xf43122163071a68cec50ca3d3feaaa6abea6003a": {
+   "impl": "0x4275a9472758333b0988c0478f3d40dcf9bfb8cd",
+   "admin": "0xfaf444094cff0c43a18521dce43e6ae289ecb8cf"
+  },
+  "0xb2fd54911e50513bb344e25bf83467ee9706a05d": {
+   "impl": "0xe5ef9ca45867810f61ac0397bf38de98302de72e",
+   "admin": "0xb746a5485dc08728ad7f944b5159d48faf6cdc9b"
+  },
+  "0x550ccec27639e01c5d9ade39f75e1351f791d2c2": {
+   "impl": "0xbbd734583344d7cfdbdcac597e83486dfdf297f4",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x5767eef6018b010de98a2022356dcb456f026e64": {
+   "impl": "0x01b57fccc899edd2ab7466f71aab56994f0ffece",
+   "admin": "0xe20bf7b242abc5f8c8743a7b89cedb1f606d56f0"
+  },
+  "0xc0e3edd020bba531b8336ae4ef79534df7732917": {
+   "impl": "0xea425e0e00d686a5b7c45459ac97b5c7f7c344ac",
+   "admin": "0x0b75b4370b6c085d5def8e0cd627eb00b29385af"
+  },
+  "0x70160760482936fabe14932deb00f0e26974bc80": {
+   "impl": "0xcea64408bd3a8da438f6bc6ffa7f38a3bc1118ea",
+   "admin": "0x5ffcef8288ccafa09e78fa6eaa5a1063bd71a538"
+  },
+  "0xa0a299fd3da446f949e00180091772dbab9eed2f": {
+   "impl": "0xaca6be7dbac7222f3784f8972efe9d2021c64ad4",
+   "admin": "0xcc6fbcd81ee06d1b8a8b326bf6afc6ad1589ba82"
+  },
+  "0xbec013788e94ad832193d2d3c456372ca064e4b4": {
+   "impl": "0x2a84bf7ee712294651f4bf9ecb2145e0c5c35d92",
+   "admin": "0x9d2ecfb11d1bc5b99f736bc645e63387178a566b"
+  },
+  "0x2f35fee68a69c17101adf4c416c2dd297e6d1cc9": {
+   "impl": "0x72c8e1983b9d6f713ee604dc058f4ace1e59af01",
+   "admin": "0xb1b41ef2d248bcfba40978aa22ea034da973cb50"
+  },
+  "0x08b0fe0d231c2974b2495176e52fe375f630a0dc": {
+   "impl": "0x4bc51018b1da8d7bebcc5e7e68b0f468dbad6128",
+   "admin": "0xe7d44b7d21a273f651e06188af61e92b59e58ae4"
+  },
+  "0x6a3c236a396a28c7edfdb1cae1b4f9d2dc641ae8": {
+   "impl": "0x3e46f6395fd2119bb4e2577bce865b05083c07b5",
+   "admin": "0x5fe3f8ae3d3a3a068636aaa095b65fddac4f75db"
+  },
+  "0xd1a72bd052e0d65b7c26d3dd97a98b74acbbb6c5": {
+   "impl": "0x30c2501b3b2031fba3000daa6f8ed0a42fbbb3f0",
+   "admin": "0x67b12264ca3e0037fc7e22f2457b42643a04c86e"
+  },
+  "0x69525dac489e4718964b5615c3d794a25d62beb7": {
+   "impl": "0x7881bd6bae828d653ad87a809c96b386f8991315",
+   "admin": "0x72de36c8ebeacb6100c36249552e35feff0ee099"
+  },
+  "0xf15351918733f1b0eb0ec6b0ee8073dca28480c8": {
+   "impl": "0x24308c04ae24d875f3b8e31ed0e7eac811b679d7",
+   "admin": "0xc9fdf5ce4c657ed8289a7d9d1107ea7d55dbd53f"
+  },
+  "0x9e37dbf40fe5fe9320e45fe6b95b000aa05459a9": {
+   "impl": "0x14449cc3185dec0421c3cb37074215f1aacb97f9",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0x910bb421bb7b01818085dc57ebf5a38071110043": {
+   "impl": "0x74afffc16032b10708cc0195d9223e7ceb03ee35",
+   "admin": "0x9dd36007ff2d875f5dd890585164a5fbb85a63e0"
+  },
+  "0x78890d7471eb527df7c982d899e03795e1f6eac0": {
+   "impl": "0x717d0bf97ce58e14945f5e0320ee98381aeaddaf",
+   "admin": "0xc2c8ede80bb5aeb883077ece496b0c374549d092"
+  },
+  "0x071e0c2be2b16c8b00173c6535ef8331b8e1feed": {
+   "impl": "0x57f841c0a9c22ef1f0d8a1604b6388bfa3536932",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x858af7297a3d20f61e0f7a2487c686e0a3353f2c": {
+   "impl": "0xa065585ce98cab62c4f1aff3c26ef4316ee72178",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x3d22ae5648cb6fa9160971f4adc6212dfe6a035e": {
+   "impl": "0x694c6b95dff864d6f616f3b4326adf4f423552b2",
+   "admin": "0xd826e8afa06e85fbdd39168179a9e49feeb32a01"
+  },
+  "0x5494855b98858ea4ef54d13e1d003197a387ce34": {
+   "impl": "0x6e72c8726c71a4cbc6e31ff7d47b399fa983c7b8",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x4a1bc9d8b2ed7bf9b9c1979037992cff064e4f40": {
+   "impl": "0xe02a2ccadab3e071ec43c3ee350a79b7a09d8155",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x1b9b4b6705797968954a597362898ace5f30c1c5": {
+   "impl": "0x8d6d49ddd5fe84b6b43d9420d1dac96b88dba9a1",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0xe483d580664cd72b0a8cae0d65effa6587bd2263": {
+   "impl": "0x60feed62c193f886971cb96f9099c0f01bb8e8c0",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x896c396969d984dfdea03301fb29dfcd948f0b8f": {
+   "impl": "0x5caef449d345f0968ae010926465fa746bd7cb85",
+   "admin": "0xce324bf800bd84c532dbe150669413fb1e3941f4"
+  },
+  "0xf421b050647cf6eb757de873f212e04a5e324487": {
+   "impl": "0xfa19cf314cb0ddd21a9f993f4619ef4fc77e06e5",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x6090bceeb91f8aa4d2034549fab20652982c7ba0": {
+   "impl": "0x946f73a7446ff9e46e8b20b3aa2231427a7cab73",
+   "admin": "0x4156d093f5e6d649fcdccdbab733782b726b13d7"
+  },
+  "0x8459ab195c40015aadcab5ee66a4157b2df2db39": {
+   "impl": "0xad4d4cd5e0b20c337503685c73c86aa62ab9aa1c",
+   "admin": "0xfa96447dfb9d0ae9f1f31ea1bd3832ecec6bc700"
+  },
+  "0xc771ef64a0114acafb1b224e0646d94583fca4bf": {
+   "impl": "0xfbb1b7737064a250852303c0c448f2dffdba8237",
+   "admin": "0xf84d2146c05b07ce8f2b4b75abbb74a9ef7157ae"
+  },
+  "0x4b2c406f0dbf7624a32971277da7b4c43a7a942b": {
+   "impl": "0xa219348b7c00118fe143c484d79248bc74fdd3be",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0x72cb924a78b9335d547e6896bbcc6b94744927f6": {
+   "impl": "0x3b6a7e2cee4d6aad08a18d5ffeef3f17e8c26ce8",
+   "admin": "0x5fa3422b1b919bab1b0fd31cc2716a90b86f73a1"
+  },
+  "0xdc5b6db27ed9a48a5ca2c20a53d0249bf95e75ef": {
+   "impl": "0x256956578fdb2798be3553de9e11e4caffe46160",
+   "admin": "0x075a78d6a1b4dfef645f4c415cf8a2055b8b37e5"
+  },
+  "0xd64363f98abf755f92d5ca89c57cdbc8d3d05f9c": {
+   "impl": "0x142ef2835a90cae341de9ba39e8063e220d65778",
+   "admin": "0xa903e322b84a413764b50134325c06faa5d5766a"
+  },
+  "0x21f759bcb31739032a00b37e3560a216ae52efdc": {
+   "impl": "0x60feed62c193f886971cb96f9099c0f01bb8e8c0",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x5354c5d057c73b24aa941ea57a07d0e1079be18b": {
+   "impl": "0x51df98cbbc8173cd207597f9eca0f8f65ff2c395",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0xe373909798976207b2f352ac4cf8c4f922abe730": {
+   "impl": "0x34bd9f0d19ea357b8fe35ecc8637b9475b51ef15",
+   "admin": "0x2c6710eff60a3ae0219af3767c005426a357d5c3"
+  },
+  "0x99f387121f0c391d31a58076c20ce0687b86f168": {
+   "impl": "0x2cbae416ef56b860c2ed695755dfd907edbb7eed",
+   "admin": "0x3298d7d1a3136e97abad2ce2a6a348efc3aef40a"
+  },
+  "0xa1a16953a980123dc9dbe34d21e5b507dec241ef": {
+   "impl": "0x9eafad32e91f59cfe3e764254e3ed163a98ab55b",
+   "admin": "0x63c8fd14963a6f7554370bf20d9a0bd92f4d9666"
+  },
+  "0x59b759c336ed75a2fdcf0b3c536e898fedad35c0": {
+   "impl": "0x5d56a235606a31d394c304214a123541c184c755",
+   "admin": "0x93b35b85d2a6c6b35141cf165a65f2a9434fd3d2"
+  },
+  "0xf4a60252b139e29a415c341a0d21261496d27d02": {
+   "impl": "0x8ea01d16882596863d215640451287b44077df0f",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x05652ec92366f3c2255991a265c499e01ba58e6a": {
+   "impl": "0xd620ca1ad5c3888e4521c3374ce4088cb78079b8",
+   "admin": "0x1e37ea18e9515db29b3e94a00ed31484a3130204"
+  },
+  "0x755e9a5b4baefc78bb82ba7e6d2386ccb2f238a5": {
+   "impl": "0xace9269eac3419937093154dea0ad44c36df6963",
+   "admin": "0x2b966b9824c11f274aa39f2f72cf25c4b47c3a78"
+  },
+  "0x829f4309b664a8977cc325363454b87ce7dd1184": {
+   "impl": "0xe02a2ccadab3e071ec43c3ee350a79b7a09d8155",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0xdcb7028e5eaa1d7bb82b7152cb0e7adc12e7457c": {
+   "impl": "0x01d897bed117354d53a5c2f0f81e5060b4fd7037",
+   "admin": "0x1dac23e41fc8ce857e86fd8c1ae5b6121c67d96d"
+  },
+  "0xe0fdb38e1a4c678c0b7a42175e59b09c3ec28556": {
+   "impl": "0x002ff574f711588ffb77a282a9b41928b1d5d639",
+   "admin": "0x119eea4462a60597d685cb6c4daeb133e832fafd"
+  },
+  "0xce8ec0a440019d696b45a209c1fdb91a9f1edc51": {
+   "impl": "0xe02a2ccadab3e071ec43c3ee350a79b7a09d8155",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x99c59d82b10c56950f6c031946656e6d0ad509ca": {
+   "impl": "0x72e0906558e4ee528974cd7803bff12d9f2869c3",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0xcdb07232359f54198485771fcf793491bcea64c7": {
+   "impl": "0x5fc38ab6d3c5f99bfedff46267d8a5d7aa2e9b24",
+   "admin": "0xfda2da496dd2c3f1abcf4cca02e781684419eee0"
+  },
+  "0x69bd97280e3e3597b42b0c9e01000812ead5af6e": {
+   "impl": "0xbbd734583344d7cfdbdcac597e83486dfdf297f4",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x6def4570251e1f435e121b3ee47174496d851c99": {
+   "impl": "0x062987ce7a1b44775bb9e81b82b73a74aeaf44aa",
+   "admin": "0xa88b54e6b76fb97cdb8ecae868f1458e18a953f4"
+  },
+  "0x6014784fc074706ab810130f77135bfb24463f06": {
+   "impl": "0xa5a79cf343da9477fcea21a5910c154cb0271767",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x853f2c11774bb08031e7dea93803569bbe2058f8": {
+   "impl": "0x7a37037c085584ee7dad50cd6a4ade1181c65b3b",
+   "admin": "0xcdd7caed24bb5ce1cca84a3129d90df50d16e06d"
+  },
+  "0x3191a0008415deb5c5161c4b394ec46c8c703f8c": {
+   "impl": "0x60feed62c193f886971cb96f9099c0f01bb8e8c0",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0xc3c6ef3b2b8cd20b3c73eb2a1d96b25da89801e8": {
+   "impl": "0x21c58163cf3cf7c2a36f17a1755212bd7fa057c6",
+   "admin": "0x0d05e9506a509b8e580f56bb5ce2592ee44f0d30"
+  },
+  "0x16730279f4e1981afb739e4a86eeefe23d28f86b": {
+   "impl": "0xb6443c747f5d528c87afec73f4778bd45521e5a0",
+   "admin": "0xc16534f094bef2c8e685bc94a7ee928861d85135"
+  },
+  "0x3328f7f4a1d1c57c35df56bbf0c9dcafca309c49": {
+   "impl": "0x35fc556d6f8675b26fdf1542e6e894100155b34e",
+   "admin": "0x6e38d4999fdb6fac24973e508cde9397e369c5af"
+  },
+  "0x3b484ae24688ba2a2ec05e943f724089d6bf28f9": {
+   "impl": "0x4197c4559a2fca79e72d9e9a7716bfea5be9d627",
+   "admin": "0x4dba5e0fee4567117dc1a429c0018adb8ac93d16"
+  },
+  "0x76a495b0bffb53ef3f0e94ef0763e03ce410835c": {
+   "impl": "0xa41107f9259bb835275eacaad8048307b80d7c00",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0x94ba01a07437e0e9bd9383ea196751399b33d588": {
+   "impl": "0xf408d469249d36a071f4c85bfa760be4bd60be0b",
+   "admin": "0xcb479116957479a26ab6921b9ef67917f0c4cf76"
+  },
+  "0x0cdb1e900885fadd99d9955f5fb8e9f6acca8bd7": {
+   "impl": "0x946f73a7446ff9e46e8b20b3aa2231427a7cab73",
+   "admin": "0x4156d093f5e6d649fcdccdbab733782b726b13d7"
+  },
+  "0x84645f1b80475992df2c65c28be6688d15dc6ed6": {
+   "impl": "0x8d80ad529f68b11c2492301ba4fb78e5a654c206",
+   "admin": "0x67b12264ca3e0037fc7e22f2457b42643a04c86e"
+  },
+  "0xb1632e7de8b3d18277cc3c99b6819795bbde8654": {
+   "impl": "0xf4cffc5c815f6890ecac5d6f62bbb6e11f5791b5",
+   "admin": "0x6e8187435d5140214552ef3989ddb1457f4a663a"
+  },
+  "0x10fc9e6ed49e648bde6b6214f07d8e63e12349e8": {
+   "impl": "0xdcfd18e6e32e9e85c9fdf2cd3587b212061aa90a",
+   "admin": "0xf65071a0bd70c15643e49e8e865710ea85f52379"
+  },
+  "0x3a253838121b9ad9736fafc030cf4971615d68b2": {
+   "impl": "0xdfeb3460771148799b2d4344c369e2b2d6c26c42",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0xa390a45de4d773987e5a11ae0cb390121a054ec5": {
+   "impl": "0xd4880241e663197792a1f8f4eab7ac6a2a07c684",
+   "admin": "0x82dd25b7394cd48e6c148062d33b713e5af419bf"
+  },
+  "0x7df81fdd4b995b31624f3d6662d547ac313b32ad": {
+   "impl": "0x907fcf4f724f17df586a330439d0c2e3fa766b27",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x399488687fc3618ffaf1f5d0f61397c8e0360c02": {
+   "impl": "0xe188ed5349dbf87b26f82d20904e67db94d7399f",
+   "admin": "0xc550886f304f5c396b921873d9e2d6c4a2a2d909"
+  },
+  "0xf84cce544d0577fe513e05ee5860afd2984926bc": {
+   "impl": "0x3eeef2de69982d3b8311a327fa9e584770fcc0b2",
+   "admin": "0xdfb6641cfab93cf83a4dc571510c3337b2f8f8d4"
+  },
+  "0xfa49f859a012e8b1795a81b23b21db0bd40e7770": {
+   "impl": "0x1d2faad42cbf3dc121659d856a9a405ed1067873",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0xef5bd2da72d784e9fa89b95efbe3a33794a3cf2e": {
+   "impl": "0xb8b6e73a7b0d028e450c719dbe1862b9f89c4993",
+   "admin": "0xc93e2904206bcac1fd7cbfb81717de995c242e7e"
+  },
+  "0xa86dc0e47697d23469c1804a3a40021befcd89a2": {
+   "impl": "0xbbd734583344d7cfdbdcac597e83486dfdf297f4",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x829f3c089fe315fcb2bc9506b237bb56b7c3335b": {
+   "impl": "0x786520eb30684ea554b148cd3a62ece6db90c8ed",
+   "admin": "0x2d0f89acf5405352254610eab06c860ae534cddc"
+  },
+  "0xd19d4b5d358258f05d7b411e21a1460d11b0876f": {
+   "impl": "0x052b73d934e9412045bf731574463fd026d74645",
+   "admin": "0xf5058616517c068c7b8c7ebc69ff636ade9066d6"
+  },
+  "0x93b111c1adbc086ab87392d8e440b34848a3fec6": {
+   "impl": "0x485d191fb6b4e727f66d839c0a240fca83992520",
+   "admin": "0xad3794ef13bb0be422d53cabbeeaec31059c64f4"
+  },
+  "0x00aeca021d0f06c7dee54d58ee6af47b5645ab19": {
+   "impl": "0x4f1b513f846821559d59e8324eaef201cb5b0479",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x88bbadefabcd8e2bef70c85b8985b464dced4187": {
+   "impl": "0x9e0e9569ed002c0f847502ba97bbf97d0bd43dd4",
+   "admin": "0x56ae29bca00b3d9d7377b64872bb0554efb9c02d"
+  },
+  "0x8f49ded5493257287b5e3b353b33c6d71a7c09e0": {
+   "impl": "0x0a180cf0b2feccd7520867128a6f4ce5bed9c487",
+   "admin": "0x8ee4a38e48af212c7a6cdde226d4e8ee174df88e"
+  },
+  "0x36ac0331d03e40ab67af564bc453314cb58e0629": {
+   "impl": "0xa065585ce98cab62c4f1aff3c26ef4316ee72178",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0xd94a2bb8059e3ba3041592deeaf2b2ef4ccdec71": {
+   "impl": "0xa5a79cf343da9477fcea21a5910c154cb0271767",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0xb8610f07d25c3b0d7d589bde8be1b07ffae1a0a5": {
+   "impl": "0xa065585ce98cab62c4f1aff3c26ef4316ee72178",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x26e9aa240070d37c109e976b688e9b05c6bd946b": {
+   "impl": "0xbbd734583344d7cfdbdcac597e83486dfdf297f4",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x9a3152b61420ed4d5e594c0b48bb932ee41b7376": {
+   "impl": "0xb157dc78c2815280906a6730984a5e0dca65e247",
+   "admin": "0x8593da65d55ccdb9367377231925d0688efb5007"
+  },
+  "0xd72a6ba4a87ddb33e801b3f1c7750b2d0911fc6c": {
+   "impl": "0x0c6c73865429e1d87b7b817b95bb1f38f2136529",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0x4f8abbc658338e4065acb154679931648195b793": {
+   "impl": "0xe497ba440e2e878d6defd2d91683c52d45385aa3",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x6a0d0e8334d8ee3f16e6998617159bf696953a3c": {
+   "impl": "0xa86277e65f2d3059e7bd88fea3b0023afe8dca03",
+   "admin": "0x9f67216895526a7792aab440090dff8deb2599cd"
+  },
+  "0x7b4e28e7273aa8cb64c56ff191ebf43b64f409f9": {
+   "impl": "0x3e6a3ebbc9d88acc192221797ad90bf72d391778",
+   "admin": "0xb79a4f5828eb55c10d7abf4bfe9a9f5d11aa84e0"
+  },
+  "0x3b9c09bde7776c32c518e2e787412a9bbaa7685f": {
+   "impl": "0xf57ba29437c130e155ca4b65128630777638f05d",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0x4e28c08a87c2effc5b1441bed56cd95643679202": {
+   "impl": "0x9db99d0ae582ab9de15690c1f4502291525f698c",
+   "admin": "0xa2df4ce7d785ecc61953065a383f2163cb382f75"
+  },
+  "0x86a4fbf385fd5e358d560f2c52c39df8fb8a5e55": {
+   "impl": "0x28e39b1b0467f5791a43a8e54e74ca82ee48fdcc",
+   "admin": "0xba9d83bf7d32cb0bc7f327d24079cda3cea372c3"
+  },
+  "0xb810abd43d8fcfd812d6feb14fefc236e92a341a": {
+   "impl": "0x9a5250c7bea10f7472eb9d50bb757b83d67fb5ed",
+   "admin": "0xc8cad4cd59b5e00b9431043eb8b33ecb778e8570"
+  },
+  "0xa2d522151a071caa73af2e4b613efb620167baec": {
+   "impl": "0x3abda18031b3eeab338c2eb642b5fdf85fcc496d",
+   "admin": "0x5aa3521cf38c1d2463ad6f0f5096d32d0e8504cc"
+  },
+  "0xfcf1cbead3daefe4f345442c5fb8fdb08757478a": {
+   "impl": "0x5f2041733b06dd040e3e46158ba93a04767427b6",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0x7ac46b71432ee73b1ab5421a1fd5517f2fff95af": {
+   "impl": "0x8ca5d1d8a6c2fcf8cc11c710bed78b1642b413cd",
+   "admin": "0xd7bc4897e26d1b87e147ba294ba919ccd883343f"
+  },
+  "0x1729f8cc02237bd360c94c15a8ee41ab724f19fb": {
+   "impl": "0x7b78af4ab3c23386daf07b819d69649f196854fa",
+   "admin": "0x2663d98431276864d264d1a0fbf2115cf2b798e1"
+  },
+  "0xac049c76f98314d051d7b2692988a39bde2558c2": {
+   "impl": "0xac69e15f96777d723e57123c835eaa8ed9d35ceb",
+   "admin": "0x2663d98431276864d264d1a0fbf2115cf2b798e1"
+  },
+  "0x08c57ae48a89b6876a76dc618972ef1602da7ed8": {
+   "impl": "0x1d2faad42cbf3dc121659d856a9a405ed1067873",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0xc9031f76006da0bd4bfa9e02adf0d448db3bc155": {
+   "impl": "0xd3585922b7f6b30953fc81726f48046826b8b2ca",
+   "admin": "0x890d38c664dbb584b524b1b9417a28d4355f67d4"
+  },
+  "0x876275421e91039328be3f8c0351b8baa3716976": {
+   "impl": "0x775f797c59b3ea94efe2a11dc0908abc567ab77f",
+   "admin": "0x290e56f47ab8ff3e5d67b230f19fd72aea462eb5"
+  },
+  "0xca4ba356474cbe13cceff570cf9fc1bab15f11e4": {
+   "impl": "0x8f9f5cc7c7949886e09846204f9798afbc47ec5e",
+   "admin": "0xa2df4ce7d785ecc61953065a383f2163cb382f75"
+  },
+  "0xddb6f90ffb4d3257dd666b69178e5b3c5bf41136": {
+   "impl": "0x0c2c7ded01ccdfab16f04aff82af766b23d6be0a",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0x0f47b7a0241069fb929dbebcb2a5b554ac9c6d5f": {
+   "impl": "0x73918313ccb48a1f0df44c2e3b5604f64b42d387",
+   "admin": "0xcb8e29ab992801f0b8f676d320cae193ed0d0119"
+  },
+  "0xcc8e00a444e7d4262fcdc2151fe866741ce76986": {
+   "impl": "0xed0e3d06b569a09c9f4e84c2cd387f14b829d2a4",
+   "admin": "0x90a5bae997245520c67fa9bd3e8ba2250d1593a1"
+  },
+  "0x5775cbc5ea4d78acf64e4e5070061d3c77ad0a02": {
+   "impl": "0x7cca20dca34b2b122b0bd5dde40e783010452348",
+   "admin": "0x694977e2d2387b9c5a2492e518c82f116340d5f7"
+  },
+  "0x31fac913e035d26e4fff88aa548033b68dd85a61": {
+   "impl": "0xbd4ff14ff389c6b71daddfcbd6aadc4e5cf97304",
+   "admin": "0x90c3aaabf4d043d61c283381b238da1b5d00a78a"
+  },
+  "0x5beefefe23aecccc77d164ab8e9ff74e056588f1": {
+   "impl": "0x564d81b839573761b38ceeb4c0142d1222c588b5",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0xd79a595f839d020eb6c9d921c82d32d8e8291e39": {
+   "impl": "0x7085ca1a3882e57df6431c8e562162ba9817b960",
+   "admin": "0xbce284e5b3197c082633b349df23c285a9453808"
+  },
+  "0xeb4560bd7aeee361a83730a0546e0306302e3e64": {
+   "impl": "0x498ac159a900932d37cfbb82833a0cea153237b9",
+   "admin": "0xe2851d78869e739166035dd8ae754c1d05f5ae0f"
+  },
+  "0x6d05eba244fb40b4db1df9d66103735b90733f67": {
+   "impl": "0xe02a2ccadab3e071ec43c3ee350a79b7a09d8155",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x494559070a7df02886139e3418f4843fbedf607f": {
+   "impl": "0xd7456d6fe73a202f483b61eaa75c3c44617029f4",
+   "admin": "0x70104b675dc6de9e4a91d44c0f831ef5cae16d18"
+  },
+  "0x03abeec03bf39ac5a5c8886cf3496326d8164e1e": {
+   "impl": "0x133e3cc259eaf5ddcf3684dff62965243fbb6150",
+   "admin": "0x67b12264ca3e0037fc7e22f2457b42643a04c86e"
+  },
+  "0x221441b7eeae32bfda24a7d2de71748e20966a49": {
+   "impl": "0x641047506a1b79fdc3e38d9dd5c98cd9a3e278be",
+   "admin": "0x56ae29bca00b3d9d7377b64872bb0554efb9c02d"
+  },
+  "0x4971a8018824888bfeca244e1a550e2abaf7e874": {
+   "impl": "0x425126059f3fe098f7065b42c186c3b552235fae",
+   "admin": "0x84058daef2fd663e0f0c6415748929492a761ae0"
+  },
+  "0x20157dbabb84e3bbfe68c349d0d44e48ae7b5ad2": {
+   "impl": "0x9eb15808ed1ceb6033973c2ae4b9fea4c06abcae",
+   "admin": "0xeb762ed11a09e4a394c9c8101f8aeeaf5382ed74"
+  },
+  "0x33804126c8c03d53b49264f6e84732591cb92489": {
+   "impl": "0x513ab8bfb5f32094a88f9fcc6cf4956bd3bd63c0",
+   "admin": "0xe981f1def268952930e52d598238e53203d0baf4"
+  },
+  "0x94fe821e8adde08ab97530d432ff34a724fd7830": {
+   "impl": "0x1d2faad42cbf3dc121659d856a9a405ed1067873",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x48c7d85241cdf9232f1ca1733a1004ba0d9f1bda": {
+   "impl": "0x45ca2580f707772d746b6b955da62e3e7e96b19c",
+   "admin": "0x52f538a7adff85ce3cb188ff98a0519bfde2e4b1"
+  },
+  "0xdd60c54115c19e0c6360ad4762b88bb8076d50a8": {
+   "impl": "0x52dd721bdb9b115c4770a614b704dfdc38388cfc",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0xf67cd722470d76cbff4e97cef0822955afbd0e0d": {
+   "impl": "0xade6402e6f5ab49e19e48d091aa09a30f708c7a8",
+   "admin": "0xdd11e155a290329573e4bbb7472d706e55d1494e"
+  },
+  "0xf4a3e183f59d2599ee3df213ff78b1b3b1923696": {
+   "impl": "0x3d3344c8f4abb279e192007f7b68eade3c8a5b28",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0x4a5b4049a4afae31278d36768704872f73da67d1": {
+   "impl": "0x1d2faad42cbf3dc121659d856a9a405ed1067873",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0xe188f0081865ddd772cd86e90098817c10615825": {
+   "impl": "0x2d64c523beb4b967ff54b23ea72d09858e07899b",
+   "admin": "0xff6f30cff6c383ac0f03a178d8768ae8cb629e19"
+  },
+  "0x1b0600050a51e63cee335c2ab3f641eb671f09ec": {
+   "impl": "0xb704fa6b499db7b87f8a5292e47997ef406506ae",
+   "admin": "0xba9d83bf7d32cb0bc7f327d24079cda3cea372c3"
+  },
+  "0x09134c643a6b95d342bdaf081fa473338f066572": {
+   "impl": "0xf393d241258164e9779972447284fc4d47c3b4d1",
+   "admin": "0x67b12264ca3e0037fc7e22f2457b42643a04c86e"
+  },
+  "0xed12cdd171f8d315bde84918e9f58f62bfca8c1a": {
+   "impl": "0x8a4541de425de6138c0782b052f5500f0b335fbe",
+   "admin": "0xccf184b3fa18c2b7e449b2e1f524364091bd6914"
+  },
+  "0x4accf5437b02acacfa738f1eca8db7c684f8082d": {
+   "impl": "0x4ca1e3b9ef407a634934251aa9f05c9894dd7e6b",
+   "admin": "0xcc9f6171966df81097db10b79abe6d140cdbdd8b"
+  },
+  "0x68c4ff5b48418011db2466bae7238d86483be1fb": {
+   "impl": "0xfb625ef06268e119668a2a0e16c41db8f0851979",
+   "admin": "0x65bac6e403339cd26d66a169f7ca6205bcaee957"
+  },
+  "0x60959a73b5b0631cba734379e14ab367cceee49f": {
+   "impl": "0xca236695b6e4fbde9efd69665dca4597924abf50",
+   "admin": "0x27b4a5c36e1524e66f446ad97fa68292e03371a6"
+  },
+  "0xf3eb387ac1317fbc7e2efd82214ee1e148f0fe00": {
+   "impl": "0x2a9e09ede0e569223f05737f846b51591a04e5cf",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0xe87753eb91d6a61ea342bb9044a97764366cc7b2": {
+   "impl": "0x289656792b971ee0e81d467316f0849d8f74ba44",
+   "admin": "0xf62fba16e30f51d3a1adda73dc81f4a75ac2e991"
+  },
+  "0xc0baa3440f14137e4af0c60cf181812ddf791f38": {
+   "impl": "0xfce59048fe68f07a9872a678332667a7d7c1749e",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0xe517772fa1eedaf3f69917240da5f6dc3294499d": {
+   "impl": "0xcba5c0ffe525312ce1515c2587f3c64f8ae953b6",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0xfce76003936bb8d96ddd4ed403ecf27a1f06a06a": {
+   "impl": "0x6651c5c545014d2c3078050607f723e69246534f",
+   "admin": "0x2cee2852a2fe983a8e1a0d696aced5b260dfd134"
+  },
+  "0x4a42a325c5ec31f6a6eb547b00ce6bf6f2c057f2": {
+   "impl": "0xbbd734583344d7cfdbdcac597e83486dfdf297f4",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0xd219ff97329ee70a2eb5baaef293ccd10a05809a": {
+   "impl": "0xb2308014e5f2639106b859e5f80ca569069c7780",
+   "admin": "0x4bd367de3efdca2cad9066dd0d794296dffd2e84"
+  },
+  "0x8a76208e9630479995a0eeb5f422ccec0f0b981f": {
+   "impl": "0x1dc11aac4c3df68aeededf6678d07c1539b39a73",
+   "admin": "0x60bbc805f76e4ce3b821520f0e07ddbea8622522"
+  },
+  "0x53ee67c562a7e933679425e6c0070e2b810387a3": {
+   "impl": "0xcba5c0ffe525312ce1515c2587f3c64f8ae953b6",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x59e19e91cafcd52eea28206395281736c0e78f12": {
+   "impl": "0x7a58cbb8b0a4e1b7e3aad1e14e00a37ce73948e9",
+   "admin": "0xebd1add4557c53e2a0cb610120ecf7bc7442922b"
+  },
+  "0x41f0cc6865ae1ca32d096b3be317ae84c48a99e8": {
+   "impl": "0xccb2374039fb1937a65a2233a130391a1643ebe5",
+   "admin": "0xd2a0f4c12164a376b180c29b62247b0212b71405"
+  },
+  "0xd9cff1bc89f705eab2579fa2dc86e9a6f971370a": {
+   "impl": "0xdfeb3460771148799b2d4344c369e2b2d6c26c42",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x17c379952782ac4d04d5d30f7d4b12f37fc6e293": {
+   "impl": "0x4781ec486f32c9e5229df81bc257a6d06214a47d",
+   "admin": "0x8f0acfa2338363d89dc686f1dde8f407357158ed"
+  },
+  "0xf07d6b83433876e79b656c008034c687509d77a7": {
+   "impl": "0xfce59048fe68f07a9872a678332667a7d7c1749e",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x106825b71cce77a70b69f57a0acf9c4a6acf292a": {
+   "impl": "0x6e72c8726c71a4cbc6e31ff7d47b399fa983c7b8",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x40ddd8ac9a64df70273f4280dd9a276d12fc5a93": {
+   "impl": "0x629ffb752949917b6dd96233d3d52f0ce8e223ce",
+   "admin": "0xdff62007959bf1650fdecbca3abd45d327768db4"
+  },
+  "0x806d9ef56c369505794793bae8dcf584ce0d261b": {
+   "impl": "0xa6da76b60d2c62d2430546b4fb0c28c1613e8481",
+   "admin": "0xc26f1f131df6196f59b69585c1e2a4c04a4eec56"
+  },
+  "0x996d67aa9b37df96428ad3608cb21352bf1fdb90": {
+   "impl": "0xa694c0517569fe211caf1ca44abe0bd2e8150b80",
+   "admin": "0xb35e62457b3fd40a43f24722538c98e265c26268"
+  },
+  "0xc89ab4f5aeee5cfbc34f8eefa7b17414cc9391ae": {
+   "impl": "0xae5a7c682e4d531b1e2e264acf71b9761748459a",
+   "admin": "0x1a26fc326860bb2fbba0ebc4f63f9349b254c00e"
+  },
+  "0x58f0fc5d7a887f740be80828b8a7b83d333264c6": {
+   "impl": "0x3c8d43a784ed2238b66f9823c02707c042e46213",
+   "admin": "0x35cd0b630167fe67e726acf35d090583ac96d641"
+  },
+  "0xb5e7cdadf7ae4a260552129fe2b955baced8f0a7": {
+   "impl": "0x8e025dc325106230a79b2a50da524e901c57f978",
+   "admin": "0xa022d86498060b737e4471c4bc5cf3ba4ab36d11"
+  },
+  "0xa1157f4d219a3951eb7b6828822e8994aa11c0ee": {
+   "impl": "0xcf84b31ba743c61ce9e64ff6d9841b32858505d6",
+   "admin": "0xda2274c230a8857fe6e2c0cbd0d6f5d489e4eaae"
+  },
+  "0x68ba9602b2aee30847412109d2ee89063bf08ec2": {
+   "impl": "0x293af9ca6c6f4b1ec799328d1759ef213a5e57a3",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0x62104e40fa81a19f2b7e17c78c3ffbf4aca4f212": {
+   "impl": "0x72e0906558e4ee528974cd7803bff12d9f2869c3",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x8ccedbae4916b79da7f3f612efb2eb93a2bfd6cf": {
+   "impl": "0x6d2e08839cec8699565a86d046e64324826039c9",
+   "admin": "0xa3b670f2dd1722c3d4b98f146467840540c2c53e"
+  },
+  "0x100063491afd897b58828b3d4fe738ab979e13df": {
+   "impl": "0x591334078a5a67f1136fedbc0bd3bc9c19003517",
+   "admin": "0x8593da65d55ccdb9367377231925d0688efb5007"
+  },
+  "0xc51938cd0180acdf154e1e6119e69808801e3493": {
+   "impl": "0xd057133afbfe6e60e5ddfece288ea05117fb1bf3",
+   "admin": "0x9396953b3543c6d3f4a3eb5a62485e94c849919a"
+  },
+  "0x628245ecedb180e4ccbe31a3c05e19b6bcbd1f8e": {
+   "impl": "0xbc9e588d279b797a16fa71f2f1dcdfcd53276b5b",
+   "admin": "0xe981f1def268952930e52d598238e53203d0baf4"
+  },
+  "0xbed2d90c3e1975c275e9cc0f8a47c5c68bce01f4": {
+   "impl": "0xd6bb273ee671244998ab94b9d93cf6dafd86ebec",
+   "admin": "0x6ea436150f2086d4378862e41b3e61dfa26aac23"
+  },
+  "0x691150d2776a524859124122ae76be1736cd95e4": {
+   "impl": "0x3386f8bb9f7b707b583d729122b6c2720744011b",
+   "admin": "0x27b4a5c36e1524e66f446ad97fa68292e03371a6"
+  },
+  "0x750ee3529d13819e00e4e67063d6e500870d5af3": {
+   "impl": "0x6aad73c8ca98b8e34f314f74875f88f9bdbee339",
+   "admin": "0xcaf42ff1ca79bb4929f76cebd50ab0724c4ee0cd"
+  },
+  "0xff1747245bc70454596f5017fdff43e106cfaa68": {
+   "impl": "0xde8e0d87063bd95137711655a157188d09d3c36d",
+   "admin": "0x1b799d43ecd1ef707e6e76ac96936152c79807f5"
+  },
+  "0x24e09ef4f69b6058e047ee5e709b345f3ca47f3a": {
+   "impl": "0xa2f7e6dfd6f43976ee1e2e8a122984eca8e38608",
+   "admin": "0x3f74698a4adb075c0501df739745aca55ae543a1"
+  },
+  "0xa51fbae52da82dbe649d8dbc77d4708337681d2e": {
+   "impl": "0x25ce93e1277c3340e051a59839123c66ff3843ad",
+   "admin": "0x226a9a14bfad312c6b9b9b5173c9c4d9450f8216"
+  },
+  "0x77e631d4d885c8d58fb71efd403325f979fb5957": {
+   "impl": "0x84b55ec2ca3d1bfdab8fd6571096943573888cfa",
+   "admin": "0x07be2cfb0c845d366c8b6a76bb7fed11c1561ebc"
+  },
+  "0x4cfc3a41d652af5cd5f1c3e729048890b0173123": {
+   "impl": "0xfce59048fe68f07a9872a678332667a7d7c1749e",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  },
+  "0x68bd851c450b8b5eb5469803832d324c54351792": {
+   "impl": "0x62597017ac31967b259e07be2a06f07d2e7009db",
+   "admin": "0x26e8ecd1e5e95ab3ba7788fdd681618acd7edb38"
+  },
+  "0x3c62a5a8fad324f25b282b073d3599266dd1abce": {
+   "impl": "0xfc11c485be1d602c20e4e91116b2e138740f8287",
+   "admin": "0xebd1add4557c53e2a0cb610120ecf7bc7442922b"
+  },
+  "0xfbb87a6a4876820d996a9bbe106e4f73a5e4a71c": {
+   "impl": "0x142c2f340d12b612f36ccd8da78ebc9ea07bce12",
+   "admin": "0x143fc65c6fd89d738e7a6c15ab0db58ff4724b8c"
+  },
+  "0x7f2ecde4e92c089b7a0db63fd8a15755bcdf3bf7": {
+   "impl": "0x5a68e1adc8d42e782dc8a8cc6da5ce905a947aae",
+   "admin": "0x2cee2852a2fe983a8e1a0d696aced5b260dfd134"
+  },
+  "0x5853f32f2f1350922751dd55b1637c57fee2d1b2": {
+   "impl": "0x3314c65f4216612a0392cc9a33b8eeb06066a1b3",
+   "admin": "0x6ea436150f2086d4378862e41b3e61dfa26aac23"
+  },
+  "0xe9203a0dc8f1d57ff01db9128eb458319fa5b8da": {
+   "impl": "0x39bed0d7bbd04f3c7aa46c9815d3ddcd6e89f69b",
+   "admin": "0x729a813606f1f85849768a8d26e02707aaa26ea5"
+  },
+  "0x86c4f7a49c4bf807d8ce71594ffaf2c56ee34c00": {
+   "impl": "0x7b6885ab3773e10060e65cf7d2a5292104a874ce",
+   "admin": "0xeb5e772919661f455619a4cabd9b2b64715505e6"
+  },
+  "0x4087e19db65aee2028a0072706a3899e1a6d4ad6": {
+   "impl": "0x98fd6eff6931a1074eed2b66cc4903841cf71480",
+   "admin": "0xa6a03a3f1a8fd9b1d950505b72082c7b514cef73"
+  },
+  "0x8ea9638f2587b20396ec8c45dd639deb115f5211": {
+   "impl": "0x57f841c0a9c22ef1f0d8a1604b6388bfa3536932",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x2274d46263e29b24e0812e79590807dc838e7d11": {
+   "impl": "0x40b77fec326b2a3b3474d035048a21ec22bcb923",
+   "admin": "0x54d4f6322ead19b103578029c42d41346ff2a58c"
+  },
+  "0xc799194caa24e2874efa89b4bf5c92a530b047ff": {
+   "impl": "0xe8db0a2c50e68d42e0f6e1776766b803597714c7",
+   "admin": "0x8223a6271d1e0bda019ee55d545d7b86eff1f573"
+  },
+  "0x1ecdb32e59e948c010a189a0798c674a2d0c6603": {
+   "impl": "0x623620b3eff4e1a30e9f1154f88198ab26952eeb",
+   "admin": "0xeb5e772919661f455619a4cabd9b2b64715505e6"
+  },
+  "0xeebbae1445ad3c1a7d98f51ae12e8d1132553f13": {
+   "impl": "0x023d7404c0ac6a88dd1c23d5ea9f0debdba5a925",
+   "admin": "0x56ae29bca00b3d9d7377b64872bb0554efb9c02d"
+  },
+  "0x3919bdce285e82cdc6585979cfd71636b33a5582": {
+   "impl": "0x90fa8a61e6b82a09dc7b77763a9e59aa4aee55c9",
+   "admin": "0xc550886f304f5c396b921873d9e2d6c4a2a2d909"
+  },
+  "0x4b8f585d281eaaeb705f3f8710c30f071a2aafa3": {
+   "impl": "0x9686cc81cebbdd383a996ad96a21ca707d643726",
+   "admin": "0x2a3e5383aafe43b05dbb7a63f3c98b29afaf0b3d"
+  },
+  "0x9085ca883bbeab4ea28de1ed41352cbd182ffe43": {
+   "impl": "0xe903e9b7dedc86b75179468d650c03b089902785",
+   "admin": "0xc72b514768ece5b12b2796b67d1b6fef20b1ebd1"
+  },
+  "0x00826f4da07ac4e13d1a6c9ee0cead9ccffcf4e6": {
+   "impl": "0xf25d6bbb7faaa24da6e0f1b60e4b09d006b22508",
+   "admin": "0xc2f458afc62a333db502d509f8714a16f203b38e"
+  },
+  "0xbbef2b8f30f72373f41238efba9c245ccae88245": {
+   "impl": "0x86a80c4d6494e76a6e4bdd8e43dcbd582d235572",
+   "admin": "0xa5050ef49e8a3d6adb0bd55c37b8efb05ff619a9"
+  },
+  "0x98ae8b3fcee3132bc6ca21457bc67e03e7ff53e3": {
+   "impl": "0x98cefb7be9976cef2f68b7e9569d73fa82a8387f",
+   "admin": "0x840ee762e229bfa92494498be31b519c7c052816"
+  },
+  "0x99595455ba95b286f8e2614470b865e34f034aa1": {
+   "impl": "0xfa19cf314cb0ddd21a9f993f4619ef4fc77e06e5",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x82bb242a1b1c6cf4daf129df38a03978db39d667": {
+   "impl": "0x2e1bd1914dbc493547a2ba580a65e828e7780c61",
+   "admin": "0x88ab162bd3041343e32c5c6728c0b94ad60451e2"
+  },
+  "0xaecad3361b6d734592a1160f8ae1637e4344ec06": {
+   "impl": "0x5566352b393e5a5674c72e32b8e0818c0a048cf0",
+   "admin": "0x2679b70b5a53386c5c4d3372a856f43b605a72bf"
+  },
+  "0x186d048097c7406c64efb0537886e3cae100a1fe": {
+   "impl": "0x32aafccfb865060f7f9fb3766c50134f9228b67e",
+   "admin": "0x5a165919357eb5854287a0bad49d703f144b187f"
+  },
+  "0x45b3ab6a18283af7ac0c5b6dab3bac4a77f15e85": {
+   "impl": "0xaf5dc3de8a3af11c1639cab4c7abba36fb85ac8a",
+   "admin": "0x36190c0c8059be8baee3c47ba233fb7ff12a597a"
+  },
+  "0x989897f1d976ee0b59bf0a3172c170d8f3cb84e3": {
+   "impl": "0x4f1b513f846821559d59e8324eaef201cb5b0479",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0xb408a216927d31a27fd96176dbf1b825630f0301": {
+   "impl": "0x0f32d8c0eb1ce4c5ffb1a6c4bb3b879d2184ed11",
+   "admin": "0xe390fb0dd0ea7684f59210d791d63e7fc28bbf9b"
+  },
+  "0x2f00435f003d6568933586b4a272c6c6b481e0ad": {
+   "impl": "0xb7c8621f063c6b1a55ccd53ef13e01b76705afd1",
+   "admin": "0x53e3a7ece7555c5bc69afbd8df8df7b056339ab0"
+  },
+  "0xbeb059d623ac9817fc2f0414f1dcc61416da4540": {
+   "impl": "0xe497ba440e2e878d6defd2d91683c52d45385aa3",
+   "admin": "0x000000000000000000000000000000000000dead"
+  },
+  "0x09df1703f353a3345261359a43a210448ae4ff6f": {
+   "impl": "0xe497ba440e2e878d6defd2d91683c52d45385aa3",
+   "admin": "0xfa24b9f8de8005c21fab37bda02c4989ebb70089"
+  }
+ }
+}

@@ -1,0 +1,64 @@
+{
+  "block": 26431459,
+  "as_of": "2026-11-17",
+  "reviewer": "Review20",
+  "diamond": {
+    "address": "0x2edc71e9991a962c7fe172212d1aa9e50480fbb9",
+    "getChainId": 2741,
+    "getSemverProtocolVersion": [0, 33, 0],
+    "getAdmin": "0xa1f75f491f630037c4ccaa2bfa22363cec05a661",
+    "getPendingAdmin": "0x0000000000000000000000000000000000000000",
+    "getVerifier": "0x5d5d33b16d9e79d9d9b8196ec760e70a31a44711",
+    "getDAValidatorPair": ["0x1c715018c5565eacc758236d4a9a760162a84cbd", "0x0000000000000000000000000000000000000003"],
+    "getChainTypeManager": "0xc2ee6b6af7d616f6e27ce7f4a451aedc2b0f5f5c",
+    "getBridgehub": "0x303a465b659cbb0ab36ee643ea362c509eeb5213",
+    "getBaseToken": "0x0000000000000000000000000000000000000001",
+    "getTotalBatchesCommitted": 94265,
+    "getTotalBatchesExecuted": 94240
+  },
+  "chain_admin": {
+    "address": "0xa1f75f491f630037c4ccaa2bfa22363cec05a661",
+    "blockscout_name": "ChainAdmin",
+    "owner": "0x7f3eab9ccf1d8b9705f7ede895d3b4ac1b631063",
+    "owner_safe_threshold": 4,
+    "owner_safe_owners": [
+      "0x57533344e91d29f927aaebee364a33633bd205ab",
+      "0xfc84e99984a3526dea97c408f5991a5e099f3da2",
+      "0x58536761c97f5037931b56efee922471add0eee8",
+      "0x0807c9f0247084cf1c5ab86a8fb00e7c70cd27eb",
+      "0x1cdfbded92d46261837827607e674110ca5a0575",
+      "0x325407eec948b97429068af0cd8a8d95f06315a4",
+      "0x77d1124e9061d238430df3f4311111bdf69a4cfa",
+      "0x79cf3ecf9bbfd793d8be62ed44d98d9afa657892"
+    ]
+  },
+  "ctm_and_bridgehub_owner": "0xe30dca3047b37dc7d88849de4a4dc07937ad5ab3",
+  "validator_timelock": {"address": "0xc62bde55caab102714c6b9f7e29e05d9237efd83", "owner": "0x7f3eab9ccf1d8b9705f7ede895d3b4ac1b631063"},
+  "l1_da_validator": {
+    "address": "0x1c715018c5565eacc758236d4a9a760162a84cbd",
+    "sourcify_name": "RollupL1DAValidator",
+    "creator": "0x4e59b44847b379578588920ca78fbf26c0b4956c (CREATE2 deployer)",
+    "note": "shared: also called by ZKsync Era 0x32400084c286cf3e17e7b677ea9583e60a000324 (Blockscout internal transactions)"
+  },
+  "sample_commits": [
+    {"tx": "0x36f44e9889b1c9b87f2af5abc1b65a201234ee01209ca4faa3a0ea2065674eff", "block": 26431431, "to": "0xc62bde55caab102714c6b9f7e29e05d9237efd83", "type": 3, "blobs": 6},
+    {"tx": "0x42057d388ee5ebea5371eaa9eb093ddcb143cdc6b3bfdd01af10bd6d4d877527", "block": 26431188, "to": "0xc62bde55caab102714c6b9f7e29e05d9237efd83", "type": 3, "blobs": 5}
+  ],
+  "escrow": {
+    "asset_router": "0x8829ad80e425c646dab305381ff105169feece56",
+    "native_token_vault": "0xbed1eb542f9a5aa6419ff3deb921a372681111f6",
+    "asset_tracker": "0x7fd8b995fc27ad7de97853e65b17cacfc0a573cc",
+    "method": "L1AssetTracker.chainBalance(2741, NTV.assetId(token)); prices: Blockscout exchange_rate, ETH from onchain.json",
+    "balances": [
+      {"asset": "ETH", "amount": 4723.811385055394, "usd": 8557751},
+      {"asset": "USDC", "amount": 2248.0, "usd": 2247},
+      {"asset": "USDT", "amount": 40.833477, "usd": 41},
+      {"asset": "wstETH", "amount": 0.010952911999676887, "usd": 25},
+      {"asset": "YGG", "amount": 10770160.25, "usd": 199556},
+      {"asset": "GUILD", "amount": 19170062.63, "usd": 44465}
+    ],
+    "checked_zero": ["WBTC", "DAI", "WETH", "PEPE", "MAGIC", "KOI"],
+    "total_usd": 8804084,
+    "note": "only the vault's larger holdings were checked; smaller Abstract balances may exist"
+  }
+}

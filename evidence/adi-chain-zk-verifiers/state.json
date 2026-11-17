@@ -1,0 +1,248 @@
+{
+ "note": "Reads by Review06 on 2026-11-17 with cast (eth.drpc.org) at block 26431772; sources from Sourcify; holdings from Blockscout.",
+ "block": 26431772,
+ "chain": {
+  "chainId": 36900,
+  "name (chainid.network)": "ADI Chain",
+  "diamond": "0x0583ef2b6416cb7b287406438b940e4d99680c5b",
+  "getVerifier()": "0xccbdfd7f9a8e60d0c1e79fa620205d14121e7a39",
+  "getAdmin()": "0x0a8a2473cc5731575a94f58f470851bc6695b5b8 (ChainAdminOwnable)",
+  "getProtocolVersion()": "128849018882 (v30.2)",
+  "getTotalBatchesExecuted()": 16700,
+  "getChainTypeManager()": "0x08a1d2962fc29aa46e869a1e7561112cc1026efa (ZKsyncOSChainTypeManager)",
+  "getBridgehub()": "0x7a38c18a229ef8a0ae7104ba272a46280f2d59cb",
+  "settlementLayer(36900)": 1,
+  "getDAValidatorPair()": [
+   "0xfb630a206e6d7485cb9dfa929859e1a977f0a211 (BlobsL1DAValidatorZKsyncOS)",
+   "0x0000000000000000000000000000000000000004"
+  ]
+ },
+ "bridgehub": {
+  "address": "0x7a38c18a229ef8a0ae7104ba272a46280f2d59cb",
+  "getAllZKChainChainIDs()": [
+   36900
+  ],
+  "owner()": "0x8253f33026c49a430963fe3991441c02175bda95",
+  "eip1967_admin": "0x8140abb60c9afb5241d90af948cfa7644b2d3217",
+  "assetRouter()": "0xf25227efad2046d19777a4ca540b5c016df7fe7a",
+  "L1_NULLIFIER()": "0x5e5a72077dfb354dfe61200b8f31fa491f9b9cea",
+  "creator": "0x4e59b44847b379578588920ca78fbf26c0b4956c (CREATE2 deployer)"
+ },
+ "native_token_vault": {
+  "address": "0x0a0f8912162ff83a036883dbada42eff647a3065",
+  "eip1967_admin": "0x8140abb60c9afb5241d90af948cfa7644b2d3217",
+  "ADI token": "0x8b1484d57abbe239bb280661377363b03c89caea",
+  "chainBalance(36900, ADI)": "731127.27 ADI (= vault balance)"
+ },
+ "proxy_admin": {
+  "address": "0x8140abb60c9afb5241d90af948cfa7644b2d3217",
+  "owner()": "0x8253f33026c49a430963fe3991441c02175bda95",
+  "also_admin_of": "ZKsyncOSChainTypeManager 0x08a1d296\u2026"
+ },
+ "governance": {
+  "address": "0x8253f33026c49a430963fe3991441c02175bda95",
+  "name (Blockscout)": "Governance",
+  "owner()": "0xb272b188855128c10a933edb62cc64c22b1f3754",
+  "securityCouncil()": "0x95f0c748f60624ddad536d979993fa23fd86021a",
+  "minDelay()": 259200
+ },
+ "owner_safe": {
+  "address": "0xb272b188855128c10a933edb62cc64c22b1f3754",
+  "threshold": 2,
+  "owners": [
+   "0x2e48bd8536b3756d95b44312dbd5be0e56c29dc9",
+   "0x3740b047227a94acb5ececc5b7d6148857c81ece",
+   "0x288c18627a5d15a380b5d3f8a78667d543a066a9"
+  ]
+ },
+ "security_council_safe": {
+  "address": "0x95f0c748f60624ddad536d979993fa23fd86021a",
+  "threshold": 2,
+  "owners": [
+   "0x48d3eb3a4f0c25f2c37f23b5aeb63ea3f88b265f",
+   "0x2e48bd8536b3756d95b44312dbd5be0e56c29dc9",
+   "0xa1b9199081e5b849b998b1148a1d4921adb2a1b1"
+  ]
+ },
+ "chain_admin_owner": {
+  "address": "0xf50293ac52f987122dcd67eda0cfb34e9d7a0cf9",
+  "kind": "Safe proxy (171-byte code), threshold 2, owners same as 0xb272b188\u2026"
+ },
+ "zksync_os_dual_verifier": {
+  "address": "0xccbdfd7f9a8e60d0c1e79fa620205d14121e7a39",
+  "sourcify": "ZKsyncOSDualVerifier exact_match",
+  "owner()": "0x8253f33026c49a430963fe3991441c02175bda95",
+  "pendingOwner()": "0x0000000000000000000000000000000000000000",
+  "versions": {
+   "0": {
+    "fflonk": "0xf6b3708be4192ce4526c2f87d4c3eaba79230e6a",
+    "plonk": "0xc1288a84c5b2c93ed4bf712ff4bb96d862b32aa9"
+   }
+  },
+  "versions_1_10": "empty",
+  "verify": "routes type 2 to plonkVerifiers[version] only (ZKsyncOSDualVerifier.sol line 75); no type routes to fflonkVerifiers"
+ },
+ "legs": {
+  "0xf6b3708be4192ce4526c2f87d4c3eaba79230e6a": {
+   "sourcify": "ZKsyncOSVerifierFflonk exact_match",
+   "code_size": 10688,
+   "precompiles": "ecMul 7, ecAdd 6, ecPairing 8, modexp 5 (ZKsyncOSVerifierFflonk.sol lines 1501-1614)"
+  },
+  "0xc1288a84c5b2c93ed4bf712ff4bb96d862b32aa9": {
+   "sourcify": "ZKsyncOSVerifierPlonk exact_match",
+   "code_size": 17226,
+   "precompiles": "modexp 5, ecMul 7, ecAdd 6, ecPairing 8 (ZKsyncOSVerifierPlonk.sol lines 383-1673)"
+  }
+ },
+ "retired_traces": {
+  "0x08513a4646d1bc8c348c67a3680bb19626e7f13f": {
+   "tx": "0xe4663eb78f3f918b5347a82571d23d27b8d15ba7bb5b0c2e38da736c64ec469e",
+   "block": 24683478,
+   "path": [
+    {
+     "type": "CALL",
+     "from": "0x0b6f2116323c12ee731de6818e41861561bcd44c",
+     "to": "0xe28cac160c2a79dfa1fbd2169ac5fa5d061cf186",
+     "sel": "0x9271e450"
+    },
+    {
+     "type": "DELEGATECALL",
+     "from": "0xe28cac160c2a79dfa1fbd2169ac5fa5d061cf186",
+     "to": "0x6cb28384f21b18924fa312aa2e10d4e813e66263",
+     "sel": "0x9271e450"
+    },
+    {
+     "type": "CALL",
+     "from": "0xe28cac160c2a79dfa1fbd2169ac5fa5d061cf186",
+     "to": "0x0583ef2b6416cb7b287406438b940e4d99680c5b",
+     "sel": "0x9271e450"
+    },
+    {
+     "type": "DELEGATECALL",
+     "from": "0x0583ef2b6416cb7b287406438b940e4d99680c5b",
+     "to": "0x56767eb2e3197a1dfa030faad4a65cf38e807c81",
+     "sel": "0x9271e450"
+    },
+    {
+     "type": "STATICCALL",
+     "from": "0x0583ef2b6416cb7b287406438b940e4d99680c5b",
+     "to": "0x5e7cf1c310f9e0bf8dbfe70d5cc8021a2109d0ae",
+     "sel": "0xb864f5a9"
+    },
+    {
+     "type": "STATICCALL",
+     "from": "0x5e7cf1c310f9e0bf8dbfe70d5cc8021a2109d0ae",
+     "to": "0x08513a4646d1bc8c348c67a3680bb19626e7f13f",
+     "sel": "0xb864f5a9"
+    }
+   ]
+  },
+  "0x8f870cf6621aeaf6026dffc77f484fdab370c4ba": {
+   "tx": "0x8e75c48103cec40b4deab45dd284f53a8993e52914adf845bb965205c521f58e",
+   "block": 24250888,
+   "path": [
+    {
+     "type": "CALL",
+     "from": "0x0b6f2116323c12ee731de6818e41861561bcd44c",
+     "to": "0xe28cac160c2a79dfa1fbd2169ac5fa5d061cf186",
+     "sel": "0x9271e450"
+    },
+    {
+     "type": "DELEGATECALL",
+     "from": "0xe28cac160c2a79dfa1fbd2169ac5fa5d061cf186",
+     "to": "0x406f329645e323b1bd1c020a219e30e6daf4f899",
+     "sel": "0x9271e450"
+    },
+    {
+     "type": "CALL",
+     "from": "0xe28cac160c2a79dfa1fbd2169ac5fa5d061cf186",
+     "to": "0x0583ef2b6416cb7b287406438b940e4d99680c5b",
+     "sel": "0x9271e450"
+    },
+    {
+     "type": "DELEGATECALL",
+     "from": "0x0583ef2b6416cb7b287406438b940e4d99680c5b",
+     "to": "0x6fb87a1dd4de3bdbb96f2fa9ac7fcb74b7d4c792",
+     "sel": "0x9271e450"
+    },
+    {
+     "type": "STATICCALL",
+     "from": "0x0583ef2b6416cb7b287406438b940e4d99680c5b",
+     "to": "0x28e31e2b74bc38c6cd58cf282807fcba8c00c529",
+     "sel": "0xb864f5a9"
+    },
+    {
+     "type": "STATICCALL",
+     "from": "0x28e31e2b74bc38c6cd58cf282807fcba8c00c529",
+     "to": "0x8f870cf6621aeaf6026dffc77f484fdab370c4ba",
+     "sel": "0xb864f5a9"
+    }
+   ]
+  }
+ },
+ "holdings": {
+  "eth_usd_price": 1811.62,
+  "source": "Blockscout /api/v2 addresses + tokens (exchange_rate)",
+  "date": "2026-11-17",
+  "holdings": {
+   "0x0a0f8912162ff83a036883dbada42eff647a3065": {
+    "address": "0x0a0f8912162ff83a036883dbada42eff647a3065",
+    "name": "TransparentUpgradeableProxy",
+    "eth": 0.0,
+    "eth_usd": 0.0,
+    "tokens_usd": 5432275.59,
+    "n_tokens": 1,
+    "top_tokens": [
+     {
+      "symbol": "ADI",
+      "address": "0x8b1484d57abbe239bb280661377363b03c89caea",
+      "balance": 731127.2658444572,
+      "usd": 5432275.59,
+      "rate": "7.43",
+      "volume_24h": "6010994"
+     }
+    ],
+    "total_usd": 5432275.59
+   },
+   "0xf25227efad2046d19777a4ca540b5c016df7fe7a": {
+    "address": "0xf25227efad2046d19777a4ca540b5c016df7fe7a",
+    "name": "TransparentUpgradeableProxy",
+    "eth": 0.0,
+    "eth_usd": 0.0,
+    "tokens_usd": 0,
+    "n_tokens": 0,
+    "top_tokens": [],
+    "total_usd": 0.0
+   },
+   "0x5e5a72077dfb354dfe61200b8f31fa491f9b9cea": {
+    "address": "0x5e5a72077dfb354dfe61200b8f31fa491f9b9cea",
+    "name": "TransparentUpgradeableProxy",
+    "eth": 0.0,
+    "eth_usd": 0.0,
+    "tokens_usd": 0.0,
+    "n_tokens": 1,
+    "top_tokens": [
+     {
+      "symbol": "HEX",
+      "address": "0x2b591e99afe9f32eaa6214f7b7629768c40eeb39",
+      "balance": 1.0,
+      "usd": 0.0,
+      "rate": "0.0004666",
+      "volume_24h": "29628"
+     }
+    ],
+    "total_usd": 0.0
+   },
+   "0x0583ef2b6416cb7b287406438b940e4d99680c5b": {
+    "address": "0x0583ef2b6416cb7b287406438b940e4d99680c5b",
+    "name": "DiamondProxy",
+    "eth": 0.0,
+    "eth_usd": 0.0,
+    "tokens_usd": 0,
+    "n_tokens": 0,
+    "top_tokens": [],
+    "total_usd": 0.0
+   }
+  }
+ }
+}

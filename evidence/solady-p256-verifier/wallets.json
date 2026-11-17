@@ -1,0 +1,775 @@
+{
+ "block": 26431608,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "method": "wallets = handleOps senders (EntryPoint v0.7 0x0000000071727de22e5e9d8baf0edac6f37da032, v0.8 0x4337084d9e255ff0702461cf8895ce9e3b5ff108) or tx.to of the 693 transactions in data/agg/y1_tx_caller.parquet in which the verifier called modexp (blocks 22,104,981-23,932,659); a bundle with several ops lists all senders (upper bound). ETH via eth_getBalance, ERC-20 via Blockscout token-balances (priced tokens).",
+ "p256verify_precompile_first_block": 23935699,
+ "verifier_last_modexp_block": 23932659,
+ "wallet_count": 59,
+ "total_usd": 379.6,
+ "implementations": {
+  "0x83e759df2550d0cb1714f095d208ad7225fda56a": "SimpleTeamAccount (21)",
+  "0xbac849bb641841b44e965fb01a4bf5f074f84b4d": "Kernel (10)",
+  "0x68641de71cfea5a5d0d29712449ee254bb1400c2": "SimpleAccount (4)",
+  "none (EIP-1967 slot empty)": "23 (12 are 44-byte minimal proxies, 3 Safe proxies)"
+ },
+ "wallets": {
+  "0xcfae93993acfbc7ee4fe89b28d67652a51a2008e": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 68,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0xb569a8379acda7388dbe7be39867337878d14ecb": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 40,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x39008584ef5a94fba2d6d27669429ab47c1fc8e0": {
+   "eth": 0.0,
+   "tokens": {
+    "USDC": 0.0094
+   },
+   "usd": 0.01,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 3,
+   "blockscout_erc20_usd": 0.01,
+   "total_usd": 0.01,
+   "later_used_p256verify_precompile": true
+  },
+  "0xa0ffa4141d24c8f36b78471c61bff431a6f8026b": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x8224311b604bf7b295e2f07ea3565a5df26a29cc": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 9,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": true
+  },
+  "0x40b35800bb3e536aee3dc5dbd46d8f0a39c4dffc": {
+   "eth": 0.0,
+   "tokens": {
+    "USDC": 0.1903,
+    "WETH": 0.0
+   },
+   "usd": 0.19,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 2,
+   "blockscout_erc20_usd": 0.19,
+   "total_usd": 0.19,
+   "later_used_p256verify_precompile": false
+  },
+  "0x8059fcd15f461006d198da35b7fc67ca217a9c90": {
+   "eth": 0.0,
+   "tokens": {
+    "USDC": 0.6722,
+    "USDT": 0.01,
+    "WETH": 0.0
+   },
+   "usd": 0.69,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 12,
+   "blockscout_erc20_usd": 0.78,
+   "total_usd": 0.78,
+   "later_used_p256verify_precompile": false
+  },
+  "0x0cff84b06d8f16e8d65142afba9bdd956cbb6749": {
+   "eth": 0.0,
+   "tokens": {
+    "WETH": 0.0
+   },
+   "usd": 0.04,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 11,
+   "blockscout_erc20_usd": 0.04,
+   "total_usd": 0.04,
+   "later_used_p256verify_precompile": false
+  },
+  "0xb4504a086d21d626ef21393e719cc102ff2f60ee": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 3,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": true
+  },
+  "0x048c5b1ad277c2755eece03692e23fd7db813922": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x57171950264e9688a6b551df490e881eaf1aed8a": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 15,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x9f386aaf34efc99ceafd9270105e9fd27e75bc23": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 8,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x9805262432ff4f02f600d0117aa9ba2c4ef6e950": {
+   "eth": 0.0,
+   "tokens": {
+    "USDC": 2.1271,
+    "USDT": 0.9945
+   },
+   "usd": 3.12,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 121,
+   "blockscout_erc20_usd": 3.12,
+   "total_usd": 3.12,
+   "later_used_p256verify_precompile": false
+  },
+  "0x731b3bcd2953de032067e9cb755476efd60ff786": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 2,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x9b09ce0d2fcbcf8a3fef32fbeff7b3e601b74aad": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x511b510ac6d53ca6551dfada3396faf103a55b90": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 10,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0xfa6ab0a7380f72208cefe6839fd0b26f8c22a0d7": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 2,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0xb2d762830f5334ef8014cd66dd9dd0157fe31851": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x24fe5901a88e3ac7e9cb39a5c3a099840b755721": {
+   "eth": 2e-06,
+   "tokens": {
+    "WETH": 0.0001
+   },
+   "usd": 0.19,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 44,
+   "blockscout_erc20_usd": 12.97,
+   "total_usd": 12.98,
+   "later_used_p256verify_precompile": true
+  },
+  "0xb8f121abc231b5de42dbb2d8a04d8c4467dd4c30": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x68641de71cfea5a5d0d29712449ee254bb1400c2",
+   "p256_txs_y1": 3,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x86e9c5a414c9c1c8dcf3430e599f0c2a185d9ea3": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x68641de71cfea5a5d0d29712449ee254bb1400c2",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x727ef19ba4d203ce037be1291177ba1d39eb3fd7": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x68641de71cfea5a5d0d29712449ee254bb1400c2",
+   "p256_txs_y1": 49,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0xcc4ebd50ae6e39a0ecf45028c5b761d3976f539a": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x046a2ddecea60f70bb7c0bde2dead74bfa7680dd": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 44,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 51,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x34a722327000874b9d4c4f3ad4e3465b38739404": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x68641de71cfea5a5d0d29712449ee254bb1400c2",
+   "p256_txs_y1": 15,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0xae330016aaa5c7bb951aeb78474fd4394b4a0bc1": {
+   "eth": 0.001239,
+   "tokens": {
+    "USDC": 11.9228
+   },
+   "usd": 14.17,
+   "kind": "contract",
+   "code_size": 44,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 13,
+   "blockscout_erc20_usd": 11.92,
+   "total_usd": 14.16,
+   "later_used_p256verify_precompile": false
+  },
+  "0x1407f26d84239da4fb4c2da387661df309afcca0": {
+   "eth": 0.0,
+   "tokens": {
+    "USDT": 2.0,
+    "WETH": 0.0012
+   },
+   "usd": 4.21,
+   "kind": "contract",
+   "code_size": 44,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 5,
+   "blockscout_erc20_usd": 21.38,
+   "total_usd": 21.38,
+   "later_used_p256verify_precompile": false
+  },
+  "0xc3361f63ae0d21ea16177c9de15a4c87f3cc45e7": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 183,
+   "delegate_or_impl": "0x83e759df2550d0cb1714f095d208ad7225fda56a",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x52c5fc90c7841778acf3c2a5de1f97de4e8fba92": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 9041,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 41,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x043dfa52deb97ed9886c8a4d766442b6ee3756cb": {
+   "eth": 0.0,
+   "tokens": {
+    "USDC": 0.0,
+    "USDT": 0.0,
+    "WETH": 0.0
+   },
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 1237,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 10.34,
+   "total_usd": 10.34,
+   "later_used_p256verify_precompile": false
+  },
+  "0xf0d539955974b248d763d60c3663ef272dfc6971": {
+   "eth": 0.0,
+   "tokens": {
+    "USDC": 0.0,
+    "USDT": 0.0013,
+    "WETH": 0.0
+   },
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 1237,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 11.13,
+   "total_usd": 11.13,
+   "later_used_p256verify_precompile": false
+  },
+  "0xb447ba5a2fb841406cdac4585fdc28027d7ae503": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 9318,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 3,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0xb3445d5413abf63df1112a4a517de2602f249785": {
+   "eth": 0.0,
+   "tokens": {
+    "USDC": 0.0,
+    "USDT": 0.0,
+    "WETH": 0.0
+   },
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 1237,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 2,
+   "blockscout_erc20_usd": 3.18,
+   "total_usd": 3.18,
+   "later_used_p256verify_precompile": false
+  },
+  "0x5968ada261a84e19a6c85830e655647752585ed4": {
+   "eth": 0.0,
+   "tokens": {
+    "USDC": 0.1069,
+    "USDT": 0.2502
+   },
+   "usd": 0.36,
+   "kind": "contract",
+   "code_size": 10755,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 2,
+   "blockscout_erc20_usd": 11.37,
+   "total_usd": 11.37,
+   "later_used_p256verify_precompile": false
+  },
+  "0xe08d97e151473a848c3d9ca3f323cb720472d015": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 6818,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0.02,
+   "total_usd": 0.02,
+   "later_used_p256verify_precompile": false
+  },
+  "0x49b0663285c1f2082bb7a9caa4148d7c94732290": {
+   "eth": 0.000448,
+   "tokens": {
+    "USDC": 0.1543,
+    "USDT": 0.5973
+   },
+   "usd": 1.56,
+   "kind": "contract",
+   "code_size": 44,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 74,
+   "blockscout_erc20_usd": 0.75,
+   "total_usd": 1.56,
+   "later_used_p256verify_precompile": false
+  },
+  "0xfeecd4105e0a0edda9104a6d2700c07828353aca": {
+   "eth": 0.000407,
+   "tokens": {},
+   "usd": 0.74,
+   "kind": "contract",
+   "code_size": 171,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0.0,
+   "total_usd": 0.74,
+   "later_used_p256verify_precompile": false
+  },
+  "0x80ccc09472ff710b0336b8fb3248312adddb316a": {
+   "eth": 1e-05,
+   "tokens": {},
+   "usd": 0.02,
+   "kind": "contract",
+   "code_size": 61,
+   "delegate_or_impl": "0xbac849bb641841b44e965fb01a4bf5f074f84b4d",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0.0,
+   "total_usd": 0.02,
+   "later_used_p256verify_precompile": false
+  },
+  "0x5d08a1d4b459ec7abc8dacb65786e32c63bf6870": {
+   "eth": 2.6e-05,
+   "tokens": {},
+   "usd": 0.05,
+   "kind": "contract",
+   "code_size": 61,
+   "delegate_or_impl": "0xbac849bb641841b44e965fb01a4bf5f074f84b4d",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.05,
+   "later_used_p256verify_precompile": false
+  },
+  "0xf2e1699043bd09cdc06d145c00fb9a248bf5b3aa": {
+   "eth": 4.8e-05,
+   "tokens": {},
+   "usd": 0.09,
+   "kind": "contract",
+   "code_size": 61,
+   "delegate_or_impl": "0xbac849bb641841b44e965fb01a4bf5f074f84b4d",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.09,
+   "later_used_p256verify_precompile": false
+  },
+  "0xe4f9b43eddbfa2834b4cc8b10e067094bada6ff1": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 171,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0.0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x6dcf820ac5040bc44ca378814e44dcfada4b36f9": {
+   "eth": 6.1e-05,
+   "tokens": {},
+   "usd": 0.11,
+   "kind": "contract",
+   "code_size": 61,
+   "delegate_or_impl": "0xbac849bb641841b44e965fb01a4bf5f074f84b4d",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.11,
+   "later_used_p256verify_precompile": false
+  },
+  "0x07a7c8c85a9b39aa2c3f7a99efb22a41c81f72bc": {
+   "eth": 6e-06,
+   "tokens": {},
+   "usd": 0.01,
+   "kind": "contract",
+   "code_size": 61,
+   "delegate_or_impl": "0xbac849bb641841b44e965fb01a4bf5f074f84b4d",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0.0,
+   "total_usd": 0.01,
+   "later_used_p256verify_precompile": false
+  },
+  "0x15fc77798a7b41d94ac07a1763b9d0bafb44e68a": {
+   "eth": 0.001726,
+   "tokens": {},
+   "usd": 3.13,
+   "kind": "contract",
+   "code_size": 61,
+   "delegate_or_impl": "0xbac849bb641841b44e965fb01a4bf5f074f84b4d",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0.01,
+   "total_usd": 3.14,
+   "later_used_p256verify_precompile": false
+  },
+  "0xfb0113d57e45a46c884cbb70c63ae800ff1cd35f": {
+   "eth": 0.001702,
+   "tokens": {},
+   "usd": 3.08,
+   "kind": "contract",
+   "code_size": 61,
+   "delegate_or_impl": "0xbac849bb641841b44e965fb01a4bf5f074f84b4d",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0.01,
+   "total_usd": 3.1,
+   "later_used_p256verify_precompile": false
+  },
+  "0x4fab1959567da81fadde9ac4146ef0ef078675fd": {
+   "eth": 6.8e-05,
+   "tokens": {},
+   "usd": 0.12,
+   "kind": "contract",
+   "code_size": 61,
+   "delegate_or_impl": "0xbac849bb641841b44e965fb01a4bf5f074f84b4d",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0.0,
+   "total_usd": 0.12,
+   "later_used_p256verify_precompile": false
+  },
+  "0x8532aea03c65d89162fa4f782e7d30043a36c349": {
+   "eth": 6.3e-05,
+   "tokens": {},
+   "usd": 0.11,
+   "kind": "contract",
+   "code_size": 61,
+   "delegate_or_impl": "0xbac849bb641841b44e965fb01a4bf5f074f84b4d",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0.01,
+   "total_usd": 0.12,
+   "later_used_p256verify_precompile": false
+  },
+  "0x36a7cd5b1f475122a2b52580fc8e170a2cd312ef": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 9035,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 50,
+   "blockscout_erc20_usd": 0.0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0xf7da8b88a3d7c4bf20bb722b5376a65875df169a": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 44,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 11,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x1e6575bc4d80d497496f6eece6b9984ffafd490f": {
+   "eth": 0.000222,
+   "tokens": {
+    "USDC": 12.5,
+    "USDT": 15.0
+   },
+   "usd": 27.9,
+   "kind": "contract",
+   "code_size": 44,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 4,
+   "blockscout_erc20_usd": 27.48,
+   "total_usd": 27.89,
+   "later_used_p256verify_precompile": false
+  },
+  "0x0347d566e3821061070df0f0f7eadc7ca9be862d": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 44,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 38,
+   "blockscout_erc20_usd": 0.0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0xc24545214882a2cdc2278f36bbb70fb854c8730d": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 171,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0.51,
+   "total_usd": 0.51,
+   "later_used_p256verify_precompile": false
+  },
+  "0x69406fe22672b51629a1e534d9811fd66c32bee4": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 61,
+   "delegate_or_impl": "0xbac849bb641841b44e965fb01a4bf5f074f84b4d",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x083a1e909d9d23e516142fb07cdf21b869ed899c": {
+   "eth": 0.0,
+   "tokens": {
+    "USDC": 0.903
+   },
+   "usd": 0.9,
+   "kind": "contract",
+   "code_size": 44,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0.9,
+   "total_usd": 0.9,
+   "later_used_p256verify_precompile": false
+  },
+  "0xaafc079ca8479441941df7c6fe024ba8066de363": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 44,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 3,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x42ececa8dbee026656562e103c8101e859f75651": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 44,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  },
+  "0x49cd6a444395b7baeec987c5c3a5025e35575173": {
+   "eth": 0.018487,
+   "tokens": {
+    "USDC": 218.2013
+   },
+   "usd": 251.69,
+   "kind": "eip7702",
+   "code_size": 23,
+   "delegate_or_impl": "0xe6cae83bde06e4c305530e199d7217f42808555b",
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 218.26,
+   "total_usd": 251.75,
+   "later_used_p256verify_precompile": false
+  },
+  "0x9c2441f47662255c68727726445a0e7a06ba872a": {
+   "eth": 2.6e-05,
+   "tokens": {
+    "USDC": 0.4431,
+    "USDT": 0.2978
+   },
+   "usd": 0.79,
+   "kind": "contract",
+   "code_size": 44,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 4,
+   "blockscout_erc20_usd": 0.74,
+   "total_usd": 0.79,
+   "later_used_p256verify_precompile": false
+  },
+  "0xc54080c5b315041d3d77b7cc631d7adc77336455": {
+   "eth": 0.0,
+   "tokens": {},
+   "usd": 0.0,
+   "kind": "contract",
+   "code_size": 44,
+   "delegate_or_impl": null,
+   "p256_txs_y1": 1,
+   "blockscout_erc20_usd": 0,
+   "total_usd": 0.0,
+   "later_used_p256verify_precompile": false
+  }
+ }
+}

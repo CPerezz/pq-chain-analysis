@@ -1,0 +1,119 @@
+{
+ "reviewer": "Review10",
+ "date": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "block": 26431780,
+ "eth_usd_blockscout": 1814.71,
+ "committee": {
+  "address": "0x4b2bf1cb06cb636e8a14540f76c477e61d8b6669",
+  "signaturesRequired()": "3",
+  "identify()": "\"StarkWare_FinalizableCommittee_2022_1\"",
+  "isFinalized()": "false",
+  "blockscout_name": "FinalizableCommittee",
+  "verified": true,
+  "creator": "0x5751a83170BeA11fE7CdA5D599B04153C021f21A",
+  "last_txs": [
+   [
+    "2024-09-22T00:37:35.000000Z",
+    "verifyAvailabilityProof",
+    "0x2e1c08E457F0E0F462Ef99eC9271dc5BfAd88b2a"
+   ],
+   [
+    "2024-09-20T15:09:23.000000Z",
+    "verifyAvailabilityProof",
+    "0x2e1c08E457F0E0F462Ef99eC9271dc5BfAd88b2a"
+   ],
+   [
+    "2024-09-20T15:09:23.000000Z",
+    "verifyAvailabilityProof",
+    "0x2e1c08E457F0E0F462Ef99eC9271dc5BfAd88b2a"
+   ]
+  ],
+  "callers_last_50": [
+   "0x2e1c08E457F0E0F462Ef99eC9271dc5BfAd88b2a"
+  ],
+  "isMember(0x0)": false,
+  "trace_y1_ecrecover_txs": 0
+ },
+ "exchange": {
+  "address": "0xb62bcd40a24985f560b5a9745d478791d8f1945c",
+  "implementation_slot": "0x000000000000000000000000df2f24751f7e84ccdcd39e7b49904fab0fb0f583",
+  "blockscout_implementations": [
+   {
+    "address_hash": "0xdF2f24751F7e84ccDCD39e7b49904FAB0Fb0f583",
+    "name": "StarkExchange"
+   }
+  ],
+  "reads": {
+   "getRegisteredAvailabilityVerifiers()(address[])": "[0x4b2Bf1Cb06CB636e8A14540F76c477E61d8B6669]",
+   "isFrozen()(bool)": "false",
+   "getSequenceNumber()(uint256)": "1025",
+   "getLastBatchId()(uint256)": "1042",
+   "identify()(string)": "- server returned an error response: error code 3: execution reverted: NO_CONTRACT_FOR_FUNCTION, data: \"0x08c379a0000000",
+   "getUpgradeActivationDelay()(uint256)": "0",
+   "isFinalized()(bool)": "- server returned an error response: error code 3: execution reverted: NO_CONTRACT_FOR_FUNCTION, data: \"0x08c379a0000000",
+   "getRegisteredVerifiers()(address[])": "[0x5339AB7557b3152b91A57D10B0Caf5da88Db5143]",
+   "getVaultRoot()(uint256)": "Error: server returned an error response: error code 3: execution reverted, data: \"0x\"",
+   "getOrderRoot()(uint256)": "693873846531205825701128329678045545523521391361304911364296386121891337538 [6.938e74]",
+   "getValidiumVaultRoot()(uint256)": "1016882547273910871361993343559824685148426507065694695571567245112804800596 [1.016e75]"
+  },
+  "eth": "0.027516000000000000",
+  "tokens_usd_page1": 27,
+  "top_tokens": [
+   [
+    "USDC",
+    21
+   ],
+   [
+    "USDT",
+    6
+   ],
+   [
+    "SNT",
+    0
+   ]
+  ],
+  "tokens_next_page": null,
+  "erc721": [
+   [
+    "RED",
+    "2"
+   ]
+  ],
+  "last_txs": [
+   [
+    "2026-09-28T10:44:47.000000Z",
+    "0x441a3e70",
+    "0x4c968f6bEecf1906710b08e8B472b8Ba6E75F957"
+   ],
+   [
+    "2024-09-22T00:37:35.000000Z",
+    "0x538f9406",
+    "0x2e1c08E457F0E0F462Ef99eC9271dc5BfAd88b2a"
+   ],
+   [
+    "2024-09-20T16:09:23.000000Z",
+    "0x538f9406",
+    "0x2e1c08E457F0E0F462Ef99eC9271dc5BfAd88b2a"
+   ],
+   [
+    "2024-09-20T15:09:23.000000Z",
+    "0x538f9406",
+    "0x2e1c08E457F0E0F462Ef99eC9271dc5BfAd88b2a"
+   ],
+   [
+    "2024-09-20T04:08:47.000000Z",
+    "0x538f9406",
+    "0x2e1c08E457F0E0F462Ef99eC9271dc5BfAd88b2a"
+   ]
+  ]
+ },
+ "governance": "governor not identified (the committee's creator and the operator are not governors); upgrade activation delay 0",
+ "escrow_usd": {
+  "eth_usd": 50,
+  "tokens_usd": 27,
+  "total": 77,
+  "note": "USDC $21, USDT $6"
+ },
+ "external": "no L2BEAT page found for this project"
+}

@@ -1,0 +1,28 @@
+{
+  "as_of": "2026-11-17",
+  "method": "Blockscout transactions/internal-transactions and verified source; cast via eth.drpc.org (latest, 2026-11-17); Blockscout balances",
+  "sample_tx": {
+    "hash": "0x94d9efe859e0fb47770b7ecbdf6f8fa089c53e614e589f1874d6ce95e86a26c6",
+    "block": 26431621,
+    "path": "EOA 0xd1eb8e69a9f1504c52d5523d4b447b9b9ad77da7 -> CrossProxy 0xfceaaaeb8d564a9d0e71ef36f027b9d162bc334e smgRelease -> delegatecall 0x86ec03f7bafab24f69ebc456cc429b6f389ea4e4 (implementation, unverified) -> OracleProxy 0xbb38d10033b26f3836a8c1e41788206868b9f228 (storeman group info) -> RapidityLibV4 0xe0c8c2fdc6fc440bd1ec918299585321494536ff -> TokenManagerProxy 0xbab93311de250b5b422c705129b3617b3cb6e9e1 -> WBTC transfer -> SignatureVerifier 0x9276ee38a5250e2f7fbe00a12ec17d09b5d28f3d -> Bn128SchnorrVerifier 0x84271540f80e8879826c377ebc496dfae270321a"
+  },
+  "CrossProxy 0xfceaaaeb8d564a9d0e71ef36f027b9d162bc334e": {
+    "owner()": "0xa1223a59a55eaad135bce9f513181c388072cc71 (GroupApprove)",
+    "implementation()": "0x86ec03f7bafab24f69ebc456cc429b6f389ea4e4 (no verified source)",
+    "getPartners()": ["0xbab93311de250b5b422c705129b3617b3cb6e9e1 TokenManagerProxy", "0xbb38d10033b26f3836a8c1e41788206868b9f228 OracleProxy", "0x34d7ece3a2846dc90a763f42f46898f94bfcbabd", "0x0000000000000000000000000000000000000000", "0x9276ee38a5250e2f7fbe00a12ec17d09b5d28f3d SignatureVerifier"],
+    "holdings": {"eth": 20.535, "eth_usd": 37404, "tokens_usd": 807581, "total_usd": 844985, "top": "WBTC 7.2017 (465,464), USDC 162,556, USDT 162,206, RLUSD 8,018, DEGA, OCEAN, LINK, MKR"}
+  },
+  "SignatureVerifier 0x9276ee38a5250e2f7fbe00a12ec17d09b5d28f3d": {
+    "source": "verified (Blockscout): verify(curveId, ...) dispatches to verifierMap[curveId] (lines 198-208); register(curveId, verifierAddress) onlyOwner (line 212)",
+    "owner()": "0xa1223a59a55eaad135bce9f513181c388072cc71",
+    "verifierMap": {"0": "0x0", "1": "0x84271540f80e8879826c377ebc496dfae270321a", "2-10, 256": "0x0"}
+  },
+  "GroupApprove 0xa1223a59a55eaad135bce9f513181c388072cc71": {
+    "source": "verified (Blockscout): proposal(chainId, to, data) onlyFoundation; approveAndExecute(proposalId, smgID, r, s) onlySmg -> _verifyMpcSignature -> IMPC(signatureVerifier).verify(curveID, s, PKx, PKy, Rx, Ry, sigHash) (line 204); halt(to, halt) onlyFoundation; transferFoundation onlySelf",
+    "foundation()": "0x4ced9c0ea79ee6181600777d5b6bade7f3d301bf (EOA, no code)"
+  },
+  "trace": {
+    "Bn128SchnorrVerifier alltime (data/agg/alltime_caller.parquet)": "ecmul 38,712, ecadd 19,356, sha256 19,356 calls; blocks 11,176,105-24,682,915",
+    "trace year (y1_caller)": "4,013 transactions"
+  }
+}

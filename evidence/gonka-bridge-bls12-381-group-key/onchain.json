@@ -1,0 +1,96 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0xb964f6fed8e5f6a9b85c95241a1c268fae04de9b": {
+   "code_size": 13889,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0xeec5ca4286a5a16ea87c0612c55f73dd982a36c6",
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 2.998538,
+   "top_tokens": [
+    [
+     "USDC",
+     2
+    ],
+    [
+     "USDT",
+     1
+    ]
+   ],
+   "held_usd": 3
+  },
+  "0xab3883735707d751291833ebfa7932c4f60a5821": {
+   "code_size": 13889,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x5e462df25607418dfdf2f2b54ff3b34f1410fc25",
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 1.279097319294,
+   "top_tokens": [
+    [
+     "USDT",
+     1
+    ]
+   ],
+   "held_usd": 1
+  },
+  "0xef3bba27779c4b08b3b3534407113747d6601180": {
+   "code_size": 13889,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0xce8cad52e9787b13ba41c92ad7e8dcc5921866b4",
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 2.60815734,
+   "top_tokens": [
+    [
+     "USDT",
+     3
+    ]
+   ],
+   "held_usd": 3
+  },
+  "0xdcd4cebe3917a8f1728b8af61299085edfd91f44": {
+   "code_size": 13889,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0xeec5ca4286a5a16ea87c0612c55f73dd982a36c6",
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 2.997882,
+   "top_tokens": [
+    [
+     "USDT",
+     3
+    ]
+   ],
+   "held_usd": 3
+  },
+  "0x27261349a8a623b9c798f2ff9388eba22e5b0525": {
+   "code_size": 13597,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0xce8cad52e9787b13ba41c92ad7e8dcc5921866b4",
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 2.997882,
+   "top_tokens": [
+    [
+     "USDT",
+     3
+    ]
+   ],
+   "held_usd": 3
+  }
+ }
+}

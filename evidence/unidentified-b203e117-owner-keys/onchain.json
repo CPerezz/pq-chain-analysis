@@ -1,0 +1,41 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0xb203e1170a30e68dc5b20aac08aa42619842c79e": {
+   "code_size": 2124,
+   "kind": "eip1967",
+   "implementation": "0x471756ad2124b04dc1c5c364ee6a9e29f8c3f67a",
+   "admin": "0xca30217205742ecdc440b736aa65e0d28bd823c2",
+   "owner": null,
+   "safe": null,
+   "admin_owner": null,
+   "eth": 37006.84842362871,
+   "tokens_usd": 83430048.16351789,
+   "top_tokens": [
+    [
+     "USDT",
+     83430042
+    ],
+    [
+     "AMERICA",
+     6
+    ],
+    [
+     "Q*",
+     0
+    ],
+    [
+     "SHEESHA",
+     0
+    ],
+    [
+     "GRG",
+     0
+    ]
+   ],
+   "held_usd": 150472395
+  }
+ }
+}

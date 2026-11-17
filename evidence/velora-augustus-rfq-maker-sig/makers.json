@@ -1,0 +1,88 @@
+{
+ "source": "Blockscout /addresses/<rfq>/logs, latest pages",
+ "fills": 600,
+ "block_range": [
+  26339038,
+  26425893
+ ],
+ "makers": [
+  {
+   "maker": "0xbee3211ab312a8d065c4fef0247448e17a8da000",
+   "fills": 597,
+   "maker_assets": {
+    "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": 147,
+    "0xdac17f958d2ee523a2206206994597c13d831ec7": 132,
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": 124,
+    "0x514910771af9ca656af840dff83e8264ecf986ca": 57,
+    "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599": 29,
+    "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9": 21
+   }
+  },
+  {
+   "maker": "0xc9c1d3727c8b9130795c7e1b7e784277359cf0bf",
+   "fills": 2,
+   "maker_assets": {
+    "0xdac17f958d2ee523a2206206994597c13d831ec7": 2
+   }
+  },
+  {
+   "maker": "0x2e686edd2a096bebb9da544580a94f6c749d6714",
+   "fills": 1,
+   "maker_assets": {
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": 1
+   }
+  }
+ ],
+ "reads": {
+  "block": 26431531,
+  "rpc": "ethereum-rpc.publicnode.com latest",
+  "note": "balanceOf and allowance(maker, AugustusRFQ) for USDC/USDT/WETH; raw units",
+  "makers": {
+   "0xbee3211ab312a8d065c4fef0247448e17a8da000": {
+    "code": "TransparentUpgradeableProxy (1855 bytes), impl 0xe89e1c84076dbd917f6d71608db579d3f4995487 per Blockscout",
+    "USDC": {
+     "balance": 2154414012075,
+     "allowance": "max"
+    },
+    "USDT": {
+     "balance": 4094537214512,
+     "allowance": "max"
+    },
+    "WETH": {
+     "balance": 1521556350281433609289,
+     "allowance": "max"
+    }
+   },
+   "0xc9c1d3727c8b9130795c7e1b7e784277359cf0bf": {
+    "code": "none (EOA)",
+    "USDC": {
+     "balance": 0,
+     "allowance": 0
+    },
+    "USDT": {
+     "balance": 53494000100,
+     "allowance": 0
+    },
+    "WETH": {
+     "balance": 0,
+     "allowance": 0
+    }
+   },
+   "0x2e686edd2a096bebb9da544580a94f6c749d6714": {
+    "code": "none (EOA)",
+    "USDC": {
+     "balance": 0,
+     "allowance": 0
+    },
+    "USDT": {
+     "balance": 0,
+     "allowance": 0
+    },
+    "WETH": {
+     "balance": 983846878877600,
+     "allowance": 1938503877600
+    }
+   }
+  }
+ }
+}

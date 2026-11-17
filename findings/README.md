@@ -1,0 +1,110 @@
+# findings/
+
+One file per finding: one project and one mechanism, with every affected mainnet contract. A project with two
+unrelated mechanisms (for example a SNARK verifier and a blob opening) has two findings that list each other in
+`related`. The files are the source of truth; `generated/` is built from them by `tools/build.py`.
+
+## Threat model
+
+A finding answers: **if someone has a cryptographically relevant quantum computer (CRQC), what can they do through
+this contract, and what can the people who run it change without a protocol change?**
+
+- A CRQC recovers a secret from public data for every pre-quantum scheme on Ethereum: secp256k1 and P-256 private keys
+  from public keys (any key that has signed on-chain), BLS secret keys from public keys, RSA keys from moduli, and the
+  trapdoor of a pairing-based trusted setup (the KZG/Groth16/PLONK "toxic waste") from its public parameters. With the
+  trapdoor, proofs and KZG openings for false statements verify.
+- User accounts can move to post-quantum authorisation (EIP-8141 frame transactions with PQ verification, or smart
+  accounts with PQ signers). Protocol changes that would protect contracts without their cooperation (EIP-8151, which
+  makes `ecrecover` fail for accounts with real code) are not assumed; a finding says when one would help.
+- No CRQC exists today. Severity ranks what to fix first so that nothing depends on a protocol rescue, not how soon.
+
+Scope: Ethereum mainnet contracts that verify pre-quantum cryptography on a path that moves, releases or locks value,
+or gates a user action. User EOAs themselves are out of scope; wallet contracts whose owners are ECDSA keys are in
+scope (pattern PQ-12), because the wallet code decides what an owner can change.
+
+## Fields
+
+| Field | Values | Meaning |
+|---|---|---|
+| `id` | slug = file name | Stable name, `<project>-<mechanism>` |
+| `title` | text | One line: what a quantum attacker can do, or what breaks for post-quantum users |
+| `project` | slug | The team that has to act |
+| `status` | `confirmed`, `candidate`, `not-affected`, `duplicate` | `confirmed`: the check was read in verified source or bytecode and the current on-chain state was read; `candidate`: classified but not yet both; `not-affected` needs `severity: NONE`; `duplicate` needs `duplicate_of` |
+| `severity` | `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`, `NONE`, `UNRATED` | See "Severity" |
+| `patterns` | list of `PQ-n` | From `patterns.md` |
+| `primitives` | list | `ecrecover`, `bn254`, `kzg`, `bls12381`, `p256`, `sw_p256`, `sw_secp256k1`, `sw_bn254`, `sw_ed25519`, `sw_bls12381`, `rsa` (`sw_` = curve maths done in software via `modexp`) |
+| `trigger` | `user-key`, `operator-key`, `committee-keys`, `trusted-setup`, `owner-keys`, `issuer-key`, `none` | What the attacker must break |
+| `impact` | `funds-loss`, `funds-locked`, `liveness`, `none`, `unknown` | Worst effect if nobody acts. `liveness`: post-quantum users cannot use the path, nothing is taken |
+| `alternative` | `sole`, `key-rotation-only`, `alternative-exists`, `configurable-verifier` | Whether the pre-quantum check can be avoided: the only way in; signers rotate but the scheme is fixed; another path exists (ERC-1271, pre-sign, on-chain approval); the consumer can point at a new verifier |
+| `role` | `core`, `auxiliary` | Whether the contract's main purpose needs the check |
+| `contracts[]` | see below | One entry per affected deployment: the address users call (the proxy, not its implementation) |
+| `families[]` | see below | Many deployments of the same code (Safe proxies, clones), as one entry |
+| `fix.layer` | `contract-upgrade`, `onchain-config`, `new-deployment`, `account-migration`, `offchain`, `protocol`, `none`, `unknown` | Where the fix happens |
+| `fix.who_acts` | text | Who must act, with the address of the admin or owner where known |
+| `fix.protocol_change` | `required`, `helps`, `not-needed` | Whether an Ethereum protocol change is needed (`required`), would protect users without the team (`helps`, e.g. EIP-8151), or is irrelevant |
+| `evidence.level` | `onchain-read`, `source-read`, `bytecode`, `trace` | Strongest evidence: `source-read` = the check was read in verified source; `bytecode` = unverified, inferred from selectors and constants; `trace` = only seen calling a precompile |
+| `evidence.links` | list | Files under `evidence/<id>/` |
+| `sources[]` | `by`, `who`, `ref`, `date`, `verdict`, `rating` | One entry per classification or independent check; `rating` is that source's own rating |
+| `related` | list of ids | Findings that share contracts (same contracts, different mechanism), share code or a stack (one deployment per team), or were split from one another. Links go both ways |
+
+`contracts[]` entries: `address`, `implementation` (current, for a proxy), `name`, `upgradeable` (`yes`, `no`,
+`config-only`, `unknown`), `admin` (who can upgrade or reconfigure), `value_usd` and `value_basis` (`held` = ETH and
+tokens it holds; `market-cap` = circulating supply of a token whose permit is affected, an upper bound; `escrow` =
+what a forged message or proof could release elsewhere), `value_as_of`, `last_active` (last transaction that called the
+contract, any function), `txs_30d` (transactions that called it in the 30-day window, any function; see
+`generated/README.md`).
+
+`families[]` entries: `code`, `name`, `instances`, `list`, `upgradeable`, `value_usd`, `value_basis`, `value_as_of`.
+
+## Severity
+
+Rated first by whether the exposure can be removed without an Ethereum protocol change, and how hard that is; then
+the value exposed can lower the rating, never raise it. Each source's own rating is kept in `sources[].rating`.
+
+| Rating | Rule |
+|---|---|
+| CRITICAL | Pooled funds (what the contract holds or can release) can be taken by forging one operator key, a committee, or a proof, **and** no fix can be counted on: the verification cannot be changed (immutable, no admin) and its users cannot all move |
+| HIGH | No fix without a protocol change can be counted on, and funds can be taken or stuck: pooled funds whose fix needs an owner nobody can reach or many independent parties; or users' own funds that stay forgeable after they migrate their account, in a contract that cannot change (only every user moving, or a protocol change such as EIP-8151, protects them); or a dependency on KZG blobs that neither an existing path nor an upgrade can replace (for example with calldata data availability), so only a protocol change replaces it |
+| MEDIUM | Fixable without a protocol change, but the fix is a contract upgrade, a governance vote, a new deployment that users move to, owners migrating their accounts, or several parties acting. Also: post-quantum users are locked out of a core function with no alternative |
+| LOW | An alternative path already exists and nothing can be taken through the check (for an operator, committee or prover: one known party switches to it); or one known operator changes a setting; or the check guards only an auxiliary feature through which nothing can be taken; or the path is dormant and holds nothing; or a MEDIUM case with under about USD 50k exposed |
+| NONE | No exposure beyond the user's own account key (for example: account code checked first, full-length ERC-1271 for contracts) |
+| UNRATED | Not enough established to apply the steps |
+
+### Applying the rubric
+
+Apply in order, from the finding's checked facts.
+
+1. **Reach.** If the path had no activity in the last 12 months and the contracts hold nothing: **LOW**.
+2. **Impact.** What a CRQC holder can do if nobody acts: take pooled funds (forged operator, committee or proof);
+   take users' own funds through their signatures (forged user key); lock funds; or only lock post-quantum users out
+   of the path (`liveness`). Sets `impact`.
+3. **Who can fix it, and how.** From `upgradeable`, `alternative`, `fix.layer`, `fix.who_acts`: an admin upgrade, a
+   governance vote, a new verifier the consumer points at, a new deployment users move to, owners migrating.
+4. **Rate by the fix.** Pooled loss with no fix that can be counted on: CRITICAL. User-key loss in a contract that
+   cannot change, pooled loss whose fix depends on many parties or an unknown owner, or a KZG dependency with no
+   fallback: HIGH. A fix by upgrade, vote, release, new deployment or migration (including an upgrade that adds or
+   restores calldata data availability): MEDIUM. An existing alternative through which nothing can be taken (such as a
+   calldata path the operators can already use in the deployed contracts, when a forged opening only withholds data),
+   one operator's setting, or an auxiliary feature that cannot move funds: LOW.
+5. **Lower by value.** If under about USD 50k is exposed (measured; `value_usd` with its basis), lower one level.
+   Unmeasured value lowers nothing.
+6. **Unknown fixability.** If it is not established who can change the verification, rate as if nobody can.
+7. **The team's answer.** When the team says whether and how it can fix it, that replaces step 3. Record it in History.
+
+A re-rating keeps the old rating in History with the step that decided the new one.
+
+## Checks before you state a fact
+
+1. **Names from the chain or verified source**, not explorer labels: quote the contract or function name from the
+   source, or the selector.
+2. **Upgradeability from storage**, not from a name: read the EIP-1967 slots, `owner()`, the Safe singleton; record
+   the block.
+3. **Value with its basis and date.** Never present a market cap or a 30-day flow as funds held.
+4. **Unverified code is `bytecode` evidence**, and the finding stays `candidate` unless a second check confirms it.
+5. **Never invent** an owner, a value or a fix: use `null` or `unknown`, and say in the body what is missing.
+
+## Do not
+
+- Do not delete a published finding that turns out wrong: set `status: not-affected` with `severity: NONE`, or
+  `duplicate` with `duplicate_of`, so links to it keep working.
+- Do not edit `generated/`; run `tools/build.py`.

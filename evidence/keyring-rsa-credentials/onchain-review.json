@@ -1,0 +1,27 @@
+{
+  "reviewer": "Review02",
+  "date": "2026-11-17",
+  "block": 26431454,
+  "rpc": "https://ethereum-rpc.publicnode.com",
+  "consumer": {
+    "address": "0xb0b5e2176e10b12d70e60e3a68738298a7dfe666",
+    "name": "ERC1967Proxy -> KeyringCore (UUPS, AccessControl)",
+    "found_via": "tx 0xd6a96c17154bfdcbb586bde14111ab6f4442e4a32c2d203c39f8f2a155447a21 (block 26385463, createCredential selector 0x642e3d74), the last call recorded in activity.json",
+    "eip1967_implementation": "0x2b3cf9e770cae258768b15c467fbae79bcf02c8c (KeyringCore, verified on Sourcify)",
+    "signatureChecker()": "0x899cbf89b644e79f9042c4c96fc513d31063872b",
+    "eth_balance": "0.323323528751602013 (credential fees, collectable by OPERATOR_ROLE)",
+    "roles (hasRole at this block)": {
+      "DEFAULT_ADMIN_ROLE (setSignatureChecker, reinitialize)": "0x39e9922ac1c57e96f0165ce62c6d3582ca24c46a (Safe, 2 of 4: 0x8940a77f7d0df73d9d38290e90db1ba2161c8e2d, 0xb32c0b10a8fa4e01fed131823be5ae695ddf241b, 0xd793beb2b87eb2ec1d96f045c5ea12a667a946ae, 0x67c3a507ac259ca3ac676da639a76e62516d45fb)",
+      "UPGRADER_ROLE": "0xec0fdc75a3ebdbc7280af7fb11db3e70ed79efa0 (Safe, 1 of 1: 0xa0f8d0860f04853a5ba3465e69dc790b3539c0ba)",
+      "KEY_MANAGER_ROLE (registerKey, revokeKey)": "0x4173b60205d3397495a329a2b7ed6f8b9920460f (Safe, 1 of 2: 0xa0f8d0860f04853a5ba3465e69dc790b3539c0ba, 0x0b50beae6aac0425e31d5a29080f2a7dec22754a)",
+      "BLACKLIST_MANAGER_ROLE": "0x36974598b4f0d588fe4c66d8e8f84f91e99d8a43 (Safe)",
+      "OPERATOR_ROLE": "0xc426d7d68fa3ad5e21770a8d9185b7d63179cbe5 (Safe)"
+    },
+    "role_candidates": "addresses taken from the proxy creation tx 0x11b01c9ffcce5a97ff0c9c447d309b05023f7d438a812f07415f3ff25efe095c initialize calldata; other holders granted later were not enumerated"
+  },
+  "checker": {
+    "address": "0x899cbf89b644e79f9042c4c96fc513d31063872b",
+    "creator": "0x0b50beae6aac0425e31d5a29080f2a7dec22754a",
+    "source": "Blockscout verified; checkSignature -> pkcs1Sha256Raw(packMessage(...), signature, e = 0x03, key) -> modexp precompile 0x05"
+  }
+}

@@ -1,0 +1,468 @@
+{
+ "block": 26431535,
+ "as_of": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "eth_usd": 1811.62,
+ "eth_usd_source": "evidence/*/onchain.json eth_usd (repo price 2026-11-17)",
+ "token_prices": "Blockscout /api/v2/addresses/<addr>/tokens exchange_rate, read 2026-11-17 (current balances; top 4 ERC20Vault balances cross-checked with balanceOf at block 26431535, equal)",
+ "composition": {
+  "pacaya_inbox": {
+   "address": "0x06a9ab27c7e2255df1815e6cc0168d7755feb19a",
+   "ens": "inbox.based.taiko.eth",
+   "implementation": "0x38dd73fed93f8051e7a0ddd6fb3b9e7c25668187 (MainnetInbox, Pacaya TaikoInbox)",
+   "verifier()": "0xb16931e78d0ce3c9298bbeef3b5e2276d34b8da1",
+   "shastaForkTimestamp()": "1775135700 (2026-04-02 13:15 UTC)",
+   "getStats2()": "numBatches 1363318, lastVerifiedBatchId 1363317, paused false",
+   "note": "retired: after shastaForkTimestamp _verifyBatches no longer syncs to SignalService; SignalService saveCheckpoint only accepts the Shasta inbox (address found once in implementation bytecode, Pacaya inbox address absent)"
+  },
+  "pacaya_mainnet_verifier": {
+   "address": "0xb16931e78d0ce3c9298bbeef3b5e2276d34b8da1",
+   "implementation": "0x8c520bb75590deabc30c4fcafd8778a43e5481b9 (MainnetVerifier, ComposeVerifier)",
+   "taikoInbox": "0x06a9ab27c7e2255df1815e6cc0168d7755feb19a",
+   "sgxGethVerifier": "0x7e6409e9b6c5e2064064a6cc994f9a2e95680782",
+   "sgxRethVerifier": "0x9e322fc59b8f4a29e6b25c3a166ac1892aa30136",
+   "risc0RethVerifier": "0x73ee496da20e5c65340c040b0d8c3c891c1f74ae (proxy, riscoGroth16Verifier -> 0x7cca385bdc790c25924333f5adb7f4967f5d1599 RiscZeroGroth16Verifier 3.0.0)",
+   "sp1RethVerifier": "0xbee1040d0aab17ae19454384904525ae4a3602b9 (proxy TaikoSP1Verifier, sp1RemoteVerifier -> 0xff5adab685362dc4c33536a65af5873738d1216b SP1 Plonk v5.0.0)",
+   "rule": "areVerifiersSufficient: exactly two sub-proofs, SGX_GETH plus one of SGX_RETH, RISC0_RETH, SP1_RETH"
+  },
+  "shasta_inbox": {
+   "address": "0x6f21c543a4af5189ebdb0723827577e1ef57ef1f",
+   "implementation": "0xa18431d42c8df9778905fbea912acf1881b49d2e (MainnetInbox, Shasta Inbox)",
+   "owner()": "0x75ba76403b13b26ad1bec70d6ee937314eeacd0a",
+   "paused()": false,
+   "getConfig()": {
+    "proofVerifier": "0x7284aac05555ae6559bdad8b4221ec9584254eec",
+    "proposerChecker": "0xfd019460881e6eec632258222393d5821029b2ac",
+    "proverWhitelist": "0xea798547d97e345395da071a0d7ed8144cd612ae",
+    "signalService": "0x9e0a24964e5397b566c1ed39258e21ab5e35c77c",
+    "bondToken": "0x10dea67478c5f8c5e2d90e5e9b26dbe60c54d800",
+    "provingWindow": 14400,
+    "permissionlessProvingDelay": 432000
+   },
+   "getCoreState()": "nextProposalId 49593, lastFinalizedProposalId 49589",
+   "found_via": "CheckpointSaved logs of SignalService 0x9e0a2496... blocks 26431000-26431535 emitted in txs to this contract"
+  },
+  "zk_required_verifier": {
+   "address": "0x7284aac05555ae6559bdad8b4221ec9584254eec",
+   "proxy": false,
+   "owner": null,
+   "sgxGethVerifier": "0x41e79eb4f03abb5df8716b759528dc5d8f6a84ee",
+   "tdxGethVerifier": "0x0",
+   "opVerifier": "0x0",
+   "sgxRethVerifier": "0x9d3c595bff6ff7d2b2cbdecf94ad917eb2fcffd8",
+   "risc0RethVerifier": "0x059daf31f571da48ab4e74ae12f64f907681cd8b",
+   "sp1RethVerifier": "0x73a0db393ef87ce781ac7957be10d6628432100f",
+   "rule": "areVerifiersSufficient: exactly two sub-proofs, (SGX_GETH or SGX_RETH) + (RISC0_RETH or SP1_RETH), or RISC0_RETH + SP1_RETH"
+  },
+  "secure_sgx_verifiers": {
+   "0x41e79eb4f03abb5df8716b759528dc5d8f6a84ee": {
+    "owner": "0x75ba76403b13b26ad1bec70d6ee937314eeacd0a",
+    "automataDcapAttestation": "0x0ffa4a625ed9db32b70f99180fd00759fc3e9261",
+    "registrar": "0x9cbee534b5d8a6280e01a14844ee8af350399c7f",
+    "nextInstanceId": 4,
+    "instances(3)": "0x4671851681a276f8beb88d998f10be21b8e5ac95 validSince 1792373375"
+   },
+   "0x9d3c595bff6ff7d2b2cbdecf94ad917eb2fcffd8": {
+    "owner": "0x75ba76403b13b26ad1bec70d6ee937314eeacd0a",
+    "automataDcapAttestation": "0x8d7c954960a36a7596d7ea4945ddf891967ca8a3",
+    "registrar": "0x9cbee534b5d8a6280e01a14844ee8af350399c7f",
+    "nextInstanceId": 4,
+    "instances(3)": "0x538432c550cc507d429c84aa05c2d63b0ca5fe55 validSince 1792373375"
+   },
+   "dcap_attestation": "AutomataDcapV3Attestation proxies (owner 0x75ba7640...) -> sigVerifyLib 0x47bb416ee947fe4a4b655011af7d6e3a1b80e6e9 verifyES256Signature (ECDSA P-256 over sha256) for PCK cert chain, QE report and quote signatures"
+  },
+  "zk_wrappers": {
+   "0x73a0db393ef87ce781ac7957be10d6628432100f": {
+    "name": "SP1Verifier (Taiko wrapper, Ownable2Step)",
+    "owner": "0x75ba76403b13b26ad1bec70d6ee937314eeacd0a",
+    "sp1RemoteVerifier": "0x3b6041173b80e77f038f3f2c0f9744f04837185e (SP1VerifierGateway, owner 0xcafef00d348adbd57c37d1b77e0619c6244c6878)"
+   },
+   "0x059daf31f571da48ab4e74ae12f64f907681cd8b": {
+    "name": "Risc0Verifier (Taiko wrapper, Ownable2Step)",
+    "owner": "0x75ba76403b13b26ad1bec70d6ee937314eeacd0a",
+    "riscoGroth16Verifier": "0x8eab2d97dfce405a1692a21b3ff3a172d593d319 (RiscZeroVerifierRouter, owner 0x0b144e07a0826182b6b59788c34b32bfa86fb711)"
+   }
+  },
+  "sp1_gateway_routes": {
+   "0x5a093a2f (used by all 41 proofs in blocks 26425072-26431472)": "0xc3c6dddac8829b233dc6536ec024775a57b0af2a SP1Verifier Plonk v6.1.0, frozen false",
+   "0x1b34fe11 (v4.0.0-rc.3 Plonk)": "0xe00a3cbfc45241b33c0a44c78e26168cbc55ec63, frozen true",
+   "0xd4e8ecd2 (v5.0.0 Plonk)": "0x0459d576a6223feea177fb3df53c9c77bf84c459, frozen true"
+  },
+  "risc0_router_routes": {
+   "0xc101b42b (1.2.0, 0xf31de43c...)": "SelectorRemoved",
+   "0xbb001d44 (2.2.0)": "0x1efdd13f831ceeea14940806705a53d3211cd698 estop, verifier 0xafb31f5b70623cdf4b20ada3f7230916a5a79df9, paused false",
+   "0x73c457ba (3.0.0)": "0x9f9994eb4cb5200198fefb470f8b50301662e696 estop, verifier 0x2a098988600d87650fb061ffaff08b97149fa84d, paused false"
+  },
+  "recent_proofs": {
+   "blocks": "26425072-26431472",
+   "prove_txs": 41,
+   "combination": "SGX_GETH (0x41e79eb4..., 89-byte proof) + SP1_RETH selector 0x5a093a2f in all 41",
+   "sender": "0xa5cb34b75bd72f15290ef37a01f06183e8036875 (EOA, nonce 21901; isProverWhitelisted -> true, proverCount 2)"
+  },
+  "proofs_30d": {
+   "window_blocks": [
+    26208000,
+    26423999
+   ],
+   "window_dates": [
+    "2026-10-16",
+    "2026-11-16"
+   ],
+   "source": "Proved(uint48,uint48,uint48,address) logs of 0x6f21c543... via Blockscout getLogs, tx input decoded on a remote host (prove(bytes,bytes) -> SubProof[] verifierId)",
+   "prove_txs": 1355,
+   "first_block": 26208098,
+   "last_block": 26423962,
+   "combinations": {
+    "SGX_GETH+SP1_RETH (gateway selector 0x5a093a2f)": 690,
+    "SGX_GETH+RISC0_RETH (router selector 0x73c457ba)": 665
+   },
+   "sgx_reth_used": 0,
+   "sender": "0xa5cb34b75bd72f15290ef37a01f06183e8036875 (all 1355)",
+   "last_risc0_proof": {
+    "block": 26325763,
+    "date": "2026-11-02",
+    "note": "from a second scan to block 26431535 (Blockscout logs indexed to 26426198): 1369 prove txs, SGX_GETH+SP1 704 (last block 26426198), SGX_GETH+RISC0 665 (last block 26325763)"
+   },
+   "script": "evidence/taiko-zk-verifiers/prove_scan.py"
+  },
+  "sgx_instance_admin_30d": {
+   "0x41e79eb4 and 0x9d3c595b": "InstanceDeleted at block 26223334 (tx 0x3f8f55e6..., DAO plugin 0x989e3482 execute) and InstanceAdded at block 26223342 (2026-10-19, tx 0xa7746918..., registrar Safe 0x9cbee534 execTransaction -> registerInstance)"
+  },
+  "pacaya_inbox_bonds": {
+   "TAIKO_balance": 812589.255,
+   "usd_at_blockscout_rate_0.058361": 47424,
+   "note": "liveness bonds; all Pacaya batches verified (numBatches-1 == lastVerifiedBatchId), so no transition left for a forged proof; not counted as escrow"
+  },
+  "shasta_inbox_balance": {
+   "eth": 0.001,
+   "TAIKO": 0
+  }
+ },
+ "governance": {
+  "0x75ba76403b13b26ad1bec70d6ee937314eeacd0a": "ERC1967 proxy, implementation 0x4347df63bdc82b8835fc9ff47bc5a71a12cc0f06 TaikoDAOController (controller.taiko.eth), owner() 0x9cdf589c941ee81d75f34d3755671d614f7cf261",
+  "0x9cdf589c941ee81d75f34d3755671d614f7cf261": "Aragon OSx DAO proxy (dao.taiko.eth); Executed events all from 0x989e348275b659d36f8751ea1c10d146211650be",
+  "0x989e348275b659d36f8751ea1c10d146211650be": "OptimisticTokenVotingPlugin: governanceSettings minVetoRatio 100000 (10%), timelockPeriod 604800",
+  "0xd7da1c25e915438720692bc55eb3a7170ca90321": "Multisig (Security Council standard proposals): onlyListed true, minApprovals 3, destinationProposalDuration 864000, signerList 0x0f95e6968ec1b28c794cf1ad99609431de5179c2 (5 signers)",
+  "0x2affadeb2ef5e1f2a7f58964ee191f1e88317ecd": "EmergencyMultisig: onlyListed true, minApprovals 4, same signerList",
+  "0x9cbee534b5d8a6280e01a14844ee8af350399c7f": "Safe 1.4.1, threshold 4 of 6 owners; pauser of Bridge and SignalService, owner of QuotaManager, SGX registrar"
+ },
+ "escrow": {
+  "bridge": {
+   "address": "0xd60247c6848b7ca29eddf63aa924e53db6ddd8ec",
+   "eth": 878.0401912759244,
+   "eth_usd_value": 1590675.17131929,
+   "tokens_priced_usd": 0.8843884710000001,
+   "n_tokens": 10,
+   "n_unpriced": 8,
+   "tokens_priced": [
+    {
+     "token": "0x2b591e99afe9f32eaa6214f7b7629768c40eeb39",
+     "symbol": "HEX",
+     "balance": 1895.0,
+     "exchange_rate": "0.0004666",
+     "usd": 0.8842070000000001
+    },
+    {
+     "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+     "symbol": "WETH",
+     "balance": 1e-07,
+     "exchange_rate": "1814.71",
+     "usd": 0.000181471
+    }
+   ],
+   "tokens_unpriced": [
+    "STEAK",
+    "DMusd",
+    "01",
+    "yRise",
+    "FAM",
+    "AIMevBot.cc",
+    "DIXT",
+    "QCORE"
+   ],
+   "implementation": "0xe6bf63dcc936063cad2300f32daa67d9ee5c57b6",
+   "owner": "0x75ba76403b13b26ad1bec70d6ee937314eeacd0a",
+   "signalService()": "0x9e0a24964e5397b566c1ed39258e21ab5e35c77c",
+   "quotaManager()": "0xbacb003f0b13ceaf09eb9baf5915a640bd4bc6cc",
+   "resolver()": "0x8efa01564425692d0a0838dc10e300bd310cb43e"
+  },
+  "erc20_vault": {
+   "address": "0x996282ca11e5deb6b5d122cc3b9a1fcaad4415ab",
+   "eth": 0.0,
+   "eth_usd_value": 0.0,
+   "tokens_priced_usd": 8356107.214125142,
+   "n_tokens": 52,
+   "n_unpriced": 22,
+   "tokens_priced": [
+    {
+     "token": "0x10dea67478c5f8c5e2d90e5e9b26dbe60c54d800",
+     "symbol": "TAIKO",
+     "balance": 137975152.8134403,
+     "exchange_rate": "0.058361",
+     "usd": 8052367.893345189
+    },
+    {
+     "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+     "symbol": "USDC",
+     "balance": 221689.828572,
+     "exchange_rate": "0.999622",
+     "usd": 221606.0298167998
+    },
+    {
+     "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+     "symbol": "WETH",
+     "balance": 20.7048201,
+     "exchange_rate": "1814.71",
+     "usd": 37573.244083671
+    },
+    {
+     "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+     "symbol": "USDT",
+     "balance": 33927.50299,
+     "exchange_rate": "0.999294",
+     "usd": 33903.55017288906
+    },
+    {
+     "token": "0xd533a949740bb3306d119cc777fa900ba034cd52",
+     "symbol": "CRV",
+     "balance": 31802.140139975345,
+     "exchange_rate": "0.20577",
+     "usd": 6543.926376602727
+    },
+    {
+     "token": "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
+     "symbol": "WEETH",
+     "balance": 0.5309991659595807,
+     "exchange_rate": "2009.37",
+     "usd": 1066.9737941042026
+    },
+    {
+     "token": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+     "symbol": "WBTC",
+     "balance": 0.01414513,
+     "exchange_rate": "64633",
+     "usd": 914.2421872900001
+    },
+    {
+     "token": "0x9ad37205d608b8b219e6a2573f922094cec5c200",
+     "symbol": "IZI",
+     "balance": 2140403.026072232,
+     "exchange_rate": "0.00042465",
+     "usd": 908.9221450215733
+    },
+    {
+     "token": "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e",
+     "symbol": "CRVUSD",
+     "balance": 416.5664332431502,
+     "exchange_rate": "0.997588",
+     "usd": 415.5616750061677
+    },
+    {
+     "token": "0x000006c2a22ff4a44ff1f5d0f2ed65f781f55555",
+     "symbol": "ZKC",
+     "balance": 14324.154374747872,
+     "exchange_rate": "0.02357507",
+     "usd": 337.69294207548734
+    },
+    {
+     "token": "0xae78736cd615f374d3085123a210448e74fc6393",
+     "symbol": "RETH",
+     "balance": 0.13167794512914616,
+     "exchange_rate": "2134.25",
+     "usd": 281.0336543918802
+    },
+    {
+     "token": "0x0655977feb2f289a4ab78af67bab0d17aab84367",
+     "symbol": "SCRVUSD",
+     "balance": 67.07886465482306,
+     "exchange_rate": "1.11",
+     "usd": 74.45753976685361
+    },
+    {
+     "token": "0xbbbbca6a901c926f240b89eacb641d8aec7aeafd",
+     "symbol": "LRC",
+     "balance": 7669.2565342924445,
+     "exchange_rate": "0.00650362",
+     "usd": 49.87793018155503
+    },
+    {
+     "token": "0x6b175474e89094c44da98b954eedeac495271d0f",
+     "symbol": "DAI",
+     "balance": 27.222338724126065,
+     "exchange_rate": "0.999977",
+     "usd": 27.22171261033541
+    },
+    {
+     "token": "0xd38bb40815d2b0c2d2c866e0c72c5728ffc76dd9",
+     "symbol": "SIS",
+     "balance": 904.64445607,
+     "exchange_rate": "0.01505044",
+     "usd": 13.615297107414172
+    },
+    {
+     "token": "0x2f913c820ed3beb3a67391a6eff64e70c4b20b19",
+     "symbol": "M-BTC",
+     "balance": 0.000120355223792699,
+     "exchange_rate": "58985",
+     "usd": 7.09915287541235
+    },
+    {
+     "token": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+     "symbol": "UNI",
+     "balance": 1.0001,
+     "exchange_rate": "5.17",
+     "usd": 5.170517
+    },
+    {
+     "token": "0xa487bf43cf3b10dffc97a9a744cbb7036965d3b9",
+     "symbol": "DERI",
+     "balance": 8117.468979215564,
+     "exchange_rate": "0.00049849",
+     "usd": 4.046477111449167
+    },
+    {
+     "token": "0xd33526068d116ce69f19a9ee46f0bd304f21a51f",
+     "symbol": "RPL",
+     "balance": 2.0009461120314835,
+     "exchange_rate": "1.25",
+     "usd": 2.5011826400393544
+    },
+    {
+     "token": "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf",
+     "symbol": "CBBTC",
+     "balance": 3.059e-05,
+     "exchange_rate": "64625",
+     "usd": 1.9768787499999998
+    },
+    {
+     "token": "0xd29da236dd4aac627346e1bba06a619e8c22d7c5",
+     "symbol": "MAGA",
+     "balance": 840540.532157701,
+     "exchange_rate": "0.00000106",
+     "usd": 0.8909729640871631
+    },
+    {
+     "token": "0xba50933c268f567bdc86e1ac131be072c6b0b71a",
+     "symbol": "ARPA",
+     "balance": 100.0,
+     "exchange_rate": "0.00807318",
+     "usd": 0.807318
+    },
+    {
+     "token": "0x4d224452801aced8b2f0aebe155379bb5d594381",
+     "symbol": "APE",
+     "balance": 5.0,
+     "exchange_rate": "0.078154",
+     "usd": 0.39077
+    },
+    {
+     "token": "0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568",
+     "symbol": "UNIBTC",
+     "balance": 1.01e-06,
+     "exchange_rate": "70199",
+     "usd": 0.07090099000000001
+    },
+    {
+     "token": "0x5c8d0c48810fd37a0a824d074ee290e64f7a8fa2",
+     "symbol": "AVL",
+     "balance": 1.0,
+     "exchange_rate": "0.01483985",
+     "usd": 0.01483985
+    },
+    {
+     "token": "0x4fbb350052bca5417566f188eb2ebce5b19bc964",
+     "symbol": "GRG",
+     "balance": 0.025,
+     "exchange_rate": "0.063155",
+     "usd": 0.0015788750000000002
+    },
+    {
+     "token": "0x2b591e99afe9f32eaa6214f7b7629768c40eeb39",
+     "symbol": "HEX",
+     "balance": 1.0,
+     "exchange_rate": "0.0004666",
+     "usd": 0.0004666
+    },
+    {
+     "token": "0xc139190f447e929f090edeb554d95abb8b18ac1c",
+     "symbol": "USDTB",
+     "balance": 0.0002,
+     "exchange_rate": "0.999192",
+     "usd": 0.0001998384
+    },
+    {
+     "token": "0xbf5495efe5db9ce00f80364c8b423567e58d2110",
+     "symbol": "EZETH",
+     "balance": 9.995e-08,
+     "exchange_rate": "1970.39",
+     "usd": 0.00019694048050000003
+    },
+    {
+     "token": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+     "symbol": "WSTETH",
+     "balance": 3e-18,
+     "exchange_rate": "2265.04",
+     "usd": 6.79512e-15
+    }
+   ],
+   "tokens_unpriced": [
+    "XOR",
+    "PORT3",
+    "ha138com",
+    "ha138com",
+    "BLOB",
+    "SPARK",
+    "RUBY",
+    "SUSDA",
+    "USDT",
+    "USDT",
+    "USDT",
+    "USDT",
+    "YFTE",
+    "UCAP",
+    "USDC",
+    "yRise",
+    "FAM",
+    "AIMevBot.cc",
+    "DIXT",
+    "QCORE",
+    "Earn rewards at https://reth.farm",
+    "Earn $WBTC rewards at https://wbtc.fi"
+   ],
+   "implementation": "0xd429a698d19b5789ce6eb72d8b3ae9fad3b28a92",
+   "owner": "0x75ba76403b13b26ad1bec70d6ee937314eeacd0a"
+  },
+  "erc721_vault": {
+   "address": "0x0b470dd3a0e1c41228856fb319649e7c08f419aa",
+   "eth": 0.0,
+   "erc20_usd": 0,
+   "note": "50 ERC-721 collections held (Blockscout), unpriced"
+  },
+  "erc1155_vault": {
+   "address": "0xaf145913ea4a56be22e120ed9c24589659881702",
+   "eth": 0.0,
+   "erc20_usd": 0,
+   "note": "21 ERC-1155 collections held (Blockscout), unpriced"
+  },
+  "signal_service": {
+   "address": "0x9e0a24964e5397b566c1ed39258e21ab5e35c77c",
+   "eth": 0.0,
+   "erc20_usd": 0
+  },
+  "addresses_from": "resolver 0x8efa0156... resolve(1, name, true) for bridge, erc20_vault, erc721_vault, erc1155_vault, signal_service",
+  "quota_manager_0xbacb003f": {
+   "quotaPeriod": 86400,
+   "ETH": "250 ETH per day",
+   "TAIKO": "10,000,000 TAIKO per day",
+   "USDC": "250,000 USDC per day"
+  },
+  "total_usd": 9946783,
+  "total_breakdown": {
+   "bridge_eth": 1590675,
+   "bridge_tokens": 1,
+   "erc20_vault_tokens": 8356107,
+   "of_which_TAIKO": 8052368
+  }
+ },
+ "second_read_rpc": "https://eth.drpc.org at block 26431535 for balances of inboxes/wrappers (publicnode refused archive reads)"
+}

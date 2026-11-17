@@ -1,0 +1,27 @@
+{
+ "block": 26431523,
+ "impl": "0x0000000000000000000000007d8837b547f4fea0053571cb149e845fc58e9b2d",
+ "admin": "0x000000000000000000000000fe455bacaf1968f1ae6a322b8ffbe56840e2f590",
+ "owner": "0x230Dfb03F078B0d5E705F4624fCC915f3126B40f",
+ "proxyadmin_owner": "0x230Dfb03F078B0d5E705F4624fCC915f3126B40f",
+ "version": "2",
+ "blockHeight": "33216759 [3.321e7]",
+ "usdc": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+ "zkVerifiers": {
+  "0x0701c58cb73e870b8da74294bb1a820e346546e4d3cdca393aa84d3716d3787c": "0x14DACD534ddc676601B27f41Eb541a7951524a2F 1000 true"
+ },
+ "validatorSets": "[([0x41582701CB3117680687Df80bD5a2ca971bDA964], 0)]",
+ "note": "reads by reviewer Review22, 2026-11-17",
+ "rollup": "RollupV1 proxy 0x367c1eaf14aa06b78ce76bd0243297de79d85270 (TransparentUpgradeableProxy, verified implementation 0x7d8837b547f4fea0053571cb149e845fc58e9b2d), created by 0x6b96f1a8",
+ "owner_safe": {
+  "address": "0x230dfb03f078b0d5e705f4624fcc915f3126b40f",
+  "block": 26431661,
+  "threshold": "2",
+  "owners": "[0x54e22ad93DE7Dad5C83e9b1caC257F3aB384b02c, 0x111e5feA3D613EB866fd41B30c8257C930180428, 0xCa1Df6eDf8adaCA00FC24DBD919578dD2e9EcBb6, 0xAF657A8Fa036bcc99AC3cCd5b7fFa4AaddFBE501]"
+ },
+ "rollup_usdc_balance": "710.762302 USDC (no other priced tokens on Blockscout; 0 ETH)",
+ "old_verifier_0xb553c325": "not among enabled zkVerifiers (zkVerifierKeys has one key); last call block 25100695 (2026-05-15) tx 0xb23bb781eb55f1121c0ecdfdb1bc4827e1cc4ad1395fc911c50bf0426327ee14 via verifyRollup (0xb8cdbd27); runtime 23661 bytes, BN254 modulus present, same size as HonkVerifier 0x14dacd53",
+ "current_verifier_0x14dacd53": "HonkVerifier (Blockscout verified), created 2026-05-15 block 25101626 by 0x0e55252d64535621037b1198d153b69d4fc86f01; enabled under key 0x0701c58c\u2026",
+ "last_RollupVerified": "block 26046439 (2026-09-24), Blockscout logs",
+ "verifyRollup_gates": "onlyProver (ECDSA EOA prover), verifyValidatorSignatures (ECDSA, >2/3 of validator set; current set [0x41582701cb3117680687df80bd5a2ca971bda964]), zk verifier.verify"
+}

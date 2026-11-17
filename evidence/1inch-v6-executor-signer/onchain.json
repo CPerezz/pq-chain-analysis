@@ -1,0 +1,40 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x0bb7a4fdea32910038dec59c20ccae3a6e66b09f": {
+   "code_size": 19207,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 1e-18,
+   "tokens_usd": 0.06489023621612115,
+   "top_tokens": [
+    [
+     "PAXG",
+     0
+    ],
+    [
+     "COMP",
+     0
+    ],
+    [
+     "GNO",
+     0
+    ],
+    [
+     "NMR",
+     0
+    ],
+    [
+     "XAUT",
+     0
+    ]
+   ],
+   "held_usd": 0
+  }
+ }
+}

@@ -1,0 +1,59 @@
+{
+ "block": 26431614,
+ "as_of": "2026-11-17",
+ "proxy": "0xed69f44448f597f55b3a9f1ad5bf61feee54c14c",
+ "implementation_slot": "0x93d20f8b2798392db91b7cf9ebc111fe2e596378",
+ "admin_slot": "0x0 (UUPS)",
+ "implementation_code_bytes": 14715,
+ "selectors": {
+  "34baeab9": "verifyProof(uint256[2],uint256[2][2],uint256[2],uint256[5])",
+  "e21962c8": "unknown (submission; the only selector the submitter calls)",
+  "901129c2": "setImageId(bytes32)",
+  "994b7857": "latestBlockMetadata()",
+  "6d95a6ba": "initialBlockMetadata()",
+  "700c9474": "addUsers(address[])",
+  "2be4a903": "removeUsers(address[])",
+  "4209fff1": "isUser(address)",
+  "13119161": "USER_ROLE()",
+  "4f1ef286": "upgradeToAndCall(address,bytes)",
+  "8456cb59": "pause()",
+  "3f4ba83a": "unpause()",
+  "a217fddf": "DEFAULT_ADMIN_ROLE()",
+  "unknown": [
+   "3565b506",
+   "66004613",
+   "67c86137",
+   "75727665",
+   "7965db0b",
+   "9acdd62b",
+   "a4344bf4",
+   "a4c4a0ae",
+   "e091b1d2"
+  ]
+ },
+ "hasRole(DEFAULT_ADMIN_ROLE, deployer 0x9db30c656fd33ba494ea605f78ae523e5ef55085)": true,
+ "deployer_nonce": 4,
+ "isUser(0xdb8455a49c0e9251c2eba2bfc3cd2cb26938484c)": true,
+ "paused()": false,
+ "latestBlockMetadata()": {
+  "height": "0x152ba61 = 22,264,417",
+  "digest": "0xa0ce3ec141fe8cba14bf969ebb882959961779983e5e0377e67f8e91481cb830"
+ },
+ "initialBlockMetadata()": {
+  "height": "0x9a2108 = 10,100,488",
+  "digest": "0x761fa8d9da00ea2a960f03bf65f5f6e4799d189c8cc852a9f44ab264aa8ef62b"
+ },
+ "ethereum_block_hash_22264417": "0xf0121ca9526093488deaef3ca123f17937fc9e2169123ecac63feaa4ab99dcc1 (does not match the digest)",
+ "sample_submission": {
+  "tx": "0xde57ec08ac0391e0a8d597cbfdf67c91c793f681d408bfea58d037cec3f7d092",
+  "from": "0xdb8455a49c0e9251c2eba2bfc3cd2cb26938484c",
+  "selector": "0xe21962c8",
+  "words": "8 proof words, then (prev height 0x1529e40, prev digest 0xfb35dd\u2026), (new height 0x152ba61, new digest 0xa0ce3e\u2026); each step advances 7,201 heights"
+ },
+ "blockscout": {
+  "deployer_txs": "created implementation and proxy, addUsers, setImageId; nothing else",
+  "submitter_txs": "50 of 50 recent are 0xe21962c8 to this proxy"
+ },
+ "precompile_trace": "3,972 transactions (sha256, ecadd, ecmul, ecpairing), blocks 22,336,209 (2025-04-24) to 24,681,832",
+ "xatu_window_2026-10-16_to_2026-11-16": "38 transactions, all direct calls to the proxy (no contract called it)"
+}

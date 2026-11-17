@@ -1,0 +1,73 @@
+{
+ "block": 26431553,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "chain": {
+  "MessageProxyForMainnet": "0x8629703a9903515818c2feb45a6f6fa5df8da404 (impl 0xd1ffc52c0a5b8513bccfcd26632df1999929788b, verified)",
+  "contractManagerOfSkaleManager()": "0xc04a10fd5e6513242558f47331568abd6185a310",
+  "ContractManager.getContract": {
+   "SkaleVerifier": "0x32f50e2a898f14687f2a714d8b2d405317eb4641",
+   "Schains": "0x0fca003f483313869ee54e86b281348980b4cbf6",
+   "SchainsInternal": "0x836df73065cb143bddf3106e46783d43c12c6012",
+   "KeyStorage": "0x921a97c815e4e7508d1ad639b56a21e942a3a152"
+  }
+ },
+ "escrows": {
+  "DepositBoxEth": {
+   "address": "0x49f583d263e4ef938b9e09772d3394c71605df94",
+   "messageProxy()": "0x8629703a\u2026",
+   "eth": "2.373957418741277559",
+   "usd": 4301
+  },
+  "DepositBoxERC20": {
+   "address": "0x8fb1a35bb6fb9c47fb5065be5062cb8dc1687669",
+   "messageProxy()": "0x8629703a\u2026",
+   "priced_tokens_usd_blockscout": 4956,
+   "top": {
+    "GCR": 2581,
+    "DIVI": 1263,
+    "USDT": "700.0 (balanceOf checked)",
+    "UNP": 154,
+    "HMKR": 125,
+    "BANK": 91,
+    "USDC": "3.004 (balanceOf checked)",
+    "SKL": "402.16 (balanceOf checked)"
+   }
+  },
+  "DepositBoxERC721": {
+   "address": "0x7343d31eb99fd31424bcca9f0a7eafbc1f515f2d",
+   "note": "NFTs, unpriced"
+  },
+  "DepositBoxERC1155": {
+   "address": "0x3c02fdee8e05b6dc4d44a6555b3ff5762d03871a",
+   "note": "unpriced"
+  },
+  "CommunityPool": {
+   "address": "0x588801ca36558310d91234afc2511502282b1621",
+   "eth": "13.325996741044502994",
+   "usd": 24142,
+   "note": "users' gas-reimbursement deposits; refunds relayer gas per message, not counted as escrow"
+  }
+ },
+ "escrow_usd": 9257,
+ "admins": {
+  "SkaleVerifier proxy admin slot": "0xf3f8b7594bf20a0e9502b3191cd4c2b90a1ab4f7",
+  "IMA proxies admin slot": "0xa35d3ffc3812f6cad1ac64fde740a98bfb900627",
+  "owner() of both ProxyAdmins": "0x13fd1622f0e7e50a87b79cb296cbaf18362631c0",
+  "safe_threshold": 3,
+  "safe_owners": [
+   "0x3257ef8b52c34a48dcd140a304afec069c29fa29",
+   "0x3e8eba8d8e1ba34cb5780d541748438aa21b1245",
+   "0xc0d6e904adf6a55511b67907b0917d769f38c5dd",
+   "0x315537a8004a7e598f807e8e0ce2f92e6a497e18",
+   "0xdb90faab0c78fd055cde86c03a8a483f22ec2858"
+  ]
+ },
+ "draft_family_note": "code family 0x0edc21cf\u2026 is the shared AdminUpgradeabilityProxy bytecode (members include KeyStorage, Nodes, ValidatorService, SyscoinBattleManager, SyscoinSuperblocks), not SkaleVerifier copies",
+ "precompile_trace": {
+  "0x32f50e2a ecpairing": "390 tx, last block 24670469",
+  "KeyStorage 0x921a97c8 modexp": "90 tx",
+  "ValidatorService 0x840c8122 ecrecover": "3 tx",
+  "Nodes 0xd4896654 sha256": "6 tx"
+ }
+}

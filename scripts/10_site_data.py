@@ -1,4 +1,4 @@
-"""Bundle data/report/*.csv into docs/data.json for the GitHub Pages site (docs/index.html)."""
+"""Bundle data/report/*.csv and the findings registry (generated/*.csv) into docs/data.json for the site."""
 
 import json
 import math
@@ -33,6 +33,11 @@ def main():
     cc = pd.read_csv(R + "curated_contracts.csv")[CONTRACT_COLS]
     cc["is_account"] = cc.is_account.astype(str).str.lower() == "true"
     out["contracts"] = records(cc.sort_values("txs_y1", ascending=False, na_position="last"))
+    fi = pd.read_csv("generated/findings.csv")
+    out["findings"] = {r.id: {"severity": r.severity, "status": r.status, "title": r.title, "project": r.project}
+                       for r in fi.itertuples(index=False)}
+    fc = pd.read_csv("generated/contracts.csv")
+    out["finding_of"] = {r.address: r.finding for r in fc.itertuples(index=False)}
     with open("docs/data.json", "w") as f:
         json.dump(out, f, separators=(",", ":"))
     print("tables", len(TABLES), "contracts", len(cc))

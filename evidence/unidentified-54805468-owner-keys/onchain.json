@@ -1,0 +1,40 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x548054687ef6c56c6d82e8269e5fd93d8b88fcb2": {
+   "code_size": 394,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 5.867233387e-09,
+   "tokens_usd": 64502798.49470578,
+   "top_tokens": [
+    [
+     "USDT",
+     64502778
+    ],
+    [
+     "YFII",
+     9
+    ],
+    [
+     "AMERICA",
+     8
+    ],
+    [
+     "UDS",
+     3
+    ],
+    [
+     "ZIK",
+     0
+    ]
+   ],
+   "held_usd": 64502798
+  }
+ }
+}

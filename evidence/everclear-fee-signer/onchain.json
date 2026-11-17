@@ -1,0 +1,36 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x15a7ca97d1ed168fb34a4055cefa2e2f9bdb6c75": {
+   "code_size": 11835,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0xa02a88f0bbd47045001bd460ad186c30f9a974d6",
+   "safe": null,
+   "controller_safe": {
+    "address": "0xa02a88f0bbd47045001bd460ad186c30f9a974d6",
+    "threshold": 2,
+    "owners": [
+     "0xd976faaa19135db4b846e43ddaaa9c66db842b7b",
+     "0x2eed1440842990fa61f0c396f981375fa6004131",
+     "0x9b903ae440cb1f01c342466d6db6b57a5bf98c3f",
+     "0x7fb1b8d2c4a8186426fb12a4ae483f0093ed2315",
+     "0x5d334979c6f565b9646975aedd2358d01f3db4c1",
+     "0xbc8988c7a4b77c1d6df7546bd876ea4d42df0837"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 0.002680986204,
+   "top_tokens": [
+    [
+     "USDC",
+     0
+    ]
+   ],
+   "held_usd": 0
+  }
+ }
+}

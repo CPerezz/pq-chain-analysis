@@ -1,0 +1,170 @@
+{
+ "note": "Reads by Review06 on 2026-11-17 (cast via eth.drpc.org; Sourcify source of ZkSync implementation 0x803b96fa\u2026; Blockscout holdings/logs).",
+ "zksync_lite_main": {
+  "address": "0xabea9132b05a70803a4e85094fd0e1800777fbef",
+  "implementation": "0x803b96fa3ce086a722cb6c1e2c79d304c8a263ff",
+  "exodusMode()": true,
+  "totalBlocksCommitted/Proven/Executed": 453633,
+  "getMaster()": "0x38a43f4330f24fe920f943409709fc9a6084c939",
+  "source": "proveBlocks() starts with requireActive() (require(!exodusMode)); setClaimRoot() by securityCouncilMultisig sets exodusMode = true and the claim distributor; migrateToken() moves balances to l1ClaimDistributor; no code path sets exodusMode back to false",
+  "latest_logs": "50 TokenMigrationExecuted events at blocks 25,049,324-25,049,325 (2026-05-08)"
+ },
+ "verifier_proxy": {
+  "address": "0x5290e9582b4fb706eadf87bb1c129e897e04d06d",
+  "implementation": "0x57b09100e6160503abdebc76012b6c358ea4e462",
+  "eip1967_admin": "0x38a43f4330f24fe920f943409709fc9a6084c939",
+  "getMaster()": "0x38a43f4330f24fe920f943409709fc9a6084c939"
+ },
+ "upgrade_gatekeeper": {
+  "address": "0x38a43f4330f24fe920f943409709fc9a6084c939",
+  "name": "UpgradeGatekeeper",
+  "getMaster()": "0xe24f4870ab85de8e356c5fc56138587206c70d99",
+  "upgradeStatus()": 0
+ },
+ "master_safe": {
+  "address": "0xe24f4870ab85de8e356c5fc56138587206c70d99",
+  "threshold": 1,
+  "owners": [
+   "0x4e4943346848c4867f81dfb37c4ca9c5715a7828"
+  ],
+  "owner_safe": "0x4e4943346848c4867f81dfb37c4ca9c5715a7828 is a GnosisSafe, threshold 4 of 7 (block 26431458)"
+ },
+ "holdings": {
+  "eth_usd_price": 1811.62,
+  "source": "Blockscout /api/v2 addresses + tokens (exchange_rate)",
+  "date": "2026-11-17",
+  "holdings": {
+   "0xabea9132b05a70803a4e85094fd0e1800777fbef": {
+    "address": "0xabea9132b05a70803a4e85094fd0e1800777fbef",
+    "name": "Proxy",
+    "eth": 0.0,
+    "eth_usd": 0.0,
+    "tokens_usd": 23510.25,
+    "n_tokens": 78,
+    "top_tokens": [
+     {
+      "symbol": "STETH",
+      "address": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+      "balance": 12.963004840537936,
+      "usd": 23504.91,
+      "rate": "1813.23",
+      "volume_24h": "16161448"
+     },
+     {
+      "symbol": "TRU",
+      "address": "0xf65b5c5104c4fafd4b709d9d60a185eae063276c",
+      "balance": 1549.5315591217768,
+      "usd": 4.48,
+      "rate": "0.00289363",
+      "volume_24h": "59036"
+     },
+     {
+      "symbol": "RYOSHI",
+      "address": "0x777e2ae845272a2f540ebf6a3d03734a5a8f618e",
+      "balance": 444946197.39850086,
+      "usd": 0.44,
+      "rate": "9.98701E-10",
+      "volume_24h": "0.0"
+     },
+     {
+      "symbol": "DECT",
+      "address": "0xdb99b0477574ac0b2d9c8cec56b42277da3fdb82",
+      "balance": 1038.0,
+      "usd": 0.18,
+      "rate": "0.00017192",
+      "volume_24h": "0.0"
+     },
+     {
+      "symbol": "MTV",
+      "address": "0x6226e00bcac68b0fe55583b90a1d727c14fab77f",
+      "balance": 1000.0,
+      "usd": 0.09,
+      "rate": "0.00008836",
+      "volume_24h": "24241"
+     },
+     {
+      "symbol": "MIR",
+      "address": "0x09a3ecafa817268f77be1283176b946c4ff2e608",
+      "balance": 100.0,
+      "usd": 0.06,
+      "rate": "0.0005722",
+      "volume_24h": "653.04"
+     },
+     {
+      "symbol": "T",
+      "address": "0xcdf7028ceab81fa0c6971208e83fa7872994bee5",
+      "balance": 10.0,
+      "usd": 0.04,
+      "rate": "0.00384527",
+      "volume_24h": "1568623"
+     },
+     {
+      "symbol": "USDT",
+      "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "balance": 0.038,
+      "usd": 0.04,
+      "rate": "0.999294",
+      "volume_24h": "50642452479"
+     },
+     {
+      "symbol": "SHEESHA",
+      "address": "0x232fb065d9d24c34708eedbf03724f2e95abe768",
+      "balance": 0.01,
+      "usd": 0.01,
+      "rate": "1.004",
+      "volume_24h": "11.08"
+     },
+     {
+      "symbol": "GRG",
+      "address": "0x4fbb350052bca5417566f188eb2ebce5b19bc964",
+      "balance": 0.025,
+      "usd": 0.0,
+      "rate": "0.063155",
+      "volume_24h": "14.97"
+     },
+     {
+      "symbol": "BIDEN",
+      "address": "0x9e59a081320ddb046d74a106335ca6b84eadc067",
+      "balance": 100.0,
+      "usd": 0.0,
+      "rate": "0.00000141",
+      "volume_24h": "0.0"
+     },
+     {
+      "symbol": "SYNC",
+      "address": "0xe6b430e688b76ac89588c587cf8d35e96df88b15",
+      "balance": 10013814379.492966,
+      "usd": 0.0,
+      "rate": null,
+      "volume_24h": null
+     },
+     {
+      "symbol": "ZKX",
+      "address": "0x178689a8ed91557db810884a68942983cabd4f74",
+      "balance": 891434308.0783515,
+      "usd": 0.0,
+      "rate": null,
+      "volume_24h": null
+     },
+     {
+      "symbol": "YMOON",
+      "address": "0x7b16fb9b2a6f12bfad0590337dd6bdb956cc9ecd",
+      "balance": 250000000.0,
+      "usd": 0.0,
+      "rate": null,
+      "volume_24h": null
+     },
+     {
+      "symbol": "SPARK",
+      "address": "0xe92ec83d8ea27f802393f084004491e463209acb",
+      "balance": 50001013.0,
+      "usd": 0.0,
+      "rate": null,
+      "volume_24h": null
+     }
+    ],
+    "total_usd": 23510.25
+   }
+  }
+ }
+}

@@ -1,0 +1,38 @@
+{
+ "reviewer": "Review10",
+ "date": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "block": 26431609,
+ "reads": {
+  "Bridge proxy 0x44e37608f744a7aeb16f7dc9bf052c310e6cd015": {
+   "eip1967.implementation": "0x3f2e4e5a70f2a424d7c4e4e0323c878c77c20537",
+   "owner()": "0xab014cfff054692eeae239777c06647b47832d4c",
+   "signaturesThreshold()": 1,
+   "getSigners()": [
+    "0xe5b686fde8574f158bee618e370b652c6c33f8c8"
+   ],
+   "eth": 28.8441,
+   "creator": "0x69a18eb6829dc6c3896e46866a2e07027ba1f7ce"
+  },
+  "Safe 0xab014cfff054692eeae239777c06647b47832d4c": {
+   "getThreshold()": 2,
+   "owners": 3
+  },
+  "CLONE token 0xc9faeba86e8567477783b8432945f131d84e3fda": {
+   "owner()": "0x44e37608f744a7aeb16f7dc9bf052c310e6cd015",
+   "mintTo/burnFrom": "onlyOwner (Blockscout verified source ERC20MintableBurnable)",
+   "creator": "0x69a18eb6829dc6c3896e46866a2e07027ba1f7ce",
+   "totalSupply": 102239831.76,
+   "blockscout_exchange_rate": 0.00482892,
+   "blockscout_circulating_market_cap": 546176
+  }
+ },
+ "blockscout_tokens_2026-11-17": {
+  "USDT": 3324.16,
+  "DAI": 1860.33,
+  "HEX_usd": 0.88,
+  "WETH_price": 1814.71
+ },
+ "attribution": "CLONE on Ethereum is listed at 0xc9faeba86e8567477783b8432945f131d84e3fda by docs.confidentiallayer.com/clone/usdclone-contract-address; the bridge owns the token and both were deployed by 0x69a18eb6; bridge code is dl-solarity (Distributed Lab) Bridge.sol",
+ "recent_calls": "last 50 transactions (Blockscout): withdrawERC20 40 (all CLONE, isWrapped=true i.e. mint), depositERC20 7, withdrawNative 3"
+}

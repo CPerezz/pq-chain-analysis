@@ -1,0 +1,107 @@
+{
+  "block": 26431561,
+  "as_of": "2026-11-17",
+  "reviewer": "Review20",
+  "method": "cast call at the block; Blockscout address metadata, transactions and ERC-20 holdings (first page, sorted by fiat value) fetched 2026-11-17",
+  "xdai_foreign_bridge": {
+    "address": "0x4aa42145aa6ebf72e164c9bbc74fbd3788045016",
+    "implementation": "0x257bdd093cab1bd39ebf837dcb60f33d031d7d49 (Sourcify: XDaiForeignBridge)",
+    "version": 10,
+    "getBridgeInterfacesVersion": [6, 1, 0],
+    "getBridgeMode": "0x18762d46",
+    "erc20token": "0xdc035d45d973e3ec169d2276ddab16f1e407384f (USDS)",
+    "upgradeabilityOwner": "0x42f38ec5a75accec50054671233dfac9c0e7a3f6",
+    "owner": "0x42f38ec5a75accec50054671233dfac9c0e7a3f6",
+    "validatorContract": "0xe1579debdd2df16ebdb9db8694391fa74eea201e",
+    "requiredSignatures": 4,
+    "hashiManager": "0x9accfad714a1e670cd1f6dc666fe892d1d5547bd",
+    "HASHI_IS_ENABLED": true,
+    "HASHI_IS_MANDATORY": false,
+    "executionDailyLimit": "15000000 USDS (1.5e25 wei)",
+    "executionMaxPerTx": "10000000 USDS (1e25 wei)",
+    "dailyLimit": "10000000 USDS (1e25 wei)"
+  },
+  "xdai_validators": {
+    "address": "0xe1579debdd2df16ebdb9db8694391fa74eea201e",
+    "implementation": "0x6943a218d58135793f1fe619414ed476c37ad65a",
+    "owner": "0x42f38ec5a75accec50054671233dfac9c0e7a3f6",
+    "upgradeabilityOwner": "0x42f38ec5a75accec50054671233dfac9c0e7a3f6",
+    "requiredSignatures": 4,
+    "validatorCount": 7,
+    "validatorList": [
+      "0x59d3c2829900ae20d02ca547082b09fd27380ea6",
+      "0xa2746d5ee860a6a9cbb79c34533313144d467ca8",
+      "0xc9f0d7e76e7970590e217c57af5d2b7d07a62c13",
+      "0x2245bfad58a6cd50e9e413084d4091c497281911",
+      "0x82b00ca9d162859f645b51967746e55bb6498dfc",
+      "0xb54b5572f3c4f70ff3cc8f67c19c8cddb838fbaa",
+      "0x1312e98995bbcc30fc63db3cef807e20cdd33dca"
+    ]
+  },
+  "gnosis_foreign_amb": {
+    "address": "0x4c36d2919e407f0cc2ee3c993ccf8ac26d9ce64e",
+    "blockscout": "EternalStorageProxy -> ForeignAMB, creator 0xbf3d6f830ce263cae987193982192cd990442b53; 96,210 transactions; last 2026-11-16T23:55:23Z (executeSignatures)",
+    "implementation": "0x098f51bdfb5d6d319dd4fdf06b64773d25bd1316 (Sourcify: ForeignAMB)",
+    "version": 6,
+    "getBridgeInterfacesVersion": [6, 2, 0],
+    "sourceChainId": 1,
+    "destinationChainId": 100,
+    "upgradeabilityOwner": "0x42f38ec5a75accec50054671233dfac9c0e7a3f6",
+    "owner": "0x42f38ec5a75accec50054671233dfac9c0e7a3f6",
+    "validatorContract": "0xed84a648b3c51432ad0fd1c2cd2c45677e9d4064",
+    "requiredSignatures": 4,
+    "hashiManager": "0x93f6ee78451aacc1db1db49a12abfcc4662b9cc9",
+    "HASHI_IS_ENABLED": true,
+    "HASHI_IS_MANDATORY": false,
+    "maxGasPerTx": 4000000
+  },
+  "amb_validators": {
+    "address": "0xed84a648b3c51432ad0fd1c2cd2c45677e9d4064",
+    "owner": "0x42f38ec5a75accec50054671233dfac9c0e7a3f6",
+    "upgradeabilityOwner": "0x42f38ec5a75accec50054671233dfac9c0e7a3f6",
+    "requiredSignatures": 4,
+    "validatorList": [
+      "0x59d3c2829900ae20d02ca547082b09fd27380ea6",
+      "0x5524b7a3e2dc024f4c9c2ecd7fe003ee316ac624",
+      "0xe9fc29ae64c2923febb615cb016b77af9492ebce",
+      "0xad93bffbc65002cc75ad2d5770d3aaffdefd8d55",
+      "0x4a07b8ae561cc558edd3f1836365ab8e02c52de2",
+      "0xb54b5572f3c4f70ff3cc8f67c19c8cddb838fbaa",
+      "0x258667e543c913264388b33328337257af208a8f"
+    ]
+  },
+  "controller_safe": {
+    "address": "0x42f38ec5a75accec50054671233dfac9c0e7a3f6",
+    "threshold": 8,
+    "owners": 15,
+    "read_at_block": 26431214,
+    "source": "onchain.json"
+  },
+  "escrow": {
+    "omnibridge": {
+      "address": "0x88ad09518695c6c3712ac10a214be5109a655671",
+      "blockscout": "EternalStorageProxy -> ForeignOmnibridge",
+      "bridgeContract": "0x4c36d2919e407f0cc2ee3c993ccf8ac26d9ce64e",
+      "owner": "0x42f38ec5a75accec50054671233dfac9c0e7a3f6",
+      "upgradeabilityOwner": "0x42f38ec5a75accec50054671233dfac9c0e7a3f6",
+      "implementation": "0x8eb3b7d8498a6716904577b2579e1c313d48e347",
+      "eth": 0.0,
+      "erc20_first_page_usd": 209946410,
+      "top": [
+        ["GNO", 1441943.29, 134360276],
+        ["WSTETH", 13155.34, 29797377],
+        ["TRAC", 68083859.8, 20268837],
+        ["USDC", 12885046.36, 12880176],
+        ["WETH", 2578.39, 4679024],
+        ["COW", 17901849.52, 1634797],
+        ["WBTC", 22.11, 1429355],
+        ["HOPR", 107417202.65, 1116188],
+        ["USDT", 864344.36, 863734]
+      ],
+      "note": "first page of 50 holdings sorted by fiat value; further pages exist (smaller balances)"
+    },
+    "xdai_bridge_held_usd": 47728330,
+    "xdai_bridge_held_block": 26431214
+  },
+  "moved_out": "0xd0764fae29e0a6a96ff685f71cfc685456d5636c is the Ethereum-PulseChain AMB (destinationChainId 369); see findings/pulsechain-bridge-validators.md"
+}

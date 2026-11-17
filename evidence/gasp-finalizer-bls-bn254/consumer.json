@@ -1,0 +1,59 @@
+{
+ "block": 26431796,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "bls_signature_checker": "0xc7bf5248bd4e4e618b01414600d48530e677ca0d",
+ "task_manager": {
+  "proxy": "0x150fe8dbb943c372f3e8c31d9c89f1e6a13cbbfd",
+  "implementation": "0xb3a2481e98a342282c503dddfad5fd1ca123c575 (FinalizerTaskManager, Sourcify)",
+  "proxy_admin": "0x00c62fbf897069e635d808a0c5cd4f36c33538cd",
+  "proxy_admin_owner": "0xfc8151f19e338c509d1f5b8c981249324014b6b7",
+  "owner": "0xfc8151f19e338c509d1f5b8c981249324014b6b7",
+  "blsSignatureChecker()": "0xc7bf5248bd4e4e618b01414600d48530e677ca0d",
+  "rolldown()": "0x79d968d9017b96f202ad4673a2c1bbbdc905a4ca",
+  "aggregator()": "0x3f261ad6666d6fea319939a3373776632e252778",
+  "generator()": "0x3f261ad6666d6fea319939a3373776632e252778",
+  "paused()": false,
+  "lastCompletedRdTaskNum": 4902,
+  "lastCompletedRdTaskCompletedBlock": 24283072,
+  "creator": "0x731d7b95b83cb09b699bdf522d1c2cfba5ca3f5a"
+ },
+ "owner_safe": {
+  "address": "0xfc8151f19e338c509d1f5b8c981249324014b6b7",
+  "threshold": 4,
+  "owners": 7
+ },
+ "rolldown": {
+  "proxy": "0x79d968d9017b96f202ad4673a2c1bbbdc905a4ca",
+  "implementation": "0xeafc65d0d179fe354b71accc4997124ea98fb0fd (Rolldown, Sourcify)",
+  "proxy_admin": "0x00c62fbf897069e635d808a0c5cd4f36c33538cd",
+  "UPDATER_ROLE": "task manager 0x150fe8db\u2026 only (RoleGranted logs from creation block 21,394,448; hasRole checked)",
+  "DEFAULT_ADMIN_ROLE": "0xfc8151f19e338c509d1f5b8c981249324014b6b7",
+  "paused": false,
+  "eth": 2.674273538727728,
+  "tokens_usd": 10080.3,
+  "escrow_usd": 14925,
+  "top_tokens": [
+   [
+    "USDT",
+    7524.36
+   ],
+   [
+    "USDC",
+    2189.97
+   ],
+   [
+    "EIGEN",
+    1567.01
+   ]
+  ]
+ },
+ "attribution": "Gasp AVS registry 0x9a986296d45c327daa5998519ae1b3757f1e6ba1 per github.com/gasp-xyz/avs-operator-setup; FinalizerTaskManager.registryCoordinator",
+ "last_tx": {
+  "hash": "0x6cddb27c85a1d38a88115277b9ca939abfb5ae0f890279e5c1460dda45944a0a",
+  "block": 24283072,
+  "date": "2026-01-21",
+  "selector": "respondToRdTask",
+  "from": "0x3f261ad6666d6fea319939a3373776632e252778"
+ }
+}

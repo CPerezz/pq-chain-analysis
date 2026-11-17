@@ -1,0 +1,419 @@
+{
+ "block": 26431457,
+ "date": "2026-11-17",
+ "rpc": "https://eth.drpc.org (archive) at the block",
+ "method": "cast call / eth_getStorageAt at the block; Blockscout v2 API for creators, logs and token balances",
+ "reads": {
+  "0x77627828a55156b04ac0dc0eb30467f1a552bb03": {
+   "eip1967_implementation": "0x390683dea46a61786f4f0807bf3559038cf43fa4 (KMSVerifier v0.3.0, Sourcify verified)",
+   "signers (getKmsSigners)": [
+    "0xe9f7ecff21a2e0ca58ea26ae869fef38ab49ed6f",
+    "0xdc472efa1642d5afb684aaaa546e22fb24aab965",
+    "0xbf05c17beb0bf2f2c78cd491a53a148e035279c3",
+    "0x915055c5f05c0d88bcdf1e3dfba18abd2a18350f",
+    "0x41b19eb4585450db79ac03ba9503106ec7895905",
+    "0x6e5f02cd4b33f0cf4ed5326ac9ee25e5aa8c4921",
+    "0x966188a1f697f6a1b5cfa51495dd8a8a7b5cdb8d",
+    "0x5d0e7033774dd43ee546d49b72bd0b561e52f7c8",
+    "0xdfc9dcb3d206aa164770874f36a4b5ad2ee5194f",
+    "0x7c5eeb4d8ced0101799b8cc212ee874097364f58",
+    "0x7c17be232e5968bda9516478b798b9e90d013fcc",
+    "0x6016dca5e91e62826e3fea1fb0a763602dc1e385",
+    "0xb7978e602d2af68258da614af949e014bf0de0eb"
+   ],
+   "getThreshold()": 7,
+   "last call": "internal call on 2026-11-17 (Blockscout internal transactions); callers include ConfidentialWrapper proxies and NFT collections"
+  },
+  "0xd8236b57394f90726b26ab25d38ceac776e1a7c4": {
+   "name": "ProtocolConfig (KMS signer contexts and thresholds)",
+   "eip1967_implementation": "0x25c76298fb4d15bfadce4798519a7b37ac0076e7",
+   "getPublicDecryptionThreshold()": 7,
+   "access": "defineNewKmsContext l.139, destroyKmsContext l.148, threshold updates l.163, _authorizeUpgrade l.425: onlyACLOwner"
+  },
+  "0xca2e8f1f656cd25c01f05d0b243ab1ecd4a8ffb6": {
+   "owner()": "0xb6d69d5f334d8b97b194617b53c6ab62f8681ef3 (ERC1967 proxy -> Aragon OSx DAO implementation 0x58c1f7bc62bb63fb137bc8f6d8ea6321a0501d29)"
+  },
+  "wrappers (ERC-7984 tokens named 'Confidential ...' found by Blockscout search; not exhaustive)": {
+   "0xafbf76818349b784b731dc45ae1f554b7924c183": {
+    "symbol": "cKAIO",
+    "implementation": [
+     [
+      "0x194B5Cb2F1e865A2c53c0DfD7Ec5C1d6a001fA08",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xF9Fe4f7279207B6795F8c94b96dE86f127FE12cc",
+    "underlying": "0x00BAC91fd8f5b4a0dc03C8021139B76F6549Ee7E",
+    "underlying_symbol": "KAIO",
+    "underlying_held": 817959.0,
+    "price_usd": 0.02051224,
+    "usd": 16778.17
+   },
+   "0x66bf74e96900d1a19c7070d939d124f2f565c458": {
+    "symbol": "csteakcUSDC",
+    "implementation": [
+     [
+      "0x2ABad2203Eba104b52cf040cCcFA100Df15687F8",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0xbEEF00A59B577423653A1526c7009bdE103F542B",
+    "underlying_symbol": "STEAKCUSDC",
+    "underlying_held": 21107732.148306,
+    "price_usd": 1.032,
+    "usd": 21783179.58
+   },
+   "0xa28a369df348ac232e4daf7b0ef90280d8707d7f": {
+    "symbol": "cfcUSDT",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0xb48C056C5608bA2Ee4cD94AF2bF4b1F25295Bd7e",
+    "underlying_symbol": "FCUSDT",
+    "underlying_held": 22999151.80061,
+    "price_usd": null,
+    "usd": 0.0
+   },
+   "0xb1b18ad1f16d744c470cb6b09cb826affcc9eb30": {
+    "symbol": "croxcUSDC",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0xc207d3f66537D7F66456808379A0E560cF20Da36",
+    "underlying_symbol": "ROXCUSDC",
+    "underlying_held": 9010557.910123,
+    "price_usd": null,
+    "usd": 0.0
+   },
+   "0x501b014f86a73a7199e00cb31c0e9565ac51e51b": {
+    "symbol": "cbbqUSDC",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0xbeeff2C5bF38f90e3482a8b19F12E5a6D2FCa757",
+    "underlying_symbol": "BBQUSDC",
+    "underlying_held": 2035.871552,
+    "price_usd": 1.059,
+    "usd": 2155.99
+   },
+   "0x1f6a937119c0c34db0a2c4f000386a3bfd4a9e73": {
+    "symbol": "csteakUSDT",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0xbeef003C68896c7D2c3c60d363e8d71a49Ab2bf9",
+    "underlying_symbol": "STEAKUSDT",
+    "underlying_held": 435301.563586,
+    "price_usd": 1.031,
+    "usd": 448795.91
+   },
+   "0x77f8207ee451441336538ba07a2f425780ded8db": {
+    "symbol": "carmUSDCs",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0xA2EAaD0D586cF9FD73bb2c09cF6A7E3e187D68cd",
+    "underlying_symbol": "ARMUSDCS",
+    "underlying_held": 252.152858,
+    "price_usd": 1.027,
+    "usd": 258.96
+   },
+   "0xd86ae89c089b380f064fe01899b4071f1eb6bb3d": {
+    "symbol": "cWBTC",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "underlying_symbol": "WBTC",
+    "underlying_held": 1.817655,
+    "price_usd": 64633.0,
+    "usd": 117480.5
+   },
+   "0xb6e5299fc56053dd5440104fd6fd2a3cd064edbc": {
+    "symbol": "cpendleUSDC",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0x55C1B6e461a6334B567bAF0FEb5D728715446f05",
+    "underlying_symbol": "PENDLEUSDC",
+    "underlying_held": 55250.141556,
+    "price_usd": 1.016,
+    "usd": 56134.14
+   },
+   "0x2ebbd099f66b0ca94dd82b4c06fe3eef6aff853c": {
+    "symbol": "carmUSDCp",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0x5dc53a23AdC9f2Bed98de6F59F7F309a7c71FF2B",
+    "underlying_symbol": "ARMUSDCP",
+    "underlying_held": 44.322139,
+    "price_usd": 1.023,
+    "usd": 45.34
+   },
+   "0xbac6dedf2c10d6d381f9dbd9efd69d93ffcef50b": {
+    "symbol": "carmUSDTs",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0x500aE64100D7DbDb640531085C2F5d40cDC8930D",
+    "underlying_symbol": "ARMUSDTS",
+    "underlying_held": 24974.543289,
+    "price_usd": 1.012,
+    "usd": 25274.24
+   },
+   "0x85de671c3bec1aded752c3cea943521181c826bc": {
+    "symbol": "cBRON",
+    "implementation": [
+     [
+      "0x2ABad2203Eba104b52cf040cCcFA100Df15687F8",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0xBA2C598E11eD093079cC324FCa5BbbA99F616E83",
+    "underlying_symbol": "BRON",
+    "underlying_held": 10210824.836911,
+    "price_usd": null,
+    "usd": 0.0
+   },
+   "0x63a60acc304b84ef829b263f28e7b636bf77d45a": {
+    "symbol": "carmUSDTp",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0xBf29043164660C60A2a72Cd15FFe2304e87B6838",
+    "underlying_symbol": "ARMUSDTP",
+    "underlying_held": 68.509778,
+    "price_usd": 1.01,
+    "usd": 69.19
+   },
+   "0x4fccf8046fb7fb7ab76321bd39c27453e396b88f": {
+    "symbol": "croxUSDCy",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0xE0181090c22579B6A217f1522cbf8c9f1F0C1965",
+    "underlying_symbol": "ROXUSDCY",
+    "underlying_held": 851880.193935,
+    "price_usd": 1.023,
+    "usd": 871473.44
+   },
+   "0xf921a5b0634f4236b21a4e948317abf9a2e86b6f": {
+    "symbol": "carmcWBTC",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0x3d5EcCb62974178236A768A7ef14D3ce468Fbe91",
+    "underlying_symbol": "ARMCWBTC",
+    "underlying_held": 86.233702,
+    "price_usd": null,
+    "usd": 0.0
+   },
+   "0x80ae7dbce3c1696d3eed04ec8348c3c432322273": {
+    "symbol": "cbbqUSDT",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0xbeeff07d991C04CD640DE9F15C08ba59c4FEDEb7",
+    "underlying_symbol": "BBQUSDT",
+    "underlying_held": 10454.164358,
+    "price_usd": 1.035,
+    "usd": 10820.06
+   },
+   "0xea9a15a29dd180c40442142caeefc491d37bfdb2": {
+    "symbol": "cAUSD",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0x00000000eFE302BEAA2b3e6e1b18d08D69a9012a",
+    "underlying_symbol": "AUSD",
+    "underlying_held": 15179.738057,
+    "price_usd": 0.999191,
+    "usd": 15167.46
+   },
+   "0xa873750ccbafd5ec7dd13bfd5237d7129832edd9": {
+    "symbol": "ctGBP",
+    "implementation": [
+     [
+      "0x2ABad2203Eba104b52cf040cCcFA100Df15687F8",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0x27f6c8289550fCE67f6B50BeD1F519966aFE5287",
+    "underlying_symbol": "TGBP",
+    "underlying_held": 25192.519717,
+    "price_usd": 1.32,
+    "usd": 33254.13
+   },
+   "0x8900123f7e17709c1d80eda1e611a9503cf1b3df": {
+    "symbol": "cPENDLE",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0x808507121B80c02388fAd14726482e061B8da827",
+    "underlying_symbol": "PENDLE",
+    "underlying_held": 23142.184624,
+    "price_usd": 1.44,
+    "usd": 33324.75
+   },
+   "0x73cc9af9d6befdb3c3faf8a5e8c05cb95fdaeef1": {
+    "symbol": "cXAUt",
+    "implementation": [
+     [
+      "0x2ABad2203Eba104b52cf040cCcFA100Df15687F8",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0x68749665FF8D2d112Fa859AA293F07A622782F38",
+    "underlying_symbol": "XAUT",
+    "underlying_held": 0.020512,
+    "price_usd": 3842.34,
+    "usd": 78.81
+   },
+   "0x76a3f985315aac9789cb5bf8a5bb83bff55fd5a6": {
+    "symbol": "cfAUSDe",
+    "implementation": [
+     [
+      "0x35E980f5Fe42BBA64C1ed0332AADACb98faBDDaD",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0x32401B9fb79065Bc15949DE0BD43927492f02F0C",
+    "underlying_symbol": "FAUSDE",
+    "underlying_held": 4963.544849,
+    "price_usd": 1.044,
+    "usd": 5181.94
+   },
+   "0xe978f22157048e5db8e5d07971376e86671672b2": {
+    "symbol": "cUSDC",
+    "implementation": [
+     [
+      "0x2ABad2203Eba104b52cf040cCcFA100Df15687F8",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "underlying_symbol": "USDC",
+    "underlying_held": 1676503.502607,
+    "price_usd": 0.999622,
+    "usd": 1675869.78
+   },
+   "0xae0207c757aa2b4019ad96edd0092ddc63ef0c50": {
+    "symbol": "cUSDT",
+    "implementation": [
+     [
+      "0x2ABad2203Eba104b52cf040cCcFA100Df15687F8",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "underlying_symbol": "USDT",
+    "underlying_held": 6099162.038551,
+    "price_usd": 0.999294,
+    "usd": 6094856.03
+   },
+   "0xda9396b82634ea99243ce51258b6a5ae512d4893": {
+    "symbol": "cWETH",
+    "implementation": [
+     [
+      "0x2ABad2203Eba104b52cf040cCcFA100Df15687F8",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "underlying_symbol": "WETH",
+    "underlying_held": 1.845209,
+    "price_usd": 1814.71,
+    "usd": 3348.52
+   },
+   "0x80cb147fd86dc6dee3eee7e4cee33d1397d98071": {
+    "symbol": "cZAMA",
+    "implementation": [
+     [
+      "0x2ABad2203Eba104b52cf040cCcFA100Df15687F8",
+      "ConfidentialWrapper"
+     ]
+    ],
+    "owner": "0xB6D69D5F334d8B97B194617B53c6aB62f8681Ef3",
+    "underlying": "0xA12CC123ba206d4031D1c7f6223D1C2Ec249f4f3",
+    "underlying_symbol": "ZAMA",
+    "underlying_held": 128041486.450551,
+    "price_usd": 0.056849,
+    "usd": 7279030.46
+   }
+  },
+  "escrow_usd": {
+   "priced_total": 38472577.4,
+   "unpriced": "22,999,151.8 FCUSDT (cfcUSDT), 9,010,557.9 ROXCUSDC (croxcUSDC), 10,210,824.8 BRON (cBRON), 86.2 ARMCWBTC (carmcWBTC) have no Blockscout price"
+  },
+  "source": "Sourcify KMSVerifier 0x390683de\u2026: verifyDecryptionEIP712KMSSignatures l.141-185 (decryptionProof = numSigners + 65-byte signatures + extraData; EIP-712 PublicDecryptVerification over handles and cleartexts), _verifySignaturesDigestForContext l.332-366 (ECDSA.recover via _recoverSigner l.411-412, ProtocolConfig isKmsSignerForContext, threshold getPublicDecryptionThresholdForContext), _authorizeUpgrade l.371 onlyACLOwner. Consumer: ConfidentialWrapper implementations 0x2abad220\u2026, 0x35e980f5\u2026 (Sourcify): ERC7984ERC20WrapperUpgradeable.finalizeUnwrap l.144-166 calls FHE.checkSignatures(handles, abi.encode(cleartext), decryptionProof) (FHE.sol l.9495-9505, KMSVerifier call l.9714) then transfers cleartext * rate() of the underlying; ZamaConfig.sol l.82-88 sets KMSVerifierAddress = 0x77627828\u2026"
+ }
+}

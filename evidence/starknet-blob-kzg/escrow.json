@@ -1,0 +1,411 @@
+{
+ "block_roles": 26431604,
+ "block_holdings": 26431726,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "method": "L1 endpoints = from_address of LogMessageToL2 (blocks 24,400,000-26,431,500) and to_address of LogMessageToL1 (25,400,000-26,431,500) on each core, eth_getLogs via rpc.mevblocker.io (a few 100k-block chunks failed, listed below); holdings of endpoints with code: ETH balance + Blockscout ERC-20 tokens priced as in scripts/12_state.py",
+ "failed_chunks": {
+  "0xc662c410c0ecf747543f5ba90660f6abebd9c8c4": [
+   "LogMessageToL2 26100000-26199999",
+   "LogMessageToL1 26100000-26299999"
+  ]
+ },
+ "cores": {
+  "0xc662c410c0ecf747543f5ba90660f6abebd9c8c4": {
+   "block": 26431604,
+   "proxy_governors": [
+    "0x15e8c684fd095d4796a0c0cf678554f4c1c7c361",
+    "0xca112018feb729458b628aadc8f996f9decbca0c"
+   ],
+   "starknet_governors": [
+    "0x15e8c684fd095d4796a0c0cf678554f4c1c7c361",
+    "0xca112018feb729458b628aadc8f996f9decbca0c"
+   ],
+   "operators": [
+    "0xf6b0b3e8f57396cecfd788d60499db49ee6abc6b",
+    "0x2c169dfe5fbba12957bdd0ba47d9cedbfe260ca7"
+   ],
+   "delay": "0",
+   "implementation": "0x73352c6228ec1dcf737973db9822bb8e8a465c99",
+   "identify": "\"StarkWare_Starknet_2026_12\"",
+   "l1_endpoints": 135,
+   "endpoints_with_code": 43,
+   "escrow_usd": 197614122,
+   "holdings": [
+    {
+     "address": "0xce5485cfb26914c5dce00b9baf0580364dafc7a4",
+     "usd": 149341671,
+     "eth": 0.0,
+     "top": [
+      [
+       "STRK",
+       149341671
+      ],
+      [
+       "HEX",
+       0
+      ]
+     ]
+    },
+    {
+     "address": "0xae0ee0a63a2ce6baeeffe56e7714fb4efe48d419",
+     "usd": 30717746,
+     "eth": 16955.93,
+     "top": [
+      [
+       "USDC",
+       38
+      ],
+      [
+       "AMERICA",
+       6
+      ],
+      [
+       "HEX",
+       1
+      ],
+      [
+       "FTMX",
+       0
+      ],
+      [
+       "Q*",
+       0
+      ]
+     ]
+    },
+    {
+     "address": "0xf5b6ee2caeb6769659f6c091d209dfdcaf3f69eb",
+     "usd": 6107554,
+     "eth": 0.0,
+     "top": [
+      [
+       "EKUBO",
+       5868018
+      ],
+      [
+       "NSTR",
+       137247
+      ],
+      [
+       "MRE7YIELD",
+       57729
+      ],
+      [
+       "LIT",
+       44299
+      ],
+      [
+       "POL",
+       97
+      ]
+     ]
+    },
+    {
+     "address": "0xf6080d9fbeebcd44d89affbfd42f098cbff92816",
+     "usd": 4213404,
+     "eth": 0.0,
+     "top": [
+      [
+       "USDC",
+       4213404
+      ],
+      [
+       "MTV",
+       0
+      ],
+      [
+       "GRG",
+       0
+      ],
+      [
+       "HEX",
+       0
+      ]
+     ]
+    },
+    {
+     "address": "0xbb3400f107804dfb482565ff1ec8d8ae66747605",
+     "usd": 2561857,
+     "eth": 0.0,
+     "top": [
+      [
+       "USDT",
+       2561857
+      ],
+      [
+       "MTV",
+       0
+      ],
+      [
+       "HEX",
+       0
+      ],
+      [
+       "USDTB",
+       0
+      ]
+     ]
+    },
+    {
+     "address": "0x2111a49ebb717959059693a3698872a0ae9866b9",
+     "usd": 1831433,
+     "eth": 0.0,
+     "top": [
+      [
+       "TBTC",
+       1831433
+      ],
+      [
+       "HEX",
+       0
+      ]
+     ]
+    },
+    {
+     "address": "0xbf67f59d2988a46fbff7ed79a621778a3cd3985b",
+     "usd": 1675918,
+     "eth": 0.0,
+     "top": [
+      [
+       "WSTETH",
+       1675918
+      ],
+      [
+       "HEX",
+       0
+      ]
+     ]
+    },
+    {
+     "address": "0x023a2aac5d0fa69e3243994672822ba43e34e5c9",
+     "usd": 381663,
+     "eth": 0.0,
+     "top": [
+      [
+       "LORDS",
+       381662
+      ],
+      [
+       "HEX",
+       0
+      ]
+     ]
+    },
+    {
+     "address": "0x7a095101ef5c7a66056f801335f8605d3b2452a5",
+     "usd": 285029,
+     "eth": 0.0,
+     "top": [
+      [
+       "MRE7BTC",
+       285029
+      ]
+     ]
+    },
+    {
+     "address": "0xca14057f85f2662257fd2637fdec558626bce554",
+     "usd": 165603,
+     "eth": 0.0,
+     "top": [
+      [
+       "DAI",
+       165603
+      ],
+      [
+       "HEX",
+       0
+      ]
+     ]
+    },
+    {
+     "address": "0x1e0ef4162e42c9bf820c307218c4e41ccca6e9cc",
+     "usd": 111779,
+     "eth": 6.42,
+     "top": [
+      [
+       "EKUBO",
+       53708
+      ],
+      [
+       "USDC",
+       30358
+      ],
+      [
+       "WSTETH",
+       15169
+      ],
+      [
+       "USDG",
+       624
+      ],
+      [
+       "USDT",
+       288
+      ]
+     ]
+    },
+    {
+     "address": "0x96c8ae2ac9a5cd5fc354e375db4d0ca75fc0685e",
+     "usd": 104781,
+     "eth": 0.0,
+     "top": [
+      [
+       "LBTC",
+       104781
+      ],
+      [
+       "HEX",
+       0
+      ]
+     ]
+    },
+    {
+     "address": "0xcf58536d6fab5e59b654228a5a4ed89b13a876c2",
+     "usd": 95894,
+     "eth": 0.0,
+     "top": [
+      [
+       "RETH",
+       95894
+      ]
+     ]
+    },
+    {
+     "address": "0xf76e6bf9e2df09d0f854f045a3b724074da1236b",
+     "usd": 12170,
+     "eth": 0.0,
+     "top": [
+      [
+       "UNI",
+       12170
+      ],
+      [
+       "BIDEN",
+       0
+      ]
+     ]
+    },
+    {
+     "address": "0xf3f62f23df9c1d2c7c63d9ea6b90e8d24c7e3df5",
+     "usd": 7075,
+     "eth": 0.0,
+     "top": [
+      [
+       "LUSD",
+       7075
+      ],
+      [
+       "HEX",
+       0
+      ]
+     ]
+    },
+    {
+     "address": "0x4ea91ed5a1f5e2be18791f210c52d0fe285744d5",
+     "usd": 219,
+     "eth": 0.0,
+     "top": [
+      [
+       "UNIBTC",
+       219
+      ]
+     ]
+    },
+    {
+     "address": "0x52c65b6795216c4d76facacde8b5f4bad2c9b9d7",
+     "usd": 160,
+     "eth": 0.0,
+     "top": [
+      [
+       "ZRO",
+       160
+      ]
+     ]
+    },
+    {
+     "address": "0x9fada9f29492af64a852f35eafd957b790b7ea7e",
+     "usd": 102,
+     "eth": 0.0,
+     "top": [
+      [
+       "LINK",
+       102
+      ]
+     ]
+    },
+    {
+     "address": "0xd8e8531fdd446df5298819d3bc9189a5d8948ee8",
+     "usd": 27,
+     "eth": 0.0,
+     "top": [
+      [
+       "SFRXETH",
+       27
+      ]
+     ]
+    },
+    {
+     "address": "0xea90d8ae0fe18a8af72e57efddfe819aa96f244e",
+     "usd": 22,
+     "eth": 0.0,
+     "top": [
+      [
+       "ENA",
+       22
+      ]
+     ]
+    },
+    {
+     "address": "0x00b0466f8dc04b0782dbf1a1dfdce333f0dd082b",
+     "usd": 5,
+     "eth": 0.0,
+     "top": [
+      [
+       "EURC",
+       5
+      ]
+     ]
+    },
+    {
+     "address": "0xfc68d63c09b316fc13e474ca5f2f227ff97b40fe",
+     "usd": 4,
+     "eth": 0.0,
+     "top": []
+    },
+    {
+     "address": "0x76d31b6e376dac3e3630e603db03f337181af1f0",
+     "usd": 4,
+     "eth": 0.0,
+     "top": []
+    },
+    {
+     "address": "0x66ba83ba3d3ad296424a2258145d9910e9e40b7c",
+     "usd": 2,
+     "eth": 0.0,
+     "top": [
+      [
+       "FRAX",
+       2
+      ]
+     ]
+    },
+    {
+     "address": "0x4c4ee256ffe216a23a39827bcd4c5cb0b6cf11f3",
+     "usd": 1,
+     "eth": 0.0,
+     "top": [
+      [
+       "EUROP",
+       1
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "governor_safes": {
+  "0x15e8c684fd095d4796a0c0cf678554f4c1c7c361": "Safe 9 of 12",
+  "0xca112018feb729458b628aadc8f996f9decbca0c": "DelayedExecutor (verified source, StarkWare)"
+ }
+}

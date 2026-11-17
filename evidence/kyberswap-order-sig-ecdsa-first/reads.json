@@ -1,0 +1,28 @@
+{
+ "block": 26431552,
+ "as_of": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "KyberSwapRFQ 0x7a819fa46734a49d0112796f9377e024c350fb26": {
+  "admin()": "0xbe2f0354d970265bfc36d383af77f72736b81b54",
+  "admin code": "0xef0100 63c0c19a282a1b52b07dd5a65b58948a07dae32b (EIP-7702 delegation; EOA key controls it)",
+  "proxy": "none (onchain.json, block 26431214)",
+  "recent fills (Blockscout logs, OrderFilledRFQ topic 0x71cea972…, newest 2000 events back to block 26398945)": {
+   "0xbee3211ab312a8d065c4fef0247448e17a8da000": 2000
+  },
+  "maker 0xbee3211a": "contract (TransparentUpgradeableProxy, implementation 0xe89e1c84076dbd917f6d71608db579d3f4995487, creator 0x79a8e2d1d2aff40b764bb4acb6714bfa0d4ef723); validated through ERC-1271 since ecrecover cannot return a contract address"
+ },
+ "DSLOProtocol 0xcab2fa2eeab7065b45cbcf6e3936dde2506b4f6c": {
+  "storage layout (Sourcify)": "nonce 0; _owner 1 (+_paused at offset 20); operators 2; guardians 3; _dsOrderSigner 4; _remaining 5; interactionWhitelist 6",
+  "slot 1 (_owner, _paused)": "0x2475039bf2ecdce2ee4c82954e64be9674f43546, paused=false",
+  "slot 4 (_dsOrderSigner)": "0x1840a2b4c9e5c1eee42ad31bd57ba24a446d7974 (code size 0: EOA)",
+  "owner 0x2475039b": {
+   "name (Blockscout)": "MultiSigWalletWithDailyLimit",
+   "required()": 2,
+   "getOwners()": [
+    "0x8180a5ca4e3b94045e05a9313777955f7518d757",
+    "0x550c18a67b6ca7d26cb493aa72fbb14c6825900b",
+    "0xbe2f0354d970265bfc36d383af77f72736b81b54"
+   ]
+  }
+ }
+}

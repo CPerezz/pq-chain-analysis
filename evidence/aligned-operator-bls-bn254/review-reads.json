@@ -1,0 +1,55 @@
+{
+ "block": 26431523,
+ "0xef2a435e5ee44b2041100ef8cbc8ae035166606c": {
+  "impl": "0x0000000000000000000000004a5d61aba7d845bc71d4e2f2dd7c35d9c5fb55b8",
+  "admin": "0x000000000000000000000000487e0347b96be3606845a3aadc7b0d8138952b47",
+  "proxyadmin_owner": "0xfC135A861efF65b7644Fb03d9f851251546C0835",
+  "owner": "0xfC135A861efF65b7644Fb03d9f851251546C0835",
+  "alignedAggregator": "0xbA9BAe4c5D186BA14AA43E3b90d8624718e9efEF",
+  "registryCoordinator": "0xA8CC0749b4409c3c47012323E625aEcBA92f64b9",
+  "paused": "0",
+  "pauserRegistry": "0xbb8fF0382bFC9B37C38286EA4724900aA49DF28F",
+  "eth_balance": "0.948681808101246661",
+  "aggregator_is_eoa": true
+ },
+ "0x96b6a29d7b98519ae66e6398bd27a76b30a5dc3f": {
+  "impl": "0x00000000000000000000000032112b2c1a2cd002a8468fcd556e9010cd817ea1",
+  "admin": "0x0000000000000000000000000d16a82be664c337c615499f8775ef0431703dac",
+  "proxyadmin_owner": "0x2106AC6FE9599f8A0710643C75661aaf8d8B1599",
+  "owner": "0x2106AC6FE9599f8A0710643C75661aaf8d8B1599",
+  "alignedAggregator": "0xb72D98AB27EBCF86C96a53564135d3141bAAE398",
+  "registryCoordinator": "0x7bAF5135241D7D1F870AC6Dd6956BDB1FF55fc3D",
+  "paused": "0",
+  "pauserRegistry": "0x9A97Fa7c8b4F076b714F691E87816787aAaDa41D",
+  "eth_balance": "0.012029599928647670",
+  "aggregator_is_eoa": true
+ },
+ "0xfc135a861eff65b7644fb03d9f851251546c0835": {
+  "threshold": "5",
+  "owners": "[0xeA08Fdd156f65098D42af5F0A9dE72b53cee52B0, 0xC79b49e7f011D69C71a83478829b3b7817A257F5, 0x89b66423d013a35E7b43646A560599e056535576, 0xf302F1C31f2FBFf5B5aBBC5028A9ec616b7E1A76, 0x7Db21A040568ea1a44Ebfe8A9177849A2A4c0016, 0x80528dAffB8a0992604f23E56BF3cA8498696aa9, 0xf29670A6B1c34049376971F68c6437C3282b7eB1, 0x3a858B07cbB1F3ea54B30498ef55247Fd30747C6]"
+ },
+ "0x2106ac6fe9599f8a0710643c75661aaf8d8b1599": {
+  "threshold": "1",
+  "owners": "[0xC79b49e7f011D69C71a83478829b3b7817A257F5]"
+ },
+ "rc_quorumCount": "1",
+ "indexRegistry": "0x9Bf1275e18eC8FA3cA7f9bffF1b0DF3e14C6E134",
+ "operators_quorum0": "18",
+ "stakeRegistry": "0x45F5290a3630Cd6dc277B6f92227526121ca7c22",
+ "total_stake_q0": "793727304292901986538177 [7.937e23]",
+ "note": "reads by reviewer Review22, 2026-11-17",
+ "callers_since_block_24700000": {
+  "source": "Xatu call frames (remote data/activity/raw), txs where 0xef2a435e is called internally, grouped by tx.to and selector",
+  "BatcherPaymentService 0xb0567184a52cb40956df6333510d6ef35b89c8de createNewTask": 152,
+  "RegistryCoordinator 0xa8cc0749 registerOperator/deregisterOperator": 23,
+  "VoteInbox 0x1870cfa5ad721d484bc5ca1fd618c476b451464b submitVote (calls verifyBatchInclusion)": 16,
+  "Safe 0x2aca71020de61bb532008049e1bd41e451ae8adc execTransaction": 4,
+  "direct txs (respondToTaskV2 by aggregator 0xba9bae4c), last": "2026-06-24 block 25388418 tx 0xb09aba9e0cffa87403cf44043d3abe5e0874aff995d22a5f69bb5f21948314aa",
+  "last tx touching contract": "2026-11-03 block 26336763 tx 0x0c9a6bde\u2026 RegistryCoordinator 0xca4f2d97 (deregisterOperator)"
+ },
+ "VoteInbox_0x1870cfa5": {
+  "eth": "0",
+  "tokens": "none (Blockscout token-balances empty)",
+  "what": "demo voting contract; submitVote checks verifyBatchInclusion and records a vote"
+ }
+}

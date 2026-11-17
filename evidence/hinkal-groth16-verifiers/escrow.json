@@ -1,0 +1,143 @@
+{
+ "as_of": "2026-11-17",
+ "block": 26431610,
+ "eth_usd": 1811.62,
+ "source": "Blockscout /api/v2/addresses/<a>/tokens?type=ERC-20, first page (sorted by fiat value; later pages unpriced) + eth_getBalance (publicnode)",
+ "pools": {
+  "0x25e5e82f5702a27c3466fe68f14abdbbadfca826": {
+   "eth": 0.9584194863707834,
+   "eth_usd": 1736.29,
+   "tokens_usd": 11241.81,
+   "held_usd": 12978,
+   "top_tokens": [
+    [
+     "NEAR",
+     5703.73
+    ],
+    [
+     "USDT",
+     3508.64
+    ],
+    [
+     "SYRUP",
+     769.09
+    ],
+    [
+     "CFG",
+     730.26
+    ],
+    [
+     "SERV",
+     167.35
+    ],
+    [
+     "CPOOL",
+     154.99
+    ],
+    [
+     "WSOL",
+     117.25
+    ],
+    [
+     "PEPU",
+     41.93
+    ],
+    [
+     "DAI",
+     30.77
+    ],
+    [
+     "USDC",
+     5.39
+    ]
+   ],
+   "next_page": false
+  },
+  "0x7cb60446d7635c68edf1c568cac74a1f98c1cfa4": {
+   "eth": 4.905137280411286,
+   "eth_usd": 8886.24,
+   "tokens_usd": 55052.94,
+   "held_usd": 63939,
+   "top_tokens": [
+    [
+     "USDC",
+     53700.18
+    ],
+    [
+     "USDT",
+     1234.92
+    ],
+    [
+     "WSOL",
+     97.27
+    ],
+    [
+     "PENDLE",
+     14.4
+    ],
+    [
+     "POL",
+     5.35
+    ],
+    [
+     "DAI",
+     0.55
+    ],
+    [
+     "TGBP",
+     0.27
+    ]
+   ],
+   "next_page": false
+  },
+  "0x2ea81946ff675d5eb88192144ffc1418fa442e28": {
+   "eth": 3.3367768138127367,
+   "eth_usd": 6044.97,
+   "tokens_usd": 8876.38,
+   "held_usd": 14921,
+   "top_tokens": [
+    [
+     "USDT",
+     6208.74
+    ],
+    [
+     "WSTETH",
+     842.03
+    ],
+    [
+     "USUAL",
+     779.16
+    ],
+    [
+     "KEX",
+     733.02
+    ],
+    [
+     "USDC",
+     227.72
+    ],
+    [
+     "FRAX",
+     18.26
+    ],
+    [
+     "CRV",
+     15.86
+    ],
+    [
+     "CRVUSD",
+     14.49
+    ],
+    [
+     "WETH",
+     14.09
+    ],
+    [
+     "SUSDE",
+     6.25
+    ]
+   ],
+   "next_page": true
+  }
+ }
+}

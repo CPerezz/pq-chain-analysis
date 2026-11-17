@@ -1,0 +1,114 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x26d3681dfc9e4c8c79cfbf461adec8a21d5d73c5": {
+   "code_size": 23562,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x44835bbba9d40deda9b64858095ecfb2693c9449",
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.0004666,
+   "top_tokens": [
+    [
+     "HEX",
+     0
+    ]
+   ],
+   "held_usd": 0
+  },
+  "0xa68a99c6a80e2acf65d38f64ffac744ae51c8d96": {
+   "code_size": 8591,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0xf99aa0a78d1eeb619f0e548465f6d67debcecc98",
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.0004666,
+   "top_tokens": [
+    [
+     "HEX",
+     0
+    ]
+   ],
+   "held_usd": 0
+  },
+  "0x6593c7de001fc8542bb1703532ee1e5aa0d458fd": {
+   "code_size": 20527,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0xcc4b5b07316be81ed6edb44ca61e4cab28a1950d",
+   "safe": null,
+   "controller_safe": {
+    "address": "0xcc4b5b07316be81ed6edb44ca61e4cab28a1950d",
+    "threshold": 4,
+    "owners": [
+     "0x1a2c8cb633c4768cae363b175b3d9bd7414f02f1",
+     "0x582b97365b846f59bcaec80753d0756f66d2e12a",
+     "0x1a9afaea5a3d20f7a20082c6f1da655f73be96fc",
+     "0xb65b6d224351cd61f856c227b2d5cfc611e9b2d8",
+     "0x4cd248bc8ce09ed1c0c0688c75c38902ac761967",
+     "0x236bff6a0239066d6586bd6f44021ae9a2d850b0",
+     "0xab70e084de1da8289079c0acc1b40bb05cd7b8eb",
+     "0x09afdcde1a87ad9ace7d965f580eff05ee1c7dc3",
+     "0x9ea1f784ae2c14dd39667031a4df4553d5690c80",
+     "0x44713da18a0dd5c64ea7231651c16d177d09fbb5",
+     "0x7c704eb7c6454d9c2cd3f460386a21adda71a8a7",
+     "0x99b5c70f7cf97a44491466483439b630e875d773"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 171310.9046986343,
+   "top_tokens": [
+    [
+     "LINK",
+     171311
+    ],
+    [
+     "HEX",
+     0
+    ]
+   ],
+   "held_usd": 171311
+  },
+  "0x0b93082d9b3c7c97facd250082899bacf3af3885": {
+   "code_size": 8591,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x4044a864754760c37200e3a76d1953512ee18da8",
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.0004666,
+   "top_tokens": [
+    [
+     "HEX",
+     0
+    ]
+   ],
+   "held_usd": 0
+  },
+  "0xe41677500b425999cb4133950ca3ab79ea7470a6": {
+   "code_size": 13298,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x44835bbba9d40deda9b64858095ecfb2693c9449",
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 0.0004666,
+   "top_tokens": [
+    [
+     "HEX",
+     0
+    ]
+   ],
+   "held_usd": 0
+  }
+ }
+}

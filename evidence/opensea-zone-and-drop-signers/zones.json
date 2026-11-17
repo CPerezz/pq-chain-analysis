@@ -1,0 +1,25 @@
+{
+ "block": 26431457,
+ "as_of": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "signed_zone_0x000056f7": {
+  "zone": "0x000056f7000000ece9003ca63978907a00ffd100",
+  "creator (Blockscout)": "0x000000657e498d54000053b69bdaad008a001dbf",
+  "controller name (Blockscout verified)": "SignedZoneControllerSub1",
+  "controller.ownerOf(zone)": "0x680000cf8b72fa2300d12a00008758149e00006d",
+  "controller.getActiveSigners(zone)": [
+   "0x2f16c6d67bbe8920117093ead9bc3310d81c8fd2"
+  ],
+  "zone_owner_name (Blockscout verified)": "OpenSeaSignedZoneCaptain",
+  "captain.owner()": "0xc669b5f25f03be2ac0323037cb57f49eb543657a",
+  "captain.getRotator()": "0xc669b5f25f03be2ac0323037cb57f49eb543657a",
+  "captain.getSanitizer()": "0x21b8846849061a470b5177806896616cc1562abc",
+  "safe 0xc669b5f2 getThreshold()": 5,
+  "safe 0xc669b5f2 getOwners() count": 7
+ },
+ "seadrop_0x00005ea0": {
+  "address": "0x00005ea00ac477b1030ce78506496e8c2de24bf5",
+  "creator (Blockscout)": "0x0000000000ffe8b47b3e2130213b802212439497",
+  "admin": "none; signers and SignedMintValidationParams are set per NFT contract by that contract (updateSignedMintValidationParams)"
+ }
+}

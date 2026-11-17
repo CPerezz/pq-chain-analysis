@@ -1,0 +1,29 @@
+{
+ "note": "Wallets the OKX CEX Wallet clones can act on: OKX SmartWallet accounts (logic 0x36d3cbd83961868398d056efbf50f5ce15528c0d). Only ETH, WETH, USDT and USDC were measured; other tokens not measured.",
+ "eth_usd": 1811.62,
+ "factory_accounts": {
+  "source": "SmartWalletFactory 0x5c328f3b5f117ffc693378a2c5b16c4f80f86295 AccountCreated (topic0 0x9a853a2b...) via Blockscout logs: v2 address logs (latest 20,000, blocks 25,538,557-26,426,205) plus etherscan-style getLogs from block 23,732,085 (5,995, paging stopped early); union 25,995 accounts, possibly incomplete",
+  "read": "Multicall3.aggregate3 getEthBalance/balanceOf at latest, block ~26,431,973",
+  "accounts": 25995,
+  "accounts_with_balance": 7037,
+  "totals": {
+   "ETH": 0.006058065115332502,
+   "USDT": 84.86906799999329,
+   "USDC": 1135.7913190000045,
+   "WETH": 0.08691056805634215
+  },
+  "usd": 1389
+ },
+ "census_family_members": {
+  "source": "data/caller_family.parquet families ptr:eip1967_impl:0x36d3cbd8... (1,378) and 7702:0x36d3cbd8... (183) = 1,561 addresses that called a precompile to March 2026",
+  "read": "remote rpc probe + balanceOf at latest, block 26,431,606",
+  "totals": {
+   "ETH": 10.914093219864478,
+   "USDT": 4223.675299,
+   "USDC": 3014.847965,
+   "WETH": 0.21295112642552305
+  },
+  "usd": 27396
+ },
+ "upper_bound_usd_sum": 28785
+}

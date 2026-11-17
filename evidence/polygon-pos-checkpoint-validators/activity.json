@@ -1,0 +1,27 @@
+{
+ "window": {
+  "recent_blocks": [
+   26208000,
+   26423999
+  ],
+  "recent_dates": [
+   "2026-10-16",
+   "2026-11-16"
+  ],
+  "gap_from_block": 24700000,
+  "priced_tokens": 3406,
+  "transfers": 113266324,
+  "scan": {
+   "skip": 3880
+  }
+ },
+ "contracts": {
+  "0x5e3ef299fddf15eaa0432e6e66473ace8c13d908": {
+   "last_block": 26423934,
+   "last_active": "2026-11-16",
+   "txs_30d": 8717,
+   "direct_txs_30d": 155,
+   "usd_30d": 38596090
+  }
+ }
+}

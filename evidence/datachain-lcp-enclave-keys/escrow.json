@@ -1,0 +1,49 @@
+{
+ "block": 26431530,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "toki": {
+  "lcp_client": "0xee50fafc11baad66d1898d712409866844a8f644",
+  "ibc_handler": {
+   "address": "0x0f4bdbe6735bfa859a73f8da9251662e1081ca9c",
+   "source": "LCP client constructor argument ibcHandler_ (Sourcify transformationValues)",
+   "implementation": "0xe85d582bdde75d35efbfb62464fbd81025b47718 (OwnableUpgradeableIBCHandler)",
+   "owner()": "0x0c12a2f19c3e40b4098b389bd4e74baf049456f3"
+  },
+  "getIBCModuleByPort(toki)": "0x58f86c4461382bd41bd763081160b2319a3a12a4 (ERC1967Proxy -> Bridge 0x86e380908716a2f705356640d9981b70cbb6d0ba)",
+  "bridge_holdings": "1e-7 WETH and spam tokens",
+  "poolRepository()": "0x340601b9de0d4d449fe206c8138244c4af2e0696",
+  "pools": {
+   "1": {
+    "pool": "0xd0934c1964249d85e898ace619cfbd7bdbe6b38b",
+    "token": "USDC",
+    "balance": "927281786",
+    "usd": 927.28
+   },
+   "2": {
+    "pool": "0x24402148c57ac152e761ccae27315cb9fc18082b",
+    "token": "USDT",
+    "balance": "461701498",
+    "usd": 461.7
+   },
+   "3": {
+    "pool": "0xe0b31584afdcf256ddf4ea9d3e651ed6d072d3e0",
+    "token": "tokiETH 0x9c3bdd450d9ee2374ba2347d41a3f47d172955ef",
+    "balance": "1298836792562350399",
+    "backing": "tokiETH contract holds 1.298836792562350399 ETH = totalSupply",
+    "usd": 2352.99
+   }
+  },
+  "pool_ids_0_and_4_to_7": "TokiNoPool",
+  "escrow_usd": 3742,
+  "admin_reads_block": 26431590,
+  "lcp_proxy_owner()": "0x0c12a2f19c3e40b4098b389bd4e74baf049456f3",
+  "safe_threshold": 2,
+  "safe_owners": [
+   "0xebab87594c9860ad6243d8361128803ddf7c10a7",
+   "0xa9bbdd1d6c5ba8522fefd70f51002c6f4beb0c71",
+   "0x6451110b1075bb4ef9e8e681b273fa655e425260"
+  ],
+  "riscZeroVerifier()": "0xffeb02a02a331194c628732370067d3ddb5d4aa1"
+ }
+}

@@ -1,0 +1,122 @@
+{
+ "block": 26431757,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "itx_minter": {
+  "address": "0x38de07d2526ae929f1903e5f109b70c50e12a8e0",
+  "implementation": "0x9e98569942f7af96f42a8a385297156248c9a030",
+  "name": "MinterV1V3 (ERC1967, UUPS)",
+  "verifier()": "0x2ae060a830f2f6c7c1cc7d87ea7de4a8bfc707cd",
+  "token()": "0xe24e207c6156241cafb41d025b3b5f0677114c81 (ITX, 18 decimals)",
+  "int1()": "0x0ac498bca32b00e2584171844fb9a5943398d9c1",
+  "itx_balance": 162063166.395,
+  "itx_total_supply": 767507812.5,
+  "itx_price": "none (Blockscout, DefiLlama, CoinGecko return no price)",
+  "DEFAULT_ADMIN_ROLE": "0xcca94a453f4f69a6dfdc83ad8d8dc94fe9b75cc2 (hasRole true; Safe 2 of 2: 0xe3c72c1041f4f118479260bdbc65d64c4c49b847, 0x8080a1ef92d04cc1bd9bd800bb623f103c609083)",
+  "TREE_MANAGER": "0x9c843a9a65b85423fd9f2a674c2ac186809e377a (granted block 20862098)",
+  "role_logs": "RoleGranted/RoleRevoked via eth_getLogs (rpc.mevblocker.io) from creation block 20,856,845",
+  "last_claim_tx": "0x449c3a84ed9b3c31afd3fcc6afcdd74e596f4699be6b65906c2202dcb0b79b7a (block 25,069,553, claimTokens)"
+ },
+ "zerc20": {
+  "verifier_proxies": {
+   "0xfb786b5e6520284aa6a8dfa3b4f7a09ed423e25f": {
+    "token": "0xEB81ab55Bc7aa89d1e0E3F60597D86e37702Af53",
+    "owner": "0xb6d8B261948B097069eF926475cbB6dd698DafCa",
+    "rootDecider": "0x1a44ABB18C35E0104Dc60b794b35c2c08E6Ff773",
+    "withdrawGlobalDecider": "0x0000000000000000000000000000000000000001",
+    "withdrawLocalDecider": "0x0000000000000000000000000000000000000001",
+    "singleWithdrawGlobalVerifier": "0xF0DDF24143BF71B1f2221A58b4979ADA1f07C874",
+    "singleWithdrawLocalVerifier": "0x304141bB56D9A6B24d7B6dC5C571c3069dFA1c8F",
+    "paused": "false",
+    "latestProvedIndex": "194",
+    "hubEid": "30184 [3.018e4]",
+    "impl": "0x0000000000000000000000006b4aafeb7746e13aaebd750418f6e9cfed6ee1c8"
+   },
+   "0xdcc76debb526eef0210bd38729b803591951ab34": {
+    "token": "0x410056c6F0A9ABD8c42b9eEF3BB451966Fb0d924",
+    "owner": "0xb6d8B261948B097069eF926475cbB6dd698DafCa",
+    "rootDecider": "0x1a44ABB18C35E0104Dc60b794b35c2c08E6Ff773",
+    "withdrawGlobalDecider": "0x0000000000000000000000000000000000000001",
+    "withdrawLocalDecider": "0x0000000000000000000000000000000000000001",
+    "singleWithdrawGlobalVerifier": "0xF0DDF24143BF71B1f2221A58b4979ADA1f07C874",
+    "singleWithdrawLocalVerifier": "0x304141bB56D9A6B24d7B6dC5C571c3069dFA1c8F",
+    "paused": "false",
+    "latestProvedIndex": "459",
+    "hubEid": "30184 [3.018e4]",
+    "impl": "0x0000000000000000000000006b4aafeb7746e13aaebd750418f6e9cfed6ee1c8"
+   }
+  },
+  "implementation_name": "Verifier (Blockscout verified, src/Verifier.sol)",
+  "owner_safe": {
+   "address": "0xb6d8b261948b097069ef926475cbb6dd698dafca",
+   "threshold": 3,
+   "owners": 4
+  },
+  "tokens": {
+   "zUSDC": {
+    "address": "0xeb81ab55bc7aa89d1e0e3f60597d86e37702af53",
+    "supply": 14582.551127,
+    "owner": "0x43010855b94e65e77679fe81af2047719f67b1fa (Safe 3 of 4, same owners as verifier owner Safe)",
+    "minter": "0x04be137df79be7b5f3314c4a84d1c5e0d99bd477"
+   },
+   "zETH": {
+    "address": "0x410056c6f0a9abd8c42b9eef3bb451966fb0d924",
+    "supply": 120.329,
+    "owner": "0x43010855b94e65e77679fe81af2047719f67b1fa",
+    "minter": "0xcc10b7098fef1ab2f0ff3be91d2a7b3230b90cf0"
+   }
+  },
+  "liquidity_managers": {
+   "0x04be137df79be7b5f3314c4a84d1c5e0d99bd477": {
+    "name": "LiquidityManager (ERC1967)",
+    "usdc": 7316.026726
+   },
+   "0xcc10b7098fef1ab2f0ff3be91d2a7b3230b90cf0": {
+    "name": "LiquidityManager (ERC1967)",
+    "eth": 6.256736072857549
+   }
+  },
+  "escrow_usd": 18651,
+  "last_txs": [
+   "0x4fee30cd5d35192e0e4e2974551fa847d6fa3faca1f86176a172c408ee61c1f4 (block 26,340,240, proveTransferRoot on 0xfb786b5e)",
+   "0x61ee3eaa62d3856288e2902d8f5301ff38e62575dbdb0fb42d1f6e9dc5aac27f (block 26,291,544, proveTransferRoot on 0xdcc76deb)"
+  ],
+  "teleport_verifiers": {
+   "0xf0ddf24143bf71b1f2221a58b4979ada1f07c874": {
+    "name": "WithdrawGlobalGroth16Verifier",
+    "verified": true,
+    "creator": "0x973E9063A33c6638743cf7832358beFAdaE33F97",
+    "creation_tx": "0x90a460d6cc6f11a1956fd25ca227da4b8817e45311a3cf0f854c25dbcfba4f5f",
+    "code_size": 1551,
+    "eth": 0.0,
+    "impl_slot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "owner": "",
+    "sourcify": "WithdrawGlobalGroth16Verifier",
+    "role": "singleWithdrawGlobalVerifier() of both zERC20 Verifier proxies (block 26,431,757)",
+    "precompile_corpus": {
+     "ecpairing": 57,
+     "ecmul": 171,
+     "ecadd": 171,
+     "first_block": 24374384,
+     "last_block": 24668218
+    },
+    "recent_use": "singleTeleport(isGlobal=true) txs to 0xdcc76deb\u2026: 0x05b6c93a43a16171263ce43268174e2f096b0a09b905c970d94b9377603a4545 (block 26,266,430), 0xfbd797d1114252903af775c8ee09b3d81f2ba3e76b91cd98641c2c50bcafc846 (block 26,291,518, 2026-10-28); last on 0xfb786b5e\u2026: 0x48310a255f8a14213af6d21f9e5164b90dc844a77a332e929f23a6659b55d790 (block 25,528,238, isGlobal=true)"
+   },
+   "0x304141bb56d9a6b24d7b6dc5c571c3069dfa1c8f": {
+    "name": "WithdrawLocalGroth16Verifier",
+    "verified": true,
+    "creator": "0x4bAc2ac076F795726d42d5686De2934d40270e0e",
+    "creation_tx": "0xac85d9b5f90cc64ff6144527e3349cf90caaf74e758c5b2505002b7cdf4eb8f5",
+    "code_size": 1551,
+    "eth": 0.0,
+    "impl_slot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "owner": "",
+    "sourcify": "HTTP Error 404: Not Found",
+    "role": "singleWithdrawLocalVerifier() of both zERC20 Verifier proxies (block 26,431,757)",
+    "precompile_corpus": "no calls to block 24,700,000",
+    "recent_use": "none identified: both singleTeleport txs in 2026-10-16..2026-11-16 used isGlobal=true"
+   },
+   "singleTeleport_counts": "Blockscout direct txs to the proxies: 0xfb786b5e\u2026 36 singleTeleport (33 ok, last 2026-07-14), 0xdcc76deb\u2026 99 (all ok, 2 in 2026-10-16..2026-11-16)"
+  }
+ }
+}

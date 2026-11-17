@@ -1,0 +1,76 @@
+{
+ "window": {
+  "recent_blocks": [
+   26208000,
+   26423999
+  ],
+  "recent_dates": [
+   "2026-10-16",
+   "2026-11-16"
+  ],
+  "gap_from_block": 24700000,
+  "priced_tokens": 3406,
+  "transfers": 113266324,
+  "scan": {
+   "skip": 3880
+  }
+ },
+ "contracts": {
+  "0xa59ba433ac34d2927232918ef5b2eaafcf130ba5": {
+   "last_block": 26423989,
+   "last_active": "2026-11-16",
+   "txs_30d": 80434,
+   "direct_txs_30d": 44970,
+   "usd_30d": 0
+  },
+  "0x589dedbd617e0cbcb916a9223f4d1300c294236b": {
+   "last_block": 26423996,
+   "last_active": "2026-11-16",
+   "txs_30d": 121361,
+   "direct_txs_30d": 67483,
+   "usd_30d": 0
+  },
+  "0x8fafae7dd957044088b3d0f67359c327c6200d18": {
+   "last_block": 26421940,
+   "last_active": "2026-11-15",
+   "txs_30d": 117,
+   "direct_txs_30d": 0,
+   "usd_30d": 0
+  },
+  "0xd56e4eab23cb81f43168f9f45211eb027b9ac7cc": {
+   "last_block": 26423895,
+   "last_active": "2026-11-16",
+   "txs_30d": 4140,
+   "direct_txs_30d": 2000,
+   "usd_30d": 0
+  },
+  "0x3b0531eb02ab4ad72e7a531180beef9493a00dd2": {
+   "last_block": 26423996,
+   "last_active": "2026-11-16",
+   "txs_30d": 29031,
+   "direct_txs_30d": 16505,
+   "usd_30d": 0
+  },
+  "0x380275805876ff19055ea900cdb2b46a94ecf20d": {
+   "last_block": 26423989,
+   "last_active": "2026-11-16",
+   "txs_30d": 43467,
+   "direct_txs_30d": 22689,
+   "usd_30d": 0
+  },
+  "0x06559ee34d85a88317bf0bfe307444116c631b67": {
+   "last_block": 26423945,
+   "last_active": "2026-11-16",
+   "txs_30d": 6209,
+   "direct_txs_30d": 2707,
+   "usd_30d": 0
+  },
+  "0xc9ca319f6da263910fd9b037ec3d817a814ef3d8": {
+   "last_block": 26423757,
+   "last_active": "2026-11-15",
+   "txs_30d": 1361,
+   "direct_txs_30d": 629,
+   "usd_30d": 0
+  }
+ }
+}

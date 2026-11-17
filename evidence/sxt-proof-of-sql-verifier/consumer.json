@@ -1,0 +1,34 @@
+{
+ "block": 26431655,
+ "as_of": "2026-11-17",
+ "verifier": {
+  "address": "0x99f5bed89c638d8f67f7c132a18da349ac04ed18",
+  "name": "PoSQLVerifier (Sourcify)",
+  "creator": "0x980d23798c002cf7df7c8980217dda0d04a052dc",
+  "proxy": false,
+  "getPayoutAddressAndFee()": [
+   "0xad45b384fb2b2509a8de19a6ca71db44fb135c75",
+   "500000000000000000"
+  ],
+  "eth": "0"
+ },
+ "consumer": {
+  "address": "0x27d4d2af364c1ad2ebdb2a28d6cb7b99ede1d450",
+  "name": "TransparentUpgradeableProxy -> ZKPay",
+  "implementation": "0x8c81a00f74418f833df2d14a44559abcf503c48b",
+  "proxy_admin": "0xce1e38a8587444bbbe72f5b5faf2efbd8dd3faa6",
+  "proxy_admin_owner": "0x2b1415f2d41c3cbafa80bea392e2d0b98fa52c98 (EOA, also proxy creator)",
+  "fulfillQuery": "permissionless; calls ICustomLogic(queryRequest.customLogicContractAddress).execute then the client's zkPayCallback; payment settles to the custom logic's payout address (src/ZKPay.sol 162-200)",
+  "holdings": {
+   "USDC": "102000000 (102 USDC, balanceOf checked)",
+   "SXT": "100 SXT (Blockscout, USD 0.80)"
+  }
+ },
+ "trace": {
+  "txs": 519,
+  "first_block": 22485398,
+  "last_block": 23176777,
+  "last_date": "2025-08-19",
+  "sample": "8 of 8 sampled: ZKPay.fulfillQuery (0x7f9a09fd) sent by 0x5d067e94c1f2b95c4bf11edee9fb9bb782e3ae80"
+ }
+}

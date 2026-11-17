@@ -1,0 +1,27 @@
+{
+ "block": 26431457,
+ "date": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "method": "cast call / eth_getStorageAt at the block; Blockscout v2 API for creators, logs and token balances",
+ "reads": {
+  "0xd86193d0aefb386a4f8a6f1d024592f851c579f9": {
+   "owner()": "0x62e3bab5d52ae8551468e3dca23375629eab86e4 (EOA)",
+   "signer()": "0xaa64fa67856f2c89d6456595bc21418237f78024",
+   "ETH": 0,
+   "tokens": "675,468 GTSI (no price); nothing priced"
+  },
+  "0x5f17bf773aba7f0f877db4ac82861c198891d1f9": {
+   "owner()": "0x78a6c322fe2b4a8ae7124702d92d3bf954e75e94 (EOA)",
+   "signer()": "0x111ae6fe1ad173def8dc36e9dff5144c713f2880",
+   "ETH": 0.0002,
+   "tokens": "1 HEX (~$0)"
+  },
+  "0x07c78007ddcffa630fd908a815165e5b0af0c4f2": {
+   "owner()": "0x73eb342ebc92a4b77942b6cab927ad5faed595be (Safe 3 of 5)",
+   "signer()": "0x111ae6fe1ad173def8dc36e9dff5144c713f2880",
+   "ETH": 0,
+   "tokens": "0.0023 USDC, 1e-7 WETH, unpriced tokens"
+  },
+  "source": "Sourcify: VestingEarndrop.sol activateEarndrop l.107-176, claimEarndrop l.214-256 and multiClaimEarndrop l.258-309 (signer signature + Merkle proof), _verifySignature l.383-385; GeneralInstantPaymentLSD.sol deposit/swapDeposit/crossChainSwapDeposit l.188-309 pull tokens from msg.sender, _verify l.580-582, withdrawToken l.311 treasurer-only; GeneralInstantPaymentLSDTreasurer.sol deposit l.208-238, _batchTransfer l.593-603, _verify l.613-615"
+ }
+}

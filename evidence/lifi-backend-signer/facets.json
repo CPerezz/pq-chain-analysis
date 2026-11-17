@@ -1,0 +1,217 @@
+{
+ "note": "Reads by Review06 on 2026-11-17: facetAddresses() via cast (eth.drpc.org), facet names, source lines and constructor args from Blockscout verified source.",
+ "diamond": "0x1231deb6f5749ef6ce6943a275a1d3e7486f4eae",
+ "owner()": "0x55117eccc867db72aeb25f728ccf57c3c3b4faee",
+ "timelock getMinDelay()": 10800,
+ "backend_signer": {
+  "address": "0xaf4b7a83591a6c4c8b9d1341c3f08bbc3b800fc5",
+  "code": "none (EOA)",
+  "nonce": 0,
+  "used_by": [
+   "AcrossV4SwapFacet 0x2beef67989a236e9ca97e8f731050bf7e8039e90",
+   "SymbiosisFacet 0xa0353221443ca4e2e6a040f30a57b47f5a6d479d",
+   "LayerSwapFacet 0x04e051d8e3627a79785f8e210b1d61a877aa737a",
+   "UnitFacet 0x989a7efabb9be76ac3424b940862d9cf55334873",
+   "EcoFacet 0x1221db5424dc22df9f426ec38a4f31950f6a5600",
+   "NEARIntentsFacet 0x8f00e690a45e75d7a1a765163829ad33244a1c33"
+  ],
+  "source": "immutable constructor argument (last argument) of each facet"
+ },
+ "facets": {
+  "0xf7993a8df974ad022647e63402d6315137c58abf": {
+   "name": "DiamondCutFacet",
+   "signature_lines": []
+  },
+  "0xf5ba8db6fea7af820de35c8d0c294e17dbc1b9d2": {
+   "name": "DiamondLoupeFacet",
+   "signature_lines": []
+  },
+  "0x6faa6906b9e4a59020e673910105567e809789e0": {
+   "name": "OwnershipFacet",
+   "signature_lines": []
+  },
+  "0x5e79e8c67cc7fed03b283e84a5e16500f094b6b5": {
+   "name": "PolymerCCTPFacet",
+   "signature_lines": []
+  },
+  "0x2beef67989a236e9ca97e8f731050bf7e8039e90": {
+   "name": "AcrossV4SwapFacet",
+   "signature_lines": [
+    "src/Facets/AcrossV4SwapFacet.sol:78: address internal immutable BACKEND_SIGNER;",
+    "src/Facets/AcrossV4SwapFacet.sol:132: BACKEND_SIGNER = _backendSigner;",
+    "src/Facets/AcrossV4SwapFacet.sol:303: address recoveredSigner = ECDSA.recover(",
+    "src/Facets/AcrossV4SwapFacet.sol:308: if (recoveredSigner != BACKEND_SIGNER) {"
+   ]
+  },
+  "0x77a13abb679a0dafb4435d1fa4ccc95d1ab51cfc": {
+   "name": "AccessManagerFacet",
+   "signature_lines": []
+  },
+  "0x03f58dc7e2195a0c6f501bc4819066fd9dfe307f": {
+   "name": "SquidFacet",
+   "signature_lines": []
+  },
+  "0x108b0c3f20f266469fd2e98750926811ad632589": {
+   "name": "DeBridgeDlnFacet",
+   "signature_lines": []
+  },
+  "0xe46e9a5ae71f1fb3ac59d09469830d6ecc1d21f2": {
+   "name": "MegaETHBridgeFacet",
+   "signature_lines": []
+  },
+  "0x9a82bb477c30d92dab74875027e14d1de3510ef9": {
+   "name": "GnosisBridgeFacet",
+   "signature_lines": []
+  },
+  "0xac82fa2d953ee5c61d87686ade620b0728f484e6": {
+   "name": "ArbitrumBridgeFacet",
+   "signature_lines": []
+  },
+  "0xce52856e4d95220389350a822c60779d0d921e30": {
+   "name": "EmergencyPauseFacet",
+   "signature_lines": []
+  },
+  "0x94a3edca65424775651e6fbce63c89c8cb69a66f": {
+   "name": "PaxosTransitFacet",
+   "signature_lines": []
+  },
+  "0x88e0dd83e6da24bf317323e5ca06842406d57ed0": {
+   "name": "RelayDepositoryFacet",
+   "signature_lines": []
+  },
+  "0x7570e6b01e43df1b0c67f99c4156285adc36c360": {
+   "name": "OmniBridgeFacet",
+   "signature_lines": []
+  },
+  "0x54678c366682a29112609882dc58def6753bfc27": {
+   "name": "OptimismBridgeFacet",
+   "signature_lines": []
+  },
+  "0x99fb0babba2c437153d25aff79dc80b905a27a5a": {
+   "name": "PolygonBridgeFacet",
+   "signature_lines": []
+  },
+  "0x124aa9169e6c0851a4a54d0ebb9158f2313d9dd8": {
+   "name": "MayanFacet",
+   "signature_lines": []
+  },
+  "0x69cb467efd8044ac9edb88f363309ab1cbfa0a15": {
+   "name": "PeripheryRegistryFacet",
+   "signature_lines": []
+  },
+  "0xa0353221443ca4e2e6a040f30a57b47f5a6d479d": {
+   "name": "SymbiosisFacet",
+   "signature_lines": [
+    "src/Facets/SymbiosisFacet.sol:473: if (ECDSA.recover(digest, _symbiosisData.signature) != backendSigner)"
+   ]
+  },
+  "0x0fc3045a569f55233ba26d92db2e7dbb47c30d76": {
+   "name": "LiFiIntentEscrowFacetV2",
+   "signature_lines": []
+  },
+  "0x1841044080e6872c90ac5048f0d1954cc546e9b7": {
+   "name": "WhitelistManagerFacet",
+   "signature_lines": []
+  },
+  "0x04e051d8e3627a79785f8e210b1d61a877aa737a": {
+   "name": "LayerSwapFacet",
+   "signature_lines": [
+    "src/Facets/LayerSwapFacet.sol:41: address internal immutable BACKEND_SIGNER;",
+    "src/Facets/LayerSwapFacet.sol:92: BACKEND_SIGNER = _backendSigner;",
+    "src/Facets/LayerSwapFacet.sol:262: address recoveredSigner = ECDSA.recoverCalldata(",
+    "src/Facets/LayerSwapFacet.sol:267: if (recoveredSigner != BACKEND_SIGNER) {"
+   ]
+  },
+  "0x989a7efabb9be76ac3424b940862d9cf55334873": {
+   "name": "UnitFacet",
+   "signature_lines": [
+    "src/Facets/UnitFacet.sol:34: address internal immutable BACKEND_SIGNER;",
+    "src/Facets/UnitFacet.sol:70: BACKEND_SIGNER = _backendSigner;",
+    "src/Facets/UnitFacet.sol:203: address recoveredSigner = ECDSA.recover(digest, _unitData.signature);",
+    "src/Facets/UnitFacet.sol:206: if (recoveredSigner != BACKEND_SIGNER) {"
+   ]
+  },
+  "0x317d089bbe46aae816b27eeb1ac26cfb7ab1850d": {
+   "name": "AllBridgeFacet",
+   "signature_lines": []
+  },
+  "0xa20d724c81ddde4a65f682a766881970245b31af": {
+   "name": "GardenFacet",
+   "signature_lines": []
+  },
+  "0xb815b47ad429436892fc3c6ed1d401f515c7f763": {
+   "name": "CelerCircleBridgeFacet",
+   "signature_lines": []
+  },
+  "0xfa93141130a11fdab7c6c800dfb93a5d19da6aa4": {
+   "name": "ChainflipFacet",
+   "signature_lines": []
+  },
+  "0xbf4ad13fa0e6e05916a78c201f147c5152dbe1c9": {
+   "name": "StargateFacetV2",
+   "signature_lines": []
+  },
+  "0x4b0ec145d216101844072bcee574a0e8873770b6": {
+   "name": "CalldataVerificationFacet",
+   "signature_lines": []
+  },
+  "0x8f00e690a45e75d7a1a765163829ad33244a1c33": {
+   "name": "NEARIntentsFacet",
+   "signature_lines": [
+    "src/Facets/NEARIntentsFacet.sol:39: address internal immutable BACKEND_SIGNER;",
+    "src/Facets/NEARIntentsFacet.sol:126: BACKEND_SIGNER = _backendSigner;",
+    "src/Facets/NEARIntentsFacet.sol:327: address recoveredSigner = ECDSA.recover(digest, _nearData.signature);",
+    "src/Facets/NEARIntentsFacet.sol:329: if (recoveredSigner != BACKEND_SIGNER) {"
+   ]
+  },
+  "0xcaefac1ea4dec8fd866cbc5b6dd3054f80d49b80": {
+   "name": "ThorSwapFacet",
+   "signature_lines": []
+  },
+  "0x94ef6d1702ac7e30a5cef39dee26fab180c251fe": {
+   "name": "WithdrawFacet",
+   "signature_lines": []
+  },
+  "0x02db8a1c2170aee6cd17715ecd1c567c9b296e2c": {
+   "name": "GenericSwapFacetV3",
+   "signature_lines": []
+  },
+  "0x65d6b9a368be49bca4964b66e54f828cab64b8f9": {
+   "name": "GasZipFacet",
+   "signature_lines": []
+  },
+  "0x8452788daad6af88fe88bc5dfc892974c11c32ad": {
+   "name": "FraxFacet",
+   "signature_lines": []
+  },
+  "0xd69e5ea7458abff098e9240f81f733898535c7a0": {
+   "name": "GlacisFacet",
+   "signature_lines": []
+  },
+  "0xad3f1634a917924cbb54a0f76e43ca035d2b6bcd": {
+   "name": "AcrossFacetV4",
+   "signature_lines": []
+  },
+  "0x8cd89ea14345f24d0299c2180aec97a417ca34e3": {
+   "name": "AcrossFacetPackedV4",
+   "signature_lines": []
+  },
+  "0x1221db5424dc22df9f426ec38a4f31950f6a5600": {
+   "name": "EcoFacet",
+   "signature_lines": [
+    "src/Facets/EcoFacet.sol:49: address internal immutable BACKEND_SIGNER;",
+    "src/Facets/EcoFacet.sol:134: BACKEND_SIGNER = _backendSigner;",
+    "src/Facets/EcoFacet.sol:452: address recoveredSigner = ECDSA.recoverCalldata(",
+    "src/Facets/EcoFacet.sol:457: if (recoveredSigner != BACKEND_SIGNER) {"
+   ]
+  },
+  "0x6275c64c1da8919d1f7f5d558d36a6d750c74838": {
+   "name": "CentrifugeFacet",
+   "signature_lines": []
+  },
+  "0x879d83eae7d13fcf7ffd931f211ef29f167d9d5c": {
+   "name": "M0Facet",
+   "signature_lines": []
+  }
+ }
+}

@@ -1,0 +1,45 @@
+{
+ "block": 26431457,
+ "as_of": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "reads": {
+  "seaport_1_6_eip1967_impl_slot": {"address": "0x0000000000000068f116a894984e2db1123eb395", "value": "0x0"},
+  "conduit_controller": "0x00000000f9490004c11cef243f5400493c00ad63",
+  "opensea_conduit": {
+   "address": "0x1e0049783f008a0085193e00003d00cd54003c71",
+   "conduit_key": "0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000",
+   "ownerOf (ConduitController)": "0x0000000000d132a69d773c838080dc4fa478388f",
+   "getChannels": [
+    "0x00000000000000adc04c56bf30ac9d3c0aaf14dc",
+    "0x0000000000c2d145a2526bd8c716263bfebe1a72",
+    "0x0000000000000068f116a894984e2db1123eb395"
+   ],
+   "getChannelStatus(conduit, seaport 1.6)": true
+  },
+  "conduit_captain": {
+   "address": "0x0000000000d132a69d773c838080dc4fa478388f",
+   "name (Blockscout verified source)": "ConduitCaptain",
+   "owner()": "0xc669b5f25f03be2ac0323037cb57f49eb543657a",
+   "getRevoker()": "0x21b8846849061a470b5177806896616cc1562abc",
+   "functions": "updateChannel(conduit, channel, isOpen) onlyOwner; closeChannel(conduit, channel) owner or revoker"
+  },
+  "captain_owner_safe": {
+   "address": "0xc669b5f25f03be2ac0323037cb57f49eb543657a",
+   "getThreshold()": 5,
+   "getOwners()": [
+    "0x1049f38c6ef26b195cdaf54337e8079eea9376f1",
+    "0x59f4ec41bfdca22b4c0f1fd4b4ced52f79c3d09f",
+    "0x435949f7363093620bb0d3900180c22273f076ab",
+    "0xe80a65eb7a3018deda407e621ef5fb5b416678ca",
+    "0xb20f88febd0adc79c58982c9cc88938de81fe451",
+    "0xbf81d02f3ee59e79af3d9337a186f65c9fae39f3",
+    "0x30809f074db2fb7cfdf68b1d25cfac7c96b5fb6c"
+   ]
+  }
+ },
+ "other_seaport_versions_y1_ecrecover_txs (data/agg/y1_caller.parquet)": {
+  "0x00000000000000adc04c56bf30ac9d3c0aaf14dc (Seaport 1.5)": 7735,
+  "0x00000000000001ad428e4906ae43d8f9852d0dd6 (Seaport 1.4)": 3,
+  "0x00000000006c3852cbef3e08e8df289169ede581 (Seaport 1.1)": 8
+ }
+}

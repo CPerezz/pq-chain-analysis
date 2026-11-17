@@ -1,0 +1,52 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0xb40eed68d7d6b3b6d6f4e93de6239b7c53efc786": {
+   "code_size": 6184,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x9b7c0a5829ab078c219f2f751a2ab46ab911bbec",
+   "safe": null,
+   "controller_safe": {
+    "address": "0x9b7c0a5829ab078c219f2f751a2ab46ab911bbec",
+    "threshold": 3,
+    "owners": [
+     "0x42034290baf66264c2fa99ff873c9089db0071fb",
+     "0xb480a9326ca6360515b6abb2bbac3bd7c9a5a0d4",
+     "0x215b77352815c722d32d61889cb4b68d1b29e3ef",
+     "0x0577f72f62dd23e1b308268ff4ee039b78b9844c",
+     "0x1b466657b7593d7634791287e1c20d7494ecffd1",
+     "0x440d97b0d6feb928202680414f62786d0098025b"
+    ]
+   },
+   "eth": 0.3842009666863514,
+   "tokens_usd": 112896.62053746225,
+   "top_tokens": [
+    [
+     "USDT",
+     98882
+    ],
+    [
+     "WBTC",
+     5976
+    ],
+    [
+     "USDC",
+     5423
+    ],
+    [
+     "BUSD",
+     2492
+    ],
+    [
+     "USD1",
+     122
+    ]
+   ],
+   "held_usd": 113593
+  }
+ }
+}

@@ -1,0 +1,35 @@
+{
+  "as_of": "2026-11-17",
+  "reviewer": "Review20",
+  "method": "Sourcify source; eth_getCode / cast call at latest block (~26431600); Blockscout address metadata, transactions and ERC-20 holdings fetched 2026-11-17",
+  "attribution": {
+    "deployer": "0x8a462a861e34939157c61d478e959dc18152fc2e (EOA, no Blockscout name or ENS)",
+    "source_constant": "CryptoCore.h(): hash to point of the string \"HoudiniSwap2025\" (solidity/libs/CryptoCore.sol line 95)",
+    "verdict": "Houdini Swap inferred from the source constant; not confirmed by the team or an explorer label"
+  },
+  "contracts": {
+    "0x23c5e2e0128f0bf3a8d92cda02c9d3068887b13a": {
+      "verified": "Sourcify PrivateDEX",
+      "creator": "0x8a462a861e34939157c61d478e959dc18152fc2e",
+      "owner": "0x8a462a861e34939157c61d478e959dc18152fc2e",
+      "removeWhitelist": false,
+      "linked_library": "0x6c35a458e131cf221dc589553595b767bf95254c (CryptoCore, created by the same deployer)",
+      "transactions": "8, all from the deployer, 2026-01-23"
+    },
+    "0xc434c6f25ed88f5365465bd6ff9bf04d1d944500": {
+      "verified": false,
+      "creator": "0x8a462a861e34939157c61d478e959dc18152fc2e",
+      "owner": "0x8a462a861e34939157c61d478e959dc18152fc2e",
+      "bytecode_compare": "16,408 bytes, same length as verified PrivateDEX 0xa88bead2811b26b5d01c8dc8ba0db1b26516735a; differs only in the PUSH20 linked-library address (0x04987ab8465ff6c5d4f803a5adc6638ea69316bd vs 0x90d1cc5a022f8a372f70de307450034de2fe796e) and the metadata hash",
+      "transactions": "3, all from the deployer, 2026-01-22"
+    },
+    "0xa88bead2811b26b5d01c8dc8ba0db1b26516735a": {
+      "verified": "Blockscout PrivateDEX",
+      "creator": "0x8a462a861e34939157c61d478e959dc18152fc2e",
+      "owner": "0x8a462a861e34939157c61d478e959dc18152fc2e",
+      "holdings": "0.000356 WETH (about USD 0.65), no ETH",
+      "transactions": "3, all from the deployer, 2026-01-22",
+      "note": "not in the census; added to this finding by the review"
+    }
+  }
+}

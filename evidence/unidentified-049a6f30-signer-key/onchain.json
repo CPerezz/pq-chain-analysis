@@ -1,0 +1,40 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x049a6f30a91cdad18473739a69f957175acb83d3": {
+   "code_size": 3763,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0x595744b06ee5df7c88b65ef5894fae36f2fc4a59",
+   "safe": null,
+   "eth": 0.004600000000000004,
+   "tokens_usd": 121359.8025459825,
+   "top_tokens": [
+    [
+     "PENDLE",
+     54741
+    ],
+    [
+     "AAVE",
+     32378
+    ],
+    [
+     "USDT",
+     12027
+    ],
+    [
+     "NEIRO",
+     11500
+    ],
+    [
+     "WETH",
+     7323
+    ]
+   ],
+   "held_usd": 121368
+  }
+ }
+}

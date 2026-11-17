@@ -1,0 +1,87 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0xb2ecfe4e4d61f8790bbb9de2d1259b9e2410cea5": {
+   "code_size": 792,
+   "kind": "eip1967",
+   "implementation": "0x5fa60726e62c50af45ff2f6280c468da438a7837",
+   "admin": null,
+   "owner": "0xfa9fb502534761dbddacf5b7e2aa84684815f1bb",
+   "safe": null,
+   "controller_safe": {
+    "address": "0xfa9fb502534761dbddacf5b7e2aa84684815f1bb",
+    "threshold": 5,
+    "owners": [
+     "0xdd134e3fe548b2417adf1c9a0fa90a76f8d1e8a5",
+     "0x000000000000000000000000000000000000dead",
+     "0x06eab15f3c1470f9d5e6b33594846a45570b6eb8",
+     "0xffd07ea07e51b7b14ef294210d97c6785caa8b45",
+     "0xe0d11449349d73f4d92206b4146528ec617b613f"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 0.04044728,
+   "top_tokens": [
+    [
+     "USDT",
+     0
+    ],
+    [
+     "HEX",
+     0
+    ],
+    [
+     "APU",
+     0
+    ]
+   ],
+   "held_usd": 0
+  },
+  "0x29469395eaf6f95920e59f858042f0e28d98a20b": {
+   "code_size": 658,
+   "kind": "eip1967",
+   "implementation": "0xb258ca5559b11cd702f363796522b04d7722ea56",
+   "admin": null,
+   "owner": "0xfa9fb502534761dbddacf5b7e2aa84684815f1bb",
+   "safe": null,
+   "controller_safe": {
+    "address": "0xfa9fb502534761dbddacf5b7e2aa84684815f1bb",
+    "threshold": 5,
+    "owners": [
+     "0xdd134e3fe548b2417adf1c9a0fa90a76f8d1e8a5",
+     "0x000000000000000000000000000000000000dead",
+     "0x06eab15f3c1470f9d5e6b33594846a45570b6eb8",
+     "0xffd07ea07e51b7b14ef294210d97c6785caa8b45",
+     "0xe0d11449349d73f4d92206b4146528ec617b613f"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 1201.9005640987084,
+   "top_tokens": [
+    [
+     "APE",
+     1192
+    ],
+    [
+     "USDT",
+     10
+    ],
+    [
+     "SOS",
+     0
+    ],
+    [
+     "GEMS",
+     0
+    ],
+    [
+     "TSUKA",
+     0
+    ]
+   ],
+   "held_usd": 1202
+  }
+ }
+}

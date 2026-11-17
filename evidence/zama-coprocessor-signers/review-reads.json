@@ -1,0 +1,28 @@
+{
+ "block": 26431457,
+ "date": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "method": "cast call / eth_getStorageAt at the block; Blockscout v2 API for creators, logs and token balances",
+ "reads": {
+  "0xce0fc2e05cfff1b719eff7169f7d80af770c8ea2": {
+   "eip1967_implementation": "0xc4a1a1bae73ca6aceb2faa62ce08bfabcd2323b6 (InputVerifier)",
+   "getCoprocessorSigners()": [
+    "0x373e36a8684a3344e177c5894179845cbe57ae44",
+    "0x679953d556e71f62673f38ee4775d6e7ccb23e64",
+    "0xf6ee37de6bdab31597e90ed70448b92073cd9634",
+    "0x2e809e897aa8046ff6e936502b6275f0b8993456",
+    "0x68edabe2f16ccc37cb2bb05f1d1edad3e1eecbd7"
+   ],
+   "getThreshold()": 3
+  },
+  "0xca2e8f1f656cd25c01f05d0b243ab1ecd4a8ffb6": {
+   "owner()": "0xb6d69d5f334d8b97b194617b53c6ab62f8681ef3 (ERC1967 proxy -> Aragon OSx 'DAO' implementation 0x58c1f7bc62bb63fb137bc8f6d8ea6321a0501d29; not a Safe; created by 0x246503df057a9a85e0144b6867a828c99676128b)"
+  },
+  "0x77627828a55156b04ac0dc0eb30467f1a552bb03": {
+   "name": "KMSVerifier (address constant in FHEVMHostAddresses.sol)",
+   "eip1967_implementation": "0x390683dea46a61786f4f0807bf3559038cf43fa4",
+   "note": "not in the census; not reviewed here"
+  },
+  "source": "Sourcify InputVerifier.sol: verifyInput l.239-328 (inputProof = handles + 65-byte coprocessor signatures + extraData, EIP-712 CiphertextVerification bound to user, contract, chain id), _verifySignaturesDigest l.442-474 (ECDSA.recover via _recoverSigner l.519-520, unique signers >= threshold), defineNewContext l.169 and setThreshold l.205 onlyACLOwner, _authorizeUpgrade l.552 onlyACLOwner; ACLOwnable: onlyACLOwner = msg.sender == ACL(0xca2e8f1f\u2026).owner()"
+ }
+}

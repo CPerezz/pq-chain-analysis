@@ -1,0 +1,38 @@
+{
+  "block": 26431595,
+  "rpc": "https://eth.drpc.org",
+  "as_of": "2026-11-17",
+  "eETH 0x35fa164735182de50811e8e2e824cfb9b6118ac2": {
+    "EIP-1967 implementation": "0xd1901dd36cbf4a81386d0162df2707f7ddb60527 (EETH, Sourcify)",
+    "_authorizeUpgrade": "onlyUpgradeTimelock -> roleRegistry.onlyUpgradeTimelock(msg.sender) (EETH.sol line 444, RolesLibrary.sol line 30)",
+    "roleRegistry()": "0x62247d29b4b9becf4bb73e0c722cf6445cfc7ce9"
+  },
+  "weETH 0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee": {
+    "EIP-1967 implementation": "0xa6ca0607190d03cf16fe6f2865cf40c3d160ccf3 (WeETH, Sourcify)",
+    "_authorizeUpgrade": "onlyUpgradeTimelock (WeETH.sol line 241)",
+    "roleRegistry()": "0x62247d29b4b9becf4bb73e0c722cf6445cfc7ce9"
+  },
+  "RoleRegistry 0x62247d29b4b9becf4bb73e0c722cf6445cfc7ce9": {
+    "owner()": "0x9f26d4c958fd811a1f59b01b86be7dffc9d20761",
+    "roleHolders(UPGRADE_TIMELOCK_ROLE())": ["0x9f26d4c958fd811a1f59b01b86be7dffc9d20761"],
+    "0x9f26d4c958fd811a1f59b01b86be7dffc9d20761": "EtherFiTimelock (Blockscout), getMinDelay() = 864000"
+  },
+  "BoringVault (Liquid ETH) 0xf0bb20865277abd641a307ece5ee04e79073416c": {
+    "proxy": "none (EIP-1967 slots empty in onchain.json; Sourcify BoringVault)",
+    "owner()": "0x0000000000000000000000000000000000000000",
+    "authority()": "0x485bde66bb668a51f2372e34e45b1c6226798122",
+    "authority owner()": "0xd829f278016b90fec735f9a12bf8b75e06102c89 (getMinDelay() = 86400)",
+    "hook()": "0x9aa79c84b79816ab920bbce20f8f74557b514734 (LayerZeroTellerWithRateLimiting, Blockscout)",
+    "setBeforeTransferHook": "requiresAuth (BoringVault.sol line 113); transfer/transferFrom call hook.beforeTransfer(from, to, msg.sender) (line 121)"
+  },
+  "market_caps (data/report/permit_tokens_market_cap.csv, 2026-11-17)": {
+    "WEETH": 5103835614,
+    "LIQUIDETH": 318697644,
+    "EETH": 181644103
+  },
+  "ecrecover_txs_y1 (data/agg/y1_caller.parquet)": {
+    "eETH": 15732,
+    "BoringVault": 1048,
+    "weETH": 458
+  }
+}

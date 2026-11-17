@@ -1,0 +1,40 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x51c72848c68a965f66fa7a88855f9f7784502a7f": {
+   "code_size": 20805,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 224.27908483311626,
+   "tokens_usd": 70233502.15399471,
+   "top_tokens": [
+    [
+     "USDC",
+     14569101
+    ],
+    [
+     "USDT",
+     12587513
+    ],
+    [
+     "WETH",
+     12154421
+    ],
+    [
+     "CBBTC",
+     4947222
+    ],
+    [
+     "CRVUSD",
+     4185751
+    ]
+   ],
+   "held_usd": 70639811
+  }
+ }
+}

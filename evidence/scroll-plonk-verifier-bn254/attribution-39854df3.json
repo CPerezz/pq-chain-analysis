@@ -1,0 +1,23 @@
+{
+ "block": 26431788,
+ "as_of": "2026-11-17",
+ "verifier": "0x39854df30b3482ef546f68b8981fae5a2c426ea4",
+ "creator": "0xb1223481748c5e4c7e9160de04ce83beb7792e1e",
+ "creation_tx": "0xd899aecd8aa61c3759ecb9e4bcc0272e13b8db803cea0424e4d98ee5c9d24beb",
+ "runtime_code_keccak": "0x30af8474d8e13b8ce6a96eae63293310e7c1072b890bde77f96786497a9e5f4b",
+ "runtime_code_keccak_0x9f66505c": "0x91816743ec15118a4ddacb13c830e56e9f8b28f1c875dfc458a27142a88c9fc8",
+ "bn254_constants_in_code": {"base_field_p": 7, "scalar_field_r": 4},
+ "precompile_corpus": {"ecpairing": 4367, "ecadd": 91707, "ecmul": 91707, "modexp": 13101, "first_block": 23105047, "last_block": 24023851},
+ "last_tx": {"hash": "0x0c185749a5de1ab816fe10c515619d25e02e39b2e468c3490645dd1844c8cec9", "block": 24023851, "date": "2025-12-16", "to": "0xa13baf47339d63b743e7da8741db5456dac1e556", "selector": "0xc1aa4e19 finalizeBundlePostEuclidV2(bytes,uint256,bytes32,bytes32,bytes)"},
+ "scroll_chain": {"proxy": "0xa13baf47339d63b743e7da8741db5456dac1e556", "implementation": "0x0a20703878e68e587c59204cc0ea86098b8c3ba7 (ScrollChain, Sourcify)", "verifier()": "0x4cea3e866e7c57fd75cb0ca3e9f5f1151d4ead3f"},
+ "multiple_version_rollup_verifier": {
+  "address": "0x4cea3e866e7c57fd75cb0ca3e9f5f1151d4ead3f",
+  "owner": "0x798576400f7d662961ba15c6b3f3d813447a26a6",
+  "latestVerifier": {
+   "7": {"startBatchIndex": 364588, "wrapper": "0xc084a6de8b0f2742396572d6f110ec87ca9329ba (ZkEvmVerifierPostEuclid)", "plonkVerifier": "0x39854df30b3482ef546f68b8981fae5a2c426ea4"},
+   "8": {"startBatchIndex": 0, "wrapper": "0xa8d4702aa5c09af5dd1323e1842a43789021f485 (ZkEvmVerifierPostFeynman)", "plonkVerifier": "0x39854df30b3482ef546f68b8981fae5a2c426ea4"},
+   "9": {"wrapper": "0x4af7f3abd780fbd319c4356a219100a45f85ddb5", "plonkVerifier": "0x749fc77a1a131632a8b88e8703e489557660c75e"},
+   "10": {"wrapper": "0xb15417122fb6e853d84e498517268d33d7301e74", "plonkVerifier": "0x0d2a59fd7060460f07c30c2817b4e79576da01c6"}
+  }
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "signer()(address)": "0x28D50aee9E03365b32fd600bb6c2160Ee10Bc215",
+ "owner()(address)": "0x9287B8E84d972DD02f618BBEd45b9A6d7ed16384",
+ "vault()(address)": "0x11235534a66A33c366b84933D5202c841539D1C9",
+ "safe()(address)": "0x9287B8E84d972DD02f618BBEd45b9A6d7ed16384",
+ "operator()(address)": "0x5Db8606F2927e7173b3Cab5a4c512d9f00BBF193",
+ "paused()(bool)": "true",
+ "vault_tokens": [
+  [
+   "USDC",
+   1050,
+   0.0
+  ]
+ ],
+ "pause_tx": "0x64139d143ffdd6b5e236d03475aa3be635b3c213704e6dc4f53e62ae4e2ae5cf (selector 0x8456cb59 pause(), by operator 0x5db8606f, 2026-11-12, block 26397620); then rescueETH tx 0xc7c281b2a003231541a29d678737863a0417c0b064af8fc7ff09934157121e40",
+ "owner_safe": {
+  "threshold": "3",
+  "owners": "[0xbA430e784fe11ADbc20fa1a99193eeD87ACD68C7, 0xC7F81B58ec3937D11Bf4BA74C04FF69e944423F2, 0xA52Bb0BEBfadEDA9DfFFa3Ba5eBFE86d9f6dB321, 0xbd5bbF1ef0d6EEc9010DF20ba0D325df97D5957B, 0x27f05308F4b80242d3Dca1D5e9c3aE976098E9C8]"
+ },
+ "eip1967_impl": "0x0000000000000000000000000000000000000000000000000000000000000000",
+ "vault_usdt": {
+  "allowance_to_b141": "115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77]",
+  "balance": "586957 [5.869e5]"
+ },
+ "block": 26431523,
+ "note": "reads by reviewer Review22, 2026-11-17",
+ "creator": "EOA 0x8bce4b09802634b0b719bbdcc1ac930ca6a6becf through factory 0xd7061474ed50293dba338eb9a3781a97cbc1b34e, tx 0x855ec8d09660348d5f65e42572c3f618f88a10f64442b084c82fb46d819f528c, 2025-07-30",
+ "label": "Etherscan public name tag \"Bitget: Swap\" (and \"Bitget: Swap 2\" on 0x47ebcf27421858d4019238620a44a4ea10ebb5d9, which receives its ETH); same address deployed on OP Mainnet and Avalanche",
+ "traces": {
+  "0x6353016f165fa40e7f3cdb3aa55ade8911ddb230c293e278282902730f7ccdab (0xb1a6602a, user swap)": "ecrecover -> 0x28d50aee (signer()) then transferFrom(user -> contract) and route via 0x47ebcf27",
+  "0x6498162c0759f36d1f7bfa1cce7b6a9dc6912a483e000aa445a7922345793a5b (0x3dddee1f, from vault)": "ecrecover -> 0x28d50aee then USDT transferFrom(vault 0x11235534 -> recipient 0x6a62e6f9, 35,891 USDT)",
+  "0xdfa1fd3e2cb8ef677597bc617a46721ac6ebce0000a11bafb23f3557816295ed (0x01bbd2e2, from vault)": "ecrecover -> 0x28d50aee then USDT transferFrom(vault -> contract) and swap",
+  "0x4b892a74c5f31d4e1f65afc67d22c41530acd5a0a86bc866014e30122edef002 (0x396fc311, user)": "ecrecover -> 0x28d50aee then USDT transferFrom(user 0x3a7111ed -> vault 0x11235534)"
+ },
+ "calls_since_block_24700000": "1,842 transactions (Xatu)"
+}

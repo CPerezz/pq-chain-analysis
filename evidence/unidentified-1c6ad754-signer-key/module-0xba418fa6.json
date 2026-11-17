@@ -1,0 +1,5994 @@
+{
+ "note": "reads by reviewer Review22, 2026-11-17 (moved from biconomy-ecdsa-validator)",
+ "block": 26431523,
+ "module": {
+  "creator": "0xac6a87c681a5ed4cb58bc4fa7bf81a83b928c83c via CREATE2 deployer 0x4e59b448 (tx 0x1296d4e3bc052048d5b73d9c71a83ff231edb3861513f95de545f0fe906f1381, block 20718957, 2024-09-10)",
+  "NAME()": "Multichain PassKeys Ownership Registry Module",
+  "VERSION()": "0.2.0",
+  "selectors": "initForSmartAccount(address), getOwner(address), transferOwnership(address), renounceOwnership(), validateUserOp(v0.6), isValidSignature(bytes32,bytes), isValidSignatureForAddress(bytes32,bytes,address), error NotEOA(address)",
+  "runtime_code_equal_to_biconomy_canonical_0x0000001c5b32f37f5bea87bdd5374eb2ac54ea8e": false,
+  "cosigner_contract": {
+   "address": "0x82eace5d23ef8fc5e825a05e8eacd908289ee4dc",
+   "selectors": "isValidSignature(bytes32,bytes), getVerifyingSigner(), mode(), setMode(uint8), owner(), transferOwnership, renounceOwnership",
+   "owner()": "0x0000000000000000000000000000000000000000",
+   "getVerifyingSigner()": "0x5E028B8Ce6397e8A81F94d80931EE02a8A854cDD",
+   "mode()": "0"
+  },
+  "trace_tx_0x5f57a90e8370425f69c0fcbcc9f9d73120ec10b9c2e32701e9cffa061ab8ffa3": "EntryPoint v0.6 handleOps -> account 0xc392f479 validateUserOp -> module 0xba418fa6.validateUserOp: staticcall 0x82eace5d.isValidSignature (ecrecover -> 0x5e028b8c = verifying signer), then ecrecover -> 0xd0b3b7a0 = getOwner(0xc392f479); paymaster 0xdeaa49b1",
+  "sample_getOwner": {
+   "0xc392f479e63cb44122af230825e0cffa4e84ab5e": "0xD0b3B7a06515B4D6Fc9d4A71F41647e86FdCA0b3",
+   "0x55d5b2a3ccf7ec70d97f0a834f91bda092cdd0b1": "0x4221EaA26189A1d58191015C94f97c8b8C8C1856",
+   "0x3571aab86a72f65ca27b12a6997b23f23372b256": "0xD23ED73Ce22fd6794eF5B16a3262127E8Ad33c26",
+   "0x9f7956d963d4de58eb5c84c9f9d55e006fee5e8b": "0x5a90338568F744D988cdFe4A7F3954Ce5d6c8C0F"
+  },
+  "account_factory": "SmartAccountFactory 0xb3f15a44f91a08a93a11c6fbf6a4933c623275fe (verified, Biconomy SA v2 code) deployed by 0xac6a87 2024-09-05; basicImplementation 0xd315125a705df47bdb0f7451f937e62aa7a09e0e (has updateImplementation, isModuleEnabled, execTransactionFromModule)",
+  "calls_since_block_24700000": "5197 transactions (Xatu call frames)",
+  "eip1967_impl": "0x0000000000000000000000000000000000000000000000000000000000000000"
+ },
+ "accounts": {
+  "source": "Review22, 2026-11-17. Candidate accounts: handleOps senders and tx.to of transactions that called module 0xba418fa699622de824b258c61eb150ed7a13967b since block 24,700,000 (Xatu call frames) (856 candidates); filter getOwner(account) != 0; kept only accounts for which the module reports an owner. ETH via eth_getBalance (latest, about block 26431523); tokens via Multicall3 tryAggregate balanceOf for USDC, USDT, DAI, EURC, WETH, wstETH, WBTC, cbBTC only.",
+  "prices_usd": {
+   "ETH": 1814.71,
+   "USDC": 1.0,
+   "USDT": 1.0,
+   "DAI": 1.0,
+   "EURC": 1.099,
+   "WETH": 1814.71,
+   "wstETH": 2265.04,
+   "WBTC": 64633.0,
+   "cbBTC": 64633.0
+  },
+  "totals": {
+   "accounts": 852,
+   "eth": 0.0806,
+   "eth_usd": 146,
+   "tokens_usd": {
+    "USDC": 1678.08,
+    "USDT": 4721.72,
+    "DAI": 0,
+    "EURC": 0,
+    "WETH": 9.3,
+    "wstETH": 0,
+    "WBTC": 1.78,
+    "cbBTC": 0
+   },
+   "total_usd": 6557
+  },
+  "accounts": {
+   "0x93298707007385658f4f406790185ea28656471a": {
+    "owner": "0x15aaf46c9033e03bd3ef4680015ee4b6bee49e25",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 4491.59
+    },
+    "usd": 4491.59
+   },
+   "0x5232b5e4343b7058361db14c4cf3f2643dad8911": {
+    "owner": "0x7090a622c184d0781ff6f03cc96290a785706b4a",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 468.61
+    },
+    "usd": 468.61
+   },
+   "0x59b66bdf54d425deba6bccbce367a622b52916df": {
+    "owner": "0x0f6bb044f386a45bfb1ec4dba289d677dc801b14",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 303.68
+    },
+    "usd": 303.68
+   },
+   "0xc5f71fadf49936cc99a33e17caa092cdf0bea91c": {
+    "owner": "0xa2fb36bae824dda5603808879176c459eaa90d03",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 261.08
+    },
+    "usd": 261.08
+   },
+   "0x9bab0a498295e3637ece7f0f23502a78f7046eac": {
+    "owner": "0x14ca401ed9fb940645b121133f7b5cfec26b8a39",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 197.45
+    },
+    "usd": 197.45
+   },
+   "0x336f0254a2fb89bae9e003da3a5dc2851871e3c7": {
+    "owner": "0xcfdf22b1459a5a22cab090328e302e716191305c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 152.02,
+     "WETH": 0.0
+    },
+    "usd": 152.02
+   },
+   "0x55d5b2a3ccf7ec70d97f0a834f91bda092cdd0b1": {
+    "owner": "0x4221eaa26189a1d58191015c94f97c8b8c8c1856",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 139.08
+    },
+    "usd": 139.08
+   },
+   "0x8d3536c339939fa7b35ebfac87ea12f19fc0ea78": {
+    "owner": "0xeb17b0a429b276097971fc4adcece56d15a1d80b",
+    "eth": 0.030745,
+    "tokens_usd": {},
+    "usd": 55.79
+   },
+   "0xde3394a4adb3241bc24717e7515bba42de846854": {
+    "owner": "0x992c8af7766d6b5439896414bee1241d73663594",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 49.99,
+     "WETH": 0.0
+    },
+    "usd": 49.99
+   },
+   "0xb911c80da9d867ef8bf06ca53ebd62213d2f5739": {
+    "owner": "0x2ae36b90c1ffebba09e614b3d4acd50420b4420e",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 41.54
+    },
+    "usd": 41.54
+   },
+   "0xa904cf0d7b2fc4cd6dcd81fbec182a0f0649e83f": {
+    "owner": "0x56007388279dfc909ebf9bc0ac0a9785743d27ad",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 29.57
+    },
+    "usd": 29.57
+   },
+   "0xd147ff3424959e5938ec4e869693460491d06d2d": {
+    "owner": "0xf72c9a722c04c2d41435c57fd34cf896a4e95270",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 24.26
+    },
+    "usd": 24.26
+   },
+   "0xd268419712a7630ab1ed170c2dc5ef284c199ac6": {
+    "owner": "0x7cece5f83bf4c114c8ffef5e905287bc88bb5a23",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 23.37
+    },
+    "usd": 23.37
+   },
+   "0x8f34e50c9f4298d7c2be428ec1a3ea1b6417fe6b": {
+    "owner": "0x385033403fe58298313b72802efa69453df5d62c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 21.29
+    },
+    "usd": 21.29
+   },
+   "0xc25da2eb7f67445af6a945fdb9e7811d9584ce5e": {
+    "owner": "0x1edf1c88f2cc87c027d9365204777d992a1e791c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 20.98
+    },
+    "usd": 20.98
+   },
+   "0x2de936a6cbe7f4567c9462816bd8c782f4dd696b": {
+    "owner": "0x544caab912af47150da3aa856a2e9283b916cbc7",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 17.4
+    },
+    "usd": 17.4
+   },
+   "0x7fc06afeff7a721c63d703d971d3f91e35926044": {
+    "owner": "0xed8fc8f863656cf0970629e063aa405ce0568ffd",
+    "eth": 0.00843,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 15.3
+   },
+   "0x323233a3bc67fde2d4823ad1b207aa82bf41878d": {
+    "owner": "0x065ae279bdd9c8d82931c783c6c636024dd2410d",
+    "eth": 0.006,
+    "tokens_usd": {},
+    "usd": 10.89
+   },
+   "0xc15d27f401c33ec9683f983849a457acd1c29c7c": {
+    "owner": "0x964ab745f2da92d87bb8888242f59ba7b3ad4a24",
+    "eth": 0.006,
+    "tokens_usd": {},
+    "usd": 10.89
+   },
+   "0x3ab10e4b5b7084bb4e2607db4990512bba88cc1a": {
+    "owner": "0xc89c7d4b11d352e647920db072809de00b55b589",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 9.83
+    },
+    "usd": 9.83
+   },
+   "0x2348a8eb978e9f774c235c69e71d0f28eaec824c": {
+    "owner": "0x73d4a378bab890edc7776ef26d716a90c7469139",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 9.76
+    },
+    "usd": 9.76
+   },
+   "0xbb7ae0458b0dae031460e6ee9f014b275db49f7f": {
+    "owner": "0xa43d6fba7923e1cdf585a0a6d806bec401a6dfed",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 9.69
+    },
+    "usd": 9.69
+   },
+   "0xb4f2bcfc4f91e5717965e4087f929b5fd12b26bc": {
+    "owner": "0x15a10a6066a8d1567e74fb2a3403579d3eb510a8",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 8.74
+    },
+    "usd": 8.74
+   },
+   "0xca5d81a90ccf5b30ec0ed73ee384e67daa1e0b62": {
+    "owner": "0xc997be2ab5cf08e6195c8a40dadf00f9e3dd424b",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 8.44
+    },
+    "usd": 8.44
+   },
+   "0x52e1604c4eae10bffc5f48d180dee5dad49bda40": {
+    "owner": "0xbd9e206700e10f2b3731af0ccf7368c644e136ad",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 8.4
+    },
+    "usd": 8.4
+   },
+   "0x735bcd34345905d57f28e32bb3b18c6fc94b233f": {
+    "owner": "0x071a2cdb000349257bcd433fd7879f63ea8f7f26",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 7.35
+    },
+    "usd": 7.35
+   },
+   "0x98761a537d8c895d5d51ca89e85d4680eb260033": {
+    "owner": "0x8ee3ca058250134e5c50d8bad526067f0e7c0509",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 7.22
+    },
+    "usd": 7.22
+   },
+   "0x6e9c6637243e86607f4fd0bc686e762eb79da5c1": {
+    "owner": "0x4a0c83040857ff6929e93f248f664bc5ace70248",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 6.57
+    },
+    "usd": 6.57
+   },
+   "0x80ad5760452d4c3c8c5c833b690ab3e36818c991": {
+    "owner": "0x6f6824451fb1bfdcdb85f139a7b66906933d540e",
+    "eth": 0.003495,
+    "tokens_usd": {},
+    "usd": 6.34
+   },
+   "0x50315441ae87298457008c8fc56f3103fa6122b9": {
+    "owner": "0xce55dba43a5b83d48bbcd35a282656131d36b312",
+    "eth": 0.003389,
+    "tokens_usd": {},
+    "usd": 6.15
+   },
+   "0xf8461aeed49e66ebd552472b867a613732fec042": {
+    "owner": "0x3475d80c152e7a11bb1ba376cdc45f83b013ecb0",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 6.13
+    },
+    "usd": 6.13
+   },
+   "0x4f1427f50df44f4c8ea1e757962b7e150a5eef9e": {
+    "owner": "0x93a82e79efc5311ecb4845427e8dd2fbb64ed439",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 5.54
+    },
+    "usd": 5.54
+   },
+   "0x26b585ac61409ed6c8f020ae9b06b1b33128bad4": {
+    "owner": "0x26d7f37995146407676d806751fefc8006361718",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 4.52
+    },
+    "usd": 4.52
+   },
+   "0x1e316aeb7009321a462195c548bc079f9b962ea4": {
+    "owner": "0xc785404f4f19ed96c20b875a159a1b364c425f4a",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 4.43,
+     "USDT": 0.0
+    },
+    "usd": 4.43
+   },
+   "0x577f3851415f9a139119a14e85850bca71cbb669": {
+    "owner": "0xf8bf2c105f3167af0025f9a97bd195f68d414b00",
+    "eth": 0.00234,
+    "tokens_usd": {},
+    "usd": 4.25
+   },
+   "0x0a82d785373f4f0f605fa4196adebba43c719adc": {
+    "owner": "0x3c4376ef61f5cb8e8695a40f385c3501b16dd859",
+    "eth": 0.002316,
+    "tokens_usd": {},
+    "usd": 4.2
+   },
+   "0x7b67064bd1d58e552ef00673fdb244c8c83e6d73": {
+    "owner": "0xeb6d19e13e1e912008125368b8a918f212bef384",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 4.2
+    },
+    "usd": 4.2
+   },
+   "0x9397c5b75c13fa0694bbfd17dfe903b5e8f6bf70": {
+    "owner": "0x23fdf173da332ac61020141a1850785a1f238fc0",
+    "eth": 2.2e-05,
+    "tokens_usd": {
+     "USDC": 3.66
+    },
+    "usd": 3.7
+   },
+   "0xabc6d1423466c5c5f64f1ee3530b4c7f80e8f1f1": {
+    "owner": "0x314df72e1af6ac73e4a09e2b9102b3b930ecee69",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 3.68
+    },
+    "usd": 3.68
+   },
+   "0x8c570dbd189b5794efeb11cf68c264cad0c21f7d": {
+    "owner": "0xbba0fbe7df489c8e341b6ef8c4d1ff3ff7c439b0",
+    "eth": 0.001912,
+    "tokens_usd": {},
+    "usd": 3.47
+   },
+   "0x39303fa3a0e9f52e1984230f9f805b97b3c64e8e": {
+    "owner": "0xedb8e72e20cec611ce81bf90061dfe5c815b7846",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 3.25
+    },
+    "usd": 3.25
+   },
+   "0x3f09f79eb8c9f231bd9ea8871c88d69e5fd73fc1": {
+    "owner": "0x1fa4feb6364c190ca8a340c3af40862330d65ecd",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 2.9
+    },
+    "usd": 2.9
+   },
+   "0xa2713fd44e91ad8e7c64f6ddfda997897cec876c": {
+    "owner": "0x459b7e7eb0cc7aa039770d3270b40cf64a5e2cd8",
+    "eth": 0.000179,
+    "tokens_usd": {
+     "USDC": 2.57
+    },
+    "usd": 2.89
+   },
+   "0x3be6542aa7b62253a5992fbc6958655fcbb1ada7": {
+    "owner": "0x769d46fbe1e283d929319736eb7aa5e63fae4fe6",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 2.74
+    },
+    "usd": 2.74
+   },
+   "0x3f12c7183aebcf9b1d6ceee5de7b36e7bb9bef89": {
+    "owner": "0xb6cf0e5ad32f1c9bdcf00bf26dc3111aefa72295",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 2.44
+    },
+    "usd": 2.44
+   },
+   "0x8534a7cee676cbe4fb5d2cd01c9b1726e9217d5a": {
+    "owner": "0xba334681a8e1f55b8f49bb8a287aa83f6fd5637f",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 2.39
+    },
+    "usd": 2.39
+   },
+   "0x9f3782e451ca50535ef1de21b5e069994f08d7a3": {
+    "owner": "0x699bffb46d059beba068120d76b7bf4e8045a277",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 2.38
+    },
+    "usd": 2.38
+   },
+   "0x9ad587331e6818eee1d86a276754630fd092ace3": {
+    "owner": "0x873cd26be7a04d184eec92e790603d6345acec79",
+    "eth": 0.001199,
+    "tokens_usd": {},
+    "usd": 2.18
+   },
+   "0x55ff23ad38e1eb321e8f2a7b8c2311034cce333a": {
+    "owner": "0x8960c3cf2ef1d001246460b7d26da86c582d3984",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 2.0
+    },
+    "usd": 2.0
+   },
+   "0xbb2b3f992194d0fd1243521d40f1e8dc7e6d930b": {
+    "owner": "0x98abe22ebd7836efbc7436de1ff338c2b6daeb56",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 1.94,
+     "WETH": 0.0
+    },
+    "usd": 1.94
+   },
+   "0xacb79a19d1400f14d8c71fbd81ecbed86cff6b9e": {
+    "owner": "0xcfe7c5420c46686858897f1331182b52ad54cd10",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 1.8
+    },
+    "usd": 1.8
+   },
+   "0xe8a26d1fab36e6f8f02815c5090caee810fc4ec3": {
+    "owner": "0xfabb13d4bf026a33e753f8f7ad2f480e45416d79",
+    "eth": 0.000984,
+    "tokens_usd": {},
+    "usd": 1.79
+   },
+   "0x442149c982efefa3f6b193eb393fb4a1fc95b0df": {
+    "owner": "0x0880bd9cca64933cb533b45b075b4913ddf2d2b2",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WBTC": 1.78
+    },
+    "usd": 1.78
+   },
+   "0x2675e90a2903b9d2f8072fdcdcda396f2c53ba30": {
+    "owner": "0x3bc2ca224f9dde987954a687dcf83ef9ad02ef4f",
+    "eth": 0.000959,
+    "tokens_usd": {},
+    "usd": 1.74
+   },
+   "0x6dd3cb78299224759c363e8c72581fd900a20d82": {
+    "owner": "0x163d23a662c4d1a0665198546379009750569f64",
+    "eth": 0.000916,
+    "tokens_usd": {},
+    "usd": 1.66
+   },
+   "0x4b48dab49f45af5f0af809f8444bbe35b788b506": {
+    "owner": "0x6e019e683f91500b15bbc7d32101e07d2ec7bf0f",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 1.64
+    },
+    "usd": 1.64
+   },
+   "0x1be71499b743028a661fd7dce9d92ac6d5ba0fdf": {
+    "owner": "0x53ed8904d1e32bd6e7fb54671cda7cd92eeddf44",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 1.59
+    },
+    "usd": 1.59
+   },
+   "0xcfa894b866a8ec84128e13ef9286da87391a522c": {
+    "owner": "0xd33eb1b900381a3b6498ac8477e742f26ced5ffa",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 1.59
+    },
+    "usd": 1.59
+   },
+   "0x394aea04a12f4121a2fc4f60dd029f308699cc8a": {
+    "owner": "0x7e930206746186887de822577234f6a5371bbde4",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 1.56,
+     "USDT": 0.0
+    },
+    "usd": 1.56
+   },
+   "0xfecf16b220b8faf971cd03da2cf35c6baa52609d": {
+    "owner": "0xe86336227e3d19c0ccddb46d6c42614de2e3dd1c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 1.56
+    },
+    "usd": 1.56
+   },
+   "0x2a61e8aeac769c1d724f99a4fd126323205f333a": {
+    "owner": "0x14a4776a8bfa3609309ec130e2e47d3c86839997",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 1.49
+    },
+    "usd": 1.49
+   },
+   "0x9bbe715bfc7cfbded99ed9001c993a5b6459fe02": {
+    "owner": "0x6b9fb0451d8383358ed079debad1d1ab0eba6bd4",
+    "eth": 0.000811,
+    "tokens_usd": {},
+    "usd": 1.47
+   },
+   "0x1e9a9ed14a331a74cb98932f7b83bfd71ad86c00": {
+    "owner": "0xa8e4f6a3b648eb9c8a10aea9fcbd008dcd3b5851",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 1.42
+    },
+    "usd": 1.42
+   },
+   "0x7d13517ca7904d0313c79b2a73dbc7ea0f899604": {
+    "owner": "0xc0356f41ea1e20621da34e0912ad4f8a36340b4e",
+    "eth": 0.000778,
+    "tokens_usd": {},
+    "usd": 1.41
+   },
+   "0x643da9706454909cadb29c9ec13b45a7bacb947c": {
+    "owner": "0x3325b53cb2b7e4739b2aa5aaad9aa1751e46c3f1",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 1.35
+    },
+    "usd": 1.35
+   },
+   "0x8811a65e0cd3d1541154eaae2c53b053cc1dfe54": {
+    "owner": "0x03fba7a8479ae374b18bd76d856b4d11b6c3fcc2",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 1.35
+    },
+    "usd": 1.35
+   },
+   "0xabe75d7c6f60474f0060312a033489ab5f3f6fe5": {
+    "owner": "0xfd443ddb616a69ac158ef5aedfd3523b866993f1",
+    "eth": 0.000711,
+    "tokens_usd": {},
+    "usd": 1.29
+   },
+   "0x0e80de0f58fe181847699024c7661d1fad118d36": {
+    "owner": "0xde0618640e88d9100bb30860aaac207d67a4d94c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 1.24
+    },
+    "usd": 1.24
+   },
+   "0x3a73542687c19b9f1e69e5d825e9f328107bc8b8": {
+    "owner": "0x6ec884712832e2a07f3311b0ed0b24b7be1fb39c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 1.21
+    },
+    "usd": 1.21
+   },
+   "0x1cfec5c43eeee837d3ae8775ce0a9ab8b781e02b": {
+    "owner": "0x01af037a99bcfeee1d43876df02db443ccb3b40c",
+    "eth": 0.000628,
+    "tokens_usd": {},
+    "usd": 1.14
+   },
+   "0x9a5e593dcd2fc6f894e0f0b2ae06474c4a4702cd": {
+    "owner": "0x35e64f4324a56dd1aadba660c250748dbf843a86",
+    "eth": 0.000578,
+    "tokens_usd": {},
+    "usd": 1.05
+   },
+   "0x8294fb2abc5fcb795ba576a88ed45944309dd448": {
+    "owner": "0xf95d0457a7cfb711d2dcfb021a17743c1a69061c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 1.03
+    },
+    "usd": 1.03
+   },
+   "0x0d74b0e4dad73260bcef91009460e08610062fa8": {
+    "owner": "0x1a733f1f7c71ef6d455d1f7dd72b07d9543c1ba4",
+    "eth": 0.000546,
+    "tokens_usd": {},
+    "usd": 0.99
+   },
+   "0xda847a207e90a544e62934640268d8e98b52a4e0": {
+    "owner": "0x6c080b37b200c2c15a7a7a4c408c7937e436de96",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.97,
+     "WETH": 0.0
+    },
+    "usd": 0.97
+   },
+   "0xa8c3ee8b89f788aee2841eba49e2dfd8905cad6b": {
+    "owner": "0x9029029f36d0364dfa5d7abd5193042108dfd781",
+    "eth": 0.000523,
+    "tokens_usd": {},
+    "usd": 0.95
+   },
+   "0x6bbab79aea71b7a4c65c1cdb26e2d3d30a3c6a77": {
+    "owner": "0x184e1b60ef3c20acdfd31e96fe9c2db50d6c61cc",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.93
+    },
+    "usd": 0.93
+   },
+   "0xdbb89af3c929f2c5f9191b38298e94896e6ed0fd": {
+    "owner": "0x3b969d70836f43382833ca619b84bab5aa73f0a5",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.92
+    },
+    "usd": 0.92
+   },
+   "0xfdd1f2ab108eb4a53eaefddcd89fb191194e56dd": {
+    "owner": "0x8a170b37ce009d8397393a795eddd0940d0f5765",
+    "eth": 0.0005,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.91
+   },
+   "0x11181027145ffe1f7e52ad3ba194cb3a1e355a5f": {
+    "owner": "0xfdf0721448013bf903425aff121a180882206cfd",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.9
+    },
+    "usd": 0.9
+   },
+   "0x8a5562ed32caff2991b2b70dec87f966fdf369d2": {
+    "owner": "0x61aa5b36d64ea8ab54688198ef1672357fce66a2",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.9,
+     "WETH": 0.0
+    },
+    "usd": 0.9
+   },
+   "0xe25473b1334f6127ffaced68ce7f520e173be5ee": {
+    "owner": "0x484c0067136826094f62c470a1b0828cf9383843",
+    "eth": 0.000498,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.9
+   },
+   "0xac72eda6dc13faae0a9ee4016e9757801d007ca8": {
+    "owner": "0x47370559540315378c6f3874618b5ea7068ae588",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.88
+    },
+    "usd": 0.88
+   },
+   "0x82aaeb0a0be35c3249f2aa8d9d6916b469bbcc86": {
+    "owner": "0x8d71a6c5a843ff2fa1b8af615c68842b810d9f41",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.85
+    },
+    "usd": 0.85
+   },
+   "0x167cbb39cbe0f9e293974e083358b7f17420155b": {
+    "owner": "0x46044ce60646314ab1972915cd58002dc58bb4f4",
+    "eth": 0.000465,
+    "tokens_usd": {},
+    "usd": 0.84
+   },
+   "0x5af4f63c54f78ed73a333aea7a4a2ad9f125a92c": {
+    "owner": "0xad2d162b240670c2a4e53c739ec15742f0fb313a",
+    "eth": 0.000461,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.84
+   },
+   "0x91ab61db1eddf06c8cda93b8f233d697c4311313": {
+    "owner": "0xf075ce1e7ee6383e51c7dfee688825d2637a564d",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.8
+    },
+    "usd": 0.8
+   },
+   "0xb6df8ec76263dbb6a519800ea552cca40cf18617": {
+    "owner": "0x0867318fe44c113503d4d346a5583fc39341edd0",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.8
+    },
+    "usd": 0.8
+   },
+   "0x0dad8d8cc630fb83b70d5dc821b349fba3d8133f": {
+    "owner": "0x9726bbaebca25a5d02eecc2fe3977fbb48777afc",
+    "eth": 0.000424,
+    "tokens_usd": {},
+    "usd": 0.77
+   },
+   "0x3e8d2436ed0f44b52d8d51cb332ddb57811abc0a": {
+    "owner": "0x3b15c53d3016440b3310d96c045d176ddaa1f94e",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.76
+    },
+    "usd": 0.76
+   },
+   "0xbd07b96cebf317bd69482f6b9076403fce86ff27": {
+    "owner": "0xb45d2ed4e907da7a0042815052bd25b2d9f16ab1",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.76
+    },
+    "usd": 0.76
+   },
+   "0xc551a7f8b70c249c510eedd73002b2c75c8e44ea": {
+    "owner": "0xcdd7b58be6956f11cf8543c2d0c72ba9cdfbb7b0",
+    "eth": 0.000414,
+    "tokens_usd": {},
+    "usd": 0.75
+   },
+   "0x84f9d92b1b1abf04bd736ad76fd75b55e14a337f": {
+    "owner": "0x1f8a3af2b828416e97705ec588ae4a848794d428",
+    "eth": 0.000408,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.74
+   },
+   "0xa36a605002e0a7671aeb8b1f45fa41a14b094c73": {
+    "owner": "0x0a20f40ddff1a22d9641b5725310ce3ee23484f5",
+    "eth": 0.000403,
+    "tokens_usd": {},
+    "usd": 0.73
+   },
+   "0xf3f9b7b45c586f029a5504dcf5ac42b91996244d": {
+    "owner": "0x16a4eb8a023f46ea2b387d27cc609473bd1c065c",
+    "eth": 0.000385,
+    "tokens_usd": {},
+    "usd": 0.7
+   },
+   "0x8c034ee5508d0b65020cbb34937b51c77355a100": {
+    "owner": "0xcae0527aad6eb5844ceabfbe2ca2d82f4ec709f9",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.57
+    },
+    "usd": 0.57
+   },
+   "0x2310cdbba31026ff38eac73e2749d205afcb7d65": {
+    "owner": "0x6b017e39ea59eeeb18af5a0ec65ec3b7ec8c6ee8",
+    "eth": 0.000306,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.56
+   },
+   "0x8ef09f5d1b042d148c3cfcebfd33ecff14d5dc0d": {
+    "owner": "0xf6cf8529e09e914e3a5cef4b4a5d6d55877d555d",
+    "eth": 0.000304,
+    "tokens_usd": {},
+    "usd": 0.55
+   },
+   "0x2f34e8cd11cf7df6ada40f21334f7ecfd4aec92b": {
+    "owner": "0xc6be8ee87ed8098e4ff84a8b8071eed6a94a9603",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.54
+    },
+    "usd": 0.54
+   },
+   "0xf72ff662800107007fcecf6aa2e2db76651ad6ef": {
+    "owner": "0x6b31d95778dadf0be7bc5a8e400c6c30b14220cc",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.51
+    },
+    "usd": 0.51
+   },
+   "0x33338dcf96dc0a3cfa8653d332b6e821a6512058": {
+    "owner": "0x202d356dae6ef2684ac7c9fd6043b7bac57f80b3",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.45
+    },
+    "usd": 0.45
+   },
+   "0x120e83fe80c419e73d48773ca81dbcafc51f25e0": {
+    "owner": "0x21331eaa3f9c7aa1fffd8523f6b2b6bd250a11d0",
+    "eth": 0.000244,
+    "tokens_usd": {},
+    "usd": 0.44
+   },
+   "0x143a21796827abad1b58d16326217bf89ca11021": {
+    "owner": "0x2bf5e557f0884254da28001a6ee24347bf411390",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.44
+    },
+    "usd": 0.44
+   },
+   "0x671b252eb3d0119656668e755cb08e88263a56e9": {
+    "owner": "0x8678ed15f24f96a07dbf27f5479f787971ad5118",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.43
+    },
+    "usd": 0.43
+   },
+   "0x164305a080ade5d577c26c81275efeda10407ca6": {
+    "owner": "0xe010255ff723c584c8af5e34914225e16ee426de",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.42
+    },
+    "usd": 0.42
+   },
+   "0xf84d47977074fbd524da74351950ada371f9fee0": {
+    "owner": "0xd41c0635c16a347150e8e8e27c3cee4e5214de27",
+    "eth": 6e-06,
+    "tokens_usd": {
+     "USDC": 0.4
+    },
+    "usd": 0.41
+   },
+   "0x2550111d281127ed1b977e7f426a719c5c24142a": {
+    "owner": "0xe600368c5dbc90b564d17670b87d59f0c71146e4",
+    "eth": 0.000222,
+    "tokens_usd": {},
+    "usd": 0.4
+   },
+   "0x41fc9f590b8dcfb09dc429f1ea3e5224bfe2fabd": {
+    "owner": "0xe7ecddae4e21992ed35ce3168286afd9dd159945",
+    "eth": 0.000217,
+    "tokens_usd": {},
+    "usd": 0.39
+   },
+   "0xab59d83e8b9d5b0711746da23da4dfb54ce64952": {
+    "owner": "0xf5e561880fec866f15098662860e20fa3cde818e",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.34
+    },
+    "usd": 0.34
+   },
+   "0xdd73e5c2a1312ee4c18d29c3f290aad7b7e643d9": {
+    "owner": "0x4d26796d693331a73c640ed974a753318d6f3a2e",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.34
+    },
+    "usd": 0.34
+   },
+   "0x20b442e5b7f09dc7c56bc6adeafbcfefe27253a3": {
+    "owner": "0x73c5574b7ee68e85cfb4bfc26b5e6fdebfaf2bf3",
+    "eth": 0.000174,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.32
+   },
+   "0x404b49cb64a308702fa96ba4e784ca5b526b18a2": {
+    "owner": "0x0c42c6d7dbba1acfe1e362f15a62a75e571c910d",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.32
+    },
+    "usd": 0.32
+   },
+   "0xc294ce4841cc2f0f520b20dede0613641351a160": {
+    "owner": "0x4b9c66f97111385a7e8b3e8d6029d26ac890c219",
+    "eth": 0.000167,
+    "tokens_usd": {},
+    "usd": 0.3
+   },
+   "0x23fac5a4015ec7c4d7efc91b8c35b97bbbddc59b": {
+    "owner": "0x4ac943804e2492bee7dbe5267dbfbd850287d6cb",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.28
+    },
+    "usd": 0.28
+   },
+   "0x6fd13a33beaadb35ce6302c3dab0d511366c1295": {
+    "owner": "0x303c68a449d07f618c79b5c326b238b463b874d3",
+    "eth": 4.2e-05,
+    "tokens_usd": {
+     "USDC": 0.12,
+     "USDT": 0.08
+    },
+    "usd": 0.28
+   },
+   "0xbf4f0e247b1cc22e11b24856866041f023b5245d": {
+    "owner": "0xc92d8babbb13060fd66d3144acb20db9d96c3cea",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.28
+    },
+    "usd": 0.28
+   },
+   "0x254f31d267eb6cfb448da4ef12c43144c3cc56a3": {
+    "owner": "0xa405f3699570a5742b29af46e9030ae8bcee39dd",
+    "eth": 0.00015,
+    "tokens_usd": {},
+    "usd": 0.27
+   },
+   "0xe51d8e0a1171e28d26a4170333cd087e1d2e5c83": {
+    "owner": "0x23dfdfc8f9ab8f6268ee31d7545b7e183266dcdb",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.27
+    },
+    "usd": 0.27
+   },
+   "0x8be96df693af883008cacafee4cf4273386d25f0": {
+    "owner": "0xee6438d1b31ce1a487c9a199d22a3be375216f01",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.26
+    },
+    "usd": 0.26
+   },
+   "0xcdbe0e6682b7960904f744a5fce2d7b8502b43e0": {
+    "owner": "0x1e5c74ac7de37c0a7c2e9950d3427bf5853fbcc4",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.25
+    },
+    "usd": 0.25
+   },
+   "0xe9451e643c53f6efac889d29a9cfd402d3734a40": {
+    "owner": "0xf6246020ad77a018bf7b49d6b7360f5b84862c1a",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.25
+    },
+    "usd": 0.25
+   },
+   "0x3038c6feb0eb7b14f129a129922f655e66d90bd9": {
+    "owner": "0x14e3a7f47f708a3d873a26d1aec872d1418d807c",
+    "eth": 0.000134,
+    "tokens_usd": {},
+    "usd": 0.24
+   },
+   "0x1d83c8cbbbceacb8f4d3dc9539a5fc67f21cb197": {
+    "owner": "0x54730dd72525f6e0d2e14667fc12e80ebc6b7157",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.22
+    },
+    "usd": 0.22
+   },
+   "0x70c5dcf12a00a8ed694d84352f4252571291b383": {
+    "owner": "0xbed0cfd04ca48cabb338624db22b9e91b136bd74",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.2
+    },
+    "usd": 0.2
+   },
+   "0xe552e072108a51e5809a80c77c943127bebbc5c6": {
+    "owner": "0xf01a8f0f307db634f0c0249191ba6834c6de06f0",
+    "eth": 0.000112,
+    "tokens_usd": {},
+    "usd": 0.2
+   },
+   "0x36a5902cea6238e66983b1d94eec08acf0efb839": {
+    "owner": "0x207f13520bb4696e6a7aa5d214a716998c7d2229",
+    "eth": 0.000103,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.19
+   },
+   "0x5e6b6e4ae286186e952ed15cb8cb27fe2b84217b": {
+    "owner": "0xb58e4f0ea28ede825f684374f20bd83ed7c55291",
+    "eth": 0.000106,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.19
+   },
+   "0xbea2e3ef5459cabb520e83532a71b2d12d001e35": {
+    "owner": "0x6b44c366dafc5823d6d86994df9328641e186b6c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.19
+    },
+    "usd": 0.19
+   },
+   "0xf98baab5fe089c8da63aeed64b1735b94e125da3": {
+    "owner": "0xe56a6cfd191945b17b0d0ecfa6fada73b110dffa",
+    "eth": 0.000107,
+    "tokens_usd": {},
+    "usd": 0.19
+   },
+   "0x01a78ced3bd232922cc6410c5c1d6bc81a38cdf7": {
+    "owner": "0x16e9a01706d6f93d2a4652ff0b1a18c06fd0a7e5",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.16
+    },
+    "usd": 0.16
+   },
+   "0xbae7e6245bdaf4196c10651648f4f0cd43786f18": {
+    "owner": "0xdf54c8e54e065dd7fbca61b3b3e3433d31fa664f",
+    "eth": 6.9e-05,
+    "tokens_usd": {
+     "USDC": 0.03
+    },
+    "usd": 0.16
+   },
+   "0xddd03157aad909255152c38644f17537e5a0d256": {
+    "owner": "0x47d6999c44d363b623f083bb74b8222e0263c355",
+    "eth": 8.3e-05,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.15
+   },
+   "0x721cae9fdff2f01a299e035b8a4df7061035c1b5": {
+    "owner": "0x0b6125052cd45163b6024ee105efa501a30ea34c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.14
+    },
+    "usd": 0.14
+   },
+   "0x8062dee7b76aa22441f293ad519dced5e4861fb0": {
+    "owner": "0xbd2d81ec1961ba05f82a49e5f2ada29d56ebb93e",
+    "eth": 7.2e-05,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.13
+   },
+   "0x8c3a7ee0ae6415c4efd1b7c61e2d097d117a461f": {
+    "owner": "0x2a320124bbaf7d9eb14de475fb94fcf002aff4b7",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.13
+    },
+    "usd": 0.13
+   },
+   "0xed836fc07cc14687a316bd4f97f1aaf0af526008": {
+    "owner": "0x5451ab212ef46904cc983439583c322fb07e5581",
+    "eth": 7.3e-05,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.13
+   },
+   "0x7f046e3d8c38b9996a1e02766f6eb80b5716676f": {
+    "owner": "0x3a141e4b674b06f0ddbd067af171e465aba76da0",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.12
+    },
+    "usd": 0.12
+   },
+   "0x2d5a89c6ab3b7d50dcd7eea6583a755634f2eae6": {
+    "owner": "0x1a45417faea23ad2834eeee312341bcebd7c77ff",
+    "eth": 5.8e-05,
+    "tokens_usd": {},
+    "usd": 0.11
+   },
+   "0x652b306809ad9604e003a78c34f4a26de0d3c795": {
+    "owner": "0x3d5cca1a5b4d1efb0e394af0cf8168d11f35a383",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.11
+    },
+    "usd": 0.11
+   },
+   "0xe528390a4966b461eb2596061cee9f3bd90a5666": {
+    "owner": "0xb6711ffba8b6107d05abe9a09e48ffc5accaf8b4",
+    "eth": 6e-05,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.11
+   },
+   "0x090b910c0bb40313e307833801661051de5adf5e": {
+    "owner": "0x59d2cb8e2ff7c982ee83c0bd67af26db74f5fbe1",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.1
+    },
+    "usd": 0.1
+   },
+   "0x07f470cf753c254aa701ea27d75ed59214614fa0": {
+    "owner": "0x8c32413fabff8113bec9aec8b490efa34363c21d",
+    "eth": 4.7e-05,
+    "tokens_usd": {},
+    "usd": 0.09
+   },
+   "0x1b650d79808f9e33fb15602dad01e00f276b49ec": {
+    "owner": "0x2dfb83ec8e2b64b29f41ca2317088fe15e67ba3c",
+    "eth": 4.8e-05,
+    "tokens_usd": {},
+    "usd": 0.09
+   },
+   "0xd82d438e42a92ba5514417745cf11c78e668c50c": {
+    "owner": "0x21b1574808a8d19a8c6ce6a5e5109baa33e83c72",
+    "eth": 4.4e-05,
+    "tokens_usd": {},
+    "usd": 0.08
+   },
+   "0xc5bb9c689e6bce025c6a31e16081b9f5755f595f": {
+    "owner": "0xcd9d29832dea2ab2ce6df1be922045c42bf76d49",
+    "eth": 4e-05,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.07
+   },
+   "0xe43e6d04142ace8bfef3047179e77f5accbc833d": {
+    "owner": "0x39b2deb155ee6a5a23e172be11744329e95af6df",
+    "eth": 3.6e-05,
+    "tokens_usd": {},
+    "usd": 0.07
+   },
+   "0x1e957d97f07337be965ec19478f8008f121f5624": {
+    "owner": "0x010a586dc3aae1722bee6b248f8ccfcea0988f31",
+    "eth": 3.2e-05,
+    "tokens_usd": {},
+    "usd": 0.06
+   },
+   "0x8c68c8e364fb6a532805de3ac175f1f24fa68987": {
+    "owner": "0xb8fbaf2d748fa81a53eaff507ab3c2dc2455b023",
+    "eth": 2.6e-05,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.05
+   },
+   "0xcce586055cd492e91471bd806e6a2ad6c01b97c7": {
+    "owner": "0x36c6043dafafa08e433e52cd6238d6b5226049cd",
+    "eth": 2.5e-05,
+    "tokens_usd": {},
+    "usd": 0.05
+   },
+   "0x418aad6676c0676fb795f404644150a32f603852": {
+    "owner": "0x55a9d25b048914e4282fdec012400238e1712321",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.04
+    },
+    "usd": 0.04
+   },
+   "0xac7bab892fc324f711a4cd7d0a5dc03aec28bc02": {
+    "owner": "0x7cf41c572852da96c4a1ec3eaaf0e46cce73ee1f",
+    "eth": 2.4e-05,
+    "tokens_usd": {},
+    "usd": 0.04
+   },
+   "0x418322d7f862ed5006d0f67ca3849a214e9c0e48": {
+    "owner": "0x02fccd7847a67db873051f94dcd08b361f0cd6a9",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.03
+    },
+    "usd": 0.03
+   },
+   "0xe124d7649ee725422c889086cc493a85a244fb40": {
+    "owner": "0x104c832a7ef3e66802744c018fd2c7f558520579",
+    "eth": 1.8e-05,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.03
+   },
+   "0xfa74cac15db20679d64346dc7543f125335b0537": {
+    "owner": "0x8de18734fa6ff27f75c891293a2c360661ada297",
+    "eth": 1.8e-05,
+    "tokens_usd": {},
+    "usd": 0.03
+   },
+   "0x000f2c9b6424132a693c492488dd263c768361b9": {
+    "owner": "0x17de0d70160931947a7cb992ff0e3104804f9d9b",
+    "eth": 1e-05,
+    "tokens_usd": {},
+    "usd": 0.02
+   },
+   "0x17c7f35197a0acbac975c71f3f0b0d5b8828b0d6": {
+    "owner": "0x864ef9641967744dfd710eb0ff2d072792b053ce",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.02
+    },
+    "usd": 0.02
+   },
+   "0x9d40cd3f6e664c19f4319c766c3c36fb5b33202b": {
+    "owner": "0xa5ee70b79a9a33958a27b8f76fb291f21e08e761",
+    "eth": 1.2e-05,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.02
+   },
+   "0x176492ce629c22fcac81df1d2144e21f81e15418": {
+    "owner": "0xcdbaee1594dacf4c9746a051479840a0a71f2318",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.01,
+     "WETH": 0.0
+    },
+    "usd": 0.01
+   },
+   "0x265e91766a5524fbcb390f2582478ed491be00c8": {
+    "owner": "0xdf1aee2609773b1054a3c7d47f1be7cca9e2c6a1",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.01
+    },
+    "usd": 0.01
+   },
+   "0x3a409254eb6003c6aba37f92bb163f58f6a97542": {
+    "owner": "0x534f9f7f856bf0489b7001f519067d428c04f566",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.01
+    },
+    "usd": 0.01
+   },
+   "0x4e8b4030cfd88ac764218148ddbfa8eee623f9bd": {
+    "owner": "0xbf5462876f12e7c57acbc15ffab2260c51a452b9",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.01
+    },
+    "usd": 0.01
+   },
+   "0x6255e9943e6157a6f458d165c85708cff9d13092": {
+    "owner": "0x0fa96b42a92b118221b70f4df72c6d92dca41d4e",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.01
+    },
+    "usd": 0.01
+   },
+   "0x6b110b6c11ef3f216530dfd736ba5d4c19b94f54": {
+    "owner": "0x8e1754499e3f15d228bb61fe55e1c952663debc5",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.01
+    },
+    "usd": 0.01
+   },
+   "0x80557b0864df62ff607dc2c450ca66b28a3ae3a1": {
+    "owner": "0x9923504ba41d1dabd12701cbfcbf8532ff68689d",
+    "eth": 5e-06,
+    "tokens_usd": {},
+    "usd": 0.01
+   },
+   "0x8db6420a4b00437549acaee2a2adf242139b1120": {
+    "owner": "0xebdae29ff39e3f09ce3f5f427cd6b7ef1ecdc55a",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.01
+    },
+    "usd": 0.01
+   },
+   "0xe3c3a11b24f225830b5b75daaa1ac034062b6b36": {
+    "owner": "0x0db102f2309015259eb4cc313515d7ad57aceac4",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.01
+    },
+    "usd": 0.01
+   },
+   "0x00d7f5d3021df9e8f3e5474d9642ba37ca98a1e8": {
+    "owner": "0x695d43ed66aa16418f1fcc5017b71c324b874781",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x013a9893e380614a650b2bd1e173b819bc44a22f": {
+    "owner": "0x58e434ef5b08cc2b324246b251c3ab5e9c7bbde8",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x01a53dec70a1d2937bee9b2ecb3b5270af290487": {
+    "owner": "0xf301f9c4b741f9804abeaeb2443c0af8cd501868",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x01df18bca708bfa79733398c8618834efa634603": {
+    "owner": "0xb0e52a4e8fde0567bbd1d6f651f6352d85b9bf9e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x02fa47198939277960a32b24c14c449c0f5805af": {
+    "owner": "0x85d8ec6cf36e39463d07896a0bc3a5354b39a847",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x033067bc795989c9a8b2f9c95124d04c8a7a16de": {
+    "owner": "0x71d2bc8cb2ea55f1c52acdfd1d4e32e8d2cfd5b0",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x03dc10bec15f0df6435a853d3c3747edfbe276b0": {
+    "owner": "0x86a967650a15ac82efd18a0a804369830f4528ab",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x04302726745228aecac5866cca7ed5dce09075c1": {
+    "owner": "0x4b71509fc23b90e7b1e3a4f67040ef4fbc218776",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x043d7dadc220c472590eaa69d048e348130c8146": {
+    "owner": "0xe09c0daca8be8ae9c63f674389de3c83544ec8cf",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x04a93dfaa3f71250352e5886ea7f3438560e6381": {
+    "owner": "0x7f143a46af0150fcf410655be6543b36be2df44c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x05335ea5d22306f8e2838a470da6b3e33408f571": {
+    "owner": "0xd9d369d9566a4e3956f9cb70075056eba5cda1b5",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x0540eceb217915d60a16f2861ce9a41edfabbe8a": {
+    "owner": "0x2a8aa462cf3a5a8f08512c1d546c3427d81e9d9d",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WBTC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x05bbe529e353b4c0cd841dc9144bc8662a7856be": {
+    "owner": "0x2d7bbd837254deb908d7aaee7462d03af5e4c956",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x0645965eea1f5c701dc9566b076b248bd72fdc88": {
+    "owner": "0x271704d6b5e382a27ee9e5e5938d11b8f4816b14",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x066ceebf81c80713c34a9ad1b35b9d068d7a1fb3": {
+    "owner": "0x413f242733e49191a24f5462c5f504aa5763fbad",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x06e165e5f20cf49464d290d8deff31bbc7ebda6c": {
+    "owner": "0x5ac3cafed135d718cbbacd16f2d0585fdb732197",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x073aa92997885dfdafefde59cebc0e6074e7bb40": {
+    "owner": "0xa0dcdd2bd5cce385fc9713431a7f3c3705e5015c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x07720b9958534283a8d8c995f9ec77e4f6e6ba1c": {
+    "owner": "0x742ba7d4e4954217c33b6d364887f4d6d7cc32fb",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x07fe19353285aedd5ea0cce1a955ad2cda19e2e6": {
+    "owner": "0x8f1005dfbed3fc013bdc557fa54da15d68027df7",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x081141ba6251f56d0d87d6e1d9613827b05f4bb2": {
+    "owner": "0x95a5f0c67582233096f48a4332f2a3dba71922a2",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x086d15c3fadc56a61871b981e189567cd6041041": {
+    "owner": "0x56861638d90d7ded7f1e7566cff12abca0f08204",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x08c22d951a04718cecd16d6b34a99c1652e7680c": {
+    "owner": "0xd8c541b18e772ff0b9785b978d33c04651916fb9",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x091047f3a83ea6b6d2106afc7eec526c91a18f62": {
+    "owner": "0x43094bfa60827d2a1120816760476f266271c1cb",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x092ab7457914d0292cd9b3fe8d63019f4adfb599": {
+    "owner": "0x910d91bb79212106ad34c342a8bba5d8a2e81442",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x096dea18bb5b44d362b2e516ed2a3a7fce58ce3b": {
+    "owner": "0x0e8abf42a3b4f490e80d87cbdd52720834d3afb4",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x0aa7a57d04f67947be0dd2ade7cd30f54ac74cf0": {
+    "owner": "0x1ce1600b23195912c93f188dd71c5369c3ae1b75",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x0b4448dc4e2e299f1e9e2f4467de14e64a562175": {
+    "owner": "0xc00a790badde05ebee5488f89ed88b25e9fa774b",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x0b7c15564eaecb47c8e29db579d9ac03cbe2b2bb": {
+    "owner": "0xfafe82d1b756dd6ccb8c4dd527e6a039e9c1627f",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x0bb914bbb4dc8ee2aef1e3e23bdbb69cf1a32777": {
+    "owner": "0x2445ee13a6af546deded043363f08d6388a60416",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x0bd0e8c1cece733f922317a80d29243685ed8526": {
+    "owner": "0xc5e27bd011480153af3df87e3196b12dbe2b3c59",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x0c05e6bfa2017a65319603c484aed4660d8bbfc0": {
+    "owner": "0x14bcf2338f93d270fa68f252ae05816ec3e981a5",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x0c95b245b7c8d04a88a1bbc135806496a5f9624b": {
+    "owner": "0x1a65fe31ccd397f74152e2f9f83b6a0a20ed15f3",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x0d17edb7228741f12bc0cc9c6697e7739a1d45bc": {
+    "owner": "0x34770ed8faa79130cd27f86ef2d2b69ef7e08963",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x0d596232d579805c271359ac99ed3301f7658726": {
+    "owner": "0xf4a3722d4725847f7a1524b1930c56334dc24e8b",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x0d8e60c46d999c62f5c1afe088b0154563f66d35": {
+    "owner": "0xe0863c9da99facef720f2c5ede7c4f8cbfc831b7",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x0dc8392be9174d580296c45eb30455ed26782552": {
+    "owner": "0x6a2ac3b6584ce6de13ab307e0c1c3f743de31d68",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x0dd252bece99d09875681263d709d96fd7134c61": {
+    "owner": "0x0a88adb183cc2daaa24be7da88cfef18f4d387a0",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x0e67f24086ae669381acf6ff8af51982f1cfc10b": {
+    "owner": "0x65c5f6e17bba06f8b44e79364fba80fa937b0a0b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x0edcb8b5acc4fe4fae81abb4b32fa6b540ca248c": {
+    "owner": "0x8638c1f1902302fb976f43fac68a028df2335a20",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x0f5147c6a747333f7bce54c5adf9ed640216dbca": {
+    "owner": "0x10b44cd291a4a6ae7a5d5fcbed6ddf86575bc928",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x0f5d27aae33b81982e30668e3b90e5e19aa7a6d2": {
+    "owner": "0x296977a199d1229c967d621cb74161b22d9c4859",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x0f6149aeeeaf74f0d8d20af4f95fa72d1fb42233": {
+    "owner": "0x37900736d4baa4fc9930c1a89352391228628c64",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x1127bff550ea88557733b81b262e8111f872b2c5": {
+    "owner": "0x6d31c0159a2c34b184b4b2b4124370591cd4df15",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x11507fad53e92df496b107bcceeb8f9d3c985d93": {
+    "owner": "0x510a069367f2eac5475129bbcd158447812357ae",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x11d697f2ce84e83ab9ef07c990aef66d02176fe6": {
+    "owner": "0x0cf2dc4c14c692365d75da08f9cd5af00648ba85",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x1201833c231ecd278e8661dcea226d64a640c190": {
+    "owner": "0x794140730b76134dac5673e111ee4c7539a84dbd",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x123c1a4bb9b9fa77fff949555a587043295a9398": {
+    "owner": "0x75814d0960258ea854b325049a0018027da162c7",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x12575f8f484e37dcc5de1aef45857e4e44249b3d": {
+    "owner": "0x73280023626a54f3c7127723dacfdaccf817640e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x1351f64420b50177b723ebe2d08ed8a95197480a": {
+    "owner": "0xfe51a03184e8e9629f19b8bcf888b21d081aa6cb",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x137ada978fdb1751197d82f6ea7539d82a03eced": {
+    "owner": "0x6723aef5a462c0619b6fc626a5fd0be7bc43de33",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x13c96fd9cda6bd84cca295c279845351af6e6a21": {
+    "owner": "0xca1286453a4d77801f8ff99086cf4e41407f5b6d",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x13e2fe8af212fd88348379f7173826547110a361": {
+    "owner": "0x876a129788b3b549daefa561f3c01820785761a8",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x14914dc2ab907d14f72dfebacc509b9746acc4f3": {
+    "owner": "0x1b718837a16c07e54ac25ed7134b6a0cb61ee082",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x156528dc827535cc1f2a9124e641440c573a2007": {
+    "owner": "0xf38ac3e038276227c684ca184507b111642eaf71",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x15755ebaa3e7fc94a75c76e6a24572885043add9": {
+    "owner": "0x3f3abdf4c53fdd802a229f7c240caa218385dce0",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x165c0a54a58da0cc7137cb04cdee8712530dc04c": {
+    "owner": "0xa5f90a4c8f1bea0d8001067a4c1ffdcc18f0ed19",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x16971fde061e00f80b1e512fda424a16e11549fe": {
+    "owner": "0x630b9772f35893a609e53f9f0755f11879130f33",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x175ecfef909b8a78a8bf078f93ecd49e7aa6e81c": {
+    "owner": "0x1204fdf74e4e5e840a7bc42cb5eb1993aecc9fe4",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x1772f83dfa6801d1f0c6e0dc094721b3a2b26cf9": {
+    "owner": "0xb725295cce917f032ec3ea7282c2b164aeff7c30",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x18459d9d999d9af5b1f6ee2f6970204e307d184f": {
+    "owner": "0xb089c72f1a556ddc95473e8cd60ccfb20a34d08a",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x186c2dfb11b2beebea71d7c8ded79bf3b09f8d84": {
+    "owner": "0x8aa5c8f7e413dc388bb1fe693e88606b63e91729",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x18724b534e8c94bf6cf956c097eb1994a4682ce7": {
+    "owner": "0x9e96599a6cf0fb1261df504b4bb2a01658fd75f1",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x1875606878af5f37c595712ccfa98728c0ddaa65": {
+    "owner": "0x846ea2b94b97bb7273b5d0b8f5f08a7846a88bbb",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x18b3d1599653d15387a99eb4137f507bc23613a7": {
+    "owner": "0x07487514ed2ca9f579726eddbcf99f8fd3ee0615",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x19e194d3c36718855cdfc23a9d870a47b56883cf": {
+    "owner": "0x06c72c21ff13372988b4c12c005f643fe4ead97c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x19f84234695f10192923511cd12c54c04cf529f2": {
+    "owner": "0x528a6f3d3dcc2b36a468355d4afc1b3d521a217b",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x19fcbaa5d04dcc478944173c61f459c98f464e65": {
+    "owner": "0xc5ceee1c2c361cc66d70292c59dfe79b6a96e74a",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x1b40a4d78030a3fda269555464afb414523246a5": {
+    "owner": "0x7f636dba469b4c7cd597ce1019322795e8fcba96",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x1b78c2d05b0f021e68c6b5cf4a8d72710d599390": {
+    "owner": "0x5b1c7157fae9902d5daa81d664934f887e75ac4c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x1bad2132843f32016c343623dcabbfd01897d01a": {
+    "owner": "0xd4cb1ddb746a19d2e1d27a2f9e9376108cb46581",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x1c26b018cf63ab999219a9f9f8e27013ec3f2de0": {
+    "owner": "0x962fdfb2f648164f90c0b49e71d692dd08baf9e4",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x1d4296d7cc5f6874421f093b98ced3b065f26c8b": {
+    "owner": "0x31d2ee54bca029767035c8af611652a7487f7a7c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x1d67619d4fde888705f2122d1c098352caae8519": {
+    "owner": "0x766bb2653fd4186e6afdaab8790bfe2a7a6d42f4",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x1da6eac5b93c9febadc19baf9f290968b13c081d": {
+    "owner": "0xcb3053e90e6673bf9cde7947ee338073f2d36d57",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0,
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x1e2fdfb64187ef10ff0386d39eba2709e1add427": {
+    "owner": "0xc8d519f81bde31e5a659b6abf64a2dfa14e729c2",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x1fa13787bb0eabdd93efaaaba9c5858f4095e4a2": {
+    "owner": "0x45077bb1d235d437783ba582e601154abacf5c34",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x1fb237aa68c8cde0e97fbd87f7a1280146bcb31a": {
+    "owner": "0x375b2457327f545bdb89d6ad04e8b22e1d9feae6",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x1fc88f28e89ea102eecd30a1cac1cd870e9e0edc": {
+    "owner": "0x3ed160abd3781d0fd86cc807db2b9a1fc29462f3",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x1fd68d20488c9500e6f06e2ac040584865d365d9": {
+    "owner": "0xa1ae1ba3a837a7e8a61c5fc2aa4c6ed430436bac",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x207d8de83d56046faf18f8560d2a006ad46f87ba": {
+    "owner": "0x6fe30a1043c347b3c8e914b528465c29fc00e1ab",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x207f2aab46af7c798424926282786523662f6490": {
+    "owner": "0xe3987d34de7435d7d91c16aea3157d93c2d391b9",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x21e365fe2fac8a9c670c101d384728cfd758661d": {
+    "owner": "0x7bed94618bd1aff8aedd4757ed7b859712831c70",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x221ed712c9ad28d8e6db6a210104525b1c0cedf9": {
+    "owner": "0x997b133344b831e30d4ae3ebf6cc051ace5a9e5a",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x222e9697d69868d7342210cd8a80a690a5411d61": {
+    "owner": "0x595a243df57434da9dae33890e75ee723e78406c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x22da8e26606b65563fc5808a8ba681d5ea5c75de": {
+    "owner": "0x382b666979f3c55fcd12a3e497a66bef5daa3887",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x22e36c3eb7538a90df8b7da160ab40a6b75969b4": {
+    "owner": "0xdf1f40aa8c21b731ff936355cf82adc5e9b66a6b",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x230ca9d8ded558a79dcfe9c25dd32bec8643febc": {
+    "owner": "0x49e95e336cf9ae6a9c4e0b5081c40b4bfcccedd5",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x235c442bbe378262dac35b2f97efe2a9b27a8711": {
+    "owner": "0xe59de5858495fa44505c22a87ab9087fb48d431a",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x2365611e53a9ad583476b3d7d3b48a1c6f48ed5d": {
+    "owner": "0xa09ff49912914b060aa2f44c255b286155f7738b",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x23fbb9e27b3f015bdfdf8fcb379817e7d9ef64a1": {
+    "owner": "0xb84a0c2a650dafecf5056aff9e1608f020443295",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x242a1b7b4000c3349544cf2655249d0011a69886": {
+    "owner": "0xc95271e0efb000e3218fa259a0b8fe0bb409b617",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x24409f810d83b6a3c26c245d5debc6b0617b4409": {
+    "owner": "0xfce4e64de7fa2a9a62188ac5dc359d89efab4e4b",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x255c3e2f595556422cb41c279513e37e6157e128": {
+    "owner": "0xb9dfb4037b7f57930951cfde943241312f5a2d9b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x27addeadcf045344c7e73a7df4434e87d70831c3": {
+    "owner": "0xe1107135a5df412ef7d328778f61ace072edf44d",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x283115f18e52ea7ec5ecd3e8590ce5f4e086b047": {
+    "owner": "0x09e40cd564e359630e6451e5338fc9b29f358139",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x2893e08b126ee901da7d6e72e1a59fafd0852cc8": {
+    "owner": "0xb0df9a9ad6997663b688525efe3fad281fce75fd",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x28b059da8f901794f68af3a76eb3716af2ee2235": {
+    "owner": "0xd3bb69d6341fb5c3ddb581832f2de37489618af1",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x29a1f2b45ff3d9bd74f35db283905eeb6dbf73b7": {
+    "owner": "0xb09cf6b97632b0ca8daf94a3b1c736bd3f2ab6c7",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x29be2428a3e32bf4e693ed6afc8aa0b50181f9d0": {
+    "owner": "0x6ca08f67d58742a68f70abcf1481c43c098eff0e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x2a47d267fdaca4f728ed6bd30d9f03dc86ca8c2c": {
+    "owner": "0x22267c80fc977619b6d1c0bb25ae08f7e335282f",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x2a899921d326bf6aedc0cc1cff8a8c7a40a3d7df": {
+    "owner": "0x6f5f6b4e7ea2f8f4ce79d3578adabcea4b8906f8",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x2b7e9606ff0220257ac281bb057d41b3268138b4": {
+    "owner": "0xe79bd91d6b1b325be344027d22e1310900301676",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x2c3fb28a0f1617bdda4335188308a22403825d15": {
+    "owner": "0x4485c56ba08c6ec34b46974d9a2144b0b67f9c61",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x2cf17966148f69b0664217b01a4d46f660fa2cf6": {
+    "owner": "0x9e4d52b197561b2d63b12e20a0a3cf2bdd13486a",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x2e7fe0f59c57fb3a653078475f5f8f4224fd0ce1": {
+    "owner": "0x5586bb7943e7ef7c3f7f8a3a9d5ac294a0302629",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x2eb659fa75eea3e157e10c1c3caeabfbdf83ac3c": {
+    "owner": "0x16b57f011598056e594014db008f577f55bd6eed",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x2ed4e3d5fc0a1800f2470e6f7432c71df0ad54e1": {
+    "owner": "0x31cea849fcde74dacba402c9953ba172666cf9dc",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x2ed78e2ff630cad34122f4f9c0b575533b5e8321": {
+    "owner": "0x2206388f38bd264647068ae8f938737a89e869c0",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x2ee0348de612d65b67a69857859b180a787e950d": {
+    "owner": "0xcee1b9273a5fe4fd82029487392993e3d2f04815",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x2f10f878c606d2cbb6aaca0c025c9f4f4451ffe7": {
+    "owner": "0x1617e20bbddf0a1323541acb011efc51504ec7df",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x2f2fe17cb633953027de8b7ccb86c71171828602": {
+    "owner": "0xbb41d2e2e101a0bc54272e21e28152a54d152ddf",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x2f7503a2b889656a0cc6902a93cd7667ce736c59": {
+    "owner": "0xa292efdf88a31cab033c2e74c03cc00b60bea413",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x2f7754fd1aa19fdc0769be3e2e5ca3bd8dfdb2bd": {
+    "owner": "0x0e00fae9c6b2354402b5e32c865445959cb5a6a3",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x2fabcda9a47a1781c811b9cd02f9e9003f5e13e4": {
+    "owner": "0x82b2049e7a9e560804fb9b28b20b6cc364cfdfcc",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x2fc9682b4b7c884bbff81bd5aa6de1beda20a512": {
+    "owner": "0x4a03def23e0318b35e6a28f5a234fe2be1cd3fcf",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x2fdacd1e6660a855ad92d5ced4a2a031aa5e9941": {
+    "owner": "0x55ed767bdf96c9350ccfc65ea69ad821522e9b2e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x305f50b8cc2f039d8812a5cc1956a4c082b042bc": {
+    "owner": "0x98b9c7c287fc6a77b979c5fa174a596d27b3a3f5",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x309d3034b3cf9cc80e536db0da996d716268dec3": {
+    "owner": "0x30a052fbf1a277b52819acdad2b4196a936fae47",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x30a48c61efceb200160ccf93d3b395e666f8d991": {
+    "owner": "0x5ccdc96e7d95f83592814fba25b0bb5170f62353",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x30c28c514b2f62a9fbcacfd9e8ea0eff7bfe33b1": {
+    "owner": "0x8261f76198b096d41b3502785f62ad0252f127a8",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x310d034c8b9bdac9d3cbced3623ad14dc59f81aa": {
+    "owner": "0xddcbaf2b1476c10e053483ccc025227e994bf76c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x318e5b8385c12153ac0b606260b82d9c012d5b40": {
+    "owner": "0xe834e3e5294c109b917727771ebb0b3ce19540ed",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x323c364d71df0952e609b31066bc9a725c7087d4": {
+    "owner": "0xc4c317cc8ce70716bd37feb24452776d84bf419d",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x327632fe033046c9debcbd5ab8d0e7cc150d977b": {
+    "owner": "0xb6caf63534547d27e68cf557a93376c7860bd0bb",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x32ae26149043fc02dee94fb17b93cc39b4cdc9dc": {
+    "owner": "0xc4766ee9e803ae12794fe8fd67236c866d43f3cd",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x32e5ef6662b0ba53afb74128e385ccfb86531ffa": {
+    "owner": "0x1639e5470cbf1a35769a26bcaeed753301c32dac",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x32f030ef478e13f746cc8b9e603baa5461bc2513": {
+    "owner": "0x1ae80c7c073a9c586fe5a52d6614875221c81dbe",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x3311126fa4bcf44683cc57731cd94d3c029817ed": {
+    "owner": "0x4989e3b413065151bfaf29f0577d6f742f5aed8d",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x33210778d766d1b568854c7a8627931fa8be025e": {
+    "owner": "0x68e2312772716d313527d61e18e11a0e80de0845",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x3409b83d60f61a38a119d77aa3f57f877a53cbb9": {
+    "owner": "0xf2904d58cb6c83b273e459c888f2f66f65af9e76",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x34c055ffec56ca25e5394c4127de66fe0514ddc9": {
+    "owner": "0xbea390e0d9fcd2b886152da8b14e268751b97d89",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x35566fcec7e298c7cb27cf91431d5b7c8c9e32c2": {
+    "owner": "0xbd542fb736887fc8ec7559116729dfe7b68e317f",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x3571aab86a72f65ca27b12a6997b23f23372b256": {
+    "owner": "0xd23ed73ce22fd6794ef5b16a3262127e8ad33c26",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x366a62759364e8ef90e9f54518fbac30cf6030d5": {
+    "owner": "0x3c0659740746c5cf5a5fec5d70a745c1c35806ee",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x36931cb9e24370f9e40164f3d85dd4df21c83820": {
+    "owner": "0x92812cda952265799b5956539beb9b6eff8bab8f",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x37edced963d3833a5d64116eae9c5d75a5f4659f": {
+    "owner": "0xc4d8c6d8e2fcf31f71484059978f7c3f361f2a0c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x38155a16f4d88fcd51839346ee05d8f9fd9b3d22": {
+    "owner": "0xaa02c4d11492e28b44893a79c7e5b9816241652d",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x382e72ff2e1ab3552525bbfd25e6fc00959f6e33": {
+    "owner": "0x7b572943a5f71268309499b9d8931782fe823381",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x386368161940fdb3d3e494a5c3b0fee9a8f89aab": {
+    "owner": "0xaacdefaa84008ecc7619a105198f5a9a6cc8621b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x387a24b01c58d7e2d80ae8de7bac0a459059fd50": {
+    "owner": "0x355898cccb209ecd45e4a99236b2f4f77cdee4b9",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x388153cd4104074c5ac6b7e1fe177b7f9f3fd8f8": {
+    "owner": "0xdbc9b1331b66a80aa74196c7536cab3e2a956d31",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x3892b0717e63f2a4aed91592df5c4ff9ab06fece": {
+    "owner": "0x94c7fba74d8f942bbb7e9f409bea4fd7a2c197a1",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x389f1e74570914c2aefc66352ac63516f813e711": {
+    "owner": "0xc155764f9c280390813494d9b6a62f80141c1e7e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x38a4af509bb10a7eee54eecfef5e100b251718cd": {
+    "owner": "0x0d58c7acdae962e65c182149c68829d673d135fd",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x397445b69bb5cc00b72fd5f6103c6d93805f4efb": {
+    "owner": "0x5edac587fe39b6def98a7f19b72c7b29118a74c5",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x399991864c82045425bbf3876ae0ef52f4e4b3c7": {
+    "owner": "0x68045f8fe1df7c360c09f23941853a03fcb11f07",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x39fed73549cc30227d393c62d5db119dd7de55a8": {
+    "owner": "0x9e24785b22a5e8c683d5b9e814a94b9a9d8ee250",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x3a3f8cd1b58717af5a051c46d63418e42d50acbf": {
+    "owner": "0x3a0f68d62a420839cf4262e6037558bd8cc56f24",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x3ac84aad12d1d15c029d9e048f6049407bb2f59b": {
+    "owner": "0x6e3a80cb186a757a467ccb81deb508aba306dd35",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x3af51bc4eda65a6110e5e682376e0757c3fcd779": {
+    "owner": "0xc57c96e9563e5a4e6b1959e7160acc09dba37a16",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x3afbfc74cc9fc051c9bc8b62229306d86a0acf08": {
+    "owner": "0x1da7334faa8124d694e87318986adea54225504c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x3ba646d0932f65b2e8a081e285208e788fca056b": {
+    "owner": "0x0447b8b1fc477e5dc7a4ea7b85ca5b53139157b1",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x3c18f550cc05a501f606b59f01bef904c376bdb0": {
+    "owner": "0x4c34eb8995fd088cf2fc8159c92dbd37c3196537",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x3c25bf1d6d62752a9de2b8ce3c73fede6501579f": {
+    "owner": "0xf612918403ecbcd02c6e92be09e5e48fa26386a0",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x3c713c967883c28341af0b914bebb741ca073954": {
+    "owner": "0xc7f436d957d707aa1f4081a2356eae8ec96e0e12",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x3c876e4d9cb38b7a92d51459ff9bb46cbd7c6e22": {
+    "owner": "0x23e2ba3070c98d80821f1d707fd85b6723977b63",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x3d2fdde1bc86ab4d30ff3bada87114b206a9c59d": {
+    "owner": "0xf43dc4433167dfa43944026b28ef8e44428ac746",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x3df8320c2c7cae2707e21a24f005f91a10d980b5": {
+    "owner": "0xf9ef8100e39acd0c206d61d22d816fcfecd82925",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x3e074e40491a27c38dd8812f8614c2ebe60ecb4d": {
+    "owner": "0x6d8f08e0fc1233a52302a6c2d787a563f286199e",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x3eae94c125670891a3f60dc8a804dc7338ccda62": {
+    "owner": "0x27626246431e4d868144a20d2426d77952a8c6bf",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x40266c85025e9992acdbc77815ffc9d5e0ceab1e": {
+    "owner": "0xe8ba9a7c279714f2a5e1d0099b1bde0bd66f5b69",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x406ab21eb5f20c3a62ab7facfc38e7aea22c43d4": {
+    "owner": "0xa7ede992a01fad516374bc0929252fac7c7019f9",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x4081c0c57f6e025da20bf3db0ca6fe3768b1cf16": {
+    "owner": "0xaccb0b838afa141b2ba09f82d61068c1c2944259",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x4108acfb34a9b0d5e98e1cd7fa91d6ff0a959027": {
+    "owner": "0x35f95ddec37a8b6faa795b143cbcf233d468f66f",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x415d23211ae9a170ed5038784a6562a5ff86c7e4": {
+    "owner": "0xea791218ea9c53b735a9d359b5471b6cfbe3e1d7",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x419ae394b5e3a7889f390331204afebdde21d425": {
+    "owner": "0x7d22729e8cf8557ec2af6481ce51159dd050861f",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x41bcda2bc464feb3dc1b027588200574cae55518": {
+    "owner": "0x983946ff89d8aff59f0faed8eaa64394ad7fe4d8",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x41f178fcc3b7cf61a51bec0b752e48423f64c2a4": {
+    "owner": "0xb48765f0c7197e04093ba24748d40ef21d8a5262",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x426afed195208c6ff6b3196d520ea7a2cea67fed": {
+    "owner": "0x2b9e8d7da6cf1953cdf60f2b9e2904c90970c35d",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x42a2ad3b773c9545c139a5ed717bc249cb7816d6": {
+    "owner": "0x25e7c0687fd17e72991b3cc8b29938c45b7204c5",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x42e90530968a044dd9093b08ff7a5e816b7b7b5c": {
+    "owner": "0xb7d001f2ec74f51f8ff54d8d22ebee074cbe006e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x4348a0c6b6a396727e76861adf36f430e4001b70": {
+    "owner": "0x0431d7f5492df9a75ae374faa7af214819061a83",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x438970f2a177d928db5eec6fe2b84131e76d93c8": {
+    "owner": "0xc6f37b3b984d02f171f9b503457c53098b3e754b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x441aaff842091a38d4a1a7ca2127c0f601524a3f": {
+    "owner": "0x9f5083786cb73ee303513358b4e7822cda91c8f9",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x456220d76b9b0473cd9b5a6aa205b5f47413a4cf": {
+    "owner": "0x999b8fac5fec7394d225f246bcca95861f82e0a0",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x458acda66d8123923f13ba3edd81121faf466548": {
+    "owner": "0x2c2f7e1591ff8dcd6d287b31cbd676b67ffc54ea",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x45e6875fede49c3920cfdb7f14098c280cfa58ee": {
+    "owner": "0x741eca628d1906a16d65b46c89f8e9dca4cd3376",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x45f89e85fd2f33d43c3d3d2a19f771b2e91eb92d": {
+    "owner": "0xa2a43de09e3ac2a13b1f8f7627205d7b83b26bab",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x46db5f77862052e6b4498dbf017a20005bec3e7b": {
+    "owner": "0xb65cf23bb02e07f825e3a86120c81aded5e9bdfa",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x470493a947fa5b7961881a1b809af3ec8763e37d": {
+    "owner": "0xd4a1acb89b00c8706fe98485becd8c33e8a774dc",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x4772072abd62a00052eaa0eca4975f42bb87121d": {
+    "owner": "0xef153efb27976c4028c9fe75913f7cddbe7b9c60",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x4791a1bc0bea4babee26108b19fd1011436fb3eb": {
+    "owner": "0x8f1f6d3124ce0f01507dcaa6acb45418e8a41285",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x47bcf3cd0919e9b80df4cc44fb457dc1b44eda53": {
+    "owner": "0x570ba5ff23d8b7208e49f0dd732838df702172c5",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x47db87ae13e12b9ea8a174d85ca3e2e47998def5": {
+    "owner": "0x08ca2051adfc16e419a5bcb496c78034cfd86c7b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x48ed720058fd17a1a85073cec4b269b637f3cc57": {
+    "owner": "0x3f57aef071b2badcc422f31775fc22c39f812809",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x48ff102d5800a7ad211aa3d358b349ebfdcb0695": {
+    "owner": "0xa67a0f8890ef5e6d8f5df8dcf043946e568d1df7",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x49131749fff5f5fc6ae7bc3a0992198b6e13c9b5": {
+    "owner": "0x541c5d1c9cf8c26e23e7ebabbae1fe4f7f1019f4",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x4946c81a037eb831195ca7aeb77d76146715b240": {
+    "owner": "0x3c0a86fea65a89e6b31e97f855f5c1228bd83995",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x49b28d2cc3194c18e1347efc41ef5e06973bd75a": {
+    "owner": "0x2147c267db2ed589776210b9232c4b9403b6e6d3",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x49e2ad5c43835596babaef27389502c4919ca523": {
+    "owner": "0x99dac497045972766b8ea279e6dd4866039358ab",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x49f3502411482f0e65751955fcd6bc11e13d8ffc": {
+    "owner": "0x8196a1a3c00bb81cf39d3d20875d754ac9dbdc20",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x4a0799863f0568b551408f07697f46f9977ad8bb": {
+    "owner": "0x20f67785940d5619d6cb3a4f3fe93ca31caab272",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x4a60f8cc55f07d7fa70dd21be6db6cd774648249": {
+    "owner": "0xbd56b6a59221cc090731862d3dadf41760cba664",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x4a9ae69bac4e1a060da5bb33c25501833a67ebce": {
+    "owner": "0x5e117f873f9ae7f05c9c7774638f0d2f82e8abd9",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x4b28905a1214a6f5408c3cb471ccc37cb2999a24": {
+    "owner": "0xe70d0fbe4d548e9ad66923383dc188cac027e4cc",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x4b86140387adca70a6ae1c9c5c7b0ea3ea7ea40f": {
+    "owner": "0xd1b6d7d1f70fa793c62204713ca675c3b759de07",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x4c06d9e152920cd60f5be02a2f8d9248d952c963": {
+    "owner": "0xae181df4662b88dd633be287f751a748c8ffdf87",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x4c7a0a3bed5274ad3fed513ff256bc2df75a95eb": {
+    "owner": "0x87d146a5c6c5a87923d21f21fdefe31c2bb83d4c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x4cf2c8812cbbe24ac2e479b7d84c4ccc2c911c5a": {
+    "owner": "0xec448051f87cbecff6b9073ff36912935933a409",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x4d61d3fa04236de350d375fdcccdce63cb3af94b": {
+    "owner": "0x74a6fd97ca7304db122720fb76f0af795437a0f0",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x4d7f3dc64d67fb87fe3e4bc5ba5ca434b98d365b": {
+    "owner": "0x0f6506a40f6a9734359e91875624aa07d189d8cf",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x4eea0034b472c8c20113b45a70dce80b424faf01": {
+    "owner": "0xd2b40d489625928e50f75687f97a09e0a9ed3ca0",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x4fdf8ae72f1d58b7b244c8967f0759d45941656d": {
+    "owner": "0xb289b73c214ad1482d5505d1280afdc710deb05b",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x50172be58e2f9b602f53ad0e830de989baed220c": {
+    "owner": "0x4efe43bfdb15295adc453e51f6f69bc22298f0e6",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x504e5945c02bc5886fe924321c970a55059716f4": {
+    "owner": "0x9c091cc852ca10233d7cbca075130957c4f198bb",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x509925425ff1f87b5a5c54be0eb1ff82eb0f59be": {
+    "owner": "0x51c88b3e0faaefad4ff47e732dca6ba108117393",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x51432e8dde5fcd2b9fc7c29d1ae0938ea2698687": {
+    "owner": "0x030dc9ae835f122014c7579f3053bda121c5bffd",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x5149757ad2c771e3401ce9912c7e0e15a8137c29": {
+    "owner": "0x3a1163adc87bca2cc7825ce266a07aee3643b0f8",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x5156e8fc14927df368f46b605016c09fb5096221": {
+    "owner": "0xfb6e42d4c577c4d3c9ec64460489123cdd16284b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x5174ac14f18ed895db0955a25cefdfd70dd5ae01": {
+    "owner": "0x242f2093eeb2de0300b678d58d41341014a9f723",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x51abdd8cfb71d191f0564990f2f436347161ce56": {
+    "owner": "0xc00e4faed9f5e833a129c0d4f0012d188ecb496d",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x5249131deaa0f45598f98ff704037d8d1d099ca2": {
+    "owner": "0x01203c7a60704e0a257a3b04127c4a71b2e091ab",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x52607a419a7e3e5505064f26f107f0e6e5f8958c": {
+    "owner": "0x458f4627f46a415e7f2a5c02580e54710f2d8634",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x52f60d15094c17fffa450982365183db4dfcdba3": {
+    "owner": "0x6c8d28913bdf87114b41070e023db6477200faec",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x53807b268504fd2037b6b7e4d07492cfd845e4ab": {
+    "owner": "0x9389ed776860cdc97f54de06e91c9f4c46b88ea4",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x53c4156fb49a23b3d6fca4ac279f7ba5ea348e8c": {
+    "owner": "0x9f2844be5cc6af9a5a7f08b7c50b1e4bb5043400",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x544c8eddcab5dbf39a79063803abc17efc17ea2f": {
+    "owner": "0xc16a99222be5b108655e35599fa5c5914368442b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x54ce391c165f1593cb45850b4920969f2dcf1d34": {
+    "owner": "0x3d03a31a85242aea76ea75d29cd630e54797d3d5",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x550b9fba08c1592bfb24bf77365893bac35e502b": {
+    "owner": "0xb7c770af7f85808999e41db357afd59e77ec9166",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x553f0fc8479ad48a1d645d9110db5227e135a185": {
+    "owner": "0x472531f4b86527aa45248e6163b842374bcc8ef2",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x556f001f98adb8d1550ab88cdb285b1dbb69fa1d": {
+    "owner": "0x5babe25d2f0858e297d0fd9b281f0a4d0c9a10c3",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x56128634efeb0e706dc54214d6fc20f0acc9f116": {
+    "owner": "0xadccc429b9619d7c7c262810aa7f6e0135ec940f",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x566997ff1aa6cf13f55aabeaa9ab0dff2fe589b4": {
+    "owner": "0x9d389e8ad942a933358dca103cf90d3f5c54bb69",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x568da42db434b6a64c62a791e692d45037bcbbd0": {
+    "owner": "0x1fc1b4e703eed10e352015e8820d6a11f6d27677",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x56cf8fe8db3a173854475fe1ac3d2b7acde7b77b": {
+    "owner": "0xdfe3b995844beff930aaa7f933a67d0994a5af5b",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x5756390df0cd7c29fa9a4b7dfa6eaf473c60883e": {
+    "owner": "0xcb27adcece67283fcab55e78ac53e86207c9698f",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x575b2173ab4bda0187a28d1a5fab681bace1cd51": {
+    "owner": "0xd53d6dbc188ae0fa031857aecb5c5eb5e58b0ff7",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x575bf7b29dc29e332af16b8317066b0396ccb04f": {
+    "owner": "0xfef3722a88537d1a640270513f5b49ca8bc168ba",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x57a2e229da1bdfc31d32fa1f66b9e87fda791ebb": {
+    "owner": "0xbb0e9ea26b9ae9fbfeae64da15e937515a45cafb",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x57b509bec045be579b34fb12a16c65af0030810b": {
+    "owner": "0xf8af774a05fc00581d5ffff1e6e9fe65b6e37685",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x57cdabe557a715e4b8a0e1b293da1e58dbf12015": {
+    "owner": "0x4e3fdba9690fb50731537b8c23358bab94edf1fd",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x584a9dc689b9585d0236880998dab70c0dc82fc8": {
+    "owner": "0xf1e65eb05cf586fac78c40e5cef70b98f4fba32b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x58560f1a45997b19aca62b3f26de21caa515efde": {
+    "owner": "0x1c0f94defff25fba972066a472bc1b7dfd62a9af",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x586b3b3c4b2484fd34cbb5d17e1accb6c0b9b369": {
+    "owner": "0x3216fe4aa85c0a6c280515d3284f51df7a198a44",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x58aed3bddd2d5d5a2d15e5bd8719fb1f1010ee54": {
+    "owner": "0x28c4cebe69cc15ffc8a51f370f8dbae45d3173f1",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x593f35bb64e08c8842a16309a1ae54ec2c4d52a4": {
+    "owner": "0xaf6b0e1fd58ac374160b65e00a96786b85632f61",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x59714de56e030071bf96c7f7ce500c05476f2c88": {
+    "owner": "0x533d11effef7fea863c7ad86a9bbe8ac32313c00",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x599ad44b94e7b1d5b622fac808542fe67fc337c3": {
+    "owner": "0x1166329e2d4b4afba0e6addade171757e7668f4e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x599f00cdba7199147318fcb9b82ff5997e436c19": {
+    "owner": "0x55c111b2f1f927376489bc1947431b1b956f5331",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x59d604e95fb654811a6cc7b70c6e947f4583a135": {
+    "owner": "0x8d330790cf93aa0c8af88b7670b2e4d25e7f57c5",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x5a78c4a7005170a01cfccbfc8c875ec6081cd01c": {
+    "owner": "0x1afa846d0bdc80ddba1f0e5168bc00e0dbe24e79",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x5b99e2664f0b861d15320d0fb6a272dfb11d91a9": {
+    "owner": "0x9e720b658169f8e57f76ca78f45dc8900cfd5daf",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x5bfbe7c3e1c55c7bf4ec2e56412df1de98e8ad5e": {
+    "owner": "0x5639c557729ef888ff14e57e1b8182f48aba87ab",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x5c0e28af39689da552a20a4175132a148544ccc0": {
+    "owner": "0xf568be3f4d4562ea2b63f709f21ef63fa19c23ac",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x5c1885c0c6a738badafe4dd811a26b546431ad89": {
+    "owner": "0x38ac69e58ef7882c833c8c90c0a12f59b19aa675",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x5c4284ef79083123f270abd8d00e7cf0d8c9c980": {
+    "owner": "0x21a04b0478ed451296f2b54e8af524d490a128ee",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x5cd357ebbf05c27618035f768b66615cc6154c62": {
+    "owner": "0x0c3862f55ea6efc664e267bbaf9791a2c83fe981",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x5de141157763a480310ee08232d621def1d162fa": {
+    "owner": "0xa5473bd33f3338477051a36a4949e13ede8620b1",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x5e163c0a41a8797beef5121eda56823e8dccfd5c": {
+    "owner": "0x22e4d0c9c22820ca2d94522d232380c3beec276c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x5e4e84ec8c63be04726e0822c50a692f0c9b0891": {
+    "owner": "0xddfeecc7d231174399e8add080b971692ac98754",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x60dadf4e0f9d5267b13c9e2dddca4d66a003342f": {
+    "owner": "0x074e4b03946c86ca04a579507edd2feef348d01a",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x6133777749607f86738e4f19c6573f5439d1f600": {
+    "owner": "0xba5c51d289547746aa4b9c38e9b95e9ebf491047",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x615372044cd91b24213ac94de313e0ea4eef8a78": {
+    "owner": "0xa6775d809053bfd116aba4efaf68c20d8f510a48",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x6204722a54f8ccbc77694fc68b30c7fcab9fda5e": {
+    "owner": "0xbbbfbbda5593111eea7c56ab6a2f7bd91f27d061",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x62152e2feb20e1116ab77c6cdb9b8c1987021a22": {
+    "owner": "0x4c5b456ad6766f059f9ddb61d6a05b000323b54b",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x636fc16581091793d7fafd83bdc993e2242f7046": {
+    "owner": "0xbf9105d0f650ac9c6f493c6ca4cfa5e0c365fc04",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x63e2bcb1d246a1bdff7de9b16f4c0cd36c6ec365": {
+    "owner": "0x4572286e53377dfa4a4b9a38c43ccb444115e706",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x6467f6c11124921cd7d0b17721e580b167b8143e": {
+    "owner": "0xfcbc2d79d3095214db9b655039260f4206db69e4",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x64ef901e8c91365a224b2b10381807dcf184a484": {
+    "owner": "0x0f436c60b2047101303a00003a090f241c61b23e",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x65309a1868ad848ff5ef0a99ca0efc394a98fc0b": {
+    "owner": "0x219a2fd549cbec088a5423d5c429157d4621a84e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x653d9c46b1fbbe342cdafa352f31352e1771763a": {
+    "owner": "0xd7fa016fca43ca3073edbc8d1dc7547dd3b1ad83",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x65768f8afa107745123bcd3d548cd597e08308e4": {
+    "owner": "0xf02b9c86f1cc408a1c3805753182680afdf5ac38",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x65789aa075703bef5c7a19dad007eeff05e5346f": {
+    "owner": "0xca5d812364e8474348d06f5a0f4d6054b89f9889",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x65f6a09da1a561e5d4b7d31f0eec0ffb6ec8d21f": {
+    "owner": "0x7d0c3a15bdd0fe99ff6916cfe0ae2c16cf0bb29e",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x662c5740539a915a8eda0a781a74e21507df2cb9": {
+    "owner": "0xc0dca56d9a13dc4063edcf8fb68bc738d28cacf0",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x666c36a7c1d4c2d2c13b662a04fbf1ad5335bb55": {
+    "owner": "0x0a4734d24c6533cf172dc5c5b4e3204e8bc8f8b2",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x667d28a2c185677fb69bec4d7c30e900e90ff822": {
+    "owner": "0xd365f64a01b600fbf8e4f805dc4c46c56c0b042f",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x66b40cb96acac04a7ca4a346909f3a7e8ac3b3ce": {
+    "owner": "0xc126f785464539f6ed871c67fb10cbffd5ebc062",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x66c3db06944d32934538e5962da18e1947832341": {
+    "owner": "0xa119dd8285463e176065fefd7e91248ae19caa1f",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x67126c9223050dc5eb35aa652706c2b062f8d11e": {
+    "owner": "0xa3841895c89576e6602e8ab41a88a020e77d5042",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x6774ddd170ee4852659a11c585296cfb5f2fbf83": {
+    "owner": "0xdb2030551126474e8a6d0250cdf9f41fe009c5a0",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x6797c2379e1ddfd7153c0824a23f8af5147d19df": {
+    "owner": "0x6b5ffc872ae4fd6a39b1e724269f7f9872bdebb7",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x681760ec9cc4cf843f3cf2aaa7a62f4c40bb46ec": {
+    "owner": "0x7cb387d36f45fc9c4716204d68b112b34dd4302f",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x683b3ece1d86b54d98c38ba20eb5d2fc1f1601a9": {
+    "owner": "0x4755ab1b919e87bf5c9aabc3cc5ad2cb4621c60a",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x68457053476fa514a6ff725d099f34bbfc8d63e6": {
+    "owner": "0xe23bf6b4899e0afb547c17feb5dfa1811726104b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x686e125074c0b27a928fa160aaffcead4b9bfb4b": {
+    "owner": "0x8ee7a32c425e235fb7cf05cc7931c175551ab11c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x688068c28ffd19c346c877043943340fdef97dfb": {
+    "owner": "0xb5dc198b4901ea1e43299f95d5007610d0f7bbd0",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x68ac9681ad9580c48cf0998a6c05aaa721b51efb": {
+    "owner": "0xcd5b9f651b9bd56441132bb8d9cf947bc838abf8",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x69449232e999bfdae6b885d2506ff049189c693c": {
+    "owner": "0x0d5f5f8af3184555478f99ad3634633537cc1253",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x6983541feae33844f215ad216fbd7d9babf3ebce": {
+    "owner": "0x425e7839ad3de68db8d4c7a2f438e18f51fef4e8",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x69a9c1faf4e5fc48de9cc064836a1b4cad86d59d": {
+    "owner": "0xe1e4d61a056c75fdca64cabceb895882778e41da",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x69ffb31ccb510393659e08fc58c0c5689363ac05": {
+    "owner": "0x851c8548f1bcbd25cef0bb43140c92aada642964",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x6b4671ea2b6dcb4ffe98a49706dac5218dca0197": {
+    "owner": "0x7ea3562fd0e9bfe63ac2d0ee335c84a9a717e719",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x6b52ce85992200cb6ab58b2c572279107aac374a": {
+    "owner": "0xa9b6872098c508ea5fc021d408bce7647350fa06",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x6b59beab849b186da085913699c5f3de2fbe679d": {
+    "owner": "0xc69fa803992e60a6559c5249af27e5a8fcb9093c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x6b600934fac07597601ea8e858cd714e67b7b61a": {
+    "owner": "0xeb002be073cf0ece79ffd9154a95023e15d011c3",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x6b79bdb1332a79d88dcf3b941cb9bb0d1808f07a": {
+    "owner": "0xd852b5ffc4d0598250e74549a13c04d83863fdf2",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x6c2a0fec9d56e6879d4a68548e097cbc073828df": {
+    "owner": "0x19f44aa714c751ebe2003089b8798a73435c54cc",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x6c3c3eed2fbdb7a814856385e96a354c857aca74": {
+    "owner": "0xf4e10d663265f1549c20bbfde43340ad8efccde0",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x6cd1f22e986b08f959dfe7ec6984d01a64d3624c": {
+    "owner": "0x2599cf35b0d7c5bbe91472f8c0a9884a35ea2e4e",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x6d25939111fe840aefa9dfc03619e0d777915fe3": {
+    "owner": "0xc1e0b0cfc621d43e4ce92b9b41a1ca026bc185b6",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x6d32f6b3238a5e11d9eee369ed11969b5196b0aa": {
+    "owner": "0xc477c25027a6a96fc2edfc6487c3606f2835bb65",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x6d7a5467877f8d74aa418cc6c658d8aaf17c36dd": {
+    "owner": "0x96f5c3d5c67d482a0d2b53e8e17315b7bacda0a0",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x6d7f5b474e0aaa9fa70fedc00b704eaf5756092f": {
+    "owner": "0x5b28f5f2ba8554312d6e0711f90a1e16626e3f36",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x6ddaa461b90cc2aed46bcc39032385b326a62539": {
+    "owner": "0xbd51d8c5977491cb714c071d1776c9d45b3f93de",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x6ebab4db109a02a77d1c7242a491bcc3032b67e8": {
+    "owner": "0x7cde2b16652baf7d89b5a05c0a248afcfa1a3415",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x6ef12af9a114ff839b9a33ca57801569ec9a288f": {
+    "owner": "0xae89c6560a90c750b54b8fcabf73486c49798161",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x6fb89200d970f7faa83dc9c779b86c310c87c905": {
+    "owner": "0xd1d73c79aa5982bb8339c3a41929cc360d59cde7",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x6fd68359bab6a13c7db4331e59b7e6fa2c3eb12e": {
+    "owner": "0xd6dab439eda74b1344468f01375f323024472e61",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x6fe5d49cb958a95adde4019d9960292ce746da3d": {
+    "owner": "0xda8c08530185cfc1b1c3a324d8a0fa48c22af3a5",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7022a121f648370e298f1fdaf98a4f3c9e0f7052": {
+    "owner": "0x738704ea2e50dcfb142340a404e17478a215db19",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7160f5c0ba9ee132bdf8d68b0635cdf830b89854": {
+    "owner": "0x48ea4668a4c9a6acf5b6688b60ce81e3e86fee0a",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x720915d9310d558d905bbec2ee36888aaeb31fa1": {
+    "owner": "0xe3a185cc6623b196a6afe1c8006709bd4115d7e3",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7261b325163c87f2f74a4947200ebf5fb0bfa3a6": {
+    "owner": "0xace60b253004e8752feb0ecf0f91af0f093415d8",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x72db387ed525c61cdf9495ecc9c22f8eb0ca99c1": {
+    "owner": "0x0b21e87588ced9e4940dc27dc392522e23888888",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x734d0d6af50f61d99c2591577820c69384fd856c": {
+    "owner": "0x8be35987d25cad4d37159a04a56de691261b07b6",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x73713c47b4e0d14cb827fef293d686404cd3a254": {
+    "owner": "0xf8ea18f8fa1d7a765e5430f0f62419a0375c92f2",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x75a4c229d653e2ac4cb633b90415d7b26881af5f": {
+    "owner": "0x4ffed5eaa4ff6f7d9db2ef5e09a913cc44a9ca34",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x75ccea4803baad6dc85cdffe31c6a53c654ac89e": {
+    "owner": "0x5a222537e0b984e5192bb473e4639aa74cf8432a",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x76fc2a2a973600c9cb2bc3fca4bf40e55959440a": {
+    "owner": "0x6143d9aad5b7cd866acb505d07d96b66da6e0ee2",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x770c209eec70066d9bd4fe635efa9fe8e46dcd64": {
+    "owner": "0x98a661a1c297a47e2249cafc9f412db42317160a",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7755f42833cc0bd8fa2b2240ab939586ba9191af": {
+    "owner": "0x5d8270db535a64d7cbe43e55fd185c7902073e0b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x78256b634f168133da56a58c817e0de85be56ece": {
+    "owner": "0xd8a6135e2767b83ad9e9959dc2697eaa393007a8",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x785f9df558926eda8a7bb774be2345896298130d": {
+    "owner": "0x4cc2eae6897d7ca6d737a5b995919af76447e0c4",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x78f7443121e7b2af0c923ed15585659d34814b97": {
+    "owner": "0xa318371b68bebae128e7ec926db4d17b4afcdb62",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x796d2d6ff8580ab7d66819b3ec3dc0cf4b0c6cc3": {
+    "owner": "0x8d3d6458a80669eb74726b2eb23b9169083a51f1",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x798fa03813c99ca2db53e0e244a86103aeed67e4": {
+    "owner": "0xb04880e52121e007129d355d867fb0a8f4a0a81d",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x79a261f3a767c8908e1c9d3df4e96b7d68579126": {
+    "owner": "0x02eeba8e962a75b7419d3b630016826d331f55a3",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x79d4ed32bf7fb3a01ea603416e5a1684e03386ee": {
+    "owner": "0x4fdfd8bfc84a6930efb500bd93b26a1ca1930028",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x79f7bc8fa3b65737b75dd6ae5f73fa524d32e8aa": {
+    "owner": "0xab5380db0dddf62647c617dde95fcc5f2143ae75",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x79fffc3616bba829243080723c721aec5e40389b": {
+    "owner": "0x08ed6c6135616900c133a70defaf648aa53625d4",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7aa40cac93be5cbd562cd5a4cd81c32c4822ca71": {
+    "owner": "0xb8f5e3723b00dbc8b7e28ec45558420f81fea088",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7aa96bfee3bbab0d2f6bd97a170c3d5c5755034b": {
+    "owner": "0x435793eb85d7ee0366bc1c8094b4e3d3f84d5032",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7be3a520dc70f4ee41321ddc72811f7d1debaab7": {
+    "owner": "0x899f008caf366a83d0121740cdafde2c2b70aeb3",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7c445d536a1bc3de55e69f255224d72b5223b5ea": {
+    "owner": "0x06dab33d8aab97e6285c14c04d989be37219eacf",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x7c5bfb9becdd82f41c7eb36dfd3671aa316920ca": {
+    "owner": "0xb8d1d2717e548f24a8045f7103045bc62db53acf",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7c6ead677cd8deda582291c6d7f677e20cf5de79": {
+    "owner": "0x61f036bbd1dce52e496f9333a0f70bbddd19b14d",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x7c9467d05fbdec67c5d8f1c2611a4610f2d63385": {
+    "owner": "0x4e1f8fedfd332454a38a177de7f2f9c2b517b1a2",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x7c964dfab4289d2b2ba12452c962d6c46f7d5e41": {
+    "owner": "0x80708ff363b78db256dba24482cd4e7e012e1644",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x7ccc523294c89017fa552b4c3ddee21acfeb553a": {
+    "owner": "0xbb36b7c868ad811747685e33f0c9aee16126d25f",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7d2e9bb113da3c30a9b8f4d8ab52e3f7122f0da9": {
+    "owner": "0x026793afce84dda7e7822fa0b07fb46de1b82611",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x7d303cf90386ba8f079906f4e1a36ec51d332631": {
+    "owner": "0x6b663f9e03876c0fc49824c37a3fe01f05b97de4",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x7d52b14e3f1a9ce0322fadace693d1712837813d": {
+    "owner": "0x25649a5c0ac08046f5d88cf543bd5c91382dd139",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x7d5b5a62c4bb49371eb3e5be4443bcb68051d635": {
+    "owner": "0x5c4ed4d994cd0e38e9a471cde7deb21c29fcbc9b",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x7d99aa75544e441615a65105f80f6540380ea1c7": {
+    "owner": "0xee5a0802252daa983f895eac99dcaec7119576b7",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7d99eb04bb36e916f608485e1f2e9324d6024cfe": {
+    "owner": "0x72137324c1bb6e89d4dc4591f7a7b7787f48e893",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7d9d889e685dfed0bda6fc0dee0aa7eee11f06e7": {
+    "owner": "0x819dc2e6c8b6b6ea9192e48ceb808b46331100a3",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0,
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x7dc7f72f3e9afac0087911e2a24cf67bb926d036": {
+    "owner": "0x0f7c1599f97fbb8b7d2986fcab7ab91919a3be7c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x7dc8a5187e2cf966362576d95dfe6d8c6ce5e504": {
+    "owner": "0x4d2e057b207e435f819bdbb5254a7da7a78aa715",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7e3a80d3e5a99490312d3f9f26e1bd8cd07885ba": {
+    "owner": "0xe60de6bc8c316a9af8dc0f170b60251e6eb19217",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7e7d8ab780a8d35a958f5f09efbeab3f25953a78": {
+    "owner": "0xbc7c4c3b2a861d43816b33bdc09f394a3da47376",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7ebcd8cdb66a9c21b464ff8a0c9477632938db74": {
+    "owner": "0x9d608d5974bd9cee67f650c0925478d5399f01ce",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x7f81a78a76b56f83f537f2fa8f9e004bf11d49d8": {
+    "owner": "0xd2f3c437c735312b2cf2b5f9e7259703b1150d48",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7f8cfd1668c3167faf77d9ffcd457fe4133def21": {
+    "owner": "0x6c3ca4723aff7244e925ede9e95a09711bdf0c07",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7f9feefe9e4f456acb8403c49fb123d09674177b": {
+    "owner": "0x5cbfadb6d37a70426a55c970bdb6a1bd6e6b8aa9",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x7fa90ec3df52ccbaa3af30e77b7c2132993a6479": {
+    "owner": "0x427be12e523f2a5ea4ec4dae48a8f83acc999ce6",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x801be502cf0beaec1ada4cfa7fb9db7b33f4ed73": {
+    "owner": "0x757d16b751bc71336479fdbd4a08bf1da1c7132a",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x8021a26f6cd3cf46d8ec3be104015c5dc33e060c": {
+    "owner": "0x39c02d9498f43d089338e104ae031de0becc5955",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x8040546f5f0d9b6da2b5164089c6b41d2b28ba12": {
+    "owner": "0x91af881df3ee17568f54d31c1275c03cef6bef43",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x8085aa74a4f0572d0cfa8159ce3f90273c2d72b0": {
+    "owner": "0x77cac51eecb498de1f8d1611aa4ec1345ace0cdc",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x80b0e96a851c986eebc32778dceaa21cd9bf98fc": {
+    "owner": "0x24cd4259bba957e0b4b9f28e0653a5ff6e3a1eeb",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x81b7ccaa4d8db099e5b5048ae7e46252454d9766": {
+    "owner": "0x797bbe86be662d83543458a142febeec7a1f9468",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x8206854336936ca32c62a9aad45c3f436c99f75a": {
+    "owner": "0x7210634f3385604d712ada005842e65445c36fae",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x8259a75c4512eb948542ce0ad668d96e7570ccf5": {
+    "owner": "0xdde674c785d7233d0af6316aa4c25297220bd474",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x8285f4087585473419979c8390d8068407dd4832": {
+    "owner": "0x443961a58129a7997d5ec8bf726496dfa8665628",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x82b09bb21ecac74b87fa9cc297ef1f128e3fd6fb": {
+    "owner": "0xe619d091233580cc171e4afdad94d98c16fd5a0c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x82bd286138ef5da022623d055a786355c2cb42b9": {
+    "owner": "0x7bade1b9d9959343c6daf0bd3c53e33b9f1695c7",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x83d2ffabd47467ed0885682e2c12582a07e2dc39": {
+    "owner": "0xef2cee0cf16014efef15d593382b60f9a958d51f",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x84194acf27a804557965e8d58a7b4fc710e8d347": {
+    "owner": "0xa63e93630059282f29f5a332c60d01f0c4b2b015",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x842a2800255a9250d515fbcdaf6baed3f757ff14": {
+    "owner": "0xf0c9bf8218346587c165979356d44cfdab41ceb2",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x847ebf5e55c66e19ac06861094fd2f785c3f444a": {
+    "owner": "0x38e67f590af93ae5eea36222b55e354cc87fdbaa",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x85a5cca75b41fc4dc5b175a2e8120ffca620885e": {
+    "owner": "0xb7704e9b14f4cfb554eceb96888ea3a6f81fb355",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x85d1d821019e65e5292fe5aded65c22f83ffd1a5": {
+    "owner": "0xdf101b0106086a4ce0074ad86d1653899d72899e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x86126b570c223094ef7a48e7204e7cb32c9821f2": {
+    "owner": "0x1ddad718f9c5964262ae51a27ea3590562e12d17",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x8631f02a5ce579b7a3787770dbe7decaaa1da4c9": {
+    "owner": "0x59fde8945fff7e49ec2ed90a2dfd38d1f01dacee",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x86ddb7032780e6abc1cfe1d23eaf6122408a0f0f": {
+    "owner": "0x425b8780854ed49cef7eb0ba5aa59b5c022dcb42",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x8713f920e69c490426f26cdfbfdd5c67de400070": {
+    "owner": "0x5165b0f0109c6aa8143ee58c19ba1f093de0f743",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x8765bbe12b7942c598142fe75ed4f0ec1bbaad73": {
+    "owner": "0x21312fea3c02b206a6950dbf6a4d355d26e25fac",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x887ac46027932313ac7b899b976728086748db70": {
+    "owner": "0xfbc5612d0b74bb64ed1a8dd037ef6b01da7c26fa",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x8881d2f981ed0357cc0e5290a68190d162774eba": {
+    "owner": "0x22068f719331a98c887c690fe7a3876a4a5ea8fa",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x88f351687f6ca0408ce3a4633ac68797e74b959b": {
+    "owner": "0x31c8f8e034fc6e2d31d93494db2fb3e2d6ea1a0d",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x8940f5a12f035233538017c9598345d41a6e78da": {
+    "owner": "0x028a0f5e0908e40c3dde9847edcac653ccf34c30",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x89925e9bcb6dd0131a2a4a9d99aa034653ab70a8": {
+    "owner": "0x728c228a6deb200e22740c9a9567483659cd9587",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x89a423af45999dde70936cf95e8f99022fcd2e73": {
+    "owner": "0x05573fb4ab46fd5149c2f5a874f4d16ec707a691",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x89b394845391af96e2b61909c0d959f482e5bdf8": {
+    "owner": "0x470c85510ae14142a401138f719a3db066733761",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x89f54c29a7e1aee6f572d5d7c9470e5a521557ad": {
+    "owner": "0xab85f26d2d486a99712e78171287c80482401988",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x8a8890cb8c3819fa5f38e7d5b125d073534209fa": {
+    "owner": "0xac4d4e827a85a34e5b5ddf55c3a4add3b753221b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x8acb8c8f9d01e95adbf51de33e596b677d0064c4": {
+    "owner": "0x03320a92a674248e8271a5844bd3ff5906e77616",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x8ad68f4cca0794923b300151f97bb7832d4adbe0": {
+    "owner": "0xb8f4bafcbf7bbaf547cf5caa52328b0d9c3d82f8",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x8b7c038e65d82e5a1c200400c731e354d648a05d": {
+    "owner": "0x042523764071be6d393caa823ece520fc12b1ac7",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x8bb0055065105502e07339b4ff8e06a2044fee65": {
+    "owner": "0xafaa71df19e5f5c275a793ae5b42277c1e84c70d",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0,
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x8bcfe501723b4bba5b6279aa07a2f22438b211b2": {
+    "owner": "0x2d92e01606449af3e986bbd092ba953eccb5570c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x8bf691c3db5cb285ae2703ed5c4617f4b9896b1c": {
+    "owner": "0x9db90bf4293240d11440bddef38ff68bddf759d3",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x8c4d96108eed0c0d6845953c5601d49c2a0926d2": {
+    "owner": "0xdd902bd9546e180ba7dce6109f64161eabecb5c6",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x8c5a2ccbd55575c95145e18b17f1bc60c00cc14e": {
+    "owner": "0x905ee565932c718ec3b94717f05c61d78acd4815",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x8cc9f0b7c1a2a304a6863ab4cd05adfb1ad20da2": {
+    "owner": "0xffab6abecffa2b6143cd35dc875e6a7623e75a44",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x8d12dcfe76b713920fae89ce9560090df8a68e0b": {
+    "owner": "0x2f95c0581ccbad7d973f5ce42a61cb4810cdc259",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x8d605dff28d03791ae8d5340a498901f70c0a80f": {
+    "owner": "0xce096adc899850f7c0bbf28b2fc7d07ab6126f78",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x8ffb40eade16398726bca29ff9627002ef84360e": {
+    "owner": "0x6a9e6df78d349d3e1a460c3c8585763b791a0e58",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x9001764ba7e3bcfed20a63e20ef26141ec4938b8": {
+    "owner": "0xd087a2c1de88e1f28f27fe5281224856358b8a7d",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x903d70023dccdad6a8b369a7c8fd1c54e53cc89d": {
+    "owner": "0x61605e2fa29a84e1c342582d6547e9a831c3eb25",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x90c1507e1b0042366dade893b96ef7e7914377ac": {
+    "owner": "0xe2178f0a7469c5db5439a148ce8ba063cb954284",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x913560ffd85409f8e3040cebfad6a24f05dca517": {
+    "owner": "0xbd13aee2a7f8578198ad4d08f5b1565edc476e91",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x917b8df202eeacf4793792b5bd5e1dca7ff3b6cf": {
+    "owner": "0x34134d11181da184b05d2f7d28c10d65ff5ff13e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x91c4c9646342dab93fbc47eb250aff09a7598b08": {
+    "owner": "0x0d481e9f558deea5c61338553eb29bdd1532e967",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x921513f2309bee38b19713fc575c71b7198fc0c0": {
+    "owner": "0x2f79ca9c254ff3509979228cb39595c47e946929",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x921d9ca9c0b170b5bb5a1c92d099f684a0075a31": {
+    "owner": "0x2f376e061c7b67dce08d0b808b958f04228716cd",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x924933fddac5256da4fd3440493284e6bee0b7f6": {
+    "owner": "0x86d3669850aa0be5978da59580c19b2e8353f4a1",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x925512bc253787c5ad9cba47643c8a5e8ebe5189": {
+    "owner": "0xc614f79576b91720b752d2df721d6fa61edd7a98",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x928460d05597e02ca17d64212c974eedb7a2e8b2": {
+    "owner": "0xb74c7007ccbea71771a02d7908d6cd8d70b23622",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x92edb3d6d25b9c04cc90f3495a66cf8bc3e0576d": {
+    "owner": "0xcae424c8ad6342d8b2555f1160d5537a71baab89",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x933bc032303de13f56a257eec5b90a5a08159264": {
+    "owner": "0x3df4183458cb856e8269829b26a98e868178400c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x9367ac2295e55207c60ca865568d7f0fbd0568c1": {
+    "owner": "0xfa69a8ed3b879160bdd1ff6eab233963ffd0b74d",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x93ccd51767c91ba61ecb408077edff73d50d81b5": {
+    "owner": "0x6ef04d8976520b017ddc16f4cf202d3b18b081f6",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x94b7004d54d39ca8a8ab87b8e9b0183306f58b60": {
+    "owner": "0x12085d83bb6fb8d0610fab299805891aa0d607fc",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x94e34187f55679d1d0bc4ff748ec4d846fa15c48": {
+    "owner": "0xdb06218f1a6499e02e34d239c3c1a7f5236fc121",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x9591b8a063ec3ee5ce0a91d243981ee424872cdf": {
+    "owner": "0xa0802f4d68f775353a3c6a0104e7c1781fe79fe6",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x9599b74ccc0bade763c290e8ff81656d167fe12f": {
+    "owner": "0x12710513dab50f6982d5b7d7054c5a0a2af5ddfc",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x95ad1b245cebd42e8fe8edef0f773a41e29863bf": {
+    "owner": "0xc1dba7b13313012a25cbaec64ee7b6c41b23900f",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x95b790a534d7470f6bfbd286f2e85cf14e42d24c": {
+    "owner": "0xd9e2fabf1786c87eac1cc6e1625059afa3f0a056",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x95c0afcc517211239aaee8aec826ffd31f52e5ca": {
+    "owner": "0x272593a85b8c659a1d2a92c09b8aa116101bfab7",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x9693f4f58aaaa86005e3d1db2ca3cd96db94aad5": {
+    "owner": "0xb994c4b46e29d082e457cd06c1bfb70567741d0a",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x96cb30a599bc05f14af532f72eb3ca497cd52b3a": {
+    "owner": "0xfd3996aad5ab45cbe5d57731d95d4dc041d0b74f",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x97b9ad8287b76e6bbd7d052e0b6603a40864d3a0": {
+    "owner": "0xd53913881e47c03dcece5ec1649d79e6bf7c92e8",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x98592843c258b231dc96a896398c7f7cc251b1d0": {
+    "owner": "0x7459722df031c288af9b84d22cd35e11c228592e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x995e75a6d18fd1c3880a1bc428e60552c977a259": {
+    "owner": "0x2e0905df80f576769cc686f2de1390b169905df7",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x996c2c4d61e361571b45f36cb1decbb54b93d3d6": {
+    "owner": "0x71cdc848a9071f4ccbe87a5db719c51c6e40928b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x997b980c302747eba4113c922a24f64258ae404d": {
+    "owner": "0xb3e47457dfba645ec8f2272162aa0ad6bf3fd3b2",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x997fee8479e9c97b7b7b79e0891e32ef8b53d91f": {
+    "owner": "0xfaea9b5beb08bc1964472a376a374e8dc20f8835",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x9a35f85421b48cff244e7caf2bc49f4c31c5251d": {
+    "owner": "0x882d8e020c07d09e0872215d8b6b968c6943f13d",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x9a7e57720bbd6b2d446c8c0cc64a7f13dc2913df": {
+    "owner": "0xd9aa562b1f1dd81d02aec3909b655ac099f28a40",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x9aaf8c41080d40e1f2acafae55305e89000b0643": {
+    "owner": "0xd7cbf58cfbf8702c2f968d710dd4212ca4ffd830",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x9ae3dc41b564b3f76d5def276e5b7ca539c3bdf0": {
+    "owner": "0xd3dfdd452f49b6a3dd4bef5f0ead8fbf9d7bf470",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x9b5935b377c4a5ee95a11801f05856d049437a4d": {
+    "owner": "0xb58c721142ee7a7d85098b154fa9a48b0e31b170",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x9befc88d7ea6297827953c9aa7afcb21b5e29b88": {
+    "owner": "0x9137509e8d53a769abb8c19e8dacefb161546fc0",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x9d193698dbb747d85e91b445130baf8c940f9696": {
+    "owner": "0xa610cb8c3df61385f987a0f85076b676188c54ff",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x9dfd44649fc9008e2f27217f00665b36f1d6a3db": {
+    "owner": "0x57cbfe2bdd356a399bcb0b83cf1db5db5c04cd4e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x9e388bc8477d47fb077feba4d16fdfcff940862f": {
+    "owner": "0x8d8b236501044afd11d8a7cf6595987a04de7da4",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x9e7dcb2c9892d36adbc88d58194f0a7eedb834f5": {
+    "owner": "0xc60ec1db8fcb48f2f16c1a70acf2c48ef9c6582f",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x9ea811ba05a5a4e4b6c64f0f166d8e56e30965f3": {
+    "owner": "0x210da20d9c30b9ae880acbc813ea0e292284624a",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0x9f028952fef6d3f12b6303e68d69e598c0ca226d": {
+    "owner": "0x53a5d8179c84b6ed299ca79e1d1f72a77ecfaaa1",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x9f7956d963d4de58eb5c84c9f9d55e006fee5e8b": {
+    "owner": "0x5a90338568f744d988cdfe4a7f3954ce5d6c8c0f",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0x9fb12c7e6406f90ae1a281d6a96a44f9c7d229c5": {
+    "owner": "0x079061bdd0fa90af2eea96a4238f76e32bc7ad1b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xa015cea1939ffab3fd2c0e48c833b9a87a5056ca": {
+    "owner": "0xa36780cdd41519bb83e7b2bb2769696dcbdc9494",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xa0ca8289a1e43521f49a435292949ae692685ce6": {
+    "owner": "0x60ae803e728f7cd52e2ebc444784050925b02151",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xa0f562ab5cbf9affb599872cb0c4d0c61f147277": {
+    "owner": "0x27c39f16ef75494a03169741a7977e03f7f7a0b4",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xa21a046d5aa19a134fd2eb15c4ea2fc2b4e82174": {
+    "owner": "0xd9d33a5560286471b3264ed2883e99bea3c9a4a5",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xa29ba85c84632e0b4f5902b18996acbed5565d4f": {
+    "owner": "0x7e1f595c9989a4f86897b895631bcbbc3da713fd",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xa2c8ba5b559d8832a8d2f6e38021567f9d61c2e5": {
+    "owner": "0x629a5f9bb06aa26451a8d97ff46bef7a8ebde857",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xa3391cee7215a7cf5b8499ecce9ff1d3f8d40092": {
+    "owner": "0x4f8599f51de31e1a4da2673b3dc978eb6c51e8f9",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xa377950ece4f8b647d34e53848177f093d10ca7e": {
+    "owner": "0xeff0d4ab45e6199fd8c2f4f2b0d6f74a1177a60a",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xa4ce8622e224e977f3c033f1d18213ebde581442": {
+    "owner": "0x493febd138765011e6e16c55fbfecb2bbf6fcc26",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xa4dc2367a09bafda9c7bd45fda8a43f06cfce4ff": {
+    "owner": "0x52a8aacd4f143ba8da376d6322d9c6e9ba1a0036",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xa4ec2656a0748da986cfc4086d83141ee7b86c10": {
+    "owner": "0xb4df492ca80c377c9e06a0a36d28fc22bc08eaa1",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xa58083844d0cb1a289f55904f5bc52bb9f7456fd": {
+    "owner": "0xd07c1df4ea13138b5265177c346e3f9046311561",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xa5b8980f8f48387692828e0d7bec4a3f2d973977": {
+    "owner": "0x304446bca8201bd716fdbbbc26af624503e2a425",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xa6b66d612d52564b7e4f5269153568e74f2ce1d4": {
+    "owner": "0xc912b22cf1e1e4838c63e57f5f242446f9ced0f7",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xa7e45f7fd327a9b254bbcb3d4d2e61a5b60253e3": {
+    "owner": "0x2fe2e22923c5fd3e28143425f23ead539714c023",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xa81267a0acad553d6e2be043fcc98408be2dd3df": {
+    "owner": "0xb4b110c101110dede1c1d8a86223e8176e548c3d",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xa82a6717f3e60ef0175bc808805908ee8a80224d": {
+    "owner": "0xc13a54932c9b99f700261ed3ce6cd34a63e6c33a",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xa837878178b061bcaf0400713190c8fd82b63ac0": {
+    "owner": "0x214152d695ced3de6953838f33b01403a8a9ad37",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xa8425baf59c970746c8e9314945b30701c1c26f3": {
+    "owner": "0x3a0eca8af36a0b2f7bf954e958febf9f5b03a0f1",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xa85e832e0c011bc09ec897e53be13ea5937c8ea7": {
+    "owner": "0xf6a276c277fcc47929083487b354d9638086f179",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xa874c0ffc32ba8313d139732b4eac868373cfff4": {
+    "owner": "0x971d035f3341569aad0b664ebea9a732464c9220",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xa89c5c0aaa742392f8a88e0e2fd95f5f05d19b41": {
+    "owner": "0x8a1d3e619c01dd05206f92ad7e3af3ae35c5e323",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xa932f00996c83ff5fe5c87f4414d7aa6aa58beed": {
+    "owner": "0xb5df19de9092c65861ba0d2a0a9f371bbc2cfaa8",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xa9919f1e0e5a6e5d7a0010f8d7d6011c5d106641": {
+    "owner": "0xd2601fb6b8bf51485c958409f3925c00f4851c9e",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xa997985d5020e91849c0baf98ea110f3c8bb3cf2": {
+    "owner": "0xd4acdd48a96d1a5069076c86ed293c0973fe8480",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xa9c91822abb1ac9f49491ce13cba8ad2ba41356d": {
+    "owner": "0x4710bb8bab54fdf9a1babb51fd405c278a1977ae",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xa9f8627a5cd0dfe04a8e6f582bd970bd9846cac3": {
+    "owner": "0x0103ee22f0b46ce7a8d58653f9109b305d079eab",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xaa847a13f058c0da8fcc71db77c778d88c53f463": {
+    "owner": "0x63b9bee704de5a540aae5742279273b56793ed1d",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xab005d04e37da0383de9022132dbcf0209539e80": {
+    "owner": "0x14773181d599ff5a843e501216bad09dbbaa580c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xabfa82dc89a577fe5db1c341b48f65e0daadf3ed": {
+    "owner": "0xc642bcafe95cfba85709057fabb92a624e629cfa",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xac0e956c854e36940fd11348fee88ccd516387aa": {
+    "owner": "0x0088809cc91c1f10194be11f5bffddc85d9bcfe9",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xac4416bd73087450a1865ec8d01f66ecce55ce2d": {
+    "owner": "0x174e34744bfb48ceb1ad74312090a162fd5d912a",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xace15b0df5c7b1c75a52716fa7f540e49c9ad6a4": {
+    "owner": "0xc3b2e55d1235afd71ef0eb727a234b68219e77c4",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xad274005293b73487e12970de198b69184ced7b9": {
+    "owner": "0x12d86b0f93c118708f52dcab6889c5d4e9208b6f",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xada892f64f158cd9986fa652dca08da1184a6abc": {
+    "owner": "0xb1a22f5af7a243e35d06fcea106de3c9505aefc2",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xae4cfca27a62cdf5d84cba83721066335437a37b": {
+    "owner": "0xbb3a6f306240a9d9ba795bc8893ec58d1e0ff591",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xae561129aeed87e64fb699274d6d729588bb3187": {
+    "owner": "0xd04508ad8899aa20d78f03d853960b8aaf4532de",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xae5dbf790dfaecc851f76176fd6dbbd89ab0e953": {
+    "owner": "0xdbad332e1b77dbb8755b763962271e5147278036",
+    "eth": 1e-06,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xaf390bae8e1a798fefbfe11e046f6b6699139d48": {
+    "owner": "0x49bd110589312d1eb549fda1c15d686f5ce4c2d5",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xb010194c5495991464d2202c114e196ca88cbc42": {
+    "owner": "0xc76c1477037e2586d9cd05cfd475347411f94bdf",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xb03dabf6f8412a1c0e5f18e12cdb53c9bc730902": {
+    "owner": "0x4be5d1fe6cc257db87989e6cf0ca07b2044703d5",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xb09ec93f4c101961b47ba2389b6dae5dcd76b3fa": {
+    "owner": "0x1b63300bfececf575786b9bae465ccf87209ba5a",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xb11c5d34aa199d7e0bbdaec42244fccf8355f7e3": {
+    "owner": "0x8afc40f8c3df3544d135cb5058b410c0b121cf9e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xb15f654b510b3ec02248686b6704c7eb17ebcc3b": {
+    "owner": "0x65017f312349b0dbd15eb7318be52c204096f59d",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xb1cf0e52bc21df460dfcee8dfbee38ebd43856e9": {
+    "owner": "0xd650012a5559a9e75b51f4ce83742ac60ceb8586",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xb218280af7bc1ef868ba65c18a84952448aa64f3": {
+    "owner": "0x3f33c2153bdf55e145909d8f1fff43a52e52faa2",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xb29823684059e05f91696eb4b3221fe08b155de4": {
+    "owner": "0x8e4a28363afb91182bf97f00c6f78b821ac4ea88",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xb308ea7a677e4f1db78f55e1e88622e708f162ee": {
+    "owner": "0xbe42bb59a0093adb91081879c4905ec1944a964d",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xb30959c53bc4224fe00568a6642a77d6f8f6fd60": {
+    "owner": "0x93476e663bea5a01d7a43281e0581d976abf9d6b",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xb43b05e625a2f92f5d1545f9364ce6f7307bc1fe": {
+    "owner": "0x3a063622b2224f7cb354501e2914fe7677e524e9",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xb57f3ee73fc1e82613730ab040c73cef95b4faa9": {
+    "owner": "0x7e0ab79ad2005b7f10dab1f5b3cb322ffbd6cdc3",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xb6baf00ea373184067c9775b39bf533bd42d22f0": {
+    "owner": "0xb102d2ecac38a1dd36279e8eb00de749e666b3b9",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xb6d85cc21efdf11a82c3712d1c9a3c2f0a5eb94b": {
+    "owner": "0x0211ad79e01ee65f9a0d6bfe23919cfd5e6adf4a",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xb72928f03d643ed59b739dcf02b5246d371ca91d": {
+    "owner": "0x7f0d7e20e4325976fa6e29dd95ffecd13d7ba76b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xb740d36b727375feccf62b1c4f7f0a64563d5739": {
+    "owner": "0x63ec8961fa6a59ad8dae5bdc04200b7103bf9ef0",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xb947871aae7c3287e946f3825b208ca71934d330": {
+    "owner": "0x611eff66dff5a5ac6b8752d7f3f39f07753624c5",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xba86682af3fc965a706c69456f8339bf972a9405": {
+    "owner": "0x901de59ccead288688e6ceb5beba81ff48c54b56",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xbac5653015f3aed749ef6e996c902b405f003d6f": {
+    "owner": "0xea739538e191021e4fc0f6d811aeb0799f7a23ea",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xbce31c5b2a03e1e5a0cf30f38e4018aa2755e890": {
+    "owner": "0x561238c71a1c9a955b595e2f237843b18086fffe",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xbd01b9adc79e75093e49987cb51e483339481381": {
+    "owner": "0x01064266b594d17478114a17bec7c961f86214b6",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xbe53cacbd5e20340900b38871951d4b7580323b4": {
+    "owner": "0xda6ffc718c1542f6e8358e52cfa194814f949a2e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xbedbe29f8f31ec8a5219824aef465ce488fc1607": {
+    "owner": "0x243704682fd98d6fc7ab8ccf5f23a7b53727eb65",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xbfe87723a381d333053d63b053627ce23a6ae7ea": {
+    "owner": "0xa8b1cb30774f1205532a033f68fbbdeb316bdcfc",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xc0bdf03bb9405263ae404149c849ab584d6f10c1": {
+    "owner": "0xba9535a66bb9342a861a96aa59c62d17dd2ff3d4",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc1244e3857499c11e8c269684641fc85df3ecf96": {
+    "owner": "0x1dffa01190acd217e0423c583cb68b4ee88cfc98",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xc141f1bdc140249206873bae009d284aff0ad739": {
+    "owner": "0x72367a3d1fc6a1d7a635e2f27bcc9bd3914fa938",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xc159712b0623fa14400ddc87b4bf4318ec3e6162": {
+    "owner": "0x077c9079a1e24c90b339d3bb61e76b3058d2f44d",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xc1b842d66b4a78ef7414797964f5ed6442527a30": {
+    "owner": "0x6ac018646c8abc39e8fde6cee57e3155ffffbde7",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xc22ebb68ce65d7ba7d833792f5c7640dc21a9639": {
+    "owner": "0xad0c21e6013d451d291d9c246a810bb90fbb34ae",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xc24ad58c6052b7a5a3488440dc892651468e58a9": {
+    "owner": "0x4e144b398293d73fe6750b11f115e50354ef87db",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc2aa63728f7b336e70c28d97518a6fcfdd1a74a7": {
+    "owner": "0xfaf3234b86e426362f36a3207f9286871f000a06",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xc306b62a43b1f19a198cf44e770e4d511b9a7e2a": {
+    "owner": "0xc13c7a22329e7681c885bbe97a4d6e0aba1037a3",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xc33b33a6956d08ea4fcafd2566db30fb4ae0a9b1": {
+    "owner": "0xfa9d975aef4bffbdd41e4a152655cec27f3d6b33",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xc376c9b215ba83f811b9119003578e757d0eb478": {
+    "owner": "0x03f417e7060989716305e24839e1b0f8288abb13",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc392f479e63cb44122af230825e0cffa4e84ab5e": {
+    "owner": "0xd0b3b7a06515b4d6fc9d4a71f41647e86fdca0b3",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc3a5c818166795a0fb1c9546fe59ea6bbcf58261": {
+    "owner": "0x284cbc560a6cd03831c23ab8509b5e92840e7cd2",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc3d3fbe8371c1fbefd2051a5ba97d2cb4fa6b6c4": {
+    "owner": "0x6bc9073088a81d0a4ef0b4f24e53977e1fa91be7",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc3e4338367c856e45391bb2f13cd78852c2823b7": {
+    "owner": "0x7e9123eb9c4334681af4f0f72f968e93806bcfe5",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xc408b54591e554ab6b7521ca5aef350db3c0f665": {
+    "owner": "0xd654453084c20ff5b9083bef54101ed1f817030f",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xc42dc30118be65cbfc4654d185f0d91dd71e2a6c": {
+    "owner": "0xdc47ec00fdd4322e1140c996f9818af725fc4d69",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc47af6456c358ccc04a39e99392bc1d4bd8a0593": {
+    "owner": "0xde9b5b71560d93f6b7ea6fe12a1721d45a03afda",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xc4b8993f05e4ae3ebb75d75497ca3b7e22e4f8c8": {
+    "owner": "0x9c7defdaa3dd83b4fbc08fabdf9416c9103d7f20",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc4e3570494e9e3e75f430885ccb508890c7483e9": {
+    "owner": "0xc3e477f5bcbbd6cfae2ba0e8abd3e82631919e46",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc64abfe0c18af6d16d6d475eafcc3b53be008e64": {
+    "owner": "0x1d74b665447978038de9452477f0bd82fbccc4c1",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc6a8f1dc09a272642b4ade2ec1ebff6e3256d865": {
+    "owner": "0xd615e34ed5906e945c227ac79db61c2fb4fff896",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xc729a9808840f4412888980616d2f75fd884d24c": {
+    "owner": "0xf626dfff6d30082530590021a68e5afffd507fa3",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc79cecae83b8c960f5a809df7fda5ee245a68e6d": {
+    "owner": "0xc5ab5eab0564ce4bcf63c1383f803223fa1f233c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc8171390999b50d3eaf299704f9e6cf9adcb44a9": {
+    "owner": "0x0734a207c4dfc79b267ecd10efb6f00168a68762",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc8acf90ec6547c35b61e4a1b3075dee529b2c723": {
+    "owner": "0x43b2931ac7fa032e240ea558268e27d0709bdc7b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc8c57af706c1269379f935acc47382155f0d6cd0": {
+    "owner": "0xe37810db7b765ddb5272f6a215340c3290c315ea",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xc92e2def584a750bb2281002065e6c7937fa6644": {
+    "owner": "0x43c89d9b229903fe0891e2e9a6c844f90566edf0",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc95b01b69dcd48c7fb0f74f86049c4cad6d3dacf": {
+    "owner": "0x078e351e0c003fd8e5a4be17595ccdf2b15a2134",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xc96e632d467e947b1257340d13d576e5ef8d0a86": {
+    "owner": "0x5227a7986f3c7a714f65569a7b6743c3992f8ebd",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xc9dd8ad7909236e5e063a3ed0e59e39309719190": {
+    "owner": "0x9288d15c5ef10130d602df1190ec14626b73d9bd",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xca23ab88bb6d6a6bc411d04f099c34d4bc79990d": {
+    "owner": "0x6fcd2e88d171c36372cd5cb5b82fc29a74712ed0",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xcab606674aa231a0270952dee68c11ff1431b1ee": {
+    "owner": "0x91dfc31fafb995d2c7b0acb445dd82df6baa0254",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xcb24ed1f640478fd92d97e49d281c757957b8282": {
+    "owner": "0x8a58b9f0c021da65391f78276e3a97f4fd6ee43e",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xcb832b3299491ee1654866c661c9d5ddc3fad7a4": {
+    "owner": "0xd5389e0df23b8fee0426d8045a48b3c2d42c8a24",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xcc5ccaba68cd1305e0b380dfb3cf630eb8ade2c9": {
+    "owner": "0xc5ddcb8ac26e398b680dbe24d150d3ba7eb5e0b6",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xcd85ea8116a944e2da51f99d35b95abd9c03c650": {
+    "owner": "0x21dbf0ef37b8d27c8b5c0df41008df29409accec",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xcd873a8bf6d6c61367d31f4c33ca307785c6e5b0": {
+    "owner": "0xcc786c6b69d69c790f983f01f7cefbb9e69e6d58",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xce4806dfd329b58bf66c015d87df6d4a1631e854": {
+    "owner": "0x241eaf77f937ca370087af456f9572ab64ebc2fd",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xce70cf32f790b8efa8526599ead9c4b21a3c70ea": {
+    "owner": "0x65bf74567e4486ba3877beb839597c20b6422ec3",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xcead0640ed9324442c1a15b4ae422de34b2cece1": {
+    "owner": "0xae58eb5d82c422f49787f91d7a038f1b8824bb4e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xceb2bfafe7702d4abf8ef99b44535c9cb3c7f1a1": {
+    "owner": "0x63f0a93a456ca250ea346745ce75ea828d8a7ca6",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xcf1215631362e7545419c44493f10c96d18bf392": {
+    "owner": "0xdec8ff84233e7a2534ec272adb746d0b4e95c22a",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xcf9d30a27800a2b2953c42f62836c23224d29e8a": {
+    "owner": "0x309e83b5074ac16287c9d04b26a2008a16a088d6",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xd00696664707d50a0b16db01bce1d3e5a4e311dd": {
+    "owner": "0xf829d3acf25e7ad705d6fe87a7adfbaac1daaa9e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xd024a8fac1911a50a92cd2459119775c19d53424": {
+    "owner": "0x9a06bc728a65b56e209a9b42112c452ec4fcd108",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xd02a4eacaf65044e1f8e7a32e96cc99eb8d34c0c": {
+    "owner": "0xf77febafc30c089ee9e93e377048aeb5875de29e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xd044c3931a445c7be0770b8abf6c4c7c94c822c4": {
+    "owner": "0x4ee15f423fd804b7a58c17de6e2a662ef258facb",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xd13c670d1a8cc8245ff21d85cfb83f51290d3fa5": {
+    "owner": "0xb61920b0082552a252eb4f12463d1357a90fd86b",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xd17f8e4a2c063ad580a6e1aa34321a5fd0452f3d": {
+    "owner": "0xa3f952368abaec9360b6f2365b6f3a713c0d9459",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xd1d89da24a60b444560590a5deeffc125cd53f00": {
+    "owner": "0xf7c12c7d3f8c0a9deff809a9de535f435718f6ee",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xd2413d52b7f6a709c2558524305cb880fbfae92a": {
+    "owner": "0x2e21848df42cb5adb81e4845ab9f05d7fa709cc3",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xd264050ac3397e9bfd6bb88a93c84078a6bc7a5a": {
+    "owner": "0xdc7f5b86a4a8be38c6632aba4ed3413e086e5c06",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xd337c5c90ef7cbf6613a19b0a60d3f71db3633a1": {
+    "owner": "0x94a37448231995174fc4af9f2d96dcd8659829dd",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xd3565b0f0f597d16ad3e923e06568e916eeac2a5": {
+    "owner": "0x36d2679a5b575e4adf88a6b0b04cc7745bf7ed6e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xd37da0077086ae0b5005f2af77b2db3db83a2d17": {
+    "owner": "0x39bffa4b24434f9f023ff9dc61237b72f419a0ac",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xd3d998e912cad6d9497f04d58cbcd1d201eaa3c9": {
+    "owner": "0x641993c132de3c14bc7cef117da32dcf75b9b676",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xd3e48705a533ebc6105c6e0adc09bfb3997517f8": {
+    "owner": "0x7bf9e6756119d69edd981c12afe66416b8343932",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xd4faaa2675a9ef58927597d72c7976da5ecc58d5": {
+    "owner": "0x14b5f93b2427a02aff5e37c951f6711e01a27ef1",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xd536a6f802e48f156fd7b2a56bf9d21fc49d3ea7": {
+    "owner": "0x3538e030d53e2b7994b85e00b78b5f14c7ad4d1a",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xd539287a9c288966e3ae9982ec9851648d5b1e57": {
+    "owner": "0x7c70587c1f4c6a160fda980bfb4f6cc110d8fbf9",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xd595123305e5360544757f6f190cc102236f3436": {
+    "owner": "0x39d542547a0f1474223f839bacec6faf9260d7c6",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xd5f465828c89145111d9205f859dec5546cc0ace": {
+    "owner": "0xb50a99280832b50567ab7c9d2baa4bd4bfa39f28",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xd6b851afe394990ac942345e61e4d19672027a09": {
+    "owner": "0x4ae579d8062729de380e65b0476be7a0770dda39",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xd73ac4609457bb37905e666931f0ff20de7fd60e": {
+    "owner": "0xaebfa49ff22c8c54ed978efc8f87b1aab326048d",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xd80a73c6355a13acf779fc324d53a8634a563ba3": {
+    "owner": "0xddc99631b56443cc229431fcab3b78811f6a8569",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xd8f6e4a1c99ede4378d8b1e56ee4eae795057e47": {
+    "owner": "0x2060d9042cb15b1c0860dca7f91ae65f38a3fa80",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xd95051d2250acc8a1937772d74c987e3bdcef58a": {
+    "owner": "0x942715433bc044cde8fe150855f41b5b50c2f464",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xd968a59a662ff6fe02cb89638cd76248a275b7dd": {
+    "owner": "0xbce71ec4eaf5eab593f7d498b4f9a4e8b26903c9",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xd971a4f4a317b7ca598e70f990f56051c0be4d56": {
+    "owner": "0xc854f5b25c96186d5b4bde5b93a8f954e4a3ee94",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xd9721eb4e38215fa67304a0b2009d434a01eb3ea": {
+    "owner": "0x65dbec78c48d2b4181ea2b715f134308c11f45bd",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xd97921560316cec393045c898c35f5d2a0724e78": {
+    "owner": "0x2eef4271b56d6bddf1cf8dcc21f120e772ddc027",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xd9ec61ec630e5ce0b4912f816d7ee43584493629": {
+    "owner": "0xcae3f72e1a6047d6e4fb47d13594d067b69eef1b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xdb31a17d8261dd3c9ff15372a63cb1b78e4f9d37": {
+    "owner": "0x626e301ee3217fd434f4c8b759b6df3f28e98e0a",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xdb85c168b4183f7b4f3936d1c231c587ae72c7e1": {
+    "owner": "0x4bfbe8e446f8283831b3c6869ecc00ec2b9016cc",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xdba56507dfbe4533c63be54f392cde6a9a74028d": {
+    "owner": "0xa1e335831d2075c4bccddad4a5b8a76261268f56",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xdc484812946143af1084cec7ab416226f02ef4b4": {
+    "owner": "0xb68fb9f4dc1aec97fc738007eb8a9ab6cb7dfa81",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xdc4e2dfbb7d982d500ac9d84fdc4698f46e87b4a": {
+    "owner": "0xc4c11eb35b0d02e885a702e583dc57ad255f40d8",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xdc84c18ed9552c777404a0d7964df3817e4d5db5": {
+    "owner": "0x85ccb1109c5c4058206531bdaf5deb6fc4e48d40",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xdd0006719fcc9c7411be23e941167a34c0d641e7": {
+    "owner": "0x1e200cf4fec0a2a3c7ca806c03e4c468dfadf5c3",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xdd05b322f9c1c2a59aebec3ecce2edc99adeea88": {
+    "owner": "0x2533fa36d2773e629510c5eaccd7922f2ec3e61c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xdd95429a03b193e7d68a7598c59f5cb783a0f5d8": {
+    "owner": "0x0b5ae3e81d3c88bf936fd3b005e7cd3907f5bb7d",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xddf0c659fa4abe06772d3a06de5f3d0c60f58b59": {
+    "owner": "0x9aaf166eb94af74045759c12b6bf67b16e70f759",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xde0bdf3458404359befaea155401d9429367946c": {
+    "owner": "0x208a7b4064ccfcf2197d448b9bfc93f83fd136cd",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xde6d743607387d254db9fd8437c9cc300e7d619f": {
+    "owner": "0xee4b49ef0b53577bc73870267090f725a7bf5207",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xde7fb6471dd7e02c6193a707dd3ac4c2e5351bf4": {
+    "owner": "0xff68e40a0ac48e74d88f32cae0b680e9e13fad86",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xde8a84a5e33302f7e9f5b19badb61b7b7443229e": {
+    "owner": "0xcb77655e4990a829327b4fcc585e59736f7e93ab",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xdeb9828828d74f551c90ad3e843020e0e201c8c9": {
+    "owner": "0xd9858d6454150f467d904b423a66a14fb880b866",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xdf3333319313aebb1cc916924c98a9d8270a77c2": {
+    "owner": "0x877ab522cd857020ec1fe352220ab6cb73820844",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xdf7991c1e625b38a94c5d69cacffc60168cef6ff": {
+    "owner": "0xa11570d0c40f67c33b42aea14c32fd85e96d4b98",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xdfa9978c228987af07352c6a9a8c7c32ff75757b": {
+    "owner": "0xfe4e76de57094df02b18c2ce6383ff1389987942",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe00386099481465f21657be0dd881366382f61c8": {
+    "owner": "0xbce6fdef6018203bd67fba73bafacedd2d993cea",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe06972e01b521445758847ec91f784c859b13803": {
+    "owner": "0x5c47735931482ae4e929e0241ccfba18aa8928f1",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe08edec1804655c358f0c1a80250ece62c7e1c01": {
+    "owner": "0x57b19870558ff541ce68f04a6aabc14ed7fceda1",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe110b55ff439a70f25256bbd77dd57db8e45abbd": {
+    "owner": "0x22129b51d480b923a33bd9b297f2dadbf78532d8",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe11835c5ff88d3ab500b5108466ac52f28493728": {
+    "owner": "0x310d19af0c11c6e27c804896edf33dde9c043e19",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xe2362ca010b854e87e2464c435651d5bf48ca126": {
+    "owner": "0x806be39bf6bf8916b9bbd7a1a6aece4f46bdb961",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe2704fd8f1cf64bb485678ac5f6632abccaf9b16": {
+    "owner": "0x84fb027348761b745c7d5ce45729eba2fd7aecb6",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xe2f469af19d531bb179af4ebcd08719d88e2ebe3": {
+    "owner": "0x39e6a49d941672eb7d650d66c386e99daecbd9c6",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe309e98b2bfcb58ef5def4c994d66069a78283c9": {
+    "owner": "0xf7642143d9c8673af51d0865f99753deb2bf9aa9",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xe31bc56435c7330dfab9fc07e944361ef646297a": {
+    "owner": "0x72838fcfb90c1deb07b18d89b54849899466f168",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe38eb4835d03a1b59d8b73b131280502f72e2294": {
+    "owner": "0xe77e6820cc1f779b203d3e0e4311d15022567985",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xe39c17f2380cc4a7cd23ccf4fb7ba68665a1bec4": {
+    "owner": "0x1667328ef50cd8fa30bd861e7d3c037a50394172",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe3bf5c7f281b4a61e0abd7ab5f99b0788b9b4470": {
+    "owner": "0x7d0f2fb14ba1545d3d8e198cc244e23f66640fdf",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe3cce6a86ed25b9ad7794d1832e3cc21b52ec29a": {
+    "owner": "0xa0fca1667c7dea70961f8b5e3c8dc24e3b1b647e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe3ea4874c441bd9515cb55a7e3381af8cabd5d8a": {
+    "owner": "0x9e2632c27d376747d91395b6ef12e8401e6803e0",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe4338253abc7619dec2825f167ea478618dfc500": {
+    "owner": "0x8e8911eb60eeaf7b6dcc31eb97ddbd74e88571bb",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xe44bd1f4fee19146c3fcf3b652c620ae65d01398": {
+    "owner": "0x14d8942df83c92d285a1bc90004025887f4af2a9",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xe493d49c326f16aa92ce5ce56b003aa598f74a73": {
+    "owner": "0xfe3c8008d0553aba3547f15ed48b1cf6d574b3f8",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe4a57ef1e2bf3319b46d56242f7c581a2755126e": {
+    "owner": "0x9a9a4c17b02123d8d120e8778026eb11c5e55435",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xe4a7cac394968761b5747db75a66aff2048c6ad2": {
+    "owner": "0x4f54237d362087ae42188af338ce00ec723679dc",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xe5b10170e07533283eabcf17b18a4960a0908fcb": {
+    "owner": "0xa267126b50617f04d64b7eb5f8b875a89383664f",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe604125d6ea80d0dbf267e07d21cd090b5302c06": {
+    "owner": "0x42997de37f78bbec26a8d8029d64129a6defb771",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe72e9f414edfdef8265d9fbcac7c4a9bac4e0f80": {
+    "owner": "0xd7b5399a6d8ace587923db2f25e28ace6d35f1c8",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xe78e6a5f7d5b1a8b2b701efe84347e4caa8df11a": {
+    "owner": "0x2f5d9a88f1532c06b9eab85eb9566453d8399bbb",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xe7ae3757ee9f0b54620ba6b3f48ba3996780175b": {
+    "owner": "0x20bdf9faf84b0968b66b1956ba7d4dbd942a654d",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xe7f890d0c8c6a0e77e51a4f0f13541a5c4c26fe0": {
+    "owner": "0x81e0c30666ff8e82acc6c9fe4bfa447b59d0d9c0",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xe839940a3cfc212263b59e1593c03fd4438bcbd1": {
+    "owner": "0xa550a6ce6f8d0483ce1c8fa27f44f9c8546c90ea",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe874a79f901133d456a406af1b0f98c24b2ff6b9": {
+    "owner": "0xf73184318cadba45285ee4d9ad127dd64dda05d6",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe875a150f48775883a248575595a54f985956e82": {
+    "owner": "0x238c1ed5da55fde4aa20207ec97b700006f7cd02",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe87f62ad65a6c8cde3654b7f570953d43cb43d03": {
+    "owner": "0x023e06c82c9c04f48b4a8e9be74a4075ac0853d6",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xe88ed0297965708492cd4257fd9cba80ddb1a322": {
+    "owner": "0x428645cc66f18fad756c81936acb021199513dd2",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xe89e0e0cf068c587c2cdaeac7c21f00272560b9c": {
+    "owner": "0x41de5d028c45745e2daa04cbb955fe3810f0079c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe9474398889ad4b1f6a663759385025c41d28ba2": {
+    "owner": "0xb203c0a787667a63ccc9554eb537a0736f944165",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xe9a9110c665ef4b84d896dffc92e834367811f13": {
+    "owner": "0x2bc2909600b77f6220c9f8d44de7ad127f23c43b",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xe9e26b18ea70d349a4d37583b37d3b36bc2f9aa3": {
+    "owner": "0x0eeb358040d1a515981d044c66f7ad5420141018",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xea497c3262e1388198dd24f75585307c7d6c0485": {
+    "owner": "0x24507134f9f1d5ee01c1382b62997d101c06f124",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xea9eafd87ebe8fcd1e84d56726bb8722164b9130": {
+    "owner": "0xe351b2b6e1d25fe9205dae9159f6f511cef01e07",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xeab17ac649f235389b2ce492d127b6bb0b42735b": {
+    "owner": "0xacf0f68b2488c807b6cc7fddaaba1e64a3fa6e32",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WBTC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xeac7b8b91f86da0230ef03f5d15eaab65bb21f46": {
+    "owner": "0xc0b4a58fce2da79cef47884c9af4025afe2ad582",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xead7732b0a081ab8ac7877f49972559d5cf051b7": {
+    "owner": "0x8fa1579925d40210dda056dda0754fe8f5baf8e6",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xeafe05ff5d4919fac9d25d4b894bdff22f426c12": {
+    "owner": "0xb849f282fad84447ed5e48d4d53b684070deb22f",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0,
+     "WBTC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xeb171952f0906cfe504044fbbc7dd9194f45e792": {
+    "owner": "0x2e0fe381fd01d5354955538b65335d9493cac60a",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xeb3da0e5bc88d075a154c7b1c9747d123a58d02d": {
+    "owner": "0x3356dd6ca297005ba7c6a0ee20ae8f385d7ae3c3",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xeba8cc81550a3cccb414b48cc3664dcda0b2d81a": {
+    "owner": "0x14c68bc2a4a0eedecf00f4e004ccb8a642c61007",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xec6251569ec280f38c522d4f648d7d3b36069ae1": {
+    "owner": "0xca419e3b62d83bfe0ef0781de377ecb67b543f75",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xecb78f805d068331a431c2b92a3980632b4f42d3": {
+    "owner": "0x17548800f3ef3ea0fa1fe813fe28af0ce4c0f1b0",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xecbe64438a222364c1ca92beaa3e71104d798f4d": {
+    "owner": "0x1f4b68d14f931d7bce007cd5b7e8ee425178304a",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xeccdfee4ba28a4bd49092df65654d5786db288d6": {
+    "owner": "0x98baa8c64de036bacbe27df486b4d9c8a93b507d",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xed2f1263ee23f06fc1e50527a0b3f8c72eee274d": {
+    "owner": "0xa37082e65f77ecfd902706bf4d7e81c29e9a814a",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xed3e2c7ebca2d15fb6f6085b95bad0ced572ac1b": {
+    "owner": "0xae837954bd693beef2a4e0f548b4e24ced52bba4",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xed58cf6141c0b3cbc1b7549e0a2c061a39b24169": {
+    "owner": "0xe81823b163d73c8c6153cc641e3e37680490d534",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xedda81f67ba53575ed73e4125d8b3d952369a5fd": {
+    "owner": "0x550b1b203f0965266469b8fdb8d8faab8c85ed19",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xee08a9e3a687b1b63a0c9ec30ff5344757eb3a93": {
+    "owner": "0x4aea6625d16b90568129de58620f305bd0d6f972",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xee769b440cd159135020902a2d214b1426864638": {
+    "owner": "0x3f5c75bef6065840b6bce9e80e728ab1cdfc07c2",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xee80905ce363e4dd331a055e8dee7a832e799f64": {
+    "owner": "0x8bb481c955c66f99b993d2d3802461766a90d37c",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xeed20d665d620fd4ca181910843e406931fb6dd5": {
+    "owner": "0xf59773daa5d23a802f352a7af2900bb207d452ed",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0,
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xef1a92a3f6ca777c94a71be5a97408955326aeed": {
+    "owner": "0xb6a30869861443971a6637e3e75ecd410042d67f",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xef5f0211d0dfef43ce392c01a97407549f47ba00": {
+    "owner": "0x179733376d7f500cd7b15ba2c048d361d22a66b8",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xefd3852c0d978f711466aac32fdea4e8c773e494": {
+    "owner": "0xfd07020833b6db143f864f6f8e07392fa1325cde",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xefea64639fe8f4d3d3b3d8f5f7a78519bda26843": {
+    "owner": "0x3a86ada01da93a57cfd2030731301b53a4a5a126",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xf00904cddc78921e675875609eda215538585102": {
+    "owner": "0xc2cddcd7106f9663f3b1d56108b4b0361223af17",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xf13159d8a861b2fccf3852ce9983dc9df5d0114a": {
+    "owner": "0x4375ff08112178052a04ef89982eca507e2281e9",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xf137154369c2ee1107ab1113945441d675d2cddc": {
+    "owner": "0x4d88a97a8eb2eca75a4f44ac57e2fa56079fe805",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xf1edb56262b44605ec6367d6052d93fd08d5cd04": {
+    "owner": "0x8c7702214b6f5eb763bcc36e9db3e866a4baec62",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xf2cfdc8b50cb4906309bb981fe9a8f846659aa1a": {
+    "owner": "0xcf06984cbbb43f6534ef938a9f2900d5317f87c2",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xf2eb02e8b9c81245b08c4487609a6c0dcc0c2504": {
+    "owner": "0xd00668fbb20af8b081723e82a09b475137a6b1e0",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xf309bcb9c518603b87f62efc22958dcbf7b0cf68": {
+    "owner": "0x8aebfc7ae62069d90b19d2945b9ebd57de64ee34",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xf31b6ab7c5e7f10fa5997513deb5981af9c794da": {
+    "owner": "0x0d4957fabf7bcabca34c1acca4381dcf71ed3fb3",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xf3a496e606b76ff14bb4f2ef86c5b39da9ad51d6": {
+    "owner": "0xa1d1b7eb6167858941463bafa915ec293aedd34d",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xf3aa9f997f836597af60871a6c63e64a39bd1087": {
+    "owner": "0x94bdbc99874c34ca05959e789d824c29e5d7562b",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xf3ae70569a5186bdb9ef094ac96b6a7ae6a94e64": {
+    "owner": "0x40d3c7613d8231b325f2a307f6430c8494ac51b2",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xf3fe5b3f0ac80997c86b0b4ae5eee2df0d5db402": {
+    "owner": "0x34b874c70b91ecf6a50c101eb72f372eecf316ff",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDT": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xf4f277f8e9f00bca7dd845f803fd57ef0767bac2": {
+    "owner": "0xf5a05d18482a260dc59722e387cc8430e5b9c728",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xf588e9b4dab33c6218b796e20c9ec90fe4bdc839": {
+    "owner": "0x518e6f001380aad07101e5bc66e64ea1ecac11aa",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xf62dee2ec7c18768fa14208e2d802667c5702d53": {
+    "owner": "0xba035bc537b79eaf26b2214b3dcd04adc2ecf3c9",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xf66ed44618097f2630ac3168699ca90c2d9fb986": {
+    "owner": "0x1e62e259ce55e2469ad95c95a52412dd87d4e963",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xf7896ea65032d5be65e392b86bd053cda72ad133": {
+    "owner": "0x909a12a002117ec9948186b7ce6f648237b14f01",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xf7eb53be77c3a793d39d60722a0a56363062381c": {
+    "owner": "0x221bbe52246888abafa72a1a25806ad6d6bfa11f",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xf87e7dbafadaf16c261d502cae25628b28e8099b": {
+    "owner": "0x804f929381761206fb43cf3b2480005f86d517ff",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xf88dc8209255e6a464f1be4daea5060ab176e95c": {
+    "owner": "0x1ef815db78b48c6bd8688f7b8ac7214a34c7938d",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WBTC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xf93578fa227c2c7c848d39e766b7383fd1a9df0a": {
+    "owner": "0x1bd88cd04ddc8e00a269ea8099e9b0b6e60d6a4e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xf9b7552a679c5a67fe7710c3d0d5179603438035": {
+    "owner": "0x2b6baa94afe1782d9706881186f70012af04fdc3",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xfa608c61a9ec915e256b54ddc36535c541fe7aca": {
+    "owner": "0x9b6d74eff4552ab437da0cd148e41c449648439d",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xfa6c1e6958761b0cb5d35e8a3561fd1e53fade68": {
+    "owner": "0xeaef2dde906091410f01cffbbb4e64e1f044c5fc",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xfa73d0a9250fe062cd8295adbb3324dbaf6a695d": {
+    "owner": "0xeee774c0d47d7d63a9623e3be47ccf9793eb1811",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xfa9a1957b6d2c87031f6b72cc9904ce27d9d98bd": {
+    "owner": "0x20f51583cdc6b498ef75686c109543e3ab8bf23f",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xfae89ec0058c213ef664657a4abd9b41af965ace": {
+    "owner": "0x87ab20baa143b6b76d204d3b9eabf1c2a83650d5",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xfb435fbf23c265d18e0e46904b4196973d7c60cc": {
+    "owner": "0x21da88f6494c9e5ae3d8728e48c3ad9ccc0db496",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xfc5cf120fce7937f069b93e988de24d6dd662974": {
+    "owner": "0x1c1882e3d93d92feec1fb388790b34ab9203e71c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xfc88b5f5491ea32413ac703efcaf74a6a43294fb": {
+    "owner": "0x79ae71da989443d46cacb670671e5c7294b4aa1d",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xfca892a2c24747e83e2dbb74dde57447df9fd69c": {
+    "owner": "0xc822fb14c5766c7f69f7cb3f393d67ec7f84101a",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xfcebe4d8f8ffd3d5d9f681b7013e0c4c309c5459": {
+    "owner": "0xeb3f748d76ca8f1cc36083bc05d7bb8fee89650c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xfd6496afdee6c9809de763cf00dc57bd4010e3d5": {
+    "owner": "0x7ec1449ab11ce7b65adc0641ce92083e7d512b19",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xfdd6766f09939e73e3dde3b6072f956250ea81c8": {
+    "owner": "0x22253328c02ccf8a6ef5f9ac4ef0ccad7ac2daa7",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xfe27b58dceaa43b5fbaa78d33a5a3a09e0a357b8": {
+    "owner": "0x6a5cabdf1feb39d845f2afe4a4626bf6e8f5c103",
+    "eth": 0.0,
+    "tokens_usd": {
+     "WETH": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xfe5fff6f8361b18e20d57e37c6de3217e6821ae4": {
+    "owner": "0x360b9bb481d707c4da7c435d5e9c06f37c5cb293",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xfea158c73d29ec02f1bef984c0b6fb97747336f5": {
+    "owner": "0x713f5290ee1e01fc478369385f2ba992dd62be0e",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xff1fd66ea2fd9625753ae89058c1b4ba2fc9f2be": {
+    "owner": "0xd34ba85989ac38501bf82208309acf9e51363850",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   },
+   "0xffb9bd80c9f7b7dfca4fe601ade92e5a58f02da0": {
+    "owner": "0x7614cf9d9a1caa85387a16073362de2d4dc3d041",
+    "eth": 0.0,
+    "tokens_usd": {
+     "USDC": 0.0
+    },
+    "usd": 0.0
+   },
+   "0xffe87be1aa40efc8b3b8970fa3709f95af6d3022": {
+    "owner": "0x1e11c755f27a0068af83b5a5da86cfb72380537c",
+    "eth": 0.0,
+    "tokens_usd": {},
+    "usd": 0.0
+   }
+  }
+ }
+}

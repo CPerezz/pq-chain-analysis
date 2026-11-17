@@ -1,0 +1,40 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0xe3490297a08d6fc8da46edb7b6142e4f461b62d3": {
+   "code_size": 24027,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": "0xe8dc0fab349ea169283c48ccfd09d797e6db7c94",
+   "safe": null,
+   "eth": 0.0,
+   "tokens_usd": 73127187.80500197,
+   "top_tokens": [
+    [
+     "USDC",
+     31088244
+    ],
+    [
+     "USDT",
+     30140006
+    ],
+    [
+     "USDTB",
+     11892841
+    ],
+    [
+     "PYUSD",
+     3870
+    ],
+    [
+     "USDG",
+     2226
+    ]
+   ],
+   "held_usd": 73127188
+  }
+ }
+}

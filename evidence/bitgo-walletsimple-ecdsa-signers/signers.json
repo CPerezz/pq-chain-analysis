@@ -1,0 +1,606 @@
+{
+ "read_by": "Review23, 2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "blocks": [
+  26431535,
+  26431538
+ ],
+ "note": "Standalone WalletSimple (constructor signers, address[] signers) read with signers(i); clones of 0xe5dcdc13/0xe8e847cf store mapping(address=>bool) signers set once by init(address[3]); candidates taken from the creation transaction calldata and confirmed with isSigner(). code_bytes 0 = EOA; nonce = transactions sent by the key.",
+ "distinct_signers": 60,
+ "contract_signers": [],
+ "shared_signers": {
+  "0xe8412e6f428f4142b78858db78e9eccce95d58e9": 4,
+  "0x3a1ec84c16a1ff604f0d97e1004068e3814b1586": 3,
+  "0x0e4d24afbdc8d7286a94eebc70732071b0ad75bb": 2,
+  "0xc08fb884576cc89957e9058ef11587c468c2952f": 3,
+  "0xc5c817fb84f629810cd324bc91c204ef0cfb8aa3": 2
+ },
+ "wallets": {
+  "0x326d9f47ba49bbaac279172634827483af70a601": {
+   "signers": [
+    {
+     "address": "0xf04286ba01401f2672f359967969f877ccb9eccc",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x4cfb90401cc03732c9e76b7d330ae334fa89cf03",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xe8412e6f428f4142b78858db78e9eccce95d58e9",
+     "code_bytes": 0,
+     "nonce": 36094,
+     "wallets_in_this_finding": 4
+    }
+   ],
+   "read_via": "signers(uint256) array, block 26431535",
+   "init": "constructor"
+  },
+  "0x3a5cc8689d1b0cef2c317bc5c0ad6ce88b27d597": {
+   "signers": [
+    {
+     "address": "0xd9d77776248c884fb1363e8b8defab6183789680",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x3290e22e5512889766b2606d8727902e36dccf9b",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xb02c6c40a798184d5e012fbb1dc698977671f8fc",
+     "code_bytes": 0,
+     "nonce": 555828,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "signers(uint256) array, block 26431535",
+   "init": "constructor"
+  },
+  "0x3a61da6d37493e2f248a6832f49b52af0a6f4fbb": {
+   "signers": [
+    {
+     "address": "0xe531ecc8819e162086e6dd719a7a1595d0e26787",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x9b5236e1eea1791596bdcb0d3e396cec5c6aff38",
+     "code_bytes": 0,
+     "nonce": 2,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x4bc6186ac7c0e1029a9e5aeb3ab10d03e11b7f4a",
+     "code_bytes": 0,
+     "nonce": 128459,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "signers(uint256) array, block 26431535",
+   "init": "constructor"
+  },
+  "0xbd02c51150a4ab6ce97b9de2025644594f3e75b8": {
+   "signers": [
+    {
+     "address": "0xc6fc89ab8547c4d2902fc95ceb3c2b6ebe2ac091",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xe764f73bbe0b762bf7a81c1a8d2f1f6dc98dfbdb",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x9c58bcb0084a50950e24d072fef5200bab279a64",
+     "code_bytes": 0,
+     "nonce": 144547,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "signers(uint256) array, block 26431535",
+   "init": "constructor"
+  },
+  "0x1522900b6dafac587d499a862861c0869be6e428": {
+   "signers": [
+    {
+     "address": "0x3e071255695b527e6e85f5e367b1c173bcea5b0f",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x17a442888f73b702a6adc93cd72a263f912f41f2",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x00bdb5699745f5b860228c8f939abf1b9ae374ed",
+     "code_bytes": 0,
+     "nonce": 2190710,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "signers(uint256) array, block 26431535",
+   "init": "constructor"
+  },
+  "0x187c0e0aa33282096b39a33457939f1dc3ea8e0f": {
+   "signers": [
+    {
+     "address": "0xe5c425d43fc17f5f63b7e73f2f92857053ee6590",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xb8b86e0c542bd1231cd054082b73918a9b4437b9",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xd2c82f2e5fa236e114a81173e375a73664610998",
+     "code_bytes": 0,
+     "nonce": 2805998,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "signers(uint256) array, block 26431535",
+   "init": "constructor"
+  },
+  "0x2e6b9ede9421bd2b2647d3da76e4671ba10bbd67": {
+   "signers": [
+    {
+     "address": "0x01938dbcd231c4eb2e4ce4741a9077473ffbdcf5",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x3a1ec84c16a1ff604f0d97e1004068e3814b1586",
+     "code_bytes": 0,
+     "nonce": 165380,
+     "wallets_in_this_finding": 3
+    },
+    {
+     "address": "0xd2364a2e07f4b0827104ab2a72dc157d759c7e21",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0x660ad18280df7a4e59b56991fefda1fdd41f3d57bbf9927ad1ca45519fa5735b",
+   "factory": "0xa7198f48c58e91f01317e70cd24c5cce475c1555",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0x308672703961164e64332ba1ce19b85827502b4d": {
+   "signers": [
+    {
+     "address": "0x04b00fa2fdfc86571c19f911133644c2dfbe4012",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x28149575cad128acc170a4eed06f68e198b1bb79",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xe8412e6f428f4142b78858db78e9eccce95d58e9",
+     "code_bytes": 0,
+     "nonce": 36094,
+     "wallets_in_this_finding": 4
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0x9b4385360f3fab676beb3d3599e3264e1ea923525cd815a010d408fe329d318f",
+   "factory": "0x9a0d63911620f7fc15c3c020edbe4d7267ea3e4d",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0xd07c7fd3598750fd770c20e89ae005f65f189fe4": {
+   "signers": [
+    {
+     "address": "0x2c97ccca80373bee7fd9e8004a9206f3a7dd856e",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x7de549d09ca9189560e000cb816979676b686850",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xe8412e6f428f4142b78858db78e9eccce95d58e9",
+     "code_bytes": 0,
+     "nonce": 36094,
+     "wallets_in_this_finding": 4
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0xc1c8cbbb43d677f63b88e5734f29b1b3f483d59aca076ce21da028b9bcb217cd",
+   "factory": "0xa7198f48c58e91f01317e70cd24c5cce475c1555",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0x81a3d17d143731a26b262f6739376d3f122bccea": {
+   "signers": [
+    {
+     "address": "0xbf8ece0d7d18b4c250a80d42fda6d4dbae3bc0cd",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xe8412e6f428f4142b78858db78e9eccce95d58e9",
+     "code_bytes": 0,
+     "nonce": 36094,
+     "wallets_in_this_finding": 4
+    },
+    {
+     "address": "0xfcca59ecd35ec0bec715c51b0cfac6dbbf8c7679",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0x7bf0f05706647fd4127696bb76b55a025ae7612d8a2257f28a3c2b9a02f715ef",
+   "factory": "0x9a0d63911620f7fc15c3c020edbe4d7267ea3e4d",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0x367c42a6f261ec54ffbecf5f41c226be12a3dca0": {
+   "signers": [
+    {
+     "address": "0x0e4d24afbdc8d7286a94eebc70732071b0ad75bb",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 2
+    },
+    {
+     "address": "0x9d9d15cce83601f5e03ddc94dc00961a0d279c57",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xc08fb884576cc89957e9058ef11587c468c2952f",
+     "code_bytes": 0,
+     "nonce": 226669,
+     "wallets_in_this_finding": 3
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0x5ee2f2330e2988daa3e21cd1c1f60f3102782482fb74b97528e0a91f4062bf8a",
+   "factory": "0x9a0d63911620f7fc15c3c020edbe4d7267ea3e4d",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0x0f33afb00334ea05f6f0e64fc919920ecd4bd16c": {
+   "signers": [
+    {
+     "address": "0x833b62b180a2e74c325d5fc02ef917ddc807d67b",
+     "code_bytes": 0,
+     "nonce": 1050,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xb7ef75ecf8348cf9c7b52bd434f96e9bee5497e9",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xd8fab08c76ae8ea45b37ddb8cedc7c5f91d0cf56",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0xf7438529e3a7574e1780c3de7d25314af8da2b1f83630cafeeca979f4f4a96ca",
+   "factory": "0xa7198f48c58e91f01317e70cd24c5cce475c1555",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0x4a2d57d669f2194fa7b5df619cba9f33ccea26bd": {
+   "signers": [
+    {
+     "address": "0x3a1ec84c16a1ff604f0d97e1004068e3814b1586",
+     "code_bytes": 0,
+     "nonce": 165380,
+     "wallets_in_this_finding": 3
+    },
+    {
+     "address": "0x7dcde223106a59a2021358fd27b952fc8390e997",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xfdaf5437240bfee9f630917e9bac716dc3e822f6",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0x7ac89b386fcf73d604a0c47c39b742a7571218300ed972c5eaec84738e47dc39",
+   "factory": "0xa7198f48c58e91f01317e70cd24c5cce475c1555",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0x0ac9fce7636af8fa933068a3a5ecb71f8177c4f3": {
+   "signers": [
+    {
+     "address": "0x04a0142f4bf5f0ba49f7735d3097ed4e92345c88",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x76c08a8732ab79a773f4ebab0e38c33088bab6c8",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xc08fb884576cc89957e9058ef11587c468c2952f",
+     "code_bytes": 0,
+     "nonce": 226669,
+     "wallets_in_this_finding": 3
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0x91a7f00f361d5f1421a017f357d7b4cbecc6e4f58ad16927693fbc231bcf44e9",
+   "factory": "0xa7198f48c58e91f01317e70cd24c5cce475c1555",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0xb66410ae75317faf13dba869b6df7b30892d1e46": {
+   "signers": [
+    {
+     "address": "0x7c21e036d74fa92f634ebf757b7f5355d5d3fada",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xc5c817fb84f629810cd324bc91c204ef0cfb8aa3",
+     "code_bytes": 0,
+     "nonce": 99,
+     "wallets_in_this_finding": 2
+    },
+    {
+     "address": "0xccc07d252207a1bccaa97912d1b9e1323c70aa42",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0x9729d61dc4f9c5a0f4fabd646a06bc5e943c9916ea7101e8b970e5377bb52a5d",
+   "factory": "0x9a0d63911620f7fc15c3c020edbe4d7267ea3e4d",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0x100ae042ef0ea159ecc3513e9a378ff21f3829ba": {
+   "signers": [
+    {
+     "address": "0x0e4d24afbdc8d7286a94eebc70732071b0ad75bb",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 2
+    },
+    {
+     "address": "0x7f3296fec75a4d10adbafff0374f1c2c7258f877",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xc08fb884576cc89957e9058ef11587c468c2952f",
+     "code_bytes": 0,
+     "nonce": 226669,
+     "wallets_in_this_finding": 3
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0x57b17398670123b926eb605a36f7a5c349ed54fb6865d14df93dd55d33096fd4",
+   "factory": "0x9a0d63911620f7fc15c3c020edbe4d7267ea3e4d",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0x004c26816da9219cf3408e84edd9716df4b5739a": {
+   "signers": [
+    {
+     "address": "0x1f745e2b8215a8758208399e66a7b538e8441503",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x9f47624c77a332279c97b4e1fe169293cfc1c85e",
+     "code_bytes": 0,
+     "nonce": 1315,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xce05ee0b29957ab4aa6348d3a84e531a383d3c6a",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0xd72675b0384381dbd3c6e99257d1d2d333188eebefa438fc16319fc80d486543",
+   "factory": "0x9a0d63911620f7fc15c3c020edbe4d7267ea3e4d",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0xa3f74537f048b893d726c173cb322fd21a28b18a": {
+   "signers": [
+    {
+     "address": "0x068aeebc43cf1a848c69c8615e87ec862ecb82b4",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x4bd64da54b76073ff796de6ac4d60c08c10ee8da",
+     "code_bytes": 0,
+     "nonce": 74,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xa7d0e47f75dfa8e6773004d95a45ed1c6fda53ac",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0xfbd59c878704c4f107b7b44e72263cf732bbeda8b961100ddfc272eb477f8196",
+   "factory": "0xa7198f48c58e91f01317e70cd24c5cce475c1555",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0x273a4db9f7cb388ec216df8c347f0529b22f4bd8": {
+   "signers": [
+    {
+     "address": "0x3a1ec84c16a1ff604f0d97e1004068e3814b1586",
+     "code_bytes": 0,
+     "nonce": 165380,
+     "wallets_in_this_finding": 3
+    },
+    {
+     "address": "0xa4f3f34c5c77153125dfb1a190897e9d4b9ebd7d",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xecfe7d4068400cb544779059a08a1926083ce7de",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0xe1c8cad1580eabd320e3b81880ed53cba44ba345be7fbad6b812379ac20ffb20",
+   "factory": "0xa7198f48c58e91f01317e70cd24c5cce475c1555",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0xa07b07e4542bea95f38c54f39ec25750ffc3dfcd": {
+   "signers": [
+    {
+     "address": "0x3d8d7702008af1ded8a007ed2ec5d60b8495c2be",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x83added1bca875258440bd7d685cf7e9b880000e",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xc5c817fb84f629810cd324bc91c204ef0cfb8aa3",
+     "code_bytes": 0,
+     "nonce": 99,
+     "wallets_in_this_finding": 2
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0xd965112d412cf1dd009a70f7487dbced7fe53893ac4135e596696247aa4fe29c",
+   "factory": "0x9a0d63911620f7fc15c3c020edbe4d7267ea3e4d",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0xb3d891c05febd428b782c242bf94dc73613549c9": {
+   "signers": [
+    {
+     "address": "0x8fa6b2810f4a1f83bdc62f3dc1392fc6e66e97cb",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x97fc86c6749021c45c30fb666baeb4190f94e148",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0xd32a4eeac73c2ae72a02cdd1ed16ec387b14773f",
+     "code_bytes": 0,
+     "nonce": 25889,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0xf22c8ae5e015827290f7beafe01f12d85f4faa0c2382839b5cfbcf5038fe37fa",
+   "factory": "0xa7198f48c58e91f01317e70cd24c5cce475c1555",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0x2edc7235fbebc560f59d55f206e340102f11aca5": {
+   "signers": [
+    {
+     "address": "0x58f4db8fea31bed6950543c91e97d63f095a8266",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x5e9963df68b51615de0051beb85a2e5ecaca9d94",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x66d358554df807d6aadd6e369772a7c8aa4fb017",
+     "code_bytes": 0,
+     "nonce": 2266,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0x02d9abaf4c8757be1d1a8fc9d59ea0b8682b43dde4753aa2ecca4f87acb5b446",
+   "factory": "0xa7198f48c58e91f01317e70cd24c5cce475c1555",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  },
+  "0xbafbf3f8f244828caf4e93295c9174fa8b63e032": {
+   "signers": [
+    {
+     "address": "0x376df20bfdc23ea8b2cc54cdc7277b9dada984b0",
+     "code_bytes": 0,
+     "nonce": 14,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x54a36fdb288c1cf2c33b3eddc355780bddf7faff",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    },
+    {
+     "address": "0x6a75b346fe0be42063073ab2a059d21b846f05e5",
+     "code_bytes": 0,
+     "nonce": 0,
+     "wallets_in_this_finding": 1
+    }
+   ],
+   "read_via": "isSigner(address) on addresses in the creation tx calldata, block 26431538",
+   "creation_tx": "0xe40627dd502e3e9dba5f0e4e289a9924d0f3a5b2014c37842d893a3f4a784f22",
+   "factory": "0xa7198f48c58e91f01317e70cd24c5cce475c1555",
+   "init": "init(address[3]) via factory createWallet (selector 0x7117f3fa)"
+  }
+ }
+}

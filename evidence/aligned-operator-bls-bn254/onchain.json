@@ -1,0 +1,63 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0xef2a435e5ee44b2041100ef8cbc8ae035166606c": {
+   "code_size": 2070,
+   "kind": "eip1967",
+   "implementation": "0x4a5d61aba7d845bc71d4e2f2dd7c35d9c5fb55b8",
+   "admin": "0x487e0347b96be3606845a3aadc7b0d8138952b47",
+   "owner": "0xfc135a861eff65b7644fb03d9f851251546c0835",
+   "safe": null,
+   "admin_owner": "0xfc135a861eff65b7644fb03d9f851251546c0835",
+   "controller_safe": {
+    "address": "0xfc135a861eff65b7644fb03d9f851251546c0835",
+    "threshold": 5,
+    "owners": [
+     "0xea08fdd156f65098d42af5f0a9de72b53cee52b0",
+     "0xc79b49e7f011d69c71a83478829b3b7817a257f5",
+     "0x89b66423d013a35e7b43646a560599e056535576",
+     "0xf302f1c31f2fbff5b5abbc5028a9ec616b7e1a76",
+     "0x7db21a040568ea1a44ebfe8a9177849a2a4c0016",
+     "0x80528daffb8a0992604f23e56bf3ca8498696aa9",
+     "0xf29670a6b1c34049376971f68c6437c3282b7eb1",
+     "0x3a858b07cbb1f3ea54b30498ef55247fd30747c6"
+    ]
+   },
+   "eth": 0.9486818081012467,
+   "tokens_usd": 0.0006480710000000001,
+   "top_tokens": [
+    [
+     "HEX",
+     0
+    ],
+    [
+     "WETH",
+     0
+    ]
+   ],
+   "held_usd": 1719
+  },
+  "0x96b6a29d7b98519ae66e6398bd27a76b30a5dc3f": {
+   "code_size": 2070,
+   "kind": "eip1967",
+   "implementation": "0x32112b2c1a2cd002a8468fcd556e9010cd817ea1",
+   "admin": "0x0d16a82be664c337c615499f8775ef0431703dac",
+   "owner": "0x2106ac6fe9599f8a0710643c75661aaf8d8b1599",
+   "safe": null,
+   "admin_owner": "0x2106ac6fe9599f8a0710643c75661aaf8d8b1599",
+   "controller_safe": {
+    "address": "0x2106ac6fe9599f8a0710643c75661aaf8d8b1599",
+    "threshold": 1,
+    "owners": [
+     "0xc79b49e7f011d69c71a83478829b3b7817a257f5"
+    ]
+   },
+   "eth": 0.01202959992864767,
+   "tokens_usd": 0.0,
+   "top_tokens": [],
+   "held_usd": 22
+  }
+ }
+}

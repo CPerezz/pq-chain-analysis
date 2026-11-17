@@ -1,0 +1,69 @@
+{
+ "adapter": "0x0000000000bbf5c5fd284e657f01bd000933c96d",
+ "read_at_block": 26431539,
+ "rpc": "ethereum-rpc.publicnode.com latest",
+ "owner": {
+  "address": "0x0abfd500b000f206400bee0e0409000380090896",
+  "kind": "TimelockController (Blockscout verified)",
+  "getMinDelay": 0,
+  "roles_granted_at_creation_tx": "0xbb4f7bbf3049e7801fd2aa9e96d7bed3b931300e6c9d1efb170f7bac90e45bff",
+  "proposer_executor_canceller_admin": "0xaab95c7b7e0b9bf646ab839fd5880a2ae15f6406",
+  "safe": {
+   "address": "0xaab95c7b7e0b9bf646ab839fd5880a2ae15f6406",
+   "threshold": 5,
+   "owners": 12
+  }
+ },
+ "modules_getModules": [
+  "0xc886a99a38e103a706b2d1b6c100a86164a58978",
+  "0xb18c54fa901f7f0ee2e9542a8f940038f63734b2",
+  "0xd76e73ae97a37cbcabc9d4120d9df80d132263b6",
+  "0x7d178cd191ef33a5c54d2d9eb3fb94587c5300a1",
+  "0xdf4c7deba557cdd69efa8b42445033ea897e2831",
+  "0x9ca3c484095ea2af3f308438bdb832b7f816180d",
+  "0x1b8687dd68098ae0584e2b4242dd2c1fca0849b1",
+  "0xa9ca9bb0be0e46708a23202c951fcbd8f6606b93",
+  "0x8422c0cd7cb34a00e38813178924040c83da8992",
+  "0x1810b6340f116689b919ab6f8beacb34451eeffb",
+  "0xa6132d685bed7cbb4fc486a9d70ee90ba5ce16ab",
+  "0x51abf9debee58abaa2bd3019a5bdb5610f5fecf8",
+  "0x8669e77d1ca0f8e17b447ecfbd02e68ded56d2c8",
+  "0x8dc108a70c05f8faf9a7e427baa53032bc8e47a2",
+  "0xe4783d0448f3494b2bf163cfc645087aae06f9ee",
+  "0xeb9940dd4a219bb5a4d29467587837d1f371daa8",
+  "0xa846d040904ddc177ccba22b8af633175e115944",
+  "0x7123c40f7ac521a30c45f5c5401cd819e2aee79b",
+  "0xd3b7a89b4c0ffe71952f6a0ea72551f635b86d5f",
+  "0xbc4deb034440c6d177100a12ea305139640e08c9",
+  "0xd760a04f16c946ba82a0e4f84593b6182c3f70de",
+  "0xd10d087df086b4183026e760e5d086e98dff8d67",
+  "0xff0dc2a62b6f85d636a62b8951354ae08e8543ec",
+  "0x7ade047dd6dad2fd70256397f8c97c55e9f6d0d1",
+  "0xc2a204042f44d2de5f881a72eef8f68617dd63ec",
+  "0x4fd2f69c3dccdb5ba00ccaf2244f69025b647d0c",
+  "0xa15d64fd503d2a029c508d991028453178ee43fd",
+  "0x03c0ebff66d75bb5ff843fe0c407797b93abee4c",
+  "0x334b9caa74f8c3db4b41a7916304d6c8c3c3c893",
+  "0xd664b82e232af242a489d589d706d88356cc7c5e",
+  "0x4e76d6a48a2c4ab682ef8c5a1311800e6bbedeb2",
+  "0x843ed680ebb3a88c98b0dd79a42b9fcb7aafcdea",
+  "0x47b3d82132ae4c90d9ce98d06cd3ed14780bcb0b",
+  "0xe31552765e5e421a5af38e725b20c363a59b3e3a"
+ ],
+ "module_sources_read": {
+  "0x7123c40f7ac521a30c45f5c5401cd819e2aee79b": "SwapSettlementModule 2.3.0, Sourcify: SignatureLib.verify empty->preSign, _isEOA (no code or 23-byte 0xef0100 delegation) -> 64-byte ecrecover, else ERC-1271 full signature; BridgeCosignatureLib ecrecover of protocol cosigner checked against SignersRegistry",
+  "0x7d178cd191ef33a5c54d2d9eb3fb94587c5300a1": "SwapSettlementModule 1.0.0, Sourcify: code.length==0 -> 64-byte ecrecover, else ERC-1271 full signature",
+  "0xd76e73ae97a37cbcabc9d4120d9df80d132263b6": "DirectSettlementModule 1.0.0, Sourcify: same SignatureLib as 1.0.0",
+  "0x47b3d82132ae4c90d9ce98d06cd3ed14780bcb0b": "DeltaTokenModule 1.0.1, Sourcify: SignatureLib with 7702 branch as 2.3.0"
+ },
+ "modules_unverified_on_sourcify": [
+  "0xdf4c7deba557cdd69efa8b42445033ea897e2831",
+  "0x1b8687dd68098ae0584e2b4242dd2c1fca0849b1",
+  "0x8422c0cd7cb34a00e38813178924040c83da8992",
+  "0xa6132d685bed7cbb4fc486a9d70ee90ba5ce16ab",
+  "0x8669e77d1ca0f8e17b447ecfbd02e68ded56d2c8",
+  "0xe4783d0448f3494b2bf163cfc645087aae06f9ee",
+  "0x4e76d6a48a2c4ab682ef8c5a1311800e6bbedeb2",
+  "0x843ed680ebb3a88c98b0dd79a42b9fcb7aafcdea"
+ ]
+}

@@ -1,0 +1,72 @@
+{
+ "read_by": "Review17, cast against https://ethereum-rpc.publicnode.com",
+ "block": 26431744,
+ "as_of": "2026-11-17",
+ "contracts": {
+  "0x3a2dd09b4739d905183d503d594c8fb3e3d41820": {
+   "role": "Wormhole-style receiver used by Pyth price-feed contract 0x4305fb66 (wormhole() = this)",
+   "eip1967_implementation": "0x8d289cdd60e7f73f352f42c8524a06ef1ad746f8",
+   "eip1967_admin": null,
+   "implementation_verified": false,
+   "selectors_present": ["parseAndVerifyVM(bytes)", "submitNewGuardianSet(bytes)"],
+   "selectors_absent": ["submitContractUpgrade(bytes)", "upgradeTo(address)", "publishMessage(uint32,bytes,uint8)"],
+   "chainId": 2,
+   "governanceChainId": 1,
+   "governanceContract": "0x0000000000000000000000000000000000000000000000000000000000000004",
+   "getCurrentGuardianSetIndex": 1,
+   "guardian_set_1": ["0x41534bb176e461a3fb30479400f210549ecce638", "0x6502987b62f21cab7eb5ccd8f0173084b60d5b41", "0x44a3e8f6a382412cf6bb90a3f8106e68977476c9", "0x13edc776d3063549fdb0702af182edc905a539d4", "0x3af088854bb768065f4929e5bbdfa4cbb04c9af9"],
+   "guardian_set_0_expiry": 1788626927,
+   "eth": 0
+  },
+  "0x74f09cb3c7e2a01865f424fd14f6dc9a14e3e94e": {
+   "role": "Wormhole-style receiver used by Pyth executor 0xccd7e24e (governance of PythLazer)",
+   "eip1967_implementation": "0x87047526937246727e4869c5f76a347160e08672",
+   "eip1967_admin": null,
+   "implementation_verified": false,
+   "selectors_present": ["parseAndVerifyVM(bytes)", "submitNewGuardianSet(bytes)"],
+   "selectors_absent": ["submitContractUpgrade(bytes)", "upgradeTo(address)", "upgradeToAndCall(address,bytes)", "publishMessage(uint32,bytes,uint8)"],
+   "getCurrentGuardianSetIndex": 7,
+   "guardian_set_7": "19 keys, identical to Wormhole core 0x98f3c9e6 guardian set 7 (same key list)",
+   "eth": 0
+  },
+  "0xacea761c27a909d4d3895128ebe6370fde2df481": {
+   "role": "PythLazer (UUPS proxy)",
+   "eip1967_implementation": "0xa089a10d05ce37f4b99dc4f1824ba253434a779e",
+   "eip1967_admin": null,
+   "owner": "0xccd7e24e71ba746cbc758c39cbab11f4e0dfc46f",
+   "version": "0.3.0",
+   "verification_fee_wei": 0,
+   "trusted_signers": [["0x26fb61a864c758ae9fba027a96010480658385b9", 2077357410]],
+   "eth_wei": 59200
+  },
+  "0xccd7e24e71ba746cbc758c39cbab11f4e0dfc46f": {
+   "role": "Pyth executor (owner of PythLazer), ERC1967Proxy",
+   "eip1967_implementation": "0x395921b642ba511d421ae834fef56ac886735ca2",
+   "eip1967_admin": null,
+   "owner": "0xccd7e24e71ba746cbc758c39cbab11f4e0dfc46f",
+   "getOwnerChainId": 1,
+   "implementation_selectors_present": ["execute(bytes)", "getOwnerChainId()", "upgradeTo(address)", "upgradeToAndCall(address,bytes)"]
+  },
+  "0x4305fb66699c3b2702d4d05cf36551390a4c69c6": {
+   "role": "Pyth price-feed contract (consumer of 0x3a2dd09b)",
+   "eip1967_implementation": "0x3f38404a2e3cb949bcdfa19a5c3bdf3fe375feb0",
+   "implementation_verified": false,
+   "implementation_selectors_present": ["executeGovernanceInstruction(bytes)", "upgradeTo(address)", "updatePriceFeeds(bytes[])", "wormhole()", "governanceDataSource()"],
+   "wormhole": "0x3a2dd09b4739d905183d503d594c8fb3e3d41820",
+   "governanceDataSource": [1, "0x5635979a221c34931e32620b9293a463065555ea71fe97cd6237ade875b12e9e"],
+   "validDataSources": [[26, "0x507974686e6574507974686e6574507974686e6574507974686e657450797468"]],
+   "version": "1.4.6",
+   "singleUpdateFeeInWei": 0,
+   "eth": 0.003416
+  }
+ },
+ "activity_blockscout_2026-11-17": {
+  "0x4305fb66 direct txs 2026-10-16..2026-11-16": 866,
+  "0x4305fb66 last direct tx": [26431691, "2026-11-17", "updatePriceFeedsIfNecessary"],
+  "0x3a2dd09b last direct tx": [25905251, "2026-09-04", "submitNewGuardianSet"],
+  "0x3a2dd09b last internal call": [26431751, "2026-11-17"],
+  "0xacea761c last direct tx": [26306219, "2026-10-30", "verifyUpdate"],
+  "0xacea761c last internal call": [26431757, "2026-11-17"],
+  "0x74f09cb3 Xatu (wormhole-guardian-signatures/activity.json)": {"last_active": "2026-10-30", "txs_30d": 2}
+ }
+}

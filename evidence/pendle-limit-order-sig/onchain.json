@@ -1,0 +1,52 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x000000000000c9b3e2c3ec88b1b4c0cd853f4321": {
+   "code_size": 2938,
+   "kind": "eip1967",
+   "implementation": "0xc96ca8f090b7ef89c8ec43a50ac802a22935e99b",
+   "admin": "0xa28c08f165116587d4f3e708743b4dee155c5e64",
+   "owner": "0x2ad631f72fb16d91c4953a7f4260a97c2fe2f31e",
+   "safe": null,
+   "admin_owner": "0x8119ec16f0573b7dac7c0cb94eb504fb32456ee1",
+   "controller_safe": {
+    "address": "0x8119ec16f0573b7dac7c0cb94eb504fb32456ee1",
+    "threshold": 3,
+    "owners": [
+     "0x231fc5b039d66ba234cb90357082bf16be79b17c",
+     "0x7bd456937104ca5efffbd895ccbba52421021c29",
+     "0x9ce6de7ec862e25a515aa0d8ecfbbbb2daa8e0fb",
+     "0x38ab4a7dea2753757f29fe6d10280df2c42abe27",
+     "0xf517364727fcc764d58ddf4e53280874a4d0c476"
+    ]
+   },
+   "eth": 0.0,
+   "tokens_usd": 0.06344217738071756,
+   "top_tokens": [
+    [
+     "USDC",
+     0
+    ],
+    [
+     "RSETH",
+     0
+    ],
+    [
+     "STRCX",
+     0
+    ],
+    [
+     "USDE",
+     0
+    ],
+    [
+     "EBTC",
+     0
+    ]
+   ],
+   "held_usd": 0
+  }
+ }
+}

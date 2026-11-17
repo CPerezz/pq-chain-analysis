@@ -1,0 +1,139 @@
+{
+ "as_of": "2026-11-17",
+ "block": 26431535,
+ "rpc": "https://ethereum-rpc.publicnode.com / https://eth.drpc.org",
+ "router": {
+  "address": "0x163b09b4fe21177c455d850bd815b6d583732432",
+  "eip1967_implementation": "0x31b0e17db1d02b079177698df2ed7037fc1d0b2c (WorldIDRouterImplV1)",
+  "owner": "0xc534a745bffaf9466ed7b47fa23b0177b99a3e77",
+  "groupCount": 4,
+  "routeFor": {
+   "0": "0x3310846ee4250603e6ac6e4904e7e1667a1b248a",
+   "1": "0xf7134ce138832c1456f2a91d64621ee90c2bddea",
+   "2": "0x5fb49f5b63421bd43c72f3a9d23547e977c63285",
+   "3": "0xd9f2a4fff0c1909272ea9b393613dcb2a27b1137"
+  }
+ },
+ "owner_safe": {
+  "address": "0xc534a745bffaf9466ed7b47fa23b0177b99a3e77",
+  "singleton": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552",
+  "version": "1.3.0",
+  "threshold": 4,
+  "owners": [
+   "0x3ba8e8e561798e5194c898f3a2303986a7d1e901",
+   "0x0897316dfe7141db1e182551c3e8077cf5dd9695",
+   "0xb67ac19693fb89880ca5873f6a890e865b259c26",
+   "0xf0fcdb037718e1b2b52f109ae776713f9c1f730c",
+   "0x140c0227cbe493a56868ddf4ea582e92ef3e9744",
+   "0x6bbf4f7478824482f0ce2861d003bf0ef61cdbd6"
+  ]
+ },
+ "identity_managers": {
+  "0xf7134ce138832c1456f2a91d64621ee90c2bddea": {
+   "group": 1,
+   "impl": "0x521e8fb3a32ea44237dc8b1e506dd78accfdf8bd (WorldIDIdentityManagerImplV2)",
+   "owner": "0xc534a745bffaf9466ed7b47fa23b0177b99a3e77",
+   "identityOperator": "0xe2da046340e00264c4f0443243a0565007ae08ac (EOA, nonce 115089)",
+   "semaphoreVerifier": "0xcdbbcd1cb0b642f8e324ab29c73a967b0c80bad5",
+   "treeDepth": 30,
+   "rootHistoryExpiry": 604800,
+   "insertionLookupTable": {
+    "address": "0x4055b6d4018e92e4d000865e61e87b57a4e5ab49",
+    "owner": "0xc534a745bffaf9466ed7b47fa23b0177b99a3e77",
+    "100": "0xb5f23a0c92f2f4aee506fa3b1cc2813820d13258",
+    "600": "0xfc1c26e964f791f81a33f49d91f79456891aa1c1",
+    "1000": "0xf07d3efadd82a1f0b4c5cc3476806d9a170147ba",
+    "1200": "0xe44c83b9e1971a24ec698829297a0c4026b0cef9",
+    "10": "none"
+   },
+   "deletionLookupTable": {
+    "address": "0x39ccb3b670651a14da8b3835f42924f49c2c5986",
+    "owner": "0xc534a745bffaf9466ed7b47fa23b0177b99a3e77",
+    "10": "0xca7d6822b9c6913b1a1416ce30ef14c4e7f0bfb1",
+    "100": "0x43b68ccba7fc726540768fd1537c3179283140ed"
+   }
+  },
+  "0x5fb49f5b63421bd43c72f3a9d23547e977c63285": {
+   "group": 2,
+   "impl": "0x6c6727eaefb573c85e2e49401c4ec6f00467d412 (WorldIDIdentityManagerImplV2)",
+   "owner": "0xc534a745bffaf9466ed7b47fa23b0177b99a3e77",
+   "identityOperator": "0x41e8af7852c7169f2b84d7b50ec673b80b73e422 (EOA, nonce 10858)",
+   "semaphoreVerifier": "0x443ad7acf39baa104b2e70fa5cf6fe32cc28abee",
+   "treeDepth": 30,
+   "insertionLookupTable": {
+    "address": "0x54aef6aba7e27e3b3698549449596e0f251962c4",
+    "owner": "0xc534a745bffaf9466ed7b47fa23b0177b99a3e77",
+    "10": "0x54c0d1b335d8c8277b19ad5322e261817d57c62d",
+    "100": "0x469449f251692e0779667583026b5a1e99512157",
+    "600": "0x8308f4ef80d67d490ac6fb2f6591c04c716ee7b5",
+    "1200": "0xf0f626ca96ee1168a143bddd2df6ccd43c0743d9"
+   },
+   "deletionLookupTable": {
+    "address": "0x0af990389fc2007cfb31855d6f7dfc383f102fa1",
+    "owner": "0xc534a745bffaf9466ed7b47fa23b0177b99a3e77",
+    "10": "0x72ef65c95e7569024c8bc37f055a781e7cc61c66",
+    "100": "0x289d124da7da55ddebf3f4b154889594316dab26"
+   }
+  },
+  "0xd9f2a4fff0c1909272ea9b393613dcb2a27b1137": {
+   "group": 3,
+   "note": "Blockscout labels it WorldIDRouter; its implementation is WorldIDIdentityManagerImplV2 and it receives registerIdentities",
+   "impl": "0xa1b0bd93ca17f72572d3fd3c6fd1d94e05b5c3ce (WorldIDIdentityManagerImplV2)",
+   "owner": "0xc534a745bffaf9466ed7b47fa23b0177b99a3e77",
+   "identityOperator": "0x3e9c4ba4b3c707323507f4b926e07dc91db4f608 (EOA, nonce 17594)",
+   "semaphoreVerifier": "0x4a5aef39fcf659e9b6396edb92546e6f5a87f55c",
+   "treeDepth": 30,
+   "insertionLookupTable": {
+    "address": "0xfa6c61419bde2b5743d5d79c80c72e0a2a344405",
+    "owner": "0xc534a745bffaf9466ed7b47fa23b0177b99a3e77",
+    "10": "0x720e02a6a5b6d5d9a8709c5f1318c74285514964",
+    "100": "0x75cbc75e1c8a63faeb0470464a0497d3b7a90f85",
+    "600": "0x6485091ddbd9c311e1cb48282b618764616246bf",
+    "1200": "0x805dd45fcecdf16136ff4508927a9ea6165d3cdf"
+   },
+   "deletionLookupTable": {
+    "address": "0x9b07b0f49cbfefa035717e8bf3e3b46acbbd4d8d",
+    "owner": "0xc534a745bffaf9466ed7b47fa23b0177b99a3e77",
+    "10": "0x49602c88d22e513443475118d78e361116f663c2",
+    "100": "0xea94f90e1d931d8c626ed35b73baac95b5313929"
+   }
+  },
+  "0x3310846ee4250603e6ac6e4904e7e1667a1b248a": {
+   "group": 0,
+   "impl": "0x665252cdae50cf9cecebe61c25b1649bb06110ac (WorldIDIdentityManagerImplV1, Blockscout name)",
+   "owner": "0xe71e46a8dd85bb3818fbbdaf8179da50a12d7166 (contract; not a Safe: getThreshold unsupported)",
+   "identityOperator": "0x9ad4efaf9e326c17c3a7be6f5d167843af0eb30a (EOA, nonce 28235)",
+   "semaphoreVerifier": "0xcdbbcd1cb0b642f8e324ab29c73a967b0c80bad5",
+   "insertionLookupTable": "0x78ec127a3716d447f4575e9c834d452e397ee9e1 (not read)"
+  }
+ },
+ "sample_txs": {
+  "0x3f1e6c18577dd1cd653698f34aa46c378f799ee66bdd5e8491f4dd5e3e6c5aff": "block 26431298, 0x3e9c4ba4 -> 0xd9f2a4ff registerIdentities (selector 0x2217b211) -> 0x75cbc75e",
+  "0xe0a5bf05fa8647a4aaf612008b4c9e10186f02a43be07a357be6b33ea45e247a": "block 26431239, 0x41e8af78 -> 0x5fb49f5b registerIdentities -> 0x469449f2"
+ },
+ "membership_proof_consumers": {
+  "precompile_trace_all_time_to_block_24683719": {
+   "0xcdbbcd1cb0b642f8e324ab29c73a967b0c80bad5": "1 ecPairing call, block 17968052 (2023-08-22)",
+   "0x4a5aef39fcf659e9b6396edb92546e6f5a87f55c": "none (deployed block 20964625, 2024-10-14)",
+   "0x443ad7acf39baa104b2e70fa5cf6fe32cc28abee": "none (deployed block 20880105, 2024-10-02)"
+  },
+  "xatu_scan_blocks_24700000_26423999": {
+   "targets": [
+    "0xcdbbcd1c (SemaphoreVerifier)",
+    "0x4a5aef39 (SemaphoreVerifier)",
+    "0x443ad7ac (SemaphoreVerifier)",
+    "0x163b09b4 (WorldIDRouter proxy)",
+    "0x31b0e17d (router impl)"
+   ],
+   "partitions_ok": 3448,
+   "transactions_to_or_call_frames_into_targets": 0,
+   "script": "remote /tmp/wz16/scan.py: canonical_execution_transaction.to_address and canonical_execution_traces.action_to IN targets"
+  },
+  "conclusion": "no mainnet transaction has consumed a World ID membership proof since 2023-08-22; eth_call (off-chain) verification is not visible and moves no funds"
+ },
+ "holdings": {
+  "note": "Blockscout 2026-11-17: ETH 0 for router and the 4 managers; only token is 1 HEX (USD 0.0005) spam on groups 1-3 managers; verifiers 0 ETH (onchain.json block 26431214; semaphore verifiers 0 ETH at block 26431535)"
+ },
+ "value_usd_for_finding": 0,
+ "basis": "escrow: no mainnet consumer of World ID proofs holds or releases value; batch insertion/deletion proofs can only be submitted by the identity operator EOAs (onlyIdentityOperator)"
+}

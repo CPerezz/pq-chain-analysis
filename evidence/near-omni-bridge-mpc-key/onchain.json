@@ -1,0 +1,40 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0xe00c629afaccb0510995a2b95560e446a24c85b9": {
+   "code_size": 170,
+   "kind": "eip1967",
+   "implementation": "0x53785920165fbdf33b3f56885dbc8d12854ac414",
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 2191.1886353066566,
+   "tokens_usd": 46917630.60417398,
+   "top_tokens": [
+    [
+     "AURORA",
+     24729165
+    ],
+    [
+     "USDC",
+     14528760
+    ],
+    [
+     "USDT",
+     3882414
+    ],
+    [
+     "WBTC",
+     1163600
+    ],
+    [
+     "DAI",
+     839700
+    ]
+   ],
+   "held_usd": 50887232
+  }
+ }
+}

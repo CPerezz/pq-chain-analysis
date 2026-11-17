@@ -1,0 +1,15 @@
+{
+ "block": 26431457,
+ "date": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "method": "cast call / eth_getStorageAt at the block; Blockscout v2 API for creators, logs and token balances",
+ "reads": {
+  "0xe00c629afaccb0510995a2b95560e446a24c85b9": {
+   "eip1967_implementation": "0x53785920165fbdf33b3f56885dbc8d12854ac414 (OmniBridge)",
+   "nearBridgeDerivedAddress()": "0x22eb4d37677ed931d9de2218cece1a832a147490",
+   "DEFAULT_ADMIN_ROLE": "0x2468603819bf09ed3fb6f3efeff24b1955f3cde1 (Safe, threshold 3 of 5: 0xed9cb503\u2026, 0xf58096a6\u2026, 0xcfb9c137\u2026, 0x1180c536\u2026, 0x8f3a347e\u2026); deployer 0xd9cb077700aa4d32d30bda5e99bb171549b5a382 granted it at block 22224025 and renounced/revoked its own at 22224038 (RoleGranted/RoleRevoked logs, Blockscout); hasRole(0x0, Safe)=true, hasRole(0x0, deployer)=false",
+   "holdings (Blockscout, top)": "2,191.19 ETH; 766.6M AURORA (~$24.7M); 14.53M USDC; 3.89M USDT; 18.0 WBTC; 0.84M DAI; total $50.9M per pipeline read at block 26431214"
+  },
+  "source": "Sourcify OmniBridge.sol: finTransfer l.190-242 (ECDSA.recover(keccak256(borsh payload), signatureData) != nearBridgeDerivedAddress, l.216; releases ETH l.221, custom-minter mint l.225, BridgeToken.mint l.227, or escrowed ERC-20 safeTransfer l.229); deployToken l.97-107 same check; setNearBridgeDerivedAddress l.316 and _authorizeUpgrade l.334 onlyRole(DEFAULT_ADMIN_ROLE)"
+ }
+}

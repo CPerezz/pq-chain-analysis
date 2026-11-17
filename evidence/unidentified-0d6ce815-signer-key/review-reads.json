@@ -1,0 +1,41 @@
+{
+ "block": 26431457,
+ "date": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "method": "cast call / eth_getStorageAt at the block; Blockscout v2 API for creators, logs and token balances",
+ "reads": {
+  "0x0d6ce8158640cc02f405dee694d8aeda56ed3271": {
+   "code_size": 16198,
+   "owner()": "0x3bf77324ec75c24107077d90275ddaa14efc866f (EOA; also the creator)",
+   "verifier()": "0x091eee8044a02ea2c5ce64ce1501d5e2fb7970cd (EOA)",
+   "swapEnabled()": true,
+   "withdrawEnabled()": true,
+   "held": "dust (335 ZIK ~$0.03)",
+   "creation_tx": "0x527dd86de9cf9f58a575c2e0b6befff71735007d85c6cb15561fe465e190ec1f"
+  },
+  "0xff68a48e8f7b9cfcf2fb5f418ec9bbfc2203dff7": {
+   "code_size": 11055,
+   "owner()": "0x3bf77324ec75c24107077d90275ddaa14efc866f (EOA; also the creator)",
+   "verifier()": "0xf606400ae814677c9685be3d60bba070374c8cec (EOA)",
+   "swapEnabled()": true,
+   "withdrawEnabled()": true,
+   "held": "28,184.77 USD1 (~$28,147), 46,317.7 B (no price)",
+   "creation_tx": "0x31bbfff53040a2fcee65ee9e94de2f36944af914c25ab1b6534dc783e0c9a42d"
+  },
+  "0x951a1ca3ad7ad2e055226783d32c9e8a69188485": {
+   "code_size": 11055,
+   "runtime code identical to 0xff68a48e\u2026": true,
+   "owner()": "0x3bf77324ec75c24107077d90275ddaa14efc866f (EOA; also the creator)",
+   "verifier()": "0xf1d96dc924eccfef9967a6b90dd6f5cc40ab6663",
+   "held": "unpriced tokens only (~$0)",
+   "last direct tx": "2026-08-17 (block 25774912); selectors 0xfb3a6007, 0xa28c0efa, 0x6209b13d from many single-use EOAs; owner calls setWithdrawEnabled/setWithdrawRecipient/0x0c9708cb"
+  },
+  "trace": {
+   "tx": "0xaf66f0c14372ccefff58edc30c1cbe0ae8423875236da01c2da698d33fc06642",
+   "date": "2026-11-12",
+   "tracer": "debug_traceTransaction callTracer via https://eth.drpc.org",
+   "path": "EOA 0xbdf11dc8\u2026 calls 0xff68a48e\u2026.0xa28c0efa(router=UniswapV2Router02, amountOut, amountInMax, path=[USD1, 0x203240c1\u2026], to=0xff68a48e\u2026, deadline, 65-byte signature) -> STATICCALL 0x01 returns 0xf606400ae814677c9685be3d60bba070374c8cec (= verifier()) -> balanceOf/allowance USD1 of itself -> UniswapV2Router02.swapTokensForExactTokens(\u2026, to=0xff68a48e\u2026) spending the contract's USD1"
+  },
+  "deployer_activity": "0x3bf77324\u2026 (no tags/ENS) only administers these contracts: setWithdrawRecipient, setWithdrawEnabled, 0x0c9708cb on 0x951a1ca3\u2026 and 0x0d6ce815\u2026 (2026-03 to 2026-08)"
+ }
+}

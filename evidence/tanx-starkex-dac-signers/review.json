@@ -1,0 +1,134 @@
+{
+ "reviewer": "Review10",
+ "date": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "block": 26431780,
+ "eth_usd_blockscout": 1814.71,
+ "committee": {
+  "address": "0x4f8b2dd49d958b6ac3e5f4705bf1a9ada5bc4446",
+  "signaturesRequired()": "2",
+  "identify()": "\"StarkWare_FinalizableCommittee_2022_1\"",
+  "isFinalized()": "false",
+  "blockscout_name": "FinalizableCommittee",
+  "verified": true,
+  "creator": "0x3DE55343499f59CEB3f1dE47F2Cd7Eab28F2F5C6",
+  "last_txs": [
+   [
+    "2026-01-28T03:05:47.000000Z",
+    "verifyAvailabilityProof",
+    "0xc3a27F45015E2c36ce3cC78c662c5f259c26Cf25"
+   ],
+   [
+    "2026-01-27T16:26:35.000000Z",
+    "verifyAvailabilityProof",
+    "0xc3a27F45015E2c36ce3cC78c662c5f259c26Cf25"
+   ],
+   [
+    "2026-01-27T16:26:35.000000Z",
+    "verifyAvailabilityProof",
+    "0xc3a27F45015E2c36ce3cC78c662c5f259c26Cf25"
+   ]
+  ],
+  "callers_last_50": [
+   "0xc3a27F45015E2c36ce3cC78c662c5f259c26Cf25"
+  ],
+  "isMember(0x0)": false,
+  "trace_y1_ecrecover_txs": 4085
+ },
+ "exchange": {
+  "address": "0x1390f521a79babe99b69b37154d63d431da27a07",
+  "implementation_slot": "0x000000000000000000000000df2f24751f7e84ccdcd39e7b49904fab0fb0f583",
+  "blockscout_implementations": [
+   {
+    "address_hash": "0xdF2f24751F7e84ccDCD39e7b49904FAB0Fb0f583",
+    "name": "StarkExchange"
+   }
+  ],
+  "reads": {
+   "getRegisteredAvailabilityVerifiers()(address[])": "[0x4F8B2dd49D958b6ac3e5f4705Bf1a9aDA5Bc4446]",
+   "isFrozen()(bool)": "false",
+   "getSequenceNumber()(uint256)": "12651 [1.265e4]",
+   "getLastBatchId()(uint256)": "12869 [1.286e4]",
+   "identify()(string)": "- server returned an error response: error code 3: execution reverted: NO_CONTRACT_FOR_FUNCTION, data: \"0x08c379a0000000",
+   "getUpgradeActivationDelay()(uint256)": "0",
+   "isFinalized()(bool)": "- server returned an error response: error code 3: execution reverted: NO_CONTRACT_FOR_FUNCTION, data: \"0x08c379a0000000",
+   "getRegisteredVerifiers()(address[])": "[0x5339AB7557b3152b91A57D10B0Caf5da88Db5143]",
+   "getVaultRoot()(uint256)": "Error: server returned an error response: error code 3: execution reverted, data: \"0x\"",
+   "getOrderRoot()(uint256)": "2544921970309519073835624828529503879140330454686680885027753039499476532129 [2.544e75]",
+   "getValidiumVaultRoot()(uint256)": "207095555137602068174310225607660532858489993604082708018689543482077973596 [2.07e74]"
+  },
+  "eth": "14.609100685700000000",
+  "tokens_usd_page1": 220672,
+  "top_tokens": [
+   [
+    "USDC",
+    186338
+   ],
+   [
+    "USDT",
+    21394
+   ],
+   [
+    "WBTC",
+    12055
+   ],
+   [
+    "MKR",
+    422
+   ],
+   [
+    "ARB",
+    150
+   ],
+   [
+    "POL",
+    143
+   ],
+   [
+    "LINK",
+    123
+   ],
+   [
+    "AAVE",
+    33
+   ]
+  ],
+  "tokens_next_page": null,
+  "erc721": [],
+  "last_txs": [
+   [
+    "2026-11-13T06:47:23.000000Z",
+    "0x441a3e70",
+    "0x1496fc458E4F5497842942B2c17E6Ea3A8534DC7"
+   ],
+   [
+    "2026-11-06T10:02:35.000000Z",
+    "0x441a3e70",
+    "0xbfd733CFD59727428621A066c820D3fFA6cD3cBC"
+   ],
+   [
+    "2026-11-06T07:14:47.000000Z",
+    "0x441a3e70",
+    "0xCFd7856762C9094779C899E8F01611C13bE9F322"
+   ],
+   [
+    "2026-11-06T03:41:35.000000Z",
+    "0x441a3e70",
+    "0x484Ef16119998aBcD604Ea940506Ae6D0de567Cc"
+   ],
+   [
+    "2026-11-04T08:54:35.000000Z",
+    "0x441a3e70",
+    "0x00000045161c4c86Adc5E96eC10a7Ee199293333"
+   ]
+  ]
+ },
+ "governance": "governor EOA 0x303775491494a08b07365938787274f742a81f63 (mainIsGovernor and proxyIsGovernor true), upgrade activation delay 0",
+ "escrow_usd": {
+  "eth_usd": 26511,
+  "tokens_usd": 220672,
+  "total": 247183,
+  "note": "complete first page; USDC $186.3k, USDT $21.4k, WBTC $12.1k"
+ },
+ "external": "L2BEAT project page (l2beat.com/layer2s/projects/tanx.md), DAC threshold 2/4"
+}

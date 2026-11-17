@@ -1,0 +1,35 @@
+{
+ "date": "2026-11-17",
+ "block": 26431575,
+ "rpc": "https://eth.drpc.org",
+ "BLSApkRegistry_proxy": {
+  "address": "0xa80f2401c8ae7d95c7995295dc2c0d651f25fd60",
+  "eip1967_implementation": "0x8ad2384aaf9525bd7b4d3f73e8cc07421af2046f",
+  "eip1967_admin": "0xab64a3da57886cd4205176c72b8be63c34e46366",
+  "owner()": "0xbfda2df9cd91cf7a3e794edb9c268588d42d7c01",
+  "finalityRelayerManager()": "0x8e132b3bd37f3f6e223cd23add390111e674c94e",
+  "relayerManager()": "0xfdad88ae58677281c8bc75d35cb4a6bb8acaec4a",
+  "creator": "0xbfda2df9cd91cf7a3e794edb9c268588d42d7c01"
+ },
+ "ProxyAdmin_owner": "0xbfda2df9cd91cf7a3e794edb9c268588d42d7c01 (EOA, no code, nonce 153)",
+ "FinalityRelayerManager": {
+  "proxy": "0x8e132b3bd37f3f6e223cd23add390111e674c94e",
+  "implementation": "0x9d6def8bb4d67ac2aabcc787767dc0b890f24980 (Blockscout verified FinalityRelayerManager)",
+  "owner()": "0xbfda2df9cd91cf7a3e794edb9c268588d42d7c01",
+  "operatorWhitelistManager()": "0xfdad88ae58677281c8bc75d35cb4a6bb8acaec4a (EOA)",
+  "blsApkRegistry()": "0xa80f2401c8ae7d95c7995295dc2c0d651f25fd60",
+  "l2OutputOracle()": "0x30c789674ad3b458886bbc9abf42eee19ea05c1d",
+  "disputeGameFactory()": "0x30c789674ad3b458886bbc9abf42eee19ea05c1d",
+  "confirmBatchId()": 13890,
+  "last_VerifyFinalitySig_block": 25286243
+ },
+ "Manta_L2OutputOracle": {
+  "proxy": "0x30c789674ad3b458886bbc9abf42eee19ea05c1d",
+  "implementation": "0xc9e9b111c5a14c0c75ef753e26ea5d4d7d2610fe (Blockscout verified L2OutputOracle)",
+  "FINALIZATION_PERIOD_SECONDS": 259200,
+  "latestOutputIndex": 83872,
+  "last_OutputProposed": "block 26426194, 2026-11-16",
+  "proposalChangeFinalizationPeriodSeconds(bytes32,uint256) selector 0xbd05743b in implementation bytecode": false,
+  "source_note": "proposalChangeFinalizationPeriodSeconds and setFinalityProvider are commented out; storage slot 5 'previously held address public finalityProvider' (0x8E132B3b...)"
+ }
+}

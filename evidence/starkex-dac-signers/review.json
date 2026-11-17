@@ -1,0 +1,33 @@
+{
+ "reviewer": "Review10",
+ "date": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "block": "latest at 2026-11-17 (~26431600)",
+ "reads": {
+  "FinalizableCommittee 0x23bf3dcc14680162b7f5355aabb56d31823c946e": {
+   "signaturesRequired()": 2,
+   "isFinalized()": false,
+   "creator": "0x17b287122363a0a6dba7f185347dfcfb9816da6e",
+   "callers (last 50 txs)": "all verifyAvailabilityProof from operator 0xcbe6fbf5e3c427013688e04d0fde56705890c4be, last 2026-08-14"
+  },
+  "StarkPerpetual (edgeX v1) 0xfaae2946e846133af314d1df13684c89fa7d83dd": {
+   "getRegisteredAvailabilityVerifiers()": [
+    "0x23bf3dcc14680162b7f5355aabb56d31823c946e"
+   ],
+   "isFrozen()": true,
+   "getSequenceNumber()": 66360,
+   "updateState / unFreeze eth_call": "revert STATE_IS_FROZEN / ONLY_GOVERNANCE",
+   "USDT held (Blockscout)": 2417958
+  }
+ },
+ "external": "L2BEAT edgeX v1 page (l2beat.com/layer2s/projects/edgex): StarkPerpetual frozen 2026-08-14, funds recoverable only via escape hatch; DAC 2/6",
+ "other_starkex_committees_alltime_trace": {
+  "rhino 0x28780349": "last block 21977563",
+  "immutablex 0x16ba0f22": "last block 24538144",
+  "sorare 0x879cd579": "last block 24683219",
+  "myria 0x1e601435": "last block 24683218",
+  "reddio 0x4b2bf1cb": "last block 20802577",
+  "tanx 0x4f8b2dd4": "last block 24330539",
+  "note": "none of these is in data/curation; reported to the coordinator"
+ }
+}

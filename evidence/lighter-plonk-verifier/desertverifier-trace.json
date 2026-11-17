@@ -1,0 +1,9 @@
+{
+ "head": 26431750,
+ "from_block": 23803750,
+ "rpc": "https://eth.drpc.org trace_filter",
+ "target": "0x975210588389526a3a1def1628e7a4d7abdfd121",
+ "txs_last_216000_blocks": 0,
+ "txs_window": 0,
+ "callers": []
+}

@@ -1,0 +1,52 @@
+{
+ "block": 26431578,
+ "as_of": "2026-11-17",
+ "contract": "0x5ba2f06c91be4495243ffdc9faa9618ca0f5f2ae",
+ "creator": "0x9e056868b204ffe34351eb00a404e3fc9eec5192 (EOA; tx 0xf044b445c979bbdd163e1a8e2b9f55ef46bd4f58fd0edcde36bcbabe9dccedef)",
+ "owner": "0xc493f943a1fd910d01dcabea86e61415ce43e787 (EOA)",
+ "signers": {
+  "0": "0xfc7993707b79f25a937c8e5ba0357c52f680a1d2",
+  "1": "reverts (single signer)"
+ },
+ "selectors_4byte": [
+  "setOwner(address)",
+  "setSigners(address[])",
+  "signers(uint256)",
+  "setCounterparty(address,bool)",
+  "counterparty(address)",
+  "usedQuote(bytes32)",
+  "setDiff(uint256)",
+  "rescue(address,address,uint256)",
+  "eip712Domain()",
+  "errors: InvalidSignature(), ECDSAInvalidSignature(), ECDSAInvalidSignatureLength(uint256), UnauthorizedCaller(), DeadlineExpired()",
+  "unnamed: 0x0b135d3f 0x1e0fed3b 0x2cd44ac3 0x30b005d9 0x35e2f383 0x3d2cec6f 0xb0815ef5 0xb5b50906"
+ ],
+ "counterparty": {
+  "0x63242a4ea82847b20e506b63b0e2e2eff0cc6cb0": true,
+  "note": "unverified caller contract (created by 0x47dfaa2f\u2026) that calls the RFQ contract inside RelayRouterV3 fills"
+ },
+ "maker_vault": {
+  "address": "0x9ba0cf1588e1dfa905ec948f7fe5104dd40eda31",
+  "creator": "0x9e056868b204ffe34351eb00a404e3fc9eec5192",
+  "appears_in_sampled_txs": "83 of 90 receipts (80 random + 10 last of 22,092 y1 txs)",
+  "allowance_to_rfq": {
+   "USDC": "~2^256 (unlimited)",
+   "USDT": "unlimited",
+   "WETH": "unlimited",
+   "POL": "unlimited"
+  },
+  "eth": 0,
+  "priced_tokens_usd": 1.46,
+  "approved_tokens_usd": 0
+ },
+ "sample_tx": {
+  "hash": "0x1b2fd2d851dc5af1f343747e52fa548071e12f6fdf74673d43a45c8fdada0cec",
+  "date": "2026-03-18",
+  "flow": "RelayRouterV3 -> 0x63242a4e -> 0x5ba2f06c: USDC taker->vault 0x9ba0cf15, POL vault->taker via transferFrom"
+ },
+ "yearly": {
+  "txs_y1": 22092,
+  "usd_tx_y1": 14440400000,
+  "source": "data/report/curated_contracts.csv"
+ }
+}

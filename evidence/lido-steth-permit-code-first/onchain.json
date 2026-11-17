@@ -1,0 +1,40 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0xae7ab96520de3a18e5e111b5eaab095312d7fe84": {
+   "code_size": 1035,
+   "kind": "none",
+   "implementation": null,
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 2149.503221540452,
+   "tokens_usd": 47066.71883882803,
+   "top_tokens": [
+    [
+     "STETH",
+     25707
+    ],
+    [
+     "USDC",
+     11822
+    ],
+    [
+     "USDT",
+     6672
+    ],
+    [
+     "GNO",
+     1862
+    ],
+    [
+     "MKR",
+     941
+    ]
+   ],
+   "held_usd": 3941150
+  }
+ }
+}

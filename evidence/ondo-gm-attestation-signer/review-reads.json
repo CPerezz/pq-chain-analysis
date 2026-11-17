@@ -1,0 +1,41 @@
+{
+  "block": 26431459,
+  "as_of": "2026-11-17",
+  "reviewer": "Review20",
+  "method": "cast call at the block; Blockscout address metadata fetched 2026-11-17",
+  "gm_token_manager": {
+    "address": "0x2c158bc456e027b2affccadf1bdbd9f5fc4c5c8c",
+    "proxy": "none (code 12,828 bytes, no EIP-1967 slots per onchain.json)",
+    "usdon": "0xace8e719899f6e91831b18ae746c9a965c2119f1",
+    "usdonManager": "0x54f5eb3e9a3b1bb71f1a7a89c445fba55b1fc813",
+    "sanityCheckOracle": "0x914d5cb27cb30e80bde8215ff577ed63eb986b79",
+    "ondoRateLimiter": "0x98db502215da1ad9f626d4a0090a8a2f4971003c",
+    "ondoIDRegistry": "0xcf6958d69d535fd03bd6df3f4fe6cdcd127d97df",
+    "issuanceHours": "0x5c8ad93f75805fb504fac767378a170420671c32",
+    "roles": {
+      "DEFAULT_ADMIN_ROLE": ["0x3715b2154d2ff4c5b027c7a1f734b53f27bc34f1"],
+      "ATTESTATION_SIGNER_ROLE": ["0xff2d04f6002c10eba702adafe2f43cac5996c477"],
+      "ADMIN_MINT_ROLE": ["0x71a4d411b5f7941dee020417fca30413712f1646"],
+      "CONFIGURER_ROLE": ["0x71a4d411b5f7941dee020417fca30413712f1646", "0xd2746617c58b72254785bdb483e04f311c858d5f"]
+    }
+  },
+  "default_admin": {
+    "address": "0x3715b2154d2ff4c5b027c7a1f734b53f27bc34f1",
+    "blockscout": "TimelockController (verified), creator 0x094bee6b74ec29d32869ae3140a659cac0482882",
+    "getMinDelay_seconds": 7200,
+    "proposers": "not enumerated"
+  },
+  "attestation_signer": {
+    "address": "0xff2d04f6002c10eba702adafe2f43cac5996c477",
+    "code_size": 0,
+    "nonce": 0,
+    "note": "never sent a transaction, but its signatures are in every mintWithAttestation/redeemWithAttestation calldata, so its public key is recoverable"
+  },
+  "sanity_check_oracle": {
+    "address": "0x914d5cb27cb30e80bde8215ff577ed63eb986b79",
+    "sourcify": "OndoSanityCheckOracle",
+    "defaultDeviationBps": 1000,
+    "defaultMaxTimeDelay_seconds": 172800,
+    "note": "per-token allowedDeviationBps can override the default; per-token values not read"
+  }
+}

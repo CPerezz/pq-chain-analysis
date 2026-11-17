@@ -1,0 +1,27 @@
+{
+ "block": 26431457,
+ "date": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "method": "cast call / eth_getStorageAt at the block; Blockscout v2 API for creators, logs and token balances",
+ "reads": {
+  "0x77777777dcc4d5a8b6e418fd04d8997ef11000ee": {
+   "eip1967_implementation": "0xf7a6d9d7df917c072ac8987a820c58aa27a0e798 (GatewayWallet)",
+   "eip1967_admin": "0x0 (UUPS; _authorizeUpgrade onlyOwner, GatewayCommon.sol l.88)",
+   "owner()": "0x2a6a86466f181721ec8ff946967b56f1aa4758c5 (EOA, no code)",
+   "pendingOwner()": "0x0",
+   "pauser()": "0x9812d5f0a0832d9a0a78a1ba728facd87bc35b19",
+   "feeRecipient()": "0xfbaf3a19b1c02b8bef52a7e9fa855c86c69ab95c",
+   "paused()": false,
+   "USDC.balanceOf": "56445664.977786 USDC"
+  },
+  "0x2222222d7164433c4c09b0b0d809a9b52c04c205": {
+   "name": "GatewayMinter (ERC1967 proxy)",
+   "implementation": "0xc2ff68068362aea1ca22a3896d05b2b812ce51b1",
+   "owner()": "0x3c54ffa14d01ef3a555106007a4fed6e8964aab6",
+   "USDC.isMinter": true,
+   "USDC.minterAllowance": "95245156.439433 USDC",
+   "source": "Mints.sol gatewayMint l.161, ECDSA.recover(keccak256(attestation).toEthSignedMessageHash(), signature) checked against attestation signers l.257; mint via IMintableToken.mint l.349"
+  },
+  "source": "Sourcify GatewayWallet 0xf7a6d9d7\u2026: Burns.sol gatewayBurn l.173 -> _verifyBurnSignerSignature l.253-258 (ECDSA.recover vs burnSigners mapping; addBurnSigner/removeBurnSigner onlyOwner l.214-231); burn intents _validateSignatureAndGetSigner l.316-359 (ECDSA.tryRecover first: EOA match, or TEE vouch by isContractSignatureSigner; ERC-1271 only if _wasEverAllowlistedContractSigner)"
+ }
+}

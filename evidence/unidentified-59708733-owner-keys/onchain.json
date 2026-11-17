@@ -1,0 +1,65 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x70213959a644baa94840bbfb4129550bceceb3c2": {
+   "code_size": 45,
+   "kind": "eip1167",
+   "implementation": "0x0d424072d658e6abd92c36f8fc16fd6479ae15a0",
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 45899.202011101,
+   "tokens_usd": 0.0007479902000000001,
+   "top_tokens": [
+    [
+     "HEX",
+     0
+    ],
+    [
+     "WETH",
+     0
+    ],
+    [
+     "USDTB",
+     0
+    ]
+   ],
+   "held_usd": 83151912
+  },
+  "0x59708733fbbf64378d9293ec56b977c011a08fd2": {
+   "code_size": 45,
+   "kind": "eip1167",
+   "implementation": "0x0d424072d658e6abd92c36f8fc16fd6479ae15a0",
+   "admin": null,
+   "owner": null,
+   "safe": null,
+   "eth": 45833.444714202255,
+   "tokens_usd": 60897549.278655514,
+   "top_tokens": [
+    [
+     "USDC",
+     60897534
+    ],
+    [
+     "AMERICA",
+     13
+    ],
+    [
+     "KEN",
+     2
+    ],
+    [
+     "PEPE",
+     1
+    ],
+    [
+     "DECT",
+     0
+    ]
+   ],
+   "held_usd": 143930334
+  }
+ }
+}

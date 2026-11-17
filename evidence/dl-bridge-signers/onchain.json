@@ -1,0 +1,49 @@
+{
+ "block": 26431214,
+ "as_of": "2026-11-17",
+ "eth_usd": 1811.62,
+ "contracts": {
+  "0x44e37608f744a7aeb16f7dc9bf052c310e6cd015": {
+   "code_size": 698,
+   "kind": "eip1967",
+   "implementation": "0x3f2e4e5a70f2a424d7c4e4e0323c878c77c20537",
+   "admin": null,
+   "owner": "0xab014cfff054692eeae239777c06647b47832d4c",
+   "safe": null,
+   "controller_safe": {
+    "address": "0xab014cfff054692eeae239777c06647b47832d4c",
+    "threshold": 2,
+    "owners": [
+     "0xff275b9b4438b5302fd17ac1c37dd915a8c75e45",
+     "0xf64b295004958887c868ab84e411615dbd3ef6a6",
+     "0xc3b70449395c5a5d6c94a9a7dc8566b7cd0b9ca1"
+    ]
+   },
+   "eth": 28.844149495295394,
+   "tokens_usd": 5182.992116647141,
+   "top_tokens": [
+    [
+     "USDT",
+     3322
+    ],
+    [
+     "DAI",
+     1860
+    ],
+    [
+     "HEX",
+     1
+    ],
+    [
+     "WETH",
+     0
+    ],
+    [
+     "TUSD",
+     0
+    ]
+   ],
+   "held_usd": 57438
+  }
+ }
+}

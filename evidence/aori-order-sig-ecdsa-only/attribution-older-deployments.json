@@ -1,0 +1,24 @@
+{
+ "block": 26431618,
+ "as_of": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "creator (Blockscout)": {
+  "0x7dec965cf240f81299683f48a18ebdbe8b2accb5": "0xb4afac168ca0cce40c5b4d4e8e49a1e18a630b40 (tx 0xf296dda7…)",
+  "0xbb4c20cb237f3629d1afc3ecb3e84148fa426c12": "0xb4afac168ca0cce40c5b4d4e8e49a1e18a630b40 (tx 0xa7a58bd7…)"
+ },
+ "deployer 0xb4afac16": "EOA (code size 0, nonce 630); owner() of both contracts and of verified Aori 0x8635c874b0fcb361fb9a2f5218852d4b7fc5ace3; on 2026-08-19 called pause() and emergencyWithdraw on 0x8635c874 (Aori), emergencyWithdraw(address,uint256) (selector 0x95ccea67) on 0x7dec965c, and sent a transaction to 0x941327e206b8d8cfe1014a8a95b05e1536dfd00d (owner of the current Aori 0x0736bdc9…)",
+ "selector match against verified Aori 0x8635c874 ABI (Blockscout, 46 functions; PUSH4 search in runtime code)": {
+  "0x7dec965cf240f81299683f48a18ebdbe8b2accb5": "44/46 present; missing depositNative(Order) and emergencyCancel(bytes32,address)",
+  "0xbb4c20cb237f3629d1afc3ecb3e84148fa426c12": "39/46 present",
+  "0x8635c874b0fcb361fb9a2f5218852d4b7fc5ace3": "46/46"
+ },
+ "state": {
+  "0x7dec965cf240f81299683f48a18ebdbe8b2accb5": {"owner()": "0xb4afac16…", "paused()": false, "eip1967_impl_slot": "0x0"},
+  "0xbb4c20cb237f3629d1afc3ecb3e84148fa426c12": {"owner()": "0xb4afac16…", "paused()": false, "eip1967_impl_slot": "0x0"},
+  "0x8635c874b0fcb361fb9a2f5218852d4b7fc5ace3": {"owner()": "0xb4afac16…", "paused()": true, "note": "verified Aori, not in the registry; 6,491 ecrecover txs y1 (blocks 23407276-24677597)"}
+ },
+ "last signature-path use (data/agg/y1_caller.parquet; Blockscout)": {
+  "0x7dec965cf240f81299683f48a18ebdbe8b2accb5": "ecrecover last block 22953387 (2025-07-19; solver 0x2002d368c670f5db65f732152f8887677933d830); afterwards only the owner's emergencyWithdraw on 2026-08-19",
+  "0xbb4c20cb237f3629d1afc3ecb3e84148fa426c12": "ecrecover last block 22421870 (May 2025)"
+ }
+}

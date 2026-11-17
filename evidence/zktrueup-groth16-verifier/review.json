@@ -1,0 +1,28 @@
+{
+ "reviewer": "Review10",
+ "date": "2026-11-17",
+ "rpc": "https://ethereum-rpc.publicnode.com",
+ "block": "latest at 2026-11-17 (~26431700)",
+ "reads": {
+  "ZkTrueUp diamond 0x09e01425780094a9754b2bd8a3298f73ce837cf9": {
+   "getVerifier()": "0x23369a60e5a8f422e38d799ed55e7ad8ed4a86ce",
+   "isEvacuMode()": false,
+   "owner()": "0xa00d50a40b1635d293c87ba36503bd2504b5d818",
+   "eth": 0,
+   "tokens_usd (Blockscout)": {
+    "WETH": 1025.26,
+    "USDT": 599.68,
+    "USDC": 76.6,
+    "DAI": 30.36,
+    "WBTC": 17.09,
+    "total": 1749
+   },
+   "last txs": "commitBlocks/verifyBlocks/executeBlocks by 0x0a4ab40cc78d34052e1a8f5bb5baeb0174abde12, last 2025-08-04"
+  },
+  "Safe 0xa00d50a40b1635d293c87ba36503bd2504b5d818": {
+   "getThreshold()": 4,
+   "owners": 6
+  }
+ },
+ "external": "L2BEAT Term Structure page: archived; admin 0xa00d50a4 can update the main verifier and the evacuation verifier; diamond upgradeable by the same multisig with no delay"
+}

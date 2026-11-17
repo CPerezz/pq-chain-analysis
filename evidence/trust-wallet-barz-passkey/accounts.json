@@ -1,0 +1,55 @@
+{
+  "as_of": "2026-11-17",
+  "family": {
+    "code_hash": "0xe152e0d0626438840037db419d2e66fa32002f1ee719b1dbe2892314bc67b6de",
+    "runtime_size": 573,
+    "members_in_caller_family": 30053,
+    "members_calling_modexp_with_p256_moduli_alltime": 30049,
+    "p256_moduli": ["ffffffff00000001000000000000000000000000ffffffffffffffffffffffff (p)", "ffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc632551 (n)"],
+    "modexp_txs_trace_year": 88655,
+    "callers_trace_year": 16101,
+    "last_modexp_block": 24683695,
+    "source": "data/caller_family.parquet, data/agg/modexp_moduli.parquet, data/agg/y1_caller.parquet, data/agg/alltime_caller.parquet"
+  },
+  "balances": {
+    "method": "scripts/rpc.py probe (EXTCODESIZE + BALANCE via state-override helper) at block 26431694, publicnode",
+    "accounts": 30049,
+    "with_code": 30049,
+    "with_eth": 19136,
+    "eth_total": 177.878,
+    "usd_at_1811.62": 322247,
+    "largest": [["0xebbbed45dbf16e6a57a0fe297ee9c7ce24751093", 38.56], ["0x8e75eea04e825031eec85fba66643942ed8cb9c8", 11.10], ["0xf0ad5a3d24f42ca72f35408517b1e76eded17de3", 5.01]],
+    "tokens": "not measured"
+  },
+  "facet_sample": {
+    "method": "facetAddress(0x1626ba7e) (isValidSignature) via eth_call on 70 accounts (60 random + 10 largest ETH balances), 2026-11-17",
+    "result": {"0xee1af8e967ec04c84711842796a5e714d2fd33e6 (Secp256r1VerificationFacet)": 68, "zero / no answer": 2}
+  },
+  "sample_accounts (eth.drpc.org, latest, 2026-11-17)": {
+    "0x62b3aa5a0b99074b5d8a983c130845cef930057e": {
+      "creator (Blockscout)": "0x729c310186a57833f622630a16d13f710b83272a (BarzFactory)",
+      "facetAddress(validateUserOp 0x3a871cdd)": "0xfde53272dcd7938d16e031a6989753c321728332 AccountFacet",
+      "facetAddress(isValidSignature 0x1626ba7e)": "0xee1af8e967ec04c84711842796a5e714d2fd33e6 Secp256r1VerificationFacet",
+      "facetAddress(diamondCut 0x1f931c1c)": "0x0b9504140771c3688ff041917192277d2f52e1e0 DiamondCutFacet",
+      "facetAddresses()": ["0xee1af8e9…", "0x0b950414…", "0xfde53272…", "0x3143e1c0… TokenReceiverFacet", "0xce36b85d… DiamondLoupeFacet"],
+      "owner()": "0x795b08bc… (P-256 public key)"
+    },
+    "0xc5aea9e1fcc733a36fff56fd17bcd0be615fe225": {
+      "facets": "same as above (Blockscout implementations list)",
+      "owner()": "0x16e40514… (P-256 public key)"
+    }
+  },
+  "factory_and_registry": {
+    "BarzFactory 0x729c310186a57833f622630a16d13f710b83272a": {
+      "facetRegistry()": "0xafcb70e6e9514e2a15b23a01d2a9b9f7a34f2c33",
+      "accountFacet()": "0xfde53272dcd7938d16e031a6989753c321728332",
+      "defaultFallback()": "0x2e7f1dae1f3799d20f5c31befdc7a620f664728d",
+      "entryPoint()": "0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789"
+    },
+    "FacetRegistry owner()": "0x8c62a63c5cb598a092c838d6e2fbead978d05747 (Safe, getThreshold() = 3, 8 owners)"
+  },
+  "source_reads (Blockscout verified source, 2026-11-17)": {
+    "Secp256r1VerificationFacet 0xee1af8e9": "_validateSignature -> LibSecp256r1.Verify(q, r, s, sigHash) (line 210); LibSecp256r1 'modified to use precompile 0x05 modexp' (line 7), modexp staticcall(14000, 0x5, ...) (line 366)",
+    "DiamondCutFacet 0x0b950414": "diamondCut: onlyWhenUnlocked, LibDiamond.enforceIsSelf(), _checkFacetCutValidity, reverts if guardians exist (use diamondCutWithGuardian); Modifiers._checkFacetCutValidity: Add/Replace facets must pass s.facetRegistry.areFacetFunctionSelectorsRegistered"
+  }
+}
