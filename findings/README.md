@@ -1,12 +1,57 @@
 # findings/
 
-One file per finding: one project and one mechanism, with every affected mainnet contract. A project with two
-unrelated mechanisms (for example a SNARK verifier and a blob opening) has two findings that list each other in
-`related`. The files are the source of truth; `generated/` is built from them by `tools/build.py`.
+One file per finding, for every study. A finding is one issue: one project and one mechanism with every affected
+mainnet contract, or one situation that holds across many contracts, where each contract row names its project. The
+files are the source of truth; `generated/` is built from them by `tools/build.py`.
 
-## Threat model
+A finding says what the issue is, where it is (contract and function; transaction and inputs when there are any), why
+it is an issue, and how to reproduce it. It is one self-contained file: there is nothing beside it.
 
-A finding answers: **if someone has a cryptographically relevant quantum computer (CRQC), what can they do through
+## Adding a finding
+
+1. **Look first.** Search `generated/contracts.csv` for every address you have. If the issue is already there, do
+   not create a file: add your own entry to that finding's `sources`, with your study, and say in History what you
+   checked. The lists then show the finding as found by both studies.
+2. Copy `templates/finding.md` to `findings/<id>.md`. Filled examples for each level are in
+   `templates/examples/findings/`.
+3. Pick the pattern in [`patterns.md`](../patterns.md). If none fits, add a pattern, or a class, there in the same
+   pull request. What counts as a finding is up to the study that reports it.
+4. Run `uv run tools/build.py`.
+
+## Levels
+
+Every finding has one level, in `status`. The level is a label, not a gate: a finding can be filed at any level and
+moves up when someone adds what the next level needs.
+
+| Level | What it takes |
+|---|---|
+| `candidate` | A written claim. Reading-only is fine. It needs a title, a pattern, where it is, a `## Summary`, and who reports it from which study. Nothing else |
+| `confirmed` | The code is quoted in the finding and the state it depends on was read at a stated block (`evidence.block`). It is rated, and all six sections are filled |
+| `reproduced` | It was executed. The header carries `repro`: the command, a link to the code at a full commit hash, the inputs (block, transaction) and the result the command must give |
+
+`not-affected` (with `severity: NONE`) and `duplicate` (with `duplicate_of`) keep a file that turned out wrong or
+redundant, so links to it keep working.
+
+## Duplicates
+
+A contract can appear in any number of findings. A duplicate is the same contract under the same pattern in two
+findings, and `tools/build.py` refuses it. Two findings that really are different issues of one pattern on one
+contract say so by naming each other in `related`.
+
+## Evidence lives in the finding
+
+Quote the code that decides the issue in `## Evidence`, up to 150 lines; link anything longer. Give the block for
+every state read. Do not commit raw reads, traces or scripts: anyone can read the chain again at the block you name,
+and code lives with the study. Bulk material that a reader may still want is linked with `evidence.raw`, at a full
+commit hash.
+
+The 225 findings of the `top-callers-classification` study carry their source excerpts and review notes as appended
+documents after `## History`, exactly as the study wrote them. Excerpts longer than 150 lines and the raw reads are
+linked at the commit that held them.
+
+## Threat model for class `exposure`
+
+A finding of class `exposure` answers: **if someone has a cryptographically relevant quantum computer (CRQC), what can they do through
 this contract, and what can the people who run it change without a protocol change?**
 
 - A CRQC recovers a secret from public data for every pre-quantum scheme on Ethereum: secp256k1 and P-256 private keys
@@ -27,11 +72,11 @@ scope (pattern PQ-12), because the wallet code decides what an owner can change.
 | Field | Values | Meaning |
 |---|---|---|
 | `id` | slug = file name | Stable name, `<project>-<mechanism>` |
-| `title` | text | One line: what a quantum attacker can do, or what breaks for post-quantum users |
-| `project` | slug | The team that has to act |
-| `status` | `confirmed`, `candidate`, `not-affected`, `duplicate` | `confirmed`: the check was read in verified source or bytecode and the current on-chain state was read; `candidate`: classified but not yet both; `not-affected` needs `severity: NONE`; `duplicate` needs `duplicate_of` |
-| `severity` | `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`, `NONE`, `UNRATED` | See "Severity" |
-| `patterns` | list of `PQ-n` | From `patterns.md` |
+| `title` | text | One line: what breaks, or what an attacker can do, and for whom |
+| `project` | slug | The team that has to act. May be left out when every contract row has its own `project` |
+| `status` | `candidate`, `confirmed`, `reproduced`, `not-affected`, `duplicate` | The level; see "Levels" |
+| `severity` | `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`, `NONE`, `UNRATED` | See "Severity". A candidate may leave it out |
+| `patterns` | list of `PQ-n` | From `patterns.md`. The class of the first one is the finding's class |
 | `primitives` | list | `ecrecover`, `bn254`, `kzg`, `bls12381`, `p256`, `sw_p256`, `sw_secp256k1`, `sw_bn254`, `sw_ed25519`, `sw_bls12381`, `rsa` (`sw_` = curve maths done in software via `modexp`) |
 | `trigger` | `user-key`, `operator-key`, `committee-keys`, `trusted-setup`, `owner-keys`, `issuer-key`, `none` | What the attacker must break |
 | `impact` | `funds-loss`, `funds-locked`, `liveness`, `none`, `unknown` | Worst effect if nobody acts. `liveness`: post-quantum users cannot use the path, nothing is taken |
@@ -42,12 +87,17 @@ scope (pattern PQ-12), because the wallet code decides what an owner can change.
 | `fix.layer` | `contract-upgrade`, `onchain-config`, `new-deployment`, `account-migration`, `offchain`, `protocol`, `none`, `unknown` | Where the fix happens |
 | `fix.who_acts` | text | Who must act, with the address of the admin or owner where known |
 | `fix.protocol_change` | `required`, `helps`, `not-needed` | Whether an Ethereum protocol change is needed (`required`), would protect users without the team (`helps`, e.g. EIP-8151), or is irrelevant |
-| `evidence.level` | `onchain-read`, `source-read`, `bytecode`, `trace` | Strongest evidence: `source-read` = the check was read in verified source; `bytecode` = unverified, inferred from selectors and constants; `trace` = only seen calling a precompile |
-| `evidence.links` | list | Files under `evidence/<id>/` |
-| `sources[]` | `by`, `who`, `ref`, `date`, `verdict`, `rating` | One entry per classification or independent check; `rating` is that source's own rating |
-| `related` | list of ids | Findings that share contracts (same contracts, different mechanism), share code or a stack (one deployment per team), or were split from one another. Links go both ways |
+| `evidence.level` | `onchain-read`, `source-read`, `bytecode`, `trace`, `executed` | Strongest evidence: `source-read` = the check was read in verified source; `bytecode` = unverified, inferred from selectors and constants; `trace` = only seen calling a precompile; `executed` = run before and after a change |
+| `evidence.block` | number | The block at which state was read. Required from `confirmed` up |
+| `evidence.raw` | link | Optional: raw reads kept elsewhere, at a full commit hash |
+| `repro` | `code`, `command`, `inputs`, `expect` | Required for `reproduced`; see "Levels" |
+| `sources[]` | `study`, `who`, `date`, `by`, `ref`, `verdict`, `rating` | One entry per study that found or checked it. `study` is a folder in `studies/`; `by` is `ai-assisted`, `project-team` or `other`; `verdict` is `reported`, `confirmed` or `refuted`; `rating` is that source's own rating |
+| `related` | list of ids | Findings that share contracts, code or a stack, or were split from one another. Links go both ways |
 
-`contracts[]` entries: `address`, `implementation` (current, for a proxy), `name`, `upgradeable` (`yes`, `no`,
+`primitives`, `trigger`, `alternative`, `role` and `fix.protocol_change` describe an exposure. They are required, from
+`confirmed` up, only for findings of class `exposure`.
+
+`contracts[]` entries: `address`, `project` (only when it differs from the finding's), `implementation` (current, for a proxy), `name`, `upgradeable` (`yes`, `no`,
 `config-only`, `unknown`), `admin` (who can upgrade or reconfigure), `value_usd` and `value_basis` (`held` = ETH and
 tokens it holds; `market-cap` = circulating supply of a token whose permit is affected, an upper bound; `escrow` =
 what a forged message or proof could release elsewhere), `value_as_of`, `last_active` (last transaction that called the
@@ -57,6 +107,9 @@ contract, any function), `txs_30d` (transactions that called it in the 30-day wi
 `families[]` entries: `code`, `name`, `instances`, `list`, `upgradeable`, `value_usd`, `value_basis`, `value_as_of`.
 
 ## Severity
+
+The rubric below was written for class `exposure`. Findings of other classes use the same six ratings and the same
+first question (who can fix it, and how hard is that); their rubric is written with the first study that files them.
 
 Rated first by whether the exposure can be removed without an Ethereum protocol change, and how hard that is; then
 the value exposed can lower the rating, never raise it. Each source's own rating is kept in `sources[].rating`.

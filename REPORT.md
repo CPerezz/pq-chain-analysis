@@ -135,7 +135,7 @@ The 346 applications cover 86% of application transactions and 91% of applicatio
 - whether a non-pre-quantum path exists;
 - whether the code can change.
 
-The output, with an evidence string per contract, is in `data/report/curated_contracts.csv`. Confidence: 209 high, 75 medium, 62 low (mostly unverified market-maker or executor contracts).
+The output, with an evidence string per contract, is in `studies/top-callers-classification/results/curated_contracts.csv`. Confidence: 209 high, 75 medium, 62 low (mostly unverified market-maker or executor contracts).
 
 ### By function
 
@@ -289,7 +289,7 @@ All blob-posting rollups also depend on KZG commitments at the protocol level. E
 
 ## 7. Protocol context (as of 2026-11)
 
-Details and sources are in `research/pq-research.md`.
+Details and sources are in `studies/pq-landscape-research/notes.md`.
 
 | Item | Status | Relevance |
 |---|---|---|
@@ -306,10 +306,10 @@ Details and sources are in `research/pq-research.md`.
 
 | Path | Content |
 |---|---|
-| `data/report/*.csv` | Every table above, plus the full curated list (`curated_contracts.csv`: protocol, function, signer, reliance, ECDSA order, upgradeability, admin, PQ replacement, evidence, confidence) |
-| `data/curation/out_*.jsonl` | Per-contract classifications, with evidence |
-| `research/pq-research.md` | PQ verifier landscape, EIP status, replacement options and gas, vulnerable patterns (with sources) |
-| `scripts/` | Pipeline: `01_precompile_agg` → `02_contracts_pass` → `03_probe_callers` → `03b_caller_family` → `04_families` → `05_code_scan` → `06_value_flows` → `07_classify` → `08_holdings` → `09_report_tables` |
+| `studies/*/results/` | Every table above, with the study that produced it, plus the full curated list (`curated_contracts.csv`: protocol, function, signer, reliance, ECDSA order, upgradeability, admin, PQ replacement, evidence, confidence) |
+| [`data/curation/out_*.jsonl`](https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation) | Per-contract classifications, with evidence (kept at that commit) |
+| `studies/pq-landscape-research/notes.md` | PQ verifier landscape, EIP status, replacement options and gas, vulnerable patterns (with sources) |
+| [`scripts/`](https://github.com/kevaundray/pq-chain-analysis/tree/b0951d2b2e136d18e43266b184e4589157eb8c73/scripts) | Pipeline (kept at that commit): `01_precompile_agg` → `02_contracts_pass` → `03_probe_callers` → `03b_caller_family` → `04_families` → `05_code_scan` → `06_value_flows` → `07_classify` → `08_holdings` → `09_report_tables` |
 
 ---
 

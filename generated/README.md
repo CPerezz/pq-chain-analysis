@@ -1,20 +1,30 @@
 # generated/
 
-Built by `tools/build.py` from the headers of `findings/*.md`; do not edit by hand.
+Built by `tools/build.py` from the headers of `findings/*.md`, `studies/*/README.md` and `outreach/*.md`. Do not edit
+by hand and do not include these files in a pull request: CI rebuilds them after every merge to `main`. To preview
+locally, run `uv run tools/build.py`.
 
 | File | Contents |
 |---|---|
-| `INDEX.md` | Every finding by severity, with pattern, trigger, impact, alternative, upgradeability, fix, protocol change, exposure and 30-day activity; then counts by pattern |
-| `findings.csv` | One row per finding (same columns, plus who acts and the evidence level) |
-| `contracts.csv` | One row per affected contract: its finding, severity, implementation, admin, value with basis and date, last activity, 30-day transactions |
+| `INDEX.md` | Every finding by severity, with pattern, trigger, impact, alternative, upgradeability, fix, protocol change, exposure, 30-day activity, level, the studies that found it and outreach status |
+| `PATTERNS.md` | The same findings by class and pattern |
+| `STUDIES.md` | The same findings by study |
+| `findings.csv` | One row per finding: the columns above, plus who acts, the evidence level, the class, the studies and how many they are |
+| `contracts.csv` | One row per affected contract: its finding, severity, implementation, admin, value with basis and date, last activity, 30-day transactions, project and outreach status. Search it for an address before adding a finding |
+| `studies.csv` | One row per study: authors, status, topic, code link, spec commit, and its findings by level |
 
 Column meanings:
+
+- **Level**: `candidate`, `confirmed` or `reproduced`; see `findings/README.md`.
+- **Found by**: the studies named in the finding's `sources`, leaving out a source that refuted it. A finding found
+  by two or more studies is marked.
+- **Outreach**: the status in `outreach/<project>.md`; `not-contacted` when there is no such file.
 
 - **Exposure**: the finding's measured value at risk. `held` = ETH and tokens the affected contracts hold (or, with
   basis `escrow`, what a forged message or proof could release elsewhere); `market cap` = circulating supply of a
   token whose permit is affected, an upper bound. Blank = not measured.
 - **30-day txs / last active**: transactions that called the contract (directly or in any call frame, any function)
-  in the 30-day window, and the date of the latest one; from Xatu, window in `evidence/<id>/activity.json`. This is
+  in the 30-day window, and the date of the latest one; from Xatu, 2026-10-16 to 2026-11-16. This is
   how much the contract is used, not how often its pre-quantum check runs: Xatu call frames do not include precompile
   calls. The yearly pre-quantum figures are in `REPORT.md`. No USD figure is given for the window: summing transfers
   over every transaction touching a token or lending pool counts the same money many times.
