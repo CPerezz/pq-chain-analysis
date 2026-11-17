@@ -1,9 +1,24 @@
 # Patterns
 
-The ways contracts depend on pre-quantum cryptography. Findings reference them by ID in `patterns`. Each has a
-**Trigger** (what a quantum attacker must break) and **Detection** notes (how the census finds it).
+Findings are grouped by class and pattern. A finding names one or more pattern ids in `patterns`; its class is the
+class of the first one. To add a pattern, or a class, add it here in the same pull request as the finding that needs
+it. Ids are never renumbered or reused; new patterns continue the numbering.
+
+## Classes
+
+- **exposure**: something a quantum attacker can do through a contract, or that post-quantum users cannot do, as the
+  chain is today.
+- **regression**: something that works today and breaks for everyone when a protocol change activates.
+- **migration-hazard**: something an account loses by migrating once a protocol change is live.
+- **protection-gap**: a path a protocol change is meant to protect and does not reach.
+- **spec-issue**: a defect or an ambiguity in the text of a specification.
+
+Each pattern has a **Class**. Exposure patterns also have a **Trigger** (what a quantum attacker must break). All have
+**Detection** notes (how a study finds it).
 
 ## PQ-1: User signature checked with ECDSA only
+
+**Class:** exposure
 
 **Trigger:** user-key
 
@@ -17,6 +32,8 @@ the funds to a fresh address stops that.
 
 ## PQ-2: ECDSA tried before ERC-1271, or the signer chooses the scheme
 
+**Class:** exposure
+
 **Trigger:** user-key
 
 The contract accepts contract signatures (ERC-1271), so post-quantum accounts can use it, but it still tries
@@ -27,6 +44,8 @@ ECDSA. A migrated address stays forgeable with its old key.
 
 ## PQ-3: ERC-1271 path limited to 65-byte signatures
 
+**Class:** exposure
+
 **Trigger:** none (liveness)
 
 The contract forwards only `(v, r, s)` to ERC-1271, so a post-quantum signature (0.7–17 KB) cannot reach the
@@ -35,6 +54,8 @@ account. Post-quantum users are locked out of the path; nothing is forgeable bey
 **Detection:** verified source; interfaces taking `uint8 v, bytes32 r, bytes32 s`.
 
 ## PQ-4: One operator ECDSA key authorises value
+
+**Class:** exposure
 
 **Trigger:** operator-key
 
@@ -46,6 +67,8 @@ does not help; the contract must verify a different scheme.
 
 ## PQ-5: Committee of ECDSA signers attests a fact
 
+**Class:** exposure
+
 **Trigger:** committee-keys
 
 An m-of-n set of secp256k1 keys attests a cross-chain message, a price or a report (bridge guardians and attesters,
@@ -55,6 +78,8 @@ LayerZero DVNs, oracle networks). Forging m keys releases or mints whatever the 
 
 ## PQ-6: BLS aggregate signatures
 
+**Class:** exposure
+
 **Trigger:** committee-keys
 
 A committee's aggregate BLS signature (BN254 or BLS12-381) is verified with a pairing check. BLS secret keys follow
@@ -63,6 +88,8 @@ from public keys, so any quorum can be forged.
 **Detection:** pairing precompile calls with aggregate-key checks; EigenLayer `BLSSignatureChecker` and similar.
 
 ## PQ-7: SNARK verification over a pairing curve
+
+**Class:** exposure
 
 **Trigger:** trusted-setup
 
@@ -75,6 +102,8 @@ hash-based (STARK/FRI or WHIR) verifier at several times the gas.
 
 ## PQ-8: KZG blob commitment opening
 
+**Class:** exposure
+
 **Trigger:** trusted-setup
 
 The point-evaluation precompile (0x0a) opens EIP-4844 blob commitments under the KZG ceremony's setup. Blob data
@@ -85,6 +114,8 @@ fall back to calldata data availability (switchable by its admin) can leave KZG 
 
 ## PQ-9: P-256 passkeys
 
+**Class:** exposure
+
 **Trigger:** user-key
 
 WebAuthn / passkey signatures on secp256r1, through the 0x100 precompile or a Solidity verifier. Post-quantum
@@ -93,6 +124,8 @@ WebAuthn / passkey signatures on secp256r1, through the 0x100 precompile or a So
 **Detection:** `p256verify` calls; P-256 modulus in `modexp` calls; P-256 constants in bytecode.
 
 ## PQ-10: RSA identity signatures
+
+**Class:** exposure
 
 **Trigger:** issuer-key
 
@@ -103,6 +136,8 @@ must move to post-quantum keys before the contract can.
 
 ## PQ-11: secp256k1 algebra (VRF, Schnorr)
 
+**Class:** exposure
+
 **Trigger:** operator-key
 
 `ecrecover` or `modexp` used as a curve-arithmetic gadget: ECVRF randomness (Chainlink VRF), Schnorr or FROST
@@ -111,6 +146,8 @@ threshold signatures. Forging the key lets an attacker choose randomness or sign
 **Detection:** `ecrecover` plus secp256k1-field `modexp` in one contract.
 
 ## PQ-12: Wallet owners are ECDSA keys
+
+**Class:** exposure
 
 **Trigger:** owner-keys
 
@@ -121,6 +158,8 @@ owners or modules, by moving funds where the signer set is fixed.
 **Detection:** Safe and ERC-4337 selectors; `ecrecover` over an owner set.
 
 ## PQ-13: Account code checked before ECDSA (not affected)
+
+**Class:** exposure
 
 **Trigger:** none
 
