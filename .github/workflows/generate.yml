@@ -1,0 +1,33 @@
+name: generate
+
+# After every merge to main: rebuild generated/ and the site's data and commit them. Pull requests do not carry
+# generated files, so two open pull requests never conflict on them.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# One run at a time; a newer push replaces a waiting run, and every run rebuilds everything.
+concurrency: generate
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv run tools/build.py
+      - run: uv run tools/site_data.py
+      - name: Commit what changed
+        # No retry: if main moves between the pull and the push, this run fails and the next push rebuilds anyway.
+        run: |
+          git add generated/ docs/data.json
+          git diff --cached --quiet && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Rebuild generated/ and the site data [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
