@@ -2,7 +2,7 @@
 id: eip-8151-impact
 title: "EIP-8151 as written: what breaks, what a migrating account loses, and where its protection does not reach"
 authors: [CPerezz]
-status: planned
+status: running
 started: 2026-11-17
 published: null
 topic: eip-8151
