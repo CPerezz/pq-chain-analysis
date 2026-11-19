@@ -6,8 +6,6 @@ severity: HIGH
 patterns: [PQ-17]
 impact: liveness
 contracts:
-- {address: "0x1609cca90126a4f51b4800418ba5bbd81d4b9ac6", family: "775f9f4e73d3d81e75569bdf23921cf7", copies: 1515, name: "SmartAccountV2", upgradeable: "no", rating: HIGH, value_usd: 18069, value_basis: "held", value_as_of: 2026-11-18, note: "the user operation must be signed by the stored owner / isValidSignature: the recovered address must be an owner. Read from source. Update path: proxy to 0x5147ce3947a407c95687131be01a2b8d55fd0a40: no admin, no upgrade function in the implementation."}
-- {address: "0xbf4cfccd11257e568a936a7867d138f54a43cffa", family: "cd637a1eb0ac78bc8fd1efd6773d4cbf, dfe2cd89bb4eb5db0ff4881d9415b0ab", copies: 2, upgradeable: "yes", rating: HIGH, value_usd: 13354, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 258, note: "validators and guardians with thresholds behind an upgradeable proxy; no setter name seen. Bytecode and names. Executed: a real transaction reverts with code at the signer."}
 - {address: "0x2da74aad722b57a039d5e2df9497438e20886858", family: "c4d40d28600ff8774feaefb20bb255b9", copies: 680, name: "SmartAccount", upgradeable: "no", rating: HIGH, value_usd: 7834, value_basis: "held", value_as_of: 2026-11-18, note: "validateUserOp: the recovered address must be the owner / validateUserOpWithoutSig: the recovered address must be the owner / isValidSignature: the recovered address must be an owner. Read from source. Executed: a real transaction loses its effect with code at the signer. Update path: proxy to 0x3dbeb76d9d9444d7db9dcf3799e17acd247f8fac: no admin, no upgrade function in the implementation."}
 - {address: "0xa578e04d4c0937a834ed790c0a23b8d9f7b2cc25", family: "69b88ee9bae0f594a1ed7d3084f7878e, 5bbc9e003feced11faa980b608a38fef", copies: 48, name: "NefariousNarwhals", label: "deployed by Vision of Unity: Deployer", upgradeable: "yes", rating: HIGH, value_usd: 3970, value_basis: "held", value_as_of: 2026-11-18, note: "NFT proxy upgradeTo: the caller and the signer are two addresses written in the code. Read from source."}
 - {address: "0xde3f362a8f2e89c72eece8dc7b1d7a0cf8cbdb0b", family: "7920edf8f46b2404637a577bdcacfee4", name: "EthStonks", label: "deployed by Mr F", upgradeable: "no", rating: HIGH, value_usd: 2857, value_basis: "held", value_as_of: 2026-11-18, note: "the recovered address must be the admin. Read from source. Update path: no proxy slot, no upgrade function."}
@@ -677,7 +675,7 @@ reviews: []
 
 ## Summary
 
-These contracts accept signatures from a key that no function replaces; only an upgrade of the code does. 656 code families, 20,648 addresses, $13.7M held, 7,935 recoveries in the study's two-week window. Rows by rating: HIGH 426, LOW 230. 63 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+These contracts accept signatures from a key that no function replaces; only an upgrade of the code does. 654 code families, 19,131 addresses, $13.7M held, 7,677 recoveries in the study's two-week window. Rows by rating: HIGH 424, LOW 230. 62 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
 
 ## Mechanism
 
@@ -697,9 +695,9 @@ Largest rows by value held at block 26,438,999:
 - `0x8c401a037f083f769334b7c841d9c417d71db263` (unverified): $86k, LOW, 1,089 addresses
 - `0x5651289f4b55a4e1c813839b09c857f2efc1e2b2` (unverified): $27k, LOW, 650 addresses
 - `0xabea9132b05a70803a4e85094fd0e1800777fbef` (ZkSync): $23k, LOW
-- `0x1609cca90126a4f51b4800418ba5bbd81d4b9ac6` (SmartAccountV2): $18k, HIGH, 1,515 addresses
 - `0xdc7411d597111c83d7bcbc7c7523e9b2cd22c9eb` (Traitz): $15k, LOW
 - `0x9de1c58a7fbd40950eb1b5fd80325e32e8c34be6` (created by Nuo Network: Account Factory): $15k, LOW, 222 addresses
+- `0x74c0a1946d10faf9048e9ac59d1401bbbfc54ca4` (WithdrawAndDepositErc20): $11k, LOW, 2 addresses
 
 Every row is in the header; `generated/triage_contracts.csv` lists them for search.
 

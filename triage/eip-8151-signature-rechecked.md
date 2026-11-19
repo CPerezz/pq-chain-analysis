@@ -6,16 +6,7 @@ severity: CRITICAL
 patterns: [PQ-15]
 impact: funds-loss
 contracts:
-- {address: "0x617a74814d2c73b4a1655633c97654274cdb8775", family: "58b8e695129ef8eab1cfe41710150735", copies: 1647, name: "ChannelMastercopy", project: "connext", upgradeable: "no", rating: CRITICAL, value_usd: 272963, value_basis: "held", value_as_of: 2026-11-18, note: "Connext Vector channel: a channel state, a withdrawal or a transfer resolution counts only with the signatures of the channel's two participants, fixed when the channel is made / Connext Vector…. Read from source. Update path: delegates to a fixed address."}
-- {address: "0xafdf5b603f07cf664e44f3896bb2f0047d330ba4", family: "ef83389f8488b7b83bc903c63440b0f8", copies: 4306, name: "DepositRedemption", project: "tbtc", upgradeable: "no", rating: CRITICAL, value_usd: 234572, value_basis: "held", value_as_of: 2026-11-18, note: "tBTC v1 CheckBitcoinSigs: the recovered address must be the address of the signing group's public key; used for the redemption signature and as proof of a fraudulent signature. Read from source. Update path: delegates to a fixed address."}
-- {address: "0xbf2aeab03b82c182599930217272ef0fc5cf662b", family: "5c6fba46e8a71080eacef5aafd837cf4", copies: 5, name: "ECTools", project: "connext", upgradeable: "no", rating: CRITICAL, value_usd: 106365, value_basis: "held", value_as_of: 2026-11-18, note: "Connext ledger channel ECTools.isSignedBy: true when the recovered address equals the one named / Connext ledger channel consensus close: both parties of the channel must have signed the final…. Read from source. Update path: delegates to a fixed address."}
-- {address: "0xaffa8300d0e0ae1fbe140e1a74de31a64c78f6c1", family: "f37d66ccf0e1a2b64767777737114dec", copies: 2, name: "PaymentChannels", upgradeable: "no", rating: CRITICAL, value_usd: 101366, value_basis: "held", value_as_of: 2026-11-18, note: "PaymentChannels: a staker can start or finish an unstake only with its own ECDSA signature on a commitment, next to the notary's; there is no path without it, so a staker whose account takes code…. Read by hand. Update path: no proxy slot, no upgrade function."}
 - {address: "0xdf708431162ba247ddae362d2c919e0fbafcf9de", family: "e20f92ec2c4cf86e40cd1e9e59a905ae", copies: 2, label: "deployed by Threshold Network: Deployer 1", upgradeable: "no", rating: CRITICAL, value_usd: 30154, value_basis: "held", value_as_of: 2026-11-18, note: "Keep v1 random beacon: a DKG result counts only with signatures of the group's members, each recovered (OpenZeppelin recover) and compared with the member at its index, checked when the result is…. Read by hand. Update path: no proxy slot, no upgrade function."}
-- {address: "0xd216153c06e857cd7f72665e0af1d7d82172f494", family: "b356a0502cd82b95df81dd3568b41aa1", copies: 3, name: "RelayHub", project: "opengsn", upgradeable: "no", rating: CRITICAL, value_usd: 18361, value_basis: "held", value_as_of: 2026-11-18, note: "GSN v1 checkSig: true when the signer its caller names signed / GSN v1 canRelay: the `from` of the relayed call must have signed; a user can always call the recipient itself / GSN v1…. Read from source. Update path: no proxy slot, no upgrade function."}
-- {address: "0x333420fc6a897356e69b62417cd17ff012177d2b", family: "07c7ce7d5145039825bfb3dd5519cddf", name: "AdExCore", label: "deployed by heyAura: Deployer 2", upgradeable: "no", rating: CRITICAL, value_usd: 16036, value_basis: "held", value_as_of: 2026-11-18, note: "AdEx core: a channel pays out only on a state root signed by two thirds of the channel's validators, the first of them always; after the channel's end its creator takes back what is left. Read by hand. Update path: no proxy slot, no upgrade function."}
-- {address: "0x2f06f0df5433fd9ed67845ef6bcc1f50be4117a6", family: "0d0deff0f3a759cfc98bad3d4001f3df", copies: 2, name: "CoordinationPaymentChannels", upgradeable: "no", rating: CRITICAL, value_usd: 15778, value_basis: "held", value_as_of: 2026-11-18, note: "CoordinationPaymentChannels: a staker withdraws only with its own ECDSA signature on a commitment next to the coordinator's; a staker whose account takes code cannot withdraw. Read by hand. Update path: no proxy slot, no upgrade function."}
-- {address: "0x07bfa78d66d104fe9936201427400b0d78a2284c", family: "95f1dddb95873d0cbc38dca1ac4aba49", name: "VirtualPaymentManager", upgradeable: "no", rating: CRITICAL, value_usd: 13956, value_basis: "held", value_as_of: 2026-11-18, note: "Archanova verifyOwnerSignature: the signer must be an owner device of the account / Archanova virtual payment: the payment must be signed by a device of the paying account; the recipient withdraws…. Read from source. Update path: no proxy slot, no upgrade function."}
-- {address: "0xcc4c47cf0175aa8108e78679c2586a0a6abb242a", family: "c3b241e8d1c2a2ecc33b691a48093dff", name: "Lithium", project: "hydranet", upgradeable: "no", rating: CRITICAL, value_usd: 12358, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 268, note: "Lithium channel state: both alice and bob of the channel must have signed the state / Lithium channel state (calldata variant): both must have signed / Lithium revocation: the signature of alice or…. Read from source. Executed by hand: see Evidence. Update path: no proxy slot, no upgrade function."}
 - {address: "0x11d0b2243739656f54c0277ed0eecde46658a537", family: "baa73883b63370c91cf51cba4f85318f", copies: 2, upgradeable: "no", rating: CRITICAL, value_usd: 7603, value_basis: "held", value_as_of: 2026-11-18, note: "a payment channel (4 ETH): tickets the provider signed are settled later; a provider with code would void unsettled tickets. Bytecode and names. Update path: no proxy slot, no upgrade function."}
 - {address: "0xd60eea947aae39e507430b30ce11f142304d9cb1", family: "9299c0f31b2483e035bc87f424d5a94f", name: "PaymentChannels", upgradeable: "no", rating: CRITICAL, value_usd: 6594, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 138, note: "PaymentChannels (newer, 138 recoveries in the window): as the older one: a staker starts or finishes an unstake only with its own ECDSA signature on a commitment; a staker whose account takes code…. Read by hand. Executed: a real transaction reverts with code at the signer. Update path: no proxy slot, no upgrade function."}
 - {address: "0x6db8381b2b41b74e17f5d4eb82e8d5b04dda0a82", family: "69f4295e801cf8a63b6e8c01e6366d39", name: "OrchidLottery1", label: "deployed by Orchid: Deployer", upgradeable: "no", rating: CRITICAL, value_usd: 5609, value_basis: "held", value_as_of: 2026-11-18, note: "Orchid lottery claim: a ticket signed by the signer of a funder's account pays the recipient out of that account's deposit. Read from source. Update path: no proxy slot, no upgrade function."}
@@ -114,7 +105,7 @@ reviews: []
 
 ## Summary
 
-These contracts check a signature again after someone else has acted on it: channel states, fraud proofs, settlements, committee results. 93 code families, 22,270 addresses, $860k held, 645 recoveries in the study's two-week window. Rows by rating: CRITICAL 89, HIGH 2, LOW 2. 6 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+These contracts check a signature again after someone else has acted on it: channel states, fraud proofs, settlements, committee results. 84 code families, 16,302 addresses, $69k held, 377 recoveries in the study's two-week window. Rows by rating: CRITICAL 80, HIGH 2, LOW 2. 5 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
 
 ## Mechanism
 
@@ -130,16 +121,16 @@ PQ-15. The second check reads the signer's account code at that time. Once that 
 ## Impact and exposure
 
 Largest rows by value held at block 26,438,999:
-- `0x617a74814d2c73b4a1655633c97654274cdb8775` (ChannelMastercopy): $273k, CRITICAL, 1,647 addresses
-- `0xafdf5b603f07cf664e44f3896bb2f0047d330ba4` (DepositRedemption): $235k, CRITICAL, 4,306 addresses
-- `0xbf2aeab03b82c182599930217272ef0fc5cf662b` (ECTools): $106k, CRITICAL, 5 addresses
-- `0xaffa8300d0e0ae1fbe140e1a74de31a64c78f6c1` (PaymentChannels): $101k, CRITICAL, 2 addresses
 - `0xdf708431162ba247ddae362d2c919e0fbafcf9de` (deployed by Threshold Network: Deployer 1): $30k, CRITICAL, 2 addresses
-- `0xd216153c06e857cd7f72665e0af1d7d82172f494` (RelayHub): $18k, CRITICAL, 3 addresses
-- `0x333420fc6a897356e69b62417cd17ff012177d2b` (AdExCore): $16k, CRITICAL
-- `0x2f06f0df5433fd9ed67845ef6bcc1f50be4117a6` (CoordinationPaymentChannels): $16k, CRITICAL, 2 addresses
-- `0x07bfa78d66d104fe9936201427400b0d78a2284c` (VirtualPaymentManager): $14k, CRITICAL
-- `0xcc4c47cf0175aa8108e78679c2586a0a6abb242a` (Lithium): $12k, CRITICAL
+- `0x11d0b2243739656f54c0277ed0eecde46658a537` (unverified): $8k, CRITICAL, 2 addresses
+- `0xd60eea947aae39e507430b30ce11f142304d9cb1` (PaymentChannels): $7k, CRITICAL
+- `0x6db8381b2b41b74e17f5d4eb82e8d5b04dda0a82` (OrchidLottery1): $6k, CRITICAL
+- `0x7a984235ee85d776eafaa1b0a09ce760748dd4a6` (unverified): $5k, CRITICAL, 2 addresses
+- `0x31efc4aeaa7c39e54a33fdc3c46ee2bd70ae0a09` (TransactionManager): $5k, CRITICAL
+- `0xa5c9ecf54790334b73e5dfa1ff5668eb425dc474` (TokenNetwork): $4k, CRITICAL
+- `0x367b3f1a56970628fe9318c721506bb6ca3475ea` (unverified): $1k, CRITICAL, 135 addresses
+- `0xea92bd481e54bbb9bb6c927970a54e82ee26c6b4` (TokenNetwork): $1k, CRITICAL, 5 addresses
+- `0x0cdd78c34a4305234898864c1daccdbb326a520d` (PlasmaMVP): $902, CRITICAL
 
 Every row is in the header; `generated/triage_contracts.csv` lists them for search.
 

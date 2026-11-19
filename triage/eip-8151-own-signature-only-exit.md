@@ -6,12 +6,6 @@ severity: HIGH
 patterns: [PQ-16]
 impact: funds-locked
 contracts:
-- {address: "0xccb2718d633ed28bdf0639134380e2f5b05162b5", family: "ba1ed685933342c5f46663c2bfeb2adf", name: "ERC20EscrowV2", upgradeable: "no", rating: HIGH, value_usd: 151598, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 3984, note: "trade escrow in tokens, the same design as ETHEscrowV2 (its functions and caller checks listed by grep, ETH version read): direct release and buyerCancel, relayed signatures, disputes only with a…. Read by hand. Executed: a real transaction reverts with code at the signer. Update path: no proxy slot, no upgrade function."}
-- {address: "0xaffa8300d0e0ae1fbe140e1a74de31a64c78f6c1", family: "f37d66ccf0e1a2b64767777737114dec", copies: 2, name: "PaymentChannels", upgradeable: "no", rating: HIGH, value_usd: 101366, value_basis: "held", value_as_of: 2026-11-18, note: "PaymentChannels: a staker can start or finish an unstake only with its own ECDSA signature on a commitment, next to the notary's; there is no path without it, so a staker whose account takes code…. Read by hand. Update path: no proxy slot, no upgrade function."}
-- {address: "0x2b78a837c37549539c62ab54a235a8e19fea812f", family: "1567048089bd6f48b2aaddca70022941", name: "CentWallet", label: "Cent.co: Wallet", upgradeable: "no", rating: HIGH, value_usd: 70053, value_basis: "held", value_as_of: 2026-11-18, note: "CentWallet: every function is for the admin only and takes the signature of a key linked to the wallet; a wallet whose linked keys all sit on accounts with code cannot withdraw. 39 ETH, no recovery…. Read by hand. Update path: no proxy slot, no upgrade function."}
-- {address: "0x3a362a1966ff5aab35298e1565bda2c9fb124e41", family: "8343030030f4553952f8408c98f9bb4f", name: "ETHEscrowV2", upgradeable: "no", rating: HIGH, value_usd: 46205, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 5121, note: "trade escrow in ETH (function map, resolveDispute and claimStuck read): seller and buyer settle by their own call (release, buyerCancel) or by a relayed signature; a dispute can be resolved by the…. Read by hand. Executed: a real transaction reverts with code at the signer. Executed by hand: see Evidence. Update path: no proxy slot, no upgrade function."}
-- {address: "0x2f06f0df5433fd9ed67845ef6bcc1f50be4117a6", family: "0d0deff0f3a759cfc98bad3d4001f3df", copies: 2, name: "CoordinationPaymentChannels", upgradeable: "no", rating: HIGH, value_usd: 15778, value_basis: "held", value_as_of: 2026-11-18, note: "CoordinationPaymentChannels: a staker withdraws only with its own ECDSA signature on a commitment next to the coordinator's; a staker whose account takes code cannot withdraw. Read by hand. Update path: no proxy slot, no upgrade function."}
-- {address: "0x867ffb5a3871b500f65bdfafe0136f9667deae06", family: "583c5a3723df423540d14111dee85852", copies: 2, name: "LocalEthereumEscrows", label: "LocalEthereum 1", project: "localethereum", upgradeable: "no", rating: HIGH, value_usd: 12057, value_basis: "held", value_as_of: 2026-11-18, note: "LocalEthereum escrow: as LocalCoinSwap: a dispute can be resolved only with a signature of the buyer or of the seller. Read by hand. Update path: no proxy slot, no upgrade function."}
 - {address: "0x09678741bd50c3e74301f38fbd0136307099ae5d", family: "afcdcf8075a5ec2aba20a474929c3d82", copies: 2, name: "LocalEthereumEscrows", label: "LocalEthereum 2", project: "localethereum", upgradeable: "no", rating: HIGH, value_usd: 8761, value_basis: "held", value_as_of: 2026-11-18, note: "LocalEthereum escrow v1: a dispute can be resolved only with a signature of the buyer or of the seller. Read by hand. Update path: no proxy slot, no upgrade function."}
 - {address: "0xd60eea947aae39e507430b30ce11f142304d9cb1", family: "9299c0f31b2483e035bc87f424d5a94f", name: "PaymentChannels", upgradeable: "no", rating: HIGH, value_usd: 6594, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 138, note: "PaymentChannels (newer, 138 recoveries in the window): as the older one: a staker starts or finishes an unstake only with its own ECDSA signature on a commitment; a staker whose account takes code…. Read by hand. Executed: a real transaction reverts with code at the signer. Update path: no proxy slot, no upgrade function."}
 - {address: "0xede26ccc85ae521d06b5ef2604952a421c9124b6", family: "946542f811c596cddd93485f7d353f2b", name: "LocalCryptosETHEscrows", upgradeable: "no", rating: HIGH, value_usd: 6170, value_basis: "held", value_as_of: 2026-11-18, note: "LocalCryptos ETH escrow: a dispute can be resolved only with a signature of the buyer or of the seller. Read by hand. Update path: no proxy slot, no upgrade function."}
@@ -43,7 +37,7 @@ reviews: []
 
 ## Summary
 
-These contracts let a party act on its own funds or rights only with an ECDSA signature of its own address: no direct call, no ERC-1271. 22 code families, 68 addresses, $423k held, 9,273 recoveries in the study's two-week window. Rows by rating: HIGH 19, MEDIUM 1, LOW 2. 6 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+These contracts let a party act on its own funds or rights only with an ECDSA signature of its own address: no direct call, no ERC-1271. 16 code families, 59 addresses, $26k held, 168 recoveries in the study's two-week window. Rows by rating: HIGH 13, MEDIUM 1, LOW 2. 4 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
 
 ## Mechanism
 
@@ -57,16 +51,16 @@ PQ-16. Once the party's account has real code the signature recovers no address,
 ## Impact and exposure
 
 Largest rows by value held at block 26,438,999:
-- `0xccb2718d633ed28bdf0639134380e2f5b05162b5` (ERC20EscrowV2): $152k, HIGH
-- `0xaffa8300d0e0ae1fbe140e1a74de31a64c78f6c1` (PaymentChannels): $101k, HIGH, 2 addresses
-- `0x2b78a837c37549539c62ab54a235a8e19fea812f` (CentWallet): $70k, HIGH
-- `0x3a362a1966ff5aab35298e1565bda2c9fb124e41` (ETHEscrowV2): $46k, HIGH
-- `0x2f06f0df5433fd9ed67845ef6bcc1f50be4117a6` (CoordinationPaymentChannels): $16k, HIGH, 2 addresses
-- `0x867ffb5a3871b500f65bdfafe0136f9667deae06` (LocalEthereumEscrows): $12k, HIGH, 2 addresses
 - `0x09678741bd50c3e74301f38fbd0136307099ae5d` (LocalEthereumEscrows): $9k, HIGH, 2 addresses
 - `0xd60eea947aae39e507430b30ce11f142304d9cb1` (PaymentChannels): $7k, HIGH
 - `0xede26ccc85ae521d06b5ef2604952a421c9124b6` (LocalCryptosETHEscrows): $6k, HIGH
 - `0xda8b21b94668300ddbc0ecbaf57530d396287848` (LocalCoinSwapEthereumEscrow): $2k, HIGH
+- `0x0d7515af7a3f97f0678b0ac41a4408bbede25782` (BringTrade): $699, HIGH
+- `0x9f543912b88b98b7a2729ab9dc713217e52c3c75` (LocalEthereumEscrows): $315, HIGH, 2 addresses
+- `0xb40078c3871dcf6757e92f5369019fa20bf2bc15` (SAClientERC20): $258, LOW
+- `0xe570ed5e3efff7bd706a8057b4dc37a3f0db6798` (SignatureMerkleDrop128): $242, HIGH, 7 addresses
+- `0xaeb12b5ab62a49c14e72fb3ad2c0e809a9b446b3` (PirateLottery): $234, HIGH, 2 addresses
+- `0xeb3a00bcb6c9ff626fe57a5dbbdcf01730e7898f` (ZecSwap): $138, HIGH
 
 Every row is in the header; `generated/triage_contracts.csv` lists them for search.
 

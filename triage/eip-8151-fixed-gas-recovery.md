@@ -7,12 +7,6 @@ patterns: [PQ-14]
 impact: funds-locked
 contracts:
 - {address: "0x6880f6fd960d1581c2730a451a22eed1081cfd72", family: "9f4806d946187002751eeaec773042b2", name: "Fuel v1", label: "Fuel: Bridge", project: "fuel", upgradeable: "no", rating: CRITICAL, value_usd: 18, value_basis: "held", value_as_of: 2026-11-18, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list). Executed by hand: see Evidence. Rated by hand: executed: a fraud proof against an honestly signed block succeeds and pays its caller from the operator's bond. Update path: no proxy slot, no upgrade function."}
-- {address: "0x46403e94529fc04d04c9c393beab1d050ef06409", family: "ec48e906d326987fa6d024a17429964a", name: "BONUSROLL", label: "Fortunity", upgradeable: "no", rating: HIGH, value_usd: 41467, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode. Update path: no proxy slot, no upgrade function."}
-- {address: "0x4225d04ea2e2235e6dd15062d004a0cc769b6ad0", family: "8f8e691102c82d666b6650c33f4e0693", copies: 180, upgradeable: "no", rating: HIGH, value_usd: 32181, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode. Update path: no proxy slot, no upgrade function."}
-- {address: "0x48d8f22d45e40f34cb7c10799f31246f134e9b7f", family: "2e5ba8f711a5325c5fe13689650786c9", name: "EtherFlipGold", project: "etherflip", upgradeable: "no", rating: HIGH, value_usd: 29148, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode. Update path: no proxy slot, no upgrade function."}
-- {address: "0xda3c13eaa3d19d27e25553a1fc67b751398b2840", family: "1b2c32515b31c3ed06bd9188714e765e", copies: 400, name: "TeambrellaWallet", project: "teambrella", upgradeable: "no", rating: HIGH, value_usd: 25546, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode. Update path: no proxy slot, no upgrade function."}
-- {address: "0x4fe25c676fe5e0324a5ec7f5446af9c0a633d7a2", family: "283a98576d905e97411165cc1068d256", copies: 182, name: "TeambrellaWallet", project: "teambrella", upgradeable: "no", rating: HIGH, value_usd: 23711, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode. Update path: no proxy slot, no upgrade function."}
-- {address: "0xce5b4d4883d3886b38853d4942984a1a6870392b", family: "2804e3b9ef22ec4c7e0fd883066d94c4", copies: 84, upgradeable: "no", rating: HIGH, value_usd: 12162, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode. Update path: no proxy slot, no upgrade function."}
 - {address: "0xfa65bb26b28e7f923f73248a9a47a5466d9cc7ec", family: "e7a57a7c320f42aa7060e39b5262b4c7", name: "Bitlagio", upgradeable: "no", rating: HIGH, value_usd: 4782, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode. Update path: no proxy slot, no upgrade function."}
 - {address: "0xfd1e02b42694e845fbf28741e5ce9881507d9551", family: "4e0bed60b029b2cb243e9ccaed797d6d", copies: 17653, upgradeable: "no", rating: HIGH, value_usd: 4710, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 14, note: "every valid signature fails: the code gives the precompile 3,072 gas. Executed. Executed by hand: see Evidence. Rated by hand: each wallet holds one owner group's own funds. Update path: no proxy slot, no upgrade function."}
 - {address: "0xe150b693404a433b1c822c113f3fa84fe8e2c255", family: "f64ec9dc7ee4a1b1d99cb88f1a3f38d9", copies: 19, name: "GAME", upgradeable: "no", rating: HIGH, value_usd: 4621, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode. Update path: no proxy slot, no upgrade function."}
@@ -270,7 +264,6 @@ contracts:
 - {address: "0xfb30a5154b3d1cd024319d3092b3708443aee960", family: "1e12a88be4996aee05a9742b7f24a31f", upgradeable: "no", rating: HIGH, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list). Update path: no proxy slot, no upgrade function."}
 - {address: "0xfe4a45d6827dcb20a027a891122683e61d6a039c", family: "65a51c97f0056517699a0b94a12d7e38", copies: 2, name: "Casino", upgradeable: "no", rating: HIGH, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list). Update path: no proxy slot, no upgrade function."}
 - {address: "0xff153aaab90deb8d88c3e7e9e0737b03a5e8b93c", family: "dbf78ecbdd1e40dda42b745b2c7e558c", upgradeable: "no", rating: HIGH, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list). Update path: no proxy slot, no upgrade function."}
-- {address: "0xe5a04d98538231b0fab9aba60cd73ce4ff3039df", family: "0fa7b998d3ca2517f15886d2653dd1ef", name: "EtherFlip", label: "EtherFlip", project: "etherflip", upgradeable: "no", rating: MEDIUM, value_usd: 1359029, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode. Rated by hand: read: the owner moves the bankroll with refundTransfer, no signature needed; read: the owner moves the bankroll without a signature. Update path: no proxy slot, no upgrade function."}
 - {address: "0xb4a448387403554616eb5b50aa4c48f75243a015", family: "b063805f94cf9b39667802b7b2b854b3", name: "Mobius2Dv2", upgradeable: "yes", rating: LOW, value_usd: 10, value_basis: "held", value_as_of: 2026-11-18, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list). Update path: upgrade(address), owner 0x853012bce9eacabc6e9047be9630a7e6b3739a7a."}
 evidence: {level: executed, block: 26438999}
 sources:
@@ -287,7 +280,7 @@ reviews: []
 
 ## Summary
 
-These contracts forward a fixed amount of gas to `ecrecover` that is below the price of a successful recovery under EIP-8151 (3,200 warm, 6,100 cold). 266 code families, 20,076 addresses, $1.6M held, 14 recoveries in the study's two-week window. Rows by rating: CRITICAL 1, HIGH 263, MEDIUM 1, LOW 1. 2 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+These contracts forward a fixed amount of gas to `ecrecover` that is below the price of a successful recovery under EIP-8151 (3,200 warm, 6,100 cold). 259 code families, 19,227 addresses, $36k held, 14 recoveries in the study's two-week window. Rows by rating: CRITICAL 1, HIGH 257, LOW 1. 2 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
 
 ## Mechanism
 
@@ -302,16 +295,16 @@ PQ-14. The gas operand of the call to `0x01` is a constant: 3,000 in the Oracliz
 ## Impact and exposure
 
 Largest rows by value held at block 26,438,999:
-- `0xe5a04d98538231b0fab9aba60cd73ce4ff3039df` (EtherFlip): $1.4M, MEDIUM
-- `0x46403e94529fc04d04c9c393beab1d050ef06409` (BONUSROLL): $41k, HIGH
-- `0x4225d04ea2e2235e6dd15062d004a0cc769b6ad0` (unverified): $32k, HIGH, 180 addresses
-- `0x48d8f22d45e40f34cb7c10799f31246f134e9b7f` (EtherFlipGold): $29k, HIGH
-- `0xda3c13eaa3d19d27e25553a1fc67b751398b2840` (TeambrellaWallet): $26k, HIGH, 400 addresses
-- `0x4fe25c676fe5e0324a5ec7f5446af9c0a633d7a2` (TeambrellaWallet): $24k, HIGH, 182 addresses
-- `0xce5b4d4883d3886b38853d4942984a1a6870392b` (unverified): $12k, HIGH, 84 addresses
 - `0xfa65bb26b28e7f923f73248a9a47a5466d9cc7ec` (Bitlagio): $5k, HIGH
 - `0xfd1e02b42694e845fbf28741e5ce9881507d9551` (unverified): $5k, HIGH, 17,653 addresses
 - `0xe150b693404a433b1c822c113f3fa84fe8e2c255` (GAME): $5k, HIGH, 19 addresses
+- `0xbfb45549e5630e1f4e6bb4d3f7132563100e08c9` (LuckyStrike): $2k, HIGH, 2 addresses
+- `0x7e5cb2a2b9c64872d64320bf5bcb8de8c16773a1` (unverified): $2k, HIGH
+- `0xbf43a3f0777bf04f9820380b6e4df6e692f7ddb7` (RNG): $2k, HIGH
+- `0x5a4e4b5e2e78bf2d9df2cd916106862e5873f819` (RNGOracle): $1k, HIGH
+- `0xb4b71bd698422fe8f1d3aaf694a422b45fc425d6` (BitrueRaffleNumber): $1k, HIGH, 2 addresses
+- `0xfef0d2f3a79b4338d8418003dd9df89281242063` (LiquidityTransformer): $1k, HIGH
+- `0x18dd9ae3383de623db1ea37d8da5dde1dc74d356` (DrawTicket): $1k, HIGH, 2 addresses
 
 Every row is in the header; `generated/triage_contracts.csv` lists them for search.
 
