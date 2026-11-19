@@ -12,7 +12,6 @@ contracts:
 - {address: "0xda3c13eaa3d19d27e25553a1fc67b751398b2840", family: "1b2c32515b31c3ed06bd9188714e765e", copies: 400, name: "TeambrellaWallet", project: "teambrella", upgradeable: "no", rating: CRITICAL, value_usd: 25625, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode."}
 - {address: "0x4fe25c676fe5e0324a5ec7f5446af9c0a633d7a2", family: "283a98576d905e97411165cc1068d256", copies: 182, name: "TeambrellaWallet", project: "teambrella", upgradeable: "no", rating: CRITICAL, value_usd: 23640, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode."}
 - {address: "0xce5b4d4883d3886b38853d4942984a1a6870392b", family: "2804e3b9ef22ec4c7e0fd883066d94c4", copies: 84, upgradeable: "no", rating: CRITICAL, value_usd: 12091, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode."}
-- {address: "0xfd1e02b42694e845fbf28741e5ce9881507d9551", family: "4e0bed60b029b2cb243e9ccaed797d6d", copies: 17653, upgradeable: "no", rating: CRITICAL, value_usd: 4692, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 14, note: "every valid signature fails: the code gives the precompile 3,072 gas. Executed."}
 - {address: "0xe150b693404a433b1c822c113f3fa84fe8e2c255", family: "f64ec9dc7ee4a1b1d99cb88f1a3f38d9", copies: 19, name: "GAME", upgradeable: "no", rating: CRITICAL, value_usd: 4692, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode."}
 - {address: "0xfa65bb26b28e7f923f73248a9a47a5466d9cc7ec", family: "e7a57a7c320f42aa7060e39b5262b4c7", name: "Bitlagio", upgradeable: "no", rating: CRITICAL, value_usd: 4692, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode."}
 - {address: "0xbfb45549e5630e1f4e6bb4d3f7132563100e08c9", family: "1ab8a524d80fff349ff9eb286a2362cb", copies: 2, name: "LuckyStrike", upgradeable: "no", rating: CRITICAL, value_usd: 1985, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode."}
@@ -146,7 +145,7 @@ contracts:
 - {address: "0x61968339a34c727c1887040a16fe7d715f4667ac", family: "abad198cd9baebbfe7e031d157ccf84f", upgradeable: "unknown", rating: CRITICAL, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list)."}
 - {address: "0x639e250b6eb084e2b3575eaac76873221b431bbb", family: "1667d24600109e5134213bd883876680", upgradeable: "unknown", rating: CRITICAL, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list)."}
 - {address: "0x66a774d9e95b7e492c838e94be59bc2867bcd915", family: "0d09fa87ec8dca89e131c7df8a900820", copies: 2, name: "Oracle", upgradeable: "unknown", rating: CRITICAL, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list)."}
-- {address: "0x6880f6fd960d1581c2730a451a22eed1081cfd72", family: "9f4806d946187002751eeaec773042b2", label: "Fuel: Bridge", upgradeable: "unknown", rating: CRITICAL, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list)."}
+- {address: "0x6880f6fd960d1581c2730a451a22eed1081cfd72", family: "9f4806d946187002751eeaec773042b2", name: "Fuel v1", label: "Fuel: Bridge", project: "fuel", upgradeable: "unknown", rating: CRITICAL, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list). Executed by hand: see Evidence."}
 - {address: "0x6a64f8fc5d2afa0dbacee0716dff1a1d62875ff8", family: "c910964bf074c8d687de3cceb3685097", upgradeable: "unknown", rating: CRITICAL, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list)."}
 - {address: "0x6b0f51c63b1b7d0c2246fe24a653f2c0eb74dd60", family: "8255a80517321b93e4bc06c7c1a3c121", label: "deployed by Wise: Deployer", upgradeable: "unknown", rating: CRITICAL, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list)."}
 - {address: "0x6c34ade33c183fedeff205e8d2f52cf924b879b5", family: "ffe7d4837ff7995871bc5780e87871b2", upgradeable: "unknown", rating: CRITICAL, note: "5000 gas to the precompile: fails when the recovered address is cold. Scanner only (outside the reading list)."}
@@ -271,8 +270,9 @@ contracts:
 - {address: "0xfcd61090654e690801a64abf123171379f514d0b", family: "555bc227e283899866922cbd63cd8ba3", upgradeable: "unknown", rating: CRITICAL, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list)."}
 - {address: "0xff153aaab90deb8d88c3e7e9e0737b03a5e8b93c", family: "dbf78ecbdd1e40dda42b745b2c7e558c", upgradeable: "unknown", rating: CRITICAL, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list)."}
 - {address: "0xffc08dd84a66775e6236e0a80ee2f340e0042f8c", family: "2bb5ed982861130ece04cf10a5caa060", name: "EtherFlip", project: "etherflip", upgradeable: "unknown", rating: CRITICAL, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list)."}
+- {address: "0xfd1e02b42694e845fbf28741e5ce9881507d9551", family: "4e0bed60b029b2cb243e9ccaed797d6d", copies: 17653, upgradeable: "no", rating: HIGH, value_usd: 4692, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 14, note: "every valid signature fails: the code gives the precompile 3,072 gas. Executed. Executed by hand: see Evidence. Rated by hand: each wallet holds one owner group's own funds."}
 - {address: "0xe5a04d98538231b0fab9aba60cd73ce4ff3039df", family: "0fa7b998d3ca2517f15886d2653dd1ef", name: "EtherFlip", label: "EtherFlip", project: "etherflip", upgradeable: "no", rating: MEDIUM, value_usd: 1359014, value_basis: "held", value_as_of: 2026-11-18, note: "every valid signature fails: the code gives the precompile 3,000 gas. Bytecode. Rated by hand: read: the owner moves the bankroll with refundTransfer, no signature needed; read: the owner moves the bankroll without a signature."}
-evidence: {level: source-read, block: 26438999}
+evidence: {level: executed, block: 26438999}
 sources:
 - by: ai-assisted
   study: eip-8151-impact
@@ -287,7 +287,7 @@ reviews: []
 
 ## Summary
 
-These contracts forward a fixed amount of gas to `ecrecover` that is below the price of a successful recovery under EIP-8151 (3,200 warm, 6,100 cold). 266 code families, 20,076 addresses, $1.6M held, 14 recoveries in the study's two-week window. Rows by rating: CRITICAL 265, MEDIUM 1. 0 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+These contracts forward a fixed amount of gas to `ecrecover` that is below the price of a successful recovery under EIP-8151 (3,200 warm, 6,100 cold). 266 code families, 20,076 addresses, $1.6M held, 14 recoveries in the study's two-week window. Rows by rating: CRITICAL 264, HIGH 1, MEDIUM 1. 2 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
 
 ## Mechanism
 
@@ -309,9 +309,9 @@ Largest rows by value held at block 26,438,999:
 - `0xda3c13eaa3d19d27e25553a1fc67b751398b2840` (TeambrellaWallet): $26k, CRITICAL, 400 addresses
 - `0x4fe25c676fe5e0324a5ec7f5446af9c0a633d7a2` (TeambrellaWallet): $24k, CRITICAL, 182 addresses
 - `0xce5b4d4883d3886b38853d4942984a1a6870392b` (unverified): $12k, CRITICAL, 84 addresses
-- `0xfd1e02b42694e845fbf28741e5ce9881507d9551` (unverified): $5k, CRITICAL, 17,653 addresses
 - `0xe150b693404a433b1c822c113f3fa84fe8e2c255` (GAME): $5k, CRITICAL, 19 addresses
 - `0xfa65bb26b28e7f923f73248a9a47a5466d9cc7ec` (Bitlagio): $5k, CRITICAL
+- `0xfd1e02b42694e845fbf28741e5ce9881507d9551` (unverified): $5k, HIGH, 17,653 addresses
 
 Every row is in the header; `generated/triage_contracts.csv` lists them for search.
 

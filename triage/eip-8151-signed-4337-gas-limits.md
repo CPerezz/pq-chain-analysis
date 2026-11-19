@@ -8,7 +8,7 @@ impact: liveness
 contracts:
 - {address: "0x0000fa3e509d629516ae56dc6fdd31047300114d", family: "cbf21f99097a2b70e5ebbaf5001dde0a", copies: 928, name: "SafeL2", label: "deployed by Pimlico: ERC-4337 Bundler 12", upgradeable: "yes", rating: LOW, value_usd: 228818, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 339, note: "traced: an ERC-4337 bundle (EntryPoint 0x0000000071727de2…); a Safe account's owner signatures are checked in validateUserOp and a paymaster checks its own, each under a verification gas limit signed…. Executed and traced."}
 - {address: "0x000000000804ff442be7d200445362c46a008add", family: "f441c4cb49a72abfcfc0ccbd58df3d5d", copies: 3, upgradeable: "yes", rating: LOW, recoveries_14d: 1174, note: "traced: an ERC-4337 bundle; this verifying paymaster is called by the EntryPoint with the paymaster verification gas limit of each user operation (30,000), which is signed in the operation. With the…. Executed and traced."}
-evidence: {level: source-read, block: 26438999}
+evidence: {level: executed, block: 26438999}
 sources:
 - by: ai-assisted
   study: eip-8151-impact
@@ -23,7 +23,7 @@ reviews: []
 
 ## Summary
 
-A real operation of each family fails under EIP-8151 even with more transaction gas. 2 code families, 931 addresses, $229k held, 1,513 recoveries in the study's two-week window. Rows by rating: LOW 2. 0 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+A real operation of each family fails under EIP-8151 even with more transaction gas. 2 code families, 931 addresses, $229k held, 1,513 recoveries in the study's two-week window. Rows by rating: LOW 2. 2 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
 
 ## Mechanism
 
