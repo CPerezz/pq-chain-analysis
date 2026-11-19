@@ -214,3 +214,37 @@ changes only by an upgrade or an administrator.
 **Detection:** a function that moves a user's own balance, or exercises a user's right, where the recovered address
 must equal the user named in the call or the caller, and no other function reaches the same effect. Confirmed by
 replaying a real call with code at the user.
+
+## PQ-17: A signer the contract cannot replace in place
+
+**Class:** migration-hazard
+
+The contract accepts a signature only from a key fixed in its code, set once at deployment, or replaceable only by an
+upgrade: a wallet's signer set, an operator that signs quotes, claims or withdrawals. Under EIP-8151 that key stops
+working once its account takes real code. The wallet locks or the service stops for everyone who depends on it, until
+an upgrade or a new deployment. Where a function can replace the key, its holder only has to rotate before migrating.
+
+**Detection:** the recovered address is compared with a constant, an immutable, or a stored value that no function
+writes (or only an upgrade does). Confirmed by replaying a real call with code at the signer.
+
+## PQ-18: Gas limits chosen before the price changes
+
+**Class:** regression
+
+A transaction or a signed operation carries a gas limit chosen for today's price: a sender with no margin, a relayer's
+fixed limit, an ERC-4337 verification limit the user signed. Under EIP-8151 each recovery costs up to 3,100 gas more,
+and such a limit fails on activation day although the contract is unchanged. Whoever sets the limit fixes it; a signed
+limit needs a new signature.
+
+**Detection:** a real transaction that fails under EIP-8151 as sent and succeeds with a higher gas limit.
+
+## PQ-19: A signed shortcut that a migrated signer loses
+
+**Class:** migration-hazard
+
+A user can act through an ECDSA signature (a permit, a signed order, a relayed call) and the same act stays open by a
+direct call. Under EIP-8151 a user whose account has real code loses the signed path and keeps the direct one. Nothing
+is locked; gasless and relayed flows stop for that user.
+
+**Detection:** a function whose recovered address must equal a named user, next to a direct function for the same
+act.
