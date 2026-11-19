@@ -152,6 +152,7 @@ contracts:
 - {address: "0x532d02c903e6ee2465527bb5d684162f64ebfd6c", family: "288f73f34ade1eef0c9bd000ec6c178b", copies: 2, upgradeable: "unknown", rating: HIGH, note: "BitGo WalletSimple (2017): the second signer must be one of the wallet's signers, fixed at creation, and not the caller, who must be a signer too / BitGo WalletSimple (2017):…. Same code idiom as template 55e4db93, not read on its own."}
 - {address: "0x56096dc9d92b32dd8fa530240537d3d61dd363bb", family: "2798368df6be3272bc3ae308722943fa", upgradeable: "unknown", rating: HIGH, note: "SimpleMultiSig: every signature must recover to an owner, in ascending order; the caller does not count; no function changes the owners. Same code idiom as template 8f5fee6f, not read on its own."}
 - {address: "0x573bbda6902d0ad685dcc709883886d52d4c05e1", family: "0ce76a69214462f0ef871ee6e79248d8", copies: 2, upgradeable: "unknown", rating: HIGH, note: "Ownbit multisig: `required` distinct owners must have signed with ECDSA; the caller does not count; no function changes the owners. Same code idiom as template 66d724c3, not read on its own."}
+- {address: "0x584ee92eaced80ca000a0e8ded95fe1ba9782bc3", family: "cf06167c1c2869dd92d0aafd5dba5d24", name: "WalletSimple", upgradeable: "no", rating: HIGH, note: "BitGo WalletSimple (2017): the second signer must be one of the wallet's signers, fixed at creation, and not the caller, who must be a signer too / BitGo WalletSimple (2017): returns the signer to…. Read (function text)."}
 - {address: "0x598d8138b0a73211c3ea04d4bf16b3673e9c86aa", family: "81aaf2dff78aad1d4d6c4bcb6fce7a04", upgradeable: "unknown", rating: HIGH, note: "SimpleMultiSig: every signature must recover to an owner, in ascending order; the caller does not count; no function changes the owners. Same code idiom as template 8f5fee6f, not read on its own."}
 - {address: "0x5eb71e5a34ec8d41f6ef487e5a61138800b02436", family: "fc27d1aa469a146f215018344cfc016e", upgradeable: "unknown", rating: HIGH, note: "Ownbit multisig: `required` distinct owners must have signed with ECDSA; the caller does not count; no function changes the owners. Same code idiom as template 66d724c3, not read on its own."}
 - {address: "0x5f003f5e57fa3fd73ccba385ad44b804e1e96600", family: "c9e79c812d2b96d1c1b7fb993caef582", upgradeable: "unknown", rating: HIGH, note: "Ownbit multisig (older): `required` distinct owners by ECDSA; no function changes the owners. Same code idiom as template bd7bb1ad, not read on its own."}
@@ -240,7 +241,7 @@ reviews: []
 
 ## Summary
 
-These wallets and multisigs check their owners' signatures against a set fixed in their code. 219 code families, 25,729 addresses, $9.7M held, 452 recoveries in the study's two-week window. Rows by rating: HIGH 219. 16 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+These wallets and multisigs check their owners' signatures against a set fixed in their code. 220 code families, 25,730 addresses, $9.7M held, 452 recoveries in the study's two-week window. Rows by rating: HIGH 220. 16 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
 
 ## Mechanism
 
@@ -274,3 +275,4 @@ Each owner group moves its funds before its signers migrate.
 
 - 2026-11-19: filed from study `eip-8151-impact`, one entry per root issue (D-022). The per-project entries filed earlier that day are in git history (commit `d9c90af`).
 - 2026-11-19: 14 rows added with --add from `verdicts.csv`.
+- 2026-11-19: 1 row added with --add from `verdicts.csv`.
