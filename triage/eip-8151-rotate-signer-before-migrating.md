@@ -2006,6 +2006,7 @@ contracts:
 - {address: "0x6985237077196c3a141f2c48ffb39da798bc4f84", family: "0950bddaf7abf7ba519cec0d43f4b233", copies: 2, upgradeable: "no", rating: LOW, value_usd: 5, value_basis: "held", value_as_of: 2026-11-18, note: "the signer is a set of keys kept in storage; functions replace it (addSignedWhitelistAdmin, addSignedWhitelisted). Whoever holds it must replace it before that account takes code. Rule: stored-key."}
 - {address: "0x6bea950f647afa0bdf35b3db0d1d125f56e6545b", family: "898177d175abee8a7532aa10353e5605", name: "VerifyingPaymaster", upgradeable: "no", rating: LOW, value_usd: 5, value_basis: "held", value_as_of: 2026-11-18, note: "the signer is one key kept in storage; functions replace it (setVerifyingSigner). Whoever holds it must replace it before that account takes code. Rule: stored-key."}
 - {address: "0x6ff1f57576ac95502d9af96661aac5942eeafea9", family: "c6ffe70f31e3f3ebd43c8e86b294b310", name: "ProtocolFeeDistributor", upgradeable: "no", rating: LOW, value_usd: 5, value_basis: "held", value_as_of: 2026-11-18, note: "the signer is one key kept in storage; functions replace it (setBackendCaller, setBackendSigner, setThresholds, swapThreshold). Whoever holds it must replace it before that account takes code. Rule: stored-key."}
+- {address: "0x72e9b2f7844ea1066090bde25f4805e3235f5e6f", family: "848262d5fea806c0ef5040a1c6be8968", copies: 7, name: "N2MERC1155", label: "mucha: 777 Token", upgradeable: "no", rating: LOW, value_usd: 5, value_basis: "held", value_as_of: 2026-11-18, note: "N2M ERC1155 mintPresale: signed by the platform's presale signer, fixed in the code, or by owner(), which the owner hands over; only the platform's route is lost. Read."}
 - {address: "0x83c820624d558c367b44ea27765777f408b4cc50", family: "03557ed238622ee0bb652dc10ea0ce74", upgradeable: "no", rating: LOW, value_usd: 5, value_basis: "held", value_as_of: 2026-11-18, note: "the signer is one key kept in storage; functions replace it (grantRole, revokeRole, setRoleRevoker). Whoever holds it must replace it before that account takes code. Rule: stored-key."}
 - {address: "0x85c71e0bde93a1719b1be9358172ad472090217c", family: "8c81039d3b3bec61da63612154ae3b99", name: "ERC1155LazyPayableClaim", upgradeable: "no", rating: LOW, value_usd: 5, value_basis: "held", value_as_of: 2026-11-18, note: "the signer is one key kept in storage; functions replace it (setMembershipAddress). Whoever holds it must replace it before that account takes code. Rule: stored-key."}
 - {address: "0x879dd17e9849858b4b2c3c2fde022fd32e267aaf", family: "668c7d93e6cacdfe1980535a3e089ff4", copies: 2, upgradeable: "yes", rating: LOW, value_usd: 5, value_basis: "held", value_as_of: 2026-11-18, note: "the signer is one key kept in storage; functions replace it (changeOracle). Whoever holds it must replace it before that account takes code. Rule: stored-key."}
@@ -19148,7 +19149,7 @@ reviews: []
 
 ## Summary
 
-These contracts accept signatures from a key that a function can replace. 19,127 code families, 1,523,830 addresses, $6.8B held, 1,085,911 recoveries in the study's two-week window. Rows by rating: LOW 19,127. 638 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+These contracts accept signatures from a key that a function can replace. 19,128 code families, 1,523,837 addresses, $6.8B held, 1,085,911 recoveries in the study's two-week window. Rows by rating: LOW 19,128. 638 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
 
 ## Mechanism
 
@@ -19184,3 +19185,4 @@ Rotate the key before its account takes code.
 - 2026-11-19: 16,850 rows added with --add from `verdicts.csv`.
 - 2026-11-19: 878 rows added with --add from `verdicts.csv`.
 - 2026-11-19: rows rated by how hard the fix is, one row per family and update path (D-024).
+- 2026-11-20: 1 row added with --add from `verdicts.csv`.
