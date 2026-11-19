@@ -98,6 +98,10 @@ Findings:
 - [bitgo-walletsimple-ecdsa-signers](../../findings/bitgo-walletsimple-ecdsa-signers.md) (an existing finding, this
   study added as a source): a real transaction replayed with code at the co-signer's address reverts; with a 7702
   delegation it succeeds.
+- [safe-owner-ecdsa-keys](../../findings/safe-owner-ecdsa-keys.md) (an existing finding, this study added as a
+  source): on Safe 1.3.0 a real transaction reverts when the signing owner's address has code, and an owner keeps
+  two other ways of signing. A second real transaction, sent with 1,941 gas to spare, reverts under the EIP with
+  nobody migrated: the recovery costs 3,100 more.
 
 ## Limits
 

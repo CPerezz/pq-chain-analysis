@@ -539,6 +539,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (source of 1.3.0 read, two real transactions replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, replays of 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: []
 ---
 
@@ -587,6 +594,17 @@ for post-quantum signer contracts in place.
   CHECKED (Xatu, any function): activity ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/safe-owner-ecdsa-keys/activity.json)).
 - CHECKED (precompile trace): the three family counts below are SafeProxy instances of each singleton that called
   `ecrecover` in the trace.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): two `execTransaction` calls on Safe 1.3.0 proxies,
+  replayed on the reference implementation of the fork from the parent block's state, with only the `ecrecover`
+  precompile changed. In both the owner that signed is not the sender.
+
+  | Transaction | Today's rules | EIP-8151 | EIP-8151, code at the owner | EIP-8151, 7702 delegation at the owner |
+  |---|---|---|---|---|
+  | `0x9795079ee42bdd783f91553f91aa528e306071427a701a4b298c5a341d1305a0` (block 26,434,381, position 2) | success, 460,388 gas, equal to the receipt | success, 463,488 gas | **revert** | success, 463,488 gas |
+  | `0x16a1d468122d1a5ae05007fb587fdefc8ef631d4fc6ee7f4c714340835a16208` (block 26,435,836, position 0) | success, 97,531 gas, equal to the receipt | **revert** | revert | revert |
+
+  The second transaction was sent with 1,941 gas to spare. A recovery of a cold address costs 3,100 more under the
+  EIP, so it fails with nobody migrated: the sender's gas limit is at fault, not the Safe.
 
 ## Impact and exposure
 
@@ -674,3 +692,13 @@ Signer sets run from 1 to 11 owners (`0x81ad394c…` 6 of 11). A one-owner thres
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: owners can move to post-quantum signers in place (contract owners, modules or upgrade)).
 - 2026-11-17 review (Review04): MEDIUM kept (step 4: each Safe's owners can swap EOA owners for post-quantum signer contracts in place). Re-read threshold, owners, version, singleton, guard and modules of all 48 Safes at block 26,431,566 and typed all 219 owners; corrected 0x2bf916f8 (Safe 1.5.0) and 0x0632dcc3 (implementation 0xd9db270c).
+- 2026-11-19 (study `eip-8151-impact`): `GnosisSafe.sol` 1.3.0, `checkNSignatures` lines 248 to 302, read again. An
+  owner can sign in four ways: a contract signature through `isValidSignature` (`v == 0`), an approved hash
+  (`v == 1`: the owner is `msg.sender` or called `approveHash`), and two `ecrecover` forms. What EIP-8151, as
+  written, does here: when an owner's address has real code its two `ecrecover` forms stop (the transaction
+  reverts: executed, see Evidence; by the source the reason is `GS026`, line 301; the reason string was not
+  decoded from the replay), and the two other forms remain (source read, not executed). So
+  an owner that migrates loses a way of signing and keeps its right, as long as its new account can call the Safe
+  or answers `isValidSignature`. A 7702-delegated owner is not affected. On activation day each ECDSA owner
+  signature costs 3,100 gas more when the owner's address is cold; 4,400 of 14,826 recoveries by this singleton in
+  blocks 26,339,000 to 26,438,999 ran with less than that to spare in some frame.
