@@ -12,6 +12,7 @@ contracts:
 - {address: "0x8e3a4a7208aa489cc0a1c7290070811b07e60c87", family: "6e908382fcad6bef9b51edcc38f32eae", copies: 83, upgradeable: "no", rating: CRITICAL, value_usd: 13172205, value_basis: "held", value_as_of: 2026-11-18, note: "83 wallets holding 7,299 ETH in the BitGo pattern: a stored signer other than the caller; no function name that changes signers. Bytecode and names."}
 - {address: "0x8c33d309157553d69413d98ea853424689c0c2b1", family: "051d356810ecba1609f75aab780c552a", copies: 2, upgradeable: "no", rating: CRITICAL, value_usd: 9739391, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 1098, note: "2 multisig wallets holding 5,397 ETH, 1,098 recoveries in the window: ordered owner signatures (isOwner, threshold, execute); no function name that changes owners. Bytecode and names. Executed: a real transaction reverts with code at the signer."}
 - {address: "0xe978d95b437d75826aba2ed1a0bdb534f173e28c", family: "9ede059a8a2cfbc9e4772a1267c1fdc6", copies: 139, label: "GMO Coin 10", upgradeable: "no", rating: CRITICAL, value_usd: 3067211, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 121, note: "139 wallets holding 1,700 ETH: signers in a stored set (signerNum); no function name that changes them. Bytecode and names. Executed: a real transaction reverts with code at the signer."}
+- {address: "0xd1560b3984b7481cd9a8f40435a53c860187174d", family: "f28126df7e445a37a0f093cceab111e3", name: "WalletSimple", label: "COSS.io: Old Warm Wallet", upgradeable: "no", rating: CRITICAL, value_usd: 393, value_basis: "held", value_as_of: 2026-11-18, note: "BitGo WalletSimple (2017) tagged 'COSS.io: Old Warm Wallet': the second signer must be one of the wallet's signers, fixed at creation; an exchange's wallet. Read."}
 evidence: {level: executed, block: 26438999}
 sources:
 - by: ai-assisted
@@ -27,7 +28,7 @@ reviews: []
 
 ## Summary
 
-These wallets hold other people's money (exchange and bank deposit addresses, by public tags, or nearly everything in one wallet) behind signers fixed in their code. 6 code families, 879 addresses, $163.3M held, 1,231 recoveries in the study's two-week window. Rows by rating: CRITICAL 6. 3 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+These wallets hold other people's money (exchange and bank deposit addresses, by public tags, or nearly everything in one wallet) behind signers fixed in their code. 7 code families, 880 addresses, $163.3M held, 1,231 recoveries in the study's two-week window. Rows by rating: CRITICAL 7. 3 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
 
 ## Mechanism
 
@@ -46,6 +47,7 @@ Largest rows by value held at block 26,438,999:
 - `0x8e3a4a7208aa489cc0a1c7290070811b07e60c87` (unverified): $13.2M, CRITICAL, 83 addresses
 - `0x8c33d309157553d69413d98ea853424689c0c2b1` (unverified): $9.7M, CRITICAL, 2 addresses
 - `0xe978d95b437d75826aba2ed1a0bdb534f173e28c` (GMO Coin 10): $3.1M, CRITICAL, 139 addresses
+- `0xd1560b3984b7481cd9a8f40435a53c860187174d` (WalletSimple): $393, CRITICAL
 
 Every row is in the header; `generated/triage_contracts.csv` lists them for search.
 
@@ -56,3 +58,4 @@ The custodian moves funds to wallets it can change and retires these deposit add
 ## History
 
 - 2026-11-19: filed from study `eip-8151-impact`, one entry per root issue (D-022). The per-project entries filed earlier that day are in git history (commit `d9c90af`).
+- 2026-11-19: 1 row added with --add from `verdicts.csv`.
