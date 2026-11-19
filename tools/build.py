@@ -232,7 +232,7 @@ def load_finding(path: Path, patterns: dict[str, dict], studies: dict[str, dict]
         addr(p, cw, c.get("implementation"), "implementation", optional=True)
         enum(p, cw, c, "upgradeable", UPGRADEABLE, required=not light)
         enum(p, cw, c, "value_basis", VALUE_BASIS, required=False)
-        for k in ("value_usd", "txs_30d"):
+        for k in ("value_usd", "txs_30d", "txs_90d"):
             number(p, cw, c, k)
         if c.get("value_usd") is not None and (c.get("value_basis") is None or c.get("value_as_of") is None):
             p.add(cw, "value_usd needs value_basis and value_as_of")
@@ -550,15 +550,16 @@ def findings_csv(findings, outreach) -> str:
 
 def contracts_csv(findings, outreach) -> str:
     header = ["address", "finding", "severity", "status", "name", "implementation", "upgradeable", "admin", "value_usd",
-              "value_basis", "value_as_of", "last_active", "txs_30d", "project", "outreach"]
+              "value_basis", "value_as_of", "last_active", "txs_30d", "txs_90d", "copies", "label", "project", "outreach"]
     rows = []
     for f in sorted(findings, key=order):
         for c in f["contracts"]:
             project = c.get("project") or f.get("project") or ""
-            rows.append([c["address"], f["id"], f["severity"], f["status"], c.get("name") or "", c.get("implementation") or "",
+            rows.append([c["address"], f["id"], c.get("rating") or f["severity"], f["status"], c.get("name") or "", c.get("implementation") or "",
                          c.get("upgradeable") or "", c.get("admin") or "", "" if c.get("value_usd") is None else round(c["value_usd"]),
                          c.get("value_basis") or "", c.get("value_as_of") or "", c.get("last_active") or "",
-                         "" if c.get("txs_30d") is None else c["txs_30d"], project, outreach_of([project], outreach) if project else ""])
+                         "" if c.get("txs_30d") is None else c["txs_30d"], "" if c.get("txs_90d") is None else c["txs_90d"],
+                         c.get("copies") or 1, c.get("label") or "", project, outreach_of([project], outreach) if project else ""])
     return to_csv(header, rows)
 
 

@@ -107,7 +107,8 @@ scope (pattern PQ-12), because the wallet code decides what an owner can change.
 tokens it holds; `market-cap` = circulating supply of a token whose permit is affected, an upper bound; `escrow` =
 what a forged message or proof could release elsewhere), `value_as_of`, `last_active` (last transaction that called the
 contract, any function), `txs_30d` (transactions that called it in the 30-day window, any function; see
-`generated/README.md`).
+`generated/README.md`), `txs_90d` (transactions with a call frame to it, any function, in the 90 days before the
+value's block; Xatu call frames, holes traced on a node).
 
 A finding about one root issue across many contracts leaves `project` out and gives each row what is known of it.
 Optional row fields, one row per code family:
