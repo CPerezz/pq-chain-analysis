@@ -85,6 +85,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: []
 ---
 
@@ -127,6 +134,12 @@ the contracts are immutable, so only every user moving or a protocol change (EIP
 - CHECKED (Xatu, any function): 30-day transactions in the table, 2026-10-16 to 2026-11-16
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/morpho-permit-auth-ecdsa-only/activity.json)). Pre-quantum use over a year
   (`curated_contracts.csv`, `txs_y1`): Morpho 11,559; vaults 5,632, 2,385, 2,368, 1,811 ecrecover transactions.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0xbaf1b6a48c4cfa77d14888885eb206b5e24ef112651dc21fb8e3023ff2ab56fc` (block 26,351,677, position 25), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (60,030 gas); under EIP-8151 it also succeeds (63,130 gas). With one byte of code at the recovered signer
+  `0x37b6be5538ef5a3a0ae0e188292c0074c3def696`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `2984b11f` (Morpho).
 
 ## Impact and exposure
 
@@ -162,6 +175,9 @@ were in the census.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review23): HIGH kept, step 4: immutable contracts, users' own funds forgeable after migration. Checked that a forged `setAuthorizationWithSig` reaches only the authorizer's positions (health check on `onBehalf`), so Morpho Blue's $3.19B is an upper bound on users' own funds, not a pooled loss. `alternative` sole -> alternative-exists (`setAuthorization`, `approve`). Vault values re-measured as `totalAssets` (two were missing).
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Review notes (Review23, 2026-11-17)
 

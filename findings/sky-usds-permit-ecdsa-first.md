@@ -55,6 +55,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: [sky-dai-permit-ecdsa-only]
 ---
 
@@ -94,6 +101,12 @@ first, so an EIP-7702/8141 account with code is still accepted with its old key.
   both last active 2026-11-16 ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/sky-usds-permit-ecdsa-first/activity.json)).
 - INFERRED: UsdsJoin and SPBEAM are fixed-code contracts with no call path to `upgradeToAndCall`, so in practice only
   governance can upgrade (not checked in their source).
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0xfed7d7c482639e11bd47901fe1ef74632a121f5db73fb52fb5d921559d401339` (block 26,411,299, position 1), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (1,041,140 gas); under EIP-8151 it also succeeds (1,047,540 gas). With one byte of code at the recovered
+  signer `0xffc87601a80d3e4f0af083a899e3fee203c23cf0`, it reverts after that recovery returned no address; with a
+  7702 delegation there it succeeds. Study family `f15aa646` (SUsds).
 
 ## Impact and exposure
 
@@ -121,6 +134,9 @@ contracts' own token holdings (USD 48 in USDS) are not the exposure. DAI, the pr
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by upgrading the contract (admin or governance)).
 - 2026-11-17 review (Review15): MEDIUM confirmed (step 4). Market caps replaced by on-chain `totalSupply`/`totalAssets` at block 26,431,426 (USDS 9.57B -> 5.23B, sUSDS 4.51B -> 3.69B); wards and governance chain read from storage and logs; linked to the DAI finding.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Governance reads (Review15, 2026-11-17)
 

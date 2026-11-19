@@ -38,6 +38,13 @@ sources:
   date: 2026-11-04
   verdict: reported
   rating: ''
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: [aave-atoken-permit-ecdsa-only]
 ---
 
@@ -72,6 +79,12 @@ migration, or EIP-8151 protects them).
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/gho-token-permit-ecdsa-only/activity.json)).
 - INFERRED: part of the supply sits in contracts (facilitators, pools, Safes), which cannot be forged through permit;
   only holders whose public key is on-chain are exposed.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0x22d16bdd1d15f542291d45713dcebf55a98d2b3d5e59330646062320f9feb1ad` (block 26,393,169, position 1), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (708,437 gas); under EIP-8151 it also succeeds (721,037 gas). With one byte of code at the recovered signer
+  `0x66a87af70838a0592d184e6fc06ad588e2926d3e`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `02f45112` (GhoToken).
 
 ## Impact and exposure
 
@@ -98,6 +111,9 @@ GhoToken itself holds $20k of GHO (block 26,431,214), which is not the exposure.
   proxy). Rated HIGH, step 4: holders' GHO stays forgeable after migration in a contract that cannot change; exposure
   `totalSupply` × price at block 26,431,537 ($697.8M, market cap); `alternative` alternative-exists (on-chain
   `approve`).
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Source excerpts: gho-token-permit-ecdsa-only
 

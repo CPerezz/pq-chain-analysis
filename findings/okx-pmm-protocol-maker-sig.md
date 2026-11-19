@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: [okx-wallet-link-groth16]
 ---
 
@@ -86,6 +93,13 @@ existing alternative that each maker (one known party) can switch to.
   42,306 transactions calling `ecrecover`, $158.9M moved in them (`curated_contracts.csv`).
 - INFERRED: attribution to OKX rests on the EIP-712 domain name in the verified source; the deployer
   (`0xf7745296…`, an EIP-7702 EOA) has no public label. Not confirmed with OKX.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0x81e4edad34667f369a9d34fa3fd248b03a666cb353e1513a0c28ce6a4b0f0229` (block 26,384,210, position 0), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (408,888 gas); under EIP-8151 it also succeeds (415,088 gas). With one byte of code at the recovered signer
+  `0x67336cec42645f55059eff241cb02ea5cc52ff86`, it still ends without error but with 3 logs instead of 17: the order
+  or request signed by that address is refused inside the transaction; with a 7702 delegation there it succeeds.
+  Study family `f1c998af` (PMMProtocol).
 
 ## Impact and exposure
 
@@ -114,6 +128,9 @@ existing alternative that each maker (one known party) can switch to.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated LOW (step 4: an alternative path exists that one known party can switch to).
 - 2026-11-17 review (Review12): LOW -> LOW, step 4: makers can already quote from contract accounts (ERC-1271), which are not forgeable; each maker is one known party. Project identified as OKX from the EIP-712 domain name "OKX Lab PMM Protocol" (id kept). Added PQ-2 (ecrecover tried first; the filler chooses the path); escrow $2.24M measured from the main maker's allowances; fix.layer new-deployment -> account-migration, protocol_change -> helps.
 - 2026-11-17 integration: id renamed from `unidentified-2bd541ab-signer-key` (project identified); linked with the other OKX finding, `okx-wallet-link-groth16`.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Source excerpts: okx-pmm-protocol-maker-sig
 

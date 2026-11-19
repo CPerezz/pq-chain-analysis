@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: [airswap-v4-maker-sig-ecdsa-only]
 ---
 
@@ -86,6 +93,12 @@ change).
 - CHECKED (`studies/top-callers-classification/results/curated_contracts.csv`): 252,079 transactions with an `ecrecover` call in the last year
   (`txs_y1`), $187.7M transferred in them (`usd_tx_y1`).
 - INFERRED: maker allowances to this contract are the exposure; they were not measured.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0xe76016c272c9aeef5a96ebcd490c69a7b60872f070ac07f2e49d41b318f42d3c` (block 26,365,407, position 4), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (194,395 gas); under EIP-8151 it also succeeds (196,875 gas). With one byte of code at the recovered signer
+  `0xce79b081c0c924cb67848723ed3057234d10fc6b`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `da9fa385` (SwapERC20).
 
 ## Impact and exposure
 
@@ -114,6 +127,9 @@ value step lowers nothing. The older SwapERC20 `0xd82fa167…` is in
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review17): HIGH kept, step 4: maker allowances forgeable through ECDSA-first `_check` and ECDSA-only `swapLight` in an immutable contract. Added PQ-3 (ERC-1271 gets 65 bytes) and PQ-1 (`swapLight`); fix layer set to new-deployment; linked the v4 finding.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Source excerpts: airswap-maker-sig-ecdsa-first
 

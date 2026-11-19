@@ -55,6 +55,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read or judged, the registry text read; not executed; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: reported
+  rating: ''
 related: []
 ---
 
@@ -91,6 +98,10 @@ own money, so nothing is taken through it. The two contracts held $70k of open t
   stablecoins ([`onchain.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/localcoinswap-relayer-signer/onchain.json)).
 - CHECKED (Xatu, any function): no calls 2026-10-16 to 2026-11-16; last calls 2026-09-03 (V1) and 2026-09-14 (V2)
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/localcoinswap-relayer-signer/activity.json)).
+- CHECKED (study `eip-8151-impact`, reading 3, 2026-11-19, not executed): sellers, buyers and the arbitrator sign
+  with ECDSA only (study families `67b281e3` and `c3a0070f`, read by hand); dormant, no transaction in the traced
+  window. By the EIP's text, a signer whose address has real code recovers to no address, so its old ECDSA key no
+  longer works here.
 
 ## Impact and exposure
 
@@ -118,6 +129,9 @@ An attacker gains only from trades where they are, or control, the buyer. Yearly
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review11): MEDIUM unchanged (step 4: new deployment the operator routes trades to; $70k held is over $50k). Trigger operator-key -> user-key and patterns [PQ-4] -> [PQ-1, PQ-4]: the relayer invitation cannot move funds; the seller's relayed release signature and the dispute signature can. Alternative key-rotation-only -> alternative-exists (direct release/cancel by msg.sender). Protocol change not-needed -> helps (EIP-8151).
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (read, not executed); plain and 7702-delegated accounts stay exposed, and approvals already given stay
+  valid.
 
 # Source excerpts: localcoinswap-relayer-signer
 

@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: ["0x-v4-order-sig-ecdsa-only"]
 ---
 
@@ -87,6 +94,12 @@ Pattern PQ-2. Excerpts: [`source-excerpts.md`](#source-excerpts-0x-v2-order-sig-
 - CHECKED (precompile trace, year to March 2026, `studies/top-callers-classification/results/curated_contracts.csv`): 86,593 transactions with an
   `ecrecover` in this contract; their transfers total USD 1.47B (`usd_tx_y1`, a flow, not funds at risk).
 - INFERRED: whether the governor's `removeAuthorizedAddressAtIndex` is exempt from the time lock was not read.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0xa67822e95b4d7526a561bea751c0d4ca622d1ffbe2f4b5f8f4607e197cd24029` (block 26,437,180, position 0), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (286,261 gas); under EIP-8151 it also succeeds (289,561 gas). With one byte of code at the recovered signer
+  `0xe6f87b8eae04944d5209d0ba290e7067050b728b`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `1e4cc9e8` (Exchange).
 
 ## Impact and exposure
 
@@ -113,6 +126,9 @@ MultiAssetProxy `0xef701d53…` and ERC1155Proxy `0x7eefbd48…`, capped by thos
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review08): HIGH -> MEDIUM, step 4: the asset proxies' owner (ZeroExGovernor 0x7d3455…, 2 of 4) can de-authorise the immutable Exchange, so one known multisig can close the path without a protocol change; `admin` and `fix` corrected from "nobody can change it".
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Source excerpts: 0x-v2-order-sig-scheme-select
 

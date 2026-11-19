@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read or judged, the registry text read; not executed; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: reported
+  rating: ''
 related: ["0x-v2-order-sig-scheme-select"]
 ---
 
@@ -85,6 +92,9 @@ summarised in [`notes.md`](#review-notes-review08-2026-11-17).
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/0x-v4-order-sig-ecdsa-only/activity.json)).
 - CHECKED (precompile trace, year to March 2026, `curated_contracts.csv`): 215,595 transactions with an `ecrecover`
   here; their transfers total USD 5.85B (`usd_tx_y1`, a flow).
+- CHECKED (study `eip-8151-impact`, reading 3, 2026-11-19, not executed): the registry finding names an ECDSA-only
+  check through `ecrecover`; no family of this contract had a suitable transaction in the traced window. By the EIP's
+  text, a signer whose address has real code recovers to no address, so its old ECDSA key no longer works here.
 
 ## Impact and exposure
 
@@ -110,6 +120,9 @@ March 2026.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by upgrading the contract (admin or governance)).
 - 2026-11-17 review (Review08): MEDIUM unchanged (step 4: feature upgrade by ZeroExGovernor 0x618f9c67…, 2 of 4). Mechanism re-read in the feature implementations (the proxy excerpt was empty); `held` value removed (proxy dust is not the exposure); title widened from "market-maker quotes" to all signed order and meta-transaction paths.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (read, not executed); plain and 7702-delegated accounts stay exposed, and approvals already given stay
+  valid.
 
 # Source excerpts: 0x-v4-order-sig-ecdsa-only
 

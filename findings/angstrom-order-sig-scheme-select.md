@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: []
 ---
 
@@ -89,6 +96,12 @@ verification is immutable, but Sorella controls the only submitters (3 node EOAs
   ecrecover calls in the last year.
 - INFERRED: the held balance mixes users' internal balances (spendable with each owner's key) and fees accrued for the
   controller; the split was not measured. Users' token approvals to Angstrom are not measurable here.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0x918980ae06d91bc280bb1fa3ea79c9f6e34d13607f512d82b72761bf6fb24da2` (block 26,438,998, position 0), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (158,492 gas); under EIP-8151 it also succeeds (161,592 gas). With one byte of code at the recovered signer
+  `0xf198e8453dd6e03ec86c0c58e9f21d56186cc8fb`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `e5390aaf` (Angstrom).
 
 ## Impact and exposure
 
@@ -119,6 +132,9 @@ verification is immutable, but Sorella controls the only submitters (3 node EOAs
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by upgrading the contract (admin or governance)).
 - 2026-11-17 review (Review06): MEDIUM confirmed, step 4: no upgrade is possible (no proxy), but Sorella controls the only submitters (3 node EOAs via ControllerV1) and can redeploy; fix layer corrected to new deployment plus node policy. Controller, timelock and nodes read on-chain.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Source excerpts: angstrom-order-sig-scheme-select
 

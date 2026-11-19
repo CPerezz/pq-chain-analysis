@@ -38,6 +38,13 @@ sources:
   date: 2026-11-04
   verdict: reported
   rating: ''
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: []
 ---
 
@@ -72,6 +79,12 @@ exposure is bounded by osETH in circulation: USD 290.6M market cap on 2026-11-17
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/stakewise-oseth-permit/activity.json)).
 - CHECKED (precompile trace, year to March 2026, `studies/top-callers-classification/results/curated_contracts.csv`): 446 transactions with an
   `ecrecover` call by the token (`txs_y1`), about USD 274M moved in them (`usd_tx_y1`).
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0xfcf97ef80e7d92edec16f871a828b10a6f7a895c284ae02e729f418c279a77a4` (block 26,348,595, position 21), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (544,907 gas); under EIP-8151 it also succeeds (551,307 gas). With one byte of code at the recovered signer
+  `0xcc220072496b024bbf77839446e066e9f4a56028`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `197af5d7` (OsToken).
 
 ## Impact and exposure
 
@@ -96,6 +109,9 @@ the figure above was read on 2026-11-17. Only osETH is in this finding; StakeWis
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review19): HIGH kept, step 4. Source is verified on Sourcify (OZ 5.0 `ERC20Permit`); owner found renounced; market cap updated from USD 371.1M to USD 290.6M (Blockscout, 2026-11-17).
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Source excerpts: stakewise-oseth-permit
 

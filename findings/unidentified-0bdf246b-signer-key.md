@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read or judged, the registry text read; not executed; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: reported
+  rating: ''
 related: []
 ---
 
@@ -81,6 +88,10 @@ nothing can be taken through this contract's check; the contract has been idle s
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-0bdf246b-signer-key/activity.json)).
 - INFERRED: the operator. The deployer `0xc6471559…` also deployed four `DexRouter` contracts with OKX DEX's function
   names, but that does not establish who runs this contract.
+- CHECKED (study `eip-8151-impact`, reading 3, 2026-11-19, not executed): the registry finding names ECDSA tried
+  before ERC-1271 for the market maker's signer; no family of this contract had a transaction in the traced window.
+  By the EIP's text, a signer whose address has real code recovers to no address, so its old ECDSA key no longer
+  works here.
 
 ## Impact and exposure
 
@@ -105,6 +116,9 @@ census: 22,165 fills (`txs_y1`).
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated LOW (step 4: an alternative path exists that one known party can switch to).
 - 2026-11-17 review (Review11): LOW unchanged (step 4: the only maker already signs through ERC-1271 and is paid through Permit2; nothing can be taken through this check). Patterns [PQ-4] -> [PQ-2, PQ-4]; protocol change not-needed -> helps (EIP-8151). Operator still unidentified (deployer also deployed OKX-style DexRouters; not conclusive).
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (read, not executed); plain and 7702-delegated accounts stay exposed, and approvals already given stay
+  valid.
 
 # Source excerpts: unidentified-0bdf246b-signer-key
 

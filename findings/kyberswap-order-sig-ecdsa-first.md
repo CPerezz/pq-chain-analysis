@@ -55,6 +55,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: [kyberswap-quote-signer]
 ---
 
@@ -101,6 +108,12 @@ move to and repoint the limit-order cosigner; the draft's "fix by upgrade" was w
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/kyberswap-order-sig-ecdsa-first/activity.json)).
 - INFERRED: the attribution of DSLOProtocol to KyberSwap follows the source (`KyberSwapRole`, KyberSwap limit-order
   types); the deployer was not traced.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0x2f29cf66756db5ef65669c6c6f0a471f6b07674aff85e55e3acea998ae4347f8` (block 26,438,929, position 0), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (336,574 gas); under EIP-8151 it also succeeds (341,534 gas). With one byte of code at the recovered signer
+  `0x1840a2b4c9e5c1eee42ad31bd57ba24a446d7974`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `803f37dc` (DSLOProtocol).
 
 ## Impact and exposure
 
@@ -133,3 +146,6 @@ has signed on-chain and is equally recoverable.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by upgrading the contract (admin or governance)).
 - 2026-11-17 review (Review13): MEDIUM unchanged, step 4, reason corrected: neither contract is upgradeable; the fix is a new RFQ deployment that the few makers move to, and a DSLO cosigner change by the 2-of-3 owner multisig. Read admin, owner, `_dsOrderSigner` (an EOA) and recent RFQ makers.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.

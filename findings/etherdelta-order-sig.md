@@ -38,6 +38,13 @@ sources:
   date: 2026-11-04
   verdict: reported
   rating: ''
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: []
 ---
 
@@ -77,6 +84,12 @@ change; only every user withdrawing, or a protocol change such as EIP-8151, prot
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/etherdelta-order-sig/activity.json)).
 - INFERRED: the balances are users' deposits (the contract has no protocol-owned funds besides fees credited to
   `feeAccount`); much of it likely belongs to dormant addresses, whose keys are exposed only if they ever signed.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0xabc26d98ac0741ddf23cdc09a7750cf739733ba84fdfd7200f365a4cbbbf82fe` (block 26,381,100, position 82), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (1,578,000 gas); under EIP-8151 it also succeeds (1,597,840 gas). With one byte of code at the recovered
+  signer `0xb28015f7fb04d4e6f7081ae3b8bf5da7139a02ba`, it reverts after that recovery returned no address; with a
+  7702 delegation there it succeeds. Study family `f771081f` (ExToke).
 
 ## Impact and exposure
 
@@ -103,6 +116,9 @@ be forged. No sibling deployments were checked beyond this address; older EtherD
 - 2026-11-17 review (Review20): HIGH kept, step 4. Full source read: the alternative is on-chain `order()`, not
   ERC-1271; admin read as EOA `0x1ed014ae…` with fee-only powers; the $39.8M held is users' deposits, which forged
   maker signatures release, so it stays as the exposure.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Source excerpts: etherdelta-order-sig
 

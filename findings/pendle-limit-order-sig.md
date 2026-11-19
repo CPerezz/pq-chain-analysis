@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: []
 ---
 
@@ -86,6 +93,12 @@ router is an upgradeable proxy controlled by Pendle's 3-of-5 Safe, so one upgrad
 - CHECKED (Xatu, any function): 13,318 transactions 2026-10-16 to 2026-11-16, last 2026-11-16
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/pendle-limit-order-sig/activity.json)). Pre-quantum use over a year
   (`curated_contracts.csv`): `txs_y1` 29,490 ecrecover transactions, `usd_tx_y1` $7.14B.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0x3aa805c2351cf3c13a9df3918b9122c9dcbde7eb0d1155973ee436042fde3c9c` (block 26,393,520, position 1), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (2,065,569 gas); under EIP-8151 it also succeeds (2,068,669 gas). With one byte of code at the recovered
+  signer `0x743d7b30661d65b41960bf6b5d1bb93cf7972a73`, it reverts after that recovery returned no address; with a
+  7702 delegation there it succeeds. Study family `832eb249` (PendleLimitRouter).
 
 ## Impact and exposure
 
@@ -113,6 +126,9 @@ limit-router deployment is in the registry.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by upgrading the contract (admin or governance)).
 - 2026-11-17 review (Review23): MEDIUM kept, step 4: upgradeable proxy, one Safe (3/5) upgrade fixes it; something can still be taken (migrated makers' approvals), so the existing alternative does not lower it. Owner resolved to PendleGovernanceProxy under the same Safe; mint-SY operator signers read as zero (disabled).
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Source excerpts: pendle-limit-order-sig
 

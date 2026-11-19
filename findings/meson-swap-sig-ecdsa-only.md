@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read or judged, the registry text read; not executed; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: []
 ---
 
@@ -88,6 +95,10 @@ Pattern PQ-1. Excerpt: [`source-excerpts.md`](#source-excerpts-meson-swap-sig-ec
   in those transactions; `curated_contracts.csv`).
 - CHECKED (Xatu, any function): 2,532 transactions 2026-10-16 to 2026-11-16; last 2026-11-15
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/meson-swap-sig-ecdsa-only/activity.json)).
+- CHECKED (study `eip-8151-impact`, reading 3, 2026-11-19, not executed): requests and releases recover the signer
+  with `ecrecover` only (study family `754e8121`, placed by a rule); the replayed transaction had already reverted on
+  chain, so it shows nothing. By the EIP's text, a signer whose address has real code recovers to no address, so its
+  old ECDSA key no longer works here.
 
 ## Impact and exposure
 
@@ -113,6 +124,9 @@ signature does not release it beyond a swap the LP itself locks and fulfils, so 
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by upgrading the contract (admin or governance)).
 - 2026-11-17 review (Review15): MEDIUM confirmed (step 4). Held USD 97k removed (LP liquidity, not the exposure); owner read from storage; evidence level source-read -> bytecode (current implementation unverified, checked by selectors, precompile calls and the verified predecessor).
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (read, not executed); plain and 7702-delegated accounts stay exposed, and approvals already given stay
+  valid.
 
 # Source excerpts: meson-swap-sig-ecdsa-only
 

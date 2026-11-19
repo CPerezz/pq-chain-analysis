@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the registry text read; no family of this contract had a transaction in the window; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: reported
+  rating: ''
 related: []
 ---
 
@@ -85,6 +92,9 @@ switch both paths off by removing the internal callers and pausing.
   are users calling `swapWithMagpieSignature` (2026-05-06).
 - Not established: the current internal-caller set (the `UpdateInternalCaller` logs could not be scanned with the
   public RPCs available) and whether the internal callers are EOAs.
+- INFERRED (study `eip-8151-impact`, reading 3, 2026-11-19, from this file): the relayer key is an operator key.
+  EIP-8151 is not the fix: once the relayer's address has real code its signatures stop counting at all; rotating the
+  relayer, as Remediation says, is what protects the router.
 
 ## Impact and exposure
 
@@ -109,6 +119,7 @@ exposure). No other Magpie deployment is in the registry.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review13): MEDIUM -> LOW, step 4: the operator-key path spends only the caller's own funds, and the user-signature path is reachable only by whitelisted internal callers that one known owner can remove; the router is idle since 2026-07-07. Added PQ-1; `fix.layer` new-deployment -> onchain-config; removed the USD 2 `held` value.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 does not help an operator key here; rotation does.
 
 # Source excerpts: magpie-router-signer
 

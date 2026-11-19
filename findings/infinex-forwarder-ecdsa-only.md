@@ -38,6 +38,13 @@ sources:
   date: 2026-11-04
   verdict: reported
   rating: ''
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: []
 ---
 
@@ -82,6 +89,13 @@ once Infinex ships post-quantum key support.
 - CHECKED (Xatu, any function): 455 transactions 2026-10-16 to 2026-11-16, last 2026-11-15
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/infinex-forwarder-ecdsa-only/activity.json)).
 - INFERRED: the total held by Infinex accounts on mainnet; not measured (no list of accounts was built).
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0x3a527129eb030a888a12596b02726c88667d2432c1264adc718b2682e9c07452` (block 26,398,256, position 2), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (218,147 gas); under EIP-8151 it also succeeds (224,747 gas). With one byte of code at the recovered signer
+  `0xb1e0b0efc1e5ded50df57e6a869b65f50c010f1e`, it still ends without error but with 3 logs instead of 6: the order
+  or request signed by that address is refused inside the transaction; with a 7702 delegation there it succeeds.
+  Study family `fead3b7e` (InfinexERC2771Forwarder).
 
 ## Impact and exposure
 
@@ -116,6 +130,9 @@ once Infinex ships post-quantum key support.
   Infinex account lists and trusts; each account's owner removes the exposure by rotating keys or calling
   `removeTrustedForwarder` (owners migrating), and post-quantum keys can call accounts directly. `alternative` sole ->
   alternative-exists.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Source excerpts: infinex-forwarder-ecdsa-only
 

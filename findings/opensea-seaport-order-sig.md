@@ -55,6 +55,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family judged from bytecode and names, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: [opensea-zone-and-drop-signers]
 ---
 
@@ -107,6 +114,12 @@ EIP-8151, protects them.
 - INFERRED: approvals to the OpenSea conduit are the main route for OpenSea listings (default `conduitKey`
   `0x0000007b…250f0000`); the share of value approved to Seaport directly or to other marketplaces' conduits is not
   known.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0xe1f288ecfdf6d43ab9e1d25f1139592f2e6e98739637ee84e183b75bcbaecb02` (block 26,436,304, position 0), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (237,372 gas); under EIP-8151 it also succeeds (237,972 gas). With one byte of code at the recovered signer
+  `0x8981a87033bc2344f2704ce3f8f0c5d1bf009dfb`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `a1b318c1` (Seaport).
 
 ## Impact and exposure
 
@@ -143,3 +156,6 @@ Siblings: Seaport 1.5 is added here (same code path, open channel on the OpenSea
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review13): HIGH unchanged, step 4: Seaport 1.6 and 1.5 are immutable; OpenSea can close their channels on its own conduit, but approvals to Seaport directly and to other conduits stay forgeable until every user acts or EIP-8151. Added Seaport 1.5 (same check, open channel on the OpenSea conduit); added the conduit admin reads.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.

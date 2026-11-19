@@ -143,6 +143,21 @@ Rules were measured against the families read by hand: stored key 522 of 538 agr
 signer with ERC-1271 208 of 219, self-only 70 of 70, stored key replaced by the owner 58 of 62, by an upgrade 22 of
 28.
 
+**Where EIP-8151 is meant to protect (reading 3).** The 40 registry findings that say a protocol change would help,
+checked against the EIP's text and, where a real transaction exists, by replaying it with code at the signer. Each
+of the 35 that involve `ecrecover` carries this study as a source.
+
+| What EIP-8151 does there | Findings | How it is known |
+|---|---|---|
+| A signer that gives its address real code can no longer be impersonated with its old ECDSA key | 26 | a real transaction replayed: refused with one byte of code at the signer, accepted with a 7702 delegation |
+| The same, read but not executed | 8 | study family or registry text; no usable transaction in the window |
+| Not the fix: the key is an operator's, and rotating it is what protects (Magpie) | 1 | registry text |
+| Not reached: KZG openings, BLS12-381 signatures, P-256 verified in contract code | 5 | by the EIP's text, which changes only `ecrecover` |
+
+One of the 26 is partial: Coinbase Smart Wallet's ECDSA owners are refused, its passkey owners are not reached. In
+all of them the protection is for accounts that take real code: plain accounts and 7702-delegated accounts stay
+exposed by design, and approvals and allowances already given stay valid.
+
 **Contracts that give `ecrecover` a constant amount of gas** (pattern PQ-14). The list is complete for code alive
 at the pinned block, as far as the scanner sees the gas operand. Counts are machine facts; two families were read
 by hand and executed.

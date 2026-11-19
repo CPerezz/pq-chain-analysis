@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: [1inch-v6-executor-signer]
 ---
 
@@ -83,6 +90,12 @@ Pattern PQ-2. Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-
 - CHECKED (Xatu, 2026-10-16 to 2026-11-16): 319,187 transactions called the router (any function)
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/1inch-lop-order-sig-scheme-select/activity.json)).
 - INFERRED: the share of fills that use `fillOrder` versus `fillContractOrder` was not measured.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0x328d086398621b3cdb7fc8decf4fa40d9bf80f50dcc198d188900d72bae6ef04` (block 26,438,573, position 0), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (564,710 gas); under EIP-8151 it also succeeds (577,110 gas). With one byte of code at the recovered signer
+  `0xc44d3e19fc43a4ab50c80e3aca0d3e9167d6c67b`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `09ae970f` (AggregationRouterV6).
 
 ## Impact and exposure
 
@@ -109,3 +122,6 @@ are affected: a fresh post-quantum smart account has no ECDSA key and cannot be 
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review09): HIGH kept (step 4). Both fill paths read in verified source (taker chooses the scheme; ERC-1271 path takes the full signature); owner Safe 3 of 4 re-read at block 26,431,457 and its powers limited to pause/unpause/rescueFunds.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.

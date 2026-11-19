@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: [sky-usds-permit-ecdsa-first]
 ---
 
@@ -82,6 +89,12 @@ approve on-chain instead of signing a permit; only the permit path is unavailabl
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/sky-dai-permit-ecdsa-only/activity.json)). This is DAI use in general, not permit use.
 - INFERRED: the forgeable set that matters is holders who keep DAI at an address they have migrated; for a holder who
   has not migrated, the recovered key can already send transactions directly, so permit adds nothing.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0x241a95c9cba3ef5b2cf7d56396aa99c77070586bd0555eba49ba493257e51817` (block 26,430,538, position 0), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (224,995 gas); under EIP-8151 it also succeeds (225,795 gas). With one byte of code at the recovered signer
+  `0x283cb1050e7d09afd6df7f3dee7a85086e59dd15`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `7585248f` (Dai).
 
 ## Impact and exposure
 
@@ -109,6 +122,9 @@ through `permit` and is not the exposure. The successor tokens USDS and sUSDS ar
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review15): HIGH confirmed (step 4). Market cap replaced by `totalSupply()` at block 26,431,426 (USD 4.44B); `alternative` sole -> alternative-exists (on-chain `approve` is open to post-quantum accounts; it does not stop forging); linked to the USDS finding.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Source excerpts: sky-dai-permit-ecdsa-only
 

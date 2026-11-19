@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: [lido-steth-permit-code-first, lido-predeposit-bls12-381]
 ---
 
@@ -78,6 +85,12 @@ with `transferFrom`. Pattern PQ-1. Excerpt: [`source-excerpts.md`](#source-excer
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/lido-wsteth-permit/activity.json)).
 - INFERRED: the attacker needs the holder's public key, i.e. a holder address that has signed at least one
   transaction or message; never-used addresses are not recoverable.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0xae8dfb441dc71fe157a93c7960c3967f69ae45b99619677ab60707de317f45d8` (block 26,385,787, position 1), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (666,533 gas); under EIP-8151 it also succeeds (676,014 gas). With one byte of code at the recovered signer
+  `0x63cd5a1aa7d01d006e70722194dbf100a75a017c`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `7f046cb4` (WstETH).
 
 ## Impact and exposure
 
@@ -106,6 +119,9 @@ check; stETH's `permit` is a separate finding (`lido-steth-permit-code-first`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review07): HIGH unchanged (step 4). Source and immutability re-checked; market cap corrected from
   a stale $10.70B to $8.50B (supply × price on 2026-11-17); related Lido findings linked.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Source excerpts: lido-wsteth-permit
 

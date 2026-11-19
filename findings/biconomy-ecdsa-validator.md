@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read or judged, the registry text read; not executed; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: [unidentified-1c6ad754-signer-key]
 ---
 
@@ -82,6 +89,10 @@ Excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-analysis
   year to March 2026 (`curated_contracts.csv` `txs_y1`).
 - INFERRED: accounts that used the validator only before block 24,700,000, and EIP-7702 accounts with no stored owner
   (exposed through their own EOA key anyway), are not counted.
+- CHECKED (study `eip-8151-impact`, reading 3, 2026-11-19, not executed): the validator recovers the owner with
+  `ecrecover` and compares it with the stored owner (study family `166fabcd`, judged from bytecode); the replayed
+  transaction had already reverted on chain, so it shows nothing. By the EIP's text, a signer whose address has real
+  code recovers to no address, so its old ECDSA key no longer works here.
 
 ## Impact and exposure
 
@@ -107,3 +118,6 @@ The validator holds nothing; the value is in the accounts that use it.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: signer set fixed in code; funds must move, and many independent owners may not act).
 - 2026-11-17 review (Review22): HIGH -> MEDIUM, step 4: both are pluggable account modules; each owner can install a post-quantum validator and remove this one in place, so funds do not have to move. `0xba418fa6…` identified as a third-party fork (deployer 0xac6a87, with an ECDSA co-signer), not Biconomy's module; `protocol_change` set to helps (EIP-8151).
 - 2026-11-17 review (Review22): module `0xba418fa6…` moved to `unidentified-1c6ad754-signer-key` (same deployer 0xac6a87), with its evidence. MEDIUM -> LOW, step 5: K1MeeValidator accounts measured (40 initialized accounts, about $33).
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (read, not executed); plain and 7702-delegated accounts stay exposed, and approvals already given stay
+  valid.

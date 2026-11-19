@@ -55,6 +55,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: []
 ---
 
@@ -104,6 +111,12 @@ Tokenlon's 3-of-5 operator multisig can disable them and point UserProxy at repl
   transactions 2026-10-16 to 2026-11-16.
 - INFERRED: the contracts' own balances are fee and residual balances; a forged user signature pulls tokens from the
   user through Spender, not from these balances.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0x0274429f6c48ecddfd14f2263bcceb1441825531e18a814895d5e14ba63def2d` (block 26,436,435, position 0), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (417,223 gas); under EIP-8151 it also succeeds (420,323 gas). With one byte of code at the recovered signer
+  `0x4b9fe9607a8428c3f8e0cde671e2338bd5b202ee`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `443221c0` (AMMWrapperWithPath).
 
 ## Impact and exposure
 
@@ -137,3 +150,6 @@ Siblings not checked: the same UserProxy routes to RFQ `0xfd6c2d24…`, RFQv2 `0
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review02): HIGH -> MEDIUM, step 3: the contracts are immutable but the Tokenlon operator DelayedMultiSig 0x9afc226d… (3 of 5) can disable and replace both in UserProxy 0x03f34be1… and deauthorize them in Spender (read at block 26,431,454), so the fix is a new deployment by one team. Removed the `held` values (contract balances are not the exposure; the exposure is user approvals to AllowanceTarget, unmeasured). Added PQ-3 for PMM's 85/86-byte user-signature limit.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.

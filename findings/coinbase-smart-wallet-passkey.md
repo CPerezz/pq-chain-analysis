@@ -111,6 +111,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: []
 ---
 
@@ -149,6 +156,12 @@ MEDIUM, step 4: each owner can fix it by adding a post-quantum signer and removi
 - CHECKED (census, families table): 73,153 proxies use implementation `0x00000110…` and 33,847 use `0x000100ab…`.
 - INFERRED: most wallets in the families have a passkey owner (Coinbase's smart-wallet onboarding creates one); not
   read per wallet.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0x02f5dd83cc5ee015ca4c50ebc0171a7f8ac4cf37c06e0cb9da4eb9dab607723c` (block 26,435,141, position 1), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (280,688 gas); under EIP-8151 it also succeeds (293,088 gas). With one byte of code at the recovered signer
+  `0x185e8266a14a8f66429be36df6fedd67debf010b`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `7cb392d9` (CoinbaseSmartWallet).
 
 ## Impact and exposure
 
@@ -179,6 +192,9 @@ MEDIUM, step 4: each owner can fix it by adding a post-quantum signer and removi
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by upgrading the contract (admin or governance)).
 - 2026-11-17 review (Review12): MEDIUM -> MEDIUM, step 4: owners migrating their accounts (add post-quantum signer, remove passkey/EOA owners). Added PQ-12 and `ecrecover` (sample wallets have EOA owners, checked ecrecover-first); fix.layer contract-upgrade -> account-migration; owners read at block 26,431,561.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Owner reads (Review12, 2026-11-17)
 

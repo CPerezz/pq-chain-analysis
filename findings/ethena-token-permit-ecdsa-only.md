@@ -75,6 +75,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: [ethena-minting-order-sig]
 ---
 
@@ -99,6 +106,12 @@ Source excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-a
 - CHECKED (Blockscout token API, 2026-11-17): circulating market caps USDe $4,853,105,840, sUSDe $1,181,500,848, USDtb $317,905,055, sENA $109,914,767. USDtb's last transaction 2026-11-16.
 - CHECKED (precompile trace, last year, `studies/top-callers-classification/results/curated_contracts.csv` `txs_y1`): USDe 22,708, sUSDe 3,882, sENA 4,542 transactions with an ecrecover call; USDtb 594 (`data/agg/y1_caller.parquet`).
 - CHECKED (Xatu, any function, 2026-10-16 to 2026-11-16): see table ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/ethena-token-permit-ecdsa-only/activity.json)); USDtb's 30-day count was not measured.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0x521afbb6bf454abc0d441eb8c1118eb44d27ae5c0ab9c020077441efd98e872a` (block 26,419,026, position 56), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (577,623 gas); under EIP-8151 it also succeeds (587,123 gas). With one byte of code at the recovered signer
+  `0x4819ac43f2b951d47ff84ef1f78a5383b6493ce8`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `1d64ee2e` (StakedUSDeV2).
 
 ## Impact and exposure
 
@@ -125,3 +138,6 @@ Source excerpts: [`source-excerpts.md`](https://github.com/kevaundray/pq-chain-a
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by upgrading the contract (admin or governance)).
 - 2026-11-17 review (Review10): MEDIUM -> HIGH, step 4: USDe ($4.85B) and sUSDe ($1.18B) are not upgradeable, so migrated holders stay forgeable unless every holder moves or EIP-8151 ships; only sENA can be upgraded. Corrected sENA's ProxyAdmin owner to Safe 0x3b0aaf6e (5 of 10), updated market caps, removed a family entry that mixed in USDtb, fix.layer contract-upgrade -> account-migration.
 - 2026-11-17 review follow-up (Review10): added USDtb `0xc139190f…` (same project and mechanism; upgradeable through an EOA-owned ProxyAdmin; market cap $317.9M). Rating stays HIGH (step 4, decided by USDe and sUSDe).
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.

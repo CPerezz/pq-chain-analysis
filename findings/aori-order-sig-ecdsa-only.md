@@ -82,6 +82,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: []
 ---
 
@@ -132,6 +139,12 @@ than about $1. Rated MEDIUM (step 4): the logic is immutable, so the fix is a ne
 - INFERRED: whitelisted solvers would fill a forged order at an attractive price, so the solver whitelist does not
   stop the attack on the active deployment; on the dormant ones it depends on whether a whitelisted solver still runs
   (solver lists not enumerated).
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0x52a1471ddbf68f6545c946196a88d77189764ee6fbbf2f28f4f9be0d174588ff` (block 26,355,255, position 121), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (234,599 gas); under EIP-8151 it also succeeds (237,699 gas). With one byte of code at the recovered signer
+  `0x176233a650282746da7594d4946fae3335b1cb91`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `07661394` (Aori).
 
 ## Impact and exposure
 
@@ -167,6 +180,9 @@ owner-key exposure on about $1 today, not part of this finding.
 - 2026-11-17 review (Review23): MEDIUM kept, step 4: immutable logic, fix is a new deployment users move to (owner EOA can pause the old one); post-quantum users are also locked out of ERC-20 orders. Removed the $1 `held` value (not the exposure; users' approvals unmeasured); owner read as EOA `0x941327e2…`.
 - 2026-11-17 review (Review13, in former finding `unidentified-7dec965c-user-sig-ecdsa-only`): identified `0x7dec965c…` and `0xbb4c20cb…` as earlier Aori deployments (deployer/owner `0xb4afac16…`, selector match); rated them LOW (step 1: no signed deposit since 2025-07-19, nothing held).
 - 2026-11-17 merge (Review23): `unidentified-7dec965c-user-sig-ecdsa-only` merged into this finding and removed; added its two contracts and the paused verified deployment `0x8635c874…` (read at block 26,431,716). MEDIUM kept, step 4: the finding is rated by its active deployment `0x0736bdc9…`; the older three are dormant or paused.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Source excerpts: aori-order-sig-ecdsa-only
 

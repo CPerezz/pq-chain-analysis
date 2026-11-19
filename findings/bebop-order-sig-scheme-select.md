@@ -38,6 +38,13 @@ sources:
   date: 2026-11-04
   verdict: reported
   rating: ''
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: []
 ---
 
@@ -79,6 +86,13 @@ in a contract with no admin.
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/bebop-order-sig-scheme-select/activity.json)).
 - INFERRED: the amount users have approved to the contract; not read (would need every approver's allowance and
   balance per token).
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0xa53877631bff8eec49b7b7ca50c42e87a6c6771356f622fb1b5e0bc12d898026` (block 26,437,313, position 0), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (2,239,068 gas); under EIP-8151 it also succeeds (2,258,468 gas). With one byte of code at the recovered
+  signer `0x67336cec42645f55059eff241cb02ea5cc52ff86`, it still ends without error but with 30 logs instead of 87:
+  the order or request signed by that address is refused inside the transaction; with a 7702 delegation there it
+  succeeds. Study family `7bedb484` (BebopSettlement).
 
 ## Impact and exposure
 
@@ -112,3 +126,6 @@ in a contract with no admin.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review21): HIGH kept, step 4: source and on-chain state confirm no proxy and no owner; the
   signer-selected ECDSA types keep migrated addresses forgeable; approvals are the exposure and are not measured.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.

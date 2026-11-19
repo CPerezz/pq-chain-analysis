@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: [ethena-token-permit-ecdsa-only]
 ---
 
@@ -68,6 +75,12 @@ Source excerpts: [`source-excerpts.md`](#source-excerpts-ethena-minting-order-si
 - CHECKED (precompile trace, all mainnet transactions to March 2026): ecrecover; 17,750 transactions with a pre-quantum call in the last year (`studies/top-callers-classification/results/curated_contracts.csv`, `txs_y1`).
 - CHECKED (Xatu, any function): 2,010 transactions 2026-10-16 to 2026-11-16, last 2026-11-16 ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/ethena-minting-order-sig/activity.json)).
 - INFERRED: which benefactors are EOAs, have delegated signers, or have open approvals to the contract; the whitelist is an internal set and was not enumerated.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0x4019acd53df0c918eeb47cc4d633abdd4dee4b238c5fe9b63c160e31cfc98604` (block 26,409,914, position 3), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (190,815 gas); under EIP-8151 it also succeeds (193,915 gas). With one byte of code at the recovered signer
+  `0xae0a739c3724bb5cd2bdcf73764c87a5a6ec21a3`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `e1ebe203` (EthenaMinting).
 
 ## Impact and exposure
 
@@ -91,6 +104,9 @@ Source excerpts: [`source-excerpts.md`](#source-excerpts-ethena-minting-order-si
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review10): HIGH -> MEDIUM, step 4: the contract is immutable but replaceable by one known party: USDe's owner (EthenaTimelockController) sets the minter, and Ethena's role holders are the only submitters, so the fix is a new deployment. Removed the $73.1M held value: a forged order sends collateral only to benefactor-approved addresses. fix.layer account-migration -> new-deployment.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Source excerpts: ethena-minting-order-sig
 

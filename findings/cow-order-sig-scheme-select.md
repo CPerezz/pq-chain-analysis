@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: []
 ---
 
@@ -88,6 +95,12 @@ change; only each user revoking or moving, or a protocol change such as EIP-8151
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/cow-order-sig-scheme-select/activity.json)).
 - INFERRED: a forged order needs an allowlisted solver to settle it; an attractive order (low limit price) is the kind
   solvers settle, so this is not a barrier the attacker has to break.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0x728011aa7169ae8c51ae17a9ec04af3640108a8d0cfa60e7a6670a788f08d78a` (block 26,438,818, position 0), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (2,572,945 gas); under EIP-8151 it also succeeds (2,576,045 gas). With one byte of code at the recovered
+  signer `0x14f362542ce22a9cf392ecc4e95b85837fab37e6`, it reverts after that recovery returned no address; with a
+  7702 delegation there it succeeds. Study family `fbd578f6` (GPv2Settlement).
 
 ## Impact and exposure
 
@@ -120,6 +133,9 @@ exposed; smart accounts that sign through `Eip1271` or `PreSign` are not.
 - 2026-11-17 review (Review18): HIGH kept, step 4. Mechanism confirmed in full source; removed the settlement's
   USD 455k `held` value (protocol buffers, not what a forged order releases); exposure is users' allowances to
   GPv2VaultRelayer, not measured.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Source excerpts: cow-order-sig-scheme-select
 

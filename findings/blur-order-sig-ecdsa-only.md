@@ -55,6 +55,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: []
 ---
 
@@ -106,6 +113,12 @@ user-key loss in a contract that cannot change; was MEDIUM).
   nor answer ERC-1271. The intent behind the change (ending upgradeability) is not documented here.
 - INFERRED: BlurExchangeV2 transactions after block 26,401,100 can only be cancels, nonce increments or reverted
   trades.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0x2a36c36001cdbeba685345a52533a96960b2bfe389defe6f8b529c1399da8c15` (block 26,398,867, position 1), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (193,457 gas); under EIP-8151 it also succeeds (197,157 gas). With one byte of code at the recovered signer
+  `0x6af68e5d010513ff70a3aaed9afeb8661116e6ce`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `ede746d8` (BlurExchangeV2).
 
 ## Impact and exposure
 
@@ -135,6 +148,9 @@ contract can also pull from Blur Pool; they are not in this finding.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by upgrading the contract (admin or governance)).
 - 2026-11-17 review (Review01): MEDIUM -> HIGH, step 4: the owner Safe 0xfa9fb502… became 5-of-5 with 0x…dead as an owner at block 26,429,758, so neither contract can be upgraded and Blend lender offers stay forgeable (user-key loss in a contract that cannot change); BlurExchangeV2 has no approved oracle since block 26,401,100 and cannot trade; escrow is Blur Pool (4,936.70 ETH).
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.
 
 # Source excerpts: blur-order-sig-ecdsa-only
 

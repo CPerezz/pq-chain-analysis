@@ -154,6 +154,13 @@ sources:
   date: 2026-11-04
   verdict: reported
   rating: ''
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (the study family's recovery functions read, a real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: [cow-aave-adapter-order-code-first, gho-token-permit-ecdsa-only]
 ---
 
@@ -197,6 +204,12 @@ through the PoolConfigurator).
   ([`activity.json`](https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/aave-atoken-permit-ecdsa-only/activity.json)).
 - INFERRED: only holders whose public key is on-chain can be forged; holders that are contracts (Safes, vaults) are not
   exposed through permit at all.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): a real transaction,
+  `0xa90756933220d993ddcdcc423199ad77b775f6e44996907d43b4f018335e5a3b` (block 26,420,588, position 2), replayed on
+  the reference implementation of the fork with only the precompile changed. Under today's rule it matches its
+  receipt (736,680 gas); under EIP-8151 it also succeeds (743,080 gas). With one byte of code at the recovered signer
+  `0xef3cb25c9c0ea0fffa82c78dd1c431cd23a49318`, it reverts after that recovery returned no address; with a 7702
+  delegation there it succeeds. Study family `f346a7e0` (ATokenWithDelegationInstance).
 
 ## Impact and exposure
 
@@ -243,3 +256,6 @@ mechanism and the governance fix and are not measured here.
 - 2026-11-17 review (Review20): HIGH -> MEDIUM, step 4: GhoToken `0x40d16fc0…` moved to `gho-token-permit-ecdsa-only`
   (rated HIGH there); the remaining 11 aTokens are fixed by one governance upgrade through PoolConfigurator
   `0x64b761d8…`. Exposure now $18.84B (aTokens only).
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (executed on a real transaction); plain and 7702-delegated accounts stay exposed, and approvals already
+  given stay valid.

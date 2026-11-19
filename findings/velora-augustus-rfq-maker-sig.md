@@ -38,6 +38,13 @@ sources:
   date: 2026-11-04
   verdict: reported
   rating: ''
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read or judged, the registry text read; not executed; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, reading 3 (does EIP-8151 close this path), 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: [velora-delta-order-code-first]
 ---
 
@@ -85,6 +92,10 @@ approved. Rated HIGH, step 4: users' own funds stay forgeable after migration in
   `ecrecover` call by this contract (`txs_y1`), about USD 1.02B moved in them (`usd_tx_y1`).
 - INFERRED: the contract maker's ~USD 9M inventory is reached only through its own ERC-1271 implementation, so a CRQC
   attack on it is an attack on that maker's own signer, not on this check.
+- CHECKED (study `eip-8151-impact`, reading 3, 2026-11-19, not executed): the order check tries `ecrecover` first and
+  then ERC-1271 (study family `5f3ec24c`, read); the replayed order was signed by a contract maker through ERC-1271,
+  so it does not show an EOA maker. By the EIP's text, a signer whose address has real code recovers to no address,
+  so its old ECDSA key no longer works here.
 
 ## Impact and exposure
 
@@ -112,6 +123,9 @@ Velora's Delta/Portikus settlement is covered in `velora-delta-order-code-first`
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: users' own funds stay forgeable after they migrate and the contract cannot change; only every user moving or a protocol change (EIP-8151) protects them).
 - 2026-11-17 review (Review19): HIGH kept, step 4. Source and OZ 4.4.0 `SignatureChecker` re-read; title corrected (AugustusRFQ has no cosigner); recent maker set and approvals checked (main maker is a contract, EOA makers' approvals near zero); full approval exposure not measured, so step 5 does not apply. Linked `velora-delta-order-code-first`.
+- 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
+  real code (read, not executed); plain and 7702-delegated accounts stay exposed, and approvals already given stay
+  valid.
 
 # Source excerpts: velora-augustus-rfq-maker-sig
 
