@@ -4,2563 +4,447 @@ title: "Transactions sent with too little gas for EIP-8151's price fail on activ
 status: candidate
 severity: LOW
 patterns: [PQ-18]
+impact: liveness
 contracts:
-- address: "0x2ceb3e994a516c6ba8658211bc94d4c280486cb7"
-  project: unidentified-83723113
-  name: "GnosisSafeL2 (study family 922d8150), 1 of 8,589 addresses running it"
-  upgradeable: "yes"
-- address: "0xf4ac5a5dc1543086347d28e757091ebd1b848cca"
-  project: unidentified-d7df5bf3
-  name: "SafeL2 (study family 9a69c84f), 1 of 39,586 addresses running it"
-  upgradeable: "yes"
-- address: "0xd19d8ee0a736bf643f53e3dc5489ac94e947a482"
-  project: unidentified-0ec16ef9
-  name: "NXV (study family e41c77f8), 1 of 80 addresses running it"
-  upgradeable: "yes"
-- address: "0xb60fa2ad48959c016fb7545d045aeb60086aca2a"
-  project: unidentified-3baf6263
-  name: "MultiSign (study family 7d5e2ccb), 1 of 34 addresses running it"
-  upgradeable: "no"
-- address: "0xc2a26188e4d7521960c2ddd31947afa9b2fdd8ac"
-  project: unidentified-3baf6263
-  name: "unverified code (study family af3852b1), 1 of 5 addresses running it"
-  upgradeable: "no"
-- address: "0x5427fefa711eff984124bfbb1ab6fbf5e3da1820"
-  project: unidentified-1b9dfc56
-  name: "Bridge (study family f3969f72), 1 of 5 addresses running it"
-  upgradeable: "no"
-- address: "0x563eda2afb088b36a1b3735126c409372a6ef46c"
-  project: unidentified-ddd85fb0
-  name: "Identity (study family c8c4077d), 1 of 3,069 addresses running it"
-  upgradeable: "no"
-- address: "0x5978c6153a06b141cd0935569f600a83eb44aeaa"
-  project: unidentified-96996f23
-  name: "unverified code (study family 6022f261)"
-  upgradeable: "no"
-  value_usd: 737885
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x313416870a4da6f12505a550b67bb73c8e21d5d3"
-  project: unidentified-bdc3ab91
-  name: "Bridge (study family e3292b2f)"
-  upgradeable: "no"
-  value_usd: 611565
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x448a9c8a25dc1ec8af43c351bdd0919acbc5be7e"
-  project: unidentified-a9e0be08
-  name: "Uni (study family d927799d), 1 of 7 addresses running it"
-  upgradeable: "yes"
-- address: "0x00f2b67b5a5ec2ff88b2be7d5a8d1a39d5929237"
-  project: unidentified-23e8bbee
-  name: "unverified code (study family d17fa1b5), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x02479bfc7dce53a02e26fe7baea45a0852cb0909"
-  project: unidentified-04509d93
-  name: "GnosisSafe (study family f15632f5), 1 of 749 addresses running it"
-  upgradeable: "yes"
-- address: "0xb8563f7bee7fbf68f8b09c97ee4a13dc6c6943ee"
-  project: unidentified-d22ad90c
-  name: "SettlementSale (study family 8a325b36), 1 of 15 addresses running it"
-  upgradeable: "no"
-- address: "0x45804880de22913dafe09f4980848ece6ecbaf78"
-  project: unidentified-4b39f384
-  name: "PAXG (study family 9c1bb3ea), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x6c70c6a2b6b2b0d40e826bfde89fe2e081ca408b"
-  project: unidentified-dc9dc0c0
-  name: "BridgeVault (study family 5ac31e72)"
-  upgradeable: "no"
-  value_usd: 103762
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0xe80f92077131b9890599e418ae323de71ce1c35a"
-  project: unidentified-b669ce71
-  name: "SrcBridge (study family 2664bab4), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x468ac716493c51184162681130035b61baff040b"
-  project: unidentified-46f064fc
-  name: "SmartWalletUpgradeableV2 (study family b57e4077), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x94c9d55f064980ed1faf0abb42f3548700619039"
-  project: unidentified-fd3718e7
-  name: "Bridge (study family 6fb6da97), 1 of 6 addresses running it"
-  upgradeable: "yes"
-- address: "0xcb99c58fe81ae6b2cb4835e46f7b703745879042"
-  project: unidentified-ceae64c7
-  name: "OxidePortal (study family 30acf8f4), 1 of 3 addresses running it"
-  upgradeable: "no"
-- address: "0x4080eba7392e3a1824b5a4eba09d7307a5c51b2d"
-  project: unidentified-88f2d303
-  name: "unverified code (study family 2425f847)"
-  upgradeable: "no"
-  value_usd: 48362
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x965983977c29158ec53a296a6f47be145ddecc36"
-  project: unidentified-15b53fda
-  name: "TruthBridge (study family 043cea7a), 1 of 4 addresses running it"
-  upgradeable: "yes"
-- address: "0xe3f5cf1313dfe3c2827604a187677c34c7ed9aa1"
-  project: unidentified-2ccf820f
-  name: "unverified code (study family 6b72c066)"
-  upgradeable: "no"
-  value_usd: 44031
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x3d64bd587300af85ae54007d350bfd293dc24581"
-  project: unidentified-494f5d0e
-  name: "unverified code (study family c43de8b9), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x24b22b031ae1b5a6b09f9a0fd33613a40e0d70e6"
-  project: unidentified-4baaf565
-  name: "unverified code (study family fcac02a7), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x28e8882c7e23bc5e3b94c64df34b6e45738a14b9"
-  project: unidentified-6deb265a
-  name: "unverified code (study family 15c107bb)"
-  upgradeable: "no"
-  value_usd: 34106
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x49a102a0c04723739f601c158b5d13920ab59d4d"
-  project: unidentified-831cfd6b
-  name: "PocketDragonsCollection (study family 9e18e28f)"
-  upgradeable: "no"
-  value_usd: 31038
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0xbd0a894e8f8919be0b9eb0f034d1db4e1ac415cf"
-  project: unidentified-6b116178
-  name: "unverified code (study family f2d6dbad), 1 of 4 addresses running it"
-  upgradeable: "yes"
-- address: "0x5217493257fcbf209580342e6929e20d2ac914f1"
-  project: unidentified-9c7a11df
-  name: "Invoice (study family d217865e)"
-  upgradeable: "no"
-  value_usd: 27249
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x959e33b167e66b09cb524e610e7ef7fb0e4e2d81"
-  project: unidentified-24029a57
-  name: "RewardClaimer (study family 0901b485)"
-  upgradeable: "no"
-  value_usd: 24001
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0xa32d571fa4dc0011539a0c2fbc8fdfba1dd9a76f"
-  project: unidentified-3904f3da
-  name: "unverified code (study family 23ec0c1b)"
-  upgradeable: "no"
-  value_usd: 24001
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x35ac13efaab970f32269b61e4704f4377ce7a0ad"
-  project: unidentified-65d22286
-  name: "unverified code (study family a26ec3fd), 1 of 4 addresses running it"
-  upgradeable: "yes"
-- address: "0xbffd79740f9dbb1db94f53bc4c7f8e6ae67b2678"
-  project: unidentified-e833af91
-  name: "unverified code (study family cdd0f5c7)"
-  upgradeable: "no"
-  value_usd: 19309
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0xc22c479a54925608cc8cd60fbf69510df31aef26"
-  project: unidentified-1d75e498
-  name: "unverified code (study family bc362389), 1 of 4 addresses running it"
-  upgradeable: "yes"
-- address: "0xcff5d60bdcb541b31f416ef9779048b0653d04ef"
-  project: unidentified-0bdbb412
-  name: "unverified code (study family fffa0357), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0xd20c024560cca40288c05bab650ac087ae9b0f6e"
-  project: unidentified-874c244c
-  name: "BatchTrade (study family 0eb672e9)"
-  upgradeable: "no"
-  value_usd: 11730
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0xa4108aa1ec4967f8b52220a4f7e94a8201f2d906"
-  project: unidentified-9cafd25b
-  name: "Gravity (study family 6727a783)"
-  upgradeable: "no"
-  value_usd: 10827
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x9b5d9e2c2e1e96986603be922bc44304d6aca898"
-  project: unidentified-72c92cab
-  name: "Wallet (study family 413f5025)"
-  upgradeable: "no"
-  value_usd: 10106
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134"
-  project: unidentified-7a0d94f5
-  name: "AllowanceModule (study family 7c7cca90)"
-  upgradeable: "no"
-  value_usd: 9925
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0xc4a386a0fc1910d60a5283001b6c94efc20e229c"
-  project: unidentified-d520b102
-  name: "Vault (study family d6883c1d), 1 of 4 addresses running it"
-  upgradeable: "no"
-- address: "0x24e830d3205e08bc124d8de8a3cfea28cab8a313"
-  project: unidentified-c3f45a98
-  name: "unverified code (study family 899b80f1)"
-  upgradeable: "no"
-  value_usd: 7038
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x9ef297c039103301c6c2ee8a1fc7742cae5557ee"
-  project: unidentified-01c61177
-  name: "LAD (study family e20aa9b6)"
-  upgradeable: "no"
-  value_usd: 6136
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0xfb2dc580eed955b528407b4d36ffafe3da685401"
-  project: unidentified-5777aa6f
-  name: "Umbra (study family e51f9702)"
-  upgradeable: "no"
-  value_usd: 5594
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x62728e6ca081b8a253f792980736608e13d45d79"
-  project: unidentified-31d97c2f
-  name: "Plums (study family ee4900bc), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x97dc5ea031f0424e3a8994a66316c736bb99d8f7"
-  project: unidentified-cde1efd7
-  name: "ReferralRewardClaim (study family a70965af)"
-  upgradeable: "no"
-  value_usd: 3068
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0xaa0878e38caeafc390876479f5a14c4705c7a54a"
-  project: unidentified-5f95d415
-  name: "ZebecCard (study family dd7a01fd), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x712868e72caa0c37596113c999fb4d83bcb6fec2"
-  project: unidentified-ce1bafe8
-  name: "unverified code (study family 207f2b49)"
-  upgradeable: "no"
-  value_usd: 2165
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0xc38eb82ae302b5b3ef4f3cb66a4155d1947090b1"
-  project: unidentified-32cad849
-  name: "unverified code (study family 737d0a35), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0xaec7e8c221c3fd24e75c996e32289235fd899ebf"
-  project: unidentified-4c5d24a7
-  name: "TeikhosBounty (study family 8186a92d), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x3249dfc80841c136ce5dc9c1b0d511f628b72b27"
-  project: unidentified-6b77f6d5
-  name: "ERC1155Normal (study family d89bbb67), 1 of 34 addresses running it"
-  upgradeable: "yes"
-- address: "0x6fb5a99485621b695d5e895838ff882f41743a9a"
-  project: unidentified-9c6ecffe
-  name: "unverified code (study family a11993ab)"
-  upgradeable: "no"
-  value_usd: 1083
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0xa6f6e791c0152fb983162a216bfa9229e30896c6"
-  project: unidentified-690f4e2f
-  name: "unverified code (study family 15cf800e)"
-  upgradeable: "no"
-  value_usd: 902
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x74149f6d0dbdbe356fd8035a83dbc0ab7c4c1a8e"
-  project: unidentified-3f0447a6
-  name: "unverified code (study family 532c3675), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x22e95073d7a924660bb7222be327c9a6737dc68f"
-  project: unidentified-8778c33f
-  name: "Distributor (study family 13744d79), 1 of 4 addresses running it"
-  upgradeable: "no"
-- address: "0x2d26d31052c7d4696b6522a5f680b2c3dfc7bd61"
-  project: unidentified-ce7bd51f
-  name: "Bridge (study family 7d5f7af8), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x60f80121c31a0d46b5279700f9df786054aa5ee5"
-  project: unidentified-3482549f
-  name: "MintableToken (study family b44fa70d)"
-  upgradeable: "no"
-  value_usd: 722
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x93d070772066c977d605d69b602d316adafc25e3"
-  project: unidentified-341a38b6
-  name: "TetherToken (study family 57df7c13), 1 of 4 addresses running it"
-  upgradeable: "yes"
-- address: "0xc18360217d8f7ab5e7c516566761ea12ce7f9d72"
-  project: unidentified-0904dac3
-  name: "ENSToken (study family 132e6235)"
-  upgradeable: "no"
-  value_usd: 541
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x00000404734b3926572a2f004680a4e496e7da09"
-  project: unidentified-140e07ae
-  name: "unverified code (study family a7594b2b), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x91077b23df5edd82868b08b3c959e884370b4553"
-  project: unidentified-295e0fc7
-  name: "VaultAdapter (study family 8b130cfa), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x464f9caf42f5ab295c46f74bf6666b7381c8a60b"
-  project: unidentified-72452734
-  name: "unverified code (study family 244b0644)"
-  upgradeable: "no"
-  value_usd: 361
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x3310ad0117333f3b9d25857949df5a2e0856de3b"
-  project: unidentified-df1792f7
-  name: "SANDUIT (study family 9101ee9b), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xcd04419220bef347b409055ac4e9ad50ee1ad6d6"
-  project: unidentified-c358522c
-  name: "BuenoMembership (study family ddad8e1c)"
-  upgradeable: "no"
-  value_usd: 361
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0xe02367242b348caca4bf39fd1249b212a88adcec"
-  project: unidentified-335944b3
-  name: "BFHPrimeV1 (study family d1002346)"
-  upgradeable: "no"
-  value_usd: 361
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x1bb668d33d367702adbe81346d57d5e5083fa346"
-  project: unidentified-147b33c5
-  name: "Ibc (study family 1745c7c0), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0xca79896bcec80aa7628d67c6fac85bdf6ae63b1c"
-  project: unidentified-9bd3befc
-  name: "GatewayOfframpRegistryV7 (study family c80e9002), 1 of 4 addresses running it"
-  upgradeable: "no"
-- address: "0xa2ca14c7d625895e6939961b87ce378836ca840f"
-  project: unidentified-cafe2ef5
-  name: "HumanIDPayments (study family 61016422)"
-  upgradeable: "no"
-  value_usd: 180
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0xa4704944a59eab8a25ee539a9a6c42ff2527b265"
-  project: unidentified-72452734
-  name: "unverified code (study family dc2aee69), 1 of 141 addresses running it"
-  upgradeable: "no"
-- address: "0xda864364f7d1ebcc7c89e9610ebdef45ddf5f81b"
-  project: unidentified-920212a0
-  name: "unverified code (study family 5ed13761), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xc6a043a97986eabc761db0616513546043ee489a"
-  project: unidentified-2907d55a
-  name: "DigiGhostsSummoned (study family 39ea14ba)"
-  upgradeable: "no"
-  value_usd: 180
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0x0068c20b863745219b6f9542e86b1263029a1c2f"
-  project: unidentified-00000000
-  name: "Multisig (study family b3cc36f4), 1 of 15 addresses running it, 1 by 7702 delegation"
-  upgradeable: "no"
-- address: "0x287d38ca1d89cd3c435a8279ac9a3528ddeb9131"
-  project: unidentified-2ae4874b
-  name: "unverified code (study family a7051d16), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x3aeca27812d55af8c787a4277438ea01b39a73c4"
-  project: unidentified-9fb8a85c
-  name: "Escrow (study family ce9296d1), 1 of 7 addresses running it"
-  upgradeable: "yes"
-- address: "0x26a61de7e9c23ae1e93f291712e0d41c5dc2ad01"
-  project: unidentified-4f125e83
-  name: "NWOStatePayout (study family be182719)"
-  upgradeable: "no"
-  value_usd: 180
-  value_basis: held
-  value_as_of: 2026-11-18
-- address: "0xfbfff08fe4169853f7b1b5ac67ec10dc8806801d"
-  project: unidentified-d02ade5d
-  name: "Verifier (study family 8979ad2d)"
-  upgradeable: "no"
-- address: "0x8f10b468b06c6fd214b65f87778827f7d113f996"
-  project: unidentified-2e01c1cd
-  name: "unverified code (study family 32377d14), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x428d1067b33b2bca826cf66344dbecbd5aa6506e"
-  project: unidentified-7e063b84
-  name: "StakeManager (study family 17997608)"
-  upgradeable: "no"
-- address: "0xbcbebc20a0fdf9efd53b5852a71869b0cf25283f"
-  project: unidentified-4b8a782d
-  name: "BeefyClient (study family a587bf57)"
-  upgradeable: "no"
-- address: "0x8e33f930051c1a6aca3f0c52adccffa530d0785e"
-  project: unidentified-9a8f92a8
-  name: "OffchainAuctionPlanner (study family f8af2828)"
-  upgradeable: "no"
-- address: "0x709944a48caf83535e43471680fda4905fb3920a"
-  project: unidentified-07b589f0
-  name: "Api3ServerV1 (study family 0fcfb15c), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x7cfc5c8b341991993080af67d940b6ad19a010e1"
-  project: unidentified-4b8a782d
-  name: "BeefyClient (study family 2f07aaa2)"
-  upgradeable: "no"
-- address: "0xdad58dfa5c1a7a34419afdbe1f0d610efeea95e4"
-  project: unidentified-3f6bf1c3
-  name: "Consortium (study family 72ce8e73), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x000000000013fdb5234e4e3162a810f54d9f7e98"
-  project: unidentified-61e8ac0a
-  name: "OwnableValidator (study family 2a9c05d7)"
-  upgradeable: "no"
-- address: "0x39cf5f1177c37649dca2e26165a06ad9d725d222"
-  project: unidentified-9a8f92a8
-  name: "unverified code (study family 5461a364), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x0b00004ccc39408fa289e9f6853bfe4eac3e52c8"
-  project: unidentified-1f39f9a6
-  name: "AkkaRouter (study family 74560b4c)"
-  upgradeable: "no"
-- address: "0x269c0ebb7a39995db531ccd61d015e431530b87a"
-  project: unidentified-91b0d9b9
-  name: "StakeManager (study family 3e4b72a4)"
-  upgradeable: "no"
-- address: "0xd42284814389978dc43c53f8807e8bc0ac6bd5fe"
-  project: unidentified-a48581b2
-  name: "ManagedValidator (study family b18535c7), 1 of 4 addresses running it"
-  upgradeable: "no"
-- address: "0x7c91b9d7a20135c597d2c394c9aaf7667f39272e"
-  project: unidentified-9a8f92a8
-  name: "CounterfactualDepositVanillaCCTP (study family fca96a0c)"
-  upgradeable: "no"
-- address: "0x7f1d0b26ed27c64a458b7ef3aaa46c81caa62cc6"
-  project: unidentified-ee552967
-  name: "EscrowFactoryV7 (study family ef6437f0)"
-  upgradeable: "no"
-- address: "0xdca7ef03e98e0dc2b855be647c39abe984fcf21b"
-  project: unidentified-4580b7d2
-  name: "EthereumDIDRegistry (study family 554bb9ff)"
-  upgradeable: "no"
-- address: "0x214c19fbcdfb683f2c726b4bbaf24ab483bfadf3"
-  project: unidentified-9a8f92a8
-  name: "SponsoredCCTPDstPeriphery (study family fa0a1744)"
-  upgradeable: "no"
-- address: "0xb96025987c0c10c751517fd2ccf5767245b027bc"
-  project: unidentified-1cfd6a81
-  name: "OffchainQuotedLinearFee (study family c94bac45), 1 of 130 addresses running it"
-  upgradeable: "no"
-- address: "0x447654338fba13ce25988cc576b2903ac7cdcec3"
-  project: unidentified-7ba5d8c9
-  name: "unverified code (study family 0b29091f), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x550cfe1292d0d9c0d28f232b3f42edb4439b1d09"
-  project: unidentified-58dc7bf9
-  name: "SignedExclusiveSwap (study family f7175e07)"
-  upgradeable: "no"
-- address: "0x5d38589e9574df1abe4b85cab7a870c285cd23c3"
-  project: unidentified-0a088f1d
-  name: "unverified code (study family 69fc694f)"
-  upgradeable: "no"
-- address: "0x2f2370bc4e33c4cd8f21ece6327b58365f9b843e"
-  project: unidentified-2ecd442b
-  name: "unverified code (study family ce7d0dd1)"
-  upgradeable: "no"
-- address: "0xd50678f2763db502e9481f39315702aa7900198f"
-  project: unidentified-31db6654
-  name: "OndoAttestationOracle (study family 88651170), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0xdb28719f7f938507dbfe4f0eae55668903d34a15"
-  project: unidentified-d6d24c5c
-  name: "StakeManager (study family 6e3dc67e)"
-  upgradeable: "yes"
-- address: "0x1fba0c57b07af804a9717e51dec9cc27fbc12228"
-  project: unidentified-7ad8e6b7
-  name: "TEEVerifier (study family 75fff02a)"
-  upgradeable: "no"
-- address: "0x202bdae6ea5cb576c916cf2d2a83d5a21ea2624d"
-  project: unidentified-17603ddb
-  name: "unverified code (study family 524da18b), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0xbace265d7b07e8bba150b689501cd1143d7d8549"
-  project: unidentified-a76a037a
-  name: "MsControl (study family 11e80640), 1 of 5 addresses running it"
-  upgradeable: "no"
-- address: "0xec6f74e15777047d2a66d2cc0e775a2db6455c60"
-  project: unidentified-08abf5f6
-  name: "BRLAV1_1 (study family 296eeebb), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xba0de1085f6ecbc037b6b5d24ab76d2cff9d0a24"
-  project: unidentified-658f7fdd
-  name: "voxelXMiner (study family d8e0ddf3), 1 of 12 addresses running it"
-  upgradeable: "no"
-- address: "0xbcba1f21ca212f63f71536128d9e574dc3ae28d9"
-  project: unidentified-80957d62
-  name: "ValidatorsRegistry (study family 11454bb5), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x93eaca7be5ead8f319fcd9f31cfeee8bcc6ce487"
-  project: unidentified-fac91734
-  name: "PrelaunchDistribution (study family 706844b2)"
-  upgradeable: "no"
-- address: "0xc6b080ded03c3382476a76345e79f82bd480977b"
-  project: unidentified-ec4529d8
-  name: "LaunchFactory (study family 03757069)"
-  upgradeable: "no"
-- address: "0x3105eb89980a6f6b48904e8c80f24aaf4818d726"
-  project: unidentified-a301086b
-  name: "BeefyClient (study family 2a6c5ff7), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x1644d2477f809cc2c71bccfd6dc9497e3f83210d"
-  project: unidentified-39a695e9
-  name: "TychoRouterV3 (study family 122737fd)"
-  upgradeable: "no"
-- address: "0xd00e17bfdc40d4bc9e54befd6f646c3e66a50100"
-  project: unidentified-174ff657
-  name: "unverified code (study family 7b68e604)"
-  upgradeable: "no"
-- address: "0xf57760c0f36cd701d46baea3c4319a69a7c16df7"
-  project: unidentified-72452734
-  name: "unverified code (study family d3f7b119)"
-  upgradeable: "no"
-- address: "0xcae31f0f582e27226b15853f9f3b99f6925e0aac"
-  project: unidentified-323ea17b
-  name: "unverified code (study family 2f674166), 1 of 5 addresses running it"
-  upgradeable: "no"
-- address: "0xa9d38ccaadefeac4cea38d00c411254cdda59386"
-  project: unidentified-3d5c1d3e
-  name: "EnergyBridge (study family 007cb5b6), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xd6969df7e382a258ee2932fa1711af520057cc88"
-  project: unidentified-798728d5
-  name: "EthereumControllerToken (study family 567bf407), 1 of 3 addresses running it"
-  upgradeable: "yes"
-- address: "0x17501063de376195de2505ef561d9d44c26b4a58"
-  project: unidentified-20702cef
-  name: "GigaLegendNFT (study family bfc6fecb)"
-  upgradeable: "no"
-- address: "0x7bdd0ce75eefead46328e260abd41c68098bf791"
-  project: unidentified-b228bcc5
-  name: "MemeCardMinterV7 (study family d61a38b0), 1 of 3 addresses running it"
-  upgradeable: "no"
-- address: "0x9ab772204a845ae7192fc433b87055dc158a985e"
-  project: unidentified-2900cb55
-  name: "unverified code (study family 937d339e)"
-  upgradeable: "no"
-- address: "0x196c463b51d9b02c5aadaedb1cca4be850ebb27d"
-  project: unidentified-0e7e9988
-  name: "TollanUniverseItems (study family a20bac9e), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x3efbd12c6be0f0603f144b86097922230af89157"
-  project: unidentified-cedb987e
-  name: "FeeManager (study family 89d5db66), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x9f342d7ee2e55e27250208ac97349d4d25761e8a"
-  project: unidentified-f514ad1d
-  name: "unverified code (study family 269480c8), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xc3ecfe771564e3f28cfb7a9b203f4d10279338ed"
-  project: unidentified-3f6bf1c3
-  name: "unverified code (study family 9e00b76e)"
-  upgradeable: "no"
-- address: "0x8a4b4c2acadeaa7206df96f00052e41d74a015ce"
-  project: unidentified-1b9dfc56
-  name: "Staking (study family 37608c47)"
-  upgradeable: "no"
-- address: "0x888887e2d0e716ba1ecf857fe0f2a49125655288"
-  project: unidentified-0c09eea3
-  name: "TeleportToken (study family 6312e472), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x424a31a57f7c63918ecaa2fac38016a8af5a6ec2"
-  project: unidentified-0b11e4a5
-  name: "CctpClaimExecutor (study family 46b9bf64)"
-  upgradeable: "no"
-- address: "0x2b216bff2d2be0a542af34314161a815a807be49"
-  project: unidentified-d53394ef
-  name: "Withdraw (study family 6ffe3cc5), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x6efa927316f924347222d283cf2254ed5eeb63ed"
-  project: unidentified-ecea9ab8
-  name: "unverified code (study family 0b5d3781), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x2889bcd2e5d6141f98106dffa8a66ab21b5c84d6"
-  project: unidentified-c6f4f6e3
-  name: "PortfolioTokenManager (study family 2d26bc34), 1 of 4 addresses running it"
-  upgradeable: "no"
-- address: "0x0000000031ef4155c978d48a8a7d4edba03b04fe"
-  project: unidentified-a63dea08
-  name: "unverified code (study family 249ca13b), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0xb747c1486d8aca1d13018b574701f325f497d198"
-  project: unidentified-1d653a91
-  name: "ManyChainMultiSig (study family 3d9e34b4), 1 of 78 addresses running it"
-  upgradeable: "no"
-- address: "0x76fe371cce9da65818f17131a1cffbc52652994c"
-  project: unidentified-62ca17e4
-  name: "unverified code (study family b23b26db), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x114ae097205df40dc883508fcda9a4d8e185fc68"
-  project: unidentified-72452734
-  name: "unverified code (study family 81ef8da0), 1 of 103 addresses running it"
-  upgradeable: "no"
-- address: "0xc2aebd1a60ae8e27115b380fb6ed17a7fa924c4c"
-  project: unidentified-1e9c1467
-  name: "unverified code (study family 0fc27fd0), 1 of 17 addresses running it"
-  upgradeable: "no"
-- address: "0x01e82b67367de9f805e55de730d5007a752912a8"
-  project: unidentified-7e69b06f
-  name: "unverified code (study family 1b36dfa3), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x395c2eaa45865870d735074093720819359b6d0a"
-  project: unidentified-cced97e9
-  name: "unverified code (study family 41756753), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x255443d8cfe2c3f77832b71099155cec35b80386"
-  project: unidentified-ebaaa759
-  name: "unverified code (study family 7b975350), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0xb53977a70d755a56d3ce26926acb4c33f7861c61"
-  project: unidentified-89575b4f
-  name: "AttestationOracle (study family 12682743), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x25d0d42aa7125a2daba83721db7684d09b3b327d"
-  project: unidentified-26d8c229
-  name: "ClaimToken (study family 8506b0c3)"
-  upgradeable: "no"
-- address: "0x30adfaef118acaa415d73a20d55dc7a8cd3381b4"
-  project: unidentified-4cf8e4d3
-  name: "RobinhoodSequencerReporterL1 (study family 3fc16f26)"
-  upgradeable: "no"
-- address: "0x4b12a72af6b5dcfe5f20976ba764ce2a4b7c6ade"
-  project: unidentified-84a39aca
-  name: "OndoVault (study family c6010fd9), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xbbb1e655f7d21f9261dcd7e5175a6c3f54463c98"
-  project: unidentified-b0fe751b
-  name: "Settlement (study family 75c19c4d), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x0d006d9e862b362180eb602e5973fd1fdb6f78dd"
-  project: unidentified-c9f2d9ad
-  name: "MintController (study family e7790a6e)"
-  upgradeable: "no"
-- address: "0x245578a375b1eac852538ed289a709098354bd18"
-  project: unidentified-9c6ecffe
-  name: "unverified code (study family bdaf5f27)"
-  upgradeable: "no"
-- address: "0xb6522e94f18f53806ac5feac97584181521639d3"
-  project: unidentified-2004554c
-  name: "MYRT (study family ea33be5a), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x1c211646cb99d1557f93f06ce56c302b9493c02d"
-  project: unidentified-94d3caa1
-  name: "REPERC1155Upgradeable (study family 0ddff458), 1 of 4 addresses running it"
-  upgradeable: "yes"
-- address: "0xa009a9fdc0ef474e7a3938a89f80329139291568"
-  project: unidentified-14398a33
-  name: "Vault (study family 0f93914f), 1 of 4 addresses running it"
-  upgradeable: "yes"
-- address: "0x7591c9855cbd54fea59252f8ba6cdfde06afab36"
-  project: unidentified-0a0a2b62
-  name: "QRCs (study family eb5c95dd), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x26cc007e3d658719f8a44b6109ce6341eb0010cd"
-  project: unidentified-9a8f92a8
-  name: "CounterfactualDepositCCTP (study family 0892b9dc), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x78c10059037e245425fa28cf101cdb8c45cca76c"
-  project: unidentified-9a8f92a8
-  name: "SponsoredCCTPSrcPeriphery (study family 4574817e)"
-  upgradeable: "no"
-- address: "0x49aaa987b1a7e9e4ae091dcd8332c39f322d7d28"
-  project: unidentified-171254cd
-  name: "TransitStation (study family 9dfa848d)"
-  upgradeable: "no"
-- address: "0x57b11c2ced3c974aa5b4669644c4b4cde3326605"
-  project: unidentified-86bf8b32
-  name: "unverified code (study family 046c9091)"
-  upgradeable: "no"
-- address: "0x31a53ce49c99b0c05085dd76d17669871dacd6c0"
-  project: unidentified-4e1712b4
-  name: "unverified code (study family 06d39183), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x62074e272aeff86303062ba3a7a97e51a947972e"
-  project: unidentified-31d97c2f
-  name: "WolfGameBridge (study family 607110ff), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x37a436253454c718d33d271bd829d15d7d372300"
-  project: unidentified-d24be156
-  name: "unverified code (study family 6af391e4), 1 of 3 addresses running it"
-  upgradeable: "yes"
-- address: "0x6470998fc57f74682ebde0739119608c37a6cdc0"
-  project: unidentified-cb380c9f
-  name: "KSBridgeRouter (study family ff6ffc74), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x7bc8c3364e33c1af927dc51c23c16dbc376c409d"
-  project: unidentified-0e7e9988
-  name: "TollanUniverseGenesisAvatars (study family 530b9787)"
-  upgradeable: "no"
-- address: "0x8bc3249fec4f61440af91ea2f3506f156039297c"
-  project: unidentified-428f188b
-  name: "GRVTBridgeProxy (study family 4c8cdaec), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x5adabde1b6aedf8f768f782fff1b1cc396416f00"
-  project: unidentified-9a8f92a8
-  name: "AdminWithdrawManager (study family 3c296e91), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0xc4d2cc4363a8a8a72c5fe35f53a56b095a29c7b0"
-  project: unidentified-25ded7f2
-  name: "BMASAchievements (study family f3eb26f7)"
-  upgradeable: "no"
-- address: "0x2b3c1760a126275002cf7ea003fa4d513cc89f0d"
-  project: unidentified-e682dcfb
-  name: "TheMineBoxV2 (study family 0ccf723b), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x42a479f4973c173ef640e729453c630c6388949b"
-  project: unidentified-81e4dacb
-  name: "unverified code (study family 3d2d9657), 1 of 3 addresses running it"
-  upgradeable: "no"
-- address: "0xcd73a05979a1ff8ca444558bda60e54161117ee2"
-  project: unidentified-9a8f92a8
-  name: "CounterfactualDepositSpokePool (study family be6475cd)"
-  upgradeable: "no"
-- address: "0x1b01666a3a026df6168fa7a1dd13a80238cf862c"
-  project: unidentified-cf67352b
-  name: "Verifier (study family 8a5d7d92), 1 of 3 addresses running it"
-  upgradeable: "yes"
-- address: "0xa3a3e8304c88b017153ba5dfccdaccb7116a185f"
-  project: unidentified-dc3988ce
-  name: "Bridge (study family 012c8e40)"
-  upgradeable: "no"
-- address: "0xb5fd9fffddd02de0f570d63759367ed830e22134"
-  project: unidentified-9ade9286
-  name: "ArchetypeLogicErc721a (study family 52e16320), 1 of 11 addresses running it"
-  upgradeable: "no"
-- address: "0x503ea999fb0ab4dcbbe3a7c9aaaf1cccc7e54ec7"
-  project: unidentified-6fb6303b
-  name: "TokenConversionManagerV3 (study family b2d26d87), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x30ddef8cedee40df8cab52813fc929da2bcc070c"
-  project: unidentified-9d7eb653
-  name: "Rewards (study family 7a460506), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x3ffd8b918917727c6f226f4eb88e33e452802294"
-  project: unidentified-9ba15e76
-  name: "ExecutorV3 (study family b1d8568d), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x5dcb5f7becaa169377bf08e8a95c8b57d2c47b49"
-  project: unidentified-c4bdc428
-  name: "unverified code (study family e8b3dec0), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xc581a68b95fb298f04f02b865d28769a4ef1716a"
-  project: unidentified-21ebc2f2
-  name: "Collateral (study family 46fc541a), 1 of 7 addresses running it"
-  upgradeable: "no"
-- address: "0x2b05c841811bcd8204ea44da33649bf79c4fd163"
-  project: unidentified-1d653a91
-  name: "WorkflowRegistry (study family ebc88f77), 1 of 3 addresses running it"
-  upgradeable: "no"
-- address: "0xe1e8f7c0f15e8d5f9f09023695368981b27d7357"
-  project: unidentified-a5387b6c
-  name: "SpacePort (study family 1b4dd5e3), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x2d346f2cea44097602a5168cf11b0aab93cdbd5b"
-  project: unidentified-cc0ce0f2
-  name: "KnightToken (study family 3acb046a), 1 of 4 addresses running it"
-  upgradeable: "no"
-- address: "0x9eefc0099206ae8d82098fcfda41bbb214e8e6ab"
-  project: unidentified-187f1205
-  name: "ScatterBidRouter (study family bed7dfe8)"
-  upgradeable: "no"
-- address: "0xf787128e3eb8161174944117b9fe1204a22097fb"
-  project: unidentified-a0036dbc
-  name: "Validator (study family eac3b5fa)"
-  upgradeable: "no"
-- address: "0x09beeedf51aa45718f46837c94712d89b157a9d3"
-  project: unidentified-d40d9e8e
-  name: "unverified code (study family 63a90714)"
-  upgradeable: "no"
-- address: "0xb94d2df40fef84e20213c7908c7111f92dc28a83"
-  project: unidentified-16a9097e
-  name: "unverified code (study family 45e0d70d), 1 of 12 addresses running it"
-  upgradeable: "no"
-- address: "0xfb6626917a2ea7cc68ee6ed567cb5232ecb71a78"
-  project: unidentified-d5289ede
-  name: "MigrationIntake (study family 0d89aca0)"
-  upgradeable: "no"
-- address: "0xdbb5cf12408a3ac17d668037ce289f9ea75439d7"
-  project: unidentified-f4e55757
-  name: "WorldMobileToken (study family fe78caa0)"
-  upgradeable: "no"
-- address: "0x19d4ad650e8b8d03d3a3565b2eb27229eb6e8ddb"
-  project: unidentified-31d97c2f
-  name: "ResourceBridge (study family 90a34723), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xc0ca685456363ed2d7521dfc47e0be165a99eb44"
-  project: unidentified-762fcf49
-  name: "Coordinator (study family f9e9ca27), 1 of 16 addresses running it"
-  upgradeable: "no"
-- address: "0xb9de5840469185bc07c217077685fa1eec7b362f"
-  project: unidentified-4b39f384
-  name: "CrossChainBridgeMessenger (study family f6374baf), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xcff469e561d9dce5b1185cd2ac1fa961f8fbde61"
-  project: unidentified-5780b22c
-  name: "unverified code (study family cd0bb186)"
-  upgradeable: "no"
-- address: "0x6c38bf44a327bf36bfbefcedc514c0fb3fec6748"
-  project: unidentified-64ed2619
-  name: "HTLCErc20 (study family 5c7d88a9)"
-  upgradeable: "no"
-- address: "0xc2d54e4d795469f8616612cc343af078a892f36f"
-  project: unidentified-ec3aac81
-  name: "unverified code (study family 88ff4b9d)"
-  upgradeable: "yes"
-- address: "0xe41c726421007e133a59365432fe886a73b45126"
-  project: unidentified-58dc7bf9
-  name: "unverified code (study family 50661da8)"
-  upgradeable: "no"
-- address: "0x4206931337dc273a630d328da6441786bfad668f"
-  project: unidentified-37130520
-  name: "Dogecoin (study family 1c6a7735)"
-  upgradeable: "no"
-- address: "0x035b5438444f26e6aab81e91d475b7b1ac4fb22b"
-  project: unidentified-be595dad
-  name: "UpgradeableStork (study family 725edad2), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xfe9f7f7b916085f8221190201246b6a0bb2b80c3"
-  project: unidentified-79ff6f02
-  name: "MultiSigCold (study family 83c5abf1), 1 of 3 addresses running it"
-  upgradeable: "no"
-- address: "0x49b5a631f54927c0007232844f06fe18cbf69786"
-  project: unidentified-704deb16
-  name: "HypersnapBridge (study family 5fe4b0da), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x4c0b10d3bf4282609f36ae5620491f240d1af898"
-  project: unidentified-06c5c9d0
-  name: "DuckWarrantRedeemer (study family 372f45c6)"
-  upgradeable: "no"
-- address: "0x4744feb48a74cd8c3e7f6ba9ba97cd377416ba78"
-  project: unidentified-323211cd
-  name: "SynthwaveClaim (study family 59358dfb)"
-  upgradeable: "no"
-- address: "0x1f9a27fc9ea14b4430750e3b718b92752573929a"
-  project: unidentified-fe93d561
-  name: "unverified code (study family 4aab626c), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xfbd0caabcfbcf1cd4e1c6c4bee710bb7ff8da2f6"
-  project: unidentified-c307c7d8
-  name: "PremuVault (study family 05222cbc)"
-  upgradeable: "no"
-- address: "0xb6401e9e43f4fcab6a0ca7412cfe9de8d07e2e3d"
-  project: unidentified-a7eccdb9
-  name: "OffchainQuotedLinearFee (study family f788eae4), 1 of 183 addresses running it"
-  upgradeable: "no"
-- address: "0xced337556854775812bea8d88e776643c87f8554"
-  project: unidentified-12ee2de7
-  name: "unverified code (study family 783d654d), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x0b35d20c9b45f1312f408768bee75150b2b8a80e"
-  project: unidentified-ef166182
-  name: "PaymentGateway (study family 936caf73)"
-  upgradeable: "no"
-- address: "0x6769155b16f25d317819efef011e0a50a48e83c5"
-  project: unidentified-9a8f92a8
-  name: "SponsoredCCTPSrcPeriphery (study family dcbcbb98)"
-  upgradeable: "no"
-- address: "0x1cdae7dcc3f32551865efe3d77ac2b88ee2905b4"
-  project: unidentified-a63dea08
-  name: "K1MeeValidator (study family 43656520)"
-  upgradeable: "no"
-- address: "0xa626ae844aaf91e9b299fa55270d1dceb82b9300"
-  project: unidentified-39b84492
-  name: "BridgeVault (study family 9b9d1c1e), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x290ae0178314705d95e504ea94ce052fb550b613"
-  project: unidentified-ccef2622
-  name: "PaniniBlockchain (study family c7d9b8e8), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x0675509169e25134248563c675c15b62618cc479"
-  project: unidentified-fe0de137
-  name: "FastPayDisburser (study family ada5010c)"
-  upgradeable: "no"
-- address: "0xc01ca57dc7f7c4b6f1b6b87b85d79e5ddf0df55d"
-  project: unidentified-33f61fd7
-  name: "OctraLightClient (study family 4444045f)"
-  upgradeable: "no"
-- address: "0x2fe17fa30a933693b3ae13d82d00ef18299c6435"
-  project: unidentified-244a3952
-  name: "unverified code (study family 4680ab41)"
-  upgradeable: "no"
-- address: "0x47e69cbd049c4aa1bbeb74123737b91de95b238b"
-  project: unidentified-4540fd07
-  name: "ProofOfXP (study family c4e4fd05)"
-  upgradeable: "no"
-- address: "0x000000000d60704384100a29efb6c9cf8cd72820"
-  project: unidentified-d70a2e6e
-  name: "SubAPIMultiSig (study family dbf25309), 1 of 4 addresses running it"
-  upgradeable: "no"
-- address: "0x6b456a9bdc0f6849c0e54306acc56b67a2957a56"
-  project: unidentified-7b0c15f3
-  name: "unverified code (study family 0a922f8c), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x2d5e0cd9bfea95e89cef80fb39c050991ac19eaf"
-  project: unidentified-9c557378
-  name: "unverified code (study family 38c4c1e3), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x36c54110936d18ecb11ddd1aaad73e1488888800"
-  project: unidentified-bb946534
-  name: "Vault_12366 (study family 2cfd3f5c), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0xd4505645b724754f5170a2027804a4265e860d44"
-  project: unidentified-eba7bfae
-  name: "OperationAuthorizationRegistry (study family 5ed0d7fc), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xa5788882538dd3b086f4f97b8695f16a676ae114"
-  project: unidentified-9badd034
-  name: "RewardVault (study family 29151445)"
-  upgradeable: "no"
-- address: "0x1ac2fafa1076c3353789a48148cbffdf1155eb03"
-  project: unidentified-29f1472e
-  name: "unverified code (study family 994bebfa)"
-  upgradeable: "no"
-- address: "0x323a76393544d5ecca80cd6ef2a560c6a395b7e3"
-  project: unidentified-0904dac3
-  name: "ENSGovernor (study family 8b887dc7)"
-  upgradeable: "no"
-- address: "0x1a9a4d919943340b7e855e310489e16155f4ed29"
-  project: unidentified-e8bc44ae
-  name: "Claimer (study family d14bb73d)"
-  upgradeable: "no"
-- address: "0x38872faddaf13876bfc60152d69f15f2bab85f36"
-  project: unidentified-b71ddba1
-  name: "AVNBridge (study family 273aa029), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x9718a210dd1fc4dfa6d756e55ea89617da5efe77"
-  project: unidentified-ea94e11f
-  name: "unverified code (study family e529f189), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x1612c1db1e373019b35748e3e57bddef8a8c8fde"
-  project: unidentified-6b116178
-  name: "SignerRegistry (study family 195f2a99), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0xb79aae35b00f2250ae7112075a5aa4d616cee34d"
-  project: unidentified-b15ad052
-  name: "unverified code (study family c1962724), 1 of 59 addresses running it"
-  upgradeable: "no"
-- address: "0x3aa07cd56d3e46c7b8613681dc2734cf17f267d0"
-  project: unidentified-3f0447a6
-  name: "unverified code (study family f36dcc40), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xae9f4c581551177f4eec76c32a72aaa991e570c8"
-  project: unidentified-9170f726
-  name: "FanbaseTransaction (study family 707a5a40)"
-  upgradeable: "no"
-- address: "0xcd4c7e2e8d2a15192be238bba43181d9cdf87e7b"
-  project: unidentified-a3d54fe2
-  name: "unverified code (study family b3cde3c1), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xa3d7aa85ac01a085d6838845abefc64f28636b4a"
-  project: unidentified-8a332ae2
-  name: "BlockBeastsGame (study family e9bf02f8)"
-  upgradeable: "no"
-- address: "0xbed7d999f1d71ac70c263f64c7c7e009d691be2e"
-  project: unidentified-dae98b8f
-  name: "MYRC (study family 8f76d504)"
-  upgradeable: "no"
-- address: "0xfc3c7f624123ed6950a7037f7cc625f9dd5c62a4"
-  project: unidentified-d6f0d5c3
-  name: "unverified code (study family 1b6e5cec)"
-  upgradeable: "no"
-- address: "0xed3309a515ca607c4687f096d6e60e639e03d793"
-  project: unidentified-7ba97591
-  name: "VerifiableBacktestOracleV2 (study family f2cd9fad)"
-  upgradeable: "no"
-- address: "0xb587566b6c52f3eac667cfbad92b3f637fe3b083"
-  project: unidentified-0282e624
-  name: "unverified code (study family b9dfa607), 1 of 482 addresses running it"
-  upgradeable: "no"
-- address: "0xbd00db15ec30d4caa7ef36f38cff6407009ec80d"
-  project: unidentified-79ff6f02
-  name: "MultiSigHot (study family 5e45baa2), 1 of 3 addresses running it"
-  upgradeable: "no"
-- address: "0x9e5c10bc7c9d0005bf956adf93b92c5b1305b021"
-  project: unidentified-19c9d02d
-  name: "unverified code (study family ad339a53), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x00d7a47798e8ff169104b748131703b78f23390c"
-  project: unidentified-eba7bfae
-  name: "unverified code (study family 27d5062e), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x3fcd87948cbf46605d6ded0ed56d3daccd9daf9e"
-  project: unidentified-abff377a
-  name: "RequestWhitelist (study family 71e2b399), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x852ab534c93bb308553bc5e960ea8916a89a9955"
-  project: unidentified-932bdf92
-  name: "unverified code (study family 32612628)"
-  upgradeable: "no"
-- address: "0xb5fd5c5f303204ec8735ebbf7c3bd825df7fbfaa"
-  project: unidentified-b4eb0eaf
-  name: "SmartWallet (study family 84cf1177)"
-  upgradeable: "no"
-- address: "0xd1432dd5ec5dba6861bd4c6a56212f54abcbc0b9"
-  project: unidentified-d58d143c
-  name: "Pre111K (study family 46447aba)"
-  upgradeable: "no"
-- address: "0x0f11d0d1671519683bd48abf3dbe779e300941cd"
-  project: unidentified-bcac4daf
-  name: "DecentralandMarketplaceEthereum (study family e91d3a4e)"
-  upgradeable: "no"
-- address: "0xbd82771e11bde162a302068d0e76394f0ea0bdda"
-  project: unidentified-8c056041
-  name: "unverified code (study family 05478c08), 1 of 5 addresses running it"
-  upgradeable: "no"
-- address: "0x32955b1023b45cea1ea7eae895df53dd78c25f35"
-  project: unidentified-0a0a2b62
-  name: "QuestSeason2ImplementationV2 (study family 3e78cda2), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xe570e438c1278a15305de03f67e095facbf35a86"
-  project: unidentified-66a0b1ce
-  name: "WeightedStakingPool (study family 00644b5c)"
-  upgradeable: "no"
-- address: "0xa4d8e7a72743b27ceeeb014de5fc8607ab76a162"
-  project: unidentified-be58dd48
-  name: "unverified code (study family f299b00e)"
-  upgradeable: "no"
-- address: "0xac5544de9a295ca40bbad818f25db2c3c152022b"
-  project: unidentified-a9a9b1c4
-  name: "GaslessUSDCDepositRelay (study family 50ce0ed7)"
-  upgradeable: "no"
-- address: "0x3af06b2801c7a23978c5e0da1df83c8050fd6ab7"
-  project: unidentified-9a8f92a8
-  name: "unverified code (study family 3455381a)"
-  upgradeable: "no"
-- address: "0x15cf6e7fdd7da40d4fda6435358f7493a740f51e"
-  project: unidentified-8426cc3b
-  name: "UtilitiesInteractions (study family 7b786ad8)"
-  upgradeable: "no"
-- address: "0xb158dfc961a4caff5fcece489ea4c21bfd26a61e"
-  project: unidentified-c1c51f90
-  name: "SpaceCatsMinting (study family 483c017d)"
-  upgradeable: "no"
-- address: "0xbe097e6e6db8dbac460cb8c89bad0af28296d0b3"
-  project: unidentified-a67dd62e
-  name: "unverified code (study family bde672ef), 1 of 4 addresses running it"
-  upgradeable: "yes"
-- address: "0xbc287b4843aa5f0985aa4694a3eda39ff0c59d0a"
-  project: unidentified-dead4b04
-  name: "unverified code (study family c14841c2), 1 of 10 addresses running it"
-  upgradeable: "yes"
-- address: "0x15c1edbf6e6161d50d58682df7587f0d61db5c38"
-  project: unidentified-52864fcb
-  name: "Home (study family f997427d), 1 of 5 addresses running it"
-  upgradeable: "no"
-- address: "0xb924d6bc8cb01b8c86bd5f8d8eb8dcf96de93aba"
-  project: unidentified-aaaf5d51
-  name: "RealeRouter (study family b4c99d23), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x71c1020abf460342a3d5b6a96c719b95d1dfee40"
-  project: unidentified-5cc95f47
-  name: "QubitsBridge (study family 1048521d)"
-  upgradeable: "no"
-- address: "0x2991f64bb44bfee20e54d764f8c9ef0fa57b1613"
-  project: unidentified-077e709f
-  name: "OddSerum (study family 16943d66)"
-  upgradeable: "no"
-- address: "0x20e2288d9ce9f6356f45e0f950fa782a12dd1d03"
-  project: unidentified-67540f00
-  name: "unverified code (study family daeb4d73)"
-  upgradeable: "no"
-- address: "0x3d30aab957c3df1bfc25a5377b4ad7fc939cacb6"
-  project: unidentified-6d7c52c9
-  name: "unverified code (study family c24a57db), 1 of 4 addresses running it"
-  upgradeable: "no"
-- address: "0x31d4753dec2a62d2c18ff4ae1d20ad039e3fc4c0"
-  project: unidentified-c25464ce
-  name: "OLinxMessageVerifier (study family 890610ee), 1 of 5 addresses running it"
-  upgradeable: "no"
-- address: "0x020e78ba017931480ada4480b231f80675544a89"
-  project: unidentified-b4eb0eaf
-  name: "SmartWallet (study family 188f672f), 1 of 3 addresses running it"
-  upgradeable: "no"
-- address: "0x369f19ba423493f0457431d39417e6f6e0c875ff"
-  project: unidentified-fdc1af95
-  name: "CompressedOracleV1 (study family d0e339c9), 1 of 3 addresses running it"
-  upgradeable: "no"
-- address: "0x5ef397e52fac25aa92ae436ff002f83c043c1620"
-  project: unidentified-a03c9213
-  name: "MultiPool (study family a46dddc5), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x92008b210e3d5e03370e5d372843a6439196d37f"
-  project: unidentified-da9b6480
-  name: "StratoNativeRepresentationBridge (study family 74856335), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xd8696e9add7cc886d85cd9934f435c1febfa10af"
-  project: unidentified-a3d0da5a
-  name: "unverified code (study family ae1d96ce), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x262073f0f5d14863edc257aa527561301ad5a36d"
-  project: unidentified-408444aa
-  name: "SubscriptionPayments (study family 7ce2a7a3)"
-  upgradeable: "no"
-- address: "0x3f5c77bb36a16118ccc9ca83ddee8a01b6c01811"
-  project: unidentified-07b589f0
-  name: "Api3MarketV2 (study family 09130546)"
-  upgradeable: "no"
-- address: "0xcafea2c575550512582090aa06d0a069e7236b9e"
-  project: unidentified-fac70116
-  name: "Registry (study family 0972218b), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xb0517f1fd9e439d5119e0fae1053c8b882ec36bf"
-  project: unidentified-cba8baea
-  name: "PRDCTRBridge (study family 27db3add), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x18e869b7911653fe5519b14c1d3d0b5916e6ee2f"
-  project: unidentified-5ae10f6c
-  name: "AllForeverWrapper (study family ef324c2c)"
-  upgradeable: "no"
-- address: "0xc2ae5507720cac7c5e82349e93379768cb19545b"
-  project: unidentified-162c7edd
-  name: "UXAirdropV2 (study family 38fbb070)"
-  upgradeable: "no"
-- address: "0x9003b460c25b26c6b54cec0cc741c2a6a206e98a"
-  project: unidentified-ee552967
-  name: "EscrowFactoryV7 (study family cae6d3ab)"
-  upgradeable: "no"
-- address: "0x431d5dff03120afa4bdf332c61a6e1766ef37bdb"
-  project: unidentified-1ebe8c10
-  name: "FiatTokenV1 (study family cbd31b67), 1 of 6 addresses running it"
-  upgradeable: "yes"
-- address: "0xba9bc3e7a9bdab2bf52e152779e5186d8ed8416a"
-  project: unidentified-aa033f19
-  name: "unverified code (study family 3fbc7d14), 1 of 4 addresses running it"
-  upgradeable: "yes"
-- address: "0x2f75ba58ab7ac6e627cbe1cfbb14a1ababc59116"
-  project: unidentified-4675fc3d
-  name: "AuthRegistry (study family 700737b5), 1 of 3 addresses running it"
-  upgradeable: "no"
-- address: "0x1b30a3b5744e733d8d2f19f0812e3f79152a8777"
-  project: unidentified-495e889d
-  name: "unverified code (study family 93e920e8), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x3f51cbfa16d605a271d06fd8b67a7ab070fd8dd8"
-  project: unidentified-3c5a4304
-  name: "unverified code (study family a4bc488c), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x72cacbcfde2d1e19122f8a36a4d6676cd39d7a5d"
-  project: unidentified-0a47cec6
-  name: "EnforcedTxGateway (study family 04746f82), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x4ca75992d2750bec270731a72dfdede6b9e71cc7"
-  project: unidentified-80d4c766
-  name: "GuardV3 (study family f9308cec)"
-  upgradeable: "no"
-- address: "0xd52c79d897a24c275729112c3c5ea813b5703f88"
-  project: unidentified-d584fe73
-  name: "NightmareImpDoor (study family b76ae5ea)"
-  upgradeable: "no"
-- address: "0x494fda42a2dcc3005886a6f59f144bb000fc584b"
-  project: unidentified-8426cc3b
-  name: "TraitsConstructorV2 (study family fa3fe4b9)"
-  upgradeable: "no"
-- address: "0x6f27b4c3307b79c6fc91349db8ae55ef87cac885"
-  project: unidentified-48ca14e7
-  name: "Swap (study family 1a322bd2)"
-  upgradeable: "no"
-- address: "0x30c0e6a4b247e706d3a75b6e88bb0645c3b39757"
-  project: unidentified-a2aa04da
-  name: "unverified code (study family 069da9e4)"
-  upgradeable: "no"
-- address: "0x81964aca18bc56a4494a9203fb8eed9fa44d9330"
-  project: unidentified-f8b53875
-  name: "MintlayerBridgeV2 (study family 454bf1c4)"
-  upgradeable: "no"
-- address: "0x10eab8ab3df628edb6bf3b3b0fff4b3e17e2cdf6"
-  project: unidentified-021868f2
-  name: "unverified code (study family cf3feec4), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0xf2e6e9e5b35a951b003bb560e66377e685a4718c"
-  project: unidentified-cba20d16
-  name: "VOWBridge (study family bd404d7a), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xcf403d7117cf9544a40d04b27cb0200706fef690"
-  project: unidentified-84ba8f08
-  name: "BridgeAssist (study family 42b36081), 1 of 16 addresses running it"
-  upgradeable: "no"
-- address: "0x1b99964e61ae48fe6a386ba8e20d9565ab445530"
-  project: unidentified-d70994e8
-  name: "unverified code (study family a42002d3), 1 of 7 addresses running it"
-  upgradeable: "no"
-- address: "0xb9313ff552b942ec3d8a996af7c522c95c7cbc9f"
-  project: unidentified-fcf2db11
-  name: "unverified code (study family 67a2d77b), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xdbb9711eef41f47d247b273d18961eaa8cd7919d"
-  project: unidentified-8c1587ad
-  name: "BuddyRewardVault (study family 101b2367), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x2540411f7146d7d887946e45a0541b4b45a6807d"
-  project: unidentified-3b66d144
-  name: "NEBASaleV3 (study family 3bced071), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x1e6a90d2ef5fdbb1678149736fa37a3d5d5bac49"
-  project: unidentified-c32dd5da
-  name: "unverified code (study family 159e1508)"
-  upgradeable: "no"
-- address: "0x4d5473fc8cc5b89e1f3c7610ffabd88b40d8ebbe"
-  project: unidentified-fcf2db11
-  name: "unverified code (study family 987c2720)"
-  upgradeable: "no"
-- address: "0x4db1da8f683262a7c40f659845dc73c9ea159fdd"
-  project: unidentified-2eff464f
-  name: "unverified code (study family 438511bd)"
-  upgradeable: "no"
-- address: "0x9528659d4ff876a16e36c692ed34a71c03a9cc3f"
-  project: unidentified-ee820458
-  name: "unverified code (study family 91a71fd6)"
-  upgradeable: "no"
-- address: "0x91b95120d085aa99c05167f3767eb63460c1dcac"
-  project: unidentified-7a0d94f5
-  name: "unverified code (study family 652094c5)"
-  upgradeable: "no"
-- address: "0xce7a61d155623f5eb867a322100a5a6e2c917311"
-  project: unidentified-fe93d561
-  name: "DePunk (study family cdf2aab3), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x7df6189fccb27ac8528f23f4bc36f9f23a705491"
-  project: unidentified-45941504
-  name: "Hotwallet (study family 7063f56d), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x545a25cbbcb63a5b6b65af7896172629ca763645"
-  project: unidentified-17d04113
-  name: "KineExchangeTreasury (study family 93698209)"
-  upgradeable: "no"
-- address: "0x1105b7e247ed171a14385c316b7d855828577883"
-  project: unidentified-ce22620b
-  name: "unverified code (study family 35dccdfd), 1 of 3 addresses running it"
-  upgradeable: "no"
-- address: "0xd139416cf34f958f600166e52c855f4aeacc5c42"
-  project: unidentified-8473a96d
-  name: "NGRNDPaymentLedger (study family fc9a689c), 1 of 3 addresses running it"
-  upgradeable: "no"
-- address: "0x9dad54257bb4d1acfc6be53787b2fff1f49f8816"
-  project: unidentified-915c8d4e
-  name: "BECLab (study family c869791b)"
-  upgradeable: "no"
-- address: "0x87dafd430de367faabb6387a0b8a702076727d30"
-  project: unidentified-0a0185f5
-  name: "unverified code (study family c93299bb)"
-  upgradeable: "no"
-- address: "0xf8017ae65f2ce39b07244e54eca9ec640f558c8a"
-  project: unidentified-ba776663
-  name: "MVOStaking (study family e9bbe075)"
-  upgradeable: "no"
-- address: "0xf4c4621b88b52f3f5eaa71986a003f0f98a16d7a"
-  project: unidentified-94310e76
-  name: "unverified code (study family cb782f90)"
-  upgradeable: "no"
-- address: "0x8f6b6adb49cdca3b9f6947f61a1201242c3d827f"
-  project: unidentified-52864fcb
-  name: "Replica (study family 0126a4b4)"
-  upgradeable: "no"
-- address: "0xea73a0c1fab72c3eb29494b0afec1554e8802afe"
-  project: unidentified-70feeec9
-  name: "DecagonTimelock (study family 8532e3ca)"
-  upgradeable: "no"
-- address: "0x92dee10093f7be466a0d57a7637faa8364d8b7ca"
-  project: unidentified-c8b6df21
-  name: "unverified code (study family 343fde67)"
-  upgradeable: "no"
-- address: "0xae1a3da3891763918a3ff691d25c0120652becc4"
-  project: unidentified-31403342
-  name: "TKSClaimVault (study family f936d700)"
-  upgradeable: "yes"
-- address: "0x2422b2e752ecac1ab4b3702e501b0bb8f70e923d"
-  project: unidentified-9f844407
-  name: "unverified code (study family bd0fbe2d)"
-  upgradeable: "no"
-- address: "0xcba0847962bca2050733f3c689b75bd297daa9dc"
-  project: unidentified-3d03a642
-  name: "unverified code (study family a9152f8f)"
-  upgradeable: "no"
-- address: "0xb833ee3698d104b49f89dfa50fe72915372ccc1d"
-  project: unidentified-862edf41
-  name: "unverified code (study family f945f56a), 1 of 101 addresses running it"
-  upgradeable: "no"
-- address: "0xbb0f2fbce414ad21ba177ea8cb3aaf2953b502c7"
-  project: unidentified-6f74d207
-  name: "RwaSafe (study family 054c4be8), 1 of 47 addresses running it"
-  upgradeable: "yes"
-- address: "0xbc98b0805501b8f553304c4d88b00ece4b5fa30f"
-  project: unidentified-b15ad052
-  name: "unverified code (study family 6f18d8f4), 1 of 29 addresses running it"
-  upgradeable: "no"
-- address: "0x0000b77fb305b97d405dd7a25759d3f4a0b3b3f9"
-  project: unidentified-56009e5e
-  name: "NewDawnPaymentForwarder (study family e6943006), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x0bf5b1b8b05fbc5ca0e2cc7693a7f003efb49579"
-  project: unidentified-00000b76
-  name: "unverified code (study family 2b4c997e), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0xba7c0fbc8fde123565094252ca7f2990f8c4a54e"
-  project: unidentified-123cc4af
-  name: "Rewards (study family e68a6a11), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0xd1bb6a77bdbc868b4b15f795e9eaa7665e8c6203"
-  project: unidentified-a5b66fd2
-  name: "MixinSafeGuard (study family e1640a6f), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x55d64bb5360e4da122a06c1dd8758f42d0ca220c"
-  project: unidentified-6e078760
-  name: "unverified code (study family ac83a6ef)"
-  upgradeable: "no"
-- address: "0x1589e52f36eaad35c3eded79fca83959bb841f57"
-  project: unidentified-e31fd6cd
-  name: "AMTManager (study family 3c5a7dfa)"
-  upgradeable: "no"
-- address: "0xa40829b32748b8d6013e7a1a57e5e0d390407acd"
-  project: unidentified-6cc435f6
-  name: "Dojo (study family 5b83d6e8)"
-  upgradeable: "no"
-- address: "0xe5d3d7da4b24bc9d2fda0e206680cd8a00c0febd"
-  project: unidentified-9bb51953
-  name: "RainCollateralController (study family 676eb3ed)"
-  upgradeable: "no"
-- address: "0xc4fefd0851a37282a2d430186194939a4e7c2dec"
-  project: unidentified-84fe172c
-  name: "AegisIncomeRouter (study family d966b121)"
-  upgradeable: "no"
-- address: "0x8adcfaf1b64cc514524b80565bcc732273ddeafd"
-  project: unidentified-a28cb806
-  name: "AegisRewards (study family 26e0a288)"
-  upgradeable: "no"
-- address: "0x9e30ba42487d53c4f835b91e56a48a6d58c814ea"
-  project: unidentified-a560cfd7
-  name: "AgentRegistry (study family f88a4e39)"
-  upgradeable: "no"
-- address: "0xb4b19d174b3c17e7f98dc3a8c44175d2c441590f"
-  project: unidentified-7e0cdd9d
-  name: "unverified code (study family 4ee0b925)"
-  upgradeable: "no"
-- address: "0xc600cfef0dc2ae41a7f3b67e52cf2578025cf777"
-  project: unidentified-31d08a68
-  name: "BonkeeNFT (study family db14743f)"
-  upgradeable: "no"
-- address: "0x887541ff8c2f1908c489a62983157ac22b331a15"
-  project: unidentified-df77e38c
-  name: "unverified code (study family 71cc2503)"
-  upgradeable: "no"
-- address: "0xf0c76a1e2e672044bd59b7b521ea6063e733614d"
-  project: unidentified-7ee010fd
-  name: "AlwaysProofNFT (study family 8993739f)"
-  upgradeable: "no"
-- address: "0x21273b83b8009165a6c2c58bb493843022d581a2"
-  project: unidentified-8a332ae2
-  name: "BeastItemDrop (study family a63834ab)"
-  upgradeable: "no"
-- address: "0x60cc6ab378949475a3bc8fe463682d458c0bfe59"
-  project: unidentified-195f8198
-  name: "unverified code (study family dc1dad64)"
-  upgradeable: "no"
-- address: "0x6cd956807d9e4ec85f184f03a136e5f80778871f"
-  project: unidentified-ace1737f
-  name: "unverified code (study family edf6fbe9)"
-  upgradeable: "no"
-- address: "0x34507d88d2bb25b58dd5f4e4205c804e8553fb1e"
-  project: unidentified-beed5427
-  name: "M4SporeHunt (study family 57e4862a)"
-  upgradeable: "no"
-- address: "0xc6b582fe107f9873894df587b837f7f8b4a93f84"
-  project: unidentified-d5c45473
-  name: "unverified code (study family 0b3c6244)"
-  upgradeable: "no"
-- address: "0x7553a5ced41c29fa4833ebe65ec9da6e2a9efdf0"
-  project: unidentified-bb9ddeb1
-  name: "CryptoartNFT (study family 065db750), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xf115c1b6122d6014f4ce4275301af1584bbec49d"
-  project: unidentified-9e891406
-  name: "SolisEscrow (study family 327d3072)"
-  upgradeable: "no"
-- address: "0x1f415d1426724507a722aa5d66409d23c4de6425"
-  project: unidentified-b5dbc342
-  name: "unverified code (study family 8060ee4a)"
-  upgradeable: "no"
-- address: "0xc4df68e592245ca5202fe8b7c438d2b799820fc2"
-  project: unidentified-84fe172c
-  name: "AegisMinting (study family 64a75ea6), 1 of 7 addresses running it"
-  upgradeable: "no"
-- address: "0x18aaa7115705e8be94bffebde57af9bfc265b998"
-  project: unidentified-a359b85a
-  name: "AudiusToken (study family 5ad72ab6), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0xb59f87ddf026a78e728fb25df84207e25258d097"
-  project: unidentified-b17a226b
-  name: "unverified code (study family 3c06c705), 1 of 5,596 addresses running it"
-  upgradeable: "no"
-- address: "0xbbae9cc87ae22e88b657dce2fc526885c1807599"
-  project: unidentified-0ffecac9
-  name: "RewardVault (study family 9bb4f2a1), 1 of 4 addresses running it"
-  upgradeable: "yes"
-- address: "0xbc62eadcb2ca74519c50f092edcb694a904f3db6"
-  project: unidentified-e05af54c
-  name: "unverified code (study family 26b25552), 1 of 3 addresses running it"
-  upgradeable: "no"
-- address: "0xc1cdefc8833ab00cc73821a7e36fe2f3923e16c8"
-  project: unidentified-ec3016a2
-  name: "unverified code (study family acb7896b), 1 of 3 addresses running it"
-  upgradeable: "no"
-- address: "0xbc7d9220b8769e66d5e58b194ac94491ec79a075"
-  project: unidentified-da77f8fa
-  name: "MoontokAdsPayment (study family 43f51294), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x919e864815daefbd33df8d77063d37d0b2058ae4"
-  project: unidentified-3eea50ba
-  name: "DirectStaking (study family eff6cfee), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x1c73a1be11848658a82bb01455c091471c879d57"
-  project: unidentified-12472871
-  name: "PharosCollector (study family f95d3793), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x0568d0a74145fd557b3541897bc6878f5c6e9c8c"
-  project: unidentified-f2f1acbe
-  name: "PYUSDX (study family 742cdc78), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x4010cd0ddb5ed24bf26bdcfc14bc12b2edebdded"
-  project: unidentified-96af4cf2
-  name: "DistributeFacet (study family fcc6e506), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x29922d3ccb86516f6c24f89f1eb3068655ca7fa0"
-  project: unidentified-eba7bfae
-  name: "PKPValidation (study family 5f41cb3e), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x6e7a1f7339bbb62b23d44797b63e4258d283e095"
-  project: unidentified-80ab6288
-  name: "WormholeClient (study family a64f430d), 1 of 2 addresses running it"
-  upgradeable: "yes"
-- address: "0x14d772d12c2973ed00449099afca82843f6a2613"
-  project: unidentified-08e54cd3
-  name: "unverified code (study family a712a027), 1 of 2 addresses running it"
-  upgradeable: "no"
-- address: "0x5da38614c318b9e24a16e7284932574bdd621ac9"
-  project: unidentified-c4e246da
-  name: "ICO2 (study family 35ae1dea)"
-  upgradeable: "no"
-- address: "0x4ed88b09eb02504cd5df19c6786a7d5c6535d0d6"
-  project: unidentified-8426cc3b
-  name: "GodMinting (study family 8825ec6c)"
-  upgradeable: "no"
-- address: "0xc1062617d10ae99e09d941b60746182a87eab38f"
-  project: unidentified-27e80db1
-  name: "RocketSignerRegistry (study family 9baca8e7)"
-  upgradeable: "no"
-- address: "0xce3ab27f003fda9aa4187288549e8978cd33b6b5"
-  project: unidentified-18d7ae12
-  name: "TroverseGalaxyBucksManager (study family f28e5512)"
-  upgradeable: "no"
-- address: "0x2e1081ffb8e4e1467cc4d89e39d19c5044685d5b"
-  project: unidentified-e53b6f29
-  name: "BLAQPayV1 (study family e8c0715c)"
-  upgradeable: "no"
-- address: "0x78608813de5852bbec6a07116026b369ebe18c47"
-  project: unidentified-bd924545
-  name: "BridgeHead (study family 0d79e6ff)"
-  upgradeable: "no"
-- address: "0xf32cbb9dd78fb1a1025ad79304238c2e31f2b57e"
-  project: unidentified-9821f6f7
-  name: "Depositer (study family ac93c3db)"
-  upgradeable: "no"
-- address: "0xe1cefd316b6a297f15324427ab647bb309c25767"
-  project: unidentified-9011eb57
-  name: "MutationController (study family cbf42d03)"
-  upgradeable: "no"
-- address: "0xf7e4ab8815accb837e9f52dbede0e9106832ab8c"
-  project: unidentified-384f9b9f
-  name: "unverified code (study family b74a5b21)"
-  upgradeable: "no"
-- address: "0x4524011801bb496deaaf675eed123ed2ba5945d8"
-  project: unidentified-43975fe7
-  name: "unverified code (study family 75dab74a)"
-  upgradeable: "no"
-- address: "0xea57493a08100a749dc97bb49aedf01265a02e14"
-  project: unidentified-2bde30a8
-  name: "unverified code (study family 198d71c4)"
-  upgradeable: "no"
-families:
-- code: "0x2ceb3e994a516c6ba8658211bc94d4c280486cb7"
-  name: "GnosisSafeL2 (study family 922d8150)"
-  instances: 8589
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 226208453
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xf4ac5a5dc1543086347d28e757091ebd1b848cca"
-  name: "SafeL2 (study family 9a69c84f)"
-  instances: 39586
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 88489848
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xd19d8ee0a736bf643f53e3dc5489ac94e947a482"
-  name: "NXV (study family e41c77f8)"
-  instances: 80
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 12187637
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xb60fa2ad48959c016fb7545d045aeb60086aca2a"
-  name: "MultiSign (study family 7d5e2ccb)"
-  instances: 34
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 8104279
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xc2a26188e4d7521960c2ddd31947afa9b2fdd8ac"
-  name: "unverified code (study family af3852b1)"
-  instances: 5
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 4999714
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x5427fefa711eff984124bfbb1ab6fbf5e3da1820"
-  name: "Bridge (study family f3969f72)"
-  instances: 5
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 1488582
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x563eda2afb088b36a1b3735126c409372a6ef46c"
-  name: "Identity (study family c8c4077d)"
-  instances: 3069
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 994854
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x448a9c8a25dc1ec8af43c351bdd0919acbc5be7e"
-  name: "Uni (study family d927799d)"
-  instances: 7
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 448975
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x00f2b67b5a5ec2ff88b2be7d5a8d1a39d5929237"
-  name: "unverified code (study family d17fa1b5)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 431470
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x02479bfc7dce53a02e26fe7baea45a0852cb0909"
-  name: "GnosisSafe (study family f15632f5)"
-  instances: 749
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 377694
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xb8563f7bee7fbf68f8b09c97ee4a13dc6c6943ee"
-  name: "SettlementSale (study family 8a325b36)"
-  instances: 15
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 286384
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x45804880de22913dafe09f4980848ece6ecbaf78"
-  name: "PAXG (study family 9c1bb3ea)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 115492
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xe80f92077131b9890599e418ae323de71ce1c35a"
-  name: "SrcBridge (study family 2664bab4)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 92754
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x468ac716493c51184162681130035b61baff040b"
-  name: "SmartWalletUpgradeableV2 (study family b57e4077)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 92033
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x94c9d55f064980ed1faf0abb42f3548700619039"
-  name: "Bridge (study family 6fb6da97)"
-  instances: 6
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 70017
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xcb99c58fe81ae6b2cb4835e46f7b703745879042"
-  name: "OxidePortal (study family 30acf8f4)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 61535
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x965983977c29158ec53a296a6f47be145ddecc36"
-  name: "TruthBridge (study family 043cea7a)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 44934
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x3d64bd587300af85ae54007d350bfd293dc24581"
-  name: "unverified code (study family c43de8b9)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 42588
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x24b22b031ae1b5a6b09f9a0fd33613a40e0d70e6"
-  name: "unverified code (study family fcac02a7)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 38798
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xbd0a894e8f8919be0b9eb0f034d1db4e1ac415cf"
-  name: "unverified code (study family f2d6dbad)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 30497
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x35ac13efaab970f32269b61e4704f4377ce7a0ad"
-  name: "unverified code (study family a26ec3fd)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 20211
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xc22c479a54925608cc8cd60fbf69510df31aef26"
-  name: "unverified code (study family bc362389)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 15158
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xcff5d60bdcb541b31f416ef9779048b0653d04ef"
-  name: "unverified code (study family fffa0357)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 14436
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xc4a386a0fc1910d60a5283001b6c94efc20e229c"
-  name: "Vault (study family d6883c1d)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 8662
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x62728e6ca081b8a253f792980736608e13d45d79"
-  name: "Plums (study family ee4900bc)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 3790
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xaa0878e38caeafc390876479f5a14c4705c7a54a"
-  name: "ZebecCard (study family dd7a01fd)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 2346
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xc38eb82ae302b5b3ef4f3cb66a4155d1947090b1"
-  name: "unverified code (study family 737d0a35)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 1805
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xaec7e8c221c3fd24e75c996e32289235fd899ebf"
-  name: "TeikhosBounty (study family 8186a92d)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 1805
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x3249dfc80841c136ce5dc9c1b0d511f628b72b27"
-  name: "ERC1155Normal (study family d89bbb67)"
-  instances: 34
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 1263
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x74149f6d0dbdbe356fd8035a83dbc0ab7c4c1a8e"
-  name: "unverified code (study family 532c3675)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 902
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x22e95073d7a924660bb7222be327c9a6737dc68f"
-  name: "Distributor (study family 13744d79)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 722
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x2d26d31052c7d4696b6522a5f680b2c3dfc7bd61"
-  name: "Bridge (study family 7d5f7af8)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 722
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x93d070772066c977d605d69b602d316adafc25e3"
-  name: "TetherToken (study family 57df7c13)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 541
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x00000404734b3926572a2f004680a4e496e7da09"
-  name: "unverified code (study family a7594b2b)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 541
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x91077b23df5edd82868b08b3c959e884370b4553"
-  name: "VaultAdapter (study family 8b130cfa)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 541
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x3310ad0117333f3b9d25857949df5a2e0856de3b"
-  name: "SANDUIT (study family 9101ee9b)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 361
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x1bb668d33d367702adbe81346d57d5e5083fa346"
-  name: "Ibc (study family 1745c7c0)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 180
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xca79896bcec80aa7628d67c6fac85bdf6ae63b1c"
-  name: "GatewayOfframpRegistryV7 (study family c80e9002)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 180
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xa4704944a59eab8a25ee539a9a6c42ff2527b265"
-  name: "unverified code (study family dc2aee69)"
-  instances: 141
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-  value_usd: 180
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0xda864364f7d1ebcc7c89e9610ebdef45ddf5f81b"
-  name: "unverified code (study family 5ed13761)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 180
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x0068c20b863745219b6f9542e86b1263029a1c2f"
-  name: "Multisig (study family b3cc36f4)"
-  instances: 15
-  list: "every address running this code at block 26,438,999 (1 by 7702 delegation)"
-  upgradeable: "no"
-  value_usd: 180
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x287d38ca1d89cd3c435a8279ac9a3528ddeb9131"
-  name: "unverified code (study family a7051d16)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 180
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x3aeca27812d55af8c787a4277438ea01b39a73c4"
-  name: "Escrow (study family ce9296d1)"
-  instances: 7
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-  value_usd: 180
-  value_basis: held
-  value_as_of: 2026-11-18
-- code: "0x8f10b468b06c6fd214b65f87778827f7d113f996"
-  name: "unverified code (study family 32377d14)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x709944a48caf83535e43471680fda4905fb3920a"
-  name: "Api3ServerV1 (study family 0fcfb15c)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xdad58dfa5c1a7a34419afdbe1f0d610efeea95e4"
-  name: "Consortium (study family 72ce8e73)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x39cf5f1177c37649dca2e26165a06ad9d725d222"
-  name: "unverified code (study family 5461a364)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xd42284814389978dc43c53f8807e8bc0ac6bd5fe"
-  name: "ManagedValidator (study family b18535c7)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xb96025987c0c10c751517fd2ccf5767245b027bc"
-  name: "OffchainQuotedLinearFee (study family c94bac45)"
-  instances: 130
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x447654338fba13ce25988cc576b2903ac7cdcec3"
-  name: "unverified code (study family 0b29091f)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xd50678f2763db502e9481f39315702aa7900198f"
-  name: "OndoAttestationOracle (study family 88651170)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x202bdae6ea5cb576c916cf2d2a83d5a21ea2624d"
-  name: "unverified code (study family 524da18b)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xbace265d7b07e8bba150b689501cd1143d7d8549"
-  name: "MsControl (study family 11e80640)"
-  instances: 5
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xec6f74e15777047d2a66d2cc0e775a2db6455c60"
-  name: "BRLAV1_1 (study family 296eeebb)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xba0de1085f6ecbc037b6b5d24ab76d2cff9d0a24"
-  name: "voxelXMiner (study family d8e0ddf3)"
-  instances: 12
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xbcba1f21ca212f63f71536128d9e574dc3ae28d9"
-  name: "ValidatorsRegistry (study family 11454bb5)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x3105eb89980a6f6b48904e8c80f24aaf4818d726"
-  name: "BeefyClient (study family 2a6c5ff7)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xcae31f0f582e27226b15853f9f3b99f6925e0aac"
-  name: "unverified code (study family 2f674166)"
-  instances: 5
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xa9d38ccaadefeac4cea38d00c411254cdda59386"
-  name: "EnergyBridge (study family 007cb5b6)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xd6969df7e382a258ee2932fa1711af520057cc88"
-  name: "EthereumControllerToken (study family 567bf407)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x7bdd0ce75eefead46328e260abd41c68098bf791"
-  name: "MemeCardMinterV7 (study family d61a38b0)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x196c463b51d9b02c5aadaedb1cca4be850ebb27d"
-  name: "TollanUniverseItems (study family a20bac9e)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x3efbd12c6be0f0603f144b86097922230af89157"
-  name: "FeeManager (study family 89d5db66)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x9f342d7ee2e55e27250208ac97349d4d25761e8a"
-  name: "unverified code (study family 269480c8)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x888887e2d0e716ba1ecf857fe0f2a49125655288"
-  name: "TeleportToken (study family 6312e472)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x2b216bff2d2be0a542af34314161a815a807be49"
-  name: "Withdraw (study family 6ffe3cc5)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x6efa927316f924347222d283cf2254ed5eeb63ed"
-  name: "unverified code (study family 0b5d3781)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x2889bcd2e5d6141f98106dffa8a66ab21b5c84d6"
-  name: "PortfolioTokenManager (study family 2d26bc34)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x0000000031ef4155c978d48a8a7d4edba03b04fe"
-  name: "unverified code (study family 249ca13b)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xb747c1486d8aca1d13018b574701f325f497d198"
-  name: "ManyChainMultiSig (study family 3d9e34b4)"
-  instances: 78
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x76fe371cce9da65818f17131a1cffbc52652994c"
-  name: "unverified code (study family b23b26db)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x114ae097205df40dc883508fcda9a4d8e185fc68"
-  name: "unverified code (study family 81ef8da0)"
-  instances: 103
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xc2aebd1a60ae8e27115b380fb6ed17a7fa924c4c"
-  name: "unverified code (study family 0fc27fd0)"
-  instances: 17
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x01e82b67367de9f805e55de730d5007a752912a8"
-  name: "unverified code (study family 1b36dfa3)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x395c2eaa45865870d735074093720819359b6d0a"
-  name: "unverified code (study family 41756753)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x255443d8cfe2c3f77832b71099155cec35b80386"
-  name: "unverified code (study family 7b975350)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xb53977a70d755a56d3ce26926acb4c33f7861c61"
-  name: "AttestationOracle (study family 12682743)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x4b12a72af6b5dcfe5f20976ba764ce2a4b7c6ade"
-  name: "OndoVault (study family c6010fd9)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xbbb1e655f7d21f9261dcd7e5175a6c3f54463c98"
-  name: "Settlement (study family 75c19c4d)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xb6522e94f18f53806ac5feac97584181521639d3"
-  name: "MYRT (study family ea33be5a)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x1c211646cb99d1557f93f06ce56c302b9493c02d"
-  name: "REPERC1155Upgradeable (study family 0ddff458)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xa009a9fdc0ef474e7a3938a89f80329139291568"
-  name: "Vault (study family 0f93914f)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x7591c9855cbd54fea59252f8ba6cdfde06afab36"
-  name: "QRCs (study family eb5c95dd)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x26cc007e3d658719f8a44b6109ce6341eb0010cd"
-  name: "CounterfactualDepositCCTP (study family 0892b9dc)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x31a53ce49c99b0c05085dd76d17669871dacd6c0"
-  name: "unverified code (study family 06d39183)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x62074e272aeff86303062ba3a7a97e51a947972e"
-  name: "WolfGameBridge (study family 607110ff)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x37a436253454c718d33d271bd829d15d7d372300"
-  name: "unverified code (study family 6af391e4)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x6470998fc57f74682ebde0739119608c37a6cdc0"
-  name: "KSBridgeRouter (study family ff6ffc74)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x8bc3249fec4f61440af91ea2f3506f156039297c"
-  name: "GRVTBridgeProxy (study family 4c8cdaec)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x5adabde1b6aedf8f768f782fff1b1cc396416f00"
-  name: "AdminWithdrawManager (study family 3c296e91)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x2b3c1760a126275002cf7ea003fa4d513cc89f0d"
-  name: "TheMineBoxV2 (study family 0ccf723b)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x42a479f4973c173ef640e729453c630c6388949b"
-  name: "unverified code (study family 3d2d9657)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x1b01666a3a026df6168fa7a1dd13a80238cf862c"
-  name: "Verifier (study family 8a5d7d92)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xb5fd9fffddd02de0f570d63759367ed830e22134"
-  name: "ArchetypeLogicErc721a (study family 52e16320)"
-  instances: 11
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x503ea999fb0ab4dcbbe3a7c9aaaf1cccc7e54ec7"
-  name: "TokenConversionManagerV3 (study family b2d26d87)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x30ddef8cedee40df8cab52813fc929da2bcc070c"
-  name: "Rewards (study family 7a460506)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x3ffd8b918917727c6f226f4eb88e33e452802294"
-  name: "ExecutorV3 (study family b1d8568d)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x5dcb5f7becaa169377bf08e8a95c8b57d2c47b49"
-  name: "unverified code (study family e8b3dec0)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xc581a68b95fb298f04f02b865d28769a4ef1716a"
-  name: "Collateral (study family 46fc541a)"
-  instances: 7
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x2b05c841811bcd8204ea44da33649bf79c4fd163"
-  name: "WorkflowRegistry (study family ebc88f77)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xe1e8f7c0f15e8d5f9f09023695368981b27d7357"
-  name: "SpacePort (study family 1b4dd5e3)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x2d346f2cea44097602a5168cf11b0aab93cdbd5b"
-  name: "KnightToken (study family 3acb046a)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xb94d2df40fef84e20213c7908c7111f92dc28a83"
-  name: "unverified code (study family 45e0d70d)"
-  instances: 12
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x19d4ad650e8b8d03d3a3565b2eb27229eb6e8ddb"
-  name: "ResourceBridge (study family 90a34723)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xc0ca685456363ed2d7521dfc47e0be165a99eb44"
-  name: "Coordinator (study family f9e9ca27)"
-  instances: 16
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xb9de5840469185bc07c217077685fa1eec7b362f"
-  name: "CrossChainBridgeMessenger (study family f6374baf)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x035b5438444f26e6aab81e91d475b7b1ac4fb22b"
-  name: "UpgradeableStork (study family 725edad2)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xfe9f7f7b916085f8221190201246b6a0bb2b80c3"
-  name: "MultiSigCold (study family 83c5abf1)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x49b5a631f54927c0007232844f06fe18cbf69786"
-  name: "HypersnapBridge (study family 5fe4b0da)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x1f9a27fc9ea14b4430750e3b718b92752573929a"
-  name: "unverified code (study family 4aab626c)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xb6401e9e43f4fcab6a0ca7412cfe9de8d07e2e3d"
-  name: "OffchainQuotedLinearFee (study family f788eae4)"
-  instances: 183
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xced337556854775812bea8d88e776643c87f8554"
-  name: "unverified code (study family 783d654d)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xa626ae844aaf91e9b299fa55270d1dceb82b9300"
-  name: "BridgeVault (study family 9b9d1c1e)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x290ae0178314705d95e504ea94ce052fb550b613"
-  name: "PaniniBlockchain (study family c7d9b8e8)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x000000000d60704384100a29efb6c9cf8cd72820"
-  name: "SubAPIMultiSig (study family dbf25309)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x6b456a9bdc0f6849c0e54306acc56b67a2957a56"
-  name: "unverified code (study family 0a922f8c)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x2d5e0cd9bfea95e89cef80fb39c050991ac19eaf"
-  name: "unverified code (study family 38c4c1e3)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x36c54110936d18ecb11ddd1aaad73e1488888800"
-  name: "Vault_12366 (study family 2cfd3f5c)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xd4505645b724754f5170a2027804a4265e860d44"
-  name: "OperationAuthorizationRegistry (study family 5ed0d7fc)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x38872faddaf13876bfc60152d69f15f2bab85f36"
-  name: "AVNBridge (study family 273aa029)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x9718a210dd1fc4dfa6d756e55ea89617da5efe77"
-  name: "unverified code (study family e529f189)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x1612c1db1e373019b35748e3e57bddef8a8c8fde"
-  name: "SignerRegistry (study family 195f2a99)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xb79aae35b00f2250ae7112075a5aa4d616cee34d"
-  name: "unverified code (study family c1962724)"
-  instances: 59
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x3aa07cd56d3e46c7b8613681dc2734cf17f267d0"
-  name: "unverified code (study family f36dcc40)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xcd4c7e2e8d2a15192be238bba43181d9cdf87e7b"
-  name: "unverified code (study family b3cde3c1)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xb587566b6c52f3eac667cfbad92b3f637fe3b083"
-  name: "unverified code (study family b9dfa607)"
-  instances: 482
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xbd00db15ec30d4caa7ef36f38cff6407009ec80d"
-  name: "MultiSigHot (study family 5e45baa2)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x9e5c10bc7c9d0005bf956adf93b92c5b1305b021"
-  name: "unverified code (study family ad339a53)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x00d7a47798e8ff169104b748131703b78f23390c"
-  name: "unverified code (study family 27d5062e)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x3fcd87948cbf46605d6ded0ed56d3daccd9daf9e"
-  name: "RequestWhitelist (study family 71e2b399)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xbd82771e11bde162a302068d0e76394f0ea0bdda"
-  name: "unverified code (study family 05478c08)"
-  instances: 5
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x32955b1023b45cea1ea7eae895df53dd78c25f35"
-  name: "QuestSeason2ImplementationV2 (study family 3e78cda2)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xbe097e6e6db8dbac460cb8c89bad0af28296d0b3"
-  name: "unverified code (study family bde672ef)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xbc287b4843aa5f0985aa4694a3eda39ff0c59d0a"
-  name: "unverified code (study family c14841c2)"
-  instances: 10
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x15c1edbf6e6161d50d58682df7587f0d61db5c38"
-  name: "Home (study family f997427d)"
-  instances: 5
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xb924d6bc8cb01b8c86bd5f8d8eb8dcf96de93aba"
-  name: "RealeRouter (study family b4c99d23)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x3d30aab957c3df1bfc25a5377b4ad7fc939cacb6"
-  name: "unverified code (study family c24a57db)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x31d4753dec2a62d2c18ff4ae1d20ad039e3fc4c0"
-  name: "OLinxMessageVerifier (study family 890610ee)"
-  instances: 5
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x020e78ba017931480ada4480b231f80675544a89"
-  name: "SmartWallet (study family 188f672f)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x369f19ba423493f0457431d39417e6f6e0c875ff"
-  name: "CompressedOracleV1 (study family d0e339c9)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x5ef397e52fac25aa92ae436ff002f83c043c1620"
-  name: "MultiPool (study family a46dddc5)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x92008b210e3d5e03370e5d372843a6439196d37f"
-  name: "StratoNativeRepresentationBridge (study family 74856335)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xd8696e9add7cc886d85cd9934f435c1febfa10af"
-  name: "unverified code (study family ae1d96ce)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xcafea2c575550512582090aa06d0a069e7236b9e"
-  name: "Registry (study family 0972218b)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xb0517f1fd9e439d5119e0fae1053c8b882ec36bf"
-  name: "PRDCTRBridge (study family 27db3add)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x431d5dff03120afa4bdf332c61a6e1766ef37bdb"
-  name: "FiatTokenV1 (study family cbd31b67)"
-  instances: 6
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xba9bc3e7a9bdab2bf52e152779e5186d8ed8416a"
-  name: "unverified code (study family 3fbc7d14)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x2f75ba58ab7ac6e627cbe1cfbb14a1ababc59116"
-  name: "AuthRegistry (study family 700737b5)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x1b30a3b5744e733d8d2f19f0812e3f79152a8777"
-  name: "unverified code (study family 93e920e8)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x3f51cbfa16d605a271d06fd8b67a7ab070fd8dd8"
-  name: "unverified code (study family a4bc488c)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x72cacbcfde2d1e19122f8a36a4d6676cd39d7a5d"
-  name: "EnforcedTxGateway (study family 04746f82)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x10eab8ab3df628edb6bf3b3b0fff4b3e17e2cdf6"
-  name: "unverified code (study family cf3feec4)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xf2e6e9e5b35a951b003bb560e66377e685a4718c"
-  name: "VOWBridge (study family bd404d7a)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xcf403d7117cf9544a40d04b27cb0200706fef690"
-  name: "BridgeAssist (study family 42b36081)"
-  instances: 16
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x1b99964e61ae48fe6a386ba8e20d9565ab445530"
-  name: "unverified code (study family a42002d3)"
-  instances: 7
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xb9313ff552b942ec3d8a996af7c522c95c7cbc9f"
-  name: "unverified code (study family 67a2d77b)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xdbb9711eef41f47d247b273d18961eaa8cd7919d"
-  name: "BuddyRewardVault (study family 101b2367)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x2540411f7146d7d887946e45a0541b4b45a6807d"
-  name: "NEBASaleV3 (study family 3bced071)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xce7a61d155623f5eb867a322100a5a6e2c917311"
-  name: "DePunk (study family cdf2aab3)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x7df6189fccb27ac8528f23f4bc36f9f23a705491"
-  name: "Hotwallet (study family 7063f56d)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x1105b7e247ed171a14385c316b7d855828577883"
-  name: "unverified code (study family 35dccdfd)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xd139416cf34f958f600166e52c855f4aeacc5c42"
-  name: "NGRNDPaymentLedger (study family fc9a689c)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xb833ee3698d104b49f89dfa50fe72915372ccc1d"
-  name: "unverified code (study family f945f56a)"
-  instances: 101
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xbb0f2fbce414ad21ba177ea8cb3aaf2953b502c7"
-  name: "RwaSafe (study family 054c4be8)"
-  instances: 47
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xbc98b0805501b8f553304c4d88b00ece4b5fa30f"
-  name: "unverified code (study family 6f18d8f4)"
-  instances: 29
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x0000b77fb305b97d405dd7a25759d3f4a0b3b3f9"
-  name: "NewDawnPaymentForwarder (study family e6943006)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x0bf5b1b8b05fbc5ca0e2cc7693a7f003efb49579"
-  name: "unverified code (study family 2b4c997e)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xba7c0fbc8fde123565094252ca7f2990f8c4a54e"
-  name: "Rewards (study family e68a6a11)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xd1bb6a77bdbc868b4b15f795e9eaa7665e8c6203"
-  name: "MixinSafeGuard (study family e1640a6f)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x7553a5ced41c29fa4833ebe65ec9da6e2a9efdf0"
-  name: "CryptoartNFT (study family 065db750)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xc4df68e592245ca5202fe8b7c438d2b799820fc2"
-  name: "AegisMinting (study family 64a75ea6)"
-  instances: 7
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x18aaa7115705e8be94bffebde57af9bfc265b998"
-  name: "AudiusToken (study family 5ad72ab6)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xb59f87ddf026a78e728fb25df84207e25258d097"
-  name: "unverified code (study family 3c06c705)"
-  instances: 5596
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xbbae9cc87ae22e88b657dce2fc526885c1807599"
-  name: "RewardVault (study family 9bb4f2a1)"
-  instances: 4
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0xbc62eadcb2ca74519c50f092edcb694a904f3db6"
-  name: "unverified code (study family 26b25552)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xc1cdefc8833ab00cc73821a7e36fe2f3923e16c8"
-  name: "unverified code (study family acb7896b)"
-  instances: 3
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0xbc7d9220b8769e66d5e58b194ac94491ec79a075"
-  name: "MoontokAdsPayment (study family 43f51294)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x919e864815daefbd33df8d77063d37d0b2058ae4"
-  name: "DirectStaking (study family eff6cfee)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x1c73a1be11848658a82bb01455c091471c879d57"
-  name: "PharosCollector (study family f95d3793)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x0568d0a74145fd557b3541897bc6878f5c6e9c8c"
-  name: "PYUSDX (study family 742cdc78)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x4010cd0ddb5ed24bf26bdcfc14bc12b2edebdded"
-  name: "DistributeFacet (study family fcc6e506)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
-- code: "0x29922d3ccb86516f6c24f89f1eb3068655ca7fa0"
-  name: "PKPValidation (study family 5f41cb3e)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x6e7a1f7339bbb62b23d44797b63e4258d283e095"
-  name: "WormholeClient (study family a64f430d)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "yes"
-- code: "0x14d772d12c2973ed00449099afca82843f6a2613"
-  name: "unverified code (study family a712a027)"
-  instances: 2
-  list: "every address running this code at block 26,438,999"
-  upgradeable: "no"
+- {address: "0x2ceb3e994a516c6ba8658211bc94d4c280486cb7", family: "922d81504c51927118b2dda3d8ce64ee", copies: 8589, name: "GnosisSafeL2", label: "created by Safe: Proxy Factory 1.3.0 Default", upgradeable: "yes", rating: LOW, value_usd: 226208453, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 1630, note: "a real transaction fails with the gas its sender gave and passes with more: 0xbef15df1b3cc83bbb029e48432a7887ab6c1a953afb3385dab1dd55d397a1a06 (block 26388755); other transactions of the family pass…. Executed."}
+- {address: "0xf4ac5a5dc1543086347d28e757091ebd1b848cca", family: "9a69c84f36e5dc4b8bd01609501dd9e6", copies: 39586, name: "SafeL2", label: "deployed by Candide: Bundler 1", upgradeable: "yes", rating: LOW, value_usd: 88489848, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 4395, note: "a real transaction fails with the gas its sender gave and passes with more: 0xcca69e3dab7f1962fb8cccd8001704427e6af58e5352773fa77c93aed9db3674 (block 26342415); other transactions of the family pass…. Executed."}
+- {address: "0xd19d8ee0a736bf643f53e3dc5489ac94e947a482", family: "e41c77f855610a70e75dafea9fe77662", copies: 80, name: "NXV", upgradeable: "yes", rating: LOW, value_usd: 12187637, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 95, note: "a real transaction fails with the gas its sender gave and passes with more: 0x287d982e3b39dead4f0b72c5a1e69d6440a96d478bf42c3c68a4c7ecd2734435 (block 26438947). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb60fa2ad48959c016fb7545d045aeb60086aca2a", family: "7d5e2ccb86db47cfc8cdc144cceb7e60", copies: 34, name: "MultiSign", label: "deployed by Ripple: Deployer", upgradeable: "no", rating: LOW, value_usd: 8104279, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 272, note: "a real transaction fails with the gas its sender gave and passes with more: 0xc9f97a09e9a872bb9a24693de7bff8002e8959375efbd1927cb8f439ee53a6a8 (block 26407735). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc2a26188e4d7521960c2ddd31947afa9b2fdd8ac", family: "af3852b157f56e7887d2b5ececc8809c", copies: 5, label: "deployed by Ripple: Deployer", upgradeable: "no", rating: LOW, value_usd: 4999714, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x073b80f6720658633ac2e83fea5bcdd5b7d4c40a3216bfba1fe6e71ccf82640e (block 26387894). The sender's limit was tight, not the…. Executed."}
+- {address: "0x5427fefa711eff984124bfbb1ab6fbf5e3da1820", family: "f3969f727e902e067e61f557b2769805", copies: 5, name: "Bridge", label: "Celer Network: cBridge V2", upgradeable: "no", rating: LOW, value_usd: 1488582, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 522, note: "a real transaction fails with the gas its sender gave and passes with more: 0xd9f99412047a55b4b07091fdaff2390d048f4b6bee48485be2a3d0d2c4c330ea (block 26394359). The sender's limit was tight, not the…. Executed."}
+- {address: "0xbdc4dd4d467e55fa5276925b2f136e75df3f86f1", family: "fc2a6174f361ce4f000b2b12661aafdc", name: "ZklinkFastPool", project: "zklink", upgradeable: "no", rating: LOW, value_usd: 1423256, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 110, note: "a real transaction fails with the gas its sender gave and passes with more: 0x59f8291d3269c00a6a1709dc384e312566907c6492fb1f679f5a188533cde379 (block 26410748). The sender's limit was tight, not the…. Executed. Rated by hand: read: 2 of 3 fixed signers move the operator's own liquidity."}
+- {address: "0xfde6d7303868fd2046c15263c9268618092664d1", family: "8ec52cac940e80d135861a45ae4824b4", copies: 405, name: "AmbireAccount", label: "deployed by Ambire Wallet: Deployer", project: "ambire", upgradeable: "no", rating: LOW, value_usd: 1135610, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 165, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe39ba18c4e00e92b28685cbcefaafccab8cd898ca793ae0ae6bfbc1c2d5cac27 (block 26390609); other transactions of the family pass…. Executed. Rated by hand: the fixed key is Ambire's paymaster relayer; the accounts' own keys can be replaced."}
+- {address: "0x563eda2afb088b36a1b3735126c409372a6ef46c", family: "c8c4077d1cc1d3b678c20c07a7475ce0", copies: 3069, name: "Identity", label: "deployed by Ambire Wallet: Deployer", upgradeable: "no", rating: LOW, value_usd: 994854, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 19, note: "a real transaction fails with the gas its sender gave and passes with more: 0x39b2c0c32a1b8a013bcfdd244f73f8f9346597574c073e20f5eac7730d415ece (block 26383726); other transactions of the family pass…. Executed."}
+- {address: "0x5978c6153a06b141cd0935569f600a83eb44aeaa", family: "6022f261f96f1d4ad41dcb1aea7e96fc", upgradeable: "no", rating: LOW, value_usd: 737885, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 17, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb1a00dcd88c2e562d8021de5a4f25df6bdc349cbfaa79bab71c1c5080b2459de (block 26397469). The sender's limit was tight, not the…. Executed."}
+- {address: "0x313416870a4da6f12505a550b67bb73c8e21d5d3", family: "e3292b2ff17d314660a5f87bcf4548d4", name: "Bridge", label: "Sora: HASHI", upgradeable: "no", rating: LOW, value_usd: 611565, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 6, note: "a real transaction fails with the gas its sender gave and passes with more: 0xeef3d0efaff0dae679b64c91b0af6dde03bf9cba6ef81469ef860ee215ddeff7 (block 26429811). The sender's limit was tight, not the…. Executed."}
+- {address: "0x448a9c8a25dc1ec8af43c351bdd0919acbc5be7e", family: "d927799d742eda92c4d62ff1373d5ce2", copies: 7, name: "Uni", label: "Uniswap Protocol: UNI Token", upgradeable: "yes", rating: LOW, value_usd: 448975, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 76, note: "a real transaction fails with the gas its sender gave and passes with more: 0x04d967fb5be8449f715f75e2ca71f0b154a4f855ce746c4f8862975d5e3a2526 (block 26426725); other transactions of the family pass…. Executed."}
+- {address: "0x00f2b67b5a5ec2ff88b2be7d5a8d1a39d5929237", family: "d17fa1b5532ecc5cfa75b5f16398977f", copies: 2, upgradeable: "no", rating: LOW, value_usd: 431470, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 12, note: "a real transaction fails with the gas its sender gave and passes with more: 0x4b331cfbfa804f6a60563678343c5782d950521d08fd041c90130ec264c450b0 (block 26410517). The sender's limit was tight, not the…. Executed."}
+- {address: "0x02479bfc7dce53a02e26fe7baea45a0852cb0909", family: "f15632f51822929a9fbf0492ef338d70", copies: 749, name: "GnosisSafe", label: "created by Safe: Proxy Factory 1.1.1", upgradeable: "yes", rating: LOW, value_usd: 377694, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0x3c2cd1ec2ba214421015efd3f17840bf713e938d10b16acecebe8b9201b88f3c (block 26385195). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb8563f7bee7fbf68f8b09c97ee4a13dc6c6943ee", family: "8a325b36b27179a0a9df521ec9d12e5d", copies: 15, name: "SettlementSale", upgradeable: "no", rating: LOW, value_usd: 286384, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 32, note: "a real transaction fails with the gas its sender gave and passes with more: 0x36d8c03193933a5024c8c7080135d1ee01851eeb899d3411820a8cc3fe3fc6e5 (block 26422225). The sender's limit was tight, not the…. Executed."}
+- {address: "0x45804880de22913dafe09f4980848ece6ecbaf78", family: "9c1bb3eae284208dab791960560236e1", copies: 2, name: "PAXG", upgradeable: "yes", rating: LOW, value_usd: 115492, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 66, note: "a real transaction fails with the gas its sender gave and passes with more: 0x70c69205664e913b383c326a477d2aed472bcf66f662fc227813c561c2173e37 (block 26353624). The sender's limit was tight, not the…. Executed."}
+- {address: "0x6c70c6a2b6b2b0d40e826bfde89fe2e081ca408b", family: "5ac31e7217d4e1673aba6e48aecbf520", name: "BridgeVault", upgradeable: "no", rating: LOW, value_usd: 103762, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 39, note: "a real transaction fails with the gas its sender gave and passes with more: 0xf9158a43d80b1047c26cb4fce9f81764236cd88af31d4a53f5706a10eaeb35d3 (block 26383587); other transactions of the family pass…. Executed."}
+- {address: "0xe80f92077131b9890599e418ae323de71ce1c35a", family: "2664bab46f355246759f1d21614f099c", copies: 2, name: "SrcBridge", upgradeable: "yes", rating: LOW, value_usd: 92754, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe15e25b57f69ae9e9ffe8cad106b4e802da6c21d1005c3a9667c3a29b5530579 (block 26412155). The sender's limit was tight, not the…. Executed."}
+- {address: "0x468ac716493c51184162681130035b61baff040b", family: "b57e40770f9472d9d55d7ec50adf6d58", copies: 2, name: "SmartWalletUpgradeableV2", upgradeable: "yes", rating: LOW, value_usd: 92033, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 324, note: "a real transaction fails with the gas its sender gave and passes with more: 0x7ed0c5c0762b67470d03e2e0ab3de077c0431bc5d3a31abfc158d250f7920a0e (block 26401914). The sender's limit was tight, not the…. Executed."}
+- {address: "0x94c9d55f064980ed1faf0abb42f3548700619039", family: "6fb6da97e90112380370e0f619f23191", copies: 6, name: "Bridge", upgradeable: "yes", rating: LOW, value_usd: 70017, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 7, note: "a real transaction fails with the gas its sender gave and passes with more: 0x8f4fc360766a86aa7bf875016c078d4e90d56759f2e05f4cc2bbd3b6143f4226 (block 26406219). The sender's limit was tight, not the…. Executed."}
+- {address: "0xcb99c58fe81ae6b2cb4835e46f7b703745879042", family: "30acf8f4fa7c18bb19e5ed020a2a130b", copies: 3, name: "OxidePortal", upgradeable: "no", rating: LOW, value_usd: 61535, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 201, note: "a real transaction fails with the gas its sender gave and passes with more: 0x70f288afc756ae2c116898a2d205c80e21c59a546fd905ef8fb00f35dc46abe2 (block 26389685); other transactions of the family pass…. Executed."}
+- {address: "0x4080eba7392e3a1824b5a4eba09d7307a5c51b2d", family: "2425f847fcde0fdfbc620fa29e0f383d", upgradeable: "no", rating: LOW, value_usd: 48362, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 148, note: "a real transaction fails with the gas its sender gave and passes with more: 0x66f1ca7fbd7ec18f4ae141f93cad35df18e8cd694779b7197d087d8d788628e0 (block 26374046); other transactions of the family pass…. Executed."}
+- {address: "0x965983977c29158ec53a296a6f47be145ddecc36", family: "043cea7a492572278b66a8e6f9976fe9", copies: 4, name: "TruthBridge", upgradeable: "yes", rating: LOW, value_usd: 44934, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 239, note: "a real transaction fails with the gas its sender gave and passes with more: 0x919606dad86b7e63883a5b733b3274b11a9d70d12e1969b075b1801c4f8351fb (block 26388543). The sender's limit was tight, not the…. Executed."}
+- {address: "0xe3f5cf1313dfe3c2827604a187677c34c7ed9aa1", family: "6b72c0660b06d99c1a760570d5dde0fd", upgradeable: "no", rating: LOW, value_usd: 44031, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 10, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe90c4c4389af46244cf67cbfc57019e8eaa191a57d6dd6706c19e0e44b3e20df (block 26371025). The sender's limit was tight, not the…. Executed."}
+- {address: "0x3d64bd587300af85ae54007d350bfd293dc24581", family: "c43de8b9c2d38727c18fb7e8c830d173", copies: 2, upgradeable: "yes", rating: LOW, value_usd: 42588, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 16, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb5215cc1b68b8114b61cfae0924e081e10f0756144d8d415d8b991ec56264d9a (block 26401273). The sender's limit was tight, not the…. Executed."}
+- {address: "0x24b22b031ae1b5a6b09f9a0fd33613a40e0d70e6", family: "fcac02a7e5fc258dd467f6a91c7a9d07", copies: 2, upgradeable: "yes", rating: LOW, value_usd: 38798, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 20, note: "a real transaction fails with the gas its sender gave and passes with more: 0x15e59f7b960ce5957e50150ff333472fc295c77ad749c94bfdd2804bbc1735d6 (block 26347740); other transactions of the family pass…. Executed."}
+- {address: "0x28e8882c7e23bc5e3b94c64df34b6e45738a14b9", family: "15c107bbdd3613ba5ef7deaed5296902", upgradeable: "no", rating: LOW, value_usd: 34106, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 17, note: "a real transaction fails with the gas its sender gave and passes with more: 0x8da20597c2b4aab4efb39ee6ec813c1311fcbc88772fbcf32eca973942e6ccd6 (block 26427621); other transactions of the family pass…. Executed."}
+- {address: "0x49a102a0c04723739f601c158b5d13920ab59d4d", family: "9e18e28f183998f05e47d8bed583f2be", name: "PocketDragonsCollection", upgradeable: "no", rating: LOW, value_usd: 31038, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 334, note: "a real transaction fails with the gas its sender gave and passes with more: 0x8476462206d26aff5b801788aba2b16e775e12ae8057c8be7e51222afe742d37 (block 26430837); other transactions of the family pass…. Executed."}
+- {address: "0xbd0a894e8f8919be0b9eb0f034d1db4e1ac415cf", family: "f2d6dbad3cf0b59e3e1f7ce70695ba42", copies: 4, upgradeable: "yes", rating: LOW, value_usd: 30497, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 1561, note: "a real transaction fails with the gas its sender gave and passes with more: 0x4c542c8e8ef40a56f6be10900e4b61517f6050254e2019d8c6879307acfe27e8 (block 26369313). The sender's limit was tight, not the…. Executed."}
+- {address: "0x5217493257fcbf209580342e6929e20d2ac914f1", family: "d217865e3f6cd96c64500a7c4ea51492", name: "Invoice", upgradeable: "no", rating: LOW, value_usd: 27249, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 833, note: "a real transaction fails with the gas its sender gave and passes with more: 0xea4b19eb77f674882703357cf425239920113d0996672499ce7de2d934ef6f98 (block 26376687). The sender's limit was tight, not the…. Executed."}
+- {address: "0x959e33b167e66b09cb524e610e7ef7fb0e4e2d81", family: "0901b4858d38218ab66953420a396494", name: "RewardClaimer", upgradeable: "no", rating: LOW, value_usd: 24001, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 42, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa3a23c70fcca95aa7a5872c75d639f505bd2dbdf04b8604cbf8ed711ec4050a8 (block 26353589); other transactions of the family pass…. Executed."}
+- {address: "0xa32d571fa4dc0011539a0c2fbc8fdfba1dd9a76f", family: "23ec0c1be4b5239ba6de4f1c4121e289", upgradeable: "no", rating: LOW, value_usd: 24001, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 12, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe9299a8ab83cd45c1f3de7e72bd3d39f6db77003459f36a9ef50ee170d60cb54 (block 26382034). The sender's limit was tight, not the…. Executed."}
+- {address: "0x0657bfbf55a72c3ec8f677ef83de443ac9eb097e", family: "57cab33ff3ab173b982556f15eae59f1", copies: 11, upgradeable: "no", rating: LOW, value_usd: 23279, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 6, note: "a real transaction fails with the gas its sender gave and passes with more: 0xdd7eba5528438c7d6cf2ef3b68a5f320a66b8b1d1fc937ef97a7f09ada6d014e (block 26433005). The sender's limit was tight, not the…. Executed."}
+- {address: "0x35ac13efaab970f32269b61e4704f4377ce7a0ad", family: "a26ec3fd1e90fe0259eec37d5bc3cdf3", copies: 4, upgradeable: "yes", rating: LOW, value_usd: 20211, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 541, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb6045657d5d378d6b76c177a336b34f9ea043dc6d1c6e3fae5f358ad3d5088a3 (block 26393353); other transactions of the family pass…. Executed."}
+- {address: "0xbffd79740f9dbb1db94f53bc4c7f8e6ae67b2678", family: "cdd0f5c7914f6e5db5080e030c7761f9", upgradeable: "no", rating: LOW, value_usd: 19309, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 34, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb3bc1bc8794448071824472e0c859d89c6c7910e5f650acea03f1c23a210da8a (block 26369849). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc22c479a54925608cc8cd60fbf69510df31aef26", family: "bc362389e03a5a3e193d4847eb2f9f5c", copies: 4, upgradeable: "yes", rating: LOW, value_usd: 15158, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 58, note: "a real transaction fails with the gas its sender gave and passes with more: 0xc2fa5341331ae79c451a0f39c3ae7327f292db82bd6fdead206a19ff40a16f59 (block 26371178). The sender's limit was tight, not the…. Executed."}
+- {address: "0xcff5d60bdcb541b31f416ef9779048b0653d04ef", family: "fffa03573a3413c130cc69c261c26264", copies: 2, upgradeable: "no", rating: LOW, value_usd: 14436, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 10, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb3a701b0508b768bf29eecc6a51a64007189debf681d68b8146541209c9afde3 (block 26353922). The sender's limit was tight, not the…. Executed."}
+- {address: "0xbf4cfccd11257e568a936a7867d138f54a43cffa", family: "dfe2cd89bb4eb5db0ff4881d9415b0ab", copies: 3, upgradeable: "yes", rating: LOW, value_usd: 13354, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 6, note: "a real transaction fails with the gas its sender gave and passes with more: 0x0ca7d270f2a3f4016d5627d8be32b14f2097c8cc4e9ceae1f20332278fc729ab (block 26405091). The sender's limit was tight, not the…. Executed."}
+- {address: "0xcc4c47cf0175aa8108e78679c2586a0a6abb242a", family: "c3b241e8d1c2a2ecc33b691a48093dff", name: "Lithium", project: "hydranet", upgradeable: "no", rating: LOW, value_usd: 12271, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 268, note: "a real transaction fails with the gas its sender gave and passes with more: 0x5c9d200171ba634ec878f8481a311a42b452742aba30ec3de9f48b761fc52e9b (block 26401193). The sender's limit was tight, not the…. Executed."}
+- {address: "0xd20c024560cca40288c05bab650ac087ae9b0f6e", family: "0eb672e90cf44aa24378f59648641967", name: "BatchTrade", upgradeable: "no", rating: LOW, value_usd: 11730, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 166, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe1fea8c66a8cc81837a011b5dcf7a385c52eae81a208f6d8b97247642c2ccac4 (block 26426840); other transactions of the family pass…. Executed."}
+- {address: "0xa4108aa1ec4967f8b52220a4f7e94a8201f2d906", family: "6727a783ca6298115b18fe4a115d513d", name: "Gravity", upgradeable: "no", rating: LOW, value_usd: 10827, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 496, note: "a real transaction fails with the gas its sender gave and passes with more: 0x3c0b6e6b83f3108e272f8bb68af7fe7300138519d9911cf3dc22157ee5c7bb2c (block 26416020); other transactions of the family pass…. Executed."}
+- {address: "0x9b5d9e2c2e1e96986603be922bc44304d6aca898", family: "413f5025dc6f28c1511305dfb6fe3622", name: "Wallet", upgradeable: "no", rating: LOW, value_usd: 10106, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0xbc878ba2a0fa7b9d90ef280e7f920ff3887a45fea55c9526dd01cca4e72afa28 (block 26435109). The sender's limit was tight, not the…. Executed."}
+- {address: "0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134", family: "7c7cca9024a5bbd73a85e2c37860cd23", name: "AllowanceModule", upgradeable: "no", rating: LOW, value_usd: 9925, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 6, note: "a real transaction fails with the gas its sender gave and passes with more: 0x97afbffd703dda92bf193da501598c0838b8acd36671de5a7541a78c0a5fb2bd (block 26348149). The sender's limit was tight, not the…. Executed."}
+- {address: "0xd40ffe9bfcc977051029c01f0fd4c93f10ed6413", family: "496eb5b12890594133571ccc9bb31aba", copies: 2, name: "EthBridge", upgradeable: "no", rating: LOW, value_usd: 9203, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x839e0f56d1d115202f346503393f47f13760c6ea724c7800518d32e43de1fe17 (block 26416863). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc4a386a0fc1910d60a5283001b6c94efc20e229c", family: "d6883c1decaaf3905d3448b5b998acf9", copies: 4, name: "Vault", upgradeable: "no", rating: LOW, value_usd: 8662, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 5, note: "a real transaction fails with the gas its sender gave and passes with more: 0xde869231cbe6a4e8f04e862cacef6a57aeca86a08a99db2c8950d0af9c5dfd22 (block 26386085). The sender's limit was tight, not the…. Executed."}
+- {address: "0x24e830d3205e08bc124d8de8a3cfea28cab8a313", family: "899b80f16ac757c4460f71a720204749", upgradeable: "no", rating: LOW, value_usd: 7038, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 585, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb5af56485e498369b91a9f8a33c589f61dcb5dc39d7a6967101482d6d2879eda (block 26432375). The sender's limit was tight, not the…. Executed."}
+- {address: "0x9ef297c039103301c6c2ee8a1fc7742cae5557ee", family: "e20aa9b69200d6fe83654e23d7ee1840", name: "LAD", upgradeable: "no", rating: LOW, value_usd: 6136, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe23e1eecc2b91b24982fc487fec4238c8e86b6453b801d002c8c56cf0c82a940 (block 26419927). The sender's limit was tight, not the…. Executed."}
+- {address: "0xfb2dc580eed955b528407b4d36ffafe3da685401", family: "e51f97027ca3aba68c6b561d5ebac034", name: "Umbra", upgradeable: "no", rating: LOW, value_usd: 5594, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 22, note: "a real transaction fails with the gas its sender gave and passes with more: 0xdaed227c5cb15b925d78a4f90616489390dba70ff872960d174cfe995c4e0e7e (block 26411539). The sender's limit was tight, not the…. Executed."}
+- {address: "0x9743fa6fce7e50e182951dcfdac65c9d95494f97", family: "b05115a9ece0061e7fb0a5e9845238ce", copies: 511, name: "ArchetypeLogicErc721a", upgradeable: "no", rating: LOW, value_usd: 5414, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 12, note: "a real transaction fails with the gas its sender gave and passes with more: 0x0fbc80f479af7343431ba41cecce0ddb8b363fc9b68f2e00ae84e7171628d60c (block 26426621). The sender's limit was tight, not the…. Executed."}
+- {address: "0xe803684b9e391d01dc1cdf76bac9ae3a596b2ae0", family: "fc7c0b127371423b27634fc8c0200623", copies: 5, name: "PaymentPlanV2Logic", label: "deployed by Cyan: Deployer", upgradeable: "yes", rating: LOW, value_usd: 3790, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 15, note: "a real transaction fails with the gas its sender gave and passes with more: 0x04d2fed394b4f7c88cc27d1db51011b759eddd2c86f8290c230f18f82015256b (block 26342846). The sender's limit was tight, not the…. Executed."}
+- {address: "0x62728e6ca081b8a253f792980736608e13d45d79", family: "ee4900bce889d487962e9f7cb6402b2c", copies: 2, name: "Plums", upgradeable: "yes", rating: LOW, value_usd: 3790, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0x994683b77abdfe1f05022016ccdc48d7ca6597f337d226d293d9a367a12160b3 (block 26414753); other transactions of the family pass…. Executed."}
+- {address: "0x97dc5ea031f0424e3a8994a66316c736bb99d8f7", family: "a70965afd6f84ff90c43d1e109bba57d", name: "ReferralRewardClaim", upgradeable: "no", rating: LOW, value_usd: 3068, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 6, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb1936595af466fb47b3201d92c90ca443176b36bbb6a1920deb90d2b240c15af (block 26406778); other transactions of the family pass…. Executed."}
+- {address: "0xaa0878e38caeafc390876479f5a14c4705c7a54a", family: "dd7a01fd6375c68c90a66802fbaa739f", copies: 2, name: "ZebecCard", upgradeable: "yes", rating: LOW, value_usd: 2346, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 8, note: "a real transaction fails with the gas its sender gave and passes with more: 0x9900d8295f6e37e7845262707baed0dddc307011f4a8b059445f8ceb93217d80 (block 26435614); other transactions of the family pass…. Executed."}
+- {address: "0x712868e72caa0c37596113c999fb4d83bcb6fec2", family: "207f2b498f16d9a7fb512eb9564eb60d", upgradeable: "no", rating: LOW, value_usd: 2165, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 10, note: "a real transaction fails with the gas its sender gave and passes with more: 0x5a5b1cc4c05dd1f1a6dd971a3ebc9203947441d0b9cbdf8bf85077f798b1d851 (block 26368589). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc38eb82ae302b5b3ef4f3cb66a4155d1947090b1", family: "737d0a350bc2aed710812be1e06cede8", copies: 2, upgradeable: "no", rating: LOW, value_usd: 1805, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 18, note: "a real transaction fails with the gas its sender gave and passes with more: 0x696e89fff247fb4dd0f380534df1c0db55d505a9f86fc97ef0c621dd40efd23c (block 26400782). The sender's limit was tight, not the…. Executed."}
+- {address: "0xaec7e8c221c3fd24e75c996e32289235fd899ebf", family: "8186a92db979ed98715be8a2f96b119c", copies: 2, name: "TeikhosBounty", upgradeable: "no", rating: LOW, value_usd: 1805, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0xc309bf2c9ae6fe0ad4d494b5668b444d4f477ecb3bd33727b6d670643ec33260 (block 26394697). The sender's limit was tight, not the…. Executed."}
+- {address: "0x3249dfc80841c136ce5dc9c1b0d511f628b72b27", family: "d89bbb67520d156281338eccb4d077b9", copies: 34, name: "ERC1155Normal", upgradeable: "yes", rating: LOW, value_usd: 1263, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 35, note: "a real transaction fails with the gas its sender gave and passes with more: 0x0ef442233f09cfe1a1fcd25c715b50dbf25603f91bf3d3a38b146903a266bc06 (block 26414195). The sender's limit was tight, not the…. Executed."}
+- {address: "0x6fb5a99485621b695d5e895838ff882f41743a9a", family: "a11993ab6481f4cd8087dc5187470185", upgradeable: "no", rating: LOW, value_usd: 1083, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0x77f18578c103eddc870f3c085b0fe8dc79a3d60e5186bfc4ff1d8626a0f5c4c4 (block 26432473). The sender's limit was tight, not the…. Executed."}
+- {address: "0xa6f6e791c0152fb983162a216bfa9229e30896c6", family: "15cf800e842e672533e131643b9dbac6", upgradeable: "no", rating: LOW, value_usd: 902, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 2015, note: "a real transaction fails with the gas its sender gave and passes with more: 0x117d218a3c6edda1547f1412fe070fc2bca008f030b9824e914fa7de3109f690 (block 26406463). The sender's limit was tight, not the…. Executed."}
+- {address: "0x74149f6d0dbdbe356fd8035a83dbc0ab7c4c1a8e", family: "532c367548d997e832471dbc20b5b27f", copies: 2, upgradeable: "yes", rating: LOW, value_usd: 902, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 25, note: "a real transaction fails with the gas its sender gave and passes with more: 0x47bac3fe30d2004e5c391e15f47b59d9143563a74eb76e5698f885573298db86 (block 26408548); other transactions of the family pass…. Executed."}
+- {address: "0x22e95073d7a924660bb7222be327c9a6737dc68f", family: "13744d7983d78869fc47412a3c3fd06f", copies: 4, name: "Distributor", upgradeable: "no", rating: LOW, value_usd: 722, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 183, note: "a real transaction fails with the gas its sender gave and passes with more: 0x2c8c224837bfa17e9c3b72773ec2ad8bf10051b7d67ba2f2357c1f6fb5ae6563 (block 26353780); other transactions of the family pass…. Executed."}
+- {address: "0x2d26d31052c7d4696b6522a5f680b2c3dfc7bd61", family: "7d5f7af80a3d382036afdb9872912209", copies: 2, name: "Bridge", upgradeable: "no", rating: LOW, value_usd: 722, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0x8e8c70f885a01d67a134a9bbf3c2b9f6ba7ff9f4de6c01e1c70eb364b8188bf3 (block 26382875). The sender's limit was tight, not the…. Executed."}
+- {address: "0x60f80121c31a0d46b5279700f9df786054aa5ee5", family: "b44fa70ddcf05f157ee20d8f4eaa6e47", name: "MintableToken", upgradeable: "no", rating: LOW, value_usd: 722, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x3238b6918f3f9a46eed71e84e0ce4e8813ba6ba51b916d8cdf1e4e863eea3b62 (block 26427129). The sender's limit was tight, not the…. Executed."}
+- {address: "0x93d070772066c977d605d69b602d316adafc25e3", family: "57df7c13b8e7a2be124845948fb20764", copies: 4, name: "TetherToken", upgradeable: "yes", rating: LOW, value_usd: 541, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 217, note: "a real transaction fails with the gas its sender gave and passes with more: 0x499a52792d8523acfb3a2e58ae2de9770343ba6fb5aa023b5cc4d83230d7b4ef (block 26353709); other transactions of the family pass…. Executed."}
+- {address: "0xc18360217d8f7ab5e7c516566761ea12ce7f9d72", family: "132e6235b91671c3851acec96e49b27a", name: "ENSToken", upgradeable: "no", rating: LOW, value_usd: 541, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 9, note: "a real transaction fails with the gas its sender gave and passes with more: 0x98888325e5531e0d24ff0680f7342a068189c76dbf7b44695a213c2025f13546 (block 26347684); other transactions of the family pass…. Executed."}
+- {address: "0x00000404734b3926572a2f004680a4e496e7da09", family: "a7594b2b6808bce8dee497c837f06071", copies: 2, upgradeable: "no", rating: LOW, value_usd: 541, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0x724e50bdd0586bc4e82ce5ffd0a968210085695f8d1bfdc489be13e67dac722a (block 26397463). The sender's limit was tight, not the…. Executed."}
+- {address: "0x91077b23df5edd82868b08b3c959e884370b4553", family: "8b130cfad271df1625bdf9d473406364", copies: 2, name: "VaultAdapter", upgradeable: "yes", rating: LOW, value_usd: 541, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x79c936fe99993fd90487776d5fc622b1f693f29983dfac750f81006458e5e4e2 (block 26358985). The sender's limit was tight, not the…. Executed."}
+- {address: "0x464f9caf42f5ab295c46f74bf6666b7381c8a60b", family: "244b0644769ec80b61b496db44b264e7", upgradeable: "no", rating: LOW, value_usd: 361, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 258, note: "a real transaction fails with the gas its sender gave and passes with more: 0x09d457fefc2a259ea47f2c0fbaa9e105c879de6342fea7731b484e7ae8ead2d1 (block 26420579); other transactions of the family pass…. Executed."}
+- {address: "0x3310ad0117333f3b9d25857949df5a2e0856de3b", family: "9101ee9b1bb97a6a208200cf267a85c7", copies: 2, name: "SANDUIT", upgradeable: "yes", rating: LOW, value_usd: 361, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 83, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe8510110441b5e3931a711c2e2adb7abdf7ff95aab9a26fc68fd281ae352bf72 (block 26392671); other transactions of the family pass…. Executed."}
+- {address: "0xcd04419220bef347b409055ac4e9ad50ee1ad6d6", family: "ddad8e1c411ad2d17525b34930fb5d4a", name: "BuenoMembership", upgradeable: "no", rating: LOW, value_usd: 361, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x1e15536a75541aa4003a99066ade3029075d75a9c22476537bd430466204b595 (block 26374472). The sender's limit was tight, not the…. Executed."}
+- {address: "0xe02367242b348caca4bf39fd1249b212a88adcec", family: "d1002346468f0dcc12c56435e90fd39a", name: "BFHPrimeV1", upgradeable: "no", rating: LOW, value_usd: 361, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0xf982ca3f6547efd69ff8d0a4e48a7f4e5ab7bcd204c6af57997fc2db4e56d8bf (block 26422372). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1bb668d33d367702adbe81346d57d5e5083fa346", family: "1745c7c0932c68650f985d50f9cd052c", copies: 2, name: "Ibc", upgradeable: "no", rating: LOW, value_usd: 180, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 1188, note: "a real transaction fails with the gas its sender gave and passes with more: 0x79cdcdaa7439dc222eeed12ef54f6ccf517e0135c15ad80413eb1f663354ddfc (block 26428410). The sender's limit was tight, not the…. Executed."}
+- {address: "0xca79896bcec80aa7628d67c6fac85bdf6ae63b1c", family: "c80e90020abb64a6d00b53b649f90db8", copies: 4, name: "GatewayOfframpRegistryV7", upgradeable: "no", rating: LOW, value_usd: 180, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 734, note: "a real transaction fails with the gas its sender gave and passes with more: 0xc8cbad95956e406b9377e268038a589aa11e49f021c8fcdbd634910dacebc017 (block 26404219); other transactions of the family pass…. Executed."}
+- {address: "0xa2ca14c7d625895e6939961b87ce378836ca840f", family: "610164223708a091465f2d02844b783e", name: "HumanIDPayments", upgradeable: "no", rating: LOW, value_usd: 180, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 382, note: "a real transaction fails with the gas its sender gave and passes with more: 0xecd53595055c723ba762df49f9f9758478ed4d3c7fe293b051049c3181a74c13 (block 26438402). The sender's limit was tight, not the…. Executed."}
+- {address: "0xa4704944a59eab8a25ee539a9a6c42ff2527b265", family: "dc2aee69ec171cd45a12bec1ff9250bd", copies: 141, upgradeable: "no", rating: LOW, value_usd: 180, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 260, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa6d66b853e69b02afb1aa2df15b7e913f886b32184c760d36bd26d05aa6774f4 (block 26427822); other transactions of the family pass…. Executed."}
+- {address: "0xda864364f7d1ebcc7c89e9610ebdef45ddf5f81b", family: "5ed13761466b5b85a4a02c2b3efefa98", copies: 2, upgradeable: "yes", rating: LOW, value_usd: 180, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 147, note: "a real transaction fails with the gas its sender gave and passes with more: 0xcf7218e75c2989470d1e9953b4ce740b26b19f8f7dbac754187968d9ac0ea16d (block 26419517). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc6a043a97986eabc761db0616513546043ee489a", family: "39ea14ba2c872ac05168c616a3b5a87c", name: "DigiGhostsSummoned", upgradeable: "no", rating: LOW, value_usd: 180, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 100, note: "a real transaction fails with the gas its sender gave and passes with more: 0x56e915f7392da84a0ce7e176ad0a97cac092c03ef9cc3cd3559c2871e03e5024 (block 26382720); other transactions of the family pass…. Executed."}
+- {address: "0x0068c20b863745219b6f9542e86b1263029a1c2f", family: "b3cc36f4aba958f0b4a9f1fd90aa411b", copies: 15, name: "Multisig", upgradeable: "no", rating: LOW, value_usd: 180, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 28, note: "a real transaction fails with the gas its sender gave and passes with more: 0x625f6d71d366846d8f999c2297c4d2f407fd3401bf16fe806bee1727d6e8bf93 (block 26424211). The sender's limit was tight, not the…. Executed."}
+- {address: "0x287d38ca1d89cd3c435a8279ac9a3528ddeb9131", family: "a7051d1618cd23e8479e5d1d7504fafe", copies: 2, upgradeable: "yes", rating: LOW, value_usd: 180, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 22, note: "a real transaction fails with the gas its sender gave and passes with more: 0xd830f6e3c42e775c928d873d435e0ba870caf02786cc222a6f40678488a4ce8f (block 26404992); other transactions of the family pass…. Executed."}
+- {address: "0x3aeca27812d55af8c787a4277438ea01b39a73c4", family: "ce9296d1307fffa7e671431bac79b842", copies: 7, name: "Escrow", upgradeable: "yes", rating: LOW, value_usd: 180, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 16, note: "a real transaction fails with the gas its sender gave and passes with more: 0x1d884484bfff74162c975642a4cfaa3d4421289a2df56deeea75b095f27135e7 (block 26431608). The sender's limit was tight, not the…. Executed."}
+- {address: "0xeb3a00bcb6c9ff626fe57a5dbbdcf01730e7898f", family: "d805e9543efffecc17f8dc897cc3ee17", name: "ZecSwap", upgradeable: "no", rating: LOW, value_usd: 180, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0x6b477676bc90f6e64b83a55e34865bbd34f929a148c13e1690a3fc433aedf93d (block 26386764); other transactions of the family pass…. Executed."}
+- {address: "0x26a61de7e9c23ae1e93f291712e0d41c5dc2ad01", family: "be182719547e97befce236b0395157e6", name: "NWOStatePayout", upgradeable: "no", rating: LOW, value_usd: 180, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x0a671de37b163c94e8bf81fc412122f2d7948d182cb80930a5fe6c5c68a15236 (block 26396898). The sender's limit was tight, not the…. Executed."}
+- {address: "0xfbfff08fe4169853f7b1b5ac67ec10dc8806801d", family: "8979ad2d81e5e92c66e4edcda374e97a", name: "Verifier", upgradeable: "no", rating: LOW, recoveries_14d: 38024, note: "a real transaction fails with the gas its sender gave and passes with more: 0x7969d8ddfa255d2298dbfb2217aa5693b69548ea8ffcc1478c0e7e13b2713484 (block 26408014); other transactions of the family pass…. Executed."}
+- {address: "0x8f10b468b06c6fd214b65f87778827f7d113f996", family: "32377d14096e920c7179b831cd298d5f", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 19641, note: "a real transaction fails with the gas its sender gave and passes with more: 0x98b7ae6e775815a94c61c40254ec4fe28991dbbda12612261c98928bedd98a2f (block 26354824); other transactions of the family pass…. Executed."}
+- {address: "0x428d1067b33b2bca826cf66344dbecbd5aa6506e", family: "17997608760c2beeff06c0abb293ee9d", name: "StakeManager", upgradeable: "no", rating: LOW, recoveries_14d: 13887, note: "a real transaction fails with the gas its sender gave and passes with more: 0xea91a82d2d9619564858b19e462e72cce26a46c86e5eeb958512e0e8e7292887 (block 26342589). The sender's limit was tight, not the…. Executed."}
+- {address: "0xd4fc210a8a530b8edad5d6671638b27ae7d0ff57", family: "175db25666961515e6629b34119d15bf", copies: 6, name: "TarazVerifier", upgradeable: "no", rating: LOW, recoveries_14d: 13223, note: "a real transaction fails with the gas its sender gave and passes with more: 0xc42e85c149560d174098cfb81c1d267320119d491717ce3a6c1937562e1eb72d (block 26404415); other transactions of the family pass…. Executed."}
+- {address: "0xbcbebc20a0fdf9efd53b5852a71869b0cf25283f", family: "a587bf5756221aa10d895eeb0132d0a0", name: "BeefyClient", upgradeable: "no", rating: LOW, recoveries_14d: 11828, note: "a real transaction fails with the gas its sender gave and passes with more: 0x7727ec89afa0dd864d861ae2f1a75bdb0cdea50272ea22bf396779349ffaa599 (block 26407425). The sender's limit was tight, not the…. Executed."}
+- {address: "0xd4b5568c52e1e5c809195a87486109d189c2fbd9", family: "d9953274422210f758b4104c80016a6d", copies: 9, upgradeable: "no", rating: LOW, recoveries_14d: 8765, note: "a real transaction fails with the gas its sender gave and passes with more: 0x3a4700ec8b1c32c6526ba93f49b872d0b455650f41b89d9a0392da1503a70f14 (block 26352289); other transactions of the family pass…. Executed."}
+- {address: "0x8e33f930051c1a6aca3f0c52adccffa530d0785e", family: "f8af2828d7b11a776c2465f5d2eb8736", name: "OffchainAuctionPlanner", label: "deployed by Risk Labs: Deployer", upgradeable: "no", rating: LOW, recoveries_14d: 7756, note: "a real transaction fails with the gas its sender gave and passes with more: 0x269fd2c50eacfbab4766f4c47cbcf286964cadebd73ea85d5dbdf7789111ca0f (block 26414714); other transactions of the family pass…. Executed."}
+- {address: "0x04e051d8e3627a79785f8e210b1d61a877aa737a", family: "f2787599978c4d60010881f95b0d9b79", name: "LayerSwapFacet", upgradeable: "no", rating: LOW, recoveries_14d: 7714, note: "a real transaction fails with the gas its sender gave and passes with more: 0xeb9c5e99be70275624697a2662e920de607fe5f4cfb2aafc568e3b71a8b64303 (block 26423112); other transactions of the family pass…. Executed."}
+- {address: "0x709944a48caf83535e43471680fda4905fb3920a", family: "0fcfb15c3ee0c219fbb9f10fe9eacf7c", copies: 2, name: "Api3ServerV1", upgradeable: "no", rating: LOW, recoveries_14d: 6795, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb1941e160413ed1bda637668527e160e95db3a9e2a512f4b0e53115c2e136b74 (block 26416983); other transactions of the family pass…. Executed."}
+- {address: "0x7cfc5c8b341991993080af67d940b6ad19a010e1", family: "2f07aaa2e750389f3880fef8d9a819f7", name: "BeefyClient", upgradeable: "no", rating: LOW, recoveries_14d: 5004, note: "a real transaction fails with the gas its sender gave and passes with more: 0x2ac46d4a928593fa2adf010e8e3d917d8267f29f561a63342529f23447286cca (block 26342944); other transactions of the family pass…. Executed."}
+- {address: "0xdad58dfa5c1a7a34419afdbe1f0d610efeea95e4", family: "72ce8e73c6a831bc95d3f21d179fe2b8", copies: 2, name: "Consortium", upgradeable: "yes", rating: LOW, recoveries_14d: 4993, note: "a real transaction fails with the gas its sender gave and passes with more: 0x14f852a842ea010319cb0e734934fa1966e8efff989a1143f25ae7440f607200 (block 26372686); other transactions of the family pass…. Executed."}
+- {address: "0x000000000013fdb5234e4e3162a810f54d9f7e98", family: "2a9c05d7bd9cc4f5ca1e480ff3f47de6", name: "OwnableValidator", upgradeable: "no", rating: LOW, recoveries_14d: 4978, note: "a real transaction fails with the gas its sender gave and passes with more: 0x65ae329106b07c6934d9d0991510b3b05099c7cd95a0f4a733539b3a2f60a897 (block 26367079); other transactions of the family pass…. Executed."}
+- {address: "0x8f00e690a45e75d7a1a765163829ad33244a1c33", family: "06110f67554f4d35c2d328bae48aada4", name: "NEARIntentsFacet", label: "LiFi: NEAR Intents Facet", upgradeable: "no", rating: LOW, recoveries_14d: 4023, note: "a real transaction fails with the gas its sender gave and passes with more: 0x0f926b72923997f20e8b0eb40a82206bda19afac2b524206f074d79cc721d5b6 (block 26386977); other transactions of the family pass…. Executed."}
+- {address: "0x95cceae71605c5d97a0ac0ea13013b058729d075", family: "eec603a312c7d7fcc50f0a9ff0e128c3", copies: 2, name: "CrossL2ProverV2", label: "Polymer: Prover", upgradeable: "no", rating: LOW, recoveries_14d: 3935, note: "a real transaction fails with the gas its sender gave and passes with more: 0xf94ebf72622b278fa17d02cf4a518f20eb9664ca5bc28bcdfbfc09568af1c2ea (block 26361392). The sender's limit was tight, not the…. Executed."}
+- {address: "0x39cf5f1177c37649dca2e26165a06ad9d725d222", family: "5461a3646a176f77a0fe29ede1d2980d", copies: 2, label: "deployed by Risk Labs: Deployer", upgradeable: "no", rating: LOW, recoveries_14d: 3818, note: "a real transaction fails with the gas its sender gave and passes with more: 0x269fd2c50eacfbab4766f4c47cbcf286964cadebd73ea85d5dbdf7789111ca0f (block 26414714); other transactions of the family pass…. Executed."}
+- {address: "0x0b00004ccc39408fa289e9f6853bfe4eac3e52c8", family: "74560b4ce2092e59216e0b8a75a2d153", name: "AkkaRouter", upgradeable: "no", rating: LOW, recoveries_14d: 3281, note: "a real transaction fails with the gas its sender gave and passes with more: 0x7080348f25cccf6f3a008b84b0a42d3d79304f216edbb5aa2b4cda60df1c22fb (block 26394583); other transactions of the family pass…. Executed."}
+- {address: "0x73b920dc64ab6156f2d22b85ab9a9b06e597e154", family: "0376819b9a99999de15de513cf40bdc1", name: "PMMProtocol", upgradeable: "no", rating: LOW, recoveries_14d: 3190, note: "a real transaction fails with the gas its sender gave and passes with more: 0x09ced4a44481b68467848ce3a55a036ffbb9d407df5a4a4a8c772165d5440f7c (block 26385675); other transactions of the family pass…. Executed."}
+- {address: "0x269c0ebb7a39995db531ccd61d015e431530b87a", family: "3e4b72a42e713b4539693adf4206a1ba", name: "StakeManager", upgradeable: "no", rating: LOW, recoveries_14d: 3185, note: "a real transaction fails with the gas its sender gave and passes with more: 0x8316cab88e0fc7059f23153e1dc1761c602130cde8c838f13776f339280a3ce0 (block 26404120). The sender's limit was tight, not the…. Executed."}
+- {address: "0xd42284814389978dc43c53f8807e8bc0ac6bd5fe", family: "b18535c7cb904fbc04557a781d897812", copies: 4, name: "ManagedValidator", upgradeable: "no", rating: LOW, recoveries_14d: 3146, note: "a real transaction fails with the gas its sender gave and passes with more: 0x2bc53321429ccf4d60e7a4bce0934aaa68de860d45a9dd6cd2f119f365179c7f (block 26408232). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc3ea459135ae06c3f0df2e0aab9937be28d0037f", family: "aa89732c3434a2c3e02df31c039228cd", copies: 12, name: "BridgeCommittee", upgradeable: "yes", rating: LOW, recoveries_14d: 2771, note: "a real transaction fails with the gas its sender gave and passes with more: 0x042a71b7e6aba6fb743c2654f3915935de99c466559c4664156b0f789966b48e (block 26375407); other transactions of the family pass…. Executed."}
+- {address: "0x7c91b9d7a20135c597d2c394c9aaf7667f39272e", family: "fca96a0c31a3d401e176bb5c0280a857", name: "CounterfactualDepositVanillaCCTP", label: "deployed by Risk Labs: Deployer", upgradeable: "no", rating: LOW, recoveries_14d: 2341, note: "a real transaction fails with the gas its sender gave and passes with more: 0x7ccbf18251b6e3d3b4102ed88bf8b7a2ffe544c50cd3a4d0f18828598c4ae425 (block 26402797). The sender's limit was tight, not the…. Executed."}
+- {address: "0x7f1d0b26ed27c64a458b7ef3aaa46c81caa62cc6", family: "ef6437f01860377f3cc0b81a5fb57936", name: "EscrowFactoryV7", upgradeable: "no", rating: LOW, recoveries_14d: 2193, note: "a real transaction fails with the gas its sender gave and passes with more: 0xdb747185caf58ea4f45771a8ca4a133504ea65046ea00d376b14aad8c9c64c04 (block 26346118); other transactions of the family pass…. Executed."}
+- {address: "0xdca7ef03e98e0dc2b855be647c39abe984fcf21b", family: "554bb9ff9b8faf55c1e3dc72ec7d08c2", name: "EthereumDIDRegistry", upgradeable: "no", rating: LOW, recoveries_14d: 2126, note: "a real transaction fails with the gas its sender gave and passes with more: 0x059297dd662138457579cf94e3eafd1519b387b9d567401ae3a0d0d4961de0e8 (block 26346051); other transactions of the family pass…. Executed."}
+- {address: "0x214c19fbcdfb683f2c726b4bbaf24ab483bfadf3", family: "fa0a174403d1af1d63344a599864a2a2", name: "SponsoredCCTPDstPeriphery", label: "deployed by Risk Labs: Deployer", upgradeable: "no", rating: LOW, recoveries_14d: 2105, note: "a real transaction fails with the gas its sender gave and passes with more: 0x2facf9d528801dcad8e2eb2d9d845407301e4023ba4505447bf156ca59c59ab0 (block 26435044). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb96025987c0c10c751517fd2ccf5767245b027bc", family: "c94bac45ba991530c522bbcc6f8cfac3", copies: 130, name: "OffchainQuotedLinearFee", upgradeable: "no", rating: LOW, recoveries_14d: 2047, note: "a real transaction fails with the gas its sender gave and passes with more: 0x117d218a3c6edda1547f1412fe070fc2bca008f030b9824e914fa7de3109f690 (block 26406463); other transactions of the family pass…. Executed."}
+- {address: "0xd7259ac28bfbc26555a5cbafac117af20fe0233b", family: "817e7fe45f0bd4d5932741d1f048a8c2", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 1956, note: "a real transaction fails with the gas its sender gave and passes with more: 0x845f3e09050920b092d408836abc87496159c73476906e8a74aa8ff3fa005488 (block 26393745); other transactions of the family pass…. Executed."}
+- {address: "0x447654338fba13ce25988cc576b2903ac7cdcec3", family: "0b29091f20cc4f24a9c1992e52d16dd8", copies: 2, upgradeable: "no", rating: LOW, recoveries_14d: 1928, note: "a real transaction fails with the gas its sender gave and passes with more: 0x466d47fab4aa4b43b879f9d2df72c0505695b919997f68ecd3079ca4ae555645 (block 26340266); other transactions of the family pass…. Executed."}
+- {address: "0x550cfe1292d0d9c0d28f232b3f42edb4439b1d09", family: "f7175e072ab247013955e07f54398560", name: "SignedExclusiveSwap", upgradeable: "no", rating: LOW, recoveries_14d: 1903, note: "a real transaction fails with the gas its sender gave and passes with more: 0x1cd34c131ea011c2e13b826e4f2025893b0d9530d9f52b5f2dbad2e75c6c2bdb (block 26372134); other transactions of the family pass…. Executed."}
+- {address: "0x5d38589e9574df1abe4b85cab7a870c285cd23c3", family: "69fc694fa935591a1f4a5bea05f5fa4d", upgradeable: "no", rating: LOW, recoveries_14d: 1836, note: "a real transaction fails with the gas its sender gave and passes with more: 0xbcecd22b4478c76eff7487b05b9aebb53e5b996c5b5ca31a36e086e8786679e7 (block 26390096); other transactions of the family pass…. Executed."}
+- {address: "0x2f2370bc4e33c4cd8f21ece6327b58365f9b843e", family: "ce7d0dd1efcaa059171603e335b17e2b", upgradeable: "no", rating: LOW, recoveries_14d: 1656, note: "a real transaction fails with the gas its sender gave and passes with more: 0xf7833708c2d6727cfd2821b6120c04e2fc48a74c161d2aebef27bb363d614771 (block 26357668). The sender's limit was tight, not the…. Executed."}
+- {address: "0x4ecd468e1010e006f768ec034e5a6d8803183469", family: "2c7a3f1aa6e1f68f4d20ff611c6dddaf", name: "PMMAdapter", upgradeable: "no", rating: LOW, recoveries_14d: 1596, note: "a real transaction fails with the gas its sender gave and passes with more: 0x09ced4a44481b68467848ce3a55a036ffbb9d407df5a4a4a8c772165d5440f7c (block 26385675); other transactions of the family pass…. Executed."}
+- {address: "0xd50678f2763db502e9481f39315702aa7900198f", family: "88651170c5998bf3e912a3c76a46cd31", copies: 2, name: "OndoAttestationOracle", upgradeable: "no", rating: LOW, recoveries_14d: 1052, note: "a real transaction fails with the gas its sender gave and passes with more: 0x19636170a65a0adfe907dd2606f154d7b3ec169fa4a843621862228a4cf75384 (block 26406208). The sender's limit was tight, not the…. Executed."}
+- {address: "0xdb28719f7f938507dbfe4f0eae55668903d34a15", family: "6e3dc67e91429e0af5601563e9f373f2", name: "StakeManager", upgradeable: "yes", rating: LOW, recoveries_14d: 1006, note: "a real transaction fails with the gas its sender gave and passes with more: 0xad0f6c16c9d8b0b9c0ad4416084c46aa054ab7c88f8212e1d02ce30922771a39 (block 26424605). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1fba0c57b07af804a9717e51dec9cc27fbc12228", family: "75fff02a0a6e88b97c6b505cdc95cca1", name: "TEEVerifier", upgradeable: "no", rating: LOW, recoveries_14d: 1003, note: "a real transaction fails with the gas its sender gave and passes with more: 0x1ad25286c4b091954475cf61cb2d4e91426e03f61b30e43dfac27ef4e8f9104a (block 26418042). The sender's limit was tight, not the…. Executed."}
+- {address: "0x202bdae6ea5cb576c916cf2d2a83d5a21ea2624d", family: "524da18b38f1a5261cf4c076d74ae838", copies: 2, upgradeable: "no", rating: LOW, recoveries_14d: 852, note: "a real transaction fails with the gas its sender gave and passes with more: 0x8ac713e46fd90f8d21f1be8b61c1e8246f05f2e6f0713f9d0b0ff702b7137b4c (block 26352537); other transactions of the family pass…. Executed."}
+- {address: "0xbace265d7b07e8bba150b689501cd1143d7d8549", family: "11e8064046f3c890df2ad3a270927566", copies: 5, name: "MsControl", upgradeable: "no", rating: LOW, recoveries_14d: 828, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb86f13ac452b5f5258ea106c88982f0865f5b9c9b002a420b0420f3f5b319402 (block 26355075); other transactions of the family pass…. Executed."}
+- {address: "0xec6f74e15777047d2a66d2cc0e775a2db6455c60", family: "296eeebb858dc2c0ee1c32967491d11b", copies: 2, name: "BRLAV1_1", upgradeable: "yes", rating: LOW, recoveries_14d: 785, note: "a real transaction fails with the gas its sender gave and passes with more: 0x08f979cf5ad4ee8cadcb9faf5bd0939cdbcb3362e1b4f8091f89ce4abaaca647 (block 26422980); other transactions of the family pass…. Executed."}
+- {address: "0xba0de1085f6ecbc037b6b5d24ab76d2cff9d0a24", family: "d8e0ddf3111432d21af91188a4b1bde5", copies: 12, name: "voxelXMiner", upgradeable: "no", rating: LOW, recoveries_14d: 742, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb174d9c7ef8ea5df54d0b7c2a2a423ac1f731f2559aa0f2f4c149b813d0dc199 (block 26413945). The sender's limit was tight, not the…. Executed."}
+- {address: "0xbcba1f21ca212f63f71536128d9e574dc3ae28d9", family: "11454bb5558ac2fb5aae1adf4ed9bb8f", copies: 2, name: "ValidatorsRegistry", upgradeable: "no", rating: LOW, recoveries_14d: 735, note: "a real transaction fails with the gas its sender gave and passes with more: 0x26e85d4621a84b560c54f171908931fdcb92aafdaf2fb6e032be6acf470caa77 (block 26410345). The sender's limit was tight, not the…. Executed."}
+- {address: "0x93eaca7be5ead8f319fcd9f31cfeee8bcc6ce487", family: "706844b29c85768682277a8a9a02e297", name: "PrelaunchDistribution", upgradeable: "no", rating: LOW, recoveries_14d: 700, note: "a real transaction fails with the gas its sender gave and passes with more: 0x7a18aee2ea7bceb0647cdde46a6747c4f66725338e8e2b67bae5f627242edc1a (block 26377859). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc6b080ded03c3382476a76345e79f82bd480977b", family: "037570698b6570dd82800b5d1fd5ecff", name: "LaunchFactory", upgradeable: "no", rating: LOW, recoveries_14d: 684, note: "a real transaction fails with the gas its sender gave and passes with more: 0x2b1b8bec317f4c660a470be8b62cb528767be92f4f9cae2a68d65534f1f26c4a (block 26397809); other transactions of the family pass…. Executed."}
+- {address: "0x3105eb89980a6f6b48904e8c80f24aaf4818d726", family: "2a6c5ff76128ff8888c7eb610666d390", copies: 2, name: "BeefyClient", upgradeable: "no", rating: LOW, recoveries_14d: 588, note: "a real transaction fails with the gas its sender gave and passes with more: 0xffb8261e902a999f25230474d16d94eaad3c6a1f391f078215622cf081148327 (block 26410041). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1644d2477f809cc2c71bccfd6dc9497e3f83210d", family: "122737fd1ab6eb5e756f88634e5f57a6", name: "TychoRouterV3", upgradeable: "no", rating: LOW, recoveries_14d: 580, note: "a real transaction fails with the gas its sender gave and passes with more: 0x036e1915b4a2131420434fd8b772239fe184928d092d300ddeef75edfe265bf0 (block 26395909); other transactions of the family pass…. Executed."}
+- {address: "0xd00e17bfdc40d4bc9e54befd6f646c3e66a50100", family: "7b68e6042122e0ce6002b5695b5774c7", upgradeable: "no", rating: LOW, recoveries_14d: 505, note: "a real transaction fails with the gas its sender gave and passes with more: 0x603246d35bfbf58963fa53fe94ddb912cbe9002bc8981e9bb191d1752f2163e6 (block 26368584). The sender's limit was tight, not the…. Executed."}
+- {address: "0xf57760c0f36cd701d46baea3c4319a69a7c16df7", family: "d3f7b119590476b357197c8c43643b77", upgradeable: "no", rating: LOW, recoveries_14d: 478, note: "a real transaction fails with the gas its sender gave and passes with more: 0x63d229be5150b8312f22ae9ed0a584ff05db5252b533db4107ecf293d6378a7b (block 26423862). The sender's limit was tight, not the…. Executed."}
+- {address: "0xcae31f0f582e27226b15853f9f3b99f6925e0aac", family: "2f6741666e39254eed622c16b2feba06", copies: 5, upgradeable: "no", rating: LOW, recoveries_14d: 476, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa2515a3dd9637c2060c1fc2c6ded0321347e350237d05a1a494b0a3a5e338447 (block 26348662). The sender's limit was tight, not the…. Executed."}
+- {address: "0xa9d38ccaadefeac4cea38d00c411254cdda59386", family: "007cb5b6240a9f47320590075afa2b23", copies: 2, name: "EnergyBridge", upgradeable: "yes", rating: LOW, recoveries_14d: 426, note: "a real transaction fails with the gas its sender gave and passes with more: 0x41596ddd34be0e29b19d1258025361983ad5195c6d53d776594dcdedbf1dceda (block 26410190); other transactions of the family pass…. Executed."}
+- {address: "0xd6969df7e382a258ee2932fa1711af520057cc88", family: "567bf4076c8838252dcc2d10147c8923", copies: 3, name: "EthereumControllerToken", upgradeable: "yes", rating: LOW, recoveries_14d: 424, note: "a real transaction fails with the gas its sender gave and passes with more: 0xd77b8dc4fea948729ba49527a93424fee72403743e01919017813dc4939b8c75 (block 26421813); other transactions of the family pass…. Executed."}
+- {address: "0xc3dcdfb76ee8575e923bef9240cf58a9a7a222e0", family: "9736cd82ddb0a9e51ce0a6746e73b6f2", upgradeable: "no", rating: LOW, recoveries_14d: 411, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa439c55a7c600ceafc2c7f52faf70fb691e40b0c293d39b55f6cd9c41fa10ea2 (block 26339987); other transactions of the family pass…. Executed."}
+- {address: "0x17501063de376195de2505ef561d9d44c26b4a58", family: "bfc6fecb16e3742351f0020a5a6f435f", name: "GigaLegendNFT", upgradeable: "no", rating: LOW, recoveries_14d: 408, note: "a real transaction fails with the gas its sender gave and passes with more: 0x626f9e2392ae88e751b5280ee601ce60c8be8b8440eae71f15bea77f6470f824 (block 26430203); other transactions of the family pass…. Executed."}
+- {address: "0x7bdd0ce75eefead46328e260abd41c68098bf791", family: "d61a38b0ceb2e6bd33cfc9e29a49026c", copies: 3, name: "MemeCardMinterV7", upgradeable: "no", rating: LOW, recoveries_14d: 356, note: "a real transaction fails with the gas its sender gave and passes with more: 0x11e791fe7528f948c93f2ddfe0a8ab9cd7f2a795097964336bff97970eb4a57f (block 26400957); other transactions of the family pass…. Executed."}
+- {address: "0x9ab772204a845ae7192fc433b87055dc158a985e", family: "937d339e0b0767a32ff88350cb1a9372", upgradeable: "no", rating: LOW, recoveries_14d: 346, note: "a real transaction fails with the gas its sender gave and passes with more: 0x475339ef8f8d00582d1ad0c92a25ef4b06bf2fb18d5b5b872f67b2ddc52247aa (block 26342146); other transactions of the family pass…. Executed."}
+- {address: "0x196c463b51d9b02c5aadaedb1cca4be850ebb27d", family: "a20bac9e36b02495aa335d9d17d03b48", copies: 2, name: "TollanUniverseItems", upgradeable: "no", rating: LOW, recoveries_14d: 344, note: "a real transaction fails with the gas its sender gave and passes with more: 0x72b2ef8a104693da0dedd24e7562574c45fe3cc9ba860710734f74bda6adafc3 (block 26406581). The sender's limit was tight, not the…. Executed."}
+- {address: "0x3efbd12c6be0f0603f144b86097922230af89157", family: "89d5db664c57c9b3579a8038ef657c8d", copies: 2, name: "FeeManager", label: "deployed by Circle: Deployer 2", upgradeable: "yes", rating: LOW, recoveries_14d: 318, note: "a real transaction fails with the gas its sender gave and passes with more: 0x940ee80b6b6cc206e19ec6d01b8b2de18702cb77dfe051c59603f729699ed75a (block 26397716); other transactions of the family pass…. Executed."}
+- {address: "0x9f342d7ee2e55e27250208ac97349d4d25761e8a", family: "269480c875e30262e399c3eb6f5cf599", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 290, note: "a real transaction fails with the gas its sender gave and passes with more: 0xff6109d957cdd751e4c9fc3ee15730096b38413538d4ba86de3c26dea41df579 (block 26418829); other transactions of the family pass…. Executed."}
+- {address: "0xc3ecfe771564e3f28cfb7a9b203f4d10279338ed", family: "9e00b76e6a82a4b873a35e801ef415f2", upgradeable: "no", rating: LOW, recoveries_14d: 273, note: "a real transaction fails with the gas its sender gave and passes with more: 0x2ce4323cc4de4e1f3b34b8d5fb68b77ca239bdb2ed3525876bf150d21e658746 (block 26362486); other transactions of the family pass…. Executed."}
+- {address: "0x8a4b4c2acadeaa7206df96f00052e41d74a015ce", family: "37608c4734540f4eab0666dc361b4bf2", name: "Staking", label: "deployed by Celer Network: Deployer 2", upgradeable: "no", rating: LOW, recoveries_14d: 263, note: "a real transaction fails with the gas its sender gave and passes with more: 0x8826c8f4785a9989cc438a9131e44f84fac1c0f17ce9829e5adfd26dc8d53571 (block 26420694); other transactions of the family pass…. Executed."}
+- {address: "0x888887e2d0e716ba1ecf857fe0f2a49125655288", family: "6312e4721c06f91aabd35fbe182dcc9e", copies: 2, name: "TeleportToken", upgradeable: "no", rating: LOW, recoveries_14d: 255, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb228cb3887d39232acb42ff5436b40dffff33c180c0b2a63006609a856343c18 (block 26422760); other transactions of the family pass…. Executed."}
+- {address: "0x424a31a57f7c63918ecaa2fac38016a8af5a6ec2", family: "46b9bf64958a11a4d6fd17668bd014d8", name: "CctpClaimExecutor", upgradeable: "no", rating: LOW, recoveries_14d: 247, note: "a real transaction fails with the gas its sender gave and passes with more: 0x03fb1cd3f944600171b0a0ac17993cae5d8cb8e040ba81e914802638efe25d2b (block 26409634). The sender's limit was tight, not the…. Executed."}
+- {address: "0x2b216bff2d2be0a542af34314161a815a807be49", family: "6ffe3cc5982f806f759aac69e2c8127e", copies: 2, name: "Withdraw", upgradeable: "no", rating: LOW, recoveries_14d: 241, note: "a real transaction fails with the gas its sender gave and passes with more: 0x07af232d4b77ba6d4928af5c9464464d81953f4e49f4e468e949ae60e5e6cc31 (block 26361911). The sender's limit was tight, not the…. Executed."}
+- {address: "0x6efa927316f924347222d283cf2254ed5eeb63ed", family: "0b5d3781cec20ad7520f5db411c2f287", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 236, note: "a real transaction fails with the gas its sender gave and passes with more: 0x66f5fe41e8b17e243fa66ae6ac034e9eed2e62e75929ca6a7d20551e3c9dff3b (block 26435840). The sender's limit was tight, not the…. Executed."}
+- {address: "0x2889bcd2e5d6141f98106dffa8a66ab21b5c84d6", family: "2d26bc343f4f2dd7c4ee5fcf3fe03dd4", copies: 4, name: "PortfolioTokenManager", upgradeable: "no", rating: LOW, recoveries_14d: 233, note: "a real transaction fails with the gas its sender gave and passes with more: 0x8b98a678dc2a61e9e2beb33e81cb7336e0c414d1f7921e2867fe78c9cf075aa8 (block 26386422); other transactions of the family pass…. Executed."}
+- {address: "0x2ef5513ed9c44ddff9ff10b5120426cabd27c49d", family: "4ccd8b345d2dcbbaea1cfccf0d05342b", copies: 2, name: "EntryLogic", upgradeable: "yes", rating: LOW, recoveries_14d: 209, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe6df12dd58ad107a4813c2296460e0bf196dbd0024305f498eddd9bba823050b (block 26399621). The sender's limit was tight, not the…. Executed."}
+- {address: "0x0000000031ef4155c978d48a8a7d4edba03b04fe", family: "249ca13b9caba6a2f790f608ce304abc", copies: 2, upgradeable: "no", rating: LOW, recoveries_14d: 208, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa6f9fbc4ba933669b474ceb9528ab2fd2cd26427c32f3233d3072a04bcb02a04 (block 26369135). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb747c1486d8aca1d13018b574701f325f497d198", family: "3d9e34b4d74e3ebbf6bb19faeb3e49d5", copies: 78, name: "ManyChainMultiSig", upgradeable: "no", rating: LOW, recoveries_14d: 203, note: "a real transaction fails with the gas its sender gave and passes with more: 0x7286983870e3046b452c2eb76c9477e18e8d7fa609dbf28ba57f146e88d6d056 (block 26356537); other transactions of the family pass…. Executed."}
+- {address: "0x76fe371cce9da65818f17131a1cffbc52652994c", family: "b23b26db22cf539cea06c4c0caaca185", copies: 2, upgradeable: "no", rating: LOW, recoveries_14d: 175, note: "a real transaction fails with the gas its sender gave and passes with more: 0x9af1e12905b8c16bbc34f26d34535a4025eb1230b34ae4fcfe1752b4f37193f1 (block 26371115); other transactions of the family pass…. Executed."}
+- {address: "0x114ae097205df40dc883508fcda9a4d8e185fc68", family: "81ef8da047a72a1f39c1775c40c8ed5f", copies: 103, upgradeable: "no", rating: LOW, recoveries_14d: 162, note: "a real transaction fails with the gas its sender gave and passes with more: 0xab621bc94bd2c014e75512c273e2c7eae61a3604035eaf1e58ed7ce1a96daf3c (block 26438664); other transactions of the family pass…. Executed."}
+- {address: "0xc2aebd1a60ae8e27115b380fb6ed17a7fa924c4c", family: "0fc27fd06fd81fd9a3089317d45818f3", copies: 17, upgradeable: "no", rating: LOW, recoveries_14d: 162, note: "a real transaction fails with the gas its sender gave and passes with more: 0xdf332c575683627e20836ed69d2561bca5dc01524b23f51acd913836d33200cd (block 26405361). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc8b7d105b4e4ab8337c617249fed817861fe0851", family: "33a4a6d0af37dfed264b332228417183", copies: 2, upgradeable: "no", rating: LOW, recoveries_14d: 161, note: "a real transaction fails with the gas its sender gave and passes with more: 0x9ba182be9f88bdae1d4e71ef01f6606fd156f25e428b127e5b363d1ed967f649 (block 26425275). The sender's limit was tight, not the…. Executed."}
+- {address: "0x26dc62470d4fa7f9cbcd597f9862345a2b3515aa", family: "98da8b6b8c64cbed423d14ea55b6e752", copies: 6, name: "MergedAdapterWithoutRoundsPufStakingV1", upgradeable: "no", rating: LOW, recoveries_14d: 148, note: "a real transaction fails with the gas its sender gave and passes with more: 0x18d57868cb17e39c5d3c378db65cfbb9f7843fe5cf51f1d88574acbe5e9ecb27 (block 26342088); other transactions of the family pass…. Executed."}
+- {address: "0x01e82b67367de9f805e55de730d5007a752912a8", family: "1b36dfa322c1634831ba47a91be9a212", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 144, note: "a real transaction fails with the gas its sender gave and passes with more: 0x80173fc72a007c68437d5adb2a205fbee3f5b5e3374b501e80f2bed6fc41ada8 (block 26382481); other transactions of the family pass…. Executed."}
+- {address: "0x395c2eaa45865870d735074093720819359b6d0a", family: "417567538bb971c51767842e2b41b9ec", copies: 2, upgradeable: "no", rating: LOW, recoveries_14d: 138, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa2fffe261769bd6997bc6487f8335f3a424834b90c4de8c719e4c725c866618a (block 26407457); other transactions of the family pass…. Executed."}
+- {address: "0x255443d8cfe2c3f77832b71099155cec35b80386", family: "7b9753500f2117d3d9c69cc28ec6d677", copies: 2, upgradeable: "no", rating: LOW, recoveries_14d: 136, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa007c577733929ee0568c607d2a1b3cf3635ef41feb45c73a328d4da0bbed6b4 (block 26401075); other transactions of the family pass…. Executed."}
+- {address: "0xb53977a70d755a56d3ce26926acb4c33f7861c61", family: "1268274390bb20ff5e70a60c6ceef038", copies: 2, name: "AttestationOracle", upgradeable: "yes", rating: LOW, recoveries_14d: 121, note: "a real transaction fails with the gas its sender gave and passes with more: 0x19c8dba05ec254f0cbd1ef66ac5b77795aa5f2e45fb660544e367f0c547d7182 (block 26339696); other transactions of the family pass…. Executed."}
+- {address: "0x25d0d42aa7125a2daba83721db7684d09b3b327d", family: "8506b0c3f9b0233a304746ab4c386366", name: "ClaimToken", upgradeable: "no", rating: LOW, recoveries_14d: 116, note: "a real transaction fails with the gas its sender gave and passes with more: 0x28217c6a4fc94189a174434b2533e422f4b87cefef72f7fd2cc45a5c62190f34 (block 26434986); other transactions of the family pass…. Executed."}
+- {address: "0x30adfaef118acaa415d73a20d55dc7a8cd3381b4", family: "3fc16f267e5e1d06de23bfb60e7eeb91", name: "RobinhoodSequencerReporterL1", upgradeable: "no", rating: LOW, recoveries_14d: 111, note: "a real transaction fails with the gas its sender gave and passes with more: 0x93bcc199994aec7aaa736bc8426e57e4e19ccac0da92c68e1fc7f5597e24bfec (block 26406174). The sender's limit was tight, not the…. Executed."}
+- {address: "0x4b12a72af6b5dcfe5f20976ba764ce2a4b7c6ade", family: "c6010fd959e7839fc4b9ff0dea86f56f", copies: 2, name: "OndoVault", upgradeable: "yes", rating: LOW, recoveries_14d: 109, note: "a real transaction fails with the gas its sender gave and passes with more: 0x652acbebda2112110db57a58f1fa5c99795a0ab54ec23c9c4ae31f01cf20e7f0 (block 26350697); other transactions of the family pass…. Executed."}
+- {address: "0xbbb1e655f7d21f9261dcd7e5175a6c3f54463c98", family: "75c19c4d6ffae113f10b8741f3d25a43", copies: 2, name: "Settlement", upgradeable: "no", rating: LOW, recoveries_14d: 109, note: "a real transaction fails with the gas its sender gave and passes with more: 0xbf2b94c6cfbc0ddcc57586158a9ddfb847e19df627f342954dabbe4e89f8a2a9 (block 26403167); other transactions of the family pass…. Executed."}
+- {address: "0x0d006d9e862b362180eb602e5973fd1fdb6f78dd", family: "e7790a6e59acf19e55e80ce3a2704883", name: "MintController", upgradeable: "no", rating: LOW, recoveries_14d: 105, note: "a real transaction fails with the gas its sender gave and passes with more: 0xc56f7834bca005a86eb9957238b30a3ccb9f90aa8cee066180240f3ab4c20857 (block 26434373); other transactions of the family pass…. Executed."}
+- {address: "0x245578a375b1eac852538ed289a709098354bd18", family: "bdaf5f27ab4880e4dfd189e819e25ae1", upgradeable: "no", rating: LOW, recoveries_14d: 105, note: "a real transaction fails with the gas its sender gave and passes with more: 0x2ed61067516436bde0bcc5537b2466b4fbbf4766d47514cb380f3f890b163c04 (block 26409447); other transactions of the family pass…. Executed."}
+- {address: "0xb6522e94f18f53806ac5feac97584181521639d3", family: "ea33be5ac3a3b0df0f2ae83a2885c951", copies: 2, name: "MYRT", upgradeable: "no", rating: LOW, recoveries_14d: 99, note: "a real transaction fails with the gas its sender gave and passes with more: 0xfc510770ea954119e42c7e499a84444591c169756ae9700e9a2ded8ec845c692 (block 26347825); other transactions of the family pass…. Executed."}
+- {address: "0x1c211646cb99d1557f93f06ce56c302b9493c02d", family: "0ddff458592be71fbdb7373e3adb8aaf", copies: 4, name: "REPERC1155Upgradeable", upgradeable: "yes", rating: LOW, recoveries_14d: 91, note: "a real transaction fails with the gas its sender gave and passes with more: 0x15b3337e2127c63053db55e712bc3d6b706d6c7647fb425f4eccecf311ef7c32 (block 26339741); other transactions of the family pass…. Executed."}
+- {address: "0x26cc007e3d658719f8a44b6109ce6341eb0010cd", family: "0892b9dcb155ec07fd88e5fc31015d02", copies: 2, name: "CounterfactualDepositCCTP", label: "deployed by Risk Labs: Deployer", upgradeable: "no", rating: LOW, recoveries_14d: 77, note: "a real transaction fails with the gas its sender gave and passes with more: 0x637e1c8a24d4c29865688612b3a9d6b681bfdce3c5f9023d3a9ddf89520591d7 (block 26419156); other transactions of the family pass…. Executed."}
+- {address: "0x2d69dd366f185deaafb3292683fc3eef95b0e0d2", family: "e1b06d617aa97b8e164b99d8bd353bec", upgradeable: "no", rating: LOW, recoveries_14d: 77, note: "a real transaction fails with the gas its sender gave and passes with more: 0x2d27c5c9376a7a3bb50832b40524659af86bbdc67b5e96c5677cd78a6ba7d407 (block 26339384); other transactions of the family pass…. Executed."}
+- {address: "0x7591c9855cbd54fea59252f8ba6cdfde06afab36", family: "eb5c95dd007ac250c8a61e09f96398ec", copies: 2, name: "QRCs", upgradeable: "yes", rating: LOW, recoveries_14d: 77, note: "a real transaction fails with the gas its sender gave and passes with more: 0xc5469989fbbb967771f633eb1c79535df39baa4c696dff25f1ad911ca169945d (block 26350012). The sender's limit was tight, not the…. Executed."}
+- {address: "0x78c10059037e245425fa28cf101cdb8c45cca76c", family: "4574817ecc9ddc38c81436596b60440c", name: "SponsoredCCTPSrcPeriphery", label: "deployed by Risk Labs: Deployer", upgradeable: "no", rating: LOW, recoveries_14d: 77, note: "a real transaction fails with the gas its sender gave and passes with more: 0x637e1c8a24d4c29865688612b3a9d6b681bfdce3c5f9023d3a9ddf89520591d7 (block 26419156); other transactions of the family pass…. Executed."}
+- {address: "0xa009a9fdc0ef474e7a3938a89f80329139291568", family: "0f93914f4d57f6e6b229a16e165c23ce", copies: 4, name: "Vault", upgradeable: "yes", rating: LOW, recoveries_14d: 77, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb18ea9d61f5cc4da7288207aa2e955604333aa29dc420cd7041cb946da8313d3 (block 26408672). The sender's limit was tight, not the…. Executed."}
+- {address: "0x49aaa987b1a7e9e4ae091dcd8332c39f322d7d28", family: "9dfa848db54fd7f30b6f1f1c5bffa865", name: "TransitStation", upgradeable: "no", rating: LOW, recoveries_14d: 75, note: "a real transaction fails with the gas its sender gave and passes with more: 0xc34c14ecdf1fd6759b5955175a1129fb81fb3b177d0dd0ac78531f0bcb3937b5 (block 26395158); other transactions of the family pass…. Executed."}
+- {address: "0x57b11c2ced3c974aa5b4669644c4b4cde3326605", family: "046c90919a84034baaf013d03988a90c", upgradeable: "no", rating: LOW, recoveries_14d: 69, note: "a real transaction fails with the gas its sender gave and passes with more: 0xfcbafbbfa2c9c70054b771a640b449d29ea1a3808d97d0b57b07f54139d255c3 (block 26422061); other transactions of the family pass…. Executed."}
+- {address: "0x31a53ce49c99b0c05085dd76d17669871dacd6c0", family: "06d3918388a179d5f0ad732210be0f40", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 67, note: "a real transaction fails with the gas its sender gave and passes with more: 0x9950c39b07eb8ce70aa8036ad0e732138a9d2e82e5a7b2d35c474a5274bca368 (block 26410365). The sender's limit was tight, not the…. Executed."}
+- {address: "0x62074e272aeff86303062ba3a7a97e51a947972e", family: "607110ffeb08729498e299ddc0394d2c", copies: 2, name: "WolfGameBridge", upgradeable: "yes", rating: LOW, recoveries_14d: 66, note: "a real transaction fails with the gas its sender gave and passes with more: 0x01a0826823fa8562c8301fc3c43f580ef65773cc998c69f2467c00cbd752ba73 (block 26368560); other transactions of the family pass…. Executed."}
+- {address: "0x37a436253454c718d33d271bd829d15d7d372300", family: "6af391e447c598b6192f97e67f1250fa", copies: 3, upgradeable: "yes", rating: LOW, recoveries_14d: 65, note: "a real transaction fails with the gas its sender gave and passes with more: 0x1472af38bb97eb6a50b128dcb70edaa8bf10bd3632d0474da1250189d952f4f2 (block 26432529). The sender's limit was tight, not the…. Executed."}
+- {address: "0x6470998fc57f74682ebde0739119608c37a6cdc0", family: "ff6ffc744b6ff29881c26916bd8a9c3b", copies: 2, name: "KSBridgeRouter", upgradeable: "no", rating: LOW, recoveries_14d: 64, note: "a real transaction fails with the gas its sender gave and passes with more: 0xfb207b5831e03dcbac39ffd0f35acc524ff0990cf304fc43540cf34a5364af63 (block 26398285); other transactions of the family pass…. Executed."}
+- {address: "0x8863f0c477a30bb5a2077c813f42250d7fbefcb9", family: "e2498adf1736d7aadffa05685b634a4b", name: "CsdUsdcSettlement", upgradeable: "no", rating: LOW, recoveries_14d: 63, note: "a real transaction fails with the gas its sender gave and passes with more: 0xebe1ecc76d515c0256c07aeb547b6e9040eba3c6291c19e0aa641e60685c9efe (block 26355696); other transactions of the family pass…. Executed."}
+- {address: "0x7bc8c3364e33c1af927dc51c23c16dbc376c409d", family: "530b9787a5dc7d39396724993150479d", name: "TollanUniverseGenesisAvatars", upgradeable: "no", rating: LOW, recoveries_14d: 62, note: "a real transaction fails with the gas its sender gave and passes with more: 0x3619bef1bd056ca384e64dc217dbc7c8911c4b2e88ffec034e9b9de3c75a876d (block 26409470). The sender's limit was tight, not the…. Executed."}
+- {address: "0x470139efeee7c481d08eb0898af87ee9a8b0a0ea", family: "703ac7e99a527772afedb0a03557ba82", copies: 2, name: "RedStonePullOracle", label: "deployed by Tokemak: Deployer 1", upgradeable: "no", rating: LOW, recoveries_14d: 60, note: "a real transaction fails with the gas its sender gave and passes with more: 0xf5f7b4618e60c37842a09c2885a290f70eff32c1c559037d4cddeef6d1ff59c7 (block 26403480). The sender's limit was tight, not the…. Executed."}
+- {address: "0x5adabde1b6aedf8f768f782fff1b1cc396416f00", family: "3c296e91867cd5c9a7b0757169ad18f6", copies: 2, name: "AdminWithdrawManager", label: "deployed by Risk Labs: Deployer", upgradeable: "no", rating: LOW, recoveries_14d: 60, note: "a real transaction fails with the gas its sender gave and passes with more: 0x4416d69a93d5d20f9bd5432291837aba25dce0d1ccfca9916afc4b01f9d4e8b9 (block 26416329). The sender's limit was tight, not the…. Executed."}
+- {address: "0x8bc3249fec4f61440af91ea2f3506f156039297c", family: "4c8cdaec7724f0ccf0e3c5715e6cbac8", copies: 2, name: "GRVTBridgeProxy", upgradeable: "no", rating: LOW, recoveries_14d: 60, note: "a real transaction fails with the gas its sender gave and passes with more: 0x391f9955c2e4898c7769f6db3c3c46d693f60bd0f7046e6e3d4d7fa4e0cd2836 (block 26359995); other transactions of the family pass…. Executed."}
+- {address: "0xce6e33945a931465f3778483688ec9a6db536330", family: "1736fa207032db0ef435f641743baa99", copies: 9, name: "BridgeMinter", upgradeable: "no", rating: LOW, recoveries_14d: 60, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb83178400cb15adfd4e365e94cc5b355533c4b6c00ca9484a150e90fe4470b5a (block 26373318). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc4d2cc4363a8a8a72c5fe35f53a56b095a29c7b0", family: "f3eb26f734cd53d629cca9d2a220cf96", name: "BMASAchievements", upgradeable: "no", rating: LOW, recoveries_14d: 56, note: "a real transaction fails with the gas its sender gave and passes with more: 0x304365de838ca6966dc0ae66fc9ba6b77090ab1f504e349a31e4bdc658382adb (block 26401638); other transactions of the family pass…. Executed."}
+- {address: "0x2b3c1760a126275002cf7ea003fa4d513cc89f0d", family: "0ccf723b32ec1f634ae25a525dad535d", copies: 2, name: "TheMineBoxV2", upgradeable: "yes", rating: LOW, recoveries_14d: 55, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb8a737deff06cd902e5d98085aa7d547d48d2e4596b5bd37d2d3a6cd9fd85192 (block 26438626); other transactions of the family pass…. Executed."}
+- {address: "0x42a479f4973c173ef640e729453c630c6388949b", family: "3d2d96577e8848253c36826ff690703a", copies: 3, upgradeable: "no", rating: LOW, recoveries_14d: 54, note: "a real transaction fails with the gas its sender gave and passes with more: 0x44e27d6f8ada67f4d54c76b0ca862914cae90135a01ac5262757e3705018ed02 (block 26372912). The sender's limit was tight, not the…. Executed."}
+- {address: "0xcd73a05979a1ff8ca444558bda60e54161117ee2", family: "be6475cd0a72930ea9e9ca147b58dd62", name: "CounterfactualDepositSpokePool", label: "deployed by Risk Labs: Deployer", upgradeable: "no", rating: LOW, recoveries_14d: 53, note: "a real transaction fails with the gas its sender gave and passes with more: 0x8fa486b1002c8b7debe9b0c23510add23be733a71ec2618f7dfe3f6873e8ce5e (block 26406405). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1b01666a3a026df6168fa7a1dd13a80238cf862c", family: "8a5d7d92a39bc0cd613331b7608101bc", copies: 3, name: "Verifier", upgradeable: "yes", rating: LOW, recoveries_14d: 51, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe8f143e616410563033c0930f9164d6beb917dee637f221f538747e75ddd6600 (block 26353197); other transactions of the family pass…. Executed."}
+- {address: "0xa3a3e8304c88b017153ba5dfccdaccb7116a185f", family: "012c8e40cde05f719308f5efab3b3134", name: "Bridge", upgradeable: "no", rating: LOW, recoveries_14d: 51, note: "a real transaction fails with the gas its sender gave and passes with more: 0xf1d91bbe88b84b9a746010fdc9bec76801769d5dce37483915f8d7802a5d26d3 (block 26396646); other transactions of the family pass…. Executed."}
+- {address: "0xb5fd9fffddd02de0f570d63759367ed830e22134", family: "52e1632010ad14d3dfd9c8f8481d3636", copies: 11, name: "ArchetypeLogicErc721a", upgradeable: "no", rating: LOW, recoveries_14d: 50, note: "a real transaction fails with the gas its sender gave and passes with more: 0x09422f186f9c6c8c9d81c0468ee2c0219fa20c3333c084d7f084d8d1eb4278ac (block 26422816). The sender's limit was tight, not the…. Executed."}
+- {address: "0x503ea999fb0ab4dcbbe3a7c9aaaf1cccc7e54ec7", family: "b2d26d87fb980d0dd89a17c40b1c8b2a", copies: 2, name: "TokenConversionManagerV3", upgradeable: "no", rating: LOW, recoveries_14d: 47, note: "a real transaction fails with the gas its sender gave and passes with more: 0xcfd4758ef0ac6df1b82e9098fd26b7d702d12eb4c9bae2841e3afc215ec60788 (block 26413644). The sender's limit was tight, not the…. Executed."}
+- {address: "0x30ddef8cedee40df8cab52813fc929da2bcc070c", family: "7a460506d811c2e665888d0eb10c98c9", copies: 2, name: "Rewards", upgradeable: "no", rating: LOW, recoveries_14d: 46, note: "a real transaction fails with the gas its sender gave and passes with more: 0x6f84d792831b7c9804f9136a6574a19f8116ad473d938aefb0673ca6912737e7 (block 26371444). The sender's limit was tight, not the…. Executed."}
+- {address: "0x3ffd8b918917727c6f226f4eb88e33e452802294", family: "b1d8568d7ed6fec303f943ae7b4a1fc2", copies: 2, name: "ExecutorV3", upgradeable: "no", rating: LOW, recoveries_14d: 45, note: "a real transaction fails with the gas its sender gave and passes with more: 0xf48e8de427464893060f2b58737d678885daff611319297861c5780fd6cc92af (block 26434077). The sender's limit was tight, not the…. Executed."}
+- {address: "0x5dcb5f7becaa169377bf08e8a95c8b57d2c47b49", family: "e8b3dec0a6edc9c871fea87919925ffd", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 44, note: "a real transaction fails with the gas its sender gave and passes with more: 0xdf403e8225d6c97e71884bbc98af9da53304f458d045df55a84d1230d10dd9db (block 26399453); other transactions of the family pass…. Executed."}
+- {address: "0x1111160508e696a1ba28c1c69b9bce5645b35afe", family: "850428fb6cfe5441d0cb885b3c55e71e", copies: 3, upgradeable: "no", rating: LOW, recoveries_14d: 42, note: "a real transaction fails with the gas its sender gave and passes with more: 0x482d62bef82634c824a3c74e4d39eb1b0403993ffec2e86e91989aa27c0c8401 (block 26405071); other transactions of the family pass…. Executed."}
+- {address: "0xc581a68b95fb298f04f02b865d28769a4ef1716a", family: "46fc541ae734e5c7b1c1c68f3ba27015", copies: 7, name: "Collateral", upgradeable: "no", rating: LOW, recoveries_14d: 41, note: "a real transaction fails with the gas its sender gave and passes with more: 0x32eb97eac7a5d660f691f08a33c03df1ec3f0fb12a0516cda593b954bd011dca (block 26407142). The sender's limit was tight, not the…. Executed."}
+- {address: "0xafbfd4e71045a12ee032848d9f965efc16a7d2af", family: "33633495414af9738c8ea75b5a8086b3", name: "M4Arena", label: "deployed by M4 Rabbit: Deployer", upgradeable: "no", rating: LOW, recoveries_14d: 40, note: "a real transaction fails with the gas its sender gave and passes with more: 0xde3f78c51de00ebfee7ddf812b2c55a44995927f447efc0c904e3ea1396d78da (block 26392074). The sender's limit was tight, not the…. Executed."}
+- {address: "0x2b05c841811bcd8204ea44da33649bf79c4fd163", family: "ebc88f775955ba5b08ad52c424820197", copies: 3, name: "WorkflowRegistry", upgradeable: "no", rating: LOW, recoveries_14d: 39, note: "a real transaction fails with the gas its sender gave and passes with more: 0x7727b5e8e94c4bebdc058fe47ed7e09f92afa24f4e748e2ca69d44b4aec77a21 (block 26418068). The sender's limit was tight, not the…. Executed."}
+- {address: "0xe1e8f7c0f15e8d5f9f09023695368981b27d7357", family: "1b4dd5e3bda2fdc3e623d6eca986164c", copies: 2, name: "SpacePort", upgradeable: "no", rating: LOW, recoveries_14d: 39, note: "a real transaction fails with the gas its sender gave and passes with more: 0xad6c4f6ddb160e3abf20a8a906d6ab40bf4674b1d61188beecd8d5e4b868db3c (block 26374384). The sender's limit was tight, not the…. Executed."}
+- {address: "0x46b0ef8603fda297f16dc80742af4796dd747fa5", family: "4e1d6ba204b08c3a231d07c224161c29", copies: 6, name: "BridgeMinterTimeLock", upgradeable: "no", rating: LOW, recoveries_14d: 38, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe1ec8abc8f6efdf6ee17763671b67bb0309f7e6e74a649ddd6a633c10e73a869 (block 26395437). The sender's limit was tight, not the…. Executed."}
+- {address: "0x2d346f2cea44097602a5168cf11b0aab93cdbd5b", family: "3acb046adbb601f903a6f4ac9b8900f1", copies: 4, name: "KnightToken", upgradeable: "no", rating: LOW, recoveries_14d: 37, note: "a real transaction fails with the gas its sender gave and passes with more: 0x4a6b611d07ae29dbd221b200018eef8a460bd69719d01980feef2b638a1d3549 (block 26404929); other transactions of the family pass…. Executed."}
+- {address: "0x451d3136de17a1c97bbefbc69e1b47e26db744ba", family: "b796700c67e635aae568e1a8ecebcfc9", copies: 2, upgradeable: "no", rating: LOW, recoveries_14d: 37, note: "a real transaction fails with the gas its sender gave and passes with more: 0x11c9ceb10709874602474ec1809ce6def6f2a60c1dd5dd5b88f486157dd1628e (block 26377051); other transactions of the family pass…. Executed."}
+- {address: "0x9eefc0099206ae8d82098fcfda41bbb214e8e6ab", family: "bed7dfe8230546577755d9e4251e3c6d", name: "ScatterBidRouter", upgradeable: "no", rating: LOW, recoveries_14d: 37, note: "a real transaction fails with the gas its sender gave and passes with more: 0xfd4db9a4bebdc972fa0c2234be2fb1d8633cb75d5c05fa16e276133c550e6c57 (block 26349315). The sender's limit was tight, not the…. Executed."}
+- {address: "0xf787128e3eb8161174944117b9fe1204a22097fb", family: "eac3b5fa77452bb0ed2c1ceb3fecd077", name: "Validator", upgradeable: "no", rating: LOW, recoveries_14d: 35, note: "a real transaction fails with the gas its sender gave and passes with more: 0xd3d3222dd22f603fe2714f975bbe53a5d6e34e95e3922fd58ac136e1cd36eed7 (block 26390799). The sender's limit was tight, not the…. Executed."}
+- {address: "0x09beeedf51aa45718f46837c94712d89b157a9d3", family: "63a907141a40966ca47ab89dc1d7a390", upgradeable: "no", rating: LOW, recoveries_14d: 33, note: "a real transaction fails with the gas its sender gave and passes with more: 0x739f6d2bd4f7a88fd3f75dc8fb7686445cc42698e48ed5ba59377cac5f3b4292 (block 26352155). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb94d2df40fef84e20213c7908c7111f92dc28a83", family: "45e0d70d3824185b30720bdacf60a91e", copies: 12, upgradeable: "no", rating: LOW, recoveries_14d: 33, note: "a real transaction fails with the gas its sender gave and passes with more: 0x648432e19f0edb46524931d1fc04ed958beac46ac3508f87cb04e000438eaf7b (block 26401626). The sender's limit was tight, not the…. Executed."}
+- {address: "0xdbb5cf12408a3ac17d668037ce289f9ea75439d7", family: "fe78caa089ceef50386b14039b46e56e", name: "WorldMobileToken", upgradeable: "no", rating: LOW, recoveries_14d: 33, note: "a real transaction fails with the gas its sender gave and passes with more: 0x6c56a3e9e20ea0340acff24f88294421c58df25f81bf1439503b68396a78da44 (block 26368160). The sender's limit was tight, not the…. Executed."}
+- {address: "0xfb6626917a2ea7cc68ee6ed567cb5232ecb71a78", family: "0d89aca0059f9f6cd09be7ebda5d1698", name: "MigrationIntake", upgradeable: "no", rating: LOW, recoveries_14d: 33, note: "a real transaction fails with the gas its sender gave and passes with more: 0x6c56a3e9e20ea0340acff24f88294421c58df25f81bf1439503b68396a78da44 (block 26368160). The sender's limit was tight, not the…. Executed."}
+- {address: "0x19d4ad650e8b8d03d3a3565b2eb27229eb6e8ddb", family: "90a34723761b4690e5c87c3fcb1cb802", copies: 2, name: "ResourceBridge", upgradeable: "yes", rating: LOW, recoveries_14d: 32, note: "a real transaction fails with the gas its sender gave and passes with more: 0x3e574db1f1d6b18266cce18189200ab0cd6ea33674962db2c434ba9969cc41ae (block 26381363). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb9de5840469185bc07c217077685fa1eec7b362f", family: "f6374baf7b74e8349dbf795279f9b17e", copies: 2, name: "CrossChainBridgeMessenger", upgradeable: "yes", rating: LOW, recoveries_14d: 30, note: "a real transaction fails with the gas its sender gave and passes with more: 0xaaf821be8b9f1fe162610c054ac6dd5b0cc51dd8b8a88cea4da7b0580b38aabf (block 26438073); other transactions of the family pass…. Executed."}
+- {address: "0xc0ca685456363ed2d7521dfc47e0be165a99eb44", family: "f9e9ca2770c1059502755ce146af9aa2", copies: 16, name: "Coordinator", upgradeable: "no", rating: LOW, recoveries_14d: 30, note: "a real transaction fails with the gas its sender gave and passes with more: 0x32eb97eac7a5d660f691f08a33c03df1ec3f0fb12a0516cda593b954bd011dca (block 26407142). The sender's limit was tight, not the…. Executed."}
+- {address: "0x6c38bf44a327bf36bfbefcedc514c0fb3fec6748", family: "5c7d88a968682145223a6d67265d7b10", name: "HTLCErc20", upgradeable: "no", rating: LOW, recoveries_14d: 28, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe898643d9101e05e954485370cbc2541330a740bbbda1715790ee8deb2be38ce (block 26388636). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc2d54e4d795469f8616612cc343af078a892f36f", family: "88ff4b9da619017b36e439d48565cdb4", upgradeable: "yes", rating: LOW, recoveries_14d: 28, note: "a real transaction fails with the gas its sender gave and passes with more: 0x8e51845c84926e5e0b2a5f7c47d67d4918511ba04c5d8673a467c0ba1b9ac071 (block 26388912). The sender's limit was tight, not the…. Executed."}
+- {address: "0xcff469e561d9dce5b1185cd2ac1fa961f8fbde61", family: "cd0bb1860f211c1fa7e12308093ce048", upgradeable: "no", rating: LOW, recoveries_14d: 28, note: "a real transaction fails with the gas its sender gave and passes with more: 0x8e51845c84926e5e0b2a5f7c47d67d4918511ba04c5d8673a467c0ba1b9ac071 (block 26388912). The sender's limit was tight, not the…. Executed."}
+- {address: "0xe41c726421007e133a59365432fe886a73b45126", family: "50661da8b32c90fe76aaf1786359ea6c", upgradeable: "no", rating: LOW, recoveries_14d: 27, note: "a real transaction fails with the gas its sender gave and passes with more: 0xba1598fcd39d8a7416b701d2342ff35e1bd34ddd9b1dd2c9171796d268f2903b (block 26435938); other transactions of the family pass…. Executed."}
+- {address: "0x035b5438444f26e6aab81e91d475b7b1ac4fb22b", family: "725edad2985d426777be14a19536d67e", copies: 2, name: "UpgradeableStork", upgradeable: "yes", rating: LOW, recoveries_14d: 26, note: "a real transaction fails with the gas its sender gave and passes with more: 0x3842733621ccccd94a7cf6a96d70c1b7da07b5bd2e56f6a87dd20c3e73f2859d (block 26419261). The sender's limit was tight, not the…. Executed."}
+- {address: "0x4206931337dc273a630d328da6441786bfad668f", family: "1c6a77350507377e989f29f53276398b", name: "Dogecoin", upgradeable: "no", rating: LOW, recoveries_14d: 26, note: "a real transaction fails with the gas its sender gave and passes with more: 0x374752dd7d976d7cb91c2fd6299ea70bbb5235db4feb4aa32d2b71306cb320a4 (block 26353542). The sender's limit was tight, not the…. Executed."}
+- {address: "0x4744feb48a74cd8c3e7f6ba9ba97cd377416ba78", family: "59358dfbc094780e2e39b991527708ca", name: "SynthwaveClaim", upgradeable: "no", rating: LOW, recoveries_14d: 26, note: "a real transaction fails with the gas its sender gave and passes with more: 0x367e28b0754b8f0dbd379afd7ea6aeec2fd886444bb0d918e1348932740bab0e (block 26390852); other transactions of the family pass…. Executed."}
+- {address: "0x49b5a631f54927c0007232844f06fe18cbf69786", family: "5fe4b0da0d53f256e93e305a83b3813e", copies: 2, name: "HypersnapBridge", upgradeable: "yes", rating: LOW, recoveries_14d: 26, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa95b8a47a7958c17ea37074ee77f3c569c2dbbb4366d5bf35f8541ade8a5f239 (block 26359610); other transactions of the family pass…. Executed."}
+- {address: "0x4c0b10d3bf4282609f36ae5620491f240d1af898", family: "372f45c6ed0fc99ef382dfcf11d48f77", name: "DuckWarrantRedeemer", upgradeable: "no", rating: LOW, recoveries_14d: 26, note: "a real transaction fails with the gas its sender gave and passes with more: 0xd5cc13d4495d6fd351547f5455984d60c7775ae1b08fd68f304111f701ddf365 (block 26348843); other transactions of the family pass…. Executed."}
+- {address: "0xfe9f7f7b916085f8221190201246b6a0bb2b80c3", family: "83c5abf14b2ba3cff804754c8b5e81dd", copies: 3, name: "MultiSigCold", upgradeable: "no", rating: LOW, recoveries_14d: 26, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb4dc0ad32babf4773b7b90927f103dd419d2f66f1a010fc3ef58647aa831b910 (block 26376575). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1f9a27fc9ea14b4430750e3b718b92752573929a", family: "4aab626c7722a8bf358b3aee36821465", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 25, note: "a real transaction fails with the gas its sender gave and passes with more: 0x6459bf995c2860b15e5cfefb32536fc1bbd71048729c37df7aa72371bfbb53a1 (block 26362194). The sender's limit was tight, not the…. Executed."}
+- {address: "0x0b35d20c9b45f1312f408768bee75150b2b8a80e", family: "936caf7353a284371551caed66dd98a6", name: "PaymentGateway", upgradeable: "no", rating: LOW, recoveries_14d: 24, note: "a real transaction fails with the gas its sender gave and passes with more: 0x3d433eb87b166e91454b52e82c97971a24f45d15ce469fe66900d9d3541886a5 (block 26354724). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb6401e9e43f4fcab6a0ca7412cfe9de8d07e2e3d", family: "f788eae479187b2b0a36448c993a65dd", copies: 183, name: "OffchainQuotedLinearFee", upgradeable: "no", rating: LOW, recoveries_14d: 24, note: "a real transaction fails with the gas its sender gave and passes with more: 0x7812b50a53be6ffd4177867b42ed7a02f1d5231182cec6e6cbb882a5b8e58d14 (block 26409890); other transactions of the family pass…. Executed."}
+- {address: "0xced337556854775812bea8d88e776643c87f8554", family: "783d654d27efd4ae02ec9aac35f284d4", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 24, note: "a real transaction fails with the gas its sender gave and passes with more: 0x389563b94d1be839e5f39105a7f988ce0d38faf71b011b267aa090ce74ac994c (block 26342507). The sender's limit was tight, not the…. Executed."}
+- {address: "0xfbd0caabcfbcf1cd4e1c6c4bee710bb7ff8da2f6", family: "05222cbc4948dfa8ccb9f90ebacb3efb", name: "PremuVault", upgradeable: "no", rating: LOW, recoveries_14d: 24, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe2cf21fab01bde38e5a8d4421f39a124f47987cd1aeeb67750a9c2a13a12fde0 (block 26419300); other transactions of the family pass…. Executed."}
+- {address: "0x6769155b16f25d317819efef011e0a50a48e83c5", family: "dcbcbb98933ebf1b4afb6c3c8bb60fac", name: "SponsoredCCTPSrcPeriphery", label: "deployed by Risk Labs: Deployer", upgradeable: "no", rating: LOW, recoveries_14d: 23, note: "a real transaction fails with the gas its sender gave and passes with more: 0xd4b2d2eabadf570198852449bc0fd5438e0094575ece7b3c9c16206a78cd2aad (block 26368250). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1cdae7dcc3f32551865efe3d77ac2b88ee2905b4", family: "4365652067c59ccb3c2a5a82beb91042", name: "K1MeeValidator", upgradeable: "no", rating: LOW, recoveries_14d: 22, note: "a real transaction fails with the gas its sender gave and passes with more: 0xd28c2eeec57c334227d47fe8e2371628b54eeba4ac4d1dbb81ea6fa0fc02a032 (block 26343435). The sender's limit was tight, not the…. Executed."}
+- {address: "0x0675509169e25134248563c675c15b62618cc479", family: "ada5010c005b205a0949e14c1031ccb9", name: "FastPayDisburser", upgradeable: "no", rating: LOW, recoveries_14d: 20, note: "a real transaction fails with the gas its sender gave and passes with more: 0xd0a0b151816f85daa53b7d31a75d17b7ec34f2d5e7f52af49c44ac8475270210 (block 26392503). The sender's limit was tight, not the…. Executed."}
+- {address: "0x290ae0178314705d95e504ea94ce052fb550b613", family: "c7d9b8e861684fb5e956c4133e62bc13", copies: 2, name: "PaniniBlockchain", upgradeable: "no", rating: LOW, recoveries_14d: 20, note: "a real transaction fails with the gas its sender gave and passes with more: 0x9a5742a744d6c3e7d6880d4e45628bc22227edcf97a8df0af5d71c8f33cf62ed (block 26373243); other transactions of the family pass…. Executed."}
+- {address: "0xa626ae844aaf91e9b299fa55270d1dceb82b9300", family: "9b9d1c1e91e9b4a74482e9b371904f9b", copies: 2, name: "BridgeVault", upgradeable: "yes", rating: LOW, recoveries_14d: 20, note: "a real transaction fails with the gas its sender gave and passes with more: 0xcaf4b0aa1bd1e13981d7d1c2d8f27ed07feecd92c03afefd588d37aa59e5d389 (block 26348562). The sender's limit was tight, not the…. Executed."}
+- {address: "0x2fe17fa30a933693b3ae13d82d00ef18299c6435", family: "4680ab414a03b387db76dddad0add343", upgradeable: "no", rating: LOW, recoveries_14d: 19, note: "a real transaction fails with the gas its sender gave and passes with more: 0x154ae787a471d32af16285af6b6e02f427feb380cc0cd8ca60d884fcc0bb2f21 (block 26431147). The sender's limit was tight, not the…. Executed."}
+- {address: "0x47e69cbd049c4aa1bbeb74123737b91de95b238b", family: "c4e4fd0568b1d469e58cc599f03d522e", name: "ProofOfXP", upgradeable: "no", rating: LOW, recoveries_14d: 19, note: "a real transaction fails with the gas its sender gave and passes with more: 0x76c4768d035527b8bd4ae864e76bdb5be5e07dee4e0ce46717356217376dec41 (block 26421699); other transactions of the family pass…. Executed."}
+- {address: "0xc01ca57dc7f7c4b6f1b6b87b85d79e5ddf0df55d", family: "4444045fd0886393f12dbe9a3997790b", name: "OctraLightClient", upgradeable: "no", rating: LOW, recoveries_14d: 19, note: "a real transaction fails with the gas its sender gave and passes with more: 0x8eafce8220c7bb8c05dd667e5646999246576d451506bbd82bdd4b52974cf013 (block 26410911). The sender's limit was tight, not the…. Executed."}
+- {address: "0x000000000d60704384100a29efb6c9cf8cd72820", family: "dbf253097c77b3fa4476d6bd4e44b75d", copies: 4, name: "SubAPIMultiSig", upgradeable: "no", rating: LOW, recoveries_14d: 18, note: "a real transaction fails with the gas its sender gave and passes with more: 0xf7a7191b95d310b27ad0de4c3566af945009b5cdb26f44b33e7668f4d022b724 (block 26433957). The sender's limit was tight, not the…. Executed."}
+- {address: "0x2d5e0cd9bfea95e89cef80fb39c050991ac19eaf", family: "38c4c1e36ef916f431924a4777ee7e98", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 18, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe9e76acc161a6d028158d7d55646ae49993585fecbefe252c89b2451d2b6a879 (block 26343964). The sender's limit was tight, not the…. Executed."}
+- {address: "0x36c54110936d18ecb11ddd1aaad73e1488888800", family: "2cfd3f5ca6e9c64f9340b09095d9eb20", copies: 2, name: "Vault_12366", upgradeable: "no", rating: LOW, recoveries_14d: 18, note: "a real transaction fails with the gas its sender gave and passes with more: 0x0b5e5735a77a87aa11e5c8bbccff7f5b4e08cb747ec43238960aeb738e08019d (block 26438361). The sender's limit was tight, not the…. Executed."}
+- {address: "0x6b456a9bdc0f6849c0e54306acc56b67a2957a56", family: "0a922f8c9b0d14e233603139f1daa4af", copies: 2, upgradeable: "no", rating: LOW, recoveries_14d: 18, note: "a real transaction fails with the gas its sender gave and passes with more: 0x14c8ed24218c772248d980a92287f72cef8c4f700c1b6073b98756ec2398b54f (block 26357611). The sender's limit was tight, not the…. Executed."}
+- {address: "0xd4505645b724754f5170a2027804a4265e860d44", family: "5ed0d7fcc70ec9c13c6930576c290a8e", copies: 2, name: "OperationAuthorizationRegistry", upgradeable: "yes", rating: LOW, recoveries_14d: 18, note: "a real transaction fails with the gas its sender gave and passes with more: 0x24ea0f09eb6740933414ddd210e8dcdf0f78d3c0f6533da152750488bfffc1bb (block 26390988). The sender's limit was tight, not the…. Executed."}
+- {address: "0xa5788882538dd3b086f4f97b8695f16a676ae114", family: "2915144567fa62f32e0b6996af48ed44", name: "RewardVault", upgradeable: "no", rating: LOW, recoveries_14d: 17, note: "a real transaction fails with the gas its sender gave and passes with more: 0x44929c721e4d8d941d63eab91ffd7b41409c1c6c4276d4d10dcb241d14db8601 (block 26410419). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1ac2fafa1076c3353789a48148cbffdf1155eb03", family: "994bebfa7ea825dea989c9ec5bca64f3", upgradeable: "no", rating: LOW, recoveries_14d: 15, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb6a7a4a6028c7b20c90bae9af0a8e029c6bab00779e7703d603dc7cf7861ca19 (block 26359153). The sender's limit was tight, not the…. Executed."}
+- {address: "0x323a76393544d5ecca80cd6ef2a560c6a395b7e3", family: "8b887dc786ad30ed831d437ba9d4e52d", name: "ENSGovernor", upgradeable: "no", rating: LOW, recoveries_14d: 15, note: "a real transaction fails with the gas its sender gave and passes with more: 0x3117aff69e40f18d0a7fd592bc6198b803b1bbd67da99d7176674b9d203ec940 (block 26339250). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1a9a4d919943340b7e855e310489e16155f4ed29", family: "d14bb73d7f7f61f002b6830a7ffea43f", name: "Claimer", upgradeable: "no", rating: LOW, recoveries_14d: 14, note: "a real transaction fails with the gas its sender gave and passes with more: 0xaed1d9f741566f89be82d9f6e9372a3c440a3198bbce2d2617b34ab299e89127 (block 26357003); other transactions of the family pass…. Executed."}
+- {address: "0xfae502ab8fa48189e6037b9b20b810a54d8cec76", family: "29d17b29983ada355a20838ac208fcbe", name: "VVVVCTokenDistributor", upgradeable: "no", rating: LOW, recoveries_14d: 14, note: "a real transaction fails with the gas its sender gave and passes with more: 0xdfe565af21565e7e3ddc4452f5f3cd4c43ce8deb37d507ab449a2525788290a9 (block 26375767). The sender's limit was tight, not the…. Executed."}
+- {address: "0x38872faddaf13876bfc60152d69f15f2bab85f36", family: "273aa029ca28612dc8f3a235f9d6ecbc", copies: 2, name: "AVNBridge", upgradeable: "yes", rating: LOW, recoveries_14d: 13, note: "a real transaction fails with the gas its sender gave and passes with more: 0xd5c6940a9f7a6f42cbb64c05edf0efeb79f885e0be695560d7518adca0117d48 (block 26367146). The sender's limit was tight, not the…. Executed."}
+- {address: "0x9718a210dd1fc4dfa6d756e55ea89617da5efe77", family: "e529f189fa158fe089cdcffae17f4042", copies: 2, upgradeable: "no", rating: LOW, recoveries_14d: 13, note: "a real transaction fails with the gas its sender gave and passes with more: 0x952f58b19a0259819637003481aab8068585851119338ac2c04013a2ebe3697b (block 26412771). The sender's limit was tight, not the…. Executed."}
+- {address: "0xdc32a78d3868be38a9a047a93c238f6981d2b16d", family: "107cc427f434064db84ea87381fc4887", upgradeable: "no", rating: LOW, recoveries_14d: 13, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa4cc281628a6c548c9937c16d5c65880d9da49c8a08e1aadb26c864ee305d44b (block 26388821). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1612c1db1e373019b35748e3e57bddef8a8c8fde", family: "195f2a99db6bd2502f066a49335b877b", copies: 2, name: "SignerRegistry", upgradeable: "no", rating: LOW, recoveries_14d: 12, note: "a real transaction fails with the gas its sender gave and passes with more: 0xdacc8b546473f9987cbc7bcf18be172669f1d1b1dc475be8f88fface5fe46684 (block 26426025). The sender's limit was tight, not the…. Executed."}
+- {address: "0x3aa07cd56d3e46c7b8613681dc2734cf17f267d0", family: "f36dcc404f0e2f3b109d116cd87545fc", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 11, note: "a real transaction fails with the gas its sender gave and passes with more: 0x4d6cb700a1542f7e6c05a3a3cd1831e5eea239c2822a3ae11293e34cf421f9b2 (block 26395455). The sender's limit was tight, not the…. Executed."}
+- {address: "0xa3d7aa85ac01a085d6838845abefc64f28636b4a", family: "e9bf02f81b41c194e23e8b71bccce15e", name: "BlockBeastsGame", upgradeable: "no", rating: LOW, recoveries_14d: 11, note: "a real transaction fails with the gas its sender gave and passes with more: 0xf48860abdb318b68967e356184ec361250b922116c2d0cd8c4c98544c050ea1c (block 26373884). The sender's limit was tight, not the…. Executed."}
+- {address: "0xae9f4c581551177f4eec76c32a72aaa991e570c8", family: "707a5a403e9a0badc96425e8cadada08", name: "FanbaseTransaction", upgradeable: "no", rating: LOW, recoveries_14d: 11, note: "a real transaction fails with the gas its sender gave and passes with more: 0x7d999248adc1a3bc7cfd763f156b1a77e7816f3e28fe1a6ce52ead3868529586 (block 26406771). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb79aae35b00f2250ae7112075a5aa4d616cee34d", family: "c1962724bec81a279bcd91f567ce7bdf", copies: 59, upgradeable: "no", rating: LOW, recoveries_14d: 11, note: "a real transaction fails with the gas its sender gave and passes with more: 0x5f78023aefb3fe5ac80d31046d7ab48f956cc1f8a6d0964b368380ae2b230582 (block 26377183). The sender's limit was tight, not the…. Executed."}
+- {address: "0xbed7d999f1d71ac70c263f64c7c7e009d691be2e", family: "8f76d5042364d0fa39a2861cf6fae2ed", name: "MYRC", upgradeable: "no", rating: LOW, recoveries_14d: 11, note: "a real transaction fails with the gas its sender gave and passes with more: 0x3c8bc29cf3aa3f1e28f22ef52c59eea2f6b525f05ee55609000f281625088620 (block 26405187). The sender's limit was tight, not the…. Executed."}
+- {address: "0xcd4c7e2e8d2a15192be238bba43181d9cdf87e7b", family: "b3cde3c126493f42103453391fd27331", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 11, note: "a real transaction fails with the gas its sender gave and passes with more: 0xc24ce0a3901ea5e6b4b15b94b6a3825aae1f715f4f1530c4270889af316a36ec (block 26410555). The sender's limit was tight, not the…. Executed."}
+- {address: "0x00d7a47798e8ff169104b748131703b78f23390c", family: "27d5062e5e7dd05102428f2a545b53d4", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 10, note: "a real transaction fails with the gas its sender gave and passes with more: 0xab0fce6aca9f8e00b8ccc88662ef2769e9852e4f730d5f09656fb5494c7205b1 (block 26341126); other transactions of the family pass…. Executed."}
+- {address: "0x06b3a62361cc494e96c7052983107aebce632234", family: "2739fb904fa587ca29b1639b2e37b280", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 10, note: "a real transaction fails with the gas its sender gave and passes with more: 0x78b13431bf82a20ca4f7d623cf7feb53513e7cae62158c5456ae7faff02bbcf4 (block 26364427). The sender's limit was tight, not the…. Executed."}
+- {address: "0x0f11d0d1671519683bd48abf3dbe779e300941cd", family: "e91d3a4e0e25d69e7a707e3443a53714", name: "DecentralandMarketplaceEthereum", upgradeable: "no", rating: LOW, recoveries_14d: 10, note: "a real transaction fails with the gas its sender gave and passes with more: 0x150df24ad247e83b2bc66753cd02d8e97dab8b707daf833797d74e3100e8378e (block 26437980). The sender's limit was tight, not the…. Executed."}
+- {address: "0x3fcd87948cbf46605d6ded0ed56d3daccd9daf9e", family: "71e2b3997620f1e1c0a034d1c2933d8c", copies: 2, name: "RequestWhitelist", upgradeable: "yes", rating: LOW, recoveries_14d: 10, note: "a real transaction fails with the gas its sender gave and passes with more: 0x857fce7af6063c612991a0df33355c5c3cac9c38a488f1975256f6db8f41a0cf (block 26435073). The sender's limit was tight, not the…. Executed."}
+- {address: "0x852ab534c93bb308553bc5e960ea8916a89a9955", family: "3261262841697e2e8c093e6535a20f01", upgradeable: "no", rating: LOW, recoveries_14d: 10, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb4e15cdf0478a6a15654279b3b5d93c1f11674eda626bfe1edfa79626e8ec127 (block 26401609). The sender's limit was tight, not the…. Executed."}
+- {address: "0x9e5c10bc7c9d0005bf956adf93b92c5b1305b021", family: "ad339a530c7fc03dbc6e4514cd2f5685", copies: 2, upgradeable: "no", rating: LOW, recoveries_14d: 10, note: "a real transaction fails with the gas its sender gave and passes with more: 0xec77982714731d1c22bb8cfdbc4433ea663d92bc642921a5a254c4b359313969 (block 26387256). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb587566b6c52f3eac667cfbad92b3f637fe3b083", family: "b9dfa607c84e4dfed7aa88c5dfa5e97c", copies: 482, upgradeable: "no", rating: LOW, recoveries_14d: 10, note: "a real transaction fails with the gas its sender gave and passes with more: 0x78fec8ade8466b84125d93aea401338d56e60f0799806240e1ce8b59d5b73b71 (block 26406365). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb5fd5c5f303204ec8735ebbf7c3bd825df7fbfaa", family: "84cf1177d130b6d7af322136df20d76a", name: "SmartWallet", upgradeable: "no", rating: LOW, recoveries_14d: 10, note: "a real transaction fails with the gas its sender gave and passes with more: 0xf79e939fab68e6c1c5f67744d48fb112c88dbfd4af5e128f769cc26693025d39 (block 26426265). The sender's limit was tight, not the…. Executed."}
+- {address: "0xbd00db15ec30d4caa7ef36f38cff6407009ec80d", family: "5e45baa24652a77ca857870852a14343", copies: 3, name: "MultiSigHot", upgradeable: "no", rating: LOW, recoveries_14d: 10, note: "a real transaction fails with the gas its sender gave and passes with more: 0xbdc3dc5810e70de0f701c9caf23f7b7a542becde3b96ba07ede3ebd04d9e751f (block 26376762). The sender's limit was tight, not the…. Executed."}
+- {address: "0xd1432dd5ec5dba6861bd4c6a56212f54abcbc0b9", family: "46447abab353b927476e44a72cd599bd", name: "Pre111K", upgradeable: "no", rating: LOW, recoveries_14d: 10, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb9f83c1095562e54bd857c32818009f2184e59d6c7c57759f8e5c6875ec52763 (block 26360051). The sender's limit was tight, not the…. Executed."}
+- {address: "0xed3309a515ca607c4687f096d6e60e639e03d793", family: "f2cd9fad6fe07a9969e956412155fbe9", name: "VerifiableBacktestOracleV2", upgradeable: "no", rating: LOW, recoveries_14d: 10, note: "a real transaction fails with the gas its sender gave and passes with more: 0x6519f1d73af2dddf00336c5c804c952f71b731c57373928d76dbe4894026a34c (block 26394087). The sender's limit was tight, not the…. Executed."}
+- {address: "0xfc3c7f624123ed6950a7037f7cc625f9dd5c62a4", family: "1b6e5cecee0c86382c40ac1b659a2895", upgradeable: "no", rating: LOW, recoveries_14d: 10, note: "a real transaction fails with the gas its sender gave and passes with more: 0x0b6180f792d8f02ebcfa83a1f26ad36d2001467dc238f57b98537dce98d1d3a5 (block 26350983); other transactions of the family pass…. Executed."}
+- {address: "0x15cf6e7fdd7da40d4fda6435358f7493a740f51e", family: "7b786ad8817ff51da3609ef37c0441a6", name: "UtilitiesInteractions", upgradeable: "no", rating: LOW, recoveries_14d: 9, note: "a real transaction fails with the gas its sender gave and passes with more: 0xbc482ff80cb9316996126619175439e3d69e88dae72643b24cbbc0d527646642 (block 26356834). The sender's limit was tight, not the…. Executed."}
+- {address: "0x32955b1023b45cea1ea7eae895df53dd78c25f35", family: "3e78cda2ecda1458712bf2fd96818317", copies: 2, name: "QuestSeason2ImplementationV2", upgradeable: "yes", rating: LOW, recoveries_14d: 9, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe4da6bea569c5567f55a85647101502239cb36910af5d7bf9168de1d1b090dd0 (block 26418316). The sender's limit was tight, not the…. Executed."}
+- {address: "0x3af06b2801c7a23978c5e0da1df83c8050fd6ab7", family: "3455381a2bed4eb4ab44e482f634308f", label: "deployed by Risk Labs: Deployer", upgradeable: "no", rating: LOW, recoveries_14d: 9, note: "a real transaction fails with the gas its sender gave and passes with more: 0xf5b0b1ee4225f299a9d16a21b69427f6c56894cdde7be5d42ef242ec5256a98a (block 26409470). The sender's limit was tight, not the…. Executed."}
+- {address: "0xa4d8e7a72743b27ceeeb014de5fc8607ab76a162", family: "f299b00e7d23bc885a5fac7e1c13f657", upgradeable: "no", rating: LOW, recoveries_14d: 9, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb331ace1e8bfba4736bdac919fa897b2e847e12b78e910cc8c1616b6dadd650e (block 26392309). The sender's limit was tight, not the…. Executed."}
+- {address: "0xac5544de9a295ca40bbad818f25db2c3c152022b", family: "50ce0ed7d715089db8d39679ecc43118", name: "GaslessUSDCDepositRelay", upgradeable: "no", rating: LOW, recoveries_14d: 9, note: "a real transaction fails with the gas its sender gave and passes with more: 0x0a8b09541d8c2ead8fed663d28cc4a1f4510c7f12f1d63cf64086e62b0a67d39 (block 26348154). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb158dfc961a4caff5fcece489ea4c21bfd26a61e", family: "483c017d3edf78867896f8667f3dc51d", name: "SpaceCatsMinting", upgradeable: "no", rating: LOW, recoveries_14d: 9, note: "a real transaction fails with the gas its sender gave and passes with more: 0x7055ba4b6286d63b3d987fef479fd42dd53efd3468d484483facfafb03757c07 (block 26376695); other transactions of the family pass…. Executed."}
+- {address: "0xbd82771e11bde162a302068d0e76394f0ea0bdda", family: "05478c0800cefb27bfc687bc56dd9697", copies: 5, upgradeable: "no", rating: LOW, recoveries_14d: 9, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa602ec708d204ef612330b2e23490e16574256d63127e8e1c5775d80b96606de (block 26377890). The sender's limit was tight, not the…. Executed."}
+- {address: "0xe570e438c1278a15305de03f67e095facbf35a86", family: "00644b5c9fcf61f0e7a85e62e7bdbd98", name: "WeightedStakingPool", upgradeable: "no", rating: LOW, recoveries_14d: 9, note: "a real transaction fails with the gas its sender gave and passes with more: 0x811aef738ee5c713464d5d439f22c4ab863a2d74a7c41230bd89dfa5441d31a4 (block 26348452). The sender's limit was tight, not the…. Executed."}
+- {address: "0x0bf3c12eb6081665b68dd34a811c52c5f2b235fd", family: "98a490927a13423482e044efadd7a94c", upgradeable: "no", rating: LOW, recoveries_14d: 8, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa1cc169a5c098fad349369766b7fa10a8ade6a2bf772ecc8cf978bf73b4cbbe4 (block 26428460). The sender's limit was tight, not the…. Executed."}
+- {address: "0x15c1edbf6e6161d50d58682df7587f0d61db5c38", family: "f997427d5f4728389c58758ff1c7d7da", copies: 5, name: "Home", upgradeable: "no", rating: LOW, recoveries_14d: 8, note: "a real transaction fails with the gas its sender gave and passes with more: 0xde270faa4f82da0775c695adf76862c879024acba6d146eb76d10b7a4fa4fb0a (block 26403874). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1e6d92e7133e04544575e37005b112033573b7b0", family: "a32a411744337146c14610b9b51fd27c", upgradeable: "no", rating: LOW, recoveries_14d: 8, note: "a real transaction fails with the gas its sender gave and passes with more: 0xba96b1a0c7111f8dc940a09edfda420b43585f52828f0cceb0db7d0d50b6b980 (block 26400498). The sender's limit was tight, not the…. Executed."}
+- {address: "0x20e2288d9ce9f6356f45e0f950fa782a12dd1d03", family: "daeb4d73767faecd1288f192f09f09d6", upgradeable: "no", rating: LOW, recoveries_14d: 8, note: "a real transaction fails with the gas its sender gave and passes with more: 0x0e06ef07d3191259c7c7e604604a62e23fceddb9e8caea7aa99f8da099188255 (block 26435460); other transactions of the family pass…. Executed."}
+- {address: "0x2991f64bb44bfee20e54d764f8c9ef0fa57b1613", family: "16943d661e0bf2890c6be09d2e7c4dfb", name: "OddSerum", upgradeable: "no", rating: LOW, recoveries_14d: 8, note: "a real transaction fails with the gas its sender gave and passes with more: 0x5f2eddc5396cddffd078a994c0c87f27190b3725900c6931e125e89c3c4f31e2 (block 26429140). The sender's limit was tight, not the…. Executed."}
+- {address: "0x68c56f4d88846a4cdce966d92d92a0636baf40fe", family: "64bfbfdb02fcba9bc2ce88d11988fb3e", name: "FacetEtherBridgeV6", upgradeable: "no", rating: LOW, recoveries_14d: 8, note: "a real transaction fails with the gas its sender gave and passes with more: 0x6f92e465c6c7c9ccfb80b573835f2d29ebf6257e62babb592cd8dfe56c364abf (block 26370059); other transactions of the family pass…. Executed."}
+- {address: "0x71c1020abf460342a3d5b6a96c719b95d1dfee40", family: "1048521d00b7144160f90c532ac4cafe", name: "QubitsBridge", upgradeable: "no", rating: LOW, recoveries_14d: 8, note: "a real transaction fails with the gas its sender gave and passes with more: 0xce83230891c40028f8c6c7e0507dddb8768cf58109fcc5a4af7f468ff721c730 (block 26395134). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb924d6bc8cb01b8c86bd5f8d8eb8dcf96de93aba", family: "b4c99d2340c3cc98398be6cc5437ad23", copies: 2, name: "RealeRouter", upgradeable: "yes", rating: LOW, recoveries_14d: 8, note: "a real transaction fails with the gas its sender gave and passes with more: 0x31083b2f2038f5face801228cf1f6fd8a14d078a48e84f321b0cb99cea5f5a48 (block 26390360). The sender's limit was tight, not the…. Executed."}
+- {address: "0xbc287b4843aa5f0985aa4694a3eda39ff0c59d0a", family: "c14841c2a72aac83c8e3845f36dffc74", copies: 10, upgradeable: "yes", rating: LOW, recoveries_14d: 8, note: "a real transaction fails with the gas its sender gave and passes with more: 0x863a71c8ff30fe77cd0e284a91dff7bfbf071df688578c951b24948a4fcd2915 (block 26396084). The sender's limit was tight, not the…. Executed."}
+- {address: "0xbe097e6e6db8dbac460cb8c89bad0af28296d0b3", family: "bde672eff2ef2025ae23c1867df6d303", copies: 4, upgradeable: "yes", rating: LOW, recoveries_14d: 8, note: "a real transaction fails with the gas its sender gave and passes with more: 0x624badfb0dc560840b63ff08746fa9b805cf7ddaf0407f53495f46100e68ba8e (block 26417488); other transactions of the family pass…. Executed."}
+- {address: "0x020e78ba017931480ada4480b231f80675544a89", family: "188f672f3c7b7fcc875db62fd89aa592", copies: 3, name: "SmartWallet", upgradeable: "no", rating: LOW, recoveries_14d: 7, note: "a real transaction fails with the gas its sender gave and passes with more: 0x4a5e487cf607f3ab1d3b2b4e3da3f3e3b727cca06dd10963c9a88a40e16e9836 (block 26345724); other transactions of the family pass…. Executed."}
+- {address: "0x262073f0f5d14863edc257aa527561301ad5a36d", family: "7ce2a7a3ae3f8e5793845fa4e01ebbc9", name: "SubscriptionPayments", upgradeable: "no", rating: LOW, recoveries_14d: 7, note: "a real transaction fails with the gas its sender gave and passes with more: 0x82268d56a4b74c4945e2bb0bf8a85bbae3206e2d3629626afd2da01bc1c8dac4 (block 26427022); other transactions of the family pass…. Executed."}
+- {address: "0x31d4753dec2a62d2c18ff4ae1d20ad039e3fc4c0", family: "890610ee4ce3d3e85aa7aeab3bf629b7", copies: 5, name: "OLinxMessageVerifier", upgradeable: "no", rating: LOW, recoveries_14d: 7, note: "a real transaction fails with the gas its sender gave and passes with more: 0xcfa98c79ac682ae7f64351e6426216bbd846a9ac80e3217a1135cd108f2b33d9 (block 26432555). The sender's limit was tight, not the…. Executed."}
+- {address: "0x369f19ba423493f0457431d39417e6f6e0c875ff", family: "d0e339c9814711196974bf74b66885e3", copies: 3, name: "CompressedOracleV1", upgradeable: "no", rating: LOW, recoveries_14d: 7, note: "a real transaction fails with the gas its sender gave and passes with more: 0x775ea22d7e281779d6068e71d2d488d263f2745a2f35a9d960fb707e0bba114e (block 26433723); other transactions of the family pass…. Executed."}
+- {address: "0x3d30aab957c3df1bfc25a5377b4ad7fc939cacb6", family: "c24a57dbaa82349a9c3365e94bf79720", copies: 4, upgradeable: "no", rating: LOW, recoveries_14d: 7, note: "a real transaction fails with the gas its sender gave and passes with more: 0xbaee4c69767b31a8ce36b2565cf4dcbbcea03f8c4f64483cca7c51d414b5ede8 (block 26358482). The sender's limit was tight, not the…. Executed."}
+- {address: "0x3f5c77bb36a16118ccc9ca83ddee8a01b6c01811", family: "091305467641ac2f8d41f1c5cc70436b", name: "Api3MarketV2", upgradeable: "no", rating: LOW, recoveries_14d: 7, note: "a real transaction fails with the gas its sender gave and passes with more: 0x7aef73ffd7af1e2203a4fe16b25e15cce1e082940aea4b20849899703fad0293 (block 26434597). The sender's limit was tight, not the…. Executed."}
+- {address: "0x5ef397e52fac25aa92ae436ff002f83c043c1620", family: "a46dddc5143648d9a0da7aa58d738175", copies: 2, name: "MultiPool", upgradeable: "yes", rating: LOW, recoveries_14d: 7, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa52590805efcb6169da7dc0cef595576ec8a6ad599992ea93ea05b293d390b13 (block 26355097). The sender's limit was tight, not the…. Executed."}
+- {address: "0x92008b210e3d5e03370e5d372843a6439196d37f", family: "7485633554fd3c1593ec6406651b4c45", copies: 2, name: "StratoNativeRepresentationBridge", upgradeable: "yes", rating: LOW, recoveries_14d: 7, note: "a real transaction fails with the gas its sender gave and passes with more: 0xddbcfcbd9a2cb35a3c00640cfa392ac8e01f5af9a7638abc6110d3fe4b1db71b (block 26393421). The sender's limit was tight, not the…. Executed."}
+- {address: "0xd8696e9add7cc886d85cd9934f435c1febfa10af", family: "ae1d96ce4a3ad9f0d9a840a6c0672be0", copies: 2, upgradeable: "no", rating: LOW, recoveries_14d: 7, note: "a real transaction fails with the gas its sender gave and passes with more: 0x977222e9f5407d817b19beaa3f70a871951a5551cdcaf632b4e33f78ff22ecf5 (block 26389757). The sender's limit was tight, not the…. Executed."}
+- {address: "0x18e869b7911653fe5519b14c1d3d0b5916e6ee2f", family: "ef324c2c469e85cce19b8417d7b09b96", name: "AllForeverWrapper", upgradeable: "no", rating: LOW, recoveries_14d: 6, note: "a real transaction fails with the gas its sender gave and passes with more: 0x584e6327c1e82ed6bfc2a3a5490bd95503af3e99c872f872f65bc13babfd3c83 (block 26341708); other transactions of the family pass…. Executed."}
+- {address: "0x9003b460c25b26c6b54cec0cc741c2a6a206e98a", family: "cae6d3abb652d78b7e3db2172a6aad86", name: "EscrowFactoryV7", upgradeable: "no", rating: LOW, recoveries_14d: 6, note: "a real transaction fails with the gas its sender gave and passes with more: 0xddfee4c75ab004293d599e7fac73626b13763110773381b21f3ce3329ccec58c (block 26341531). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb0517f1fd9e439d5119e0fae1053c8b882ec36bf", family: "27db3addca77648b191b87c3f80ce404", copies: 2, name: "PRDCTRBridge", upgradeable: "yes", rating: LOW, recoveries_14d: 6, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe4f299a885b43fd326ae1b54209afdfeed85b56db9e824f114c0752289345317 (block 26363355). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc2ae5507720cac7c5e82349e93379768cb19545b", family: "38fbb0707c33b776159a402dd85eebe1", name: "UXAirdropV2", upgradeable: "no", rating: LOW, recoveries_14d: 6, note: "a real transaction fails with the gas its sender gave and passes with more: 0xb12aa3f220ebb41401fd518926e56bc009552784e905f408c171c1cc7a7c6d4f (block 26390824). The sender's limit was tight, not the…. Executed."}
+- {address: "0xcafea2c575550512582090aa06d0a069e7236b9e", family: "0972218b464c483401b1ff1c68664a14", copies: 2, name: "Registry", upgradeable: "yes", rating: LOW, recoveries_14d: 6, note: "a real transaction fails with the gas its sender gave and passes with more: 0xcd4418a814964e686891b55bad5204239f697208f675fb193beef13304dba66b (block 26355295); other transactions of the family pass…. Executed."}
+- {address: "0xd8878a2ec434d1661940d4b2591b03cbef486ca8", family: "8a84620cc512a9f9d83c3416137afb41", name: "BridgeMinterTL", upgradeable: "no", rating: LOW, recoveries_14d: 6, note: "a real transaction fails with the gas its sender gave and passes with more: 0x0f26dcd6da885340d28a5953f6115b2c8eea716391d9831a742db48472178536 (block 26372872). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1b30a3b5744e733d8d2f19f0812e3f79152a8777", family: "93e920e825bb8cdae12661e253c1fc76", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 5, note: "a real transaction fails with the gas its sender gave and passes with more: 0x1a876fb147371f906fc32661999a1810366d4a43dcdbc33bdb00f7f8d85cb2fb (block 26381609). The sender's limit was tight, not the…. Executed."}
+- {address: "0x2f75ba58ab7ac6e627cbe1cfbb14a1ababc59116", family: "700737b59bd9adf4d29ffe01bdbabcba", copies: 3, name: "AuthRegistry", upgradeable: "no", rating: LOW, recoveries_14d: 5, note: "a real transaction fails with the gas its sender gave and passes with more: 0xff52b3575a0999d97243edae9f4f22dd71b5499491aafcfec300d1102edf611e (block 26391556). The sender's limit was tight, not the…. Executed."}
+- {address: "0x30c0e6a4b247e706d3a75b6e88bb0645c3b39757", family: "069da9e40b7eba500894e4ce8387b887", upgradeable: "no", rating: LOW, recoveries_14d: 5, note: "a real transaction fails with the gas its sender gave and passes with more: 0x7924d15fb8868debdda74c538265d6b6dad96b694333adb6edd3208057778c3d (block 26348871). The sender's limit was tight, not the…. Executed."}
+- {address: "0x3f51cbfa16d605a271d06fd8b67a7ab070fd8dd8", family: "a4bc488ceb8df0078bfa5c20ab6a731f", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 5, note: "a real transaction fails with the gas its sender gave and passes with more: 0x5c28683aef29bee48d6a43de85d2876e070d3e28a7dc798693177f26b4845b19 (block 26435796). The sender's limit was tight, not the…. Executed."}
+- {address: "0x431d5dff03120afa4bdf332c61a6e1766ef37bdb", family: "cbd31b67ae680004ff99be078b5cac9e", copies: 6, name: "FiatTokenV1", upgradeable: "yes", rating: LOW, recoveries_14d: 5, note: "a real transaction fails with the gas its sender gave and passes with more: 0x13c1de6d8b0b25253230772f2faef4c313473b16e34f50b643e8803b699b4f54 (block 26424753); other transactions of the family pass…. Executed."}
+- {address: "0x494fda42a2dcc3005886a6f59f144bb000fc584b", family: "fa3fe4b986d414edf0ba58a6b84804ba", name: "TraitsConstructorV2", upgradeable: "no", rating: LOW, recoveries_14d: 5, note: "a real transaction fails with the gas its sender gave and passes with more: 0x1469d2cb9d593d2e2c76776bbb7b28afadce3d7d326b8138ac1f9b45bc55afc1 (block 26366442). The sender's limit was tight, not the…. Executed."}
+- {address: "0x4ca75992d2750bec270731a72dfdede6b9e71cc7", family: "f9308cecc39ecc618ddf94e1d146f53c", name: "GuardV3", upgradeable: "no", rating: LOW, recoveries_14d: 5, note: "a real transaction fails with the gas its sender gave and passes with more: 0x6d7ac92afe1465d8cadde1c39f38f2c2c696db6671f65bcfa0e71d97cf9ed441 (block 26356723). The sender's limit was tight, not the…. Executed."}
+- {address: "0x6f27b4c3307b79c6fc91349db8ae55ef87cac885", family: "1a322bd22bd73794a24592f2c57a0e08", name: "Swap", upgradeable: "no", rating: LOW, recoveries_14d: 5, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa8eacbf842185403269735d5a2f3f5a84435522f675a49c3d31a8f82bebcb7b1 (block 26411611). The sender's limit was tight, not the…. Executed."}
+- {address: "0x72cacbcfde2d1e19122f8a36a4d6676cd39d7a5d", family: "04746f8261b89cc86d6b0286ccc4a0d8", copies: 2, name: "EnforcedTxGateway", upgradeable: "yes", rating: LOW, recoveries_14d: 5, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe9d86769b60746ec9b5ad0079d57365330ef6fdf797d65bcd27519229ed3544e (block 26395140). The sender's limit was tight, not the…. Executed."}
+- {address: "0xba9bc3e7a9bdab2bf52e152779e5186d8ed8416a", family: "3fbc7d14ceaa09e18146e5e343d5991a", copies: 4, upgradeable: "yes", rating: LOW, recoveries_14d: 5, note: "a real transaction fails with the gas its sender gave and passes with more: 0xda41e7f02c1c460c39a1b99a996dc4f1050479d683eaf81fadd1806c99b16ac8 (block 26355775); other transactions of the family pass…. Executed."}
+- {address: "0xd52c79d897a24c275729112c3c5ea813b5703f88", family: "b76ae5ea4599fe94aabc52c1d5672912", name: "NightmareImpDoor", upgradeable: "no", rating: LOW, recoveries_14d: 5, note: "a real transaction fails with the gas its sender gave and passes with more: 0x55c0ee590df806dbb6c0746ce79b06b801ea8408c00280dc8c624176120a2584 (block 26381585). The sender's limit was tight, not the…. Executed."}
+- {address: "0x10eab8ab3df628edb6bf3b3b0fff4b3e17e2cdf6", family: "cf3feec45a94af5c31bc3b8ae0068c32", copies: 2, upgradeable: "no", rating: LOW, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0xd583235db5a601e754ea7b1277448029f438d5797168dfda4778911dc83a119b (block 26395546). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1b99964e61ae48fe6a386ba8e20d9565ab445530", family: "a42002d3eaee1e34949df90a16ca7408", copies: 7, upgradeable: "no", rating: LOW, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0x0063023cb12c666b177e85214e4d42fb00f8075cf3c99f9a62fde44663a8b8c4 (block 26429180). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1e6a90d2ef5fdbb1678149736fa37a3d5d5bac49", family: "159e150894a46bdeb957468531e994e7", upgradeable: "no", rating: LOW, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0xf461282d50ffdcb2e6553b6daf5fa3af48f86d497a0ef613b3fbfa52aa301483 (block 26407583). The sender's limit was tight, not the…. Executed."}
+- {address: "0x2540411f7146d7d887946e45a0541b4b45a6807d", family: "3bced07133318d1265ffc4dec36de4d9", copies: 2, name: "NEBASaleV3", upgradeable: "no", rating: LOW, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe4456f75f264f5b2f3136a77fa40d7ef7b36f551d55bc1a0b3f84f22d2b814f3 (block 26416148). The sender's limit was tight, not the…. Executed."}
+- {address: "0x4d5473fc8cc5b89e1f3c7610ffabd88b40d8ebbe", family: "987c2720e3a13a1f2ca716051b2fdb65", upgradeable: "no", rating: LOW, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0xdd570c346be4f1865e3e4d118e6373469571b50d31191072010254adba0830ad (block 26433216). The sender's limit was tight, not the…. Executed."}
+- {address: "0x4db1da8f683262a7c40f659845dc73c9ea159fdd", family: "438511bd66bf63b9d08e74dc481260d1", upgradeable: "no", rating: LOW, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0x3a024923931649f4df452d2a27ddb8ffcb4dd6fa0dc5dbfd57d59d995e765b19 (block 26437002). The sender's limit was tight, not the…. Executed."}
+- {address: "0x81964aca18bc56a4494a9203fb8eed9fa44d9330", family: "454bf1c4434b32726f2e7770f65f6ce6", name: "MintlayerBridgeV2", upgradeable: "no", rating: LOW, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0x28029177672f17cc50fd6df5061bdd3ea95810b1e9fa785575e7baff7e57fb19 (block 26358372). The sender's limit was tight, not the…. Executed."}
+- {address: "0x91b95120d085aa99c05167f3767eb63460c1dcac", family: "652094c5c7a93f397509108a18893428", upgradeable: "no", rating: LOW, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0xafef59a0f44bc60740f5cb18328474663f4cfb41c75bdb0b9f1a6efc8323ba67 (block 26384335); other transactions of the family pass…. Executed."}
+- {address: "0x9528659d4ff876a16e36c692ed34a71c03a9cc3f", family: "91a71fd65429f64cc022b4f44488e188", upgradeable: "no", rating: LOW, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0x97da8df162f5e8e69c55771461c95281bf1a695825673fd9be48f2b45c9e488e (block 26421687). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb9313ff552b942ec3d8a996af7c522c95c7cbc9f", family: "67a2d77b2e2be9821866ad0447d09618", copies: 2, upgradeable: "yes", rating: LOW, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0xdd570c346be4f1865e3e4d118e6373469571b50d31191072010254adba0830ad (block 26433216). The sender's limit was tight, not the…. Executed."}
+- {address: "0xcf403d7117cf9544a40d04b27cb0200706fef690", family: "42b360812b9fd86728fa9ac97c7767de", copies: 16, name: "BridgeAssist", upgradeable: "no", rating: LOW, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0x09cec9db8366257b753caecc10ef2c7851855168695a22c11eb1bee578770d65 (block 26355977); other transactions of the family pass…. Executed."}
+- {address: "0xdbb9711eef41f47d247b273d18961eaa8cd7919d", family: "101b23675322e50a6a222d0171cdb59a", copies: 2, name: "BuddyRewardVault", upgradeable: "no", rating: LOW, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0x91441ab4b48f3ba6fd2e2f21e4c56b7f4aed53301d840570e5e5adda963e5041 (block 26354265); other transactions of the family pass…. Executed."}
+- {address: "0xf2e6e9e5b35a951b003bb560e66377e685a4718c", family: "bd404d7a8e35d74d1298d4ce2ed8f03b", copies: 2, name: "VOWBridge", upgradeable: "yes", rating: LOW, recoveries_14d: 4, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa09865b517d97de2bcead6ee11695a470ddc3177d51d25f8c92f0bba1d5b6235 (block 26409540). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1105b7e247ed171a14385c316b7d855828577883", family: "35dccdfd7337ed1db7a65571f049e250", copies: 3, upgradeable: "no", rating: LOW, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0x495a573f57bd1c6d7314b2e85640d2f4fa0e172715c36ad75f8da859525337c6 (block 26405086). The sender's limit was tight, not the…. Executed."}
+- {address: "0x545a25cbbcb63a5b6b65af7896172629ca763645", family: "93698209b33780b4bd8a3895bb43aff0", name: "KineExchangeTreasury", upgradeable: "no", rating: LOW, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0xc71ca2d5dbbde0aad2ee9707fa55b162c53909979da611e2f308c1032dc453fa (block 26391893). The sender's limit was tight, not the…. Executed."}
+- {address: "0x7df6189fccb27ac8528f23f4bc36f9f23a705491", family: "7063f56dcd6dd70771f6e344c447ced8", copies: 2, name: "Hotwallet", upgradeable: "no", rating: LOW, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0x6e020a58ffbbf44995646a839722c2557530178fee51e5b46c2180c0b80b4c66 (block 26391117). The sender's limit was tight, not the…. Executed."}
+- {address: "0x87dafd430de367faabb6387a0b8a702076727d30", family: "c93299bb69a1a54d54a9d9f20f74b718", upgradeable: "no", rating: LOW, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0x8039e810c13405639b54a12b40247be745935a4ac1bd587049e64fbda02e54c1 (block 26435588). The sender's limit was tight, not the…. Executed."}
+- {address: "0x8f6b6adb49cdca3b9f6947f61a1201242c3d827f", family: "0126a4b4c56388dcf4ac84c99172a619", name: "Replica", upgradeable: "no", rating: LOW, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0x46e39f492def4c6ea5d7f7eafb7e2edb071dfca95a4c3b86fd19caca4a4b99ed (block 26355491). The sender's limit was tight, not the…. Executed."}
+- {address: "0x92dee10093f7be466a0d57a7637faa8364d8b7ca", family: "343fde67df8daed157b216e47cad64a8", upgradeable: "no", rating: LOW, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0xd2661939741ca82b0bcef0e4ed3a27fecb1ec9502c6315e8205e111f4328a196 (block 26414038); other transactions of the family pass…. Executed."}
+- {address: "0x9dad54257bb4d1acfc6be53787b2fff1f49f8816", family: "c869791b324572d7946acd61d6ee0a8d", name: "BECLab", upgradeable: "no", rating: LOW, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0x1809f3ec2792821d5ed4274a3bde0e854f11556d9f0b6d8bdb63e688803a8f6d (block 26343531). The sender's limit was tight, not the…. Executed."}
+- {address: "0xae1a3da3891763918a3ff691d25c0120652becc4", family: "f936d700c3785734d08ae3aaf60e4db2", name: "TKSClaimVault", upgradeable: "yes", rating: LOW, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0x72e460b49ba1b9e10fc5e0bf19e951264da2c45adc282e7acfef71e4adf7b936 (block 26340787). The sender's limit was tight, not the…. Executed."}
+- {address: "0xce7a61d155623f5eb867a322100a5a6e2c917311", family: "cdf2aab3fd2a52c5f4c9b13c8d1ba2b4", copies: 2, name: "DePunk", upgradeable: "yes", rating: LOW, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0xfa2d1b624f0bb80809c9bd705edc6ab77eb0401a76f9e1c2d0e137e9b11108d9 (block 26362497). The sender's limit was tight, not the…. Executed."}
+- {address: "0xd139416cf34f958f600166e52c855f4aeacc5c42", family: "fc9a689c5011e6ec7ae59bc5028e074c", copies: 3, name: "NGRNDPaymentLedger", upgradeable: "no", rating: LOW, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0xce321ede97fbdc4bd8ca54e2b7c35ba3f90458e57d0d3a977d016e0b988fcde0 (block 26436960). The sender's limit was tight, not the…. Executed."}
+- {address: "0xea73a0c1fab72c3eb29494b0afec1554e8802afe", family: "8532e3cad25f43be5429bb8f55c2d120", name: "DecagonTimelock", upgradeable: "no", rating: LOW, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0x0d763fe2d57bca84a0bd66702581e27d733c0477cbc6427343919e4a0c7dbfe7 (block 26431129); other transactions of the family pass…. Executed."}
+- {address: "0xf4c4621b88b52f3f5eaa71986a003f0f98a16d7a", family: "cb782f90ca980474ef6d46cf6311a88e", upgradeable: "no", rating: LOW, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0x2a93ea06895ef9015139f6ed8b4dbc7187ea0a5eb9124acdb2b058cb7bdc3f2f (block 26370503). The sender's limit was tight, not the…. Executed."}
+- {address: "0xf8017ae65f2ce39b07244e54eca9ec640f558c8a", family: "e9bbe075c64abc441eb55198a1846a2e", name: "MVOStaking", upgradeable: "no", rating: LOW, recoveries_14d: 3, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa81395146b8dd1f51093d11e24507833587250291c5cc747482b4819c1bf4d4f (block 26432369). The sender's limit was tight, not the…. Executed."}
+- {address: "0x0000b77fb305b97d405dd7a25759d3f4a0b3b3f9", family: "e69430067022e3d743e795890ecb38be", copies: 2, name: "NewDawnPaymentForwarder", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0xf3428ad6581b757fce58264c6a82bb543996bdb784a84ee808257b70451e7bfa (block 26382561). The sender's limit was tight, not the…. Executed."}
+- {address: "0x0bf5b1b8b05fbc5ca0e2cc7693a7f003efb49579", family: "2b4c997e964bb3885e3cb7eb4ad291bf", copies: 2, upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x650f57f2f3950716becc1f552a5e5467341afa262836d4edcb4b79812d4cdc15 (block 26364815). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1589e52f36eaad35c3eded79fca83959bb841f57", family: "3c5a7dfa85d50696c880600603854a08", name: "AMTManager", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0xfcadea8fb22e9151228661fe582705180f2ce8c46305f5168dec16fbd387cda7 (block 26341891). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1f53de95888a82aaae1d90741009a559c107dce6", family: "017a236549e48add6294844213dd4db2", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x3d50ff43554f87066bbb56b2728e34f83244bdeab9deab5dc58d07349febe848 (block 26411833). The sender's limit was tight, not the…. Executed."}
+- {address: "0x21273b83b8009165a6c2c58bb493843022d581a2", family: "a63834ab43f14a8491d5e981a5092931", name: "BeastItemDrop", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x28d47876ac5be133806b61722d3317d7850fb87c03edb17ffa5dd0466f6f3f97 (block 26373884). The sender's limit was tight, not the…. Executed."}
+- {address: "0x2422b2e752ecac1ab4b3702e501b0bb8f70e923d", family: "bd0fbe2df81976a24dc61c28f12d9a09", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x2300fac56d82beb94a973d50807ab377d9c1594abb4264c6b8afe7a4004ab4c3 (block 26379449). The sender's limit was tight, not the…. Executed."}
+- {address: "0x34507d88d2bb25b58dd5f4e4205c804e8553fb1e", family: "57e4862a49fd7f0f5ae7b1b8ca5e521b", name: "M4SporeHunt", label: "deployed by M4 Rabbit: Deployer", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x142fe5793e8b6d33c8b7b27e6d03986bebd9dad785d74815dfc5a3e123e38cc3 (block 26393002). The sender's limit was tight, not the…. Executed."}
+- {address: "0x55d64bb5360e4da122a06c1dd8758f42d0ca220c", family: "ac83a6efa1a682570859f8f209de703d", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x4702e7a7a799b13a926f8e929d946b0ba430726085c087a18fe4168c2874d85d (block 26366067). The sender's limit was tight, not the…. Executed."}
+- {address: "0x60cc6ab378949475a3bc8fe463682d458c0bfe59", family: "dc1dad64e525060a4058605ae016937f", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x842db3a8c22df3aa1bb01caf0cb37c9a9d56d507813fcb138a761d10874da92a (block 26434795). The sender's limit was tight, not the…. Executed."}
+- {address: "0x6cd956807d9e4ec85f184f03a136e5f80778871f", family: "edf6fbe94614b15ac4d6e7b81ccdf31f", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x0f8c7417cba68b07a5577d8bf8ff9908669d2e3a69c0673ae452f93c6dd578d5 (block 26437636). The sender's limit was tight, not the…. Executed."}
+- {address: "0x887541ff8c2f1908c489a62983157ac22b331a15", family: "71cc2503ce9c94dca47d9b2e4ac97455", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x69e9c0beaf4c4e83c9811eee94b5e8e52a78b90f106255bd3d126feb7ca291ee (block 26350978). The sender's limit was tight, not the…. Executed."}
+- {address: "0x8adcfaf1b64cc514524b80565bcc732273ddeafd", family: "26e0a288697556ffd0c537e9c57a20ba", name: "AegisRewards", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x9286f30b8ba3e6b8313c82d48eeba85c34f83af1708aac86652ae0a70074df85 (block 26415380); other transactions of the family pass…. Executed."}
+- {address: "0x9e30ba42487d53c4f835b91e56a48a6d58c814ea", family: "f88a4e39973920cc1c1b6528574f57f2", name: "AgentRegistry", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0xfb5a0db247bc1b56c2982d59bdcf833119e291beda81ad39d339812571758d90 (block 26343486). The sender's limit was tight, not the…. Executed."}
+- {address: "0xa40829b32748b8d6013e7a1a57e5e0d390407acd", family: "5b83d6e890a07fc7947b60160f1f71ba", name: "Dojo", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x615e6b1fc63d3a4c4b450606177187baea264fc7f28fc2e5c2e15d62f090bc7d (block 26404094). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb4b19d174b3c17e7f98dc3a8c44175d2c441590f", family: "4ee0b9254e800b5be1aac320af0aff6a", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0xa37e6ab1721099a8e038308a44555b870eb857750283eaf1a64f2d9e4afb4df8 (block 26352956). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb833ee3698d104b49f89dfa50fe72915372ccc1d", family: "f945f56a97140e07bf59ff3c06d589b0", copies: 101, upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0xfa6334a34b88b0ae901b4ac200b375bfcca7440e45767c2e1c7824542b08f18c (block 26399362). The sender's limit was tight, not the…. Executed."}
+- {address: "0xba7c0fbc8fde123565094252ca7f2990f8c4a54e", family: "e68a6a11bbc1e11c067e9f0bd247e2c2", copies: 2, name: "Rewards", label: "deployed by Tokemak: Deployer 1", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x4ac66b76a92c4b8c76ac4bb6a2dd23ba7b48c0d4b08f55b76b52dbb253786874 (block 26436208); other transactions of the family pass…. Executed."}
+- {address: "0xbb0f2fbce414ad21ba177ea8cb3aaf2953b502c7", family: "054c4be8a86179c1c4931c2e038a15d0", copies: 47, name: "RwaSafe", upgradeable: "yes", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x06e285ca70b10d06558858af4e279135161761777be8413f42e828d5d2ba1200 (block 26433839). The sender's limit was tight, not the…. Executed."}
+- {address: "0xbc98b0805501b8f553304c4d88b00ece4b5fa30f", family: "6f18d8f400f34b4c230a453fe6028dde", copies: 29, upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x23fe93038fdc256a08d05ba73f37c7cc0591c02bb21bebf43909e4004a19cca7 (block 26383906). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc4fefd0851a37282a2d430186194939a4e7c2dec", family: "d966b121ded648e19a77594e1525c58c", name: "AegisIncomeRouter", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0xc22f31b3edd520191c45725613dad06fa658cc536681a885860c66f9cdb8ea27 (block 26377646). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc600cfef0dc2ae41a7f3b67e52cf2578025cf777", family: "db14743fedb31a643c64ef7e769921bb", name: "BonkeeNFT", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x3482dc412a5cc36f82028750ee0daa0fa051cda114c9347eaf26d5c08c96c014 (block 26348758). The sender's limit was tight, not the…. Executed."}
+- {address: "0xcba0847962bca2050733f3c689b75bd297daa9dc", family: "a9152f8f75e2dfca3f5347255b748bbf", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0xfd6c070387fb0b3cc30653bd20340438fb364028093b701a5e13efa87d1769f7 (block 26350972). The sender's limit was tight, not the…. Executed."}
+- {address: "0xccb9339c825198a905dc078f40fc1f8e7a1720c7", family: "d05c6fed56426aab0dd5edbd0526dd8f", copies: 2, name: "HikeshiExodusUpgradeableV1", upgradeable: "yes", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0x9f6f432f46769980164d53d4bb816ed4cef3b2449f5138b7e5194d150b2ab70a (block 26363973). The sender's limit was tight, not the…. Executed."}
+- {address: "0xd1bb6a77bdbc868b4b15f795e9eaa7665e8c6203", family: "e1640a6f142f0ff73ac415d6271a27e6", copies: 2, name: "MixinSafeGuard", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0xaf9652738d95968e5f76b3b624f0c6d2a9b0ba4b8a0656b513891d0a40a2a370 (block 26350264). The sender's limit was tight, not the…. Executed."}
+- {address: "0xe5d3d7da4b24bc9d2fda0e206680cd8a00c0febd", family: "676eb3ede9f4b25dfe0196590c32f3be", name: "RainCollateralController", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe6eddd1d5fc5fc296c550f7d1ae2a971f988f37bf88a4efbfd624985494e2bb4 (block 26341610). The sender's limit was tight, not the…. Executed."}
+- {address: "0xf0c76a1e2e672044bd59b7b521ea6063e733614d", family: "8993739f628f3128ab3c4f40c078388a", name: "AlwaysProofNFT", upgradeable: "no", rating: LOW, recoveries_14d: 2, note: "a real transaction fails with the gas its sender gave and passes with more: 0xe8ed1c08a1f8b572fad3172241388694cf31328f6a31de0bcc1d6199cead8e37 (block 26357149). The sender's limit was tight, not the…. Executed."}
+- {address: "0x0568d0a74145fd557b3541897bc6878f5c6e9c8c", family: "742cdc781aed843f87f66dc3c36de4ad", copies: 2, name: "PYUSDX", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x03dc9ca700510f0265bfb8636c21d742e8edbb986b74b95f147548713dab45cb (block 26356919). The sender's limit was tight, not the…. Executed."}
+- {address: "0x14d772d12c2973ed00449099afca82843f6a2613", family: "a712a02782ddd0ad32b65db149196f40", copies: 2, upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x316970e2d83ac3d1a3de6c13f2bab4ada1ca5f1f389df5635e3bcd0a54e52e36 (block 26391382). The sender's limit was tight, not the…. Executed."}
+- {address: "0x18aaa7115705e8be94bffebde57af9bfc265b998", family: "5ad72ab6bf9fe99497062ba26f54f806", copies: 2, name: "AudiusToken", upgradeable: "yes", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x64cb2996da5a86036a6879ac17f9aa577c9dd43bdeeda175442d99b0e92c20be (block 26387390). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1c73a1be11848658a82bb01455c091471c879d57", family: "f95d379323d90113231ad3ba92c5a653", copies: 2, name: "PharosCollector", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x18a470a0ff39c14be7d1bc608b4c62f9ed2abae0af44791eaa505d1640eeb4ac (block 26344784). The sender's limit was tight, not the…. Executed."}
+- {address: "0x1f415d1426724507a722aa5d66409d23c4de6425", family: "8060ee4a568183e3931e4ca2b8d0e45c", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x770f61be9ae964d9ab5fc4f93e0ada098768680c20c2e1a43f782f0b191e69e1 (block 26388626). The sender's limit was tight, not the…. Executed."}
+- {address: "0x29922d3ccb86516f6c24f89f1eb3068655ca7fa0", family: "5f41cb3e83a27ae54b33cac4df4262e6", copies: 2, name: "PKPValidation", upgradeable: "yes", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x89ffab2f7bab60c6ca9ee53dd0f7439d15220c475a33c69f9e85efd300c6e9d7 (block 26348309). The sender's limit was tight, not the…. Executed."}
+- {address: "0x2d627ff93d32f5febb04d68409a889895b4aef2d", family: "3ac61356fdcc096e67d58e245fed71af", name: "SpotLogic", label: "Gluon Network: Spot Logic", upgradeable: "yes", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x06751d741f6d9bfeff3982352049ccc3e72afe0e87d5421c8c8229dea656335a (block 26427847). The sender's limit was tight, not the…. Executed."}
+- {address: "0x2e1081ffb8e4e1467cc4d89e39d19c5044685d5b", family: "e8c0715cc1d41e46cdc6f40f351fd5e6", name: "BLAQPayV1", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x100a1dd1e36b2caa2e911dde3b8379f12f3fa485b789a26e39c41d09169bf3ef (block 26386292). The sender's limit was tight, not the…. Executed."}
+- {address: "0x4010cd0ddb5ed24bf26bdcfc14bc12b2edebdded", family: "fcc6e506670f1351cd0987bfaa1bcbc1", copies: 2, name: "DistributeFacet", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x168c9e4bb7a66a922439d88710a499007ea7d71740cf24aff0f6cfb90ab5a117 (block 26389157). The sender's limit was tight, not the…. Executed."}
+- {address: "0x4524011801bb496deaaf675eed123ed2ba5945d8", family: "75dab74aa006b6bb54939dfda325384d", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x4e72f4585f481a542e6225a6dec6e375395454edceb020349b572493d6348a6e (block 26409178). The sender's limit was tight, not the…. Executed."}
+- {address: "0x4ed88b09eb02504cd5df19c6786a7d5c6535d0d6", family: "8825ec6c56011299e47585b0ee34ab0c", name: "GodMinting", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x307964d9694e634808c6d8620e69e761d8fd3202beb2a1bb12a9ffb66ce0cc3d (block 26407181). The sender's limit was tight, not the…. Executed."}
+- {address: "0x5da38614c318b9e24a16e7284932574bdd621ac9", family: "35ae1deacc0e9dc68cc32f8f4f498712", name: "ICO2", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x46b5441cbf4760883a518f0c937b19932eb6e9aaf169c1b8a3104dd845e5a519 (block 26341862). The sender's limit was tight, not the…. Executed."}
+- {address: "0x6e7a1f7339bbb62b23d44797b63e4258d283e095", family: "a64f430d61a1797e1578d27c76a3a6e6", copies: 2, name: "WormholeClient", upgradeable: "yes", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x8fb5d3ff9f5b01f7498fbfe87d9ea2e14d3609314ccfb33d6b35e1c74e706d67 (block 26387393). The sender's limit was tight, not the…. Executed."}
+- {address: "0x7553a5ced41c29fa4833ebe65ec9da6e2a9efdf0", family: "065db75090c563ccacdddf715717c8cd", copies: 2, name: "CryptoartNFT", upgradeable: "yes", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x6f387976c1ca3fcfcb764fa94dfa45f9bb9f171a079d710f4217f2ec4ef240b5 (block 26393394). The sender's limit was tight, not the…. Executed."}
+- {address: "0x78608813de5852bbec6a07116026b369ebe18c47", family: "0d79e6ff75e565e2b3126b3543d9a908", name: "BridgeHead", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x26e49c7bb86cceb39c6723ba9b5165ef9c3edf67ed48582d50ba24cf7428a45d (block 26421008). The sender's limit was tight, not the…. Executed."}
+- {address: "0x919e864815daefbd33df8d77063d37d0b2058ae4", family: "eff6cfeeb3aceb97acae8effc17d3b92", copies: 2, name: "DirectStaking", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x59728ee8192741baae7fd75d153c8704d29f09c41c27d9d6dbba21ad2b552fff (block 26434521). The sender's limit was tight, not the…. Executed."}
+- {address: "0xa332b0c5c306f676d4b491d259d190193a5c71e9", family: "89b8ce12a196e13c7c956289b5e9c56c", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x938546fa982c16581c63719e943959cdd15b33240d6a963c2c1b87edd664409f (block 26437953). The sender's limit was tight, not the…. Executed."}
+- {address: "0xb59f87ddf026a78e728fb25df84207e25258d097", family: "3c06c7054023d797cda3cca3c8cb41c2", copies: 5596, upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x1efb1812080f52813fed446a40d82d3522c548f115976ee1b9659433ad524a17 (block 26378672). The sender's limit was tight, not the…. Executed."}
+- {address: "0xbbae9cc87ae22e88b657dce2fc526885c1807599", family: "9bb4f2a1e7a7e6459d774822a528de5d", copies: 4, name: "RewardVault", upgradeable: "yes", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x9fd74594abc65a0c9dabc7f684236c807d40ec52c2c4edefd40cbc08fdf55942 (block 26343771). The sender's limit was tight, not the…. Executed."}
+- {address: "0xbc62eadcb2ca74519c50f092edcb694a904f3db6", family: "26b2555280761fc280758138f8010d9d", copies: 3, upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x0e77b7b668d497d6786e2475a126ec228c9c8fec80fe6213dd609af71b997841 (block 26417887). The sender's limit was tight, not the…. Executed."}
+- {address: "0xbc7d9220b8769e66d5e58b194ac94491ec79a075", family: "43f5129410a9dcdd0ad184b68c8a41f2", copies: 2, name: "MoontokAdsPayment", upgradeable: "yes", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x2e8e455d408e223f34d47224a52270df2e5ed45dfc19be4a1aeb19d93d0ee7de (block 26361115). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc1062617d10ae99e09d941b60746182a87eab38f", family: "9baca8e71920a356d741737393489fe8", name: "RocketSignerRegistry", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0xc32848a16bede5542f18726be73bd65895b3396cf8b00b406a896bfac85bf114 (block 26437126). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc1cdefc8833ab00cc73821a7e36fe2f3923e16c8", family: "acb7896bfbccd2a0ec2f451339187340", copies: 3, upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x67835ae59254e525a1ad94d572f4eb2e9657f6788dc09d4e0e7c83180cd3caf1 (block 26341869). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc4df68e592245ca5202fe8b7c438d2b799820fc2", family: "64a75ea6dffdd89dbaa0ecea39a2cc13", copies: 7, name: "AegisMinting", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x8a8eddc3666bb885c4489d17113e566cd0de30d17d628641fede4a108f67c905 (block 26377610). The sender's limit was tight, not the…. Executed."}
+- {address: "0xc6b582fe107f9873894df587b837f7f8b4a93f84", family: "0b3c624473ef4667ca26073daf09e7b7", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0xf5832c4afab186b8dffebb5c8be2f3d074a00ef9b4cc55f5865701ba2e869f5f (block 26346708). The sender's limit was tight, not the…. Executed."}
+- {address: "0xce3ab27f003fda9aa4187288549e8978cd33b6b5", family: "f28e5512fca2319ea2897b8ecc306646", name: "TroverseGalaxyBucksManager", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x56b32c67bcd6d78ce0c71cb81a39a17b9e17b11166e662b1a0954a45e6c0a0ba (block 26363563). The sender's limit was tight, not the…. Executed."}
+- {address: "0xe1cefd316b6a297f15324427ab647bb309c25767", family: "cbf42d03fe4a09ae306b5e4eb57080a0", name: "MutationController", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x60b5db6cd109dad60af7ec50cbf361afa6fd30517124d8c853dd055783acf5da (block 26412723). The sender's limit was tight, not the…. Executed."}
+- {address: "0xea57493a08100a749dc97bb49aedf01265a02e14", family: "198d71c40cd5fb0d150a1de54e2527ff", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0xfb3673ed998da4737d1e193e5c8525fca2b75ccaf167c0962fde91c8f8d14cbd (block 26433489). The sender's limit was tight, not the…. Executed."}
+- {address: "0xf115c1b6122d6014f4ce4275301af1584bbec49d", family: "327d30725c08e5dc43e5ac44fd0b2dda", name: "SolisEscrow", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x4977dd23a99715ad4598798510e033d485e750fd50fda64ec2b731e71808a612 (block 26381711). The sender's limit was tight, not the…. Executed."}
+- {address: "0xf32cbb9dd78fb1a1025ad79304238c2e31f2b57e", family: "ac93c3db39845b97ec8c59ed03ecf3f1", name: "Depositer", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x2eae4f20d1fbf1380fd8971b56cb6c08a81ca2c5ec8292db6d3eccae08b3a470 (block 26395503). The sender's limit was tight, not the…. Executed."}
+- {address: "0xf7e4ab8815accb837e9f52dbede0e9106832ab8c", family: "b74a5b219a9495c350fc6e719481e6e4", upgradeable: "no", rating: LOW, recoveries_14d: 1, note: "a real transaction fails with the gas its sender gave and passes with more: 0x590d723c6cbe870d6aca947eb39594377bb597504e6e19e37a3620a1a8c644c7 (block 26342871). The sender's limit was tight, not the…. Executed."}
+evidence: {level: source-read, block: 26438999}
 sources:
 - by: ai-assisted
   study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed; not reviewed by a person)"
-  ref: "studies/eip-8151-impact, 350 families of the reading list"
+  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, sender's gas limit"
   date: 2026-11-19
   verdict: reported
   rating: LOW
-related: []
+related: [biconomy-ecdsa-validator, bitgo-walletsimple-ecdsa-signers, blur-order-sig-ecdsa-only, circle-cctp-attesters, circle-gateway-minter-attestation-key, circle-usdc-permit-code-first, cow-order-sig-scheme-select, debridge-oracle-signers, dl-bridge-signers, gnosis-bridge-validators, hashflow-pool-quote-signer, injective-peggy-valset, lido-steth-permit-code-first, meson-swap-sig-ecdsa-only, native-rfq-signer, okx-pmm-protocol-maker-sig, ondo-gm-attestation-signer, opensea-zone-and-drop-signers, pendle-limit-order-sig, polygon-pos-checkpoint-validators, predicate-avs-ecdsa-signers, pulsechain-bridge-validators, pyth-wormhole-receiver, redstone-data-signers, safe-owner-ecdsa-keys, sky-dai-permit-ecdsa-only, unidentified-54805468-owner-keys, unidentified-cd815022-pmm-vault-signer, unidentified-fbeedcfe-signer-key, uniswap-permit2-code-first, uniswapx-cosigner, wlfi-authorized-signer, wormhole-guardian-signatures, zama-coprocessor-signers, zama-kms-verifier-signers]
 reviews: []
 ---
 
 ## Summary
 
-A real transaction of each family below fails under EIP-8151 as sent and succeeds with more gas. The contracts are unchanged; whoever sets the gas limit (sender, relayer, keeper) must add up to 3,100 gas per recovery. 350 families, 59,800 addresses, $346.5M held.
+A real transaction of each family fails under EIP-8151 as sent and succeeds with more gas. 391 code families, 60,824 addresses, $349.1M held, 233,528 recoveries in the study's two-week window. Rows by rating: LOW 391. 0 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+
+## Mechanism
+
+PQ-18. The contracts are unchanged: whoever sets the gas limit (sender, relayer, keeper) gives up to 3,100 gas less than each recovery now needs.
 
 ## Evidence
 
-Each family's recovery sites were read, judged from bytecode or placed by a measured rule; 103 families were also replayed on real transactions.
+- Each row's note says how it was decided: read from verified source, judged from bytecode and function names, placed by a rule measured against hand readings, or executed: a real transaction replayed on the fork's reference implementation with only the precompile changed, state at block 26,438,999.
+- CsdUsdcSettlement `0x8863f0c477a30bb5a2077c813f42250d7fbefcb9`: `settleCsdUsdc` L483 `if (_recover(authHash, authSig) != auth.buyer) revert BadSignature();`. Executed: settlement `0x55d7ee240594f01a2339416dc20362814d42e610ad3681f0b24d995ba38690fb` reverts with code at buyer `0xcfc25c23c39525875908865980d7ef905287a98c`; after expiry `refundExpiredLock` pays the buyer, who has the seller's coins (read).
+- Lithium `0xcc4c47cf0175aa8108e78679c2586a0a6abb242a`: `LithiumVerification.sol` L57–62 requires both parties' `ECDSA.recover`. Executed (300,000 gas added, because both senders' limits are already too tight under the EIP): updates `0x5c9d200171ba634ec878f8481a311a42b452742aba30ec3de9f48b761fc52e9b` and `0x9278bf51b908461e2d432b6d0bf2550517f0d0cc437eed3feb4190c9dc9026ea` revert with code at the counterparty.
+
+## Impact and exposure
+
+Largest rows by value held at block 26,438,999:
+- `0x2ceb3e994a516c6ba8658211bc94d4c280486cb7` (GnosisSafeL2): $226.2M, LOW, 8,589 addresses
+- `0xf4ac5a5dc1543086347d28e757091ebd1b848cca` (SafeL2): $88.5M, LOW, 39,586 addresses
+- `0xd19d8ee0a736bf643f53e3dc5489ac94e947a482` (NXV): $12.2M, LOW, 80 addresses
+- `0xb60fa2ad48959c016fb7545d045aeb60086aca2a` (MultiSign): $8.1M, LOW, 34 addresses
+- `0xc2a26188e4d7521960c2ddd31947afa9b2fdd8ac` (deployed by Ripple: Deployer): $5.0M, LOW, 5 addresses
+- `0x5427fefa711eff984124bfbb1ab6fbf5e3da1820` (Bridge): $1.5M, LOW, 5 addresses
+- `0xbdc4dd4d467e55fa5276925b2f136e75df3f86f1` (ZklinkFastPool): $1.4M, LOW
+- `0xfde6d7303868fd2046c15263c9268618092664d1` (AmbireAccount): $1.1M, LOW, 405 addresses
+- `0x563eda2afb088b36a1b3735126c409372a6ef46c` (Identity): $995k, LOW, 3,069 addresses
+- `0x5978c6153a06b141cd0935569f600a83eb44aeaa` (unverified): $738k, LOW
+
+Every row is in the header; `generated/triage_contracts.csv` lists them for search.
+
+## Remediation
+
+Whoever sends the transactions adds margin before activation.
+
+## History
+
+- 2026-11-19: filed from study `eip-8151-impact`, one entry per root issue (D-022). The per-project entries filed earlier that day are in git history (commit `d9c90af`).
+- Full write-ups of the executed rows before the merge: [unidentified-8863f0c4-csd-settlement-buyer-code](https://github.com/kevaundray/pq-chain-analysis/blob/d9c90afac8137e134d5e884865dfc37bbcb0d397/triage/unidentified-8863f0c4-csd-settlement-buyer-code.md), [hydranet-lithium-channel-party-code](https://github.com/kevaundray/pq-chain-analysis/blob/d9c90afac8137e134d5e884865dfc37bbcb0d397/triage/hydranet-lithium-channel-party-code.md).

@@ -248,3 +248,24 @@ is locked; gasless and relayed flows stop for that user.
 
 **Detection:** a function whose recovered address must equal a named user, next to a direct function for the same
 act.
+
+## PQ-20: Account logic that accepts only the account's own key
+
+**Class:** migration-hazard
+
+EIP-7702 delegate code that authorises an action only when the recovered address is the account itself. As a 7702
+delegation it keeps working: EIP-8151 exempts delegation indicators. An account that takes this logic as real code
+can no longer authorise anything through it, and an account with code cannot send transactions (EIP-3607), so what it
+holds is locked. The account avoids it by keeping the delegation, or by moving to logic with another key.
+
+**Detection:** the recovered address is compared with the address the code runs at, and no stored key or ERC-1271
+path stands beside it. Confirmed by replaying a real transaction with the delegate's code placed at the account.
+
+## PQ-21: Entry only by one's own signature
+
+**Class:** migration-hazard
+
+Registering, joining or placing an order requires an ECDSA signature of the entrant, and no direct call does the same.
+Under EIP-8151 an account with real code can no longer enter. Nothing it already holds is affected.
+
+**Detection:** a function whose recovered address becomes the participant, with no function that registers the caller.

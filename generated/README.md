@@ -12,10 +12,11 @@ locally, run `uv run tools/build.py`.
 | `findings.csv` | One row per finding: the columns above, plus who acts, the evidence level, the class, the studies and how many they are |
 | `contracts.csv` | One row per affected contract: its finding, severity, implementation, admin, value with basis and date, last activity, 30-day transactions, project and outreach status. Search it for an address before adding a finding |
 | `studies.csv` | One row per study: authors, status, topic, code link, spec commit, and its findings by level |
-| `TRIAGE.md` | Entries of `triage/` not yet reviewed, by proposed rating, exposure and 30-day activity, then those discarded, with who and why |
+| `TRIAGE.md` | Entries of `triage/` not yet reviewed, by proposed rating, exposure and recoveries, then those discarded, with who and why |
 | `triage.csv` | One row per triage entry, for sorting and filtering |
-| `PROJECTS.md` | One row per project (the team that has to act), for outreach: its reviewed findings and its entries in triage, worst rating and exposure |
-| `projects.csv` | The same rows, for sorting and filtering |
+| `triage_contracts.csv` | One row per contract row of the triage pool: entry, rating, family, copies, name, public tag, value, recoveries, note. Search it for an address |
+| `PROJECTS.md` | One row per project (the team that has to act), for outreach: its reviewed findings and its entries in triage, worst rating and exposure; then rows with no project, by public tag (unverified) |
+| `projects.csv` | The projects table, for sorting and filtering |
 
 Column meanings:
 

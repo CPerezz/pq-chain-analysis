@@ -1,6 +1,8 @@
 # triage/
 
-New entries land here, never directly in `findings/`. Same format as a finding (`templates/finding.md`).
+New entries land here, never directly in `findings/`. Same format as a finding (`templates/finding.md`). An entry is
+one root issue (an issue family, a broken invariant), not one per project: every affected contract is a row inside it,
+with its own facts (`findings/README.md`, row fields).
 
 - **File.** Search `generated/contracts.csv` and this folder first. If the contract is already listed under the same
   pattern, add a `sources` entry there instead. Otherwise copy the template to `triage/<id>.md`. Here `severity` is
@@ -14,4 +16,5 @@ New entries land here, never directly in `findings/`. Same format as a finding (
 - **Be brief.** A Summary of one to three sentences. Expand only where the claim needs it: the code that decides
   it, the transaction, the state read.
 
-`generated/TRIAGE.md` and `generated/triage.csv` list the pool by proposed rating, exposure and activity.
+`generated/TRIAGE.md` and `generated/triage.csv` list the pool by proposed rating, exposure and activity;
+`generated/triage_contracts.csv` lists every row, to search for an address.

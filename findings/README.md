@@ -109,6 +109,18 @@ what a forged message or proof could release elsewhere), `value_as_of`, `last_ac
 contract, any function), `txs_30d` (transactions that called it in the 30-day window, any function; see
 `generated/README.md`).
 
+A finding about one root issue across many contracts leaves `project` out and gives each row what is known of it.
+Optional row fields, one row per code family:
+- `family`: the study's code family;
+- `copies`: how many addresses run that code; `address` is one of them, and `value_usd` is the total;
+- `label`: a block explorer's public tag. A lead for outreach, never a name: `project` is set only from the chain,
+  verified source or the team;
+- `rating`: that row's own rating. The finding's `severity` is the worst row;
+- `recoveries_14d`: recoveries in the study's two-week trace window;
+- `note`: one line on what decides it and how that is known.
+
+A row's `project` is never `unidentified-…`: an unknown project is left out.
+
 `families[]` entries: `code`, `name`, `instances`, `list`, `upgradeable`, `value_usd`, `value_basis`, `value_as_of`.
 
 ## Severity
