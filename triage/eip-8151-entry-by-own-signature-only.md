@@ -264,3 +264,4 @@ Add a direct call or ERC-1271 to the entry path.
 - 2026-11-19: filed from study `eip-8151-impact`, one entry per root issue (D-022). The per-project entries filed earlier that day are in git history (commit `d9c90af`).
 - 2026-11-19: 47 rows added with --add from `verdicts.csv`.
 - 2026-11-19: 85 rows added with --add from `verdicts.csv`.
+- 2026-11-19: rows rated by how hard the fix is, one row per family and update path (D-024).

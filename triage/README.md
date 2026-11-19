@@ -4,6 +4,20 @@ New entries land here, never directly in `findings/`. Same format as a finding (
 one root issue (an issue family, a broken invariant), not one per project: every affected contract is a row inside it,
 with its own facts (`findings/README.md`, row fields).
 
+Each row has its own `rating`; the entry's `severity` is only its highest row. A row's rating says how hard the fix
+is, never how much is at stake (D-024 of the EIP-8151 study):
+
+| Rating | Rule |
+|---|---|
+| LOW | A simple update fixes it: an upgrade by a live admin or owner, a 7702 re-delegation, a key rotation, a setting, a gas limit. Or another way out already exists |
+| MEDIUM | No update path, and only the operator's own money is at stake, or only a function stops |
+| HIGH | No update path, and funds are locked with no way out |
+| CRITICAL | No update path, and people who did nothing lose funds (a wrong verdict pays or punishes someone) |
+
+A family whose addresses differ is one row per answer: its proxies with a live admin are a LOW row, its copies with
+no update path are another. Value and activity set the order, not the rating: `generated/triage_contracts.csv` lists
+every row by value held, then by recoveries in the window.
+
 - **File.** Search `generated/contracts.csv` and this folder first. If the contract is already listed under the same
   pattern, add a `sources` entry there instead. Otherwise copy the template to `triage/<id>.md`. Here `severity` is
   the reporter's proposal.
@@ -16,5 +30,5 @@ with its own facts (`findings/README.md`, row fields).
 - **Be brief.** A Summary of one to three sentences. Expand only where the claim needs it: the code that decides
   it, the transaction, the state read.
 
-`generated/TRIAGE.md` and `generated/triage.csv` list the pool by proposed rating, exposure and activity;
-`generated/triage_contracts.csv` lists every row, to search for an address.
+`generated/TRIAGE.md` and `generated/triage.csv` list the entries; `generated/triage_contracts.csv` lists every row,
+in priority order, to search for an address.

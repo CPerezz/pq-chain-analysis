@@ -47,3 +47,4 @@ Wallets sign operations with a higher verification limit.
 ## History
 
 - 2026-11-19: filed from study `eip-8151-impact`, one entry per root issue (D-022). The per-project entries filed earlier that day are in git history (commit `d9c90af`).
+- 2026-11-19: rows rated by how hard the fix is, one row per family and update path (D-024).
