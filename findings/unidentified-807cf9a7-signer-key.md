@@ -3,7 +3,7 @@ id: unidentified-807cf9a7-signer-key
 title: "Unidentified 1inch maker vault: a recovered executor ECDSA key lets a quantum attacker sign orders through isValidSignature that sell the vault's tokens; it holds USD 152"
 project: unidentified-807cf9a7
 status: candidate
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover]
 trigger: operator-key
@@ -97,6 +97,7 @@ different executor key) holds USD 240 and last called `ecrecover` on 2024-09-25;
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review14): MEDIUM -> LOW, step 5: the vault holds USD 152 (measured), under USD 50k. Mechanism refined: the check answers 1inch's `isValidSignature` calls; the proxy admin is a 2-of-3 multisig.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: unidentified-807cf9a7-signer-key
 

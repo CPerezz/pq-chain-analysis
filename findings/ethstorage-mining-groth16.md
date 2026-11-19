@@ -3,7 +3,7 @@ id: ethstorage-mining-groth16
 title: "EthStorage storage contract: with the Groth16 setup trapdoor, a whitelisted miner can pass the sample-decoding proof in mine() without storing its encoded replica and collect rewards from the contract's USD 321 balance"
 project: ethstorage
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254, sw_bn254]
 trigger: trusted-setup
@@ -118,6 +118,7 @@ stake: a cheating miner keeps being paid while not storing the replica, which th
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review15): MEDIUM -> LOW, step 5: the reward pool (contract balance, USD 321) is the measured exposure, and only whitelisted miners can be paid. The KZG (PQ-8) opening on the same path is now ethstorage-blob-kzg.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # On-chain reads (Review15, 2026-11-17)
 

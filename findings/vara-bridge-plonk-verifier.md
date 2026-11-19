@@ -3,7 +3,7 @@ id: vara-bridge-plonk-verifier
 title: "Vara (Gear) Ethereum bridge: a quantum attacker who recovers the gnark PLONK setup trapdoor can submit a false Vara Merkle root to MessageQueue and release the bridge's tokens or mint WVARA (about USD 150 bridged today)"
 project: vara
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254, sw_bn254]
 trigger: trusted-setup
@@ -139,6 +139,7 @@ this finding or the registry yet.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review13): MEDIUM -> LOW, step 5: MEDIUM by step 4 (MessageQueue upgrade through Vara governance) and the measured escrow is USD 152 (ERC20Manager plus WVARA supply), under USD 50k. Added the current verifier `0xb7142e82…`; marked the two drafted verifiers retired; `fix.layer` onchain-config -> contract-upgrade.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: vara-bridge-plonk-verifier
 

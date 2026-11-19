@@ -3,7 +3,7 @@ id: bitget-swap-router-signer
 title: "Bitget swap router 0xb141f554 (attribution from explorer label): one ECDSA signer key authorises every order, including payouts from the vault EOA; the router has been paused since 2026-11-12 and almost nothing is approved to it"
 project: bitget
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover]
 trigger: operator-key
@@ -109,6 +109,7 @@ unpause. Grouping: if the label is right, this belongs to Bitget's swap infrastr
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review22): MEDIUM -> LOW, step 5: exposure measured as escrow (vault approvals and router dust, about $2); the router has been paused since 2026-11-12. Status candidate -> confirmed (`ecrecover` == `signer()` seen in traces; state read). Project set to bitget from the Etherscan public name tag (id kept).
 - 2026-11-17 integration: id renamed from `unidentified-b141f554-signer-key` (project identified).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: bitget-swap-router-signer
 

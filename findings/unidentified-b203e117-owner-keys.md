@@ -4,7 +4,7 @@ title: "MultiSigV1 wallet 0xb203e117 ($150.5M): a quantum attacker who recovers 
 project: unidentified-b203e117
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-12]
+patterns: [PQ-12, PQ-17]
 primitives: [ecrecover]
 trigger: owner-keys
 impact: funds-loss
@@ -53,6 +53,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 35075ad3"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -119,6 +126,7 @@ addresses).
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: owners can move to post-quantum signers in place (contract owners, modules or upgrade)).
 - 2026-11-17 review (Review23): MEDIUM kept, step 4: wallet owners are mutable and the immutable-owner proxy admin can hand over via `changeAdmin`, so the same 3-of-4 owners can migrate in place. Read owners (4 EOAs), threshold 3 and admin structure at block 26,431,695. Operator still unidentified.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: unidentified-b203e117-owner-keys
 

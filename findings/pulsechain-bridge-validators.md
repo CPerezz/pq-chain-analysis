@@ -4,7 +4,7 @@ title: "PulseChain bridge: a quantum attacker who recovers 5 of the 8 validator 
 project: pulsechain
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5]
+patterns: [PQ-5, PQ-18]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: funds-loss
@@ -38,6 +38,13 @@ sources:
   date: 2026-11-04
   verdict: reported
   rating: ''
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 1e8644eb"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [gnosis-bridge-validators]
 ---
 
@@ -107,3 +114,4 @@ to chain 369 and is run by PulseChain's deployer.
 - 2026-11-17 review (Review20): split out of `gnosis-bridge-validators` (attribution: destinationChainId 369,
   PulseChain deployer `0x30e22ab6…`). Rated MEDIUM, step 4: upgradeable proxy, one EOA upgrades; escrow measured at
   $40.09M in ForeignOmnibridge `0x1715a3e4…` at block 26,431,561.
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day. Executed: a real transaction reverts when its signer has code.

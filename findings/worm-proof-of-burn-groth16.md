@@ -3,7 +3,7 @@ id: worm-proof-of-burn-groth16
 title: "WORM (EIP-7503): a quantum attacker who recovers the Groth16 setup trapdoor can mint unlimited BETH through BETH.mintCoin and sell it into BETH's pools (about USD 4.8k of WETH)"
 project: worm
 status: confirmed
-severity: HIGH
+severity: CRITICAL
 patterns: [PQ-7]
 primitives: [bn254]
 trigger: trusted-setup
@@ -131,6 +131,7 @@ measured).
   admin, so CRITICAL by step 4), but the value a forged mint can release is the WETH paired with BETH, USD 4,791
   measured. Added BETH's `SpendVerifier` `0x5745a35b…` (same mechanism, not in the precompile trace); escrow set on the
   main entry.
+- 2026-11-19: HIGH -> CRITICAL, step 5 removed (value no longer lowers a rating); step 4 gives CRITICAL.
 
 # Source excerpts: worm-proof-of-burn-groth16
 

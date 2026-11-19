@@ -127,6 +127,7 @@ current path depends on their keys, a separate operator-key exposure outside thi
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated LOW (step 1 reach: no activity in 12 months (last 2025-08-25) and nothing held).
 - 2026-11-17 review (Review16): LOW -> LOW, step 1: last call 2025-08-25 and nothing held; consumer traced to L2OutputOracle `proposeL2OutputV2`, which was upgraded away (v3.1.0 at block 23,871,214, v1.8.0 at 25,681,868; withdrawals now via PermissionedDisputeGame), so escrow secured = USD 0. Impact set to `none`, fix.layer to `none`; admin corrected (the bridge has a different ProxyAdmin `0x3a317fce…`, same owner Safe).
+- 2026-11-19: LOW kept, step 1 removed (dormancy no longer lowers a rating); step 4 also gives LOW: its consumer was upgraded away; nothing is released.
 
 # Source excerpts: zircuit-halo2-verifier
 

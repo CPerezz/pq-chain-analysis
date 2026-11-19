@@ -3,7 +3,7 @@ id: union-cometbls-groth16
 title: "Union: a quantum attacker with the CometBLS Groth16 setup trapdoor (and a relayer key) can forge a Union light-client header on Ethereum and release the $12k held by Union's ZKGM bridge app"
 project: union
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254]
 trigger: trusted-setup
@@ -104,6 +104,7 @@ forged packet are not counted. Yearly pre-quantum count from the census: 8,096 t
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review11): MEDIUM -> LOW, step 5: escrow measured, UCS03 ZKGM 0x5fbe74a2… holds $11.9k (under $50k). Upgrade authority traced to ADMIN_ROLE Safe 0x6a742078… (5 of 8).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: union-cometbls-groth16
 

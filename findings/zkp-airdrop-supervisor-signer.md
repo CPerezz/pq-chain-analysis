@@ -3,7 +3,7 @@ id: zkp-airdrop-supervisor-signer
 title: "zkPass ZKP airdrop vault: a quantum attacker who recovers the supervisor's ECDSA key could sign any claim, but the vault is paused, past its claim deadline and empty"
 project: zkpass
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover]
 trigger: operator-key
@@ -108,6 +108,7 @@ unpaused it and moved the deadline. No other zkPass contract was checked.
   2026-01-20, balance withdrawn 2026-01-28), so USD 0 is exposed. Project identified as zkPass (token
   `0xe1be424f…`, ZKP); `project` zkp-token -> zkpass; implementation found verified on Blockscout, so `evidence.level`
   bytecode -> source-read and status candidate -> confirmed; admin and supervisor read from storage and logs.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: zkp-airdrop-supervisor-signer
 

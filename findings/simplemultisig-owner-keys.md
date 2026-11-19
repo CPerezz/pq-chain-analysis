@@ -4,7 +4,7 @@ title: "Unidentified custody operator's SimpleMultiSig wallets (deployer 0x33925
 project: unidentified-9cbdbd7f
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-12]
+patterns: [PQ-12, PQ-17]
 primitives: [ecrecover]
 trigger: owner-keys
 impact: funds-loss
@@ -63,6 +63,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 8f5fee6f"
+  date: 2026-11-19
+  verdict: reported
+  rating: CRITICAL
 related: []
 ---
 
@@ -136,6 +143,7 @@ keys that only sign off-chain.
   (`0x339257cb…` submits every `execute`), so the fix is one operator moving funds to a new deployment, not many
   independent owners. Project changed from `simple-multisig` (Christian Lundkvist, who cannot act) to
   `unidentified-9cbdbd7f`; added the 12 other same-code wallets (USD 15.8M) as a family; `fix.layer` new-deployment.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signers are fixed; once enough of them take code the wallets lock, with customers' money in them. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: simplemultisig-owner-keys
 

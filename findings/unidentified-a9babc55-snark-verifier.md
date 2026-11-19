@@ -3,7 +3,7 @@ id: unidentified-a9babc55-snark-verifier
 title: "Tornado Cash fork (deployer 0x166e5650): a recovered Groth16 setup trapdoor lets anyone withdraw from its 11 mixer pools (about USD 56 left)"
 project: unidentified-a9babc55
 status: confirmed
-severity: HIGH
+severity: CRITICAL
 patterns: [PQ-7]
 primitives: [bn254]
 trigger: trusted-setup
@@ -131,6 +131,7 @@ whatever is deposited later is exposed the same way. Tornado Cash's own pools, w
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated CRITICAL (step 4: pooled funds released by a forged proof or attestation, and the verification cannot change).
 - 2026-11-17 review (Review04): CRITICAL -> HIGH, step 5: the consumer is identified as 11 Tornado Cash fork pools (immutable verifier, owner EOA 0x166e5650) holding about USD 56 at block 26,431,520; step 4 alone would be CRITICAL. Evidence level bytecode -> source-read (verifier source is Blockscout-verified); status candidate -> confirmed.
+- 2026-11-19: HIGH -> CRITICAL, step 5 removed (value no longer lowers a rating); step 4 gives CRITICAL.
 
 # Source excerpts: unidentified-a9babc55-snark-verifier
 

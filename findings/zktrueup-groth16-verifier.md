@@ -3,7 +3,7 @@ id: zktrueup-groth16-verifier
 title: "Term Structure zkTrue-up: rollup blocks are proven with Groth16 on BN254; a recovered setup trapdoor would let a forged state release the rollup's $1.7k, but the rollup has been idle since 2025-08-04"
 project: term-structure
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254]
 trigger: trusted-setup
@@ -87,6 +87,7 @@ Source excerpts: [`source-excerpts.md`](#source-excerpts-zktrueup-groth16-verifi
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated LOW (step 1 reach: no activity in 12 months (last 2025-08-04) and nothing held).
 - 2026-11-17 review (Review10): LOW confirmed, step 1. Escrow measured ($1,749 in the ZkTrueUp diamond) and the verifier's admin path read on-chain (diamond `getVerifier()`, Safe 4 of 6).
+- 2026-11-19: LOW -> MEDIUM, step 1 removed (dormancy no longer lowers a rating); step 4 gives MEDIUM: a new verifier the consumer points at.
 
 # Source excerpts: zktrueup-groth16-verifier
 

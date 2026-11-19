@@ -3,7 +3,7 @@ id: bungee-auction-signers
 title: "Bungee auction (Socket): a quantum attacker who recovers the Solver signer key can make Bungee's Solver contract execute arbitrary calls (it holds USD 8), and with the MOFA key can submit auction batches to the BungeeGateway Entrypoint, but users still receive their signed minimum output"
 project: socket
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover]
 trigger: operator-key
@@ -127,6 +127,7 @@ MOFA signature does not release them. Nobody approves tokens to the Solver, so i
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review15): MEDIUM -> LOW, step 5: the Solver key takes only the Solver's own USD 8, and the MOFA key releases no escrow (users' minimum output enforced; settlement needs the Socket DL message). Admins corrected from storage and role logs (Entrypoint CONFIG_ROLE is EOA 0x58a2…743b, not the owner).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: bungee-auction-signers
 

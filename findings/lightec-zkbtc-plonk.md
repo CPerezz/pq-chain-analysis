@@ -3,7 +3,7 @@ id: lightec-zkbtc-plonk
 title: "Lightec zkBTC bridge: deposit and redeem proofs are gnark PLONK on BN254; a recovered setup trapdoor lets an attacker mint unbacked zkBTC and redeem the bridge's BTC reserve ($773)"
 project: lightec
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254, sw_bn254]
 trigger: trusted-setup
@@ -98,6 +98,7 @@ Lightec's zkBTC bridge accepts Bitcoin deposits and redemption completions on pr
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review10): MEDIUM -> LOW, step 5: escrow measured at $773 (BTC reserve; zkBTC supply 0.0123 BTC). Who can repoint established on-chain (BtcTxVerifier has no admin; zkBTCBridge TEMPORARY_ROLE EOA can replace it). Status candidate -> confirmed: bytecode fingerprint plus verified consumer source and on-chain reads.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: lightec-zkbtc-plonk
 

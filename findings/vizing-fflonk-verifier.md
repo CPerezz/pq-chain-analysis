@@ -3,7 +3,7 @@ id: vizing-fflonk-verifier
 title: "Vizing (Polygon CDK validium): a quantum attacker who recovers the fflonk setup trapdoor can prove false Vizing state and drain its bridge, which holds about $165"
 project: vizing
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254]
 trigger: trusted-setup
@@ -107,6 +107,7 @@ separate ECDSA trust assumption not rated here.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review09): MEDIUM -> LOW, step 5: escrow measured at about $165 (Vizing's L1 bridge 0x44db454c…). Project identified as Vizing Mainnet (chain id 28518) from the validium proxy 0x28328688… that calls this verifier (`networkName()`); `project` set to `vizing` (id kept). Admin path read: verifier is an immutable of the CDKValidium implementation, upgradeable through ProxyAdmin 0xe9175f66… and CDKValidiumTimelock 0x1ef0eff8… (24 h); fix layer onchain-config -> contract-upgrade.
 - 2026-11-17 integration: id renamed from `unidentified-985e8913-snark-verifier` (project identified).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: vizing-fflonk-verifier
 

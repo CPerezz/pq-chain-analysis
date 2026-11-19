@@ -4,7 +4,7 @@ title: "Zama FHEVM: a quantum attacker who recovers 3 of 5 coprocessor ECDSA key
 project: zama
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5]
+patterns: [PQ-5, PQ-18]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: unknown
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 8fe9f041"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [zama-kms-verifier-signers]
 ---
 
@@ -109,6 +116,7 @@ wrapper funds directly, is KMSVerifier `0x77627828a55156b04ac0dc0eb30467f1a552bb
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review09): MEDIUM kept (step 4: upgrade by the ACL owner, an Aragon OSx DAO 0xb6d69d5f…; value unmeasured, so step 5 lowers nothing). `impact` funds-loss -> unknown: forged input attestations skip proof of knowledge, but no direct fund release was established. Signers (5) and threshold (3) read at block 26,431,457; KMSVerifier 0x77627828… found and filed as `zama-kms-verifier-signers`.
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: zama-coprocessor-signers
 

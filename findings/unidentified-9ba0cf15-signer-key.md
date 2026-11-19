@@ -3,7 +3,7 @@ id: unidentified-9ba0cf15-signer-key
 title: "Unidentified RFQ market-maker vault 0x9ba0cf15 (1inch LOP, UniswapX, CoW, AirSwap): a forged signer key makes the vault sign any order, but the vault was emptied on 2026-05-07 and holds about USD 1"
 project: unidentified-9ba0cf15
 status: candidate
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover]
 trigger: operator-key
@@ -108,6 +108,7 @@ traced; if it now sits in another vault of this design, that vault belongs in th
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review08): MEDIUM -> LOW, step 5: the vault was emptied on 2026-05-07 and holds about USD 1 (measured), below USD 50k; owner read as EOA 0xc493f943…; project still unidentified.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: unidentified-9ba0cf15-signer-key
 

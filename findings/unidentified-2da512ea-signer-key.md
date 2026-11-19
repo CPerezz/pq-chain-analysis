@@ -4,7 +4,7 @@ title: "Market-maker Safe 0xb7131fc8 (operator unidentified): its ERC-1271 fallb
 project: unidentified-2da512ea
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 9e42c98a"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -110,6 +117,7 @@ the same funds.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review22): stays MEDIUM, step 4: a new handler that the maker Safe points at. Status candidate -> confirmed (`ecrecover` against `authorizedSigners` seen in traces; state read). Identified the role as Safe `0xb7131fc8`'s fallback handler and measured the escrow ($2.35M approved to Permit2 and 1inch); `alternative` set to configurable-verifier.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: unidentified-2da512ea-signer-key
 

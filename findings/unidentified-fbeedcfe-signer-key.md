@@ -4,7 +4,7 @@ title: "Unidentified 1inch limit-order market maker: a quantum attacker who deri
 project: unidentified-fbeedcfe
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families cb556a50"
+  date: 2026-11-19
+  verdict: reported
+  rating: CRITICAL
 related: []
 ---
 
@@ -104,6 +111,7 @@ operator moves its inventory.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by a new deployment that the operator and users move to).
 - 2026-11-17 review (Review06): MEDIUM confirmed (step 4: the operator must redeploy and move USD 1.13M). Status candidate -> confirmed: transaction traces show the 1inch router calling isValidSignature and the contract recovering the immutable operator 0xa009fa1a…; operator not identified.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer is fixed; once its account has code the signed functions stop. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: unidentified-fbeedcfe-signer-key
 

@@ -4,7 +4,7 @@ title: "Wormhole core bridge (0x98f3c9e6): a quantum attacker who recovers 13 of
 project: wormhole
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5]
+patterns: [PQ-5, PQ-18]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: funds-loss
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 5d85021a"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [pyth-wormhole-receiver]
 ---
 
@@ -108,6 +115,7 @@ verify against the same core. Pyth's receivers are in [`pyth-wormhole-receiver`]
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review17): MEDIUM kept, step 4: guardian-signed governance upgrade. Escrow measured (token bridge ≥ $997.6M, replacing the core's $6 `held`); `0x74f09cb3…` identified as Pyth's Wormhole receiver used by the Pyth executor (curation note said an unidentified diamond); status candidate -> confirmed.
 - 2026-11-17 review (Review17, follow-up): severity unchanged; `0x74f09cb3…` (Pyth's receiver) moved to the new finding `pyth-wormhole-receiver` and linked in `related`.
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: wormhole-guardian-signatures
 

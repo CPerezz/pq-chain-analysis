@@ -4,7 +4,7 @@ title: "Symbiosis: forging the single MPC (threshold-ECDSA) key lets a quantum a
 project: symbiosis
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 74b25166"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -119,6 +126,7 @@ signature scheme do not exist yet.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated LOW (step 4: an alternative path exists that one known party can switch to).
 - 2026-11-17 review (Review06): LOW -> MEDIUM, step 4: no post-quantum path exists today; the fix is a new ERC-1271 verifier contract the owner Safe points `mpc` at plus a new relayer signature scheme, with USD 1.42M escrow in Portal. Pattern PQ-5 -> PQ-4 (one threshold-ECDSA key on-chain), trigger committee-keys -> operator-key, alternative -> configurable-verifier; spurious proxy-bytecode family and fee balance removed.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: symbiosis-mpc-signer
 

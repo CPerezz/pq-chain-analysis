@@ -4,7 +4,7 @@ title: "Gnosis Chain bridges: a quantum attacker who recovers 4 of 7 validator E
 project: gnosis
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5]
+patterns: [PQ-5, PQ-18]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: funds-loss
@@ -48,6 +48,13 @@ sources:
   date: 2026-11-04
   verdict: reported
   rating: ''
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families e995b135, dbddbda4"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [pulsechain-bridge-validators]
 ---
 
@@ -126,6 +133,7 @@ finding, was added here.
   present but not mandatory (constant). Moved `0xd0764fae…` (PulseChain AMB, chain 369) to
   `pulsechain-bridge-validators`; added Gnosis's AMB `0x4c36d291…` with Omnibridge escrow $209.9M (Blockscout, first
   page); validator sets and thresholds read at block 26,431,561.
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day.
 
 # Source excerpts: gnosis-bridge-validators
 

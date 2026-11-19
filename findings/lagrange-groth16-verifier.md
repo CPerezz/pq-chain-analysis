@@ -3,7 +3,7 @@ id: lagrange-groth16-verifier
 title: "Lagrange LPNRegistryV1 0xf8e0efef: a quantum attacker who recovers the Groth16 setup trapdoor can feed false query results to client callbacks; dormant since 2025, no client holds value"
 project: lagrange
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254]
 trigger: trusted-setup
@@ -105,6 +105,7 @@ months and nothing a proof can release); the draft's MEDIUM came from the upgrad
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review03): MEDIUM -> LOW, step 1: no proof verified since 2025-06-02 and no request since 2025-08-28; the only contract client holds nothing and the 0.16 ETH fees are owner-only. Admin read from ERC1967Factory `adminOf`; `last_active` corrected (the 2026-10-18 call was to the implementation); impact set to unknown (false query results, no funds path found).
+- 2026-11-19: LOW -> MEDIUM, step 1 removed (dormancy no longer lowers a rating); step 4 gives MEDIUM: fix by an upgrade.
 
 # Source excerpts: lagrange-groth16-verifier
 

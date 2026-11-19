@@ -4,7 +4,7 @@ title: "Zama FHEVM: a quantum attacker who recovers 7 of 13 KMS ECDSA signer key
 project: zama
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5]
+patterns: [PQ-5, PQ-18]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: funds-loss
@@ -38,6 +38,13 @@ sources:
   date: 2026-11-17
   verdict: reported
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families e6d04156"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [zama-coprocessor-signers]
 ---
 
@@ -121,3 +128,4 @@ roughly $32M more if valued near $1 per share (INFERRED). Other FHEVM applicatio
 ## History
 
 - 2026-11-17: created in review (Review09), from verified source and on-chain reads at block 26,431,457; found while reviewing `zama-coprocessor-signers`. Rated MEDIUM (step 4: upgrade by the governing DAO; escrow at least $38.5M, so step 5 does not lower it).
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day.

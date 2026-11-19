@@ -3,7 +3,7 @@ id: skale-bls-bn254
 title: "SKALE IMA: a quantum attacker who recovers an SKALE chain's BLS key (and one node key) can post forged exit messages to MessageProxyForMainnet and empty the IMA deposit boxes (about USD 9.3k)"
 project: skale
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-6]
 primitives: [bn254]
 trigger: committee-keys
@@ -115,6 +115,7 @@ Rated LOW: MEDIUM by step 4 (contract upgrade), lowered one level by step 5 (und
 - 2026-11-17 review (Review05): MEDIUM -> LOW, step 5: escrow traced from `MessageProxyForMainnet` to the IMA deposit
   boxes and measured at USD 9,257 (block 26,431,553); admins re-read (both ProxyAdmins owned by the 3-of-5 Safe).
   Removed the family entry (shared proxy bytecode, not SkaleVerifier copies).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: skale-bls-bn254
 

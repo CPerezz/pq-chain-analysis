@@ -4,7 +4,7 @@ title: "Relay Protocol RelayDepository: a recovered allocator ECDSA key signs ar
 project: relay
 status: confirmed
 severity: LOW
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -44,6 +44,13 @@ sources:
   ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/relay-allocator-signer/onchain-review.json
   date: 2026-11-17
   verdict: confirmed
+  rating: LOW
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 553f38a6"
+  date: 2026-11-19
+  verdict: reported
   rating: LOW
 related: []
 ---
@@ -104,6 +111,7 @@ deployment on mainnet is in the census data.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated LOW (step 4: an alternative path exists that one known party can switch to).
 - 2026-11-17 review (Review02): LOW unchanged, step 4: one known operator (owner EOA 0xf61a3051…) switches the allocator to an ERC-1271 contract with a setting. Allocator and owner read at block 26,431,564 (both EOAs); fix.layer new-deployment -> onchain-config.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code, before any recovery returned nothing.
 
 # Source excerpts: relay-allocator-signer
 

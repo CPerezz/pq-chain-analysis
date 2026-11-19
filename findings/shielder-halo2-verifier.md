@@ -3,7 +3,7 @@ id: shielder-halo2-verifier
 title: "Shielder (Cardinal Cryptography): forged Halo2-KZG withdraw proofs can drain the privacy pool (USD 859); owner Safe can upgrade the verifiers"
 project: cardinal-cryptography
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254, sw_bn254]
 trigger: trusted-setup
@@ -106,3 +106,4 @@ Shielder deployment was found in the census data.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review02): MEDIUM -> LOW, step 5: the pool itself holds what a forged withdraw releases, USD 859 at block 26,431,454 (under USD 50k); step 4 gives MEDIUM (UUPS upgrade by the 2-of-5 owner Safe).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.

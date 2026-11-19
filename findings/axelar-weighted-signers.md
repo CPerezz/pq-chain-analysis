@@ -4,7 +4,7 @@ title: "Axelar Gateway on Ethereum: a quantum attacker who recovers a weighted q
 project: axelar
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5]
+patterns: [PQ-5, PQ-17]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: funds-loss
@@ -55,6 +55,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 8ca74f93, 5463008f"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -132,6 +139,7 @@ gateway.
 - 2026-11-17 review (Review18): MEDIUM kept, step 4. The gateway switched to a new auth module `0x3d3c73e9…` on
   2026-11-12 (same ECDSA check); added it as the main contract and marked `0xe3b83f79…` retired. Measured the
   gateway escrow (USD 39.5M). `fix.layer` new-deployment -> contract-upgrade (governance upgrades the gateway).
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: axelar-weighted-signers
 

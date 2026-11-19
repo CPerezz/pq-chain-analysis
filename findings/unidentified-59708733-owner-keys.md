@@ -4,7 +4,7 @@ title: "Unidentified custodian's 2-of-5 multisig wallets (clones of 0x0d424072):
 project: unidentified-59708733
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-12]
+patterns: [PQ-12, PQ-17]
 primitives: [ecrecover]
 trigger: owner-keys
 impact: funds-loss
@@ -63,6 +63,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families d80dbd6b"
+  date: 2026-11-19
+  verdict: reported
+  rating: CRITICAL
 related: []
 ---
 
@@ -130,6 +137,7 @@ members in `data/caller_family.parquet` (the draft said 16); the list is in `wal
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: signer set fixed in code; funds must move, and many independent owners may not act).
 - 2026-11-17 review (Review04): HIGH -> MEDIUM, step 4: both wallets (and the largest other clone) share one set of five signer EOAs created by one operator, so the fix is a single custodian moving funds, not many independent owners. Family corrected to 21 further clones holding USD 73.2M; status candidate -> confirmed (bytecode plus precompile trace and spend calldata).
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signers are fixed; once enough of them take code the wallets lock, with customers' money in them. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: unidentified-59708733-owner-keys
 

@@ -4,7 +4,7 @@ title: "PMM market-maker vaults filled through OKX DEX router (owner Safe 0x91fd
 project: unidentified-cd815022
 status: candidate
 severity: MEDIUM
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17, PQ-18]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -75,6 +75,13 @@ sources:
   date: 2026-11-17
   verdict: reported
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 99520b6f, 44902078"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -141,6 +148,7 @@ hold nothing; they were not added. The three added vaults were not in the census
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review08): MEDIUM unchanged (step 4: upgrade by the 2-of-5 owner Safe 0x91fd0998…; step 5 does not apply because the sibling vaults of the same deployer and owner hold about USD 937k). Added sibling vaults 0x2e104fb2…, 0x8377d393…, 0xdd4bdbbb… (bytecode evidence; not in the census); the listed vault was emptied on 2026-03-25. project okx -> unidentified-cd815022: fills go through OKX's DexRouter, but neither the deployer nor the Safe is linked to OKX.
 - 2026-11-17 integration: id renamed from `okx-pmm-vault-signer` (the OKX attribution was not established); `related` link to the OKX wallet-link finding removed for the same reason.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day; the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction ends without error but with other logs when its signer has code.
 
 # Source excerpts: unidentified-cd815022-pmm-vault-signer
 

@@ -3,7 +3,7 @@ id: arpa-randcast-bls-bn254
 title: "ARPA Randcast Adapter: a quantum attacker who recovers a node group's BN254 BLS key can compute every mainnet randomness output in advance; only ARPA's own test consumers have used it"
 project: arpa
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-6]
 primitives: [bn254, sw_bn254]
 trigger: committee-keys
@@ -107,6 +107,7 @@ on the outcome.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review07): MEDIUM -> LOW, step 5: measured exposure is the Adapter's $182; the only consumers
   ever served are ARPA's own and hold nothing. Owner identified as an EOA.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: arpa-randcast-bls-bn254
 

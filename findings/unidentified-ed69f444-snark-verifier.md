@@ -3,7 +3,7 @@ id: unidentified-ed69f444-snark-verifier
 title: "Unidentified RISC Zero block-history prover 0xed69f444: a recovered Groth16 setup trapdoor lets an attacker record false block metadata, which no on-chain contract was seen to use"
 project: unidentified-ed69f444
 status: candidate
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254]
 trigger: trusted-setup
@@ -107,6 +107,7 @@ consumer relies on it, it is MEDIUM.
 - 2026-11-17 review (Review05): MEDIUM -> LOW, step 5: every transaction checked is a direct submission by one
   whitelisted EOA and no contract reads the stored metadata, so the measured escrow is zero; `impact` funds-loss ->
   unknown (no consumer identified). Admin role read on-chain (deployer EOA).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: unidentified-ed69f444-snark-verifier
 

@@ -4,7 +4,7 @@ title: "Uniswap Permit2 (canonical and one copy): signatures from accounts with 
 project: uniswap
 status: not-affected
 severity: NONE
-patterns: [PQ-13]
+patterns: [PQ-13, PQ-18, PQ-19]
 primitives: [ecrecover]
 trigger: none
 impact: none
@@ -55,6 +55,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: NONE
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 01bf069e, b08f0e66"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [uniswapx-cosigner]
 ---
 
@@ -108,6 +115,7 @@ own key.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated NONE (code checked first: no exposure beyond the account's own key).
 - 2026-11-17 review (Review07): NONE unchanged. Both sources read; held $133k removed from `value_usd` (Permit2's own
   stray balance, not an exposure); related UniswapX finding linked.
+- 2026-11-19 (study `eip-8151-impact`, PQ-18, PQ-19): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day; a signer whose account has code loses the signed path; direct calls remain. Executed: a real transaction reverts when its signer has code, before any recovery returned nothing.
 
 # Review reads: uniswap-permit2-code-first (2026-11-17, Review07)
 

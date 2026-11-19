@@ -4,7 +4,7 @@ title: "Legion pre-liquid sale 0x28be6260: a quantum attacker who recovers the L
 project: legion
 status: confirmed
 severity: LOW
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: none
@@ -38,6 +38,13 @@ sources:
   date: 2026-11-04
   verdict: reported
   rating: ''
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 8e7d5287"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -111,6 +118,7 @@ it.
 - 2026-11-17 review (Review05): MEDIUM -> LOW, step 4: in the verified implementation the Legion signature only gates
   `invest` (the investor pays in); no path releases funds on it, and the sale ended 2025-10-08. `impact` funds-loss ->
   none; removed the USD 527k `held` value (not reachable through the check).
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code.
 
 # Source excerpts: legion-sale-signer
 

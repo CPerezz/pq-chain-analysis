@@ -4,7 +4,7 @@ title: "Pyth on Ethereum (receivers 0x3a2dd09b and 0x74f09cb3, PythLazer 0xacea7
 project: pyth
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5, PQ-4]
+patterns: [PQ-5, PQ-4, PQ-18]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: funds-loss
@@ -65,6 +65,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 72f6050a, 143dc85a"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [wormhole-guardian-signatures]
 ---
 
@@ -135,6 +142,7 @@ not show; `value_usd` is null and the value step lowers nothing.
 
 - 2026-11-04: `0x74f09cb3…` classified from bytecode in the hand classification pass (`https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`), grouped under Wormhole.
 - 2026-11-17 review (Review17): finding created; `0x74f09cb3…` moved here from `wormhole-guardian-signatures` (it is Pyth's receiver), and `0x3a2dd09b…` and PythLazer `0xacea761c…` added. Rated MEDIUM, step 4: Pyth governance can upgrade or repoint every contract; exposure unmeasured, so step 5 does not apply.
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day. Executed: a real transaction reverts when its signer has code.
 
 # Review reads: pyth-wormhole-receiver (2026-11-17, Review17)
 

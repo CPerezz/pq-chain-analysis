@@ -4,7 +4,7 @@ title: "Native RFQ (CreditVault, routers, pools): a quantum attacker who recover
 project: native
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17, PQ-18]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -115,6 +115,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families c9242589, 40e16e4e, 96442df7, 637895a3"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -198,6 +205,7 @@ through both live pools and through its own signer-approved withdrawals.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review17): MEDIUM kept, step 4: fix by new router and pool deployments by the owner Safe. Escrow measured: CreditVault `0xe3d41d19…` $6.79M; noted that a trade needs both the router signer and a market-maker key.
 - 2026-11-17 review (Review17, follow-up): MEDIUM kept, step 4: the CreditVault is not upgradeable either, so the fix is still a new deployment. CreditVault `0xe3d41d19…` added to `contracts[]`, with its own signer path (`settle`, `removeCollateral`, `liquidate`); the $6.79M moved from the router's `escrow` value to the vault's `held` value.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17, PQ-18): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code; a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day. Executed: a real transaction reverts when its signer has code.
 
 # Review reads: native-rfq-signer (2026-11-17, Review17)
 

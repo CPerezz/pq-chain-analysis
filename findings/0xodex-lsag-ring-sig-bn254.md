@@ -3,7 +3,7 @@ id: "0xodex-lsag-ring-sig-bn254"
 title: "0xODex: a quantum attacker can derive depositors' BN254 ring keys and withdraw any unclaimed deposit from OxODexPool"
 project: "0xodex"
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-11]
 primitives: [bn254, sw_bn254]
 trigger: user-key
@@ -115,6 +115,7 @@ exposure is under USD 50k.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review06): MEDIUM -> LOW, step 5: pool held 0 ETH at block 26,431,598 (MEDIUM by step 4, upgrade by one EOA). Mechanism corrected from PQ-7/trusted-setup (it is an LSAG ring signature, no SNARK) to curve algebra with the depositor's key as trigger (PQ-11, `user-key`); spurious 148-contract proxy family removed.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: 0xodex-lsag-ring-sig-bn254
 

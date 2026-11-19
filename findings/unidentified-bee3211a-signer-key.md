@@ -4,7 +4,7 @@ title: "Unidentified market maker's contract 0xbee3211a: a quantum attacker who 
 project: unidentified-bee3211a
 status: candidate
 severity: MEDIUM
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -53,6 +53,13 @@ sources:
   date: 2026-11-17
   verdict: reported
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families fa0e03d5"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -118,6 +125,7 @@ The holdings are the market maker's own inventory, which forged operator-signed 
 - 2026-11-17 review (Review18): MEDIUM kept, step 4. Operators, admin and holdings read on-chain; mechanism refined from
   bytecode (operator-gated `isValidSignature` and signed requests); sibling `0xbee02256…` checked (USD 0). Operator not
   identified.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: unidentified-bee3211a-signer-key
 

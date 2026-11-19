@@ -3,7 +3,7 @@ id: rayls-distributor-signer
 title: "Rayls (RLS) airdrop Distributor on Clique's code (0x96c67b14): a quantum attacker who recovers the claim-signer key can release Merkle allocations ahead of schedule from a vault holding ~$15k"
 project: rayls
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover]
 trigger: operator-key
@@ -107,6 +107,7 @@ forged release can draw (allowance 30.58M RLS is higher than the balance). Other
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review17): MEDIUM -> LOW, step 5: escrow measured at ~$15.4k (vault Safe RLS balance), under $50k. Project identified from `token()` (Rayls RLS) and the source NatSpec (Clique Distributor); held $121 replaced by the vault escrow.
 - 2026-11-17 integration: id renamed from `unidentified-96c67b14-signer-key` (project identified).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: rayls-distributor-signer
 

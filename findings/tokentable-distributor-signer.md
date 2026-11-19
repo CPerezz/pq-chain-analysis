@@ -4,7 +4,7 @@ title: "TokenTable ECDSA distributors (Sign Protocol): a quantum attacker who re
 project: sign-protocol
 status: confirmed
 severity: LOW
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -54,6 +54,13 @@ sources:
   ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/tokentable-distributor-signer/state.json
   date: 2026-11-17
   verdict: confirmed
+  rating: LOW
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 69f91d73"
+  date: 2026-11-19
+  verdict: reported
   rating: LOW
 related: []
 ---
@@ -121,6 +128,8 @@ signer and the same fix.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated LOW (step 4: an alternative path exists that one known party can switch to).
 - 2026-11-17 review (Review03): LOW unchanged (step 1: claim windows closed 2025-11-04 and 2025-08-21, no activity since, $126 held; step 4 alone also gives LOW). Implementation, owners, signers and windows read on-chain; fix layer corrected from new-deployment to onchain-config.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code, before any recovery returned nothing.
+- 2026-11-19: LOW kept, step 1 removed (dormancy no longer lowers a rating); step 4 also gives LOW: an alternative path one known party can switch to.
 
 # Source excerpts: tokentable-distributor-signer
 

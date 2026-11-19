@@ -4,7 +4,7 @@ title: "Circle Gateway: a quantum attacker who recovers GatewayMinter's one ECDS
 project: circle
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-18]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -38,6 +38,13 @@ sources:
   date: 2026-11-17
   verdict: reported
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 7cc5fbf0"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [circle-gateway-burn-signer, circle-cctp-attesters, circle-usdc-permit-code-first]
 ---
 
@@ -97,3 +104,4 @@ maximum, amount. The source-side GatewayWallet is covered in `circle-gateway-bur
 ## History
 
 - 2026-11-17: created in review (Review09), from verified source and on-chain reads at block 26,431,457; found while reviewing `circle-gateway-burn-signer`. Rated MEDIUM (step 4: upgrade by one owner key; escrow $136.6M, so step 5 does not lower it).
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day. Executed: a real transaction reverts when its signer has code.

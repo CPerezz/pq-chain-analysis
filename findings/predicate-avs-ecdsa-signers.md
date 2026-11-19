@@ -4,7 +4,7 @@ title: "Predicate ServiceManager: one ECDSA attester key (policy threshold 1) ap
 project: predicate
 status: confirmed
 severity: LOW
-patterns: [PQ-5, PQ-4]
+patterns: [PQ-5, PQ-4, PQ-18]
 primitives: [ecrecover]
 trigger: operator-key
 impact: none
@@ -38,6 +38,13 @@ sources:
   date: 2026-11-04
   verdict: reported
   rating: ''
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families d7297551"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -104,6 +111,7 @@ client that gates a withdrawal or payout on a Predicate attestation alone would 
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review19): MEDIUM -> LOW, step 4: the attestation gates only the caller's own deposits and mints (compliance bypass, nothing can be taken); live policies use threshold 1 with a single key, so trigger set to operator-key and impact to none; title corrected (not oracle/keeper reports).
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: predicate-avs-ecdsa-signers
 

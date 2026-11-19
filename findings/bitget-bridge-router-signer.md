@@ -99,6 +99,7 @@ so there is no exposure to measure (`held` $0).
 - 2026-11-17 review (Review20): LOW kept, step 1: last bridge call 2025-08-05, router paused since 2026-03-05 and holds
   nothing. `impact` funds-loss -> none (payouts are `transferFrom` from a whitelisted relayer, so the co-signature
   alone releases nothing); `last_active` set to the 2026-03-05 pause transaction; `held` $0 recorded.
+- 2026-11-19: LOW kept, step 1 removed (dormancy no longer lowers a rating); step 4 also gives LOW: the co-signature alone releases nothing.
 
 # Source excerpts: bitget-bridge-router-signer
 

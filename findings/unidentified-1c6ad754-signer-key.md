@@ -3,8 +3,8 @@ id: unidentified-1c6ad754-signer-key
 title: "Unidentified ERC-4337 operator (deployer 0xac6a87c6): a quantum attacker who recovers its ECDSA signer keys can drain the VerifyingPaymaster deposit and sign LiquidityBank releases (both now empty), and with an account owner's key plus the fixed co-signer key can take over the 852 smart accounts on its ownership module (about $6.6k)"
 project: unidentified-1c6ad754
 status: candidate
-severity: LOW
-patterns: [PQ-4, PQ-12]
+severity: MEDIUM
+patterns: [PQ-4, PQ-12, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -96,6 +96,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families f8f8a07d, feda0516"
+  date: 2026-11-19
+  verdict: reported
+  rating: CRITICAL
 related: [biconomy-ecdsa-validator]
 ---
 
@@ -204,6 +211,8 @@ smart accounts behind module `0xba418fa6…` are reachable only with both the ac
   the merged JSON files. Merged rating LOW (step 5: paymaster and LiquidityBank USD 0 exposed; co-signer LOW at step 4).
   Status `candidate`: two of three contracts are bytecode-only without a second check.
 - 2026-11-17 review (Review22, move): module `0xba418fa6…` moved here from `biconomy-ecdsa-validator` (same deployer `0xac6a87c6…`; there it was rated MEDIUM at step 4). Here MEDIUM at step 4 (owners switch modules), LOW at step 5 (852 accounts, USD 6,557); finding stays LOW. Pattern PQ-12 added.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer is fixed; once its account has code the signed functions stop; the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: unidentified-1c6ad754-signer-key
 

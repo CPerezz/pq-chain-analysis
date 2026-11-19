@@ -4,7 +4,7 @@ title: "Gala bridge (0x9f452b7c): a quantum attacker who recovers its single ECD
 project: gala
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-4, PQ-5]
+patterns: [PQ-4, PQ-5, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 1da56785"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -105,6 +112,7 @@ market damage, not the amount held. Other Gala token bridges or chains were not 
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review17): MEDIUM kept, step 4: fix by an authority-signed upgrade. The authority set has one key (read at block 26,431,535), so PQ-4 added and trigger set to operator-key; GALA minting through the bridge noted.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: gala-bridge-authorities
 

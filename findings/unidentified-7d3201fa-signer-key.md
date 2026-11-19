@@ -3,7 +3,7 @@ id: unidentified-7d3201fa-signer-key
 title: "ERC-4337 token paymaster 0x7d3201fa (EntryPoint v0.7, operator unidentified): a quantum attacker who recovers the sponsor-signer key can have the paymaster pay gas for any UserOperation, but its EntryPoint deposit is empty and it has been idle since June 2026"
 project: unidentified-7d3201fa
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover]
 trigger: operator-key
@@ -104,6 +104,7 @@ lowered one level because $0 is exposed.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review12): MEDIUM -> LOW, step 5: EntryPoint deposit (the escrow) is 0 at block 26,431,610; idle since 2026-06-05. Signer, treasury and owner read; operator still unidentified (Blockscout, Sourcify, web search tried).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: unidentified-7d3201fa-signer-key
 

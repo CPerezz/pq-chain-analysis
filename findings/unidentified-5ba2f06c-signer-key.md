@@ -3,7 +3,7 @@ id: unidentified-5ba2f06c-signer-key
 title: "Unidentified RFQ market maker (0x5ba2f06c): forging its one ECDSA quote signer lets an allowlisted caller pull the maker vault's approved tokens (vault empty now)"
 project: unidentified-5ba2f06c
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover]
 trigger: operator-key
@@ -109,6 +109,7 @@ the vault without changing the contract, the exposure returns at that size.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review04): MEDIUM -> LOW, step 5: the funds at risk sit in maker vault 0x9ba0cf15, which approves the contract for unlimited USDC/USDT/WETH/POL but holds none (block 26,431,578); measured exposure USD 0. Status candidate -> confirmed (bytecode plus precompile trace and on-chain reads).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: unidentified-5ba2f06c-signer-key
 

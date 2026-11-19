@@ -3,7 +3,7 @@ id: sxt-proof-of-sql-verifier
 title: "Space and Time: a recovered BN254 setup trapdoor lets anyone fulfil zkPay SQL queries routed to PoSQLVerifier with false results; the path has been idle since 2025-08 and releases no funds to the fulfiller"
 project: space-and-time
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254]
 trigger: trusted-setup
@@ -96,6 +96,7 @@ not been used since 2025-08-19. Rated LOW, step 1 (no activity in 12 months, not
 - 2026-11-17 review (Review05): LOW kept, step 1: last use 2025-08-19 and the verifier holds nothing. Consumer traced
   to ZKPay `0x27d4d2af…`, whose escrowed fees go to Space and Time's payout address, not the fulfiller; `impact`
   funds-loss -> unknown (client callbacks not identified).
+- 2026-11-19: LOW -> MEDIUM, step 1 removed (dormancy no longer lowers a rating); step 4 gives MEDIUM: a new verifier the consumer points at.
 
 # Source excerpts: sxt-proof-of-sql-verifier
 

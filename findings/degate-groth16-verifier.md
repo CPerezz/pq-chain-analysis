@@ -3,7 +3,7 @@ id: degate-groth16-verifier
 title: "DeGate (shut down): a recovered BN254 Groth16 setup trapdoor would let forged block proofs pass the exchange's BlockVerifier; the exchange stopped in June 2025 and its deposit contract holds about $160"
 project: degate
 status: confirmed
-severity: LOW
+severity: CRITICAL
 patterns: [PQ-7]
 primitives: [bn254]
 trigger: trusted-setup
@@ -99,6 +99,7 @@ escrow`). No other DeGate deployment points at this verifier in the registry.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated LOW (step 1 reach: no activity in 12 months (last 2025-06-27) and nothing held).
 - 2026-11-17 review (Review23): LOW kept, step 1: exchange `0x9c07…` shut down, last block 2025-06-27, escrow `0x54d7…` holds $160. Corrected `upgradeable` config-only -> no and `alternative` configurable-verifier -> sole (keys hard-coded; the exchange cannot repoint the verifier); owner read as EOA `0xacd3a62f…` (not a DAO).
+- 2026-11-19: LOW -> CRITICAL, step 1 removed (dormancy no longer lowers a rating); step 4 gives CRITICAL: pooled funds released by a forged proof; the verifier's keys are hard-coded and cannot change.
 
 # Source excerpts: degate-groth16-verifier
 

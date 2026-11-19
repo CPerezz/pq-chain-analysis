@@ -4,7 +4,7 @@ title: "Permissioned Uniswap v4 hooks for ELEVATE, GULD and related tokens (oper
 project: unidentified-d33398d4
 status: candidate
 severity: LOW
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: none
@@ -51,6 +51,13 @@ sources:
   who: Review02 (registry review)
   ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-d33398d4-signer-key/onchain-review.json
   date: 2026-11-17
+  verdict: reported
+  rating: LOW
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families b85d88ae"
+  date: 2026-11-19
   verdict: reported
   rating: LOW
 related: []
@@ -124,6 +131,7 @@ above, but neither the deployer nor the owner was linked to a named team, so `pr
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review02): MEDIUM -> LOW, step 4: the approver signature only gates access (no return-delta hook permissions, so nothing can be taken through it) and one known owner (EOA 0xc5d3c245…, read at block 26,431,583) can upgrade all 8 hooks. Impact funds-loss -> none. Family confirmed (8 proxies, same implementation, owner and approver). Operator still unidentified; pools trade ELEVATE and related tokens.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: unidentified-d33398d4-signer-key
 

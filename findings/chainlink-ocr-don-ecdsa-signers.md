@@ -4,7 +4,7 @@ title: "Chainlink CCIP, Automation and CRE: a quantum attacker who recovers a qu
 project: chainlink
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5]
+patterns: [PQ-5, PQ-17]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: funds-loss
@@ -95,6 +95,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families c6f0bfd6, 5aef6abf, 9040d70c, 449f23ae"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [chainlink-vrf-secp256k1]
 ---
 
@@ -192,6 +199,7 @@ resolver, registries and forwarders, but CRE receivers and upkeeps must move wit
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review11): MEDIUM unchanged (step 4: Chainlink deploys new verification and repoints; receivers and upkeeps move). Escrow measured: CCIP pools $1.19B (upper bound) on the OffRamp; RMN blessing found disabled on all 37 OffRamp lanes; owners resolved (two RBACTimelocks, a 4-of-12 Safe, one EOA); CommitStore lane still live on the Router. OffRamp 2.0.0 0x408428bc… noted as unreviewed.
 - 2026-11-17 follow-up (Review11): added CCIP OffRamp 2.0.0 `0x408428bc…` (69 lanes, default CCV resolver `0x2caafd3b…` -> CommitteeVerifier 2.0.0 `0x7bce1a32…`, 9 of 14–16 `ecrecover` signers per lane, owner RBACTimelock `0x44835bbb…`; 9,354 transactions in about 30 days by trace). MEDIUM re-checked and unchanged (step 4: the timelock swaps in a new verifier implementation; same pools, value not added again).
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
 
 # Review notes: chainlink-ocr-don-ecdsa-signers (2026-11-17)
 

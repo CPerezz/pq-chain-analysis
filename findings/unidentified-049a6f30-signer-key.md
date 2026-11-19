@@ -4,7 +4,7 @@ title: "Unidentified market maker's RFQ wallet 0x049a6f30 (also runs Hashflow po
 project: unidentified-049a6f30
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families c4b84705"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -128,6 +135,7 @@ so rubric step 1 does not apply. The maker's Hashflow pool `0xfbf37e48…` is a 
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review16): MEDIUM -> MEDIUM, step 4: signer check confirmed by trace and `eth_call` replay (ECDSA against `owner()` `0x595744b0…`, no ERC-1271 forwarding); code is fixed, so the fix is a new wallet; USD 121,368 held at block 26,431,537 (over USD 50k, step 5 does not lower); active until 2026-07-01 (step 1 does not apply). Corrected admin (owner and manager EOAs, both able to withdraw directly; `executor0` cannot), fix.who_acts, title; status candidate -> confirmed. Operator not identified (creator also runs Hashflow pool "ant").
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code.
 
 # Source excerpts: unidentified-049a6f30-signer-key
 

@@ -4,7 +4,7 @@ title: "Injective Peggy bridge: a quantum attacker who recovers the Ethereum key
 project: injective
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5]
+patterns: [PQ-5, PQ-18]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: funds-loss
@@ -38,6 +38,13 @@ sources:
   date: 2026-11-04
   verdict: reported
   rating: ''
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families ca27e3a2"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -104,6 +111,7 @@ all code-less EOAs at block 26,431,526 (PQ-12), which is a separate wallet expos
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review19): MEDIUM kept, step 4. Source re-read; proxy admin and Safe re-read at block 26,431,526; Peggy owner found expired (no pause); current valset decoded (45 validators, 14 for a quorum).
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: injective-peggy-valset
 

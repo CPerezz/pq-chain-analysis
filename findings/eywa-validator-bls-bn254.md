@@ -3,7 +3,7 @@ id: eywa-validator-bls-bn254
 title: "EYWA: a quantum attacker who forges the 21-member BN254 BLS epoch committee (BridgeV3, formerly BridgeV2) can unlock EYWA PortalV2's escrow on Ethereum (about USD 2k)"
 project: eywa
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-6]
 primitives: [bn254, sw_bn254]
 trigger: committee-keys
@@ -160,6 +160,7 @@ Pattern PQ-6. Source excerpts: [`source-excerpts.md`](#source-excerpts-eywa-vali
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review16): MEDIUM -> LOW, step 5: whole Ethereum exposure measured: escrow PortalV2 `0xac8f44ce…` USD 1,996 at block 26,431,537, and SynthesisV2 synths mintable without limit but priced at USD 0 on Ethereum (no rate, no pool; block 26,431,656), Diamond holds nothing; added BridgeV3 `0x9291c558…`, the live successor with the same BLS check (BridgeV2's router is paused and PortalV2 moved to a new AddressBook on 2025-12-27); admin corrected from "AccessControl admin" to the role holders read on-chain; alternative changed to configurable-verifier (Receiver chooses its bridges).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: eywa-validator-bls-bn254
 

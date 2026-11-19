@@ -3,7 +3,7 @@ id: biconomy-ecdsa-validator
 title: "Biconomy Nexus K1MeeValidator: a quantum attacker who recovers an account owner's ECDSA key controls the Nexus account until the owner swaps in a post-quantum validator; the 40 accounts seen hold about $33"
 project: biconomy
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-12]
 primitives: [ecrecover]
 trigger: owner-keys
@@ -121,3 +121,4 @@ The validator holds nothing; the value is in the accounts that use it.
 - 2026-11-19 (study `eip-8151-impact`, reading 3): EIP-8151 as written closes this path for an account that takes
   real code (read, not executed); plain and 7702-delegated accounts stay exposed, and approvals already given stay
   valid.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.

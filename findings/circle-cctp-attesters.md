@@ -4,7 +4,7 @@ title: "Circle CCTP: a quantum attacker who recovers 2 of Circle's attester ECDS
 project: circle
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5]
+patterns: [PQ-5, PQ-18]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: funds-loss
@@ -55,6 +55,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families db178bca, ac1ef7c2"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [circle-gateway-burn-signer, circle-gateway-minter-attestation-key, circle-usdc-permit-code-first]
 ---
 
@@ -123,6 +130,7 @@ amount. Other applications that receive CCTP messages through the transmitters w
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review09): MEDIUM kept (step 4: V2 upgrade by Circle's proxy admin; V1 mint power removable by the USDC master minter). Exposure measured as the TokenMinters' USDC mint allowances ($105.4M V1, $860.8M V2, block 26,431,457) and set as `escrow`; V2's own $11 removed; attesters, thresholds and admins re-read.
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: circle-cctp-attesters
 

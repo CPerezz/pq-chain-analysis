@@ -4,7 +4,7 @@ title: "Binance Wallet swap vaults (\"binance w3w vault\"): a quantum attacker w
 project: binance-wallet
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -55,6 +55,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 5da65d2b, 69511fb8"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -148,6 +155,7 @@ possible.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review16): MEDIUM -> MEDIUM, step 4: signer check confirmed by trace and replay (`ecrecover` against `ROLE_SIGNER` `0x6fa9e206…`, relayer role required); fix is a UUPS upgrade by the `DEFAULT_ADMIN_ROLE` EOA; USD 622,816 held at block 26,431,537 (step 5 does not lower). Project identified as Binance Wallet (EIP-712 domain "binance w3w vault", router labelled "Binance: DEX Router"); added sibling vault `0xa7323e45…`; recorded the pause (2026-11-01) and the role holders; status candidate -> confirmed.
 - 2026-11-17 integration: id renamed from `unidentified-88649f47-signer-key` (project identified).
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: binance-wallet-vault-signer
 

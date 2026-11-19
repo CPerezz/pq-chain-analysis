@@ -3,7 +3,7 @@ id: airswap-v4-maker-sig-ecdsa-only
 title: "AirSwap SwapERC20 v4 (0xd82fa167, dormant): a quantum attacker who recovers a maker's ECDSA key can sign orders that spend any approvals makers left on it"
 project: airswap
 status: confirmed
-severity: LOW
+severity: HIGH
 patterns: [PQ-1]
 primitives: [ecrecover]
 trigger: user-key
@@ -99,6 +99,7 @@ The exposure is makers' remaining allowances to `0xd82fa167…`, which were not 
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated LOW (step 1 reach: no activity in 12 months (last 2025-09-17) and nothing held).
 - 2026-11-17 review (Review17): LOW kept, step 1: order path unused since 2025-09-17 and nothing held. Pattern corrected from PQ-4 (operator key) to PQ-1 (the signer is the maker; ECDSA only); trigger user-key; fix layer account-migration (makers revoke approvals).
+- 2026-11-19: LOW -> HIGH, step 1 removed (dormancy no longer lowers a rating); step 4 gives HIGH: users' own funds stay forgeable in a contract that cannot change.
 
 # Source excerpts: airswap-v4-maker-sig-ecdsa-only
 

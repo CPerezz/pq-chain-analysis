@@ -4,7 +4,7 @@ title: "Unidentified 9-of-15 custody multisig 0x54805468 (factory 0x657975f6): a
 project: unidentified-54805468
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-12]
+patterns: [PQ-12, PQ-18]
 primitives: [ecrecover]
 trigger: owner-keys
 impact: funds-loss
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 0147d0a9"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -114,6 +121,7 @@ census adds them.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: signer set fixed in code; funds must move, and many independent owners may not act).
 - 2026-11-17 review (Review03): HIGH -> MEDIUM, step 4: the fix is the owners (one active operator, 9 of 15 EOAs) moving the funds to a post-quantum wallet. Status candidate -> confirmed: bytecode shows a single `ecrecover` loop and no ERC-1271 path, and owners, threshold and implementation were read on-chain. Operator still unidentified; 4 sibling wallets from the factory found.
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day.
 
 # Source excerpts: unidentified-54805468-owner-keys
 

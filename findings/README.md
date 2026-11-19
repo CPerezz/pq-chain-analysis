@@ -113,18 +113,19 @@ contract, any function), `txs_30d` (transactions that called it in the 30-day wi
 
 ## Severity
 
-The rubric below was written for class `exposure`. Findings of other classes use the same six ratings and the same
-first question (who can fix it, and how hard is that); their rubric is written with the first study that files them.
+The rubric below was written for class `exposure`. Classes `regression` and `migration-hazard` have theirs below it.
+All use the same six ratings and the same first question: who can fix it, and how hard is that.
 
-Rated first by whether the exposure can be removed without an Ethereum protocol change, and how hard that is; then
-the value exposed can lower the rating, never raise it. Each source's own rating is kept in `sources[].rating`.
+Rated by whether the exposure can be removed without an Ethereum protocol change, and how hard that is. Value and
+activity never change a rating: they are columns to sort and filter by. Each source's own rating is kept in
+`sources[].rating`.
 
 | Rating | Rule |
 |---|---|
 | CRITICAL | Pooled funds (what the contract holds or can release) can be taken by forging one operator key, a committee, or a proof, **and** no fix can be counted on: the verification cannot be changed (immutable, no admin) and its users cannot all move |
 | HIGH | No fix without a protocol change can be counted on, and funds can be taken or stuck: pooled funds whose fix needs an owner nobody can reach or many independent parties; or users' own funds that stay forgeable after they migrate their account, in a contract that cannot change (only every user moving, or a protocol change such as EIP-8151, protects them); or a dependency on KZG blobs that neither an existing path nor an upgrade can replace (for example with calldata data availability), so only a protocol change replaces it |
 | MEDIUM | Fixable without a protocol change, but the fix is a contract upgrade, a governance vote, a new deployment that users move to, owners migrating their accounts, or several parties acting. Also: post-quantum users are locked out of a core function with no alternative |
-| LOW | An alternative path already exists and nothing can be taken through the check (for an operator, committee or prover: one known party switches to it); or one known operator changes a setting; or the check guards only an auxiliary feature through which nothing can be taken; or the path is dormant and holds nothing; or a MEDIUM case with under about USD 50k exposed |
+| LOW | An alternative path already exists and nothing can be taken through the check (for an operator, committee or prover: one known party switches to it); or one known operator changes a setting; or the check guards only an auxiliary feature through which nothing can be taken |
 | NONE | No exposure beyond the user's own account key (for example: account code checked first, full-length ERC-1271 for contracts) |
 | UNRATED | Not enough established to apply the steps |
 
@@ -132,7 +133,7 @@ the value exposed can lower the rating, never raise it. Each source's own rating
 
 Apply in order, from the finding's checked facts.
 
-1. **Reach.** If the path had no activity in the last 12 months and the contracts hold nothing: **LOW**.
+1. *(Removed 2026-11-19: dormancy no longer lowers a rating.)*
 2. **Impact.** What a CRQC holder can do if nobody acts: take pooled funds (forged operator, committee or proof);
    take users' own funds through their signatures (forged user key); lock funds; or only lock post-quantum users out
    of the path (`liveness`). Sets `impact`.
@@ -144,12 +145,21 @@ Apply in order, from the finding's checked facts.
    restores calldata data availability): MEDIUM. An existing alternative through which nothing can be taken (such as a
    calldata path the operators can already use in the deployed contracts, when a forged opening only withholds data),
    one operator's setting, or an auxiliary feature that cannot move funds: LOW.
-5. **Lower by value.** If under about USD 50k is exposed (measured; `value_usd` with its basis), lower one level.
-   Unmeasured value lowers nothing.
+5. *(Removed 2026-11-19: value no longer lowers a rating.)*
 6. **Unknown fixability.** If it is not established who can change the verification, rate as if nobody can.
 7. **The team's answer.** When the team says whether and how it can fix it, that replaces step 3. Record it in History.
 
 A re-rating keeps the old rating in History with the step that decided the new one.
+
+### Classes `regression` and `migration-hazard`
+
+| Rating | Rule |
+|---|---|
+| CRITICAL | Funds are lost or locked for people who did nothing (an honest party punished; customers' or participants' funds stuck), and nobody can change the contract |
+| HIGH | The same, but a fix needs an upgrade or many parties; or owners' own funds locked in code that cannot change, one wallet per owner group |
+| MEDIUM | A core function stops or a right is lost, and a fix by upgrade, vote, new deployment or migration exists; or only the operator's own money is at stake |
+| LOW | Another path exists, the key can be rotated, or only a sender's gas limit is at fault |
+| NONE | Checked and not affected |
 
 ## Checks before you state a fact
 

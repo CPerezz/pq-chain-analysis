@@ -4,7 +4,7 @@ title: "Clipper Caravel exchange: forging the one immutable quote-signer ECDSA k
 project: clipper
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 5ed8caae"
+  date: 2026-11-19
+  verdict: reported
+  rating: CRITICAL
 related: []
 ---
 
@@ -110,6 +117,7 @@ is live.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by a new deployment that the operator and users move to).
 - 2026-11-17 review (Review04): MEDIUM kept (step 4: new deployment by one team; value USD 343k). Read the signer address, owner powers and triage state on-chain; corrected `admin`/`who_acts` (the owner Safe can halt trading but not change the signer).
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer is fixed; once its account has code the signed functions stop.
 
 # Source excerpts: clipper-designated-signer
 

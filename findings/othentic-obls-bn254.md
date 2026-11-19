@@ -3,7 +3,7 @@ id: othentic-obls-bn254
 title: "Othentic: a quantum attacker who recovers the operators' BN254 BLS keys can pass any task through the OBLS quorum check, and on Ditto Network's AVS run arbitrary user operations on Ditto-automated accounts (about USD 5 held)"
 project: othentic
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-6]
 primitives: [bn254, sw_bn254]
 trigger: committee-keys
@@ -123,3 +123,4 @@ Othentic's Safe fixes all instances), lowered by step 5 (under USD 50k measured)
 - 2026-11-17 review (Review21): MEDIUM -> LOW, step 5: the funds a forged quorum reaches are Ditto's automated Kernel
   accounts (USD 5.28) and an empty reward treasury; the other two instances on the same beacon are dormant with empty
   treasuries. Escrow measured and the family listed.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.

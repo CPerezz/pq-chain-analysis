@@ -3,7 +3,7 @@ id: datachain-lcp-enclave-keys
 title: "TOKI (Datachain LCP): a quantum attacker who recovers the SGX enclave keys behind LCP client 0xee50fafc can forge IBC packets that release the TOKI bridge pools (about USD 3.7k)"
 project: datachain
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-5]
 primitives: [ecrecover]
 trigger: committee-keys
@@ -114,6 +114,7 @@ step 5 (under USD 50k measured).
 - 2026-11-17 review (Review05): split `0x21fd9803…` (immutable LCPClient of a VSG redeem bridge, operator EOA
   `0x7b88f333…`) into `vsg-lcp-enclave-keys`, with its evidence; `rsa` dropped from primitives (only that client used
   it). LOW unchanged, step 5 (TOKI escrow alone USD 3,742).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: datachain-lcp-enclave-keys
 

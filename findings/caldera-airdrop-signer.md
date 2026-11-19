@@ -3,7 +3,7 @@ id: caldera-airdrop-signer
 title: "Caldera: the closed ERA airdrop (CalderaAirdrop) trusts one githubSigner ECDSA key; with it a quantum attacker could claim unclaimed GitHub allocations only if the owner Safe reopened the claim period"
 project: caldera
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover]
 trigger: operator-key
@@ -102,6 +102,7 @@ reopens it; the vault behind it now holds 29,744 ERA (about USD 2.2k). Rated LOW
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated LOW (step 1 reach: no activity in 12 months (last 2025-07-31) and nothing held).
 - 2026-11-17 review (Review21): LOW kept, step 1: no activity since 2025-07-31 and nothing held; claim period closed.
   Exposure measured: vault ERA within the allowance, USD 2,212 (escrow).
+- 2026-11-19: LOW -> MEDIUM, step 1 removed (dormancy no longer lowers a rating); step 4 gives MEDIUM: fix by an upgrade.
 
 # Source excerpts: caldera-airdrop-signer
 

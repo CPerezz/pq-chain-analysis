@@ -3,7 +3,7 @@ id: galxe-signer
 title: "Galxe: a quantum attacker who recovers Galxe's backend ECDSA signer can activate fake earndrops and drain VestingEarndrop's pooled tokens, and forge deposit authorisations; the contracts hold about $0 today"
 project: galxe
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover]
 trigger: operator-key
@@ -131,3 +131,4 @@ If Galxe funds new earndrops in it, its pooled balance becomes the exposure.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review09): MEDIUM -> LOW, step 5: measured holdings of all three contracts are about $0 (block 26,431,457), so the redeploy case (MEDIUM, step 4) drops one level. Mechanism read in verified source: only VestingEarndrop pools other people's tokens behind the signer check; deposit contracts move only the caller's funds.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.

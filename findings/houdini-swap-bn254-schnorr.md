@@ -3,7 +3,7 @@ id: houdini-swap-bn254-schnorr
 title: "PrivateDEX test deployments (Houdini Swap, inferred): a quantum attacker who solves BN254 discrete logs can forge the Schnorr-style deposit proofs and withdraw any deposit (USD 17 held)"
 project: houdini-swap
 status: confirmed
-severity: MEDIUM
+severity: HIGH
 patterns: [PQ-11]
 primitives: [bn254]
 trigger: user-key
@@ -130,6 +130,7 @@ deployer) was not in the census and was added by this review.
   unverified `0xc434c6f2…` matched to verified PrivateDEX bytecode, so status candidate -> confirmed; added the
   verified sibling `0xa88bead2…`.
 - 2026-11-17 integration: id renamed from `unidentified-23c5e2e0-snark-verifier` (project identified).
+- 2026-11-19: MEDIUM -> HIGH, step 5 removed (value no longer lowers a rating); step 4 gives HIGH.
 
 # Source excerpts: houdini-swap-bn254-schnorr
 

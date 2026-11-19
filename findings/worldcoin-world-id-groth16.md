@@ -3,7 +3,7 @@ id: worldcoin-world-id-groth16
 title: "World ID (Worldcoin): a BN254 Groth16 setup trapdoor would forge World ID membership proofs and operator tree updates on mainnet; no mainnet consumer holds value"
 project: worldcoin
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254]
 trigger: trusted-setup
@@ -227,3 +227,4 @@ calls), `0x805dd45f…` (insertion 1200, 45 calls, last block 24,284,180), `0x49
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review16): MEDIUM -> LOW, step 5: step 4 stays MEDIUM (Safe 0xc534a745, 4 of 6, must swap verifiers or upgrade the UUPS managers/router), but the measured exposure is USD 0: no mainnet transaction has consumed a membership proof since 2023-08-22 and batch updates are `onlyIdentityOperator`. Added the three SemaphoreVerifiers (the membership-proof verifiers), mapped each batch verifier to its group and lookup table, set impact `none` and fix.layer `contract-upgrade`.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.

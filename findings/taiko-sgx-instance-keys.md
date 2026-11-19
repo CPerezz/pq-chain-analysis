@@ -4,7 +4,7 @@ title: "Taiko: SGX instance ECDSA keys sign every L1 proof; with a quantum compu
 project: taiko
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -75,6 +75,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 6610c7aa"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [taiko-zk-verifiers]
 ---
 
@@ -157,6 +164,7 @@ The Pacaya inbox still holds 812,589 TAIKO in liveness bonds (about USD 47k). No
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review16): MEDIUM -> MEDIUM, step 4: the listed SgxVerifier proxies are on the retired Pacaya path. Added the live SecureSgxVerifiers `0x41e79eb4…`/`0x9d3c595b…` used by Shasta `ZkRequiredVerifier`. Alternative changed from key-rotation-only to configurable-verifier (the DAO can upgrade the inbox to a new verifier set). Admin confirmed as TaikoDAOController owned by the Taiko DAO. Escrow measured: USD 9,946,783 (Bridge plus ERC20Vault). SGX alone is insufficient but the required ZK leg is BN254, so both fall to a CRQC. Noted the DCAP (P-256) attestation dependency.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: taiko-sgx-instance-keys
 

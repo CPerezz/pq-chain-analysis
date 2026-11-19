@@ -4,7 +4,7 @@ title: "Lido stETH: permit forwards only a 65-byte (v, r, s) signature to ERC-12
 project: lido
 status: confirmed
 severity: LOW
-patterns: [PQ-3]
+patterns: [PQ-3, PQ-18]
 primitives: [ecrecover]
 trigger: none
 impact: liveness
@@ -44,6 +44,13 @@ sources:
   ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/lido-steth-permit-code-first/notes.md
   date: 2026-11-17
   verdict: confirmed
+  rating: LOW
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 06efe63e"
+  date: 2026-11-19
+  verdict: reported
   rating: LOW
 related: [lido-wsteth-permit, lido-predeposit-bls12-381]
 ---
@@ -106,6 +113,7 @@ put in `value_usd`. wstETH's `permit` is ECDSA-only and is rated separately (`li
   this is PQ-3 (post-quantum accounts locked out of `permit`, `approve` remains), not PQ-13. Status not-affected ->
   confirmed; impact none -> liveness; fix layer none -> contract-upgrade; market cap removed from `value_usd` (not the
   exposure; stale $22.21B in the draft).
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day. Executed: a real transaction ends without error but with other logs when its signer has code.
 
 # Source excerpts: lido-steth-permit-code-first
 

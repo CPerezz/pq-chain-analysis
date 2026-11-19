@@ -3,7 +3,7 @@ id: lido-predeposit-bls12-381
 title: "Lido V3 PredepositGuarantee: a quantum attacker who recovers a validator's BLS key can front-run a stVault's 1 ETH predeposit, which the node operator's guarantee then repays (3 ETH held)"
 project: lido
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-6]
 primitives: [bls12381, sw_bls12381]
 trigger: operator-key
@@ -107,6 +107,7 @@ a protocol-level exposure outside this registry.
 - 2026-11-17 review (Review07): MEDIUM -> LOW, step 5: the exposure is the node operators' guarantees held in the
   contract (3 ETH, $5,435), under $50k. Trigger committee-keys -> operator-key (one validator's BLS key, not an
   aggregate); protocol change not-needed -> helps.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Review reads: lido-predeposit-bls12-381 (2026-11-17, Review07)
 

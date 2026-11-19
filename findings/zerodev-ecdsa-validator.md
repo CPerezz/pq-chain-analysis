@@ -4,7 +4,7 @@ title: "ZeroDev Kernel v3 ECDSA validators: a quantum attacker who recovers an a
 project: zerodev
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-12]
+patterns: [PQ-12, PQ-17]
 primitives: [ecrecover]
 trigger: owner-keys
 impact: funds-loss
@@ -55,6 +55,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families eb5e632c, 28de8c06"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -119,6 +126,7 @@ enumerated here.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: signer set fixed in code; funds must move, and many independent owners may not act).
 - 2026-11-17 review (Review08): HIGH -> MEDIUM, step 4: Kernel v3 accounts can change their root validator and uninstall these modules in place (owners migrating their accounts), and the funds are each owner's own, not pooled; the fix needs a post-quantum validator module first.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
 
 # Review notes (Review08, 2026-11-17)
 

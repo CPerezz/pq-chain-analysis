@@ -3,7 +3,7 @@ id: unidentified-d941fb73-snark-verifier
 title: "Standalone Polygon CDK validium (chain 762419583): a forged fflonk proof could finalize false state on its own RollupManager, whose bridge holds nothing priced; dormant since 2025-04"
 project: unidentified-d941fb73
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254]
 trigger: trusted-setup
@@ -103,6 +103,7 @@ RollupManager and rollup contracts hold nothing. Same bytecode as Polygon's `0x9
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated LOW (step 1 reach: no activity in 12 months (last 2025-04-07) and nothing held).
 - 2026-11-17 review (Review14): LOW kept, step 1. Consumer identified as a standalone CDK validium (own RollupManager `0x879f…bb93`, chain ID 762419583), not Polygon's Agglayer; project still unidentified (possibly AIRAS). Escrow measured: nothing priced.
+- 2026-11-19: LOW -> MEDIUM, step 1 removed (dormancy no longer lowers a rating); step 4 gives MEDIUM: a new verifier the consumer points at.
 
 # Source excerpts: unidentified-d941fb73-snark-verifier
 

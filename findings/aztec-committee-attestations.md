@@ -4,7 +4,7 @@ title: "Aztec rollup: a quantum attacker who recovers the validators' ECDSA atte
 project: aztec
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5]
+patterns: [PQ-5, PQ-17]
 primitives: [ecrecover, kzg]
 trigger: committee-keys
 impact: funds-loss
@@ -95,6 +95,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 50946a9c, 4fc0bf4b, 359ef584, e57783fc"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [aztec-honk-verifier, aztec-governance-proposer-sig, aztec-validator-bls-pop-bn254, aztec-blob-kzg]
 ---
 
@@ -199,3 +206,4 @@ attesters) checked and left out.
   (owed rewards, not releasable); `alternative` sole -> key-rotation-only.
 - 2026-11-17 review (Review00, follow-up): MEDIUM kept. Noted the escape-hatch path (proposals without attestations
   during open hatches) and linked the blob opening, now rated in aztec-blob-kzg.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.

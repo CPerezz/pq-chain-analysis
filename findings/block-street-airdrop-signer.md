@@ -3,7 +3,7 @@ id: block-street-airdrop-signer
 title: "Block Street BSB airdrop: one ECDSA claim-signer key authorises every claim, so a quantum attacker who recovers it can claim the remaining BSB (about USD 16.5k) from the airdrop contract"
 project: block-street
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover]
 trigger: operator-key
@@ -96,6 +96,7 @@ other Block Street contract was found calling `ecrecover` in the curated set.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review19): MEDIUM -> LOW, step 5: MEDIUM by the fix (owner ends the airdrop and redeploys), under USD 50k held (USD 16.5k). Claim path confirmed from disassembly (ecrecover against `signer()` over sender, amount, deadline, chain, contract); status candidate -> confirmed (bytecode).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: block-street-airdrop-signer
 

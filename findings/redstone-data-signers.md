@@ -4,7 +4,7 @@ title: "RedStone: forging 3 of 5 node ECDSA keys plus one updater EOA key pushes
 project: redstone
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5]
+patterns: [PQ-5, PQ-17]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: funds-loss
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 2559d14d"
+  date: 2026-11-19
+  verdict: reported
+  rating: HIGH
 related: []
 ---
 
@@ -120,6 +127,7 @@ likely use the same signer check and the same admin.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review02): MEDIUM unchanged, step 4: upgrade by RedStone's 2-of-3 Safe 0x6906f3a0… through ProxyAdmin 0x8223a627… (read at block 26,431,562); value not measured, so step 5 does not apply. Removed the 148-instance family: it grouped unrelated proxies with generic TransparentUpgradeableProxy code (only this address runs the adapter); 21 RedStone siblings under the same ProxyAdmin are listed in the body.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer can be replaced only by an upgrade; once its account has code the signed functions stop until then. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: redstone-data-signers
 

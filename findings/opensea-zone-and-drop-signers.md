@@ -4,7 +4,7 @@ title: "OpenSea SignedZone and SeaDrop: a quantum attacker who recovers OpenSea'
 project: opensea
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17, PQ-18]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -55,6 +55,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families d9ec46b5, 4ff72b13"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [opensea-seaport-order-sig, reservoir-signed-zone]
 ---
 
@@ -135,6 +142,7 @@ zone and is now in `reservoir-signed-zone`.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review13): MEDIUM unchanged, step 4: one known operator (OpenSea Safe) must deploy a new zone and SeaDrop with a post-quantum signer and orders and drops move to them. Read controller, zone owner and signers; removed SeaDrop's USD 58 `held` value (not the exposure); SignedZoneV16 re-attributed to Reservoir (should move to a `reservoir` finding).
 - 2026-11-17 review (Review13): moved SignedZoneV16 `0x2d1a340c…` and its evidence to `reservoir-signed-zone`; rating unchanged (MEDIUM, step 4).
+- 2026-11-19 (study `eip-8151-impact`, PQ-17, PQ-18): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code; a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: opensea-zone-and-drop-signers
 

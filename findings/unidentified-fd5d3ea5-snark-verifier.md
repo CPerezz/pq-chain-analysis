@@ -3,7 +3,7 @@ id: unidentified-fd5d3ea5-snark-verifier
 title: "Unidentified shielded pool 0x428c850b: transfer and withdraw proofs are gnark Groth16 on BN254; a recovered setup trapdoor lets an attacker withdraw the pool's $157"
 project: unidentified-fd5d3ea5
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254]
 trigger: trusted-setup
@@ -97,6 +97,7 @@ related: []
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review10): MEDIUM -> LOW, step 5: escrow measured at $157 (the pool's holdings). Consumer identified as a shielded pool whose proxy a 2-of-3 Safe can upgrade (verifiers are immutables of the implementation); added the pool's withdraw verifier. Status candidate -> confirmed (bytecode fingerprint plus consumer getters and on-chain reads). Project still unidentified.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: unidentified-fd5d3ea5-snark-verifier
 

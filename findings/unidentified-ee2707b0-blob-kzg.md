@@ -3,7 +3,7 @@ id: unidentified-ee2707b0-blob-kzg
 title: "Unidentified blob validium prototype (operator 0xd5c648ba, 3 contracts): the operator posts batches against KZG blob openings, so a forged opening could hide batch data and lock deposits; ~$3 held"
 project: unidentified-ee2707b0
 status: candidate
-severity: MEDIUM
+severity: HIGH
 patterns: [PQ-8]
 primitives: [kzg]
 trigger: trusted-setup
@@ -128,6 +128,7 @@ none proven or settled.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: depends on the KZG precompile; only a protocol change replaces it).
 - 2026-11-17 review (Review17): HIGH -> MEDIUM, step 5: under $50k held (~$3 across the three contracts, measured); steps 4/6 give HIGH because no calldata fallback can be established from unverified bytecode. Impact funds-loss -> funds-locked: only the operator posts blob commitments (non-operator `postBatch` reverts `Unauthorized`). Project still unidentified.
+- 2026-11-19: MEDIUM -> HIGH, step 5 removed (value no longer lowers a rating); step 4 gives HIGH.
 
 # Source excerpts: unidentified-ee2707b0-blob-kzg
 

@@ -109,6 +109,7 @@ Everclear spoke and hub, which this signature does not authorise. Fee adapters o
 - 2026-11-17 review (Review07): LOW unchanged, now step 4 (the check only guards Everclear's own fee) since the
   current FeeAdapterV2 `0xd0185bfb…`, added here, was active in 2026-04. Impact funds-loss -> none, role core ->
   auxiliary.
+- 2026-11-19: LOW kept, step 1 removed (dormancy no longer lowers a rating); step 4 also gives LOW: the check guards only the operator's own fee.
 
 # Source excerpts: everclear-fee-signer
 

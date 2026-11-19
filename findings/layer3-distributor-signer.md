@@ -99,6 +99,7 @@ needed.
 - 2026-11-17 review (Review18): LOW kept, step 1 (last transaction 2025-08-30, holds dust). Impact funds-loss -> none
   and role core -> auxiliary: the signature is an extra gate on an immutable merkle tree bound to `msg.sender`, so a
   forged signature cannot redirect allocations. `last_active` corrected to 2025-08-30 (emergencyWithdraw).
+- 2026-11-19: LOW kept, step 1 removed (dormancy no longer lowers a rating); step 4 also gives LOW: an extra gate on a fixed merkle tree; nothing can be taken.
 
 # Source excerpts: layer3-distributor-signer
 

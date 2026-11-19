@@ -3,7 +3,7 @@ id: questn-claim-signer
 title: "QuestN: a quantum attacker who recovers QuestN's claim-signer key can sign reward claims and mint Quest3 reward NFTs and token payouts from its event-reward contract (reward vault empty on 2026-11-17)"
 project: questn
 status: candidate
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover]
 trigger: operator-key
@@ -103,6 +103,7 @@ QuestN's logic.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review11): MEDIUM -> LOW, step 5: the claims pay from reward vault 0x0376a356…, which held $0 on 2026-11-17. Project identified as QuestN (Quest3NFT contracts, nft.questn.com base URI); id kept. Removed the unrelated proxy-code family (63 contracts sharing the generic proxy code). Status stays candidate (implementation unverified).
 - 2026-11-17 integration: id renamed from `unidentified-7c838b25-signer-key` (project identified).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: questn-claim-signer
 

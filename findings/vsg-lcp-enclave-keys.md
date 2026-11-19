@@ -3,7 +3,7 @@ id: vsg-lcp-enclave-keys
 title: "VSG redeem bridge (Vector Smart Chain): a quantum attacker who recovers the SGX enclave key of LCP client 0x21fd9803 can forge redeem packets that release VsgBridgeAppV2's USDT (about USD 0.5k)"
 project: vector-smart-chain
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-5]
 primitives: [ecrecover, rsa]
 trigger: committee-keys
@@ -109,6 +109,7 @@ operator), lowered one level by step 5 (under USD 50k measured).
 - 2026-11-17: created by review (Review05), split from `datachain-lcp-enclave-keys` (MEDIUM there): `0x21fd9803…` is
   operated by EOA `0x7b88f333…` for a VSG/Vector Smart Chain redeem bridge, not by TOKI. Rated LOW, step 5: MEDIUM by
   step 4 (immutable client; new deployment by one operator), escrow USD 497 measured at block 26,431,590.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: vsg-lcp-enclave-keys
 

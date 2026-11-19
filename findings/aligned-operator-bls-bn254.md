@@ -3,7 +3,7 @@ id: aligned-operator-bls-bn254
 title: "Aligned Layer service manager: a quantum attacker who recovers the operators' BN254 BLS keys (and the aggregator's ECDSA key) can mark false proof batches as verified; the only on-chain consumer seen holds nothing"
 project: aligned
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-6]
 primitives: [bn254, sw_bn254]
 trigger: committee-keys
@@ -141,3 +141,4 @@ that trusts `verifyBatchInclusion` would then accept them. The only on-chain con
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review22): MEDIUM -> LOW, step 5: exposure measured as escrow: the only on-chain consumer of `verifyBatchInclusion` seen (VoteInbox 0x1870cfa5) holds $0, and the 0.95 ETH of batcher deposits cannot be taken by a forged quorum. Step 4 alone would be MEDIUM (upgrade by the 5-of-8 Safe). Noted that the aggregator EOA's ECDSA key is also needed.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.

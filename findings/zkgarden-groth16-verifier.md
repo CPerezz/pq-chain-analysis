@@ -3,7 +3,7 @@ id: zkgarden-groth16-verifier
 title: "zkGarden (inferred) shielded pool 0x31981405: a recovered BN254 Groth16 setup trapdoor lets a quantum attacker forge withdrawal proofs and drain the pool ($30 of test-sized DAI deposits)"
 project: zkgarden
 status: candidate
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254]
 trigger: trusted-setup
@@ -103,6 +103,7 @@ was found.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review23): MEDIUM -> LOW, step 5: the pool holds its own deposits, $30 measured (under $50k); step 4 alone gives MEDIUM (upgrade by one owner EOA). Project set to zkgarden (inferred from the deployer's verified `ZkGardenPriceOracle`); status stays candidate (implementation unverified).
 - 2026-11-17 integration: id renamed from `unidentified-31981405-snark-verifier` (project identified).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: zkgarden-groth16-verifier
 

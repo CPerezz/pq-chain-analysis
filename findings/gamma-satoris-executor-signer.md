@@ -3,7 +3,7 @@ id: gamma-satoris-executor-signer
 title: "gamma.satoris.eth flash-loan arbitrage executors: a forged signature on a trade instruction can direct the executors, which hold about USD 1"
 project: gamma-satoris
 status: candidate
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover]
 trigger: operator-key
@@ -130,6 +130,7 @@ its library `0x765b6826…` also contains `ECDSA`) holds about USD 0. It belongs
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review08): MEDIUM -> LOW, step 5: the executors hold about USD 1 in total (measured), below USD 50k; owner of all three read as EOA 0xef482680… (gamma.satoris.eth); 0x2d53a516… is config-only, not immutable; ECDSA located in delegatecalled library 0x878978b5….
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: gamma-satoris-executor-signer
 

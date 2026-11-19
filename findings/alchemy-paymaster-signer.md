@@ -3,8 +3,8 @@ id: alchemy-paymaster-signer
 title: "Alchemy: a quantum attacker who recovers the paymaster's verifyingSigner ECDSA key can sponsor any user operation from its EntryPoint deposit (about USD 1.2k)"
 project: alchemy
 status: confirmed
-severity: LOW
-patterns: [PQ-4]
+severity: MEDIUM
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -38,6 +38,13 @@ sources:
   date: 2026-11-04
   verdict: reported
   rating: ''
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 42dc747b"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -109,6 +116,8 @@ not at stake. Rated LOW: MEDIUM by step 4 (fix by a UUPS upgrade), lowered one l
 - 2026-11-17 review (Review21): MEDIUM -> LOW, step 5: the exposure is the EntryPoint deposit, 0.644 ETH (USD 1,166),
   under USD 50k. Implementation `0xb4e809ab…` (installed 2026-11-12) is unverified, so `evidence.level` source-read ->
   bytecode; the check is unambiguous from selectors, constants and the `ecrecover` trace.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: alchemy-paymaster-signer
 

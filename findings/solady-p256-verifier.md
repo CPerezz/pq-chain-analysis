@@ -3,7 +3,7 @@ id: solady-p256-verifier
 title: "Solady P256Verifier fallback: a quantum attacker who recovers a passkey's P-256 key can sign for the 59 smart wallets that used it (about USD 380 held); unused since the P256VERIFY precompile went live"
 project: solady
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-9]
 primitives: [sw_p256]
 trigger: user-key
@@ -106,6 +106,7 @@ not this contract.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated LOW (step 4: stateless verifier library; the exposure is rated on the wallets that use it).
 - 2026-11-17 review (Review04): LOW kept, deciding step changed to step 5: step 4 gives MEDIUM (wallet owners migrate), and the 59 wallets that used the verifier hold USD 380 (block 26,431,608). fix.layer new-deployment -> account-migration; who_acts set.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: solady-p256-verifier
 

@@ -3,7 +3,7 @@ id: gasp-finalizer-bls-bn254
 title: "Gasp finalizer AVS: a forged BN254 BLS quorum lets the aggregator post a false withdrawal root to Rolldown (USD 15k); the owner Safe can swap the checker"
 project: gasp
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-6]
 primitives: [bn254, sw_bn254]
 trigger: committee-keys
@@ -114,3 +114,4 @@ could also forge, which is a separate exposure.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review01): MEDIUM -> LOW, step 5: escrow measured (Gasp Rolldown, USD 14.9k at block 26,431,796); step 4 stays MEDIUM because the consumer's owner Safe can repoint the checker (the draft's "key-rotation-only, no admin" was wrong); project identified as Gasp.
 - 2026-11-17 integration: id renamed from `unidentified-c7bf5248-bls` (project identified).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.

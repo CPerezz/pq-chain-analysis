@@ -3,7 +3,7 @@ id: rarimo-blob-kzg
 title: "Rarimo ZK rollup: forged KZG blob openings on LineaRollup 0x2f3c2056 let a submitter finalize L2 state whose data was never published, stranding the rollup's ETH (~$3k); calldata submission avoids the precompile"
 project: rarimo
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-8]
 primitives: [kzg]
 trigger: trusted-setup
@@ -120,3 +120,4 @@ itself.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: depends on the KZG precompile; only a protocol change replaces it).
 - 2026-11-17 review (Review16): HIGH -> LOW, step 5: `submitDataAsCalldata` is an unpaused fallback in the same contract (step 4 MEDIUM under the KZG-fallback rule), and the rollup holds USD 3,047. Impact funds-loss -> funds-locked: a forged opening allows data withholding, not theft (the SNARK still checks execution). Alternative sole -> alternative-exists. Project identified as Rarimo ZK rollup (docs address book, Blockscout creator).
 - 2026-11-17 integration: id renamed from `unidentified-2f3c2056-blob-kzg` (project identified).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.

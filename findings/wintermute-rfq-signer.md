@@ -4,7 +4,7 @@ title: "Wintermute market-maker contract 0x51c72848: a quantum attacker who reco
 project: wintermute
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 4a2c7a03"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -116,6 +123,7 @@ checked.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by a new deployment that the operator and users move to).
 - 2026-11-17 review (Review03): MEDIUM unchanged (step 4: Wintermute redeploys). Project identified as Wintermute (Blockscout and Arkham labels); source found verified on Blockscout (partial match), so evidence level bytecode -> source-read and status candidate -> confirmed; RFQ callers and allowances read on-chain.
 - 2026-11-17 integration: id renamed from `unidentified-51c72848-signer-key` (project identified).
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: wintermute-rfq-signer
 

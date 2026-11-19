@@ -4,7 +4,7 @@ title: "Hyperlane on Ethereum: a quantum attacker who recovers a validator quoru
 project: hyperlane
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5]
+patterns: [PQ-5, PQ-17]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: funds-loss
@@ -91,6 +91,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families ca72a26d, 6857673f"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -179,6 +186,7 @@ so `value_usd` stays null and the value step lowers nothing.
   `0x5eb42b1b…` as contracts and the other 134 clones (68 origins) as two families. Old clones marked retired.
   Re-rated MEDIUM -> MEDIUM, step 4: one Safe switches the ISM, but 74 validator keys must also move (several
   parties). Value not measured (step 5 lowers nothing).
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction ends without error but with other logs when its signer has code.
 
 # Source excerpts: hyperlane-multisig-ism-validators
 

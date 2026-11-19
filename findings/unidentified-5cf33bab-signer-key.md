@@ -3,7 +3,7 @@ id: unidentified-5cf33bab-signer-key
 title: "Tokenlon PMM market maker (UniversalAsset 0xbad9ada0): a quantum attacker who recovers the SIGNER key of its ERC-1271 validator 0x5cf33bab can sign quotes that sell the maker's inventory (about USD 21 now)"
 project: unidentified-5cf33bab
 status: candidate
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover]
 trigger: operator-key
@@ -108,6 +108,7 @@ the fix is a new validator. Rated LOW: MEDIUM by step 4 (new deployment by one o
 - 2026-11-17 review (Review05): MEDIUM -> LOW, step 5: traced the validator to a Tokenlon PMM maker, UniversalAsset
   `0xbad9ada0…`, whose inventory (USD 21 at 2026-11-17) is what a forged quote releases. Admin read as a custom
   "MultiSign v1.0" contract. Status stays candidate (unverified code).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: unidentified-5cf33bab-signer-key
 

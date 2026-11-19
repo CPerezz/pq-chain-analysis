@@ -4,7 +4,7 @@ title: "Aztec rollup: a quantum attacker who recovers the KZG ceremony trapdoor 
 project: aztec
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-8]
+patterns: [PQ-8, PQ-17]
 primitives: [kzg]
 trigger: trusted-setup
 impact: funds-locked
@@ -58,6 +58,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 50946a9c, 4fc0bf4b, 359ef584"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [aztec-committee-attestations, aztec-honk-verifier]
 ---
 
@@ -132,6 +139,7 @@ are not affected.
   transition and a forged opening only lets the blob publisher withhold data; exposure USD 81k escrow, so step 5
   does not lower it.
 - 2026-11-17 rubric correction: HIGH -> MEDIUM, step 4: the deployed rollups have no calldata mode, but Aztec Governance registers new rollup versions, which can use calldata DA (a governance vote plus a new deployment that portals and users move to); exposure USD 81k is above USD 50k, so step 5 does not lower it; `fix.layer` protocol -> new-deployment, `protocol_change` required -> helps.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
 
 # Review00 notes: Aztec blob KZG (2026-11-17)
 

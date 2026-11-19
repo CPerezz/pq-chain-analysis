@@ -4,7 +4,7 @@ title: "Aztec GovernanceProposer: a quantum attacker who recovers enough validat
 project: aztec
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5]
+patterns: [PQ-5, PQ-17]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: funds-loss
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 38b0eca9"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [aztec-committee-attestations, aztec-honk-verifier]
 ---
 
@@ -128,6 +135,7 @@ against a 4-day exit delay, let validators who notice exit first, if their withd
   one operator key (PQ-4 -> PQ-5, `trigger` operator-key -> committee-keys, `alternative` alternative-exists ->
   key-rotation-only since the direct-call path is the same ECDSA key, `role` auxiliary -> core); traced the
   automatic stake vote and measured what a captured Governance controls (USD 6.80M escrow).
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction ends without error but with other logs when its signer has code.
 
 # Source excerpts: aztec-governance-proposer-sig
 

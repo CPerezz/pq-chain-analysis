@@ -3,7 +3,7 @@ id: reddio-starkex-dac-signers
 title: "Reddio StarkEx data availability committee: availability attestations are ECDSA signatures, but the exchange it serves has not updated state since 2024-09-22"
 project: reddio
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-5]
 primitives: [ecrecover]
 trigger: committee-keys
@@ -79,6 +79,7 @@ This StarkWare committee contract is the data availability committee of Reddio's
 ## History
 
 - 2026-11-17: created in review (Review10) from the alltime precompile trace (StarkEx committees missing from the curated set), verified source, on-chain reads at block 26,431,780 and Blockscout holdings. Rated LOW (step 1: no committee activity since 2024-09-22 and the exchange holds $77).
+- 2026-11-19: LOW -> MEDIUM, step 1 removed (dormancy no longer lowers a rating); step 4 gives MEDIUM: the committee verifier is replaced by StarkEx governance.
 
 # Source excerpts: reddio-starkex-dac-signers
 

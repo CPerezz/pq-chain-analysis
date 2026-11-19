@@ -3,7 +3,7 @@ id: alicenet-fflonk-verifier
 title: "AliceNet validium (Polygon CDK): its fflonk BN254 verifiers (live 0xf2f73b87, retired 0x0c166845) would accept forged state proofs, but the bridge they secure holds $0"
 project: alicenet
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254]
 trigger: trusted-setup
@@ -121,6 +121,7 @@ same $0 is recorded on each entry).
 - 2026-11-17 review (Review17): MEDIUM -> LOW, step 5: the escrow (AliceNet bridge `0xf2ac62e8…`) holds $0, measured; step 4 stays MEDIUM (the timelock can repoint the verifier). Project identified as AliceNet (rollup `networkName()`); the consumer is a private rollup manager `0x8da537b4…` (rollup type 1, unused since rollup 1 moved to `0xf2f73b87…`), not PolygonValidiumEtrog as drafted; status candidate -> confirmed and evidence bytecode -> source-read (the verifier source is on Sourcify).
 - 2026-11-17 review (Review17, follow-up): LOW kept, step 5: the live verifier `FflonkVerifier_12` `0xf2f73b87…` added to `contracts[]`; it secures the same bridge, which holds $0, and step 4 is still MEDIUM (timelock can switch rollup type).
 - 2026-11-17 integration: id renamed from `unidentified-0c166845-snark-verifier` (project identified).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: alicenet-fflonk-verifier
 

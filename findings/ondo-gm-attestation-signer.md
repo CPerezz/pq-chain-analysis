@@ -4,7 +4,7 @@ title: "Ondo Global Markets: a quantum attacker who recovers the attestation sig
 project: ondo
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-18]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -38,6 +38,13 @@ sources:
   date: 2026-11-04
   verdict: reported
   rating: ''
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 8c8d985b"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -107,6 +114,7 @@ pool in this contract to measure; the exposure is the deviation times the rate-l
 - 2026-11-17 review (Review20): MEDIUM kept, step 4: no proxy, signer check hard-coded, fix is a new deployment by
   Ondo. Roles read on-chain (admin = TimelockController `0x3715b215…`, one signer EOA); forged quotes are bounded by the
   sanity oracle (default 10%) and rate limiter, so the exposure is not a pool and stays unmeasured.
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: ondo-gm-attestation-signer
 

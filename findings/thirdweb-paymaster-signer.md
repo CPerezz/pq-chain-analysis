@@ -3,8 +3,8 @@ id: thirdweb-paymaster-signer
 title: "thirdweb (inferred) Shielded verifying paymasters: a quantum attacker who recovers the sponsorship signer key can spend the paymasters' EntryPoint gas deposits (≈ $430)"
 project: thirdweb
 status: confirmed
-severity: LOW
-patterns: [PQ-4]
+severity: MEDIUM
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -54,6 +54,13 @@ sources:
   ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/thirdweb-paymaster-signer/notes.md
   date: 2026-11-17
   verdict: confirmed
+  rating: LOW
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 1e420510, c10cedaf"
+  date: 2026-11-19
+  verdict: reported
   rating: LOW
 related: [thirdweb-signature-mint-signer]
 ---
@@ -116,6 +123,8 @@ check.
 - 2026-11-17 review (Review07): split out of `pimlico-paymaster-signer`: deployed by `0xfirekeeper.eth`, not Pimlico's
   deployers, with thirdweb-style sponsorship tags; project set to `thirdweb` (inferred). MEDIUM -> LOW, step 5:
   EntryPoint deposits $430.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: thirdweb-paymaster-signer
 

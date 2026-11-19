@@ -3,7 +3,7 @@ id: ethstorage-blob-kzg
 title: "EthStorage storage contract: storage proofs open users' blobs with KZG point evaluation; with the KZG setup trapdoor a whitelisted miner can collect mining rewards (USD 321 pool) without holding the data, and the blob commitments cannot be swapped for another scheme"
 project: ethstorage
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-8]
 primitives: [kzg]
 trigger: trusted-setup
@@ -103,6 +103,7 @@ blobs, but uploading releases nothing.
 
 - 2026-11-17: created in review (Review15) from the KZG opening noted in `ethstorage-mining-groth16`; verified source and on-chain state read at block 26,431,725. Rated MEDIUM (step 4 HIGH: KZG dependency with no switchable fallback; step 5: under USD 50k exposed).
 - 2026-11-17 rubric correction: MEDIUM -> LOW, step 4 (HIGH -> MEDIUM): an upgrade by the Safe can add a non-KZG storage path, with users re-uploading their data (an upgrade plus a migration), then step 5 (USD 321 exposed, under USD 50k) lowers it to LOW; `fix.layer` protocol -> contract-upgrade, `protocol_change` required -> helps.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: ethstorage-blob-kzg
 

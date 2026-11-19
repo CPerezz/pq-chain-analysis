@@ -4,7 +4,7 @@ title: "Circle USDC: permit and transfer-with-authorization check account code f
 project: circle
 status: not-affected
 severity: NONE
-patterns: [PQ-13]
+patterns: [PQ-13, PQ-18]
 primitives: [ecrecover]
 trigger: none
 impact: none
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: NONE
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 0e8d4075"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [circle-cctp-attesters, circle-gateway-burn-signer, circle-gateway-minter-attestation-key]
 ---
 
@@ -108,3 +115,4 @@ contract's own token balance ($0.29M of stray tokens sent to it) is not the expo
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated NONE (code checked first: no exposure beyond the account's own key).
 - 2026-11-17 review (Review09): NONE kept. Confirmed in verified source that the ERC-1271 path passes the full-length `bytes` signature (PQ-13, not PQ-3); value changed from the cross-chain market cap ($70.78B) to the mainnet `totalSupply` ($44.38B, block 26,431,457); admin and owner checked as EOAs.
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day. Executed: a real transaction reverts when its signer has code, before any recovery returned nothing.

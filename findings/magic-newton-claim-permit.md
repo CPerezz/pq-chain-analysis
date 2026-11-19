@@ -91,6 +91,7 @@ None needed for this contract. A future Magic Newton distribution should let con
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated LOW (step 1 reach: no activity in 12 months (last 2025-07-24) and nothing held).
 - 2026-11-17 review (Review19): LOW kept, step 1. Claim window found closed (immutable `endTime` 2025-07-24) and NEWT balance zero; impact set to none, alternative to alternative-exists (`claim()` by the account), fix to none; title corrected (claimOnBehalf, not a permit).
+- 2026-11-19: LOW kept, step 1 removed (dormancy no longer lowers a rating); step 4 also gives LOW: an alternative path exists.
 
 # Source excerpts: magic-newton-claim-permit
 

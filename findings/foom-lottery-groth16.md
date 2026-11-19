@@ -3,7 +3,7 @@ id: foom-lottery-groth16
 title: "FOOM (foom.cash): forged Groth16 proofs to FoomLottery's immutable verifiers can pay out its FOOM pool (closed and nearly empty since 2026-02)"
 project: foom
 status: confirmed
-severity: HIGH
+severity: CRITICAL
 patterns: [PQ-7]
 primitives: [bn254]
 trigger: trusted-setup
@@ -172,3 +172,4 @@ had no transaction since 2025-07-02.
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated CRITICAL (step 4: pooled funds released by a forged proof or attestation, and the verification cannot change).
 - 2026-11-17 review (Review02): CRITICAL -> HIGH, step 5: escrow FoomLottery 0x239af915… measured at 15.32 FOOM (about USD 0) at block 26,431,454 after the lottery was closed on 2026-02-26; step 4 alone gives CRITICAL (immutable verifiers in an immutable consumer). Evidence level bytecode -> source-read (all five verifiers verified on Sourcify); status candidate -> confirmed.
+- 2026-11-19: HIGH -> CRITICAL, step 5 removed (value no longer lowers a rating); step 4 gives CRITICAL.

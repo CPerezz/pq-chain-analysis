@@ -4,7 +4,7 @@ title: "UniswapX V2DutchOrderReactor: a quantum attacker who recovers Uniswap La
 project: uniswap
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-4]
+patterns: [PQ-4, PQ-18]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 299dfbb7"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [uniswap-permit2-code-first]
 ---
 
@@ -107,6 +114,7 @@ which this check does not release. Other UniswapX reactors and V3 Dutch order re
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by a new deployment that the operator and users move to).
 - 2026-11-17 review (Review07): MEDIUM unchanged (step 4). Confirmed the forged cosigner is bounded by the swapper's
   signed amounts (it takes slippage, not principal); owner identified as Uniswap Timelock (fee controller only).
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: uniswapx-cosigner
 

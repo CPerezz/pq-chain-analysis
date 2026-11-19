@@ -3,8 +3,8 @@ id: unidentified-7251febe-signer-key
 title: "Unidentified DEX aggregator router 0x7251febe: one operator ECDSA key co-signs every route; a recovered key lets anyone run unapproved routes with their own funds, reaching only the router's $13"
 project: unidentified-7251febe
 status: confirmed
-severity: LOW
-patterns: [PQ-4]
+severity: MEDIUM
+patterns: [PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -44,6 +44,13 @@ sources:
   ref: https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/evidence/unidentified-7251febe-signer-key/review.json
   date: 2026-11-17
   verdict: confirmed
+  rating: LOW
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 9b37f6fa"
+  date: 2026-11-19
+  verdict: reported
   rating: LOW
 related: []
 ---
@@ -87,6 +94,8 @@ An unverified swap router behind proxy `0x7251febe…` (same address on Base, OP
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review10): MEDIUM -> LOW, step 5: bytecode shows tokens are pulled only from the caller, so the exposure is the router's $13. Signature compared with `operator()` read in bytecode, so status candidate -> confirmed (evidence stays bytecode). Removed an unrelated proxy-bytecode family. Project not identified.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: unidentified-7251febe-signer-key
 

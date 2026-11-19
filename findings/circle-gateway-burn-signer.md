@@ -4,7 +4,7 @@ title: "Circle Gateway: a quantum attacker who recovers Circle's burn-signer and
 project: circle
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-4, PQ-2]
+patterns: [PQ-4, PQ-2, PQ-17]
 primitives: [ecrecover]
 trigger: operator-key
 impact: funds-loss
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 87c31271"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [circle-cctp-attesters, circle-gateway-minter-attestation-key, circle-usdc-permit-code-first]
 ---
 
@@ -110,6 +117,7 @@ allowance at block 26,431,457), is covered in `circle-gateway-minter-attestation
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review09): MEDIUM kept (step 4: one owner key can upgrade). Mechanism read in verified source: burn-signer key plus depositor or TEE vouch signature needed; PQ-2 added for depositor intents; owner confirmed as an EOA at block 26,431,457; holdings re-read ($56.4M USDC); GatewayMinter found and filed as `circle-gateway-minter-attestation-key`.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
 
 # Source excerpts: circle-gateway-burn-signer
 

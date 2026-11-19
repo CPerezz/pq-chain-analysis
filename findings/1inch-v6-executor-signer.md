@@ -3,7 +3,7 @@ id: 1inch-v6-executor-signer
 title: "1inch swap executors 0x0bb7a4fd and 0x27934db9: a quantum attacker who recovers their hard-coded route-signing key can run arbitrary routes through them, which hold only dust"
 project: 1inch
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover, p256]
 trigger: operator-key
@@ -157,6 +157,7 @@ establish that it is 1inch's.
 - 2026-11-04 (merged from `unidentified-27934db9-signer-key`): `0x27934db9…` classified from bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/out_0.jsonl`); drafted 2026-11-17 by `scripts/15_findings.py` as MEDIUM (step 4).
 - 2026-11-17 review (Review21) of `0x27934db9…`: MEDIUM -> LOW, step 5: holds USD 0.04 and replaced (last call 2025-12-16); identified as 1inch through the deployer EOA and Create3Deployer; same selectors and same hard-coded signer `0x4447696e…` as `0x0bb7a4fd…`.
 - 2026-11-17 (Review21): merged `unidentified-27934db9-signer-key` into this finding (contract, evidence files `27934db9-*`, sources, History). LOW kept: combined held value about USD 0.10.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: unidentified-27934db9-signer-key
 

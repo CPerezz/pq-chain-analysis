@@ -3,7 +3,7 @@ id: mumutycoon-claim-signer
 title: "MUTY claim distributor (MUMUTYCOON, inferred): a quantum attacker who recovers the claim signer's ECDSA key can sign MUTY claims, but the distributor is empty"
 project: mumutycoon
 status: candidate
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-4]
 primitives: [ecrecover]
 trigger: operator-key
@@ -98,6 +98,7 @@ exposed. MUTY has 1,134 holders and no Blockscout price.
   still active within 12 months (last 2026-06-24), so step 1 does not apply. Project set to `mumutycoon` from the token
   it pays out (inferred); signer and owner read on-chain; status stays candidate (bytecode only).
 - 2026-11-17 integration: id renamed from `unidentified-9f954ca5-signer-key` (project identified).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: mumutycoon-claim-signer
 

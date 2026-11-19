@@ -3,7 +3,7 @@ id: rhinofi-starkex-dac-signers
 title: "rhino.fi (ex-DeversiFi) StarkEx data availability committee: availability attestations are ECDSA signatures, but the exchange it serves has been retired and emptied"
 project: rhino-fi
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-5]
 primitives: [ecrecover]
 trigger: committee-keys
@@ -79,6 +79,7 @@ This StarkWare committee contract is the data availability committee of rhino.fi
 ## History
 
 - 2026-11-17: created in review (Review10) from the alltime precompile trace (StarkEx committees missing from the curated set), verified source, on-chain reads at block 26,431,780 and Blockscout holdings. Rated LOW (step 1: no committee activity since 2025-03-05 and the exchange holds nothing).
+- 2026-11-19: LOW -> MEDIUM, step 1 removed (dormancy no longer lowers a rating); step 4 gives MEDIUM: the committee verifier is replaced by StarkEx governance.
 
 # Source excerpts: rhinofi-starkex-dac-signers
 

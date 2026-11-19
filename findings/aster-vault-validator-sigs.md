@@ -4,7 +4,7 @@ title: "Aster AstherusVault: withdrawals are authorised by ECDSA keys (a weighte
 project: aster
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5, PQ-4]
+patterns: [PQ-5, PQ-4, PQ-17]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: funds-loss
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 98b9e110"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [aster-treasury-claim-signer]
 ---
 
@@ -90,6 +97,7 @@ Source excerpts: [`source-excerpts.md`](#source-excerpts-aster-vault-validator-s
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review10): MEDIUM confirmed, step 4 (UUPS upgrade through the timelock by the 4-of-7 Safe). Added the AsterWithdrawValidator path (business and ledger signer keys, PQ-4), which carries all recent withdrawals; named the timelock's proposer Safe; value recomputed at 2026-11-17.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code.
 
 # Source excerpts: aster-vault-validator-sigs
 

@@ -4,7 +4,7 @@ title: "LayerZero DVNs: forging the ECDSA signer quorums of an OApp's required D
 project: layerzero
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5]
+patterns: [PQ-5, PQ-17]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: funds-loss
@@ -515,6 +515,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 5507ff0c, e0a01fa1, 2a408fe2, 45620526"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: []
 ---
 
@@ -650,3 +657,4 @@ configs) point at them.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review04): MEDIUM kept (step 4: new DVN deployments plus config changes by LayerZero's OneSig and OApp delegates; no protocol change). `alternative` key-rotation-only -> configurable-verifier (OApps repoint their DVN set); operators named from LayerZero metadata (0xa59ba433 is Twinstake, not Nethermind); escrow example Stargate V2 USD 51.3M added; 40 uncovered mainnet DVNs reported, Canary 0xa4fe5a5b should be added here.
 - 2026-11-17 review (Review04, second pass): added the other 40 mainnet DVNs that called ecrecover (Canary 0xa4fe5a5b, TSS proxy 0x5a54fe52 and 38 more) with quorum, signer count and upgradeability read at block 26,431,701. MEDIUM kept, step 4: every one is a standard LayerZero DVN whose operator redeploys and whose consumers repoint (TSS is additionally upgradeable by its ProxyAdmin owner); none holds value, so step 5 changes nothing.
+- 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction ends without error but with other logs when its signer has code.

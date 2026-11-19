@@ -4,7 +4,7 @@ title: "Polygon PoS: forging 2/3 of validator ECDSA keys lets anyone submit a fa
 project: polygon
 status: confirmed
 severity: MEDIUM
-patterns: [PQ-5]
+patterns: [PQ-5, PQ-18]
 primitives: [ecrecover]
 trigger: committee-keys
 impact: funds-loss
@@ -45,6 +45,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (study families read, judged from bytecode or placed by rules; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, families 5be5c011"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
 related: [polygon-fflonk-verifier]
 ---
 
@@ -114,6 +121,7 @@ adds bounded checkpoint rewards, so the draft's `held` value was replaced by the
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review14): MEDIUM kept, step 4 (Timelock-controlled upgrade plus a validator release). Exposure changed from USD 313.8M held (POL stake, not released by a checkpoint) to USD 2.15B escrow in the PoS bridge predicates and Plasma DepositManager.
+- 2026-11-19 (study `eip-8151-impact`, PQ-18): under EIP-8151 a real transaction fails as sent and passes with more gas: whoever sends it must add gas on activation day.
 
 # Source excerpts: polygon-pos-checkpoint-validators
 

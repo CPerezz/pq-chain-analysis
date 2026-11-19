@@ -3,7 +3,7 @@ id: payy-honk-verifier
 title: "Payy RollupV1: BN254 Honk proofs (forgeable with the recovered setup trapdoor) are one of three pre-quantum gates on rollup state; the rollup escrow holds about $711 and the owner Safe can swap the verifier"
 project: payy
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254, sw_bn254]
 trigger: trusted-setup
@@ -123,6 +123,7 @@ Grouping: `0x14dacd53…` was not in the census; it is added here as the verifie
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review22): MEDIUM -> LOW, step 5: escrow measured (RollupV1 `0x367c1eaf…` holds $711 USDC); step 4 alone would be MEDIUM (verifier swap by the 2-of-4 owner Safe). Status candidate -> confirmed (RollupV1 and the current HonkVerifier are verified; state read). Added the current verifier `0x14dacd53…`; `0xb553c325…` is retired. Attribution to Payy confirmed (`NETWORK = "Payy"` in RollupV1).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: payy-honk-verifier
 

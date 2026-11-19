@@ -3,7 +3,7 @@ id: dop-shielded-pool-groth16
 title: "DOP (Data Ownership Protocol): a quantum attacker with the Groth16 setup trapdoor can forge unshield proofs and drain the $46k in DOP's three shielded pools"
 project: dop
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254, ecrecover]
 trigger: trusted-setup
@@ -123,6 +123,7 @@ code, listed under RedStone's EthereumMultiFeedAdapterWithoutRoundsV3) was remov
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review11): MEDIUM -> LOW, step 5: the pools are their own escrow and hold $46.0k in total (under $50k). Removed the unrelated proxy-code family (148 contracts sharing the generic proxy code). The encrypt-approval ECDSA signer cannot move other users' funds.
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Review notes: dop-shielded-pool-groth16 (2026-11-17)
 

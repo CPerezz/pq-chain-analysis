@@ -3,7 +3,7 @@ id: rarimo-plonk-verifier
 title: "Rarimo ZK rollup: a PLONK proof forged with the recovered BN254 setup trapdoor finalizes a false L2 state on LineaRollup 0x2f3c2056 and releases its bridged ETH (~$3k)"
 project: rarimo
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-7]
 primitives: [bn254, sw_bn254]
 trigger: trusted-setup
@@ -159,6 +159,7 @@ block 2,312 and its last finalization was 2026-04-28. Siblings: the four registe
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review16): MEDIUM -> LOW, step 5: one EOA can repoint the verifier (step 4 MEDIUM), and the measured escrow is USD 3,047 (rollup ETH + token bridge). Project identified as Rarimo ZK rollup (docs address book, Blockscout creator); `0xe067e013…` is Rarimo's verifiers[3], not Linea's, so it stays here rather than in `linea-plonk-verifier-bn254`. Added the other three registered verifiers (proof types 0–2).
 - 2026-11-17 integration: id renamed from `unidentified-2f3c2056-snark-verifier` (project identified).
+- 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
 
 # Source excerpts: rarimo-plonk-verifier
 
