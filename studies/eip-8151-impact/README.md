@@ -216,9 +216,12 @@ promises) are kept with the study's working notes until they are executed or dro
   traces of their own transactions (60), decompiled code (heimdall 0.9.2, 43) and function names (35, 23 of those as
   the same design as a family settled by evidence). 27 carry an open part in their row, for example who may write
   the signer slot. The decompiler can miss functions.
-- 52,779 families with under 1 ETH, no recovery in the window and under 100 addresses each are covered only by the
-  template of their way of calling the precompile; they were not tested one by one. 7,362 such families with no
-  template were left out.
+- 52,779 families with under 1 ETH, no recovery in the window and under 100 addresses each stand behind the 128
+  templates of their way of calling the precompile. Each was tested against its template on the facts that decide a
+  class (role tags, functions that replace a key, an owner or the code, ERC-1271, signature entry points), taken from
+  the scanner and the selector database: 7,659 match and take the template's verdict, 27,978 differ and are placed
+  by the measured rules, 17,142 (112 ETH with tokens, 31,470 addresses) differ and no rule places them. 7,362 such
+  families with no template were left out.
 - Value is ETH plus 49 tokens priced on-chain at the pinned block. Other tokens and NFTs are not counted.
 - The code that produced these numbers is not published yet, so no finding of this study is at level `reproduced`.
 - Findings were written by an AI agent and have not been reviewed by a person.
