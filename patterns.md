@@ -199,3 +199,18 @@ starts when a signer's account takes real code.
 **Detection:** the same signer checked at two steps separated in time (lock and settle, submit and approve or
 challenge), with a fallback when the later check fails (a refund, a rejection, a punishment). Confirmed by replaying
 the later step with code at the signer.
+
+## PQ-16: One's own ECDSA signature is the only way out
+
+**Class:** migration-hazard
+
+A contract holds a user's own funds (a stake, a deposit, an escrowed amount) or a right of that user (to raise a
+dispute, to change a payee) and lets the user act only with an ECDSA signature that must recover to the user's own
+address. Calling the function directly is not enough, and there is no ERC-1271 path. Under EIP-8151 the signature
+stops recovering once the user's account has real code. A user who migrates before acting loses the funds or the
+right, and nobody can act for it unless an administrator can. Acting before migrating avoids it; the contract itself
+changes only by an upgrade or an administrator.
+
+**Detection:** a function that moves a user's own balance, or exercises a user's right, where the recovered address
+must equal the user named in the call or the caller, and no other function reaches the same effect. Confirmed by
+replaying a real call with code at the user.
