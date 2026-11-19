@@ -1,6 +1,6 @@
 # generated/
 
-Built by `tools/build.py` from the headers of `findings/*.md`, `studies/*/README.md` and `outreach/*.md`. Do not edit
+Built by `tools/build.py` from the headers of `findings/*.md`, `triage/*.md`, `studies/*/README.md` and `outreach/*.md`. Do not edit
 by hand and do not include these files in a pull request: CI rebuilds them after every merge to `main`. To preview
 locally, run `uv run tools/build.py`.
 
@@ -12,6 +12,8 @@ locally, run `uv run tools/build.py`.
 | `findings.csv` | One row per finding: the columns above, plus who acts, the evidence level, the class, the studies and how many they are |
 | `contracts.csv` | One row per affected contract: its finding, severity, implementation, admin, value with basis and date, last activity, 30-day transactions, project and outreach status. Search it for an address before adding a finding |
 | `studies.csv` | One row per study: authors, status, topic, code link, spec commit, and its findings by level |
+| `TRIAGE.md` | Entries of `triage/` not yet reviewed, by proposed rating, exposure and 30-day activity, then those discarded, with who and why |
+| `triage.csv` | One row per triage entry, for sorting and filtering |
 
 Column meanings:
 

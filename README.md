@@ -3,7 +3,7 @@
 What the move to post-quantum cryptography breaks, exposes or leaves unprotected on Ethereum mainnet: one list of
 findings, and the studies that produced them.
 
-- **Findings:** [by severity](generated/INDEX.md) · [by class and pattern](generated/PATTERNS.md) · [by study](generated/STUDIES.md)
+- **Findings:** [by severity](generated/INDEX.md) · [by class and pattern](generated/PATTERNS.md) · [by study](generated/STUDIES.md) · [not yet reviewed](generated/TRIAGE.md)
 - **Check an address:** <https://kevaundray.github.io/pq-chain-analysis/>
 - **Report:** [REPORT.md](REPORT.md), the census of pre-quantum cryptography in mainnet contracts (November 2026)
 
@@ -15,7 +15,8 @@ are kept apart because several studies can find the same issue, and one study fi
 | Path | What it holds |
 |---|---|
 | [`studies/<id>/`](studies/) | One folder per study: goal, setup, procedure, how to reproduce, results, limits. See [`studies/README.md`](studies/README.md) |
-| [`findings/<id>.md`](findings/) | One self-contained file per issue, for all studies. Each names the studies that found it. See [`findings/README.md`](findings/README.md) |
+| [`triage/<id>.md`](triage/) | New entries, until someone other than the reporter has checked them. See [`triage/README.md`](triage/README.md) |
+| [`findings/<id>.md`](findings/) | One self-contained file per issue, for all studies, once reviewed. Each names the studies that found it. See [`findings/README.md`](findings/README.md) |
 | [`patterns.md`](patterns.md) | The classes and patterns findings are grouped by |
 | [`outreach/<project>.md`](outreach/) | Where contact with each affected team stands |
 | [`generated/`](generated/) | The lists and CSV files, built from the four above |
@@ -44,11 +45,14 @@ Copy [`templates/study.md`](templates/study.md) to `studies/<id>/README.md` and 
 
 ## Adding a finding
 
-1. Search [`generated/contracts.csv`](generated/contracts.csv) for the address. If the issue is already listed, add
-   your entry to that finding's `sources` instead of creating a file. It then shows as found by both studies.
-2. Otherwise copy [`templates/finding.md`](templates/finding.md) to `findings/<id>.md`. A candidate needs a title, a
-   pattern, where it is, an explanation, and who reports it from which study.
+1. Search [`generated/contracts.csv`](generated/contracts.csv) and `triage/` for the address. If the issue is already
+   listed, add your entry to its `sources` instead of creating a file. It then shows as found by both studies.
+2. Otherwise copy [`templates/finding.md`](templates/finding.md) to `triage/<id>.md`. A candidate needs a title, a
+   pattern, where it is, a short explanation, and who reports it from which study.
 3. If no pattern in [`patterns.md`](patterns.md) fits, add one there in the same pull request.
+4. Someone else reviews it and moves it to `findings/`, or discards it: [`triage/README.md`](triage/README.md).
+
+Findings and triage entries are as short as the claim allows. Expand only where the evidence needs it.
 
 A contract can be in any number of findings. The same contract under the same pattern twice is a duplicate.
 

@@ -9,14 +9,18 @@ it is an issue, and how to reproduce it. It is one self-contained file: there is
 
 ## Adding a finding
 
-1. **Look first.** Search `generated/contracts.csv` for every address you have. If the issue is already there, do
-   not create a file: add your own entry to that finding's `sources`, with your study, and say in History what you
-   checked. The lists then show the finding as found by both studies.
-2. Copy `templates/finding.md` to `findings/<id>.md`. Filled examples for each level are in
-   `templates/examples/findings/`.
+1. **Look first.** Search `generated/contracts.csv` and `triage/` for every address you have. If the issue is already
+   there, do not create a file: add your own entry to that finding's `sources`, with your study, and say in History
+   what you checked. The lists then show the finding as found by both studies.
+2. Copy `templates/finding.md` to `triage/<id>.md`, not here. Filled examples for each level are in
+   `templates/examples/findings/`. A file moves here when someone other than the reporter has reviewed it
+   (`triage/README.md`).
 3. Pick the pattern in [`patterns.md`](../patterns.md). If none fits, add a pattern, or a class, there in the same
    pull request. What counts as a finding is up to the study that reports it.
 4. Run `uv run tools/build.py`.
+
+Write as little as the claim allows: a Summary of one to three sentences, each section only as long as its evidence
+needs.
 
 ## Levels
 
@@ -74,7 +78,7 @@ scope (pattern PQ-12), because the wallet code decides what an owner can change.
 | `id` | slug = file name | Stable name, `<project>-<mechanism>` |
 | `title` | text | One line: what breaks, or what an attacker can do, and for whom |
 | `project` | slug | The team that has to act. May be left out when every contract row has its own `project` |
-| `status` | `candidate`, `confirmed`, `reproduced`, `not-affected`, `duplicate` | The level; see "Levels" |
+| `status` | `candidate`, `confirmed`, `reproduced`, `not-affected`, `duplicate`, `discarded` | The level; see "Levels". `discarded` exists only in `triage/` |
 | `severity` | `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`, `NONE`, `UNRATED` | See "Severity". A candidate may leave it out |
 | `patterns` | list of `PQ-n` | From `patterns.md`. The class of the first one is the finding's class |
 | `primitives` | list | `ecrecover`, `bn254`, `kzg`, `bls12381`, `p256`, `sw_p256`, `sw_secp256k1`, `sw_bn254`, `sw_ed25519`, `sw_bls12381`, `rsa` (`sw_` = curve maths done in software via `modexp`) |
@@ -93,6 +97,7 @@ scope (pattern PQ-12), because the wallet code decides what an owner can change.
 | `repro` | `code`, `command`, `inputs`, `expect` | Required for `reproduced`; see "Levels" |
 | `sources[]` | `study`, `who`, `date`, `by`, `ref`, `verdict`, `rating` | One entry per study that found or checked it. `study` is a folder in `studies/`; `by` is `ai-assisted`, `project-team` or `other`; `verdict` is `reported`, `confirmed` or `refuted`; `rating` is that source's own rating |
 | `related` | list of ids | Findings that share contracts, code or a stack, or were split from one another. Links go both ways |
+| `reviews[]` | `who`, `date`, `by`, `verdict` (`confirmed`, `refuted`), `rating`, `note` | Checks by someone other than the reporter, made in `triage/`; kept when the file moves here |
 
 `primitives`, `trigger`, `alternative`, `role` and `fix.protocol_change` describe an exposure. They are required, from
 `confirmed` up, only for findings of class `exposure`.

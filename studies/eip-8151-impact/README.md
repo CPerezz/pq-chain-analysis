@@ -173,22 +173,25 @@ The 262 families hold 863 ETH and about USD 1,800 in 49 large tokens. In 223 of 
 whether the call succeeded and goes on with whatever the output word holds. What follows from that was read by
 hand only for Fuel v1.
 
-Findings:
+In `triage/`, waiting for review (proposed ratings in each file):
 
-- [fuel-v1-fixed-gas-witness-recovery](../../findings/fuel-v1-fixed-gas-witness-recovery.md): an honest rollup
+- [fuel-v1-fixed-gas-witness-recovery](../../triage/fuel-v1-fixed-gas-witness-recovery.md): an honest rollup
   block can be rolled back for a reward. Simulated on the node.
-- [unidentified-cd097b8d-wallets-fixed-gas-recovery](../../findings/unidentified-cd097b8d-wallets-fixed-gas-recovery.md):
+- [unidentified-cd097b8d-wallets-fixed-gas-recovery](../../triage/unidentified-cd097b8d-wallets-fixed-gas-recovery.md):
   18,825 wallets stop working. A real transaction replayed: success today, failure under the EIP.
-- [tbtc-dkg-result-signer-code](../../findings/tbtc-dkg-result-signer-code.md) (PQ-15): a tBTC wallet-creation
+- [tbtc-dkg-result-signer-code](../../triage/tbtc-dkg-result-signer-code.md) (PQ-15): a tBTC wallet-creation
   result signed by an operator whose address has code is rejected and its submitter punished. Executed on the last
   real result.
-- [unidentified-8863f0c4-csd-settlement-buyer-code](../../findings/unidentified-8863f0c4-csd-settlement-buyer-code.md)
+- [unidentified-8863f0c4-csd-settlement-buyer-code](../../triage/unidentified-8863f0c4-csd-settlement-buyer-code.md)
   (PQ-15): a buyer that migrates after locking cannot be settled against and is refunded. A real settlement
   replayed.
-- [hydranet-lithium-channel-party-code](../../findings/hydranet-lithium-channel-party-code.md) (PQ-15): a payment
+- [hydranet-lithium-channel-party-code](../../triage/hydranet-lithium-channel-party-code.md) (PQ-15): a payment
   channel with a party that has code can no longer be updated or settled. Two real updates replayed.
-- [unidentified-3a362a19-escrow-dispute-party-code](../../findings/unidentified-3a362a19-escrow-dispute-party-code.md)
+- [unidentified-3a362a19-escrow-dispute-party-code](../../triage/unidentified-3a362a19-escrow-dispute-party-code.md)
   (PQ-16): a trade party with code can no longer have a dispute resolved. Two real resolutions replayed.
+
+Sources added to existing findings:
+
 - [bitgo-walletsimple-ecdsa-signers](../../findings/bitgo-walletsimple-ecdsa-signers.md) (an existing finding, this
   study added as a source): a real transaction replayed with code at the co-signer's address reverts; with a 7702
   delegation it succeeds.

@@ -1,6 +1,6 @@
 ---
-# Copy to findings/<id>.md. Field reference, levels and severity rubric: findings/README.md.
-# A candidate needs only the lines marked (all levels). Then run: uv run tools/build.py
+# Copy to triage/<id>.md; a reviewer moves it to findings/ (triage/README.md). Field reference, levels and severity
+# rubric: findings/README.md. A candidate needs only the lines marked (all levels). Then run: uv run tools/build.py
 id: project-mechanism                   # (all levels) = file name without .md; lowercase letters, digits, '-'
 title: "One line: what breaks or what an attacker can do, for whom"   # (all levels)
 status: candidate                       # (all levels) candidate | confirmed | reproduced | not-affected | duplicate
@@ -36,6 +36,7 @@ sources:                                # (all levels) one entry per study that 
     verdict: reported                   # reported | confirmed | refuted
     rating: ""                          # that source's own rating
 related: []                             # other findings that are a different issue of the same pattern on the same contract
+reviews: []                             # added by reviewers in triage/: who, date, by, verdict (confirmed | refuted), rating, note
 
 # Only for patterns of class `exposure` (required from confirmed up):
 # primitives: []                        # ecrecover | bn254 | kzg | bls12381 | p256 | sw_p256 | sw_secp256k1 | sw_bn254 | sw_ed25519 | sw_bls12381 | rsa
@@ -54,7 +55,8 @@ related: []                             # other findings that are a different is
 
 ## Summary
 
-What the issue is, where, and why it matters. Two to five sentences. For a candidate this section is enough.
+What the issue is, where, and why it matters. One to three sentences. For a candidate this section is enough. Every
+section stays as short as its evidence allows.
 
 ## Mechanism
 
