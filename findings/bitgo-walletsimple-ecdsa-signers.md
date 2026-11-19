@@ -281,6 +281,13 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: HIGH
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (source read, one real transaction replayed four ways; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, replays of 2026-11-19"
+  date: 2026-11-19
+  verdict: confirmed
+  rating: ''
 related: []
 ---
 
@@ -326,6 +333,13 @@ must move, and that depends on 23 independent owner groups (and BitGo for a wall
 - INFERRED: the co-signer's public key is recoverable from any `sendMultiSig` signature in calldata, and the sender's
   from its transactions, so for every wallet that has transacted both keys of a working pair are exposed; the
   never-used third (backup) key may still be unexposed.
+- CHECKED (executed, study `eip-8151-impact`, 2026-11-19): transaction
+  `0x23999f0ebb376034c26688ca5cd9f30fd481dc7996c804e2dcfed4485e70898b` (block 26,438,982, position 58:
+  `sendMultiSig` on the clone `0x50532e8cbcd69092cb6d06d6f851b39f6fb45bcd`, co-signer `0x8111fe67…`) replayed on the
+  reference implementation of the fork, from the parent block's state, with only the `ecrecover` precompile changed.
+  Today's rules: success, 82,526 gas, equal to the real receipt. EIP-8151: success, 85,626 gas (3,100 more: the
+  co-signer's address is cold). EIP-8151 with ordinary code at the co-signer's address: **revert**. EIP-8151 with an
+  EIP-7702 delegation at the co-signer's address: success, 85,626 gas.
 
 ## Impact and exposure
 
@@ -381,3 +395,12 @@ but were active within the year. The same code runs in 1,868 clones of `0xe5dcdc
 - 2026-11-04: classified from verified source or bytecode (hand classification pass; `https://github.com/kevaundray/pq-chain-analysis/blob/b0951d2b2e136d18e43266b184e4589157eb8c73/data/curation/`).
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: signer set fixed in code; funds must move, and many independent owners may not act).
 - 2026-11-17 review (Review23): HIGH kept, step 4: signer sets are fixed and the code is immutable, so only moving $712.8M out protects it, across 23 independent owner groups. Read all 69 signer slots (60 EOAs, none contracts) into `signers.json`; `0x1522900b…` given its delegatecall target as implementation.
+- 2026-11-19 (study `eip-8151-impact`): `WalletSimple.sol` of `0xe5dcdc13…` read again line by line: `signers` is
+  written only in `init` (line 82), every outflow goes through `verifyMultiSig` (lines 431 to 454), and there is no
+  contract-signature path. What EIP-8151, as written, does here: a signer whose address has real code can no longer
+  be the recovered co-signer, and can still be the sender. A wallet keeps working while one signer without code (or
+  with a 7702 delegation) signs and a different signer sends. When all three have real code nothing can leave, and
+  the signers cannot be changed. So the EIP stops the old key of a migrated signer from co-signing, and it locks a
+  wallet whose three signers migrate. One real transaction was replayed four ways (Evidence). On activation day
+  alone nothing breaks: the recovery gets all gas and each send costs 3,100 more. The study's inventory at block
+  26,438,999 counts 4,107 clones of `0xe5dcdc13…`, holding 524,769 ETH together.

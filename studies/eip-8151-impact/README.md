@@ -44,7 +44,18 @@ more when it is cold; a failed recovery still costs 3,000.
 
 ## Procedure
 
-Not started.
+In progress. Done so far, with everything pinned at block 26,438,999 (2026-11-18):
+
+- Every contract creation on mainnet was listed, and the code each address holds at the pinned block was read from
+  the node: 109,448,913 created addresses, 3,039,017 unique runtime codes.
+- Every unique code was scanned for calls to the precompile at `0x01`, with constants followed across jumps: 110,481
+  codes call it. The scanner was checked against verified source and against two weeks of traces.
+- 100,000 blocks ending at the pinned block were traced: 5,107,550 recoveries with the gas given and used.
+- A replay engine was built on the reference implementation of the fork, with only the precompile changed. It
+  reproduces the real receipt of 640 of 640 sampled transactions under today's rules.
+- Reading of the flagged code families has started with the contracts that give `ecrecover` a fixed amount of gas.
+
+The transaction filter below was the first plan. It is kept as written.
 
 Planned way of choosing transactions, so that nothing that obviously cannot change is replayed:
 
@@ -61,8 +72,39 @@ Not started.
 
 ## Results
 
-Not started.
+First results, 2026-11-19. Not complete.
+
+**Contracts that give `ecrecover` a constant amount of gas** (pattern PQ-14). The list is complete for code alive
+at the pinned block, as far as the scanner sees the gas operand. Counts are machine facts; two families were read
+by hand and executed.
+
+| Gas forwarded | Under EIP-8151 | Code families | Addresses |
+|---|---|---|---|
+| 3,000 or 3,072 | every valid signature fails | 262 | 20,072 |
+| 5,000 | fails when the recovered address is cold | 4 | 4 |
+| 0 | not examined | 5 | 10 |
+| 6,100 or more | enough | 17 | 76 |
+
+The 262 families hold 863 ETH and about USD 1,800 in 49 large tokens. In 223 of them the code does not look at
+whether the call succeeded and goes on with whatever the output word holds. What follows from that was read by
+hand only for Fuel v1.
+
+Findings:
+
+- [fuel-v1-fixed-gas-witness-recovery](../../findings/fuel-v1-fixed-gas-witness-recovery.md): an honest rollup
+  block can be rolled back for a reward. Simulated on the node.
+- [unidentified-cd097b8d-wallets-fixed-gas-recovery](../../findings/unidentified-cd097b8d-wallets-fixed-gas-recovery.md):
+  18,825 wallets stop working. A real transaction replayed: success today, failure under the EIP.
+- [bitgo-walletsimple-ecdsa-signers](../../findings/bitgo-walletsimple-ecdsa-signers.md) (an existing finding, this
+  study added as a source): a real transaction replayed with code at the co-signer's address reverts; with a 7702
+  delegation it succeeds.
 
 ## Limits
 
-Not started.
+So far:
+
+- The gas given to the precompile is read from bytecode. A gas value that comes from storage, from calldata or
+  from arithmetic the scanner cannot fold is not in the list above.
+- Value is ETH plus 49 tokens priced on-chain at the pinned block. Other tokens and NFTs are not counted.
+- The code that produced these numbers is not published yet, so no finding of this study is at level `reproduced`.
+- Findings were written by an AI agent and have not been reviewed by a person.

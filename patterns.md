@@ -170,3 +170,16 @@ safe as its own key. Recorded so these contracts are not counted as exposed. If 
 `(v, r, s)`, it is PQ-3 instead.
 
 **Detection:** verified source; `code.length > 0` (or `extcodesize`) checked before `ecrecover`.
+
+## PQ-14: Fixed or capped gas on the way to `ecrecover`
+
+**Class:** regression
+
+The contract gives the `ecrecover` precompile a literal amount of gas, or caps the gas of a call that reaches it.
+Under EIP-8151 a recovery that succeeds costs 3,200 gas when the recovered address is warm and 6,100 when it is cold,
+instead of 3,000. A call that is given less fails for every valid signature. What follows depends on the code: a
+revert, so that the function is dead; or a wrong verdict, when the code reads "no address came back" as a fact. No
+account has to migrate for this: it starts on the day the change is active.
+
+**Detection:** bytecode: the gas operand of a call to address `0x01` folds to a constant below 6,100; traces: the
+same gas forwarded to `0x01` in unrelated transactions. Confirmed by replaying a real transaction with the new price.
