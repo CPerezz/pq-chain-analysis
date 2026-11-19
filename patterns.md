@@ -183,3 +183,19 @@ account has to migrate for this: it starts on the day the change is active.
 
 **Detection:** bytecode: the gas operand of a call to address `0x01` folds to a constant below 6,100; traces: the
 same gas forwarded to `0x01` in unrelated transactions. Confirmed by replaying a real transaction with the new price.
+
+## PQ-15: A signature checked again after others relied on it
+
+**Class:** migration-hazard
+
+A party signs once. Later, when someone else has already acted on that signature, the contract recovers it again: to
+approve a group's result, to judge a challenge against it, to pay a seller who has already delivered. The second check
+reads the signer's account code at that time. Under EIP-8151 it returns no address once the signer's account has real
+code, so a signature that was valid when others relied on it fails afterwards. The loss falls on whoever relied on it:
+an honest submitter is judged malicious, a seller who delivered is not paid while the buyer gets a refund. The signer
+can cause this on purpose by migrating between the two steps. Unlike PQ-14, nothing happens on activation day; it
+starts when a signer's account takes real code.
+
+**Detection:** the same signer checked at two steps separated in time (lock and settle, submit and approve or
+challenge), with a fallback when the later check fails (a refund, a rejection, a punishment). Confirmed by replaying
+the later step with code at the signer.
