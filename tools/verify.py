@@ -218,7 +218,7 @@ def check_facts(head: dict, ctx: dict) -> list[tuple[str, str, str]]:
         out.append(("contract.code", OK if claimed == bool(f["verified"]) else FAIL,
                     f"file {c.get('code')}, {'verified' if f['verified'] else 'not verified'} on Sourcify or Blockscout"))
     usd = (head.get("value") or {}).get("usd")
-    if ctx.get("value") and usd is not None:
+    if ctx.get("value") and usd is not None and (head.get("value") or {}).get("basis") == "held":
         if (c.get("copies") or 1) > 1:
             out.append(("value.usd", SKIP, f"covers {c['copies']} copies: the study's data"))
         elif f["value_usd"] is None:
