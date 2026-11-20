@@ -68,3 +68,4 @@ None needed for this vault: anyone can call claim() to refund the 0.03 ETH to th
 
 - 2026-11-19: reported as a row of triage entry `eip-8151-signature-rechecked` (study `eip-8151-impact`).
 - 2026-11-20: reviewed and filed: not affected. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+- 2026-11-20: the same contract was also a row of triage entry `eip-8151-fixed-signer`; as a fixed signer it is not affected either: settlement() reverts after the vault's timeout (2025-01-10), so no signature is ever checked here again (D-025).
