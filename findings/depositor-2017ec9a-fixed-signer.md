@@ -2,7 +2,7 @@
 id: depositor-2017ec9a-fixed-signer
 title: "Depositor: signer fixed in code"
 status: confirmed
-severity: MEDIUM
+severity: LOW
 patterns: [PQ-17]
 impact: liveness
 contracts:
@@ -10,13 +10,13 @@ contracts:
   family: "fe86201c1d3695ff3eebdaaceb9d4def"
   name: "Depositor"
   upgradeable: "no"
-  rating: MEDIUM
+  rating: LOW
   txs_90d: 8
   last_active: 2026-11-18
   recoveries_14d: 5
 fix:
-  layer: new-deployment
-  who_acts: "operator"
+  layer: offchain
+  who_acts: "depositors call the beacon deposit contract directly"
 evidence:
   level: source-read
   block: 26438999
@@ -33,8 +33,8 @@ reviews:
   date: 2026-11-20
   by: ai-assisted
   verdict: confirmed
-  rating: MEDIUM
-  note: "The function dies for good and the contract holds no money by design: MEDIUM."
+  rating: LOW
+  note: "batchDeposit dies for good once the authority key has code, but it only forwards 32 ETH per validator to the beacon deposit contract, which depositors can call directly: the same act stays open, so LOW."
 ---
 
 ## Summary
@@ -66,3 +66,4 @@ Deploy a new Depositor with a new authority.
 
 - 2026-11-19: reported as a row of triage entry `eip-8151-fixed-signer` (study `eip-8151-impact`).
 - 2026-11-20: reviewed and filed: MEDIUM. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+- 2026-11-20: re-rated LOW (was MEDIUM the same day), to match the second Depositor deployment (0xea82d32a): the deposit itself stays open by a direct call to the beacon deposit contract (D-025).

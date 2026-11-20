@@ -1,0 +1,71 @@
+---
+id: pulsesmartwallet-34deddc6-signer-upgrade-only
+title: "PulseSmartWallet: signer replaceable only by an upgrade"
+status: confirmed
+severity: LOW
+patterns: [PQ-17]
+impact: liveness
+contracts:
+- address: "0x34deddc698213624ff61b00e3d34210b3f8a4825"
+  family: "c868b42b3fec1d77370942fc8f02e322"
+  copies: 83
+  name: "PulseSmartWallet"
+  upgradeable: "yes"
+  rating: LOW
+  value_usd: 51
+  value_basis: held
+  value_as_of: 2026-11-18
+  txs_90d: 2
+  last_active: 2026-08-20
+fix:
+  layer: contract-upgrade
+  who_acts: "the admin upgrades the code (proxy to 0xa723a9932d29907f7bc24edc2ed71f6dbeb65712 with upgradeToAndCall(address,bytes), called through its own checks)"
+evidence:
+  level: source-read
+  block: 26438999
+sources:
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
+  ref: "triage entry eip-8151-signer-upgrade-only"
+  date: 2026-11-19
+  verdict: reported
+  rating: LOW
+reviews:
+- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+---
+
+## Summary
+
+`PulseSmartWallet` at `0x34deddc698213624ff61b00e3d34210b3f8a4825`, with 82 more addresses running its code. It accepts signatures from a key that only an upgrade can replace; once that key's account has code, the signed functions stop until the code changes.
+
+## Mechanism
+
+PQ-17. Once that key's account has real code, the signed functions stop until the admin upgrades.
+
+## Evidence
+
+- How it was placed: Coinbase Smart Wallet: the owner at the given index is an address checked with Solady SignatureCheckerLib (ecrecover, then the owner's ERC-1271), or a passkey. Read (function text).
+- Update path, read at block 26,438,999: proxy to 0xa723a9932d29907f7bc24edc2ed71f6dbeb65712 with upgradeToAndCall(address,bytes), called through its own checks.
+- Reviewed through the root issue's mechanism (D-025): the signer is replaceable only by upgrading the code, and a live upgrade path was measured at this address (the admin or owner behind its proxy slot or upgrade function): LOW
+- Mechanical check: this address does not run a UUPS implementation directly (those cannot upgrade at their own address and were sent to one-by-one checks)
+- A random sample of 25 of the 210 rows below Anon's thresholds: 16 held at LOW, 5 were such implementations, 4 could not be settled while the node was down
+
+## Impact and exposure
+
+- Value held at block 26,438,999: $51 (ETH and 49 priced tokens, over 83 addresses).
+- Activity: 2 transactions called it in the 90 days before that block; last on 2026-08-20.
+
+## Remediation
+
+The admin upgrades the verification, or the key holder keeps the key without code.
+
+## History
+
+- 2026-11-19: reported as a row of triage entry `eip-8151-signer-upgrade-only` (study `eip-8151-impact`).
+- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
