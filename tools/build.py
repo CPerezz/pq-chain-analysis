@@ -98,7 +98,7 @@ CHECK_COMMON = {"id", "says", "for", "at"}
 CHECK_FACTS = ("proxy_of", "upgradeable", "admin", "name", "whose")  # header facts a check may back, where the tool reads none or differs
 CHECK_FOR = ("what", "evidence-1", "evidence-2", "evidence-3", "justification", "action", "notes") + CHECK_FACTS
 CODE_IS = ("empty", "contract", "delegation")
-REPLAY_RUNS = ("today", "eip8151", "eip8151_signer_code", "eip8151_signer_delegated", "eip8151_self_real_code")
+REPLAY_RUNS = ("today", "eip8151", "eip8151_signer_code", "eip8151_signer_delegated", "eip8151_self_real_code", "eip8151_more_gas")
 CHECK_ID = re.compile(r"^[a-z][a-z0-9-]*$")
 
 

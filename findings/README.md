@@ -115,7 +115,7 @@ result it must give, a line on what it shows (`says`), and the parts of the card
 | `source: "0x…"` | `file`, `line` or `lines: [first, last]`, `has` | Text at those lines of the verified source |
 | `tx: "0x…"` | `to`, `ok` | A transaction and its outcome |
 | `nonce: "0x…"` | `is` or `min` | An account's transaction count |
-| `replay: "0x…"` | `run`, `ok` | A real transaction replayed on the study's fork engine |
+| `replay: "0x…"` | `run` (`today`, `eip8151`, `eip8151_signer_code`, `eip8151_signer_delegated`, `eip8151_self_real_code`, `eip8151_more_gas`: EIP-8151 with 300,000 more gas, which tells a sender's gas limit from a budget fixed in code), `ok` | A real transaction replayed on the study's fork engine |
 | `ref: "https://…"` | | A written record of an execution, pinned to a commit. Not re-run |
 
 Reads are at the finding's `block` unless the check has `at`. Addresses and hashes are quoted. A check proves a fact;
