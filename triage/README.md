@@ -9,10 +9,10 @@ is, never how much is at stake (D-024 of the EIP-8151 study):
 
 | Rating | Rule |
 |---|---|
-| LOW | A simple update fixes it: an upgrade by a live admin or owner, a 7702 re-delegation, a key rotation, a setting, a gas limit. Or another way out already exists |
-| MEDIUM | No update path, and only the operator's own money is at stake, or only a function stops |
+| LOW | A simple update fixes it: an upgrade by a live admin or owner, a 7702 re-delegation, a key rotation, a setting, a gas limit. Or the same act stays open to the affected party by another path |
+| MEDIUM | No update path, and only the operator's own money is at stake, or the affected function dies but nothing is locked (an owner, admin, disband or rescue path still moves the money, or none is held by design) |
 | HIGH | No update path, and funds are locked with no way out |
-| CRITICAL | No update path, and people who did nothing lose funds (a wrong verdict pays or punishes someone) |
+| CRITICAL | No update path, and people who did nothing lose funds (a wrong verdict pays or punishes someone, or a party that relied on a signature loses) |
 
 A family whose addresses differ is one row per answer: its proxies with a live admin are a LOW row, its copies with
 no update path are another. Value and activity set the order, not the rating: `generated/triage_contracts.csv` lists

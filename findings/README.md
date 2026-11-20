@@ -166,12 +166,15 @@ A re-rating keeps the old rating in History with the step that decided the new o
 
 ### Classes `regression` and `migration-hazard`
 
+Decided by Anon for the EIP-8151 study (D-024): the rating says how hard the fix is; value and activity only order
+the findings.
+
 | Rating | Rule |
 |---|---|
-| CRITICAL | Funds are lost or locked for people who did nothing (an honest party punished; customers' or participants' funds stuck), and nobody can change the contract |
-| HIGH | The same, but a fix needs an upgrade or many parties; or owners' own funds locked in code that cannot change, one wallet per owner group |
-| MEDIUM | A core function stops or a right is lost, and a fix by upgrade, vote, new deployment or migration exists; or only the operator's own money is at stake |
-| LOW | Another path exists, the key can be rotated, or only a sender's gas limit is at fault |
+| CRITICAL | No update path, and people who did nothing lose funds: a wrong verdict pays or punishes someone, or a party that relied on a signature loses |
+| HIGH | No update path, and funds are locked: nothing gets them out |
+| MEDIUM | No update path, and only the operator's own money is at stake; or the affected function dies but nothing is locked (an owner, admin, disband or rescue path still moves the money, or the contract holds none by design) |
+| LOW | A simple update fixes it (a live admin or owner upgrade, a setter that replaces the key, a 7702 re-delegation, a setting, a sender's gas limit), or the same act stays open to the affected party by another path |
 | NONE | Checked and not affected |
 
 ## Checks before you state a fact
