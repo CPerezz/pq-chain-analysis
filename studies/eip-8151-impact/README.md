@@ -63,5 +63,12 @@ Filed in `triage/` and `findings/` with this study as a source; listed in `gener
 - Run-time data covers only the traced window. Paths that never ran rely on the scan and on reading.
 - Code without source is judged from bytecode. Template copies are compared with their template, not read one by
   one; low-shaped copies are counted, not listed, and copies no rule places are not filed.
+- Scam kits are left out: 3,373 code families in which a hidden fixed key drains the deposits through a signature.
+  They are counted, not filed.
+- Below the value cut (under 0.1 ETH and fewer than 10 addresses) a family is read only when it is busy: 10,000 or
+  more lifetime transactions or token transfers at its busiest address (Blockscout counters, 2026-11-20). Of 205 busy
+  families, 186 are decided (138 LOW, 34 MEDIUM, 2 HIGH, 12 not affected) and 19 are not. The other families below the
+  cut are placed by rules or left unread.
+- In the cut, 376 families without source are not settled: decompiling did not show what their recovery authorizes.
 - Value is ETH plus 49 tokens at the pinned block.
 - Entries are AI-assisted and unreviewed until a reviewer confirms them.

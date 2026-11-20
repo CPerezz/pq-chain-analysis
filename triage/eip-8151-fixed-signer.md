@@ -37,6 +37,13 @@ contracts:
 - {address: "0xf488f79db9ad86a17eeb694737eade2b08f93eee", family: "cf7404a95d6bfbb3f78ed68718839b89", copies: 4305, name: "BondedECDSAKeep", upgradeable: "no", rating: HIGH, note: "Keep ManagedGrant.recoverStake: no signature (matched on a word) / Keep TokenGrant.recoverStake: no signature / Keep TokenGrantStake.recoverStake: no signature / Keep BondedECDSAKeep submitSignature:…. Read from source. Update path: delegates to a fixed address."}
 - {address: "0xf819b53fc0c6f98466b415c8239800a01bc91751", family: "1ff4f5468938addfb9d0658161210151", upgradeable: "no", rating: HIGH, note: "Gemini custodian completeUnlock: the caller must be a signer and two more signers of the custodian's fixed set must have signed / Gemini enableSweep: marks for sweeping the…. Same code idiom as template 59db0469, not read on its own. Update path: no proxy slot, no upgrade function."}
 - {address: "0x6081d7f04a8c31e929f25152d4ad37c83638c62b", family: "9ae269e9cefd61add8d83e053edc37bf", name: "DevRewardDistributor", upgradeable: "no", rating: MEDIUM, value_usd: 38, value_basis: "held", value_as_of: 2026-11-18, note: "DevRewardDistributor.claimTokens: a signed claim gate; quick read, no setter found, value at this address is 0.021 ETH. Placed by contract type, not checked in source."}
+- {address: "0x00000063f648c943346d2a239f0969bad32ff184", family: "722b00ab7bc038485569f0e344138c52", upgradeable: "no", rating: MEDIUM, value_usd: 17, value_basis: "held", value_as_of: 2026-11-18, note: "Operator bot (unverified): the recovered address must be a stored key that no function replaces (card; no address setter in the decompile); holds nothing. Bytecode."}
+- {address: "0x80eabd6df366b62fbb970029363c3e52eff00953", family: "7163e52d8dfe75a07b2c68225439a20a", upgradeable: "no", rating: MEDIUM, value_usd: 14, value_basis: "held", value_as_of: 2026-11-18, note: "Operator bot (unverified): calls made on a signed request must recover to the constant key 0x14400c74; holds nothing. Bytecode."}
+- {address: "0xe44a2179edab1e638eac86079fe4ed850ca77b6c", family: "269fa83ae386e5e0a2362f0fc569b37d", upgradeable: "no", rating: MEDIUM, value_usd: 5, value_basis: "held", value_as_of: 2026-11-18, note: "Operator bot (unverified): calls made on a signed request must recover to the constant key 0x14400c74; holds nothing. Bytecode."}
+- {address: "0xaf0b0000f0210d0f421f0009c72406703b50506b", family: "ae7c99d8c64e940199ef1ccd3f5dcfa6", upgradeable: "no", rating: MEDIUM, value_usd: 1, value_basis: "held", value_as_of: 2026-11-18, note: "Operator bot (unverified): the recovered address must be a stored key that no function replaces (card; no address setter in the decompile); holds nothing. Bytecode."}
+- {address: "0xe2f011b751bc2421ce0618bff526ad3de582ce7d", family: "259218ec8ad7c226a793cd8d3557f133", upgradeable: "no", rating: MEDIUM, value_usd: 1, value_basis: "held", value_as_of: 2026-11-18, note: "Operator bot (unverified): calls made on a signed request must recover to the constant key 0x14400c74; holds nothing. Bytecode."}
+- {address: "0x0000005c9426e6910f22f0c00ed3690a4884dd6e", family: "eb04fedbe0a3cf33de991960f14b5617", copies: 6, upgradeable: "no", rating: MEDIUM, note: "Operator bot (unverified): the recovered address must be a stored key that no function replaces (card; no address setter in the decompile); holds nothing. Bytecode."}
+- {address: "0x000000cce580fb2b76b2d1196c237db199d82505", family: "2d0dc8d9480e22928cd6b1e0d5dff982", upgradeable: "no", rating: MEDIUM, note: "Operator bot (unverified): the recovered address must be a stored key that no function replaces (card; no address setter in the decompile); holds nothing. Bytecode."}
 - {address: "0x000d2d31815990fca6f69dfd978c4d4a56b2ed6b", family: "6940c3a52092c3a5c97356fe640de931", name: "TrueProfileLogic", upgradeable: "no", rating: MEDIUM, note: "TrueProfileLogic (second family, same contract shape as 08687f12). Placed by contract type, not checked in source."}
 - {address: "0x19445bb9f1b704dd973f8f9a4dce5ea5e55444da", family: "ddc4a91b2a4188e6082de44483a490d8", name: "AppliedPrimateEngineering", upgradeable: "no", rating: MEDIUM, note: "AppliedPrimateEngineering._validateAttributeSignature: an attribute-update gate, no funds; quick read. Placed by contract type, not checked in source."}
 - {address: "0x20bd0551f05dc40117d6b91dfa9f67d25307d1d8", family: "be5ae432f342bf3e43af83fb9c0905b1", name: "AbnormalJean", label: "Abnormal Jean: JEAN Token", upgradeable: "no", rating: MEDIUM, note: "AbnormalJean.purchase: the same whitelist-signer pattern and conclusion as LovelessCityMetropass (shared code). Placed by contract type, not checked in source."}
@@ -48,7 +55,10 @@ contracts:
 - {address: "0x615771e3510a5898b38ab46da2f5b4ef67a2f077", family: "5b6d1f203793a21c0b49ed50bca2faf2", name: "MintGateV2", upgradeable: "no", rating: MEDIUM, note: "MintGateV2.mint: SIGNER is set once in the constructor, no setter found; a mint gate, no funds. Placed by contract type, not checked in source."}
 - {address: "0x6f2235864cf897078fcdcc2854b76c482cd16874", family: "7123342869a70c2811c0f99d0058260c", name: "PoapDelegatedMint", upgradeable: "no", rating: MEDIUM, note: "PoapDelegatedMint._isValidData: validSigner is set once in the constructor, no setter found; gates a free POAP mint only, no funds at risk. Read."}
 - {address: "0x743776e5a345fe62d7d85282407c94e616a03176", family: "6e6256af68ce37623339917ef2ad12d8", name: "PixelmonEvolution", upgradeable: "no", rating: MEDIUM, note: "PixelmonEvolution.evolvePixelmon: SIGNER is an immutable-style constant with no setter found; a game action (evolving), no funds. Placed by contract type, not checked in source."}
+- {address: "0x7a30f7736e48d6599356464ba4c150d8da0302ff", family: "86d647c02e9befc67125c8206bbfbc21", copies: 2, upgradeable: "no", rating: MEDIUM, note: "Oracle-confirmed operations (unverified; 2023): confirmations must come from the oracle set, which no function writes after construction. Bytecode."}
+- {address: "0x829f3eb4ca4f7519228a79f5b0cdc45b4e58d40c", family: "8a24387b4fec7804288c9188a153a0c4", upgradeable: "no", rating: MEDIUM, note: "Operator bot (unverified): the recovered address must be a stored key that no function replaces (card; no address setter in the decompile); holds nothing. Bytecode."}
 - {address: "0x8338d085aae3ac048b9e1de285fdef508ce73e45", family: "a89fa3737cd164f6b9adb20c54196ff5", name: "LovelessCityMetropass", label: "Loveless City Metropass: $LOVE Token", upgradeable: "no", rating: MEDIUM, note: "LovelessCityMetropass.purchase: a whitelist-signer gate (_validateSignature) over a paid mint; a failed check reverts the whole call, so ETH is never trapped, only whitelist minting stops. No setter…. Placed by contract type, not checked in source."}
+- {address: "0x88cf4a8047b5ab9278ef1a15dd22f30fef04dc47", family: "b7b9500fe3c71faa01bd2ef025d3b2ee", upgradeable: "no", rating: MEDIUM, note: "Operator bot (unverified): ETH withdrawals need a signature from the constant key 0xf96d1059; holds nothing. Bytecode."}
 - {address: "0x90c70dc9f3fda4a1d78a2b7d90ca087088355717", family: "3a732bbffc149f99e2c7c218ac429d33", name: "SatoshiIslandCitizenshipNFTs", upgradeable: "no", rating: MEDIUM, note: "SatoshiIslandCitizenshipNFTs Coupon.verifySignature: an admin-issued mint coupon, no funds. Placed by contract type, not checked in source."}
 - {address: "0xb1160236017bbc3fe961957a785e24efd808c0cc", family: "50ec7f1f4326388a5710eb1c24f7366e", copies: 2, name: "PokeRaidHookV2", upgradeable: "no", rating: MEDIUM, note: "PokeRaidHookV2._resolveAuthenticatedUser: a Uniswap v4 game hook's user-authentication gate, no funds beyond the swap itself; quick read. Placed by contract type, not checked in source."}
 - {address: "0xbe47e195607e408dc1ede1d67bfaed6187197ead", family: "f4b679e9afd7cdfaed93ec8d67173e85", name: "SCAIGenesis", upgradeable: "no", rating: MEDIUM, note: "SCAIGenesis presalePurchase: the same coupon-mint-gate pattern as SatoshiIslandCitizenshipNFTs; a failed check reverts the paid mint atomically. Placed by contract type, not checked in source."}
@@ -75,7 +85,7 @@ reviews: []
 
 ## Summary
 
-These contracts accept signatures only from a key fixed in their code (operator, issuer, quote or claim signer). 54 code families, 4,742 addresses, $583 held, 856 recoveries in the study's two-week window. Rows by rating: HIGH 30, MEDIUM 24. 10 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+These contracts accept signatures only from a key fixed in their code (operator, issuer, quote or claim signer). 64 code families, 4,758 addresses, $621 held, 856 recoveries in the study's two-week window. Rows by rating: HIGH 30, MEDIUM 34. 10 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
 
 ## Mechanism
 
@@ -90,6 +100,11 @@ PQ-17. Once that key's account has real code, every signed function stops. Users
 Largest rows by value held at block 26,438,999:
 - `0x585207660179242b75559a0365acd54b6f877508` (unverified): $545, HIGH
 - `0x6081d7f04a8c31e929f25152d4ad37c83638c62b` (DevRewardDistributor): $38, MEDIUM
+- `0x00000063f648c943346d2a239f0969bad32ff184` (unverified): $17, MEDIUM
+- `0x80eabd6df366b62fbb970029363c3e52eff00953` (unverified): $14, MEDIUM
+- `0xe44a2179edab1e638eac86079fe4ed850ca77b6c` (unverified): $5, MEDIUM
+- `0xaf0b0000f0210d0f421f0009c72406703b50506b` (unverified): $1, MEDIUM
+- `0xe2f011b751bc2421ce0618bff526ad3de582ce7d` (unverified): $1, MEDIUM
 
 Every row is in the header; `generated/triage_contracts.csv` lists them for search.
 
@@ -105,3 +120,4 @@ The operator keeps the signing key without code, or moves users to a new deploym
 - 2026-11-19: rows rated by how hard the fix is, one row per family and update path (D-024).
 - 2026-11-20: 5 rows added with --add from `verdicts.csv`.
 - 2026-11-20: 25 rows added from gate-1 `verdicts.csv`.
+- 2026-11-20: 10 rows added from gate-1 `verdicts.csv`.
