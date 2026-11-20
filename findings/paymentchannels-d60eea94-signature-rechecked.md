@@ -71,3 +71,4 @@ Deploy a version that accepts ERC-1271 or a direct call from stakerAddress; unti
 
 - 2026-11-19: reported as a row of triage entry `eip-8151-signature-rechecked` (study `eip-8151-impact`).
 - 2026-11-20: reviewed and filed: CRITICAL. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+- 2026-11-20: the same contract was also a row of triage entry `eip-8151-rotate-signer-before-migrating`; its rotation reading covers only the notaries, whose keys a setter replaces; the stakers' keys have no setter, so the finding here (commitments rechecked after others relied on them) governs (D-025).
