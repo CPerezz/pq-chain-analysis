@@ -32,6 +32,47 @@ activity:
 impact: liveness
 action: Replace any signer key with updateSigners before moving that signer's account to code.
 evidence_level: source
+checks:
+- id: ecdsa
+  source: "0x5427fefa711eff984124bfbb1ab6fbf5e3da1820"
+  file: contracts/Signers.sol
+  line: 106
+  has: "address signer = _hash.recover(_sigs[i]);"
+  says: each signature is recovered with ECDSA and matched against the signer list
+  for: [what, evidence-1, justification]
+- id: quorum
+  source: "0x5427fefa711eff984124bfbb1ab6fbf5e3da1820"
+  file: contracts/Signers.sol
+  line: 100
+  has: "uint256 quorum = (totalPower * 2) / 3 + 1;"
+  says: the signers that sign must hold two thirds of the power plus one
+  for: [what, evidence-1]
+- id: rotate
+  source: "0x5427fefa711eff984124bfbb1ab6fbf5e3da1820"
+  file: contracts/Signers.sol
+  lines: [51, 60]
+  has: "function updateSigners("
+  says: updateSigners installs a new signer set approved by the current one
+  for: [evidence-2, justification, action]
+- id: reset
+  source: "0x5427fefa711eff984124bfbb1ab6fbf5e3da1820"
+  file: contracts/Signers.sol
+  line: 72
+  has: "function resetSigners(address[] calldata _signers, uint256[] calldata _powers) external onlyOwner"
+  says: the owner can replace the signer set
+  for: [what, evidence-2]
+- id: notice
+  call: "0x5427fefa711eff984124bfbb1ab6fbf5e3da1820"
+  fn: noticePeriod()(uint256)
+  is: 604800
+  says: a reset by the owner needs a notice of 604,800 seconds, 7 days
+  for: [what, evidence-2]
+- id: owner
+  call: "0x5427fefa711eff984124bfbb1ab6fbf5e3da1820"
+  fn: owner()(address)
+  is: "0xf380166f8490f24af32bf47d1aa217fba62b6575"
+  says: the owner that can reset the signers
+  for: [evidence-2]
 sources:
 - study: eip-8151-impact
   who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)

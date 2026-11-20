@@ -79,7 +79,7 @@ BODY2 = ("What happens", "Evidence", "Reviewer notes")
 NOTES2 = ("Mechanism", "Checks", "History", "Questions")
 KEYS2 = {"id", "format", "title", "status", "severity", "justification", "category", "pattern", "study", "as_of", "block",
          "contract", "value", "activity", "impact", "action", "evidence_level", "primitive", "duplicate_of", "repro",
-         "sources", "reviews", "related"}
+         "checks", "sources", "reviews", "related"}
 CONTRACT2 = {"address", "name", "project", "label", "code", "code_url", "proxy_of", "copies", "family", "upgradeable", "admin"}
 CODE_HOSTS = ("etherscan.io", "sourcify.dev", "repo.sourcify.dev", "eth.blockscout.com")
 NAME = re.compile(r"^[A-Za-z_$][A-Za-z0-9_$]*$")
@@ -88,6 +88,18 @@ SHOWN_BANNED = ((re.compile(r"\bCHECKED\b|\bINFERRED\b"), "CHECKED or INFERRED")
                 (re.compile(r"\bD-0\d\d\b"), "decision numbers"), (re.compile(r"\bPQ-\d+\b"), "pattern codes"),
                 (re.compile(r"\b[0-9a-f]{32}\b"), "code family ids"), (re.compile(r"\.(?:csv|jsonl?|py|parquet)\b"), "file names"),
                 (re.compile(r"\bTODO\b"), "TODO placeholders"), (re.compile(r"\b(?:Claude|heimdall)\b", re.I), "agent or tool names"))
+# `checks`: what `tools/verify.py` re-runs. kind: (required fields, optional fields); the kind's own value is an
+# address, except for tx and replay (a transaction hash) and ref (a link pinned to a commit).
+CHECK_KINDS = {"code": ({"is"}, {"bytes", "target"}), "bytecode": ({"has"}, {"absent"}), "storage": ({"slot", "is"}, set()),
+               "call": ({"fn"}, {"args", "is", "reverts", "from"}), "source": ({"file", "has"}, {"line", "lines"}),
+               "selector": ({"fn"}, {"absent"}), "tx": (set(), {"to", "ok"}), "nonce": (set(), {"is", "min"}),
+               "replay": ({"run", "ok"}, set()), "ref": (set(), set())}
+CHECK_COMMON = {"id", "says", "for", "at"}
+CHECK_FACTS = ("proxy_of", "upgradeable", "admin", "name", "whose")  # header facts a check may back, where the tool reads none or differs
+CHECK_FOR = ("what", "evidence-1", "evidence-2", "evidence-3", "justification", "action", "notes") + CHECK_FACTS
+CODE_IS = ("empty", "contract", "delegation")
+REPLAY_RUNS = ("today", "eip8151", "eip8151_signer_code", "eip8151_signer_delegated", "eip8151_self_real_code")
+CHECK_ID = re.compile(r"^[a-z][a-z0-9-]*$")
 
 
 class Loader(yaml.SafeLoader):
@@ -412,6 +424,67 @@ def text2(p: Problems, w: str, f: dict, key: str, lo: int, hi: int, required: bo
     return v
 
 
+def check_checks(p: Problems, w: str, checks, final: bool, parts: list[str]) -> None:
+    """The shape of `checks` (tools/verify.py runs them), and that every part of the card is named by one."""
+    if checks is None:
+        if final:
+            p.add(w, "checks missing: every part of the card needs a check that tools/verify.py can re-run")
+        return
+    if not isinstance(checks, list) or not all(isinstance(c, dict) for c in checks):
+        p.add(w, "checks must be a list of mappings")
+        return
+    ids, named = set(), set()
+    for i, c in enumerate(checks):
+        cw = f"{w} checks[{i}]"
+        kinds = [k for k in CHECK_KINDS if k in c]
+        if len(kinds) != 1:
+            p.add(cw, f"needs exactly one of {list(CHECK_KINDS)}")
+            continue
+        kind = kinds[0]
+        need, may = CHECK_KINDS[kind]
+        if need - set(c) or set(c) - need - may - CHECK_COMMON - {kind}:
+            p.add(cw, f"a {kind} check needs {sorted(need)} and may have {sorted(may)}, beside {sorted(CHECK_COMMON)}")
+        if not isinstance(c.get("id"), str) or not CHECK_ID.match(c["id"]) or c["id"] in ids:
+            p.add(cw, "id must be a short lowercase name, used once")
+        ids.add(c.get("id"))
+        if not isinstance(c.get("says"), str) or not 5 <= len(c["says"]) <= 140:
+            p.add(cw, "says: 5 to 140 characters on what the check shows")
+        fors = c.get("for") if isinstance(c.get("for"), list) else []
+        if not fors or set(fors) - set(CHECK_FOR):
+            p.add(cw, f"for: one or more of {list(CHECK_FOR)}")
+        named |= set(fors)
+        if c.get("at") is not None and not isinstance(c["at"], int):
+            p.add(cw, "at must be a block number")
+        target = c[kind]
+        if kind in ("tx", "replay"):
+            if not isinstance(target, str) or not TX.match(target):
+                p.add(cw, f"{kind} must be a transaction hash, quoted")
+        elif kind == "ref":
+            if not pinned(target):
+                p.add(cw, "ref must be a link that carries a full commit hash")
+        elif not isinstance(target, str) or not ADDRESS.match(target):
+            p.add(cw, f"{kind} must be a lowercase 0x address, quoted")
+        if kind == "code" and c.get("is") not in CODE_IS:
+            p.add(cw, f"is: one of {list(CODE_IS)}")
+        if kind == "source" and not (isinstance(c.get("line"), int) or (isinstance(c.get("lines"), list) and len(c["lines"]) == 2
+                                                                         and all(isinstance(x, int) for x in c["lines"]))):
+            p.add(cw, "a source check needs `line: N` or `lines: [first, last]`")
+        if kind == "call" and "is" not in c and "reverts" not in c:
+            p.add(cw, "a call check needs `is` or `reverts`")
+        if kind == "nonce" and "is" not in c and "min" not in c:
+            p.add(cw, "a nonce check needs `is` or `min`")
+        if kind == "replay" and c.get("run") not in REPLAY_RUNS:
+            p.add(cw, f"run: one of {list(REPLAY_RUNS)}")
+    if final:
+        if not checks:
+            p.add(w, "checks empty: every part of the card needs a check that tools/verify.py can re-run")
+        for part in parts:
+            if part not in named:
+                p.add(w, f"no check supports {part}: name it in a check's `for`")
+    for part in named - set(parts) - set(CHECK_FACTS) - {"notes"}:
+        p.add(w, f"a check names {part}, which the card does not have")
+
+
 def load_finding2(path: Path, head: dict, body: str, patterns: dict[str, dict], studies: dict[str, dict], p: Problems,
                   pool: str, root: Path):
     """A format-2 finding (findings/README.md), returned with the fields the views of format 1 read."""
@@ -516,11 +589,11 @@ def load_finding2(path: Path, head: dict, body: str, patterns: dict[str, dict], 
         if re.search(r"^\s*(?:[-*>|#]|```)", what, re.M):
             p.add(w, "What happens is prose: no lists, tables, quotes or code blocks")
         shown(p, w, "What happens", what)
-    ev = texts.get("Evidence", "")
+    ev, bullets = texts.get("Evidence", ""), []
     if final and not ev:
         p.add(w, "Evidence is empty")
     if ev and not draft(ev):
-        bullets, loose = [], False
+        loose = False
         for line in ev.splitlines():
             if line.startswith("- "):
                 bullets.append(line[2:])
@@ -547,6 +620,8 @@ def load_finding2(path: Path, head: dict, body: str, patterns: dict[str, dict], 
         p.add(w, "Reviewer notes need Mechanism, Checks and History")
     if "Questions" in subs and status != "candidate":
         p.add(w, "open Questions keep a finding a candidate")
+    parts = ["what", "justification"] + [f"evidence-{i}" for i in range(1, len(bullets) + 1)] + (["action"] if action else [])
+    check_checks(p, w, f.get("checks"), final, parts)
 
     f["title"] = title or str(f.get("title") or "")
     f["patterns"], f["_class"] = ([pid] if pid in patterns else []), patterns.get(pid, {}).get("class")
@@ -1019,6 +1094,15 @@ def selftest(patterns: dict[str, dict], studies: dict[str, dict]) -> list[str]:
          {"change": (ed, verified, "code: decompiled\n  code_url: code/abc.sol"), "extra": {"code/abc.sol": "// decompiled\n"}}, None),
         ("an appended document", {"change": (ed, "who move to an account with code.\n", "who move to an account with code.\n\n# Source excerpts\n")},
          "no appended documents"),
+        ("a confirmed finding without checks", {"change": (ed, "checks:\n- id: signed-order", "related_checks:\n- id: signed-order")},
+         "checks missing"),
+        ("a part of the card that no check supports", {"change": (ed, "  for: [action]", "  for: [notes]")}, "no check supports action"),
+        ("a check that names a part the card does not have", {"change": (ed, "  for: [action]", "  for: [action, evidence-3]")},
+         "which the card does not have"),
+        ("a check whose address is not quoted",
+         {"change": (ed, f'  storage: "{ed_addr}"', f"  storage: {ed_addr}")}, "must be a lowercase 0x address, quoted"),
+        ("a check of no known kind", {"change": (ed, f'  selector: "{ed_addr}"', f'  selektor: "{ed_addr}"')}, "needs exactly one of"),
+        ("a source check without a line", {"change": (ed, "  line: 256\n", "")}, "a source check needs"),
         ("outreach as filled", {"extra": {"outreach/etherdelta.md": OUTREACH_FILE}}, None),
         ("outreach for a project no finding names", {"extra": {"outreach/nobody.md": OUTREACH_FILE.replace("project: etherdelta", "project: nobody")}},
          "no finding names this project"),

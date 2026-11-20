@@ -35,6 +35,7 @@ activity:
 impact:                            # funds-loss | funds-locked | liveness: what happens if nobody acts
 action:                            # up to 140 characters, for the contract's team, starting with a verb; empty if not sure
 evidence_level:                    # source | bytecode | onchain | trace | executed
+checks: []                         # not shown: what tools/verify.py re-runs; every part of the card needs one (findings/README.md)
 sources:
 - study: study-id
   who:                             # person or agent

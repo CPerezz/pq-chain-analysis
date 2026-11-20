@@ -32,6 +32,35 @@ activity:
 impact: liveness
 action: Upgrade WalletRegistry so a result is checked once, or so operators whose accounts have code can sign.
 evidence_level: executed
+checks:
+- id: recover
+  source: "0x0125c8977a02b2fa3970b1ed9af02f5bedd4ef27"
+  file: contracts/EcdsaDkgValidator.sol
+  lines: [250, 252]
+  has: "address recoveredAddress = hash.recover(current);"
+  says: every signature of a result must recover to the selected operator's address
+  for: [what, evidence-1, justification]
+- id: window
+  call: "0x46d52e41c2f300bc82217ce22b920c34995204eb"
+  fn: dkgParameters()(uint256,uint256,uint256,uint256,uint256)
+  is: [11520, 11520, 50000, 536, 20]
+  says: a result can be challenged for 11,520 blocks, about 38 hours (the second value)
+  for: [what]
+- id: last-use
+  tx: "0xdad127784152301e0be04a5d5bd40d676ab85f4a707331f0b82bd2323d9eab28"
+  ok: true
+  says: the approval of 2026-11-14, which ran this check through WalletRegistry
+  for: [evidence-2]
+- id: upgradeable-registry
+  storage: "0x46d52e41c2f300bc82217ce22b920c34995204eb"
+  slot: "0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103"
+  is: "0x0000000000000000000000007affa05f726d293eb1193807a91617318292008e"
+  says: WalletRegistry, which calls the validator, is a proxy with an admin, so the check can be changed
+  for: [justification, action]
+- id: executed
+  ref: "https://github.com/kevaundray/pq-chain-analysis/blob/d9c90afac8137e134d5e884865dfc37bbcb0d397/triage/tbtc-dkg-result-signer-code.md"
+  says: the study's run of a challenge with code at one operator, the honest submitter is penalised
+  for: [what, justification]
 sources:
 - study: eip-8151-impact
   who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)

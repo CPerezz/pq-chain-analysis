@@ -17,15 +17,17 @@ Agents filing or reviewing findings follow [`AGENTS.md`](../AGENTS.md).
    --block N --who NAME` reads the name, code, proxy, upgradeability, admin and holdings at block N and writes
    `triage/<id>.md` with the judgment left empty. A file moves here when someone other than the reporter has reviewed
    it (`triage/README.md`).
-3. **Write the judgment** like the filled examples in `templates/examples/findings/`, one per category.
-4. **Check:** `uv run tools/build.py --check`.
+3. **Write the judgment** like the filled examples in `templates/examples/findings/`, one per category, and the
+   `checks` that back it.
+4. **Check:** `uv run tools/build.py --check` (the format) and `uv run tools/verify.py triage/<id>.md` (the facts and
+   the checks, re-read from an archive node).
 
 ## Levels
 
 | Level | What it takes |
 |---|---|
 | `candidate` | A claim: the pattern, the contract, who reports it from which study. Judgment fields may be empty; open questions are listed under `### Questions` |
-| `confirmed` | Every judgment field filled, the state read at `block`, the three sections complete, no open question |
+| `confirmed` | Every judgment field filled, the state read at `block`, the three sections complete, every part of the card backed by a check, no open question |
 | `reproduced` | Confirmed, and executed: `repro` carries the command, the code at a full commit hash, the inputs and the result the command must give |
 | `duplicate` | The same issue filed twice; `duplicate_of` names the other file |
 
@@ -78,6 +80,7 @@ field you are not sure of; leave it empty and ask (`AGENTS.md`).
 | `evidence_level` | `source`, `bytecode`, `onchain`, `trace`, `executed` | The strongest evidence behind it |
 | `primitive` | `ecrecover`, `bn254`, `kzg`, `bls12381`, `p256`, `sw_*`, `rsa` | For search; not shown |
 | `duplicate_of`, `repro` | | As in "Levels" |
+| `checks[]` | see "Checks" | What `tools/verify.py` re-runs. Not shown |
 | `sources[]` | `study`, `who`, `date`, `by`, `verdict`, `rating` | One entry per study that found or checked it; `by` is `ai-assisted`, `project-team` or `other` |
 | `reviews[]` | `who`, `date`, `by`, `verdict`, `rating`, `note` | Checks by someone other than the reporter |
 | `related` | ids | Other findings on the same contract or code |
@@ -96,6 +99,32 @@ Exactly three sections:
 
 What readers see carries no working notes: no `CHECKED` or `INFERRED`, no "read at block", no decision numbers,
 pattern codes, file names, code family ids, or agent and tool names. Nothing follows the Reviewer notes.
+
+### Checks
+
+Every part of the card rests on something anyone can run again. `checks` is a list; each entry is one read with the
+result it must give, a line on what it shows (`says`), and the parts of the card it supports (`for`: `what`,
+`evidence-1` to `evidence-3`, `justification`, `action`, `notes`). From `confirmed` up, every part needs one.
+
+| Kind | Fields | What is re-run |
+|---|---|---|
+| `code: "0x…"` | `is` (`empty`, `contract`, `delegation`), `bytes`, `target` | The code at the address |
+| `bytecode: "0x…"` | `has` (hex), `absent` | A byte sequence in the runtime code |
+| `selector: "0x…"` | `fn`, `absent` | A function's selector in the runtime code |
+| `storage: "0x…"` | `slot`, `is` | A storage slot |
+| `call: "0x…"` | `fn` as `name(types)(return types)`, `args`, `is` or `reverts`, `from` | A read-only call |
+| `source: "0x…"` | `file`, `line` or `lines: [first, last]`, `has` | Text at those lines of the verified source |
+| `tx: "0x…"` | `to`, `ok` | A transaction and its outcome |
+| `nonce: "0x…"` | `is` or `min` | An account's transaction count |
+| `replay: "0x…"` | `run`, `ok` | A real transaction replayed on the study's fork engine |
+| `ref: "https://…"` | | A written record of an execution, pinned to a commit. Not re-run |
+
+Reads are at the finding's `block` unless the check has `at`. Addresses and hashes are quoted. A check proves a fact;
+what the card concludes from it is the reviewer's part.
+
+The header facts come from `tools/new_finding.py`. Where a reviewer states a fact the tool does not read, or reads
+differently (`proxy_of`, `upgradeable`, `admin`, `name`), a check names that fact in its `for`; `whose` may be backed
+the same way. `tools/verify.py` fails a file whose facts differ from the tool's without such a check.
 
 ### Code
 

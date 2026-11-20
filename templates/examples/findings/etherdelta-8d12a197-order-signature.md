@@ -23,7 +23,7 @@ contract:
   upgradeable: "no"
   admin: "0x1ed014aec47fae44c9e55bac7662c0b78ae61798"
 value:
-  usd: 39827526
+  usd: 36707185
   whose: users
   basis: held
 activity:
@@ -32,6 +32,40 @@ activity:
 impact: funds-loss
 action: Ask depositors to withdraw; the contract cannot be changed and withdrawals need no signature.
 evidence_level: source
+checks:
+- id: signed-order
+  source: "0x8d12a197cb00d4747a1fe03395095ce2a5cc6819"
+  file: EtherDelta.sol
+  line: 256
+  has: "orders[user][hash] || ecrecover("
+  says: trade() takes an order that was posted on-chain or one signed with ECDSA
+  for: [what, evidence-1, justification]
+- id: deposits
+  source: "0x8d12a197cb00d4747a1fe03395095ce2a5cc6819"
+  file: EtherDelta.sol
+  line: 215
+  has: "tokens[0][msg.sender] = safeAdd(tokens[0][msg.sender], msg.value)"
+  says: what the contract holds is credited to its depositors
+  for: [what, justification]
+- id: no-proxy
+  storage: "0x8d12a197cb00d4747a1fe03395095ce2a5cc6819"
+  slot: "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc"
+  is: 0
+  says: the EIP-1967 implementation slot is empty, so the address is not a proxy
+  for: [evidence-2, justification]
+- id: no-upgrade
+  selector: "0x8d12a197cb00d4747a1fe03395095ce2a5cc6819"
+  fn: upgradeTo(address)
+  absent: true
+  says: the code has no upgrade function
+  for: [evidence-2, justification]
+- id: withdraw
+  source: "0x8d12a197cb00d4747a1fe03395095ce2a5cc6819"
+  file: EtherDelta.sol
+  lines: [219, 222]
+  has: "msg.sender.call.value(amount)()"
+  says: withdraw() pays the caller its own balance and takes no signature
+  for: [action]
 sources:
 - study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
@@ -71,8 +105,8 @@ attacker who recovers a depositor's key can sign an order that sells that deposi
 ### Checks
 
 - Block 26,431,214: code 6,613 bytes; the EIP-1967 implementation slot is empty; `admin()` is 0x1ed0…7798, which can
-  change the admin, the fee account and the account-levels contract and lower fees, nothing else; 15,154.04 ETH plus
-  $12.37M of priced tokens.
+  change the admin, the fee account and the account-levels contract and lower fees, nothing else; 15,154.04 ETH and
+  17 priced tokens, $36.7M (the first study counted $39.8M with tokens the tool does not price).
 - Activity: 311 transactions from 2026-10-16 to 2026-11-16 (Xatu, any function); the 90-day count was not measured.
 - Study eip-8151-impact (2026-11-19) replayed tx 0xabc26d98…82fe: with code at the signer the trade reverts; with a
   7702 delegation it passes.

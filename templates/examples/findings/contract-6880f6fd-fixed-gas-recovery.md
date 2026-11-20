@@ -32,6 +32,28 @@ activity:
 impact: funds-loss
 action: Exit and retire this bridge before EIP-8151 activates; its code cannot be changed.
 evidence_level: executed
+checks:
+- id: fixed-gas
+  bytecode: "0x6880f6fd960d1581c2730a451a22eed1081cfd72"
+  has: "6001610bb8f150"
+  says: the call to the signature check gets a constant 3,000 gas and its result is dropped
+  for: [what, evidence-1, justification]
+- id: no-proxy
+  storage: "0x6880f6fd960d1581c2730a451a22eed1081cfd72"
+  slot: "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc"
+  is: 0
+  says: the EIP-1967 implementation slot is empty, so the address is not a proxy
+  for: [justification, action]
+- id: no-upgrade
+  selector: "0x6880f6fd960d1581c2730a451a22eed1081cfd72"
+  fn: upgradeTo(address)
+  absent: true
+  says: the code has no upgrade function
+  for: [justification, action]
+- id: executed
+  ref: "https://github.com/kevaundray/pq-chain-analysis/blob/d9c90afac8137e134d5e884865dfc37bbcb0d397/triage/fuel-v1-fixed-gas-witness-recovery.md"
+  says: the study's simulation with the new price, a fraud proof against an honest block pays its caller
+  for: [what, evidence-2, justification]
 sources:
 - study: eip-8151-impact
   who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)

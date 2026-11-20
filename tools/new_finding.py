@@ -6,14 +6,17 @@
 
     uv run tools/new_finding.py ADDRESS --pattern PQ-n --study STUDY --issue SLUG --who TEXT [--block N] [--out DIR]
                                  [--txs-90d N] [--last YYYY-MM-DD]
+    uv run tools/new_finding.py --selftest      known answers read from the node; run it before trusting a batch
 
-Never hand-type a fact: every value this tool can read, it reads itself, at one block. Node: one request at a
-time, 60 s timeout, one retry; never eth_getLogs, never trace_*. Refuses to run if the address is already filed
-under the same pattern, or the study/pattern do not exist.
+Never hand-type a fact: every value this tool can read, it reads itself, at one block. Node (`ETH_RPC_URL`): one
+request at a time, 60 s timeout, one retry; never eth_getLogs, never trace_*. Refuses to run if the address is
+already filed under the same pattern, or the study/pattern do not exist. `read_facts` is what `tools/verify.py`
+re-runs on a finished file.
 """
 
 import argparse
 import json
+import os
 import re
 import sys
 import time
@@ -31,22 +34,28 @@ ROOT = Path(__file__).resolve().parent.parent
 TOKENS = json.loads((ROOT / "tools" / "tokens.json").read_text())
 STABLE = {"USDT", "USDC", "DAI", "USDS", "USDe", "PYUSD", "FDUSD", "USD1", "USDtb", "crvUSD", "GHO", "FRAX", "LUSD", "TUSD", "USDP", "RLUSD", "USD0"}
 MAX_FEED_AGE = 2 * 86400
-ZERO32 = "0" * 64
-SLOT_1967_IMPL = "360894a13ba1a3210667c828492db98dca3e2076cc3735a8a38e1f2dd5f6f8a2"
-SLOT_1967_ADMIN = "b53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103"
-SLOT_1967_BEACON = "a3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50"
-SLOT_1822 = "c5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7"
-UPGRADE_SELECTORS = {bytes.fromhex("3659cfe6"), bytes.fromhex("4f1ef286"), bytes.fromhex("99a88ec4")}
+
+
+def k256(data: bytes) -> bytes:
+    return keccak.new(digest_bits=256, data=data).digest()
 
 
 def sel(sig: str) -> str:
-    return keccak.new(digest_bits=256, data=sig.encode()).digest()[:4].hex()
+    return k256(sig.encode())[:4].hex()
+
+
+# Storage slots, computed from their definitions so that no digit can be mistyped (EIP-1967: the hash minus one).
+slot_1967 = lambda name: (int.from_bytes(k256(f"eip1967.proxy.{name}".encode()), "big") - 1).to_bytes(32, "big").hex()
+SLOT_1967_IMPL, SLOT_1967_ADMIN, SLOT_1967_BEACON = slot_1967("implementation"), slot_1967("admin"), slot_1967("beacon")
+SLOT_1822 = k256(b"PROXIABLE").hex()
+UPGRADE_SELECTORS = {bytes.fromhex(sel(s)) for s in ("upgradeTo(address)", "upgradeToAndCall(address,bytes)", "upgrade(address,address)")}
+CLONE = re.compile(r"363d3d373d3d3d363d73([0-9a-f]{40})5af43d82803e903d91602b57fd5bf3")  # EIP-1167, the whole runtime code
 
 
 # --- RPC: one request at a time, 60 s timeout, one retry -------------------------------------------------------
 
 def rpc_url() -> str:
-    url = __import__("os").environ.get("ETH_RPC_URL")
+    url = os.environ.get("ETH_RPC_URL")
     if not url:
         sys.exit("ETH_RPC_URL is not set: point it at the archive node before running this tool.")
     return url
@@ -62,6 +71,8 @@ def rpc(method: str, params: list):
             if "error" in r:
                 raise RuntimeError(f"{method}: {r['error']}")
             return r["result"]
+        except RuntimeError:
+            raise  # the node answered with an error: asking again gives the same answer
         except Exception as e:
             last = e
             if attempt == 0:
@@ -77,12 +88,16 @@ def call(to: str, data: str, at: str) -> bytes | None:
         return None
 
 
+def storage(address: str, slot: str, at: str) -> bytes:
+    return bytes.fromhex(rpc("eth_getStorageAt", [address, "0x" + slot.removeprefix("0x"), at])[2:].rjust(64, "0"))
+
+
 def http_get(url: str):
     """One external HTTP request, 60 s timeout, one retry. Returns (status, json-or-None)."""
     last = None
     for attempt in range(2):
         try:
-            req = urllib.request.Request(url, headers={"accept": "application/json"})
+            req = urllib.request.Request(url, headers={"accept": "application/json", "user-agent": "pq-chain-analysis"})
             with urllib.request.urlopen(req, timeout=60) as r:
                 return r.status, json.loads(r.read())
         except urllib.error.HTTPError as e:
@@ -149,7 +164,7 @@ def verification(address: str) -> tuple[bool, str]:
 
 class Value:
     def __init__(self, at: str, now: int):
-        self.at, self.now, self.feed_cache = at, now, {}
+        self.at, self.now, self.feed_cache, self.tokens = at, now, {}, None
 
     def feed_price(self, pair: str) -> float | None:
         if pair in self.feed_cache:
@@ -198,32 +213,36 @@ class Value:
             return None
         return price
 
+    def priced(self) -> dict:
+        """symbol -> {address, decimals, usd} for every token of tokens.json that passes its checks; read once."""
+        if self.tokens is None:
+            self.tokens = {}
+            for spec in TOKENS["tokens"]:
+                symbol, addr = spec["symbol"], spec["address"]
+                got_symbol = call(addr, sel("symbol()"), self.at)
+                if got_symbol is None or _text(got_symbol).strip().upper() != symbol.upper():
+                    continue
+                dec_raw = call(addr, sel("decimals()"), self.at)
+                if dec_raw is None:
+                    continue
+                price = self.price_of(symbol, spec, self.tokens)
+                if price is None:
+                    continue
+                self.tokens[symbol] = {"address": addr, "decimals": int.from_bytes(dec_raw, "big"), "usd": price}
+        return self.tokens
+
     def usd(self, address: str) -> tuple[float | None, float, int]:
         """(total usd or None, eth held, number of priced tokens held)."""
         eth_usd = self.feed_price("ETH / USD")
-        wei = int(rpc("eth_getBalance", [address, self.at]), 16)
-        eth = wei / 1e18
+        eth = int(rpc("eth_getBalance", [address, self.at]), 16) / 1e18
         if eth_usd is None:
             return None, eth, 0
-        total = eth * eth_usd
-        done, held = {}, 0
-        for spec in TOKENS["tokens"]:
-            symbol, addr = spec["symbol"], spec["address"]
-            got_symbol = call(addr, sel("symbol()"), self.at)
-            if got_symbol is None or _text(got_symbol).strip().upper() != symbol.upper():
-                continue
-            dec_raw = call(addr, sel("decimals()"), self.at)
-            if dec_raw is None:
-                continue
-            dec = int.from_bytes(dec_raw, "big")
-            price = self.price_of(symbol, spec, done)
-            if price is None:
-                continue
-            done[symbol] = {"decimals": dec, "usd": price}
-            bal_raw = call(addr, sel("balanceOf(address)") + "000000000000000000000000" + address[2:], self.at)
+        total, held = eth * eth_usd, 0
+        for t in self.priced().values():
+            bal_raw = call(t["address"], sel("balanceOf(address)") + "000000000000000000000000" + address[2:], self.at)
             bal = int.from_bytes(bal_raw, "big") if bal_raw else 0
             if bal:
-                total += bal / 10 ** dec * price
+                total += bal / 10 ** t["decimals"] * t["usd"]
                 held += 1
         return total, eth, held
 
@@ -235,13 +254,152 @@ def _text(raw: bytes) -> str:
     return raw[:32].rstrip(b"\0").decode(errors="replace")
 
 
-def fmt_eth(wei_eth: float) -> str:
-    return f"{wei_eth:,.2f}"
+# --- the facts of one address at one block --------------------------------------------------------------------
+
+def read_facts(address: str, block_no: int, names: bool = True, valuer: Value | None = None) -> tuple[dict, list[str]]:
+    """What this tool reads about ADDRESS at BLOCK_NO, and the log of the reads. Empty or None = not established.
+
+    code_bytes, code_hash, delegation (the target of an EIP-7702 account), proxy_of, proxy_kind, upgradeable
+    ("yes", "no" or ""), admin, verified (None when `names` is off), name, value_usd, eth, tokens_held (None without a
+    `valuer`). Rules for `upgradeable`, all conservative:
+      a proxy with the EIP-1967 admin slot set                                      yes, admin = that address
+      a proxy without it whose implementation has an upgrade function               yes, admin = owner() if it answers
+      a beacon proxy whose beacon answers owner()                                   yes, admin = that owner
+      a fixed clone (EIP-1167), or no proxy: the code that runs has no DELEGATECALL
+        and no upgrade function                                                     no
+      anything else                                                                 left empty
+    """
+    at, log = hex(block_no), []
+    code = bytes.fromhex(rpc("eth_getCode", [address, at])[2:])
+    f = {"code_bytes": len(code), "code_hash": "0x" + k256(code).hex() if code else None, "delegation": None, "proxy_of": None,
+         "proxy_kind": None, "upgradeable": "", "admin": "", "verified": None, "name": "", "value_usd": None, "eth": None, "tokens_held": None}
+    if not code:
+        log.append(f"eth_getCode at block {block_no:,}: no code")
+        return f, log
+    if len(code) == 23 and code.startswith(b"\xef\x01\x00"):
+        f["delegation"] = "0x" + code[3:].hex()
+    log.append(f"eth_getCode at block {block_no:,}: {len(code):,} bytes" + (f" (an EIP-7702 delegation to {f['delegation']})" if f["delegation"] else ""))
+
+    impl, admin_slot = storage(address, SLOT_1967_IMPL, at), storage(address, SLOT_1967_ADMIN, at)
+    beacon_slot, uups = storage(address, SLOT_1967_BEACON, at), storage(address, SLOT_1822, at)
+    clone = CLONE.fullmatch(code.hex())
+    beacon = None
+    if any(impl):
+        f["proxy_of"], f["proxy_kind"] = addr_from_slot(impl), "eip1967"
+        log.append(f"EIP-1967 implementation slot at block {block_no:,}: {f['proxy_of']}")
+    elif any(beacon_slot):
+        beacon = addr_from_slot(beacon_slot)
+        f["proxy_of"], f["proxy_kind"] = addr_from_call(call(beacon, sel("implementation()"), at)), "beacon"
+        log.append(f"EIP-1967 beacon slot at block {block_no:,}: beacon {beacon}, implementation() {f['proxy_of']}")
+    elif any(uups):
+        f["proxy_of"], f["proxy_kind"] = addr_from_slot(uups), "eip1822"
+        log.append(f"EIP-1822 slot at block {block_no:,}: {f['proxy_of']}")
+    elif clone:
+        f["proxy_of"], f["proxy_kind"] = "0x" + clone.group(1), "clone"
+        log.append(f"EIP-1167 clone of {f['proxy_of']} (fixed in the code)")
+    else:
+        log.append("EIP-1967, EIP-1822 and beacon slots empty; not an EIP-1167 clone")
+
+    def fixed(runs: bytes, what: str) -> bool:
+        push4, delegatecall = opcode_scan(runs)
+        if not delegatecall and not (push4 & UPGRADE_SELECTORS):
+            log.append(f"{what}: no DELEGATECALL opcode and no upgradeTo, upgradeToAndCall or upgrade selector")
+            return True
+        log.append(f"{what}: a DELEGATECALL opcode or an upgrade selector is present; upgradeable left empty")
+        return False
+
+    owner = addr_from_call(call(address, sel("owner()"), at))
+    if f["proxy_kind"] in ("eip1967", "eip1822"):
+        if any(admin_slot):
+            f["upgradeable"], f["admin"] = "yes", addr_from_slot(admin_slot)
+            log.append(f"EIP-1967 admin slot at block {block_no:,}: {f['admin']}")
+        elif f["proxy_of"]:
+            icode = bytes.fromhex(rpc("eth_getCode", [f["proxy_of"], at])[2:])
+            if opcode_scan(icode)[0] & UPGRADE_SELECTORS:
+                f["upgradeable"], f["admin"] = "yes", owner or ""
+                log.append(f"EIP-1967 admin slot empty; the implementation has an upgrade function; owner() at block {block_no:,}: {owner or 'no answer'}")
+            else:
+                log.append("EIP-1967 admin slot empty and no upgrade function in the implementation; upgradeable left empty")
+    elif f["proxy_kind"] == "beacon":
+        bowner = addr_from_call(call(beacon, sel("owner()"), at))
+        if bowner:
+            f["upgradeable"], f["admin"] = "yes", bowner
+        log.append(f"owner() of the beacon at block {block_no:,}: {bowner or 'no answer'}")
+    else:
+        runs = bytes.fromhex(rpc("eth_getCode", [f["proxy_of"], at])[2:]) if clone else code
+        if not f["delegation"] and fixed(runs, "the clone's target" if clone else "not a proxy"):
+            f["upgradeable"] = "no"
+        getter = "owner()"
+        if not owner:
+            owner, getter = addr_from_call(call(address, sel("admin()"), at)), "admin()"
+        f["admin"] = owner or ""
+        log.append(f"{getter} at block {block_no:,}: {owner}" if owner else f"owner() and admin() at block {block_no:,}: no answer")
+
+    if names:
+        ok, name = verification(address)
+        log.append(f"Sourcify/Blockscout for {address}: {'verified, name ' + name if ok else 'not verified'}")
+        iok, iname = (False, "")
+        if f["proxy_of"]:
+            iok, iname = verification(f["proxy_of"])
+            log.append(f"Sourcify/Blockscout for {f['proxy_of']}: {'verified, name ' + iname if iok else 'not verified'}")
+        f["verified"], f["name"] = ok or iok, iname if iok else (name if ok and not f["proxy_of"] else "")
+    if valuer is not None:
+        usd, f["eth"], f["tokens_held"] = valuer.usd(address)
+        f["value_usd"] = None if usd is None else round(usd)
+        log.append(f"value: ETH/USD feed unavailable; {f['eth']:,.2f} ETH held" if usd is None
+                   else f"value at block {block_no:,}: {f['eth']:,.2f} ETH + {f['tokens_held']} priced token{'s' if f['tokens_held'] != 1 else ''} = ${round(usd):,}")
+    return f, log
+
+
+def block_time(block_no: int | None) -> tuple[int, int]:
+    blk = rpc("eth_getBlockByNumber", [hex(block_no) if block_no is not None else "latest", False])
+    return int(blk["number"], 16), int(blk["timestamp"], 16)
+
+
+# --- self-test: answers known from elsewhere, read through this tool ----------------------------------------------
+
+def selftest() -> int:
+    """Each expected value below was read independently of this tool (the literals from EIP-1967 and EIP-1822; the
+    implementation and admin with `cast storage`; the names on Etherscan). Block 26,438,999."""
+    block, bad = 26438999, []
+
+    def want(what, got, expected):
+        if got != expected:
+            bad.append(f"{what}: got {got!r}, expected {expected!r}")
+
+    want("EIP-1967 implementation slot", SLOT_1967_IMPL, "360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc")
+    want("EIP-1967 admin slot", SLOT_1967_ADMIN, "b53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103")
+    want("EIP-1967 beacon slot", SLOT_1967_BEACON, "a3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50")
+    want("EIP-1822 slot", SLOT_1822, "c5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7")
+    want("selector of transfer(address,uint256)", sel("transfer(address,uint256)"), "a9059cbb")
+    for name, address, expected in SELFTEST:
+        f, _ = read_facts(address, block, names=False)
+        for key, value in expected.items():
+            want(f"{name} {address} {key}", f[key], value)
+    print("\n".join(bad) if bad else f"selftest passed: {len(SELFTEST)} contracts at block {block:,}")
+    return 1 if bad else 0
+
+
+SELFTEST = [
+    ("EtherDelta, no proxy", "0x8d12a197cb00d4747a1fe03395095ce2a5cc6819",
+     {"code_bytes": 6613, "proxy_of": None, "upgradeable": "no", "admin": "0x1ed014aec47fae44c9e55bac7662c0b78ae61798"}),
+    ("tBTC WalletRegistry, EIP-1967 proxy with an admin", "0x46d52e41c2f300bc82217ce22b920c34995204eb",
+     {"proxy_kind": "eip1967", "proxy_of": "0x14fad0c11c83ac736e5929d5661bba7e6bb9c0d6", "upgradeable": "yes",
+      "admin": "0x7affa05f726d293eb1193807a91617318292008e"}),
+    ("an EIP-1822 proxy", "0xddf58ae26b751c6a3f0b04670e10d6c66a69ce72",
+     {"proxy_kind": "eip1822", "proxy_of": "0x802fcf40c7b8dbfa9dc6e52f05c2a47916341833"}),
+    ("an EIP-1167 clone of code that cannot change", "0x095af1ebbd5006f1a61a010e9c1f2b72f95d8143",
+     {"code_bytes": 45, "proxy_kind": "clone", "proxy_of": "0xd5fe1c1f216b775dfd30638fa7164d41321ef79b", "upgradeable": "no"}),
+    ("an EIP-7702 account", "0x235c1b67c56280e0904b244204e0897537033b63",
+     {"code_bytes": 23, "delegation": "0x1e68c71fa1b7c3efd4a576b5551d2e8004f96ea7", "proxy_of": None, "upgradeable": ""}),
+]
 
 
 # --- scaffolding ---------------------------------------------------------------------------------------------
 
 def main():
+    if sys.argv[1:] == ["--selftest"]:
+        sys.exit(selftest())
     p = argparse.ArgumentParser()
     p.add_argument("address")
     p.add_argument("--pattern", required=True)
@@ -257,7 +415,6 @@ def main():
     address = args.address.lower()
     if not re.fullmatch(r"0x[0-9a-f]{40}", address):
         sys.exit(f"not an address: {args.address}")
-
     if not (ROOT / "studies" / args.study).is_dir():
         sys.exit(f"no such study: studies/{args.study}/")
     if not re.search(rf"^## {re.escape(args.pattern)}:", (ROOT / "patterns.md").read_text(), re.M):
@@ -267,108 +424,16 @@ def main():
     if dup:
         sys.exit(f"{address} is already filed under {args.pattern}: {dup[0]['folder']}/{dup[0]['file']}")
 
-    checks: list[str] = []
-
-    # block and as_of
-    if args.block is not None:
-        block_hex = hex(args.block)
-        blk = rpc("eth_getBlockByNumber", [block_hex, False])
-        block_no = args.block
-    else:
-        blk = rpc("eth_getBlockByNumber", ["latest", False])
-        block_no = int(blk["number"], 16)
-        block_hex = blk["number"]
-    timestamp = int(blk["timestamp"], 16)
+    block_no, timestamp = block_time(args.block)
     as_of = datetime.fromtimestamp(timestamp, tz=timezone.utc).date().isoformat()
-
-    # 1. code
-    code_hex = rpc("eth_getCode", [address, block_hex])
-    code = bytes.fromhex(code_hex[2:])
-    if not code:
+    f, checks = read_facts(address, block_no, valuer=Value(hex(block_no), timestamp))
+    if not f["code_bytes"]:
         sys.exit(f"{address} has no code at block {block_no:,}")
-    is_7702 = len(code) == 23 and code.startswith(b"\xef\x01\x00")
-    note = " (a 7702 delegation)" if is_7702 else ""
-    checks.append(f"eth_getCode at block {block_no:,}: {len(code):,} bytes{note}")
-
-    # 2. proxy slots
-    impl_slot = bytes.fromhex(rpc("eth_getStorageAt", [address, "0x" + SLOT_1967_IMPL, block_hex])[2:].rjust(64, "0"))
-    admin_slot = bytes.fromhex(rpc("eth_getStorageAt", [address, "0x" + SLOT_1967_ADMIN, block_hex])[2:].rjust(64, "0"))
-    beacon_slot = bytes.fromhex(rpc("eth_getStorageAt", [address, "0x" + SLOT_1967_BEACON, block_hex])[2:].rjust(64, "0"))
-    uups_slot = bytes.fromhex(rpc("eth_getStorageAt", [address, "0x" + SLOT_1822, block_hex])[2:].rjust(64, "0"))
-
-    proxy_of = None
-    if any(impl_slot):
-        proxy_of = addr_from_slot(impl_slot)
-        checks.append(f"EIP-1967 implementation slot at block {block_no:,}: {proxy_of}")
-    elif any(beacon_slot):
-        beacon = addr_from_slot(beacon_slot)
-        proxy_of = addr_from_call(call(beacon, sel("implementation()"), block_hex))
-        checks.append(f"EIP-1967 beacon slot at block {block_no:,}: beacon {beacon}, implementation() {proxy_of}")
-    elif any(uups_slot):
-        proxy_of = addr_from_slot(uups_slot)
-        checks.append(f"EIP-1822 slot at block {block_no:,}: {proxy_of}")
-    else:
-        checks.append("EIP-1967/1822/beacon slots empty")
-    is_proxy = proxy_of is not None
-
-    # 4. upgradeable / admin (before verification, since name may come from the implementation)
-    upgradeable, admin = "", ""
-    if is_proxy:
-        if any(admin_slot):
-            admin = addr_from_slot(admin_slot)
-            upgradeable = "yes"
-            checks.append(f"EIP-1967 admin slot at block {block_no:,}: {admin} (proxy, admin set)")
-        else:
-            owner = addr_from_call(call(address, sel("owner()"), block_hex))
-            if owner:
-                admin, upgradeable = owner, "yes"
-                checks.append(f"EIP-1967 admin slot empty; owner() at block {block_no:,}: {owner}")
-            else:
-                checks.append(f"EIP-1967 admin slot empty; owner() at block {block_no:,}: no answer")
-    else:
-        push4, delegatecall = opcode_scan(code)
-        if not delegatecall and not (push4 & UPGRADE_SELECTORS):
-            upgradeable = "no"
-            checks.append("not a proxy; no DELEGATECALL opcode and no upgradeTo/upgradeToAndCall/ProxyAdmin.upgrade selector in the runtime code")
-        else:
-            checks.append("not a proxy; a DELEGATECALL opcode or an upgrade selector is present: upgradeable left unestablished")
-        owner = addr_from_call(call(address, sel("owner()"), block_hex))
-        getter = "owner()"
-        if not owner:
-            owner, getter = addr_from_call(call(address, sel("admin()"), block_hex)), "admin()"
-        if owner:
-            admin = owner
-            checks.append(f"{getter} at block {block_no:,}: {admin}")
-        else:
-            checks.append(f"owner() and admin() at block {block_no:,}: no answer")
-
-    # 3. verification and name
-    self_verified, self_name = verification(address)
-    checks.append(f"Sourcify/Blockscout for {address}: {'verified, name ' + self_name if self_verified else 'not verified'}")
-    impl_verified, impl_name = (False, "")
-    if is_proxy and proxy_of:
-        impl_verified, impl_name = verification(proxy_of)
-        checks.append(f"Sourcify/Blockscout for implementation {proxy_of}: {'verified, name ' + impl_name if impl_verified else 'not verified'}")
-    verified = self_verified or impl_verified
-    name = impl_name if (is_proxy and impl_verified) else (self_name if self_verified else "")
-    code_field = "verified" if verified else "bytecode"
-    code_url = f"https://etherscan.io/address/{address}#code"
-
-    # 5. value
-    v = Value(block_hex, timestamp)
-    usd, eth_held, held = v.usd(address)
-    if usd is None:
-        checks.append(f"value: ETH/USD feed unavailable; {fmt_eth(eth_held)} ETH held, value.usd left empty")
-    else:
-        checks.append(f"value: {fmt_eth(eth_held)} ETH + {held} token{'s' if held != 1 else ''} = ${round(usd):,}")
-
-    # 6. activity
-    txs_90d = args.txs_90d
-    last = args.last
+    name, proxy_of, upgradeable, admin, usd = f["name"], f["proxy_of"], f["upgradeable"], f["admin"], f["value_usd"]
+    txs_90d, last = args.txs_90d, args.last
     if txs_90d is not None or last is not None:
         checks.append(f"activity (txs_90d={txs_90d}, last={last}) given by the caller")
 
-    # --- render ---------------------------------------------------------------------------------------------
     slug = re.sub(r"[^a-z0-9]+", "-", (name or "contract").lower()).strip("-") or "contract"
     file_id = f"{slug}-{address[2:10]}-{args.issue}"
     out_dir = Path(args.out)
@@ -376,7 +441,6 @@ def main():
     out_path = out_dir / f"{file_id}.md"
     if out_path.exists():
         sys.exit(f"refusing to overwrite {out_path}")
-
     today = datetime.now(timezone.utc).date().isoformat()
 
     def q(v):  # a JSON string is a valid YAML double-quoted scalar, whatever it holds
@@ -384,8 +448,8 @@ def main():
 
     empty_fields = ["title", "severity", "justification", "category", "value.whose", "contract.project", "contract.label"]
     for label, v_ in (("contract.name", name), ("contract.proxy_of", proxy_of), ("contract.upgradeable", upgradeable),
-                       ("contract.admin", admin), ("value.usd", usd), ("activity.txs_90d", txs_90d), ("activity.last", last),
-                       ("impact", None), ("action", None), ("evidence_level", None)):
+                      ("contract.admin", admin), ("value.usd", usd), ("activity.txs_90d", txs_90d), ("activity.last", last),
+                      ("impact", None), ("action", None), ("evidence_level", None)):
         if v_ in (None, ""):
             empty_fields.append(label)
 
@@ -404,18 +468,18 @@ as_of: {as_of}
 block: {block_no}
 contract:
   address: "{address}"
-  name: {q(name) if name else ""}
+  name: {q(name)}
   project:
   label:
-  code: {code_field}
-  code_url: {code_url}
-  proxy_of: {q(proxy_of) if proxy_of else ""}
+  code: {"verified" if f["verified"] else "bytecode"}
+  code_url: https://etherscan.io/address/{address}#code
+  proxy_of: {q(proxy_of)}
   copies: 1
   family:
-  upgradeable: {q(upgradeable) if upgradeable else ""}
-  admin: {q(admin) if admin else ""}
+  upgradeable: {q(upgradeable)}
+  admin: {q(admin)}
 value:
-  usd: {"" if usd is None else round(usd)}
+  usd: {"" if usd is None else usd}
   whose:
   basis: held
 activity:

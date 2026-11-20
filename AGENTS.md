@@ -17,9 +17,20 @@ Copy the style of the filled examples in `templates/examples/findings/`, one per
    holdings at block N and writes `triage/<id>.md`. Activity comes from the study's data (`--txs-90d`, `--last`), or
    stays empty.
 3. Write only the judgment: `title`, `severity`, `justification`, `category` (the pattern's), `impact`, `action`,
-   `evidence_level`, `value.whose`, and the three sections.
-4. Run `uv run tools/build.py --check` and fix what it reports.
+   `evidence_level`, `value.whose`, the three sections, and the `checks` that back them.
+4. Run `uv run tools/build.py --check` and `ETH_RPC_URL=<node> uv run tools/verify.py triage/<id>.md`, and fix what
+   they report.
 5. Report what you filed, and every question you left.
+
+## Checks: nothing on the card without one
+
+- Every part of the card (What happens, each Evidence bullet, the justification, the action) is backed by an entry
+  of `checks`: a read anyone can run again, with the result it must give (`findings/README.md`, "Checks").
+- Write a sentence only after its check passes. If no check can back a sentence, drop the sentence or make it a
+  question.
+- A check proves a fact, not your conclusion. Ask of each sentence: could the check pass and the sentence still be
+  false? A function that exists is not a function that does what you say; read its lines and cite them.
+- State a header fact the scaffold did not read (or read differently) only with a check that names it in `for`.
 
 ## When you are not sure
 
