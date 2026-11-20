@@ -14,9 +14,12 @@ What a reader sees instead of a class. The card shows the name in quotes; `<chan
 - **breaks-at-activation** ("Breaks when <change> goes live"): works today and fails for everyone the day the change
   activates, with nobody doing anything.
 - **voided-by-migration** ("Breaks when another party migrates"): a signature someone already relies on stops
-  counting if its signer moves its account to code.
-- **migration-notice** ("Check before you migrate"): works until a key holder moves its own account to code; that
-  key then stops counting here, so the holder acts first. Always `INFORMATIONAL`.
+  counting if its signer moves its account to real code.
+- **migration-notice** ("Check before you migrate"): works until a key holder moves its own account to real code;
+  that key then stops counting here, so the holder acts first. Always `INFORMATIONAL`.
+
+"Real code" is contract code. Under EIP-8151 an account that holds an EIP-7702 delegation still signs as before; only
+an account with real code stops counting.
 
 ## Classes (format 1, until every finding is converted)
 
@@ -260,7 +263,7 @@ same gas forwarded to `0x01` in unrelated transactions. Confirmed by replaying a
 
 **Category:** voided-by-migration
 
-**In words:** Checks a signature again after others relied on it; if the signer moves its account to code in between, whoever relied on it loses.
+**In words:** Checks a signature again after others relied on it; if the signer moves its account to real code in between, whoever relied on it loses.
 
 A party signs once. Later, when someone else has already acted on that signature, the contract recovers it again: to
 approve a group's result, to judge a challenge against it, to pay a seller who has already delivered. The second check
@@ -280,7 +283,7 @@ the later step with code at the signer.
 
 **Category:** migration-notice
 
-**In words:** Only the account's own signature releases its funds or rights; if the account moves to code first, they stay locked.
+**In words:** Only the account's own signature releases its funds or rights; if the account moves to real code first, they stay locked.
 
 A contract holds a user's own funds (a stake, a deposit, an escrowed amount) or a right of that user (to raise a
 dispute, to change a payee) and lets the user act only with an ECDSA signature that must recover to the user's own
@@ -299,7 +302,7 @@ replaying a real call with code at the user.
 
 **Category:** migration-notice
 
-**In words:** Trusts one signing key, or a set of them; if a holder moves that account to code, the contract refuses it until the key is replaced.
+**In words:** Trusts one signing key, or a set of them; if a holder moves that account to real code, the contract refuses it until the key is replaced.
 
 The contract accepts a signature only from a key fixed in its code, set once at deployment, or replaceable only by an
 upgrade: a wallet's signer set, an operator that signs quotes, claims or withdrawals. Under EIP-8151 that key stops
@@ -330,7 +333,7 @@ limit needs a new signature.
 
 **Category:** migration-notice
 
-**In words:** A signed shortcut (a permit, a signed order, a relayed call) stops working for an account with code; the direct call still works.
+**In words:** A signed shortcut (a permit, a signed order, a relayed call) stops working for an account with real code; the direct call still works.
 
 A user can act through an ECDSA signature (a permit, a signed order, a relayed call) and the same act stays open by a
 direct call. Under EIP-8151 a user whose account has real code loses the signed path and keeps the direct one. Nothing
@@ -361,7 +364,7 @@ path stands beside it. Confirmed by replaying a real transaction with the delega
 
 **Category:** migration-notice
 
-**In words:** Joining or registering needs the account's own signature; an account with code can no longer join.
+**In words:** Joining or registering needs the account's own signature; an account with real code can no longer join.
 
 Registering, joining or placing an order requires an ECDSA signature of the entrant, and no direct call does the same.
 Under EIP-8151 an account with real code can no longer enter. Nothing it already holds is affected.
