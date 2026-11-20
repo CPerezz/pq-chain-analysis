@@ -6,14 +6,6 @@ severity: HIGH
 patterns: [PQ-17]
 impact: funds-locked
 contracts:
-- {address: "0x6e653024fe23e4a7f2a1c8e14c388f71dd44668f", family: "dd3f0ebb66a0bbded204d47fee33369f", copies: 204, upgradeable: "no", rating: HIGH, value_usd: 133544, value_basis: "held", value_as_of: 2026-11-18, note: "204 clones holding 74 ETH: a signer that is a constant in the code, next to a signer named in the call. Bytecode and names. Update path: delegates to a fixed address."}
-- {address: "0x44b317be48a42bbe6445dc62c4681a95a278b417", family: "62976f20ba7f67544693e376c0db73e9", copies: 91, upgradeable: "no", rating: HIGH, value_usd: 74491, value_basis: "held", value_as_of: 2026-11-18, note: "91 clones holding 41 ETH: a signer that is a constant in the code. Bytecode and names. Update path: delegates to a fixed address."}
-- {address: "0x066ccd23e6f16072b6b658a65d1a0cdb59b50115", family: "14908bd7a855eda3b94bb9daa1557375", copies: 31, upgradeable: "no", rating: HIGH, value_usd: 40240, value_basis: "held", value_as_of: 2026-11-18, note: "31 clones holding 22 ETH: a signer that is a constant in the code. Bytecode and names. Update path: delegates to a fixed address."}
-- {address: "0xf9f4ba80606cd2ac0ceb16d47fdacb9843ce6ff5", family: "3df2bfd69e372e5ed22b1170c99729ec", copies: 47, upgradeable: "no", rating: HIGH, value_usd: 12990, value_basis: "held", value_as_of: 2026-11-18, note: "47 clones: a signer that is a constant in the code. Bytecode and names. Update path: delegates to a fixed address."}
-- {address: "0xbe95329b0882b2a6e95a0092483a131d63c9de18", family: "5339ac4178597a9653edef633ef97d07", copies: 20, upgradeable: "no", rating: HIGH, value_usd: 12639, value_basis: "held", value_as_of: 2026-11-18, note: "20 clones: a signer that is a constant in the code. Bytecode and names. Update path: delegates to a fixed address."}
-- {address: "0xeae40ba442bb260d20803b0290263c6e2741f0cd", family: "155e16666559ddfd91ed6825042ed978", copies: 12, upgradeable: "no", rating: HIGH, value_usd: 6247, value_basis: "held", value_as_of: 2026-11-18, note: "12 clones: a signer that is a constant in the code. Bytecode and names. Update path: delegates to a fixed address."}
-- {address: "0x4826f615cdd26999d45b5f02c1be2ebff67ae57f", family: "e3740397c563aedcaada7579efdd7eff", copies: 58, upgradeable: "no", rating: HIGH, value_usd: 3759, value_basis: "held", value_as_of: 2026-11-18, note: "58 clones: a signer that is a constant in the code. Bytecode and names. Update path: delegates to a fixed address."}
-- {address: "0xb77ccaad4c9b80b8464ef46a6a794a56a77cd830", family: "a808d4cd4e8c05099f2eec3cb9ce0e72", copies: 13, upgradeable: "no", rating: HIGH, value_usd: 3209, value_basis: "held", value_as_of: 2026-11-18, note: "13 clones: a signer that is a constant in the code. Bytecode and names. Update path: delegates to a fixed address."}
 - {address: "0x585207660179242b75559a0365acd54b6f877508", family: "ada95977ac269797f5d3f353519265c5", upgradeable: "no", rating: HIGH, value_usd: 545, value_basis: "held", value_as_of: 2026-11-18, note: "Presale: deposit and claim need a signature of SIGNER, fixed in the code. Same code idiom as template 80af2596, not read on its own. Update path: no proxy slot, no upgrade function."}
 - {address: "0xa8dcdf1f1d624d37949b54c34e9a85394c72936a", family: "312db0016986261bda8a7a4f59a5190f", copies: 7, name: "DaimoPayPricer", upgradeable: "no", rating: HIGH, recoveries_14d: 844, note: "DaimoPay pricer: the signer must be trustedSigner, fixed in the code. Read from source. Executed: a real transaction reverts with code at the signer. Update path: no proxy slot, no upgrade function."}
 - {address: "0xb1d39657ca16fd08883c5fbb03e1488457a285e3", family: "ebf836d3bd23273c3fe8565057a69d08", copies: 161, upgradeable: "no", rating: HIGH, recoveries_14d: 8, note: "161 ERC-1271 contracts answering for an operator that is a constant in the code. Bytecode and names. Executed: a real transaction reverts with code at the signer. Update path: no proxy slot, no upgrade function."}
@@ -174,7 +166,7 @@ reviews: []
 
 ## Summary
 
-These contracts accept signatures only from a key fixed in their code (operator, issuer, quote or claim signer). 153 code families, 6,022 addresses, $288k held, 878 recoveries in the study's two-week window. Rows by rating: HIGH 139, MEDIUM 14. 25 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+These contracts accept signatures only from a key fixed in their code (operator, issuer, quote or claim signer). 145 code families, 5,546 addresses, $545 held, 878 recoveries in the study's two-week window. Rows by rating: HIGH 131, MEDIUM 14. 25 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
 
 ## Mechanism
 
@@ -187,14 +179,6 @@ PQ-17. Once that key's account has real code, every signed function stops. Users
 ## Impact and exposure
 
 Largest rows by value held at block 26,438,999:
-- `0x6e653024fe23e4a7f2a1c8e14c388f71dd44668f` (unverified): $134k, HIGH, 204 addresses
-- `0x44b317be48a42bbe6445dc62c4681a95a278b417` (unverified): $74k, HIGH, 91 addresses
-- `0x066ccd23e6f16072b6b658a65d1a0cdb59b50115` (unverified): $40k, HIGH, 31 addresses
-- `0xf9f4ba80606cd2ac0ceb16d47fdacb9843ce6ff5` (unverified): $13k, HIGH, 47 addresses
-- `0xbe95329b0882b2a6e95a0092483a131d63c9de18` (unverified): $13k, HIGH, 20 addresses
-- `0xeae40ba442bb260d20803b0290263c6e2741f0cd` (unverified): $6k, HIGH, 12 addresses
-- `0x4826f615cdd26999d45b5f02c1be2ebff67ae57f` (unverified): $4k, HIGH, 58 addresses
-- `0xb77ccaad4c9b80b8464ef46a6a794a56a77cd830` (unverified): $3k, HIGH, 13 addresses
 - `0x585207660179242b75559a0365acd54b6f877508` (unverified): $545, HIGH
 
 Every row is in the header; `generated/triage_contracts.csv` lists them for search.
