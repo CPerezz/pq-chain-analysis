@@ -8,7 +8,6 @@ impact: funds-locked
 contracts:
 - {address: "0xc59162bbe31b2eca8e3d7d3401dc05f64e293f83", family: "bf52cbad6e524d92cbe9d706f69d3cd8", copies: 3, upgradeable: "no", rating: HIGH, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list). Update path: no proxy slot, no upgrade function."}
 - {address: "0xe5e5214ccf899bfc77e4dd9858737902cc1f0b0a", family: "68b957711ed4ed3cfeee36cba3528373", upgradeable: "no", rating: HIGH, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list). Update path: no proxy slot, no upgrade function."}
-- {address: "0xb4a448387403554616eb5b50aa4c48f75243a015", family: "b063805f94cf9b39667802b7b2b854b3", name: "Mobius2Dv2", upgradeable: "yes", rating: LOW, value_usd: 10, value_basis: "held", value_as_of: 2026-11-18, note: "3000 gas to the precompile: every valid signature fails. Scanner only (outside the reading list). Update path: upgrade(address), owner 0x853012bce9eacabc6e9047be9630a7e6b3739a7a."}
 evidence: {level: executed, block: 26438999}
 sources:
 - by: ai-assisted
@@ -24,7 +23,7 @@ reviews: []
 
 ## Summary
 
-These contracts forward a fixed amount of gas to `ecrecover` that is below the price of a successful recovery under EIP-8151 (3,200 warm, 6,100 cold). 3 code families, 5 addresses, $10 held, 0 recoveries in the study's two-week window. Rows by rating: HIGH 2, LOW 1. 0 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+These contracts forward a fixed amount of gas to `ecrecover` that is below the price of a successful recovery under EIP-8151 (3,200 warm, 6,100 cold). 2 code families, 4 addresses, $0 held, 0 recoveries in the study's two-week window. Rows by rating: HIGH 2. 0 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
 
 ## Mechanism
 
@@ -38,8 +37,7 @@ PQ-14. The gas operand of the call to `0x01` is a constant: 3,000 in the Oracliz
 
 ## Impact and exposure
 
-Largest rows by value held at block 26,438,999:
-- `0xb4a448387403554616eb5b50aa4c48f75243a015` (Mobius2Dv2): $10, LOW
+No row holds value at block 26,438,999.
 
 Every row is in the header; `generated/triage_contracts.csv` lists them for search.
 

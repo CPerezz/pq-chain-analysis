@@ -62,7 +62,6 @@ contracts:
 - {address: "0x07658107cf02559a307cca6f2e63991387d479c3", family: "5d39d3089e7eca478a95e7d6b9d3d7f9", copies: 2, name: "FastExitHandler", upgradeable: "no", rating: HIGH, note: "Leap FastExitHandler challengeExit: an exit is challenged with a spending transaction its owner signed earlier. Read (function text). Update path: no proxy slot, no upgrade function."}
 - {address: "0x893719e64178e2b8e3a05f8b4a2c358428436364", family: "3ba1dcb8da703cb5dbcfb98909f01cd4", name: "EvmPaymentRouter", upgradeable: "no", rating: HIGH, note: "EvmPaymentRouter _executeRecurring: recurring terms the payer signed earlier are executed later. Read (function text). Update path: UPGRADER_ROLE(), but owner() is zero or absent. 1 with an upgrade function whose caller was not read."}
 - {address: "0x0125c8977a02b2fa3970b1ed9af02f5bedd4ef27", family: "c7877dc4855722a5f03bf4c0c064af61", copies: 3, name: "EcdsaDkgValidator", project: "tbtc", upgradeable: "no", rating: LOW, recoveries_14d: 100, note: "Threshold/tBTC EcdsaDkgValidator.validateSignatures: every supporting signature of a DKG result must recover to the operator of the member at that index; a result that does not validate can be…. Read from source. Executed: a real transaction reverts with code at the signer. Executed by hand: see Evidence. Rated by hand: executed: nothing moves today (seize only emits an event) and clients can leave such signatures out."}
-- {address: "0xc8818262f0ef68f49ff4335d43cb057e5af7f348", family: "3ba1dcb8da703cb5dbcfb98909f01cd4", name: "EvmPaymentRouter", upgradeable: "yes", rating: LOW, note: "EvmPaymentRouter _executeRecurring: recurring terms the payer signed earlier are executed later. Read (function text). Update path: proxy to 0x893719e64178e2b8e3a05f8b4a2c358428436364 with UPGRADER_ROLE(), called through its own checks."}
 evidence: {level: executed, block: 26438999}
 sources:
 - by: ai-assisted
@@ -78,7 +77,7 @@ reviews: []
 
 ## Summary
 
-These contracts check a signature again after someone else has acted on it: channel states, fraud proofs, settlements, committee results. 57 code families, 16,070 addresses, $30k held, 105 recoveries in the study's two-week window. Rows by rating: CRITICAL 53, HIGH 2, LOW 2. 2 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+These contracts check a signature again after someone else has acted on it: channel states, fraud proofs, settlements, committee results. 56 code families, 16,069 addresses, $30k held, 105 recoveries in the study's two-week window. Rows by rating: CRITICAL 53, HIGH 2, LOW 1. 2 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
 
 ## Mechanism
 
