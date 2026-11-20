@@ -2,7 +2,7 @@
 id: blockatmethpayoutv2-cd08d8e5-fixed-signer
 title: "BlockATMEthPayoutV2: signer fixed in code"
 status: confirmed
-severity: MEDIUM
+severity: LOW
 patterns: [PQ-17]
 impact: liveness
 contracts:
@@ -11,7 +11,7 @@ contracts:
   copies: 3
   name: "BlockATMEthPayoutV2"
   upgradeable: "no"
-  rating: MEDIUM
+  rating: LOW
   value_usd: 44993
   value_basis: held
   value_as_of: 2026-11-18
@@ -19,8 +19,8 @@ contracts:
   last_active: 2026-11-17
   recoveries_14d: 31
 fix:
-  layer: new-deployment
-  who_acts: "finance accounts pay out by direct call; a new deployment restores signed payouts"
+  layer: offchain
+  who_acts: "finance accounts pay out by direct call (withdrawByFinancial, to whitelisted addresses)"
 evidence:
   level: executed
   block: 26438999
@@ -37,8 +37,8 @@ reviews:
   date: 2026-11-20
   by: ai-assisted
   verdict: confirmed
-  rating: MEDIUM
-  note: "signed payouts stop; direct withdrawals stay"
+  rating: LOW
+  note: "signed proxy payouts stop; the same payout stays open to finance accounts by direct call, so LOW"
 ---
 
 ## Summary
@@ -71,3 +71,4 @@ Finance accounts pay out directly.
 
 - 2026-11-19: reported as a row of triage entry `eip-8151-fixed-signer` (study `eip-8151-impact`).
 - 2026-11-20: reviewed and filed: MEDIUM. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+- 2026-11-20: re-rated LOW (was MEDIUM the same day): withdrawByFinancial lets a finance account, even one with code, make the same payout to a whitelisted address by direct call, so the act stays open (D-025).

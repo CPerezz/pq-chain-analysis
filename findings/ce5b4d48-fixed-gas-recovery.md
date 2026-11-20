@@ -2,7 +2,7 @@
 id: ce5b4d48-fixed-gas-recovery
 title: "0xce5b4d48: fixed gas for ecrecover below EIP-8151's price"
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-14]
 impact: liveness
 contracts:
@@ -10,13 +10,13 @@ contracts:
   family: "2804e3b9ef22ec4c7e0fd883066d94c4"
   copies: 84
   upgradeable: "no"
-  rating: LOW
+  rating: MEDIUM
   value_usd: 12162
   value_basis: held
   value_as_of: 2026-11-18
   txs_90d: 0
 fix:
-  layer: offchain
+  layer: new-deployment
   who_acts: "cosigners approve a disband by direct call and the owner sends the funds with disbandTo"
 evidence:
   level: bytecode
@@ -34,8 +34,8 @@ reviews:
   date: 2026-11-20
   by: ai-assisted
   verdict: confirmed
-  rating: LOW
-  note: "signed transfers fail from day one; disband path stays"
+  rating: MEDIUM
+  note: "signed transfers die for good; a disband only moves the funds out, so MEDIUM"
 ---
 
 ## Summary
@@ -67,3 +67,4 @@ Cosigners approve and the owner disbands, by direct calls.
 
 - 2026-11-19: reported as a row of triage entry `eip-8151-fixed-gas-recovery` (study `eip-8151-impact`).
 - 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+- 2026-11-20: re-rated MEDIUM (was LOW the same day): the signed transfers die for good and the disband only moves the funds out, which the scale rates MEDIUM; LOW is kept for a simple update or the same act staying open (D-025).

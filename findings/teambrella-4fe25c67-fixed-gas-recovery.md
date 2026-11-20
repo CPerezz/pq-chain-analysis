@@ -3,7 +3,7 @@ id: teambrella-4fe25c67-fixed-gas-recovery
 title: "TeambrellaWallet: fixed gas for ecrecover below EIP-8151's price"
 project: teambrella
 status: confirmed
-severity: LOW
+severity: MEDIUM
 patterns: [PQ-14]
 impact: liveness
 contracts:
@@ -12,13 +12,13 @@ contracts:
   copies: 182
   name: "TeambrellaWallet"
   upgradeable: "no"
-  rating: LOW
+  rating: MEDIUM
   value_usd: 23711
   value_basis: held
   value_as_of: 2026-11-18
   txs_90d: 0
 fix:
-  layer: offchain
+  layer: new-deployment
   who_acts: "cosigners approve a disband by direct call and the owner sends the funds with disbandTo"
 evidence:
   level: bytecode
@@ -36,8 +36,8 @@ reviews:
   date: 2026-11-20
   by: ai-assisted
   verdict: confirmed
-  rating: LOW
-  note: "signed operations fail from day one; disband and rescue paths stay"
+  rating: MEDIUM
+  note: "signed operations die for good; disband and rescue only move the funds out, so MEDIUM"
 ---
 
 ## Summary
@@ -69,3 +69,4 @@ Cosigners approve and the owner disbands, by direct calls.
 
 - 2026-11-19: reported as a row of triage entry `eip-8151-fixed-gas-recovery` (study `eip-8151-impact`).
 - 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+- 2026-11-20: re-rated MEDIUM (was LOW the same day): the signed transfers die for good and the disband only moves the funds out, which the scale rates MEDIUM; LOW is kept for a simple update or the same act staying open (D-025).
