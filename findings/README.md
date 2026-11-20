@@ -111,7 +111,7 @@ result it must give, a line on what it shows (`says`), and the parts of the card
 | `bytecode: "0x…"` | `has` (hex), `absent` | A byte sequence in the runtime code |
 | `selector: "0x…"` | `fn`, `absent` | A function's selector in the runtime code |
 | `storage: "0x…"` | `slot`, `is` | A storage slot |
-| `call: "0x…"` | `fn` as `name(types)(return types)`, `args`, `is` or `reverts`, `from` | A read-only call |
+| `call: "0x…"` | `fn` as `name(types)(return types)` with `args`, or raw `data` (0x calldata, for a function known only by its selector); `is`, `reverts` or `reverts_with` (text of the revert reason or its hex data); `from` | A read-only call. With `data`, `is` is the raw returned hex |
 | `source: "0x…"` | `file`, `line` or `lines: [first, last]`, `has` | Text at those lines of the verified source |
 | `tx: "0x…"` | `to`, `ok` | A transaction and its outcome |
 | `nonce: "0x…"` | `is` or `min` | An account's transaction count |

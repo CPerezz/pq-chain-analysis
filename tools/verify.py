@@ -133,16 +133,25 @@ def run_check(c: dict, block: int, ctx: dict) -> tuple[str, str]:
         ok = (c.get("is") is None or got == to_int(c["is"])) and (c.get("min") is None or got >= to_int(c["min"]))
         return (OK if ok else FAIL), str(got)
     if kind == "call":
-        name, ins, outs = split_fn(c["fn"])
-        in_t = parse(ins).components if ins != "()" else []  # eth_abi refuses an empty tuple
-        data = nf.sel(name + ins) + encode([t.to_type_str() for t in in_t], [to_py(t, v) for t, v in zip(in_t, c.get("args") or [])]).hex()
+        if "data" in c:  # a function known only by its selector: raw calldata, and `is` compared as raw hex
+            name, ins, outs, data = None, None, None, str(c["data"]).removeprefix("0x").lower()
+        else:
+            name, ins, outs = split_fn(c["fn"])
+            in_t = parse(ins).components if ins != "()" else []  # eth_abi refuses an empty tuple
+            data = nf.sel(name + ins) + encode([t.to_type_str() for t in in_t], [to_py(t, v) for t, v in zip(in_t, c.get("args") or [])]).hex()
         tx = {"to": target, "data": "0x" + data, **({"from": hexaddr(c["from"])} if c.get("from") else {})}
         try:
             raw = bytes.fromhex(nf.rpc("eth_call", [tx, at])[2:])
         except RuntimeError as e:
-            return (OK if truth(c.get("reverts")) else FAIL), f"reverted ({str(e)[:80]})"
-        if truth(c.get("reverts")):
+            msg = str(e)
+            if c.get("reverts_with") is not None:  # the reason as text, or the revert data as hex
+                return (OK if str(c["reverts_with"]).lower() in msg.lower() else FAIL), f"reverted ({msg[:160]})"
+            return (OK if truth(c.get("reverts")) else FAIL), f"reverted ({msg[:80]})"
+        if truth(c.get("reverts")) or c.get("reverts_with") is not None:
             return FAIL, "did not revert"
+        if name is None:
+            want = str(c.get("is", "")).removeprefix("0x").lower()
+            return (OK if raw.hex() == want else FAIL), "0x" + raw.hex()[:200]
         if outs is None:
             return FAIL, "the check's fn names no return types: write name(args)(returns)"
         out_t = parse(outs).components if outs != "()" else []

@@ -342,7 +342,9 @@ def read_facts(address: str, block_no: int, names: bool = True, valuer: Value | 
         if f["proxy_of"]:
             iok, iname = verification(f["proxy_of"])
             log.append(f"Sourcify/Blockscout for {f['proxy_of']}: {'verified, name ' + iname if iok else 'not verified'}")
-        f["verified"], f["name"] = ok or iok, iname if iok else (name if ok and not f["proxy_of"] else "")
+        # verified means the code that runs: behind a proxy or clone, the implementation's (a verified proxy shell
+        # running unverified logic is bytecode)
+        f["verified"], f["name"] = (iok if f["proxy_of"] else ok), iname if iok else (name if ok and not f["proxy_of"] else "")
     if valuer is not None:
         usd, f["eth"], f["tokens_held"] = valuer.usd(address)
         f["value_usd"] = None if usd is None else round(usd)
