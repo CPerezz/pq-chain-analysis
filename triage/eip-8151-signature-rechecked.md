@@ -6,11 +6,9 @@ severity: CRITICAL
 patterns: [PQ-15]
 impact: funds-loss
 contracts:
-- {address: "0xdf708431162ba247ddae362d2c919e0fbafcf9de", family: "e20f92ec2c4cf86e40cd1e9e59a905ae", copies: 2, label: "deployed by Threshold Network: Deployer 1", upgradeable: "no", rating: CRITICAL, value_usd: 30154, value_basis: "held", value_as_of: 2026-11-18, note: "Keep v1 random beacon: a DKG result counts only with signatures of the group's members, each recovered (OpenZeppelin recover) and compared with the member at its index, checked when the result is…. Read by hand. Update path: no proxy slot, no upgrade function."}
 - {address: "0x44b12bd193d9f88864dc21e59318e08c565068c8", family: "bc88e65a0213f6ebb0bc38fd73c79d85", copies: 603, upgradeable: "no", rating: CRITICAL, note: "Robonomics liabilities (603); same verdict. Bytecode and names. Update path: proxy to 0x3da3987500da899a06796950f248c124c0f5cb6b: no admin, no upgrade function in the implementation."}
 - {address: "0xf471aed099a4ec581335eb52221cc4fbb948ffdb", family: "f36169d3dd2dce63b75983649bd8e530", copies: 9388, name: "Liability", upgradeable: "no", rating: CRITICAL, note: "Robonomics liability demand: the promisee named must have signed / Robonomics liability offer: the promisor named must have signed / Robonomics liability finalize: the result must be signed by the…. Read from source. Update path: delegates to a fixed address."}
 - {address: "0xf488f79db9ad86a17eeb694737eade2b08f93eee", family: "cf7404a95d6bfbb3f78ed68718839b89", copies: 4305, name: "BondedECDSAKeep", upgradeable: "no", rating: CRITICAL, note: "Keep ManagedGrant.recoverStake: no signature (matched on a word) / Keep TokenGrant.recoverStake: no signature / Keep TokenGrantStake.recoverStake: no signature / Keep BondedECDSAKeep submitSignature:…. Read from source. Update path: delegates to a fixed address."}
-- {address: "0x0125c8977a02b2fa3970b1ed9af02f5bedd4ef27", family: "c7877dc4855722a5f03bf4c0c064af61", copies: 3, name: "EcdsaDkgValidator", project: "tbtc", upgradeable: "no", rating: LOW, recoveries_14d: 100, note: "Threshold/tBTC EcdsaDkgValidator.validateSignatures: every supporting signature of a DKG result must recover to the operator of the member at that index; a result that does not validate can be…. Read from source. Executed: a real transaction reverts with code at the signer. Executed by hand: see Evidence. Rated by hand: executed: nothing moves today (seize only emits an event) and clients can leave such signatures out."}
 evidence: {level: executed, block: 26438999}
 sources:
 - by: ai-assisted
@@ -26,7 +24,7 @@ reviews: []
 
 ## Summary
 
-These contracts check a signature again after someone else has acted on it: channel states, fraud proofs, settlements, committee results. 5 code families, 14,301 addresses, $30k held, 100 recoveries in the study's two-week window. Rows by rating: CRITICAL 4, LOW 1. 1 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+These contracts check a signature again after someone else has acted on it: channel states, fraud proofs, settlements, committee results. 3 code families, 14,296 addresses, $0 held, 0 recoveries in the study's two-week window. Rows by rating: CRITICAL 3. 0 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
 
 ## Mechanism
 
@@ -41,8 +39,7 @@ PQ-15. The second check reads the signer's account code at that time. Once that 
 
 ## Impact and exposure
 
-Largest rows by value held at block 26,438,999:
-- `0xdf708431162ba247ddae362d2c919e0fbafcf9de` (deployed by Threshold Network: Deployer 1): $30k, CRITICAL, 2 addresses
+No row holds value at block 26,438,999.
 
 Every row is in the header; `generated/triage_contracts.csv` lists them for search.
 
