@@ -18,7 +18,7 @@ contracts:                              # (all levels) where it is: the address 
     last_active: null
     txs_30d: null
 families: []                            # many deployments of one code: code, name, instances, list, upgradeable, value_usd, value_basis, value_as_of
-severity: UNRATED                       # CRITICAL | HIGH | MEDIUM | LOW | NONE | UNRATED
+severity: UNRATED                       # CRITICAL | HIGH | MEDIUM | LOW | INFORMATIONAL | NONE | UNRATED
 impact: unknown                         # funds-loss | funds-locked | liveness | none | unknown
 fix:
   layer: unknown                        # contract-upgrade | onchain-config | new-deployment | account-migration | offchain | protocol | none | unknown

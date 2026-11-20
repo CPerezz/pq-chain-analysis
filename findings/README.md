@@ -79,7 +79,7 @@ scope (pattern PQ-12), because the wallet code decides what an owner can change.
 | `title` | text | One line: what breaks, or what an attacker can do, and for whom |
 | `project` | slug | The team that has to act. May be left out when every contract row has its own `project` |
 | `status` | `candidate`, `confirmed`, `reproduced`, `not-affected`, `duplicate`, `discarded` | The level; see "Levels". `discarded` exists only in `triage/` |
-| `severity` | `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`, `NONE`, `UNRATED` | See "Severity". A candidate may leave it out |
+| `severity` | `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`, `INFORMATIONAL`, `NONE`, `UNRATED` | See "Severity". A candidate may leave it out |
 | `patterns` | list of `PQ-n` | From `patterns.md`. The class of the first one is the finding's class |
 | `primitives` | list | `ecrecover`, `bn254`, `kzg`, `bls12381`, `p256`, `sw_p256`, `sw_secp256k1`, `sw_bn254`, `sw_ed25519`, `sw_bls12381`, `rsa` (`sw_` = curve maths done in software via `modexp`) |
 | `trigger` | `user-key`, `operator-key`, `committee-keys`, `trusted-setup`, `owner-keys`, `issuer-key`, `none` | What the attacker must break |
@@ -127,7 +127,7 @@ A row's `project` is never `unidentified-…`: an unknown project is left out.
 ## Severity
 
 The rubric below was written for class `exposure`. Classes `regression` and `migration-hazard` have theirs below it.
-All use the same six ratings and the same first question: who can fix it, and how hard is that.
+All start from the same question: who can fix it, and how hard is that. `INFORMATIONAL` is used only by those two.
 
 Rated by whether the exposure can be removed without an Ethereum protocol change, and how hard that is. Value and
 activity never change a rating: they are columns to sort and filter by. Each source's own rating is kept in
@@ -166,15 +166,22 @@ A re-rating keeps the old rating in History with the step that decided the new o
 
 ### Classes `regression` and `migration-hazard`
 
-Decided by Anon for the EIP-8151 study (D-024): the rating says how hard the fix is; value and activity only order
-the findings.
+Decided by Anon for the EIP-8151 study (D-024, D-026): the rating says how hard the fix is; value and activity only
+order the findings.
+
+First question: does the change break it by itself? A consequence that needs a key holder to move its own account to
+code is the same as that holder no longer signing, which any holder can already do; it is `INFORMATIONAL`, whatever
+it would lock. The ratings below it apply to what the change breaks with nobody acting (a gas cost), and to a
+signature someone already relied on that its signer can void by migrating (a payment voucher, a channel balance
+proof, a DKG result, a fraud proof).
 
 | Rating | Rule |
 |---|---|
 | CRITICAL | No update path, and people who did nothing lose funds: a wrong verdict pays or punishes someone, or a party that relied on a signature loses |
 | HIGH | No update path, and funds are locked: nothing gets them out |
 | MEDIUM | No update path, and only the operator's own money is at stake; or the affected function dies but nothing is locked (an owner, admin, disband or rescue path still moves the money, or the contract holds none by design) |
-| LOW | A simple update fixes it (a live admin or owner upgrade, a setter that replaces the key, a 7702 re-delegation, a setting, a sender's gas limit), or the same act stays open to the affected party by another path |
+| LOW | A simple update fixes it (a live admin or owner upgrade, a setting, a sender's gas limit), or the same act stays open to the affected party by another path |
+| INFORMATIONAL | Breaks only if a key holder moves its own account to code. The finding says what to do first (rotate the key, upgrade, move the funds out, exit, enter); `impact` says what happens if the holder migrates unprepared |
 | NONE | Checked and not affected |
 
 ## Checks before you state a fact

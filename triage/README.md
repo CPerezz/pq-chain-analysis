@@ -5,11 +5,14 @@ one root issue (an issue family, a broken invariant), not one per project: every
 with its own facts (`findings/README.md`, row fields).
 
 Each row has its own `rating`; the entry's `severity` is only its highest row. A row's rating says how hard the fix
-is, never how much is at stake (D-024 of the EIP-8151 study):
+is, never how much is at stake (D-024 and D-026 of the EIP-8151 study). A consequence that needs a key holder to move
+its own account to code is `INFORMATIONAL`, whatever it would lock; the other ratings are for what the change breaks
+with nobody acting, and for a signature someone already relied on that its signer can void by migrating:
 
 | Rating | Rule |
 |---|---|
-| LOW | A simple update fixes it: an upgrade by a live admin or owner, a 7702 re-delegation, a key rotation, a setting, a gas limit. Or the same act stays open to the affected party by another path |
+| INFORMATIONAL | Breaks only if a key holder moves its own account to code; the row says what to do first (rotate the key, upgrade, move the funds out, exit, enter) |
+| LOW | A simple update fixes it: an upgrade by a live admin or owner, a setting, a gas limit. Or the same act stays open to the affected party by another path |
 | MEDIUM | No update path, and only the operator's own money is at stake, or the affected function dies but nothing is locked (an owner, admin, disband or rescue path still moves the money, or none is held by design) |
 | HIGH | No update path, and funds are locked with no way out |
 | CRITICAL | No update path, and people who did nothing lose funds (a wrong verdict pays or punishes someone, or a party that relied on a signature loses) |
