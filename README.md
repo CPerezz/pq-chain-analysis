@@ -17,16 +17,18 @@ are kept apart because several studies can find the same issue, and one study fi
 | [`studies/<id>/`](studies/) | One folder per study: goal, setup, procedure, how to reproduce, results, limits. See [`studies/README.md`](studies/README.md) |
 | [`triage/<id>.md`](triage/) | New entries, until someone other than the reporter has checked them. See [`triage/README.md`](triage/README.md) |
 | [`findings/<id>.md`](findings/) | One self-contained file per issue, for all studies, once reviewed. Each names the studies that found it. See [`findings/README.md`](findings/README.md) |
-| [`patterns.md`](patterns.md) | The classes and patterns findings are grouped by |
+| [`patterns.md`](patterns.md) | The patterns findings are grouped by, each with its category and a plain description |
 | [`outreach/<project>.md`](outreach/) | Where contact with each affected team stands |
 | [`generated/`](generated/) | The lists and CSV files, built from the four above |
-| [`templates/`](templates/) | A blank form and a filled example for each kind of record |
-| `tools/` | `build.py` checks the records and builds `generated/`; `site_data.py` builds the site's data |
+| [`templates/`](templates/) | A blank form for each kind of record; `templates/gold/` has filled findings to copy |
+| `tools/` | `build.py` checks the records and builds `generated/`; `find.py` looks an address up; `new_finding.py` starts a finding with its facts read from the chain; `site_data.py` builds the site's data |
+| [`code/`](code/) | Decompiled code that findings link, for contracts without verified source |
+| [`AGENTS.md`](AGENTS.md) | The rules agents follow when they file or review findings |
 | `docs/` | The site |
 
-No study code lives here. A study links its code, at a full commit hash, in its header. A finding has no files beside
-it: the code it relies on is quoted in it, and state is given as a contract, a block and, where there is one, a
-transaction, which anyone can read again from the chain.
+No study code lives here. A study links its code, at a full commit hash, in its header. A finding links the contract's
+code (verified on Etherscan or Sourcify, or decompiled in `code/`) and gives state as a contract, a block and, where
+there is one, a transaction, which anyone can read again from the chain.
 
 ## Levels
 
@@ -45,14 +47,14 @@ Copy [`templates/study.md`](templates/study.md) to `studies/<id>/README.md` and 
 
 ## Adding a finding
 
-1. Search [`generated/contracts.csv`](generated/contracts.csv) and `triage/` for the address. If the issue is already
-   listed, add your entry to its `sources` instead of creating a file. It then shows as found by both studies.
-2. Otherwise copy [`templates/finding.md`](templates/finding.md) to `triage/<id>.md`. A candidate needs a title, a
-   pattern, where it is, a short explanation, and who reports it from which study.
+1. Look the address up: `uv run tools/find.py 0xADDRESS`. If the issue is already filed, add your entry to its
+   `sources` instead of creating a file. It then shows as found by both studies.
+2. Otherwise start it with `uv run tools/new_finding.py` (see [`findings/README.md`](findings/README.md)): it writes
+   `triage/<id>.md` with the facts read from the chain, and you write the judgment.
 3. If no pattern in [`patterns.md`](patterns.md) fits, add one there in the same pull request.
-4. Someone else reviews it and moves it to `findings/`, or discards it: [`triage/README.md`](triage/README.md).
+4. Someone else reviews it and moves it to `findings/`: [`triage/README.md`](triage/README.md).
 
-Findings and triage entries are as short as the claim allows. Expand only where the evidence needs it.
+A finding is one contract and one issue. The part a reader sees is short by rule; the rest goes in its Reviewer notes.
 
 A contract can be in any number of findings. The same contract under the same pattern twice is a duplicate.
 
@@ -63,7 +65,7 @@ uv run tools/build.py             # check everything, then rebuild generated/ to
 uv run tools/build.py --selftest  # also prove the rules reject what they should
 ```
 
-Do not include `generated/` in a pull request. It is rebuilt after every merge to `main`.
+Rebuild `generated/` (`uv run tools/build.py`) before a filing commit. Every push and pull request runs the check.
 
 ## Licence
 

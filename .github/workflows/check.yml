@@ -1,0 +1,14 @@
+name: check
+
+# Every push and pull request: the registry's rules, and the proof that they reject what they should.
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv run tools/build.py --check --selftest

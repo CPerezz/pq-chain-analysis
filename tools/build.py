@@ -63,6 +63,31 @@ CLASS_ITEM = re.compile(r"^- \*\*([a-z][a-z-]*)\*\*:", re.M)
 PATTERN_HEADING = re.compile(r"^## (PQ-\d+): (.+)$", re.M)
 CLASS_LINE = re.compile(r"^\*\*Class:\*\* *([a-z-]+)", re.M)
 DATED = re.compile(r"^- \d{4}-\d{2}-\d{2}", re.M)
+CATEGORY_ITEM = re.compile(r'^- \*\*([a-z][a-z-]*)\*\* \("([^"]+)"\):', re.M)
+CATEGORY_LINE = re.compile(r"^\*\*Category:\*\* *([a-z-]+)", re.M)
+WORDS_LINE = re.compile(r"^\*\*In words:\*\* *(\S.*)$", re.M)
+
+# Format 2 (findings/README.md): one contract per finding, a card for readers, reviewer notes for re-checks.
+STATUS2 = ("candidate", "confirmed", "reproduced", "duplicate")
+SEVERITY2 = ("CRITICAL", "HIGH", "MEDIUM", "LOW", "INFORMATIONAL")
+CODE2 = ("verified", "decompiled", "bytecode")
+UPGRADEABLE2 = ("yes", "no", "config-only")
+WHOSE = ("users", "operator", "mixed")
+IMPACT2 = ("funds-loss", "funds-locked", "liveness")
+EVIDENCE2 = ("source", "bytecode", "onchain", "trace", "executed")
+BODY2 = ("What happens", "Evidence", "Reviewer notes")
+NOTES2 = ("Mechanism", "Checks", "History", "Questions")
+KEYS2 = {"id", "format", "title", "status", "severity", "justification", "category", "pattern", "study", "as_of", "block",
+         "contract", "value", "activity", "impact", "action", "evidence_level", "primitive", "duplicate_of", "repro",
+         "sources", "reviews", "related"}
+CONTRACT2 = {"address", "name", "project", "label", "code", "code_url", "proxy_of", "copies", "family", "upgradeable", "admin"}
+CODE_HOSTS = ("etherscan.io", "sourcify.dev", "repo.sourcify.dev", "eth.blockscout.com")
+NAME = re.compile(r"^[A-Za-z_$][A-Za-z0-9_$]*$")
+LINK = re.compile(r"\[([^\]]+)\]\(((?:https?://|code/)[^)\s]+)\)")
+SHOWN_BANNED = ((re.compile(r"\bCHECKED\b|\bINFERRED\b"), "CHECKED or INFERRED"), (re.compile(r"read at block", re.I), "'read at block'"),
+                (re.compile(r"\bD-0\d\d\b"), "decision numbers"), (re.compile(r"\bPQ-\d+\b"), "pattern codes"),
+                (re.compile(r"\b[0-9a-f]{32}\b"), "code family ids"), (re.compile(r"\.(?:csv|jsonl?|py|parquet)\b"), "file names"),
+                (re.compile(r"\bTODO\b"), "TODO placeholders"), (re.compile(r"\b(?:Claude|heimdall)\b", re.I), "agent or tool names"))
 
 
 class Loader(yaml.SafeLoader):
@@ -141,17 +166,30 @@ def pinned(url) -> bool:
 
 
 def load_patterns(p: Problems, path: Path = ROOT / "patterns.md") -> tuple[list[str], dict[str, dict]]:
-    """Classes in file order, and pattern id -> {title, class}."""
+    """Classes in file order, and pattern id -> {title, class, category, words}. Categories are checked against the
+    `## Categories` list; `categories()` gives the names a card shows."""
     text = path.read_text(encoding="utf-8")
     parts = PATTERN_HEADING.split(text)
-    classes = CLASS_ITEM.findall(parts[0])
+    classes, cats = CLASS_ITEM.findall(parts[0]), dict(CATEGORY_ITEM.findall(parts[0]))
+    if not cats:
+        p.add("patterns.md", "no `## Categories` list")
     patterns = {}
     for pid, title, body in zip(parts[1::3], parts[2::3], parts[3::3]):
-        m = CLASS_LINE.search(body)
+        m, c, words = CLASS_LINE.search(body), CATEGORY_LINE.search(body), WORDS_LINE.search(body)
         if not m or m.group(1) not in classes:
             p.add("patterns.md", f"{pid} needs a `**Class:**` line naming one of {classes}")
-        patterns[pid] = {"title": title, "class": m.group(1) if m else None}
+        if not c or c.group(1) not in cats:
+            p.add("patterns.md", f"{pid} needs a `**Category:**` line naming one of {list(cats)}")
+        if not words or len(words.group(1)) > 160:
+            p.add("patterns.md", f"{pid} needs an `**In words:**` line of up to 160 characters, for readers")
+        patterns[pid] = {"title": title, "class": m.group(1) if m else None, "category": c.group(1) if c else None,
+                         "words": words.group(1) if words else ""}
     return classes, patterns
+
+
+def categories(path: Path = ROOT / "patterns.md") -> dict[str, str]:
+    """Category -> the name a card shows ("<change>" stands for the change the study examines)."""
+    return dict(CATEGORY_ITEM.findall(PATTERN_HEADING.split(path.read_text(encoding="utf-8"))[0]))
 
 
 def load_study(path: Path, p: Problems):
@@ -190,10 +228,13 @@ def load_study(path: Path, p: Problems):
     return s
 
 
-def load_finding(path: Path, patterns: dict[str, dict], studies: dict[str, dict], p: Problems, pool: str = "findings"):
+def load_finding(path: Path, patterns: dict[str, dict], studies: dict[str, dict], p: Problems, pool: str = "findings",
+                 root: Path | None = None):
     head, body = split(path, p)
     if head is None:
         return None
+    if head.get("format") == 2:
+        return load_finding2(path, head, body, patterns, studies, p, pool, root or path.parent.parent)
     w, f = (path.name if pool == "findings" else f"{pool}/{path.name}"), dict(head)
     if f.get("id") != path.stem or not SLUG.match(str(f.get("id"))):
         p.add(w, f"id {f.get('id')!r} must be a slug equal to the file name {path.stem!r}")
@@ -286,19 +327,35 @@ def load_finding(path: Path, patterns: dict[str, dict], studies: dict[str, dict]
     if status in ("confirmed", "reproduced") and not isinstance(ev.get("block"), int):
         p.add(w, "evidence.block is required from confirmed up: the block at which state was read")
     if status == "reproduced":
-        r = f.get("repro") if isinstance(f.get("repro"), dict) else {}
-        if not pinned(r.get("code")):
-            p.add(w, "repro.code must be a link that carries a full commit hash or gist revision")
-        if not isinstance(r.get("command"), str) or not r["command"].strip():
-            p.add(w, "repro.command missing")
-        inputs = r.get("inputs") if isinstance(r.get("inputs"), dict) else {}
-        if not isinstance(inputs.get("block"), int) and inputs.get("tx") is None:
-            p.add(w, "repro.inputs needs a block or a tx")
-        if inputs.get("tx") is not None and not TX.match(str(inputs["tx"])):
-            p.add(w, "repro.inputs.tx is not a transaction hash")
-        if not r.get("expect"):
-            p.add(w, "repro.expect missing: the result the command must give")
+        check_repro(p, w, f)
+    check_people(p, w, f, studies, pool, status, light)
 
+    heads = sections(body)
+    missing = [h for h in (("Summary",) if light else BODY_HEADINGS) if h not in heads]
+    if missing:
+        p.add(w, f"body is missing sections {missing}")
+    if not light and not DATED.search(body.split("## History", 1)[-1]):
+        p.add(w, "History needs at least one dated entry")
+    return f
+
+
+def check_repro(p: Problems, w: str, f: dict) -> None:
+    r = f.get("repro") if isinstance(f.get("repro"), dict) else {}
+    if not pinned(r.get("code")):
+        p.add(w, "repro.code must be a link that carries a full commit hash or gist revision")
+    if not isinstance(r.get("command"), str) or not r["command"].strip():
+        p.add(w, "repro.command missing")
+    inputs = r.get("inputs") if isinstance(r.get("inputs"), dict) else {}
+    if not isinstance(inputs.get("block"), int) and inputs.get("tx") is None:
+        p.add(w, "repro.inputs needs a block or a tx")
+    if inputs.get("tx") is not None and not TX.match(str(inputs["tx"])):
+        p.add(w, "repro.inputs.tx is not a transaction hash")
+    if not r.get("expect"):
+        p.add(w, "repro.expect missing: the result the command must give")
+
+
+def check_people(p: Problems, w: str, f: dict, studies: dict[str, dict], pool: str, status, light: bool) -> None:
+    """`sources` and `reviews`, in both formats; sets `_studies`, `_pool`."""
     sources = f.get("sources") if isinstance(f.get("sources"), list) else []
     f["sources"] = sources
     if not sources:
@@ -334,13 +391,182 @@ def load_finding(path: Path, patterns: dict[str, dict], studies: dict[str, dict]
         if not any(isinstance(r, dict) and r.get("verdict") == "refuted" for r in reviews):
             p.add(w, "discarded needs a review with verdict refuted: who, when and why")
 
-    heads = sections(body)
-    missing = [h for h in (("Summary",) if light else BODY_HEADINGS) if h not in heads]
-    if missing:
-        p.add(w, f"body is missing sections {missing}")
-    if not light and not DATED.search(body.split("## History", 1)[-1]):
-        p.add(w, "History needs at least one dated entry")
+
+def shown(p: Problems, w: str, where: str, text: str) -> None:
+    """What readers see carries no working notes."""
+    for rx, what in SHOWN_BANNED:
+        if rx.search(text):
+            p.add(w, f"{where}: no {what} in what readers see")
+
+
+def text2(p: Problems, w: str, f: dict, key: str, lo: int, hi: int, required: bool) -> str | None:
+    v = f.get(key)
+    if v is None:
+        if required:
+            p.add(w, f"{key} missing")
+        return None
+    if not isinstance(v, str) or not lo <= len(v.strip()) <= hi:
+        p.add(w, f"{key} must be text of {lo} to {hi} characters")
+        return None
+    shown(p, w, key, v)
+    return v
+
+
+def load_finding2(path: Path, head: dict, body: str, patterns: dict[str, dict], studies: dict[str, dict], p: Problems,
+                  pool: str, root: Path):
+    """A format-2 finding (findings/README.md), returned with the fields the views of format 1 read."""
+    w, f = (path.name if pool == "findings" else f"{pool}/{path.name}"), dict(head)
+    if set(f) - KEYS2:
+        p.add(w, f"unknown fields {sorted(set(f) - KEYS2)}")
+    if f.get("id") != path.stem or not SLUG.match(str(f.get("id"))):
+        p.add(w, f"id {f.get('id')!r} must be a slug equal to the file name {path.stem!r}")
+        f["id"] = path.stem
+    status = enum(p, w, f, "status", STATUS2)
+    final = status in ("confirmed", "reproduced")
+    title = text2(p, w, f, "title", 20, 80, final)
+    if title and re.search(r"\$|\bUSD\b|0x[0-9a-fA-F]{6,}", title):
+        p.add(w, "title: no amounts or addresses")
+    pid, cat = f.get("pattern"), f.get("category")
+    if pid not in patterns:
+        p.add(w, f"pattern {pid!r} is not in patterns.md")
+    if (cat is not None or final) and cat != patterns.get(pid, {}).get("category"):
+        p.add(w, f"category {cat!r} must be the pattern's, {patterns.get(pid, {}).get('category')!r}")
+    sev = enum(p, w, f, "severity", SEVERITY2, required=final)
+    if sev in SEVERITY2 and cat and (sev == "INFORMATIONAL") != (cat == "migration-notice"):
+        p.add(w, "severity INFORMATIONAL if and only if the category is migration-notice")
+    text2(p, w, f, "justification", 10, 120, final)
+    if f.get("study") not in studies:
+        p.add(w, f"study {f.get('study')!r} is not a folder in studies/")
+    date(p, w, f, "as_of", required=final)
+    if (final or f.get("block") is not None) and not isinstance(f.get("block"), int):
+        p.add(w, "block must be the block every state read is pinned to")
+
+    c = f.get("contract") if isinstance(f.get("contract"), dict) else {}
+    cw = f"{w} contract"
+    if set(c) - CONTRACT2:
+        p.add(cw, f"unknown fields {sorted(set(c) - CONTRACT2)}")
+    addr(p, cw, c.get("address"), "address")
+    addr(p, cw, c.get("proxy_of"), "proxy_of", optional=True)
+    if c.get("name") is not None and not NAME.match(str(c["name"])):
+        p.add(cw, "name must be the contract's identifier, from verified source or the chain")
+    if c.get("project") is not None and not SLUG.match(str(c["project"])):
+        p.add(cw, "project must be a slug")
+    if c.get("label") is not None and (not isinstance(c["label"], str) or len(c["label"]) > 80):
+        p.add(cw, "label must be text of up to 80 characters")
+    code, url = enum(p, cw, c, "code", CODE2, required=final), c.get("code_url")
+    host = re.match(r"https://(?:www\.)?([^/]+)/", url) if isinstance(url, str) else None
+    if code == "decompiled":
+        if not (isinstance(url, str) and re.fullmatch(r"code/[0-9A-Za-z_.-]+\.sol", url) and (root / url).is_file()):
+            p.add(cw, "decompiled code is linked as code/<code hash>.sol, and that file must exist")
+    elif code in CODE2 and not (host and host.group(1) in CODE_HOSTS):
+        p.add(cw, f"code_url must be a page on {', '.join(CODE_HOSTS)}")
+    copies = 1 if c.get("copies") is None else c["copies"]
+    if not isinstance(copies, int) or copies < 1:
+        p.add(cw, "copies must be an integer >= 1")
+    elif copies > 1 and not isinstance(c.get("family"), str):
+        p.add(cw, "copies above 1 need the code family")
+    enum(p, cw, c, "upgradeable", UPGRADEABLE2, required=False)
+    if c.get("admin") not in (None, "none"):
+        addr(p, cw, c["admin"], "admin")
+
+    v = f.get("value") if isinstance(f.get("value"), dict) else {}
+    a = f.get("activity") if isinstance(f.get("activity"), dict) else {}
+    for key, d, allowed in (("value", v, {"usd", "whose", "basis"}), ("activity", a, {"txs_90d", "last"})):
+        if f.get(key) is not None and not isinstance(f[key], dict):
+            p.add(w, f"{key} must be a mapping")
+        if set(d) - allowed:
+            p.add(w, f"{key}: unknown fields {sorted(set(d) - allowed)}")
+    for key, d, n in (("value.usd", v, v.get("usd")), ("activity.txs_90d", a, a.get("txs_90d"))):
+        if n is not None and (not isinstance(n, int) or n < 0):
+            p.add(w, f"{key} must be a whole number")
+    enum(p, w + " value", v, "whose", WHOSE, required=False)
+    enum(p, w + " value", v, "basis", VALUE_BASIS, required=v.get("usd") is not None)
+    date(p, w + " activity", a, "last")
+    enum(p, w, f, "impact", IMPACT2, required=final)
+    action = text2(p, w, f, "action", 10, 140, False)
+    if action and not action[0].isupper():
+        p.add(w, "action starts with a verb, capitalised")
+    enum(p, w, f, "evidence_level", EVIDENCE2, required=final)
+    enum(p, w, f, "primitive", PRIMITIVES, required=False)
+    if status == "duplicate" and not f.get("duplicate_of"):
+        p.add(w, "duplicate needs duplicate_of")
+    if status == "reproduced":
+        check_repro(p, w, f)
+    check_people(p, w, f, studies, pool, status, light=not final)
+    if f.get("study") in studies:
+        f["_studies"] = list(dict.fromkeys([f["study"]] + f["_studies"]))
+
+    before, secs = section_texts(body)
+    heads = [h for h, _ in secs]
+    if before.strip():
+        p.add(w, "text before `## What happens`")
+    if re.search(r"^# ", body, re.M):
+        p.add(w, "nothing after the reviewer notes: no appended documents")
+    if (any(h not in BODY2 for h in heads) or len(set(heads)) != len(heads) or heads != sorted(heads, key=BODY2.index)
+            or "What happens" not in heads or (final and heads != list(BODY2))):
+        p.add(w, f"sections must be {list(BODY2)} in that order (a candidate may stop after What happens), found {heads}")
+    texts = {h: t.strip() for h, t in secs}
+    draft = lambda t: not final and t.startswith("TODO")  # a candidate's placeholder from tools/new_finding.py
+    what = texts.get("What happens", "")
+    if final and not what:
+        p.add(w, "What happens is empty")
+    if what and not draft(what):
+        if len(what) > 300:
+            p.add(w, f"What happens is {len(what)} characters: at most 300")
+        if re.search(r"^\s*(?:[-*>|#]|```)", what, re.M):
+            p.add(w, "What happens is prose: no lists, tables, quotes or code blocks")
+        shown(p, w, "What happens", what)
+    ev = texts.get("Evidence", "")
+    if final and not ev:
+        p.add(w, "Evidence is empty")
+    if ev and not draft(ev):
+        bullets, loose = [], False
+        for line in ev.splitlines():
+            if line.startswith("- "):
+                bullets.append(line[2:])
+            elif line.strip() and line[:1] in (" ", "\t") and bullets:
+                bullets[-1] += " " + line.strip()
+            elif line.strip():
+                loose = True
+        if loose or not 1 <= len(bullets) <= 3:
+            p.add(w, "Evidence is one to three bullets")
+        for i, b in enumerate(bullets, 1):
+            seen = " ".join(LINK.sub(r"\1", b).split())
+            if not LINK.search(b):
+                p.add(w, f"Evidence bullet {i} needs a link: a source line, a transaction or an explorer page")
+            if len(seen) > 200:
+                p.add(w, f"Evidence bullet {i} is {len(seen)} characters: at most 200")
+            shown(p, w, f"Evidence bullet {i}", seen)
+    notes = texts.get("Reviewer notes", "")
+    subs = {s.strip() for s in re.findall(r"^### (.+)$", notes, re.M)}
+    if len(notes) > 3000:
+        p.add(w, f"Reviewer notes are {len(notes)} characters: at most 3,000")
+    if subs - set(NOTES2):
+        p.add(w, f"Reviewer notes hold only {list(NOTES2)}")
+    if final and not {"Mechanism", "Checks", "History"} <= subs:
+        p.add(w, "Reviewer notes need Mechanism, Checks and History")
+    if "Questions" in subs and status != "candidate":
+        p.add(w, "open Questions keep a finding a candidate")
+
+    f["title"] = title or str(f.get("title") or "")
+    f["patterns"], f["_class"] = ([pid] if pid in patterns else []), patterns.get(pid, {}).get("class")
+    f["severity"] = sev if sev in SEVERITY2 else "UNRATED"
+    f["contracts"] = [{"address": c.get("address"), "name": c.get("name"), "project": c.get("project"), "label": c.get("label"),
+                       "implementation": c.get("proxy_of"), "upgradeable": c.get("upgradeable"), "admin": c.get("admin"),
+                       "value_usd": v.get("usd"), "value_basis": v.get("basis"),
+                       "value_as_of": f.get("as_of") if v.get("usd") is not None else None, "last_active": a.get("last"),
+                       "txs_90d": a.get("txs_90d"), "copies": copies if isinstance(copies, int) else 1, "family": c.get("family"),
+                       "rating": sev if sev in SEVERITY2 else None}] if isinstance(c.get("address"), str) else []
+    f["families"], f["fix"] = [], {"who_acts": action or ""}
+    f["evidence"] = {"level": f.get("evidence_level"), "block": f.get("block")}
+    f["_projects"] = [c["project"]] if isinstance(c.get("project"), str) else []
     return f
+
+
+def section_texts(body: str) -> tuple[str, list[tuple[str, str]]]:
+    """The text before the first `## ` heading, and (heading, text) for every `## ` section."""
+    chunks = re.split(r"^## (.+)$", body, flags=re.M)
+    return chunks[0], [(chunks[i].strip(), chunks[i + 1]) for i in range(1, len(chunks), 2)]
 
 
 def load_outreach(path: Path, projects: set[str], p: Problems):
@@ -746,6 +972,10 @@ def selftest(patterns: dict[str, dict]) -> list[str]:
     study = "studies/example-study/README.md"
     twin = (EXAMPLES / conf).read_text(encoding="utf-8").replace("id: example-confirmed", "id: example-twin")
     orphan = (EXAMPLES / "outreach/example-project.md").read_text(encoding="utf-8").replace("project: example-project", "project: nobody")
+    f2 = "findings/example-format2.md"
+    verified = "code: verified\n  code_url: https://etherscan.io/address/0x5555555555555555555555555555555555555555#code"
+    twin2 = ((EXAMPLES / f2).read_text(encoding="utf-8").replace("id: example-format2", "id: example-format2-twin")
+             .replace("0x5555555555555555555555555555555555555555", "0x1111111111111111111111111111111111111111"))
     cases = [
         ("examples as they are", {}, None),
         ("reproduced without a command", {"change": (repro, "  command:", "  kommand:")}, "repro.command missing"),
@@ -787,6 +1017,31 @@ def selftest(patterns: dict[str, dict]) -> list[str]:
         ("a study without Limits", {"change": (study, "## Limits", "## Caveats")}, "sections must be"),
         ("a study whose code link has no commit", {"change": (study, "/tree/0123456789abcdef0123456789abcdef01234567", "/tree/main")}, "full commit hash"),
         ("a finding with side files", {"change": (cand, "sources:", "evidence:\n  links: [x.json]\nsources:")}, "evidence.links is gone"),
+        ("format 2: a title over 80 characters",
+         {"change": (f2, "title: An example exchange trusts signed orders to move deposits", "title: " + "x" * 90)}, "title must be text of 20 to 80"),
+        ("format 2: an Evidence bullet without a link",
+         {"change": (f2, "[verified source](https://etherscan.io/address/0x5555555555555555555555555555555555555555#code)", "verified source")},
+         "needs a link"),
+        ("format 2: a category that is not the pattern's", {"change": (f2, "category: quantum-exposure", "category: migration-notice")},
+         "must be the pattern's"),
+        ("format 2: INFORMATIONAL outside migration notices", {"change": (f2, "severity: HIGH", "severity: INFORMATIONAL")},
+         "INFORMATIONAL if and only if"),
+        ("format 2: open questions in a confirmed finding",
+         {"change": (f2, "### History", "### Questions\n\n- Is the operator still live?\n\n### History")}, "open Questions"),
+        ("format 2: a field the format does not have", {"change": (f2, "format: 2\n", "format: 2\nwho_acts: everyone\n")}, "unknown fields"),
+        ("format 2: working notes in what readers see", {"change": (f2, "The exchange fills", "CHECKED: the exchange fills")},
+         "no CHECKED or INFERRED"),
+        ("format 2: What happens over 300 characters", {"change": (f2, "The exchange fills an order", "The exchange fills an order" + " really" * 50)},
+         "at most 300"),
+        ("format 2: decompiled code that is not hosted", {"change": (f2, verified, "code: decompiled\n  code_url: code/abc.sol")},
+         "decompiled code is linked"),
+        ("format 2: decompiled code that is hosted",
+         {"change": (f2, verified, "code: decompiled\n  code_url: code/abc.sol"), "extra": {"code/abc.sol": "// decompiled\n"}}, None),
+        ("format 2: an appended document", {"change": (f2, "filed from study example-study.", "filed from study example-study.\n\n# Source excerpts\n")},
+         "no appended documents"),
+        ("format 2: a candidate straight from the scaffold", {"extra": {"triage/contract-66666666-example.md": SCAFFOLD}}, None),
+        ("format 2: the same contract and pattern as a format 1 finding", {"extra": {"findings/example-format2-twin.md": twin2}},
+         "that is a duplicate"),
     ]
     wrong = []
     for name, kw, expect in cases:
@@ -809,7 +1064,8 @@ def selftest(patterns: dict[str, dict]) -> list[str]:
         extended, p = Path(tmp) / "patterns.md", Problems()
         text = (ROOT / "patterns.md").read_text(encoding="utf-8")
         extended.write_text(text.replace("\n## PQ-1:", "\n- **example-class**: added with its finding.\n\n## PQ-1:", 1)
-                            + "\n## PQ-999: A pattern added with its finding\n\n**Class:** example-class\n", encoding="utf-8")
+                            + "\n## PQ-999: A pattern added with its finding\n\n**Class:** example-class\n\n**Category:** quantum-exposure\n\n"
+                            "**In words:** A pattern added together with the finding that needs it.\n", encoding="utf-8")
         classes2, patterns2 = load_patterns(p, extended)
     got, found = run(extra={"findings/example-minimal.md": MINIMAL.replace("PQ-4", "PQ-999")}, pats=patterns2)
     if p or got or "example-class" not in classes2 or found["example-minimal"]["_class"] != "example-class":
@@ -906,6 +1162,73 @@ sources:
 One sentence on the root issue; the rows say where.
 """
 
+SCAFFOLD = """---
+id: contract-66666666-example
+format: 2
+title:
+status: candidate
+severity:
+justification:
+category:
+pattern: PQ-4
+study: example-study
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: "0x6666666666666666666666666666666666666666"
+  name:
+  project:
+  label:
+  code: bytecode
+  code_url: https://etherscan.io/address/0x6666666666666666666666666666666666666666#code
+  proxy_of:
+  copies: 1
+  family:
+  upgradeable:
+  admin:
+value:
+  usd: 0
+  whose:
+  basis: held
+activity:
+  txs_90d:
+  last:
+impact:
+action:
+evidence_level:
+sources:
+- study: example-study
+  who: someone
+  date: 2026-11-18
+  by: ai-assisted
+  verdict: reported
+reviews: []
+related: []
+---
+
+## What happens
+
+TODO: up to 300 characters about this contract.
+
+## Evidence
+
+TODO: one to three bullets, each with a link.
+
+## Reviewer notes
+
+### Mechanism
+
+TODO: the path through the code.
+
+### Checks
+
+- eth_getCode at block 26,438,999: 1,234 bytes.
+
+### History
+
+- 2026-11-18: scaffolded by tools/new_finding.py at block 26438999.
+"""
+
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
@@ -918,6 +1241,10 @@ def main() -> int:
     examples = Problems()
     load_tree(EXAMPLES, patterns, examples)
     p += [f"templates/examples: {x}" for x in examples]
+    gold = Problems()  # the filled examples agents copy: real contracts, checked against the real studies
+    for path in sorted((ROOT / "templates" / "gold").glob("*.md")):
+        load_finding(path, patterns, studies, gold, pool="templates/gold", root=ROOT)
+    p += gold
     if args.selftest:
         p += [f"selftest: {x}" for x in selftest(patterns)]
     if p:
