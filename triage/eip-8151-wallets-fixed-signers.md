@@ -8,7 +8,6 @@ impact: funds-locked
 contracts:
 - {address: "0x8a8e80e0762243f0df39f2847808b7f6d62e2bb1", family: "e76ed8e9ea3a1aed36c1cd4946a7254b", copies: 9, label: "Layer2Finance: Committee", upgradeable: "no", rating: HIGH, note: "SimpleMultiSig: every signature must recover to an owner, in ascending order; the caller does not count; no function changes the owners. Same code idiom as template 8f5fee6f, not read on its own. Update path: no proxy slot, no upgrade function."}
 - {address: "0x8dfbb7ee1979aa58ec0e56c9ea5f08b826f5e6df", family: "37e42129561d6cd35177098ba16cb09e", upgradeable: "no", rating: HIGH, note: "SimpleMultiSig: every signature must recover to an owner, in ascending order; the caller does not count; no function changes the owners. Same code idiom as template 8f5fee6f, not read on its own. Update path: no proxy slot, no upgrade function."}
-- {address: "0x79241bbe3646d8405849cbe8608e77b82c402892", family: "bc7707498252227d8af27c5d08e1cd87", upgradeable: "yes", rating: LOW, note: "SimpleMultiSig: every signature must recover to an owner, in ascending order; the caller does not count; no function changes the owners. Same code idiom as template 8f5fee6f, not read on its own. Update path: proxy to 0x621dd8d71526d7df51fa1aa8d098f5eaec81c573, admin 0xf2a2bee383c2e4d75d9ae5953b3a6cfabb661a47."}
 evidence: {level: executed, block: 26438999}
 sources:
 - by: ai-assisted
@@ -24,7 +23,7 @@ reviews: []
 
 ## Summary
 
-These wallets and multisigs check their owners' signatures against a set fixed in their code. 3 code families, 11 addresses, $0 held, 0 recoveries in the study's two-week window. Rows by rating: HIGH 2, LOW 1. 0 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+These wallets and multisigs check their owners' signatures against a set fixed in their code. 2 code families, 10 addresses, $0 held, 0 recoveries in the study's two-week window. Rows by rating: HIGH 2. 0 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
 
 ## Mechanism
 
