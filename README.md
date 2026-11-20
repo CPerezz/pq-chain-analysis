@@ -20,7 +20,7 @@ are kept apart because several studies can find the same issue, and one study fi
 | [`patterns.md`](patterns.md) | The patterns findings are grouped by, each with its category and a plain description |
 | [`outreach/<project>.md`](outreach/) | Where contact with each affected team stands |
 | [`generated/`](generated/) | The lists and CSV files, built from the four above |
-| [`templates/`](templates/) | A blank form for each kind of record; `templates/gold/` has filled findings to copy |
+| [`templates/`](templates/) | A blank form for each kind of record, and filled examples: one finding per category, one study |
 | `tools/` | `build.py` checks the records and builds `generated/`; `find.py` looks an address up; `new_finding.py` starts a finding with its facts read from the chain; `site_data.py` builds the site's data |
 | [`code/`](code/) | Decompiled code that findings link, for contracts without verified source |
 | [`AGENTS.md`](AGENTS.md) | The rules agents follow when they file or review findings |

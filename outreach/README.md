@@ -7,8 +7,7 @@ There is no file for a project that nobody has contacted. The lists show such a 
 ## Adding or updating a file
 
 1. The file is `outreach/<project>.md`, where `<project>` is the `project` of at least one finding (or of one of its
-   contract rows). One file per project, never per finding. Start from `templates/outreach.md`; a filled example is
-   `templates/examples/outreach/example-project.md`.
+   contract rows). One file per project, never per finding. Start from `templates/outreach.md`.
 2. Add one line to `## Log` for every attempt and every reply, oldest first:
    `- YYYY-MM-DD (who, channel): what was sent or received.` Never edit or delete an earlier line; correct it with a
    new one.

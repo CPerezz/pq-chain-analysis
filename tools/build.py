@@ -610,9 +610,12 @@ def cross_check(findings: list[dict], p: Problems) -> None:
                                "they are different issues name each other in `related`")
 
 
-def load_tree(root: Path, patterns: dict[str, dict], p: Problems) -> tuple[dict[str, dict], list[dict], dict[str, dict], list[dict]]:
-    """Studies, findings, outreach files and triage entries under `root` (the repo, or templates/examples)."""
-    studies = {s["id"]: s for path in sorted(root.glob("studies/*/README.md")) if (s := load_study(path, p)) is not None}
+def load_tree(root: Path, patterns: dict[str, dict], p: Problems, more_studies: dict[str, dict] | None = None
+              ) -> tuple[dict[str, dict], list[dict], dict[str, dict], list[dict]]:
+    """Studies, findings, outreach files and triage entries under `root` (the repo, or templates/examples, whose
+    findings may also name the repo's studies, given as `more_studies`)."""
+    studies = {**(more_studies or {}),
+               **{s["id"]: s for path in sorted(root.glob("studies/*/README.md")) if (s := load_study(path, p)) is not None}}
     findings = [f for path in sorted(root.glob("findings/*.md")) if path.name != "README.md"
                 if (f := load_finding(path, patterns, studies, p)) is not None]
     triage = [f for path in sorted(root.glob("triage/*.md")) if path.name != "README.md"
@@ -949,7 +952,7 @@ def projects_csv(findings, triage, outreach) -> str:
 
 # ---- self-test ---------------------------------------------------------------------------------------------------
 
-def selftest(patterns: dict[str, dict]) -> list[str]:
+def selftest(patterns: dict[str, dict], studies: dict[str, dict]) -> list[str]:
     """Mutate copies of templates/examples and require the expected complaint, or none. Returns what went wrong."""
     def run(change=None, extra: dict[str, str] | None = None, pats=None):
         """Problems and findings (by id) of a mutated copy of the examples."""
@@ -965,83 +968,91 @@ def selftest(patterns: dict[str, dict]) -> list[str]:
                 assert old in text, f"selftest is out of date: {old!r} not in {path}"
                 (root / path).write_text(text.replace(old, new), encoding="utf-8")
             p = Problems()
-            _, findings, _, triage = load_tree(root, pats or patterns, p)
+            _, findings, _, triage = load_tree(root, pats or patterns, p, more_studies=studies)
             return p, {f["id"]: f for f in findings + triage}
 
-    repro, conf, cand = "findings/example-reproduced.md", "findings/example-confirmed.md", "findings/example-candidate.md"
-    study = "studies/example-study/README.md"
-    twin = (EXAMPLES / conf).read_text(encoding="utf-8").replace("id: example-confirmed", "id: example-twin")
-    orphan = (EXAMPLES / "outreach/example-project.md").read_text(encoding="utf-8").replace("project: example-project", "project: nobody")
-    f2 = "findings/example-format2.md"
-    verified = "code: verified\n  code_url: https://etherscan.io/address/0x5555555555555555555555555555555555555555#code"
-    twin2 = ((EXAMPLES / f2).read_text(encoding="utf-8").replace("id: example-format2", "id: example-format2-twin")
-             .replace("0x5555555555555555555555555555555555555555", "0x1111111111111111111111111111111111111111"))
+    ed, study = "findings/etherdelta-8d12a197-order-signature.md", "studies/example-study/README.md"
+    ed_id, ed_addr, other = "etherdelta-8d12a197-order-signature", "0x8d12a197cb00d4747a1fe03395095ce2a5cc6819", "0x" + "1" * 40
+    text = (EXAMPLES / ed).read_text(encoding="utf-8")
+    twin = text.replace(f"id: {ed_id}", "id: etherdelta-twin")
+    rep = (text.replace(f"id: {ed_id}", "id: example-reproduced").replace(ed_addr, other).replace("status: confirmed", "status: reproduced")
+           .replace("related: []", "related: []\nrepro:\n  code: https://github.com/example/repro/tree/0123456789abcdef0123456789abcdef01234567\n"
+                    "  command: uv run repro.py\n  inputs: {block: 26431214}\n  expect: {trade: accepted}"))
+    verified = f"code: verified\n  code_url: https://etherscan.io/address/{ed_addr}#code"
+    repro = lambda old="", new="": {"extra": {"findings/example-reproduced.md": rep.replace(old, new)}}
     cases = [
         ("examples as they are", {}, None),
-        ("reproduced without a command", {"change": (repro, "  command:", "  kommand:")}, "repro.command missing"),
-        ("reproduced without a pinned code link", {"change": (repro, "/tree/0123456789abcdef0123456789abcdef01234567", "/tree/main")}, "repro.code"),
-        ("reproduced without an expected result", {"change": (repro, "  expect:", "  expekt:")}, "repro.expect missing"),
-        ("reproduced without inputs", {"change": (repro, "  inputs:", "  inputz:")}, "repro.inputs needs a block or a tx"),
-        ("confirmed without a block", {"change": (conf, "  block:", "  blok:")}, "evidence.block is required"),
-        ("a source naming an unknown study", {"change": (conf, "study: example-study", "study: nowhere")}, "is not a folder in studies/"),
-        ("same contract and same pattern in two findings", {"extra": {"findings/example-twin.md": twin}}, "that is a duplicate"),
-        ("same contract under another pattern", {"extra": {"findings/example-twin.md": twin.replace("patterns: [PQ-4]", "patterns: [PQ-5]")}}, None),
+        ("a reproduced finding with its repro", repro(), None),
+        ("reproduced without a command", repro("  command:", "  kommand:"), "repro.command missing"),
+        ("reproduced without a pinned code link", repro("/tree/0123456789abcdef0123456789abcdef01234567", "/tree/main"), "repro.code"),
+        ("reproduced without an expected result", repro("  expect:", "  expekt:"), "repro.expect missing"),
+        ("reproduced without inputs", repro("  inputs:", "  inputz:"), "repro.inputs needs a block or a tx"),
+        ("confirmed without a block", {"change": (ed, "block: 26431214", "blok: 26431214")}, "block must be the block"),
+        ("a source naming an unknown study", {"change": (ed, "- study: top-callers-classification", "- study: nowhere")},
+         "is not a folder in studies/"),
+        ("same contract and same pattern in two findings", {"extra": {"findings/etherdelta-twin.md": twin}}, "that is a duplicate"),
+        ("same contract under another pattern", {"extra": {"findings/etherdelta-twin.md": twin.replace("pattern: PQ-2", "pattern: PQ-1")}}, None),
         ("two issues of one pattern on one contract, naming each other",
-         {"change": (conf, "related: []", "related: [example-twin]"),
-          "extra": {"findings/example-twin.md": twin.replace("related: []", "related: [example-confirmed]")}}, None),
-        ("one situation across projects, a project on every contract row", {"extra": {"findings/example-situation.md": SITUATION}}, None),
-        ("a candidate with only the minimum", {"extra": {"findings/example-minimal.md": MINIMAL}}, None),
-        ("a candidate without a reporter", {"extra": {"findings/example-minimal.md": MINIMAL.replace("  who: someone\n", "")}}, "who missing"),
-        ("a triage entry with only the minimum", {"extra": {"triage/example-project-pending.md": PENDING}}, None),
-        ("a triage entry whose id does not start with its project",
+         {"change": (ed, "related: []", "related: [etherdelta-twin]"),
+          "extra": {"findings/etherdelta-twin.md": twin.replace("related: []", f"related: [{ed_id}]")}}, None),
+        ("a candidate straight from the scaffold", {"extra": {"triage/contract-66666666-example.md": SCAFFOLD}}, None),
+        ("a candidate without a reporter", {"extra": {"triage/contract-66666666-example.md": SCAFFOLD.replace("  who: someone\n", "")}},
+         "who missing"),
+        ("a triage entry that repeats a finding", {"extra": {"triage/etherdelta-twin.md": twin}}, "that is a duplicate"),
+        ("the same id in findings/ and triage/", {"extra": {f"triage/{ed_id}.md": text}}, "move the file, do not copy it"),
+        ("a title over 80 characters", {"change": (ed, "title: EtherDelta trusts ECDSA-signed orders to move depositors' funds", "title: " + "x" * 90)},
+         "title must be text of 20 to 80"),
+        ("an Evidence bullet without a link", {"change": (ed, f"[verified source](https://etherscan.io/address/{ed_addr}#code)", "verified source")},
+         "needs a link"),
+        ("a category that is not the pattern's", {"change": (ed, "category: quantum-exposure", "category: migration-notice")},
+         "must be the pattern's"),
+        ("INFORMATIONAL outside migration notices", {"change": (ed, "severity: HIGH", "severity: INFORMATIONAL")}, "INFORMATIONAL if and only if"),
+        ("open questions in a confirmed finding", {"change": (ed, "### History", "### Questions\n\n- Is the admin still live?\n\n### History")},
+         "open Questions"),
+        ("a field the format does not have", {"change": (ed, "format: 2\n", "format: 2\nwho_acts: everyone\n")}, "unknown fields"),
+        ("working notes in what readers see", {"change": (ed, "EtherDelta, a 2017 exchange", "CHECKED: EtherDelta, a 2017 exchange")},
+         "no CHECKED or INFERRED"),
+        ("What happens over 300 characters", {"change": (ed, "EtherDelta, a 2017 exchange", "EtherDelta, a 2017 exchange" + " really" * 50)},
+         "at most 300"),
+        ("decompiled code that is not hosted", {"change": (ed, verified, "code: decompiled\n  code_url: code/abc.sol")}, "decompiled code is linked"),
+        ("decompiled code that is hosted",
+         {"change": (ed, verified, "code: decompiled\n  code_url: code/abc.sol"), "extra": {"code/abc.sol": "// decompiled\n"}}, None),
+        ("an appended document", {"change": (ed, "who move to an account with code.\n", "who move to an account with code.\n\n# Source excerpts\n")},
+         "no appended documents"),
+        ("outreach as filled", {"extra": {"outreach/etherdelta.md": OUTREACH_FILE}}, None),
+        ("outreach for a project no finding names", {"extra": {"outreach/nobody.md": OUTREACH_FILE.replace("project: etherdelta", "project: nobody")}},
+         "no finding names this project"),
+        ("outreach status without a log line", {"extra": {"outreach/etherdelta.md": OUTREACH_FILE.replace("- 2026-", "- undated ")}},
+         "needs at least one dated line"),
+        ("outreach status that does not exist", {"extra": {"outreach/etherdelta.md": OUTREACH_FILE.replace("status: contacted", "status: contact")}},
+         "status='contact' not in"),
+        ("a study without Limits", {"change": (study, "## Limits", "## Caveats")}, "sections must be"),
+        ("a study whose code link has no commit", {"change": (study, "/tree/0123456789abcdef0123456789abcdef01234567", "/tree/main")},
+         "full commit hash"),
+        # format 1, accepted until every finding is converted
+        ("format 1: a candidate with only the minimum", {"extra": {"findings/example-minimal.md": MINIMAL}}, None),
+        ("format 1: one situation across projects", {"extra": {"findings/example-situation.md": SITUATION}}, None),
+        ("format 1: a finding with side files",
+         {"extra": {"findings/example-minimal.md": MINIMAL.replace("sources:", "evidence:\n  links: [x.json]\nsources:")}}, "evidence.links is gone"),
+        ("format 1: the same contract and pattern as a format 2 finding",
+         {"extra": {"findings/example-minimal.md": MINIMAL.replace("0x" + "3" * 40, ed_addr).replace("PQ-4", "PQ-2")}}, "that is a duplicate"),
+        ("format 1: a triage entry with only the minimum", {"extra": {"triage/example-project-pending.md": PENDING}}, None),
+        ("format 1: a triage entry whose id does not start with its project",
          {"extra": {"triage/example-pending.md": PENDING.replace("id: example-project-pending", "id: example-pending")}},
          "id must be <project>-<mechanism>"),
-        ("a triage entry that repeats a finding", {"extra": {"triage/example-twin.md": twin}}, "that is a duplicate"),
-        ("the same id in findings/ and triage/", {"extra": {"triage/example-confirmed.md": (EXAMPLES / conf).read_text(encoding="utf-8")}},
-         "move the file, do not copy it"),
-        ("discarded without a refuting review", {"extra": {"triage/example-project-pending.md": PENDING.replace("status: candidate", "status: discarded")}},
-         "discarded needs a review"),
-        ("discarded with a refuting review", {"extra": {"triage/example-project-pending.md": DISCARDED}}, None),
-        ("discarded in findings/", {"extra": {"findings/example-minimal.md": MINIMAL.replace("status: candidate", "status: discarded")}},
-         "discarded entries stay in triage/"),
-        ("a root-issue entry whose rows have no project", {"extra": {"triage/example-root-issue.md": ROOT_ISSUE}}, None),
-        ("a root-issue entry rated below its worst row",
+        ("format 1: discarded without a refuting review",
+         {"extra": {"triage/example-project-pending.md": PENDING.replace("status: candidate", "status: discarded")}}, "discarded needs a review"),
+        ("format 1: discarded with a refuting review", {"extra": {"triage/example-project-pending.md": DISCARDED}}, None),
+        ("format 1: discarded in findings/",
+         {"extra": {"findings/example-minimal.md": MINIMAL.replace("status: candidate", "status: discarded")}}, "discarded entries stay in triage/"),
+        ("format 1: a root-issue entry whose rows have no project", {"extra": {"triage/example-root-issue.md": ROOT_ISSUE}}, None),
+        ("format 1: a root-issue entry rated below its worst row",
          {"extra": {"triage/example-root-issue.md": ROOT_ISSUE.replace("severity: CRITICAL", "severity: HIGH")}}, "must be the worst row rating"),
-        ("a row with a rating that does not exist",
+        ("format 1: a row with a rating that does not exist",
          {"extra": {"triage/example-root-issue.md": ROOT_ISSUE.replace("rating: LOW", "rating: SEVERE")}}, "rating='SEVERE' not in"),
-        ("an unidentified project in triage",
+        ("format 1: an unidentified project in triage",
          {"extra": {"triage/example-root-issue.md": ROOT_ISSUE.replace('label: "Some Exchange: Deposit"', "project: unidentified-1234")}},
          "no `unidentified-*` project"),
-        ("outreach for a project no finding names", {"extra": {"outreach/nobody.md": orphan}}, "no finding names this project"),
-        ("outreach status without a log line", {"change": ("outreach/example-project.md", "- 2026-", "- undated ")}, "needs at least one dated line"),
-        ("a study without Limits", {"change": (study, "## Limits", "## Caveats")}, "sections must be"),
-        ("a study whose code link has no commit", {"change": (study, "/tree/0123456789abcdef0123456789abcdef01234567", "/tree/main")}, "full commit hash"),
-        ("a finding with side files", {"change": (cand, "sources:", "evidence:\n  links: [x.json]\nsources:")}, "evidence.links is gone"),
-        ("format 2: a title over 80 characters",
-         {"change": (f2, "title: An example exchange trusts signed orders to move deposits", "title: " + "x" * 90)}, "title must be text of 20 to 80"),
-        ("format 2: an Evidence bullet without a link",
-         {"change": (f2, "[verified source](https://etherscan.io/address/0x5555555555555555555555555555555555555555#code)", "verified source")},
-         "needs a link"),
-        ("format 2: a category that is not the pattern's", {"change": (f2, "category: quantum-exposure", "category: migration-notice")},
-         "must be the pattern's"),
-        ("format 2: INFORMATIONAL outside migration notices", {"change": (f2, "severity: HIGH", "severity: INFORMATIONAL")},
-         "INFORMATIONAL if and only if"),
-        ("format 2: open questions in a confirmed finding",
-         {"change": (f2, "### History", "### Questions\n\n- Is the operator still live?\n\n### History")}, "open Questions"),
-        ("format 2: a field the format does not have", {"change": (f2, "format: 2\n", "format: 2\nwho_acts: everyone\n")}, "unknown fields"),
-        ("format 2: working notes in what readers see", {"change": (f2, "The exchange fills", "CHECKED: the exchange fills")},
-         "no CHECKED or INFERRED"),
-        ("format 2: What happens over 300 characters", {"change": (f2, "The exchange fills an order", "The exchange fills an order" + " really" * 50)},
-         "at most 300"),
-        ("format 2: decompiled code that is not hosted", {"change": (f2, verified, "code: decompiled\n  code_url: code/abc.sol")},
-         "decompiled code is linked"),
-        ("format 2: decompiled code that is hosted",
-         {"change": (f2, verified, "code: decompiled\n  code_url: code/abc.sol"), "extra": {"code/abc.sol": "// decompiled\n"}}, None),
-        ("format 2: an appended document", {"change": (f2, "filed from study example-study.", "filed from study example-study.\n\n# Source excerpts\n")},
-         "no appended documents"),
-        ("format 2: a candidate straight from the scaffold", {"extra": {"triage/contract-66666666-example.md": SCAFFOLD}}, None),
-        ("format 2: the same contract and pattern as a format 1 finding", {"extra": {"findings/example-format2-twin.md": twin2}},
-         "that is a duplicate"),
     ]
     wrong = []
     for name, kw, expect in cases:
@@ -1052,12 +1063,11 @@ def selftest(patterns: dict[str, dict]) -> list[str]:
             wrong.append(f"{name}: expected a problem containing {expect!r}, got {got}")
 
     # a finding that two studies found is marked
-    second = (EXAMPLES / study).read_text(encoding="utf-8").replace("id: example-study", "id: example-second")
-    one = "sources:\n- by: other\n  study: example-study"
-    two = "sources:\n- by: other\n  study: example-second\n  who: someone-else\n  date: 2026-11-12\n  verdict: confirmed\n" + one[9:]
-    got, found = run(change=(conf, one, two), extra={"studies/example-second/README.md": second})
-    if got or not found_by(found["example-confirmed"]).startswith("**found by 2:**"):
-        wrong.append(f"found by two studies: {got or found_by(found['example-confirmed'])}")
+    one = "sources:\n- study: top-callers-classification"
+    two = "sources:\n- study: eip-8151-impact\n  who: someone-else\n  date: 2026-11-19\n  by: ai-assisted\n  verdict: confirmed\n" + one[9:]
+    got, found = run(change=(ed, one, two))
+    if got or not found_by(found[ed_id]).startswith("**found by 2:**"):
+        wrong.append(f"found by two studies: {got or found_by(found[ed_id])}")
 
     # a pull request can add a class and a pattern together with the finding that needs them
     with tempfile.TemporaryDirectory() as tmp:
@@ -1071,6 +1081,19 @@ def selftest(patterns: dict[str, dict]) -> list[str]:
     if p or got or "example-class" not in classes2 or found["example-minimal"]["_class"] != "example-class":
         wrong.append(f"a new class and pattern: {list(p) + list(got)}")
     return wrong
+
+
+OUTREACH_FILE = """---
+project: etherdelta
+status: contacted
+channel: "security@example.org"
+fix_eta: null
+---
+
+## Log
+
+- 2026-11-18 (someone, email): sent the finding; asked whether the team still runs the contract.
+"""
 
 
 MINIMAL = """---
@@ -1238,15 +1261,11 @@ def main() -> int:
     p = Problems()
     classes, patterns = load_patterns(p)
     studies, findings, outreach, triage = load_tree(ROOT, patterns, p)
-    examples = Problems()
-    load_tree(EXAMPLES, patterns, examples)
+    examples = Problems()  # filled examples: real contracts, so they may name the repo's studies
+    load_tree(EXAMPLES, patterns, examples, more_studies=studies)
     p += [f"templates/examples: {x}" for x in examples]
-    gold = Problems()  # the filled examples agents copy: real contracts, checked against the real studies
-    for path in sorted((ROOT / "templates" / "gold").glob("*.md")):
-        load_finding(path, patterns, studies, gold, pool="templates/gold", root=ROOT)
-    p += gold
     if args.selftest:
-        p += [f"selftest: {x}" for x in selftest(patterns)]
+        p += [f"selftest: {x}" for x in selftest(patterns, studies)]
     if p:
         print("\n".join(p))
         print(f"{len(p)} problem(s)")

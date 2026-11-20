@@ -7,7 +7,7 @@ not. When you are not sure, leave the field empty and ask your owner.
 ## The format
 
 Every new or edited finding is format 2: the form is `templates/finding.md`, the rules are in `findings/README.md`.
-Copy the style of the filled examples in `templates/gold/`, one per category.
+Copy the style of the filled examples in `templates/examples/findings/`, one per category.
 
 ## Filing one contract
 
