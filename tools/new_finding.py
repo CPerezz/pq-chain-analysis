@@ -50,6 +50,7 @@ SLOT_1967_IMPL, SLOT_1967_ADMIN, SLOT_1967_BEACON = slot_1967("implementation"),
 SLOT_1822 = k256(b"PROXIABLE").hex()
 UPGRADE_SELECTORS = {bytes.fromhex(sel(s)) for s in ("upgradeTo(address)", "upgradeToAndCall(address,bytes)", "upgrade(address,address)")}
 CLONE = re.compile(r"363d3d373d3d3d363d73([0-9a-f]{40})5af43d82803e903d91602b57fd5bf3")  # EIP-1167, the whole runtime code
+SAFE_PROXY = "7fa619486e" + "00" * 28  # PUSH32 masterCopy(): the Safe proxy (1.x) answers it from slot 0
 
 
 # --- RPC: one request at a time, 60 s timeout, one retry -------------------------------------------------------
@@ -297,6 +298,11 @@ def read_facts(address: str, block_no: int, names: bool = True, valuer: Value | 
     elif clone:
         f["proxy_of"], f["proxy_kind"] = "0x" + clone.group(1), "clone"
         log.append(f"EIP-1167 clone of {f['proxy_of']} (fixed in the code)")
+    elif len(code) < 400 and SAFE_PROXY in code.hex() and addr_from_slot(slot0 := storage(address, "0x0", at)):
+        # a Safe proxy keeps its singleton in slot 0 and answers masterCopy(); the owners can change it by a Safe
+        # transaction, so `upgradeable` is not decided here
+        f["proxy_of"], f["proxy_kind"] = addr_from_slot(slot0), "safe"
+        log.append(f"Safe proxy: slot 0 at block {block_no:,} holds the singleton {f['proxy_of']}")
     else:
         log.append("EIP-1967, EIP-1822 and beacon slots empty; not an EIP-1167 clone")
 
@@ -394,6 +400,8 @@ SELFTEST = [
      {"code_bytes": 45, "proxy_kind": "clone", "proxy_of": "0xd5fe1c1f216b775dfd30638fa7164d41321ef79b", "upgradeable": "no"}),
     ("an EIP-7702 account", "0x235c1b67c56280e0904b244204e0897537033b63",
      {"code_bytes": 23, "delegation": "0x1e68c71fa1b7c3efd4a576b5551d2e8004f96ea7", "proxy_of": None, "upgradeable": ""}),
+    ("a Safe proxy, its singleton in slot 0", "0x690f0581ececcf8389c223170778cd9d029606f2",
+     {"code_bytes": 170, "proxy_kind": "safe", "proxy_of": "0xd9db270c1b5e3bd161e8c8503c55ceabee709552", "upgradeable": ""}),
 ]
 
 
