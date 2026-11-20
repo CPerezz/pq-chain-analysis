@@ -296,7 +296,7 @@ changes only by an upgrade or an administrator.
 must equal the user named in the call or the caller, and no other function reaches the same effect. Confirmed by
 replaying a real call with code at the user.
 
-## PQ-17: A signer the contract cannot replace in place
+## PQ-17: A trusted signer key its holder must rotate, or a new deployment replace, before migrating
 
 **Class:** migration-hazard
 
@@ -304,13 +304,14 @@ replaying a real call with code at the user.
 
 **In words:** Trusts one signing key, or a set of them; if a holder moves that account to real code, the contract refuses it until the key is replaced.
 
-The contract accepts a signature only from a key fixed in its code, set once at deployment, or replaceable only by an
-upgrade: a wallet's signer set, an operator that signs quotes, claims or withdrawals. Under EIP-8151 that key stops
-working once its account takes real code. The wallet locks or the service stops for everyone who depends on it, until
-an upgrade or a new deployment. Where a function can replace the key, its holder only has to rotate before migrating.
+The contract accepts a signature only from a key it trusts: one stored and replaceable by a function, replaceable
+only by an upgrade, or fixed in its code at deployment. A wallet's signer set, an operator that signs quotes, claims
+or withdrawals. Under EIP-8151 that key stops working once its account takes real code. Where a function can replace
+the key, its holder only has to rotate before migrating; otherwise the wallet locks or the service stops for everyone
+who depends on it, until an upgrade or a new deployment.
 
-**Detection:** the recovered address is compared with a constant, an immutable, or a stored value that no function
-writes (or only an upgrade does). Confirmed by replaying a real call with code at the signer.
+**Detection:** the recovered address is compared with a stored value (and the function that writes it, if any), an
+immutable, or a constant. Confirmed by replaying a real call with code at the signer.
 
 ## PQ-18: Gas limits chosen before the price changes
 

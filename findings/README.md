@@ -163,7 +163,9 @@ scope (pattern PQ-12), because the wallet code decides what an owner can change.
 Apply in order, from the finding's checked facts: (1) the impact: what a CRQC holder can do if nobody acts; (2) who
 can fix it, and how; (3) rate by the fix, as in the table; (4) if it is not established who can change the
 verification, rate as if nobody can; (5) when the team says whether and how it can fix it, that replaces step 2;
-record it in History. A re-rating keeps the old rating in History with the step that decided the new one.
+record it in History. A re-rating keeps the old rating in History with the step that decided the new one. A team
+multisig changing a setting is one known operator (LOW). A wallet is rated as one wallet: a family of wallets is
+never rated as a whole.
 
 ### Categories of a protocol change (`breaks-at-activation`, `voided-by-migration`, `migration-notice`)
 
@@ -182,7 +184,12 @@ that its signer can void by migrating (a payment voucher, a channel balance proo
 | INFORMATIONAL | Breaks only if a key holder moves its own account to code. The finding says what to do first (rotate the key, upgrade, move the funds out, exit, enter); `impact` says what happens if the holder migrates unprepared |
 
 A key that has never sent a transaction is presumed live; an admin is unable to act only when that is shown (zero or
-dead address, renounced, a contract with no way to call).
+dead address, renounced, a contract with no way to call). For a migration notice, when the holder's only ETH exit
+is a 2,300-gas transfer (`transfer`, `send`) and every other path needs its signature, `impact` is `funds-locked`.
+
+One finding describes one address in use. A row whose address is not in use (an implementation never used alone, a
+retired copy) is not affected there; each copy in use is its own finding. A dormant contract that a live owner could
+restart keeps its finding, and its card states the dormancy (D-028).
 
 ## Checks before you state a fact
 

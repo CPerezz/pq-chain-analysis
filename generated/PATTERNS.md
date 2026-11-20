@@ -1101,7 +1101,7 @@ No findings yet.
 | [7410dc72-own-signature-only-exit](../findings/7410dc72-own-signature-only-exit.md) | LOW | confirmed |  | eip-8151-impact |  |
 | [saclienterc20-3ea5eaaa-own-signature-only-exit](../findings/saclienterc20-3ea5eaaa-own-signature-only-exit.md) | LOW | confirmed |  | eip-8151-impact |  |
 
-### PQ-17: A signer the contract cannot replace in place
+### PQ-17: A trusted signer key its holder must rotate, or a new deployment replace, before migrating
 
 | Finding | Severity | Level | Project | Found by | Outreach |
 |---|---|---|---|---|---|
