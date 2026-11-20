@@ -17,8 +17,7 @@ Agents filing or reviewing findings follow [`AGENTS.md`](../AGENTS.md).
    --block N --who NAME` reads the name, code, proxy, upgradeability, admin and holdings at block N and writes
    `triage/<id>.md` with the judgment left empty. A file moves here when someone other than the reporter has reviewed
    it (`triage/README.md`).
-3. **Write the judgment** like the filled examples in `templates/examples/findings/`, one per category, and the
-   `checks` that back it.
+3. **Write the judgment** like the filled examples in `templates/examples/findings/`, and the `checks` that back it.
 4. **Check:** `uv run tools/build.py --check` (the format) and `uv run tools/verify.py triage/<id>.md` (the facts and
    the checks, re-read from an archive node).
 
