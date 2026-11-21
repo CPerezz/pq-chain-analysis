@@ -52,7 +52,7 @@ sources:
   date: 2026-11-19
   verdict: reported
   rating: LOW
-related: [circle-cctp-attesters, gatewayminter-2222222d-attestation-key, circle-usdc-permit-code-first]
+related: [messagetransmitterv2-81d40f21-attester-keys, messagetransmitter-0a992d19-attester-committee, gatewayminter-2222222d-attestation-key, circle-usdc-permit-code-first]
 ---
 
 ## Summary

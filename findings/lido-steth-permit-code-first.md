@@ -52,7 +52,7 @@ sources:
   date: 2026-11-19
   verdict: reported
   rating: LOW
-related: [lido-wsteth-permit, lido-predeposit-bls12-381]
+related: [wsteth-7f39c581-permit-signature, lido-predeposit-bls12-381]
 ---
 
 ## Summary

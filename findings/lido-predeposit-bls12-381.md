@@ -45,7 +45,7 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
-related: [lido-wsteth-permit, lido-steth-permit-code-first]
+related: [wsteth-7f39c581-permit-signature, lido-steth-permit-code-first]
 ---
 
 ## Summary

@@ -11,16 +11,6 @@ impact: funds-loss
 alternative: alternative-exists
 role: auxiliary
 contracts:
-- address: "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb"
-  implementation: null
-  name: Morpho
-  upgradeable: "no"
-  admin: "none for the signature check (immutable, not a proxy); owner() Safe 0xcba28b38103307ec8da98377fff9816c164f9afa (6 of 10) only enables IRMs/LLTVs and sets fees"
-  value_usd: 3194144815
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: 242434
 - address: "0xd63070114470f685b75b74d60eec7c1113d33a3d"
   implementation: null
   name: MetaMorpho
@@ -51,16 +41,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-15
   txs_30d: 1674
-- address: "0xbeef01735c132ada46aa9aa4c54623caa92a64cb"
-  implementation: null
-  name: MetaMorpho
-  upgradeable: "no"
-  admin: "none for permit (immutable vault); owner() Safe 0x0a0e559bc3b0950a7e448f0d4894db195b9cf8dd (5 of 10) sets vault parameters only"
-  value_usd: 71854433
-  value_basis: market-cap
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: 3105
 families: []
 fix:
   layer: account-migration

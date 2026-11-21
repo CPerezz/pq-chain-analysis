@@ -81,7 +81,7 @@ sources:
   date: 2026-11-19
   verdict: confirmed
   rating: ''
-related: [cow-aave-adapter-order-code-first, gho-token-permit-ecdsa-only]
+related: [cow-aave-adapter-order-code-first, ghotoken-40d16fc0-permit-ecdsa-only]
 ---
 
 ## Summary

@@ -161,16 +161,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-12
   txs_30d: 2
-- address: "0xdca6ab9508d28c0eb7b120b8252041edcb56753f"
-  implementation: "0x34cfac646f301356faa8b21e94227e3583fe3f5f"
-  name: "SafeProxy → Safe 1.1.1 (2 of 3)"
-  upgradeable: "yes"
-  admin: "owners, 2 of 3 (all EOAs), via self-call (swapOwner/addOwnerWithThreshold, changeMasterCopy); singleton 0x34cfac646f301356faa8b21e94227e3583fe3f5f; modules: AllowanceModule"
-  value_usd: 86998241
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-11-14
-  txs_30d: 2
 - address: "0xcde525bd723090284ee2f958c729d83cf117aff9"
   implementation: "0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
   name: "SafeProxy → Safe 1.3.0 (3 of 6)"

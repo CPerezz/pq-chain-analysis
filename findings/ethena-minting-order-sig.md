@@ -52,7 +52,7 @@ sources:
   date: 2026-11-19
   verdict: confirmed
   rating: ''
-related: [ethena-token-permit-ecdsa-only]
+related: [usde-4c9edd58-permit-ecdsa-only, stakedusdev2-9d39a5de-permit-signature, anchoragetokenusdtb-c139190f-permit-signature, stakedena-8be3460a-permit-ecdsa-only]
 ---
 
 ## Summary
