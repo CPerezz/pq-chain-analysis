@@ -55,7 +55,7 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
-related: [polygon-pos-checkpoint-validators]
+related: [stakemanagerproxy-5e3ef299-checkpoint-validator-keys]
 ---
 
 ## Summary

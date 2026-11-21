@@ -11,16 +11,6 @@ impact: funds-locked
 alternative: alternative-exists
 role: core
 contracts:
-- address: "0x1c715018c5565eacc758236d4a9a760162a84cbd"
-  implementation: null
-  name: RollupL1DAValidator (ZKsync Era, Sophon, Abstract, Lens)
-  upgradeable: "no"
-  admin: "none (immutable); each chain's admin selects the DA validator pair with setDAValidatorPair on its diamond (ZKsync Era: ChainAdmin 0x2cf3bd6a9056b39999f3883955e183f655345063, owner Safe 0x4e4943346848c4867f81dfb37c4ca9c5715a7828, 4 of 7)"
-  value_usd: 84711012
-  value_basis: escrow
-  value_as_of: 2026-11-17
-  last_active: null
-  txs_30d: null
 - address: "0x72213dfe8ca61b0a782970dcfebfb877778f9119"
   implementation: null
   name: RollupL1DAValidator (ZERO Network, zkXPLA, ZKsync Gateway and chains 1345, 2904)

@@ -24,8 +24,8 @@ value:
   basis: held
 activity: {}
 impact: funds-loss
-action: Swap ECDSA owners for post-quantum signers (swapOwner), remove ECDSA allowance delegates, and replace or
-  disable the Roles callers.
+action: Swap owners for signer contracts answering the legacy isValidSignature(bytes,bytes); remove ECDSA allowance
+  delegates.
 evidence_level: source
 checks:
 - id: singleton
@@ -281,7 +281,7 @@ checks:
   min: 1
   says: 'non-owner Roles caller and delegate has sent transactions: a key controls it'
   for:
-  - what
+  - notes
 - id: safe-modexec
   source: '0xd9db270c1b5e3bd161e8c8503c55ceabee709552'
   file: contracts/base/ModuleManager.sol
@@ -472,21 +472,21 @@ checks:
   bytes: 0
   says: non-owner Roles caller 0x255a is a key-controlled account
   for:
-  - what
+  - notes
 - id: roles-avatar
   call: '0xdca57e6e47dc0fdda693ce4884ec0e274a6ffbda'
   fn: avatar()(address)
   is: '0x690f0581ececcf8389c223170778cd9d029606f2'
   says: the Roles modifier acts for this Safe
   for:
-  - what
+  - notes
 - id: roles-target
   call: '0xdca57e6e47dc0fdda693ce4884ec0e274a6ffbda'
   fn: target()(address)
   is: '0x690f0581ececcf8389c223170778cd9d029606f2'
   says: the Roles modifier executes on this Safe
   for:
-  - what
+  - notes
 - id: roles-modules
   call: '0xdca57e6e47dc0fdda693ce4884ec0e274a6ffbda'
   fn: getModulesPaginated(address,uint256)(address[],address)
@@ -503,7 +503,7 @@ checks:
   - '0x0000000000000000000000000000000000000001'
   says: 6 accounts may call the Roles modifier, one (0x255a) not an owner
   for:
-  - what
+  - notes
 - id: roles-moduleonly
   source: '0xd8dfc1d938d7d163c5231688341e9635e9011889'
   file: '@gnosis.pm/zodiac/contracts/core/Modifier.sol'
@@ -511,8 +511,7 @@ checks:
   has: require(modules[msg.sender] != address(0), "Module not authorized");
   says: callers are authorised by msg.sender alone
   for:
-  - action
-  - what
+  - notes
 - id: roles-exec
   source: '0xd8dfc1d938d7d163c5231688341e9635e9011889'
   file: contracts/Roles.sol
@@ -522,7 +521,7 @@ checks:
   has: Permissions.check(roles[role], multisend, to, value, data, operation); success = exec(to, value, data, operation);
   says: a caller's role-permitted transaction is executed from the Safe
   for:
-  - what
+  - notes
 - id: roles-member
   source: '0xd8dfc1d938d7d163c5231688341e9635e9011889'
   file: contracts/Permissions.sol
@@ -530,7 +529,7 @@ checks:
   has: if (!role.members[msg.sender]) {
   says: role membership is by msg.sender, no signature
   for:
-  - what
+  - notes
 - id: al-255a
   call: '0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134'
   fn: getTokenAllowance(address,address,address)(uint256[5])
@@ -555,6 +554,77 @@ checks:
   says: a delegate can also spend by calling the module from its own address, with no signature
   for:
   - action
+- id: contract-sig
+  source: '0xd9db270c1b5e3bd161e8c8503c55ceabee709552'
+  file: contracts/GnosisSafe.sol
+  line: 285
+  has: require(ISignatureValidator(currentOwner).isValidSignature(data, contractSignature) == EIP1271_MAGIC_VALUE,
+    "GS024");
+  says: an owner that is a contract is asked through isValidSignature, not ecrecover
+  for:
+  - action
+  - evidence-2
+- id: legacy-bytes
+  bytecode: '0xd9db270c1b5e3bd161e8c8503c55ceabee709552'
+  has: '0x20c13b0b'
+  says: the 1.3.0 singleton's code holds the legacy isValidSignature magic value 0x20c13b0b
+  for:
+  - action
+  - evidence-2
+- id: no-final
+  bytecode: '0xd9db270c1b5e3bd161e8c8503c55ceabee709552'
+  has: '0x1626ba7e'
+  absent: true
+  says: the final ERC-1271 selector 0x1626ba7e is absent from the 1.3.0 singleton
+  for:
+  - action
+  - evidence-2
+- id: roles-scope-target-a
+  storage: '0xdca57e6e47dc0fdda693ce4884ec0e274a6ffbda'
+  slot: '0x1b9b21e1354aba7176b0d85e4caef943923e8230cd7617f16d74d154802b5f6a'
+  is: 2
+  says: 'role 1''s clearance on the vesting contract 0xd7a029db is Function (2), not blanket Target: only named
+    functions are allowed'
+  for:
+  - notes
+- id: roles-scope-param-a
+  storage: '0xdca57e6e47dc0fdda693ce4884ec0e274a6ffbda'
+  slot: '0xa7665a7ea3a2dff800b54df8e99c4bd580fd9f2f5c78c37e9189794f3423ec80'
+  is: '0x000000000000000000000000690f0581ececcf8389c223170778cd9d029606f2'
+  says: the only value role 1 may pass as claim's first argument on 0xd7a029db is the Safe itself
+  for:
+  - notes
+- id: roles-scope-param-b
+  storage: '0xdca57e6e47dc0fdda693ce4884ec0e274a6ffbda'
+  slot: '0x1b97095f5f8259ab7597cecb498cd5c88f6434f29a37c66c65e6b3024d3835b9'
+  is: '0x000000000000000000000000690f0581ececcf8389c223170778cd9d029606f2'
+  says: 'the same on the second vesting contract 0xb1377e4f: claim''s recipient is pinned to the Safe'
+  for:
+  - notes
+- id: roles-claim-to-safe
+  call: '0xdca57e6e47dc0fdda693ce4884ec0e274a6ffbda'
+  data: '0x6928e74b000000000000000000000000d7a029db2585553978190db5e85ec724aa4df23f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000044aad3ec96000000000000000000000000690f0581ececcf8389c223170778cd9d029606f2000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000'
+  from: '0x255a13cda0b21259315d1527e47ba4fa19409799'
+  is: '0x0000000000000000000000000000000000000000000000000000000000000001'
+  says: 'a role-1 caller may call claim(Safe, 1) on the vesting contract: the money goes to the Safe'
+  for:
+  - notes
+- id: roles-claim-to-self
+  call: '0xdca57e6e47dc0fdda693ce4884ec0e274a6ffbda'
+  data: '0x6928e74b000000000000000000000000d7a029db2585553978190db5e85ec724aa4df23f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000044aad3ec96000000000000000000000000255a13cda0b21259315d1527e47ba4fa19409799000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000'
+  from: '0x255a13cda0b21259315d1527e47ba4fa19409799'
+  reverts_with: '0x31e98246'
+  says: the same call paying the caller instead of the Safe reverts ParameterNotAllowed()
+  for:
+  - notes
+- id: roles-other-fn
+  call: '0xdca57e6e47dc0fdda693ce4884ec0e274a6ffbda'
+  data: '0x6928e74b000000000000000000000000d7a029db2585553978190db5e85ec724aa4df23f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004fc0c546a00000000000000000000000000000000000000000000000000000000'
+  from: '0x255a13cda0b21259315d1527e47ba4fa19409799'
+  reverts_with: '0x05e5a82e'
+  says: any other function on that target reverts FunctionNotAllowed()
+  for:
+  - notes
 sources:
 - study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
@@ -580,12 +650,12 @@ related: []
 
 ## What happens
 
-This Safe executes any transaction that 3 of its 7 owners approve; all 7 are ECDSA-key accounts. 3 forged owner keys move everything. One forged delegate key spends its allowance (22,000 USDC and 3 ETH per period in all); one of 6 Roles callers' keys sends what its role allows.
+This Safe executes any transaction that 3 of its 7 owners approve; all 7 are ECDSA-key accounts. 3 forged owner keys move everything. One forged delegate key spends its allowance (22,000 USDC and 3 ETH per period in all).
 
 ## Evidence
 
 - The [Safe code](https://etherscan.io/address/0xd9db270c1b5e3bd161e8c8503c55ceabee709552#code) recovers each owner signature with ecrecover and accepts it if the signer is an owner; this Safe needs 3.
-- [swapOwner](https://etherscan.io/address/0xd9db270c1b5e3bd161e8c8503c55ceabee709552#code), run by an owner-approved transaction, can put in a contract owner that the Safe asks through ERC-1271.
+- [swapOwner](https://etherscan.io/address/0xd9db270c1b5e3bd161e8c8503c55ceabee709552#code), run by an owner-approved transaction, can put in a contract owner, asked through the legacy isValidSignature(bytes,bytes).
 - Its [AllowanceModule](https://etherscan.io/address/0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134#code) pays from the Safe on one delegate's ecrecover signature; 5 delegates hold live allowances.
 
 ## Reviewer notes
@@ -604,10 +674,10 @@ The address is a 170-byte Gnosis Proxy whose slot 0 holds the Safe 1.3.0 singlet
 - Ruled out: replays 0x16a1d468…, 0x5b42f691… belong to other Safes and fail on their sender's gas limit; not cited. Safe 1.3.0 passes all gas to ecrecover.
 - Ruled out: EIP-7702 owner 0x82eb…3dab still recovers under EIP-8151; its ECDSA key controls it.
 - Ruled out: delegate 0x255a… has a 0 USDC allowance at the block: 5 delegates hold live allowances (3 are owners).
+- Ruled out: Roles module (6 key-held callers, all in role 1): role 1 may call only claim(address,uint256) on two vesting contracts, with the recipient pinned to this Safe, so a caller's key moves nothing out (checks roles-scope-*, roles-claim-*, roles-other-fn). Claude read every permission event since the module's deployment (block 17,138,117): set once, never changed.
 
 ### Questions
 
-- What the Roles module's roles permit cannot be read at the block (no getter for role scopes), so how much one Roles caller's key can move is open.
 - Whose money the $4.09M is (the owners' own or held for others) is not shown by any check.
 
 ### History

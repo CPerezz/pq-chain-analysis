@@ -12,8 +12,8 @@ as_of: 2026-11-18
 block: 26438999
 contract:
   address: '0x59708733fbbf64378d9293ec56b977c011a08fd2'
-  code: decompiled
-  code_url: code/0x68e807b3f2892f20a9933b76c1ad0a2f8d2dbc4387c27d06208a2c22feeb645f.sol
+  code: bytecode
+  code_url: https://etherscan.io/address/0x59708733fbbf64378d9293ec56b977c011a08fd2#code
   proxy_of: '0x0d424072d658e6abd92c36f8fc16fd6479ae15a0'
   copies: 1
   upgradeable: 'no'
@@ -120,8 +120,8 @@ checks:
   - what
 - id: distinct
   bytecode: '0x0d424072d658e6abd92c36f8fc16fd6479ae15a0'
-  has: 7365636f6e645369676e65722073686f756c64206e6f7420626520657175616c
-  says: the second signer must differ from the first
+  has: 746f207365636f6e645369676e6572
+  says: 'the code refuses a first signer equal to the second (''...to secondSigner''): the two signers must differ'
   for:
   - evidence-2
   - justification
@@ -134,6 +134,111 @@ checks:
   - evidence-2
   - justification
   - what
+- id: signer-1
+  call: '0x59708733fbbf64378d9293ec56b977c011a08fd2'
+  fn: isSigner(address)(bool)
+  args:
+  - '0x7f6a0886e9c06635802c823b1e01fa5ace23012f'
+  is: true
+  says: 0x7f6a0886… is one of this wallet's five signers
+  for:
+  - what
+- id: signer-1-key
+  code: '0x7f6a0886e9c06635802c823b1e01fa5ace23012f'
+  is: empty
+  says: 'signer 0x7f6a0886… has no code: an account controlled by an ECDSA key'
+  for:
+  - what
+- id: signer-1-nonce
+  nonce: '0x7f6a0886e9c06635802c823b1e01fa5ace23012f'
+  is: 311
+  says: signer 0x7f6a0886… has sent 311 transactions, so its public key is on-chain
+  for:
+  - notes
+- id: signer-2
+  call: '0x59708733fbbf64378d9293ec56b977c011a08fd2'
+  fn: isSigner(address)(bool)
+  args:
+  - '0x6761ee52d24b4519f2ad3c7b80d6d5b57b825b74'
+  is: true
+  says: 0x6761ee52… is one of this wallet's five signers
+  for:
+  - what
+- id: signer-2-key
+  code: '0x6761ee52d24b4519f2ad3c7b80d6d5b57b825b74'
+  is: empty
+  says: 'signer 0x6761ee52… has no code: an account controlled by an ECDSA key'
+  for:
+  - what
+- id: signer-2-nonce
+  nonce: '0x6761ee52d24b4519f2ad3c7b80d6d5b57b825b74'
+  is: 63
+  says: signer 0x6761ee52… has sent 63 transactions, so its public key is on-chain
+  for:
+  - notes
+- id: signer-3
+  call: '0x59708733fbbf64378d9293ec56b977c011a08fd2'
+  fn: isSigner(address)(bool)
+  args:
+  - '0x1458e52d23b531df0e5a2b0d8db43d85018069f9'
+  is: true
+  says: 0x1458e52d… is one of this wallet's five signers
+  for:
+  - what
+- id: signer-3-key
+  code: '0x1458e52d23b531df0e5a2b0d8db43d85018069f9'
+  is: empty
+  says: 'signer 0x1458e52d… has no code: an account controlled by an ECDSA key'
+  for:
+  - what
+- id: signer-3-nonce
+  nonce: '0x1458e52d23b531df0e5a2b0d8db43d85018069f9'
+  is: 0
+  says: signer 0x1458e52d… has never sent a transaction
+  for:
+  - notes
+- id: signer-4
+  call: '0x59708733fbbf64378d9293ec56b977c011a08fd2'
+  fn: isSigner(address)(bool)
+  args:
+  - '0xd59a643bbb558cdbfdc1f9747aa171218bdc3357'
+  is: true
+  says: 0xd59a643b… is one of this wallet's five signers
+  for:
+  - what
+- id: signer-4-key
+  code: '0xd59a643bbb558cdbfdc1f9747aa171218bdc3357'
+  is: empty
+  says: 'signer 0xd59a643b… has no code: an account controlled by an ECDSA key'
+  for:
+  - what
+- id: signer-4-nonce
+  nonce: '0xd59a643bbb558cdbfdc1f9747aa171218bdc3357'
+  is: 0
+  says: signer 0xd59a643b… has never sent a transaction
+  for:
+  - notes
+- id: signer-5
+  call: '0x59708733fbbf64378d9293ec56b977c011a08fd2'
+  fn: isSigner(address)(bool)
+  args:
+  - '0xe4af0df01622386bf1d3589ba325c66293850632'
+  is: true
+  says: 0xe4af0df0… is one of this wallet's five signers
+  for:
+  - what
+- id: signer-5-key
+  code: '0xe4af0df01622386bf1d3589ba325c66293850632'
+  is: empty
+  says: 'signer 0xe4af0df0… has no code: an account controlled by an ECDSA key'
+  for:
+  - what
+- id: signer-5-nonce
+  nonce: '0xe4af0df01622386bf1d3589ba325c66293850632'
+  is: 0
+  says: signer 0xe4af0df0… has never sent a transaction
+  for:
+  - notes
 sources:
 - study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
@@ -171,7 +276,7 @@ This wallet holds 44,686 ETH and 65.4M USDC and pays out when a signer sends a s
 
 ### Mechanism
 
-EIP-1167 clone of unverified 0x0d424072. Dispatcher selectors: 158ef93e initialized(), 72276991, 736c0d5b signers(address), 7df73e27 isSigner(address), abe3219c safeMode(), c6044c46 init(address[]) (requires not initialized and exactly 5 signers, sets signers mapping), ca34837b spend (to, value, data, expireTime, signatures), fc0f392d activateSafeMode (onlySigner). No other selectors, no ERC-1271 selector. Spend tx 0x14a78281 sent by signer 0x7f6a0886 recovers signer 0x6761ee52; replay with that signer holding code reverts. At block 26,438,999 initialized() is true and all five signers 0x7f6a0886, 0x6761ee52, 0x1458e52d, 0xd59a643b, 0xe4af0df0 are isSigner and EOAs. Spend is onlySigner (non-signer sender reverts 'Non-signer in onlySigner method') and requires two signatures ('signature need 2') from signers distinct from each other and from msg.sender: quorum three of five.
+EIP-1167 clone of unverified 0x0d424072. Dispatcher selectors: 158ef93e initialized(), 72276991, 736c0d5b signers(address), 7df73e27 isSigner(address), abe3219c safeMode(), c6044c46 init(address[]) (requires not initialized and exactly 5 signers, sets signers mapping), ca34837b spend (to, value, data, expireTime, signatures), fc0f392d activateSafeMode (onlySigner). No other selectors, no ERC-1271 selector. At block 26,438,999 initialized() is true and all five signers 0x7f6a0886, 0x6761ee52, 0x1458e52d, 0xd59a643b, 0xe4af0df0 are isSigner and EOAs. Spend is onlySigner (non-signer sender reverts 'Non-signer in onlySigner method') and requires two signatures ('signature need 2') from signers distinct from each other and from msg.sender: quorum three of five.
 
 ### Checks
 
@@ -181,6 +286,7 @@ EIP-1167 clone of unverified 0x0d424072. Dispatcher selectors: 158ef93e initiali
 - Ruled out: EIP-8151 breaking it by itself: the eip8151 replay run succeeds; only the signer-with-code run reverts. A delegated signer still works (eip8151_signer_delegated run succeeds).
 - Ruled out: other clones of 0x0d424072 (the old card's 0x70213959 and 21 others) are separate wallets and not part of this card.
 - Ruled out: an ERC-1271 path: the implementation code has no 1626ba7e selector push.
+- Ruled out: Signers: the five addresses of setup transaction 0x6aa6908fda… (block 19,146,255), found by Claude in that block and each confirmed by isSigner at the block; all distinct, none has code.
 
 ### History
 

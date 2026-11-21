@@ -27,14 +27,11 @@ opensea,not-contacted,HIGH,,2,0,0,opensea-seaport-order-sig opensea-zone-and-dro
 paraswap,not-contacted,HIGH,,1,0,0,velora-augustus-rfq-maker-sig
 sky,not-contacted,HIGH,,1,0,0,dai-6b175474-permit-signature
 stakewise,not-contacted,HIGH,,2,0,0,keeper-6b581546-rotate-signer-before-migrating ostoken-f1c9acdc-permit-signature
-polygon,not-contacted,MEDIUM,,4,0,2149110101,fflonkverifier-12-9b9671db-fflonk-bn254-proof polygon-fflonk-verifier polygon-pos-checkpoint-validators sp1verifier-0459d576-bn254-plonk-proof
 safe,not-contacted,MEDIUM,,1,0,671130263,safe-owner-ecdsa-keys
 usual,not-contacted,MEDIUM,,1,0,499265914,usd0pp-35d89493-permit-ecdsa-only
 wormhole,not-contacted,MEDIUM,,2,0,271199404,bridgeimplementation-3ee18b22-sender-gas-limits wormhole-98f3c9e6-guardian-signatures
 aster,not-contacted,MEDIUM,,2,0,183084351,aster-treasury-claim-signer astherusvault-604dd02d-validator-quorum-withdrawal
-unidentified-59708733,not-contacted,MEDIUM,,1,0,156392751,unidentified-59708733-owner-keys
 railgun,not-contacted,MEDIUM,,1,0,98425406,railgunsmartwallet-fa7093cd-groth16-unshield
-zksync,not-contacted,MEDIUM,,11,0,93162741,dualverifier-5d5d33b1-bn254-batch-proof zksync-803b96fa-signer-upgrade-only zksync-8e972b35-entry-by-own-signature-only zksync-8e972b35-signed-shortcut-lost zksync-8e972b35-signer-upgrade-only zksync-abea9132-entry-by-own-signature-only zksync-abea9132-signed-shortcut-lost zksync-abea9132-signer-upgrade-only zksync-blob-kzg zksync-lite-plonk-verifier zksync-plonk-fflonk-verifier
 linea,not-contacted,MEDIUM,,2,0,92354706,linea-blob-kzg linea-plonk-verifier-bn254
 unidentified-54805468,not-contacted,MEDIUM,,1,0,64502798,unidentified-54805468-owner-keys
 circle,not-contacted,MEDIUM,,5,0,56445676,circle-gateway-burn-signer gatewayminter-2222222d-attestation-key gatewayminter-2222222d-sender-gas-limits messagetransmitter-0a992d19-attester-committee messagetransmitterv2-81d40f21-attester-keys
@@ -50,6 +47,7 @@ taiko,not-contacted,MEDIUM,,2,0,19893566,taiko-sgx-instance-keys taiko-zk-verifi
 chainflip,not-contacted,MEDIUM,,1,0,18403584,chainflip-aggkey-schnorr-ecrecover
 hashflow,not-contacted,MEDIUM,,1,0,10155185,hashflow-pool-quote-signer
 ambire,not-contacted,MEDIUM,,8,0,9724811,ambire-5a7fc113-fixed-signer ambire-66b71dc6-fixed-signer ambire-9701ae64-7702-own-key-only ambire-9701ae64-signed-shortcut-lost ambire-d7974ab5-7702-own-key-only ambire-d7974ab5-rotate-signer-before-migrating ambire-fde6d730-fixed-signer ambire-fde6d730-sender-gas-limits
+zksync,not-contacted,MEDIUM,,11,0,8451729,dualverifier-5d5d33b1-bn254-batch-proof zksync-803b96fa-signer-upgrade-only zksync-8e972b35-entry-by-own-signature-only zksync-8e972b35-signed-shortcut-lost zksync-8e972b35-signer-upgrade-only zksync-abea9132-entry-by-own-signature-only zksync-abea9132-signed-shortcut-lost zksync-abea9132-signer-upgrade-only zksync-blob-kzg zksync-lite-plonk-verifier zksync-plonk-fflonk-verifier
 aztec,not-contacted,MEDIUM,,5,0,6962170,aztec-blob-kzg aztec-committee-attestations aztec-governance-proposer-sig aztec-honk-verifier aztec-validator-bls-pop-bn254
 native,not-contacted,MEDIUM,,1,0,6787698,native-rfq-signer
 socket,not-contacted,MEDIUM,,2,0,5589031,bungee-auction-signers socket-dl-signature-verifier
@@ -96,6 +94,7 @@ alchemy,not-contacted,MEDIUM,,1,0,1166,alchemy-paymaster-signer
 cardinal-cryptography,not-contacted,MEDIUM,,1,0,859,shielder-halo2-verifier
 lightec,not-contacted,MEDIUM,,1,0,773,lightec-zkbtc-plonk
 payy,not-contacted,MEDIUM,,1,0,711,payy-honk-verifier
+polygon,not-contacted,MEDIUM,,4,0,499,fflonkverifier-12-9b9671db-fflonk-bn254-proof polygon-fflonk-verifier sp1verifier-0459d576-bn254-plonk-proof stakemanagerproxy-5e3ef299-checkpoint-validator-keys
 vector-smart-chain,not-contacted,MEDIUM,,1,0,497,vsg-lcp-enclave-keys
 thirdweb,not-contacted,MEDIUM,,2,0,430,thirdweb-paymaster-signer thirdweb-signature-mint-signer
 solady,not-contacted,MEDIUM,,1,0,380,solady-p256-verifier
@@ -152,11 +151,13 @@ world-liberty-financial,not-contacted,LOW,,2,0,12214810,world-liberty-financial-
 abstract,not-contacted,LOW,,1,0,8804084,abstract-blob-kzg
 okx,not-contacted,LOW,,2,0,2267121,okx-pmm-protocol-maker-sig okx-wallet-link-groth16
 relay,not-contacted,LOW,,1,0,920119,relay-allocator-signer
+whitechain,not-contacted,LOW,,1,0,70051,bridge-94c9d55f-sender-gas-limits
 jovay,not-contacted,LOW,,1,0,12985,jovay-dcap-p256-collateral
 sign-protocol,not-contacted,LOW,,1,0,126,tokentable-distributor-signer
 starknet,not-contacted,LOW,,1,0,59,proxy-c662c410-blob-kzg-opening
 megaeth,not-contacted,LOW,,1,0,20,megaeth-sale-permit-signer
 bitpay,not-contacted,LOW,,1,0,14,bitpay-invoice-signer
+audius,not-contacted,LOW,,1,0,0,wormholeclient-6e7a1f73-sender-gas-limits
 bitget-wallet,not-contacted,LOW,,1,0,0,bitget-bridge-router-signer
 curve,not-contacted,LOW,,3,0,0,curve-stableswap-ng-permit liquiditygaugev6-1c94126f-signed-shortcut-lost liquiditygaugev6-a0d26cfd-signed-shortcut-lost
 edgex,not-contacted,LOW,,1,0,0,starkex-dac-signers
