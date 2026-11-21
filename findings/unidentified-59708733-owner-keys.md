@@ -21,16 +21,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-04
   txs_30d: 6
-- address: "0x59708733fbbf64378d9293ec56b977c011a08fd2"
-  implementation: "0x0d424072d658e6abd92c36f8fc16fd6479ae15a0"
-  name: EIP-1167 clone of unverified 0x0d424072 (init(address[]), isSigner, safeMode)
-  upgradeable: "no"
-  admin: none (EIP-1167 clone; five signer EOAs fixed at creation, no add/remove-signer function)
-  value_usd: 143930334
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-11-15
-  txs_30d: 101
 families:
 - code: "0x0d424072d658e6abd92c36f8fc16fd6479ae15a0"
   name: EIP-1167 clones of 0x0d424072 (factory 0xb9a336b8), excluding the two contracts above

@@ -52,7 +52,7 @@ sources:
   date: 2026-11-19
   verdict: reported
   rating: LOW
-related: [circle-cctp-attesters, circle-gateway-burn-signer, circle-gateway-minter-attestation-key]
+related: [circle-cctp-attesters, circle-gateway-burn-signer, gatewayminter-2222222d-attestation-key]
 ---
 
 ## Summary

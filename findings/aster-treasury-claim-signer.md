@@ -52,7 +52,7 @@ sources:
   date: 2026-11-19
   verdict: reported
   rating: LOW
-related: [aster-vault-validator-sigs]
+related: [astherusvault-604dd02d-validator-quorum-withdrawal]
 ---
 
 ## Summary

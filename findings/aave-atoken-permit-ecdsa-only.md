@@ -21,16 +21,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-16
   txs_30d: 54087
-- address: "0x98c23e9d8f34fefb1b7bd6a91b7ff122f4e16f5c"
-  implementation: "0xadc45df3cf1584624c97338bef33363bf5b97ada"
-  name: aEthUSDC (AToken proxy)
-  upgradeable: "yes"
-  admin: "PoolConfigurator 0x64b761d848206f447fe2dd461b0c635ec39ebb27 (immutable proxy admin, address in proxy bytecode) under Aave Governance V3 Executor 0x5300a1a15135ea4dc7ad5a167152c01efc9b192a (read at block 26431537)"
-  value_usd: 2782398725
-  value_basis: market-cap
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: 56697
 - address: "0x23878914efe38d27c4d67ab83ed1b93a74d4086a"
   implementation: "0xadc45df3cf1584624c97338bef33363bf5b97ada"
   name: aEthUSDT (AToken proxy)
@@ -41,16 +31,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-16
   txs_30d: 42506
-- address: "0x5ee5bf7ae06d1be5997a1a72006fe6c607ec6de8"
-  implementation: "0xadc45df3cf1584624c97338bef33363bf5b97ada"
-  name: aEthWBTC (AToken proxy)
-  upgradeable: "yes"
-  admin: "PoolConfigurator 0x64b761d848206f447fe2dd461b0c635ec39ebb27 (immutable proxy admin, address in proxy bytecode) under Aave Governance V3 Executor 0x5300a1a15135ea4dc7ad5a167152c01efc9b192a (read at block 26431537)"
-  value_usd: 2252072366
-  value_basis: market-cap
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: 27233
 - address: "0x5e8c8a7243651db1384c0ddfdbe39761e8e7e51a"
   implementation: "0xadc45df3cf1584624c97338bef33363bf5b97ada"
   name: aEthLINK (AToken proxy)
@@ -61,26 +41,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-16
   txs_30d: 3484
-- address: "0xa700b4eb416be35b2911fd5dee80678ff64ff6c9"
-  implementation: "0x38769a7da85429ac9d61167fdfeccaae8aa11766"
-  name: aEthAAVE (ATokenWithDelegation proxy)
-  upgradeable: "yes"
-  admin: "PoolConfigurator 0x64b761d848206f447fe2dd461b0c635ec39ebb27 (immutable proxy admin, address in proxy bytecode) under Aave Governance V3 Executor 0x5300a1a15135ea4dc7ad5a167152c01efc9b192a (read at block 26431537)"
-  value_usd: 87230014
-  value_basis: market-cap
-  value_as_of: 2026-11-17
-  last_active: 2026-11-15
-  txs_30d: 4818
-- address: "0x0b925ed163218f6662a35e0f0371ac234f9e9371"
-  implementation: "0xadc45df3cf1584624c97338bef33363bf5b97ada"
-  name: aEthwstETH (AToken proxy)
-  upgradeable: "yes"
-  admin: "PoolConfigurator 0x64b761d848206f447fe2dd461b0c635ec39ebb27 (immutable proxy admin, address in proxy bytecode) under Aave Governance V3 Executor 0x5300a1a15135ea4dc7ad5a167152c01efc9b192a (read at block 26431537)"
-  value_usd: 1936097190
-  value_basis: market-cap
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: 7150
 - address: "0x5c647ce0ae10658ec44fa4e11a51c96e94efd1dd"
   implementation: "0xadc45df3cf1584624c97338bef33363bf5b97ada"
   name: aEthcbBTC (AToken proxy)
@@ -91,36 +51,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-16
   txs_30d: 7856
-- address: "0x4f5923fc5fd4a93352581b38b7cd26943012decf"
-  implementation: "0xadc45df3cf1584624c97338bef33363bf5b97ada"
-  name: aEthUSDe (AToken proxy)
-  upgradeable: "yes"
-  admin: "PoolConfigurator 0x64b761d848206f447fe2dd461b0c635ec39ebb27 (immutable proxy admin, address in proxy bytecode) under Aave Governance V3 Executor 0x5300a1a15135ea4dc7ad5a167152c01efc9b192a (read at block 26431537)"
-  value_usd: 616319580
-  value_basis: market-cap
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: 1869
-- address: "0x4579a27af00a62c0eb156349f31b345c08386419"
-  implementation: "0xadc45df3cf1584624c97338bef33363bf5b97ada"
-  name: aEthsUSDe (AToken proxy)
-  upgradeable: "yes"
-  admin: "PoolConfigurator 0x64b761d848206f447fe2dd461b0c635ec39ebb27 (immutable proxy admin, address in proxy bytecode) under Aave Governance V3 Executor 0x5300a1a15135ea4dc7ad5a167152c01efc9b192a (read at block 26431537)"
-  value_usd: 264578694
-  value_basis: market-cap
-  value_as_of: 2026-11-17
-  last_active: 2026-11-15
-  txs_30d: 766
-- address: "0xbdfa7b7893081b35fb54027489e2bc7a38275129"
-  implementation: "0xadc45df3cf1584624c97338bef33363bf5b97ada"
-  name: aEthweETH (AToken proxy)
-  upgradeable: "yes"
-  admin: "PoolConfigurator 0x64b761d848206f447fe2dd461b0c635ec39ebb27 (immutable proxy admin, address in proxy bytecode) under Aave Governance V3 Executor 0x5300a1a15135ea4dc7ad5a167152c01efc9b192a (read at block 26431537)"
-  value_usd: 2703105574
-  value_basis: market-cap
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: 1893
 families:
 - code: "0xadc45df3cf1584624c97338bef33363bf5b97ada"
   name: Other Aave v3 aToken proxies on the same ATokenInstance implementation (cluster 1)

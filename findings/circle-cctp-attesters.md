@@ -21,16 +21,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-16
   txs_30d: 12342
-- address: "0x81d40f21f12a8f0e3252bccb954d722d4c464b64"
-  implementation: "0xa30c41865729c248067704d4db9f38385cbe1186"
-  name: MessageTransmitterV2 (AdminUpgradableProxy)
-  upgradeable: "yes"
-  admin: "proxy admin 0xb7569e9eb64eaed5c4166e510b4f6ff54ef42258 (EOA); owner 0xb43aa882f497c0ecb395a5a54f8fa29d12289f65 (EOA); attesterManager 0xc16b03f84563c1467017c9f7216f8ad6098dc95a (EOA) (read at block 26431457)"
-  value_usd: 860775320
-  value_basis: escrow
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: 151786
 families: []
 fix:
   layer: contract-upgrade
@@ -62,7 +52,7 @@ sources:
   date: 2026-11-19
   verdict: reported
   rating: LOW
-related: [circle-gateway-burn-signer, circle-gateway-minter-attestation-key, circle-usdc-permit-code-first]
+related: [circle-gateway-burn-signer, gatewayminter-2222222d-attestation-key, circle-usdc-permit-code-first]
 ---
 
 ## Summary

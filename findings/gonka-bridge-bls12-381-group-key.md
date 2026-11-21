@@ -51,16 +51,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2025-11-25
   txs_30d: 0
-- address: "0xdcd4cebe3917a8f1728b8af61299085edfd91f44"
-  implementation: null
-  name: Wrapped Gonka (WGNK), earlier bridge deployment, unverified
-  upgradeable: config-only
-  admin: owner() EOA 0xeec5ca4286a5a16ea87c0612c55f73dd982a36c6, setGroupKey only in ADMIN_CONTROL; no proxy
-  value_usd: 3
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2025-11-21
-  txs_30d: 0
 - address: "0x27261349a8a623b9c798f2ff9388eba22e5b0525"
   implementation: null
   name: Wrapped Gonka (WGNK), earlier bridge deployment, unverified

@@ -52,7 +52,7 @@ sources:
   date: 2026-11-19
   verdict: confirmed
   rating: ''
-related: [sky-usds-permit-ecdsa-first]
+related: [usds-dc035d45-permit-ecdsa-first, susds-a3931d71-permit-ecdsa-first]
 ---
 
 ## Summary

@@ -24,7 +24,7 @@ value:
   basis: held
 activity: {}
 impact: funds-loss
-action: Swap each owner key, with swapOwner, for a contract owner that checks a post-quantum signature through ERC-1271.
+action: Swap each owner key with swapOwner for a post-quantum signer contract that answers the legacy isValidSignature(bytes,bytes).
 evidence_level: source
 checks:
 - id: singleton
@@ -256,6 +256,33 @@ checks:
   says: the Safe holds 9,563.5 ETH
   for:
   - what
+- id: legacy
+  source: '0x41675c099f32341bf84bfc5382af534df5c7461a'
+  file: contracts/interfaces/ISignatureValidator.sol
+  lines:
+  - 5
+  - 19
+  has: function isValidSignature(bytes memory _data, bytes memory _signature) public view virtual returns (bytes4);
+  says: the interface asked is the legacy isValidSignature(bytes,bytes), magic value 0x20c13b0b
+  for:
+  - action
+  - evidence-1
+- id: sel-legacy
+  bytecode: '0x41675c099f32341bf84bfc5382af534df5c7461a'
+  has: '0x20c13b0b'
+  says: the singleton's code holds the legacy magic value 0x20c13b0b
+  for:
+  - action
+  - evidence-1
+- id: sel-final
+  bytecode: '0x41675c099f32341bf84bfc5382af534df5c7461a'
+  has: '0x1626ba7e'
+  absent: true
+  says: the final ERC-1271 selector 0x1626ba7e is absent from the singleton, so an owner contract that answers only
+    that one does not count
+  for:
+  - action
+  - evidence-1
 sources:
 - study: top-callers-classification
   who: hand classification (Claude Opus agents reading verified source and bytecode)
@@ -285,7 +312,7 @@ This Safe runs any transfer or call, including owner changes, once 3 of its 4 ow
 
 ## Evidence
 
-- [The Safe's code](https://etherscan.io/address/0x41675c099f32341bf84bfc5382af534df5c7461a#code) counts owners' ECDSA signatures, contract owners' ERC-1271 answers or approved hashes, then runs the signed call.
+- [The Safe's code](https://etherscan.io/address/0x41675c099f32341bf84bfc5382af534df5c7461a#code) counts owners' ECDSA signatures, contract owners' legacy isValidSignature(bytes,bytes) answers or approved hashes.
 - [This Safe](https://etherscan.io/address/0x225d3822de44e58ee935440e0c0b829c4232086e#readProxyContract) needs 3 of 4 owners; all four are accounts without code, three have sent transactions.
 - [swapOwner](https://etherscan.io/address/0x41675c099f32341bf84bfc5382af534df5c7461a#code) replaces an owner through a signed transaction of the Safe, so owners can move to contract signers.
 

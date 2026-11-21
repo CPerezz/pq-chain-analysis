@@ -1,73 +1,122 @@
 ---
 id: vaultv2-b5aee319-signed-shortcut-lost
-title: "VaultV2: signed shortcut lost by users with code"
+format: 2
+title: Vault share holders whose accounts take real code lose permit
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: liveness
-contracts:
-- address: "0xb5aee31903eb465def0ad08fe4a88d77d58100db"
-  family: "eb32adf7302b5b0629491e61cdda18ce"
+severity: INFORMATIONAL
+justification: Only a holder that moves its account to real code loses permit, and approve still works for it.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xb5aee31903eb465def0ad08fe4a88d77d58100db'
+  name: VaultV2
+  code: verified
+  code_url: https://etherscan.io/address/0xb5aee31903eb465def0ad08fe4a88d77d58100db#code
   copies: 808
-  name: "VaultV2"
-  label: "deployed by Steakhouse: Deployer"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 529995843
-  value_basis: held
-  value_as_of: 2026-11-18
-  txs_90d: 221407
-  last_active: 2026-11-18
-  recoveries_14d: 963
-fix:
-  layer: account-migration
-  who_acts: "the token holder"
-evidence:
-  level: source-read
-  block: 26438999
+  family: eb32adf7302b5b0629491e61cdda18ce
+  admin: '0x5d8b947ce5853bd8e5caca8a7c39eaca452b6752'
+value:
+  usd: 0
+  whose: users
+  basis: held
+activity: {}
+impact: liveness
+action: Tell share holders that permit stops for accounts with real code, and that they can call approve directly.
+evidence_level: source
+checks:
+- id: permit-recover
+  source: '0xb5aee31903eb465def0ad08fe4a88d77d58100db'
+  file: lib/vault-v2/src/VaultV2.sol
+  lines:
+  - 905
+  - 906
+  has: recoveredAddress == _owner
+  says: permit recovers the signer with ecrecover and requires it to equal the holder named in the call
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+  - whose
+- id: allowance-set
+  source: '0xb5aee31903eb465def0ad08fe4a88d77d58100db'
+  file: lib/vault-v2/src/VaultV2.sol
+  line: 908
+  has: allowance[_owner][spender] = shares;
+  says: a valid permit sets the holder's allowance for the spender
+  for:
+  - what
+  - whose
+- id: approve
+  source: '0xb5aee31903eb465def0ad08fe4a88d77d58100db'
+  file: lib/vault-v2/src/VaultV2.sol
+  lines:
+  - 889
+  - 890
+  has: allowance[msg.sender][spender] = shares;
+  says: approve sets the caller's own allowance with no signature
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: supply
+  call: '0xb5aee31903eb465def0ad08fe4a88d77d58100db'
+  fn: totalSupply()(uint256)
+  is: '1000000000000000000'
+  says: the vault has 1e18 shares in all
+  for:
+  - evidence-3
+  - what
+- id: dead-balance
+  call: '0xb5aee31903eb465def0ad08fe4a88d77d58100db'
+  fn: balanceOf(address)(uint256)
+  args:
+  - '0x000000000000000000000000000000000000dEaD'
+  is: '1000000000000000000'
+  says: the burn address holds all 1e18 shares
+  for:
+  - evidence-3
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Standard signed shortcut; same act open by direct call → LOW."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-VaultV2 (deployed by Steakhouse: Deployer): a signed shortcut (permit/authorization) requires the recovered address to equal the named owner; EIP-8151 makes it fail for an owner whose address holds non-delegation code.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+Share holders can approve a spender with a signed permit, checked with ECDSA against the holder's address. A holder whose account takes real code loses permit and keeps approve; an EIP-7702 delegation keeps working. Today a burn address holds all of the vault's shares.
 
 ## Evidence
 
-- How it was placed: permit: the owner named in the call must equal the recovered address; the holder can call approve itself. Read from source.
-- the dossier source has the standard approve (and transfer) the holder calls directly
-- code at block has approve selector 0x095ea7b3 or source defines approve; no signature needed
-- study note: permit: the owner named in the call must equal the recovered address; the holder can call approve itself. Read from source.
+- [permit](https://etherscan.io/address/0xb5aee31903eb465def0ad08fe4a88d77d58100db#code) recovers the signature with ecrecover and requires it to equal the holder named in the call.
+- [approve](https://etherscan.io/address/0xb5aee31903eb465def0ad08fe4a88d77d58100db#code) sets the caller's own allowance without a signature.
+- All 1e18 [shares](https://etherscan.io/address/0xb5aee31903eb465def0ad08fe4a88d77d58100db#readContract) belong to the burn address 0x000000000000000000000000000000000000dEaD.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $530.0M (ETH and 49 priced tokens, over 808 addresses).
-- Activity: 221,407 transactions called it in the 90 days before that block; last on 2026-11-18.
-- 963 signature recoveries in the study's two-week trace window.
+### Mechanism
 
-## Remediation
+VaultV2 (Morpho Association code, named 'Splits Earn USDT', asset USDT) has one signature check: permit (lines 896-911) builds the EIP-712 digest, calls ecrecover and requires the result to be non-zero and equal to _owner, then sets allowance[_owner][spender]. Under EIP-8151 ecrecover returns nothing for an _owner with real code, so permit reverts InvalidSigner for that holder. approve (lines 889-893) sets allowance[msg.sender][spender] directly, so the same act stays open to the holder by a direct call; transfer and transferFrom need no signature either. State at block 26,438,999: totalSupply 1e18, all held by 0x...dEaD (the usual seed deposit); totalAssets 1,004,550 (about 1.0 USDT, held through liquidityAdapter 0xf0ad...f1e4); owner and curator 0x5d8b...6752, an account with no code and nonce 0. So no live holder can use permit today; the notice applies to future depositors.
 
-Holder calls approve (or the direct function) itself instead of signing.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 808 addresses run this code.
+- Ruled out: an ERC-1271 path for holders with code: permit (lines 896-911) only uses ecrecover.
+- Ruled out: a break with nobody migrating: Solidity's ecrecover forwards all available gas, there is no fixed gas amount; the dossier's only family replay (tx 0xf7ea...f5d5, another address 0x8ac9...475c) succeeds under EIP-8151 and is not cited.
+- Ruled out: unused address (D-028): the vault is configured (name, asset, an adapter) and holds a seed deposit, so it is a deployed vault rather than an uninitialized implementation; it has no holders besides the burn address, which the card states.
+- Ruled out: other copies of this code (808 in the family) are not described here; each in use is its own row.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

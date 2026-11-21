@@ -11,16 +11,6 @@ impact: funds-loss
 alternative: configurable-verifier
 role: core
 contracts:
-- address: "0x70303aa3434e13b64f150ce72bad43e13c8ed186"
-  implementation: null
-  name: SP1Verifier (Groth16 v6.1.0), used by SP1Beefy 0x3683cd18cdb7c5c223f9489ac33c9c97eb176cb1
-  upgradeable: config-only
-  admin: immutable verifier, router and SP1Beefy; EvmHost 0x620128e2b19193d6bd244a3ac8d3bba0541b19c3 consensus client is set by OwnableHostManager 0x712515887e0dff042530a120dca9e8a3c90178a5, owner Safe 0x08bcc96cec579ce2edb34e5c5d790e4a40c3e224 (2 of 2)
-  value_usd: null
-  value_basis: null
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: null
 - address: "0x3794de2808420ba5fc5bb07d0643379b85bbb53d"
   implementation: null
   name: SP1Verifier (Groth16 v6.0.0), retired

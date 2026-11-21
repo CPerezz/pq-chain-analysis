@@ -11,16 +11,6 @@ impact: funds-loss
 alternative: key-rotation-only
 role: core
 contracts:
-- address: "0x26d3681dfc9e4c8c79cfbf461adec8a21d5d73c5"
-  implementation: null
-  name: OffRamp 1.6.0 (CCIP)
-  upgradeable: config-only
-  admin: "owner RBACTimelock 0x44835bbba9d40deda9b64858095ecfb2693c9449 (min delay 3 h): setOCR3Configs, applySourceChainConfigUpdates; read at block 26,431,454"
-  value_usd: 1189948228
-  value_basis: escrow
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: 35981
 - address: "0xa68a99c6a80e2acf65d38f64ffac744ae51c8d96"
   implementation: null
   name: KeystoneForwarder 1.0.0

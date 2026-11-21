@@ -31,16 +31,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-16
   txs_30d: 21822
-- address: "0x8be3460a480c80728a8c4d7a5d5303c85ba7b3b9"
-  implementation: "0x7fd57b46ae1a7b14f6940508381877ee03e1018b"
-  name: Staked ENA (sENA), TransparentUpgradeableProxy → StakedENA
-  upgradeable: "yes"
-  admin: ProxyAdmin 0xf849d7792ff9b30a57656ee10a2776bcb49f4fe4, owned by Safe 0x3b0aaf6e6fcd4a7ceef8c92c32dfea9e64dc1862 (5 of 10, block 26431494)
-  value_usd: 109914767
-  value_basis: market-cap
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: 6534
 - address: "0xc139190f447e929f090edeb554d95abb8b18ac1c"
   implementation: "0x9d6d77a21702b9afcf924983fbfb84aaaae79589"
   name: USDtb, TransparentUpgradeableProxy → AnchorageTokenUSDtb

@@ -72,7 +72,7 @@ sources:
   date: 2026-11-19
   verdict: reported
   rating: LOW
-related: [wormhole-guardian-signatures]
+related: [wormhole-98f3c9e6-guardian-signatures]
 ---
 
 ## Summary

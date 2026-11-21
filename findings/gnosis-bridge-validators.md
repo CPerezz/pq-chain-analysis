@@ -21,16 +21,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-15
   txs_30d: 381
-- address: "0x4c36d2919e407f0cc2ee3c993ccf8ac26d9ce64e"
-  implementation: "0x098f51bdfb5d6d319dd4fdf06b64773d25bd1316"
-  name: ForeignAMB (EternalStorageProxy; Ethereum side of the Ethereum-Gnosis arbitrary message bridge)
-  upgradeable: "yes"
-  admin: "upgradeabilityOwner and owner = Safe 0x42f38ec5a75accec50054671233dfac9c0e7a3f6 (8 of 15); validator set 0xed84a648b3c51432ad0fd1c2cd2c45677e9d4064 owned by the same Safe (read at block 26431561)"
-  value_usd: 209946410
-  value_basis: escrow
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: null
 families: []
 fix:
   layer: contract-upgrade

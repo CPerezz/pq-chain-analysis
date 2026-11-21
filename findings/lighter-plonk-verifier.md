@@ -55,7 +55,7 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
-related: [lighter-blob-kzg]
+related: [contract-3b4d794a-blob-kzg-opening]
 ---
 
 ## Summary
