@@ -61,16 +61,6 @@ contracts:
   value_as_of: null
   last_active: 2026-11-15
   txs_30d: 720
-- address: "0x469449f251692e0779667583026b5a1e99512157"
-  implementation: null
-  name: Verifier (insertion b100; group 2 batch insertion, size 100)
-  upgradeable: "no"
-  admin: none (immutable); VerifierLookupTable 0x54aef6aba7e27e3b3698549449596e0f251962c4 owner Safe 0xc534a745bffaf9466ed7b47fa23b0177b99a3e77 (4 of 6) can update or disable it
-  value_usd: null
-  value_basis: null
-  value_as_of: null
-  last_active: 2026-11-15
-  txs_30d: 536
 - address: "0xb5f23a0c92f2f4aee506fa3b1cc2813820d13258"
   implementation: null
   name: Verifier (insertion_b100t30; group 1 batch insertion, size 100)

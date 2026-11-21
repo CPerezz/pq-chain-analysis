@@ -31,16 +31,6 @@ contracts:
   value_as_of: null
   last_active: null
   txs_30d: 0
-- address: "0x77d5c96db33314244460cf89dd599525d7f3f847"
-  implementation: null
-  name: PlonkVerifier (gnark), LineaRollup verifiers[1]
-  upgradeable: "no"
-  admin: "none; removable by VERIFIER_UNSETTER_ROLE on rollup 0x2f3c2056 (EOA 0xbbef10ce)"
-  value_usd: null
-  value_basis: null
-  value_as_of: null
-  last_active: 2025-03-20
-  txs_30d: 0
 - address: "0xcdaaf2e3756409c93635adc3940233640e3004c6"
   implementation: null
   name: PlonkVerifier (gnark), LineaRollup verifiers[2]

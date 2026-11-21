@@ -1,65 +1,136 @@
 ---
 id: magiccrv-49af4181-signed-shortcut-lost
-title: "MagicCRV: signed shortcut lost by users with code"
+format: 2
+title: MagicCRV permit stops working for holders whose accounts take real code
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: liveness
-contracts:
-- address: "0x49af4181b36b629089a3b26e046d313a115ec911"
-  family: "402ea00029b735350b6a4f39ea63c344"
-  name: "MagicCRV"
-  upgradeable: "no"
-  rating: LOW
+severity: INFORMATIONAL
+justification: 'Nothing is locked: a holder can still set the same allowance by calling approve, and no tokens exist
+  at the block.'
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x49af4181b36b629089a3b26e046d313a115ec911'
+  name: MagicCRV
+  code: verified
+  code_url: https://etherscan.io/address/0x49af4181b36b629089a3b26e046d313a115ec911#code
+  copies: 1
+  upgradeable: 'no'
+value:
+  usd: 0
+  whose: users
+  basis: held
+activity:
   txs_90d: 0
-fix:
-  layer: none
-  who_acts: "nobody for funds; the team adds ERC-1271 to keep gasless flows"
-evidence:
-  level: bytecode
-  block: 26438999
+impact: liveness
+action: Tell holders to call approve directly instead of signing a permit once their accounts take real code.
+evidence_level: source
+checks:
+- id: inherits
+  source: '0x49af4181b36b629089a3b26e046d313a115ec911'
+  file: contracts/magic-crv/MagicCRV.sol
+  line: 13
+  has: contract MagicCRV is ERC20 {
+  says: MagicCRV is solmate's ERC20 token, which carries permit
+  for:
+  - what
+- id: recover
+  source: '0x49af4181b36b629089a3b26e046d313a115ec911'
+  file: '@rari-capital/solmate/src/tokens/ERC20.sol'
+  line: 141
+  has: address recoveredAddress = ecrecover(digest, v, r, s);
+  says: permit recovers the signer of the permit digest with ecrecover
+  for:
+  - evidence-1
+  - what
+- id: match
+  source: '0x49af4181b36b629089a3b26e046d313a115ec911'
+  file: '@rari-capital/solmate/src/tokens/ERC20.sol'
+  line: 143
+  has: require(recoveredAddress != address(0) && recoveredAddress == owner, "INVALID_SIGNER");
+  says: the recovered address must be the token owner named in the call
+  for:
+  - action
+  - evidence-1
+  - what
+  - whose
+- id: sets
+  source: '0x49af4181b36b629089a3b26e046d313a115ec911'
+  file: '@rari-capital/solmate/src/tokens/ERC20.sol'
+  line: 145
+  has: allowance[recoveredAddress][spender] = value;
+  says: on a match permit sets the owner's allowance for the spender
+  for:
+  - evidence-1
+  - what
+- id: approve
+  source: '0x49af4181b36b629089a3b26e046d313a115ec911'
+  file: '@rari-capital/solmate/src/tokens/ERC20.sol'
+  lines:
+  - 71
+  - 72
+  has: allowance[msg.sender][spender] = amount;
+  says: approve sets the caller's allowance by a direct call, with no signature
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: no1271
+  selector: '0x49af4181b36b629089a3b26e046d313a115ec911'
+  fn: isValidSignature(bytes32,bytes)
+  absent: true
+  says: the code has no ERC-1271 check
+  for:
+  - notes
+- id: supply
+  call: '0x49af4181b36b629089a3b26e046d313a115ec911'
+  fn: totalSupply()(uint256)
+  is: '0'
+  says: no MagicCRV tokens exist at the block
+  for:
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-`MagicCRV` at `0x49af4181b36b629089a3b26e046d313a115ec911`. It lets a user act through an ECDSA signature or by a direct call; a user whose account has code loses the signed path only.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+MagicCRV is a token whose permit sets an allowance when an ECDSA signature recovers to the holder. A holder whose account takes real code loses permit and keeps approve; an EIP-7702 delegation keeps working. No tokens exist at the block.
 
 ## Evidence
 
-- How it was placed: a holder whose address has code can no longer use permit; it can still call approve itself: a way of signing is lost, no right. Rule: permit-like.
-- Reviewed through the root issue's mechanism (D-025): the reading states a direct path for the signed act (approve next to permit, delegate next to delegateBySig, castVote next to castVoteBySig, a direct call next to a meta-transaction, or an order the maker can place or approve on chain), so a holder whose account has code keeps the act: LOW
-- Mechanical checks: where the reading names permit, delegateBySig or castVoteBySig, this address's code holds that function and its direct twin; the scanner finds an ecrecover call in the code
-- A random sample of 25 of the 18,891 rows below Anon's thresholds: 24 held at LOW, 1 (an NFT exchange whose orders can only be signed) was MEDIUM; readings of that kind were sent to one-by-one checks
+- [permit](https://etherscan.io/address/0x49af4181b36b629089a3b26e046d313a115ec911#code) recovers the signer with ecrecover and sets the allowance only if it equals the owner.
+- [approve](https://etherscan.io/address/0x49af4181b36b629089a3b26e046d313a115ec911#code) sets the same allowance from a direct call by the holder.
+- [totalSupply](https://etherscan.io/address/0x49af4181b36b629089a3b26e046d313a115ec911#readContract) is zero at the block.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens).
-- Activity: 0 transactions called it in the 90 days before that block.
+### Mechanism
 
-## Remediation
+MagicCRV (MagicCRV.sol line 13) inherits solmate's ERC20 with EIP-2612 permit. permit (ERC20.sol lines 119-149) builds the EIP-712 digest, calls ecrecover (line 141), requires the result to be non-zero and equal to the owner argument (line 143), then writes allowance[owner][spender] (line 145). Under EIP-8151 ecrecover returns nothing for an owner whose account holds real code, so the require fails. approve (lines 71-77) writes allowance[msg.sender][spender] from a direct call and needs no signature, so the holder keeps the same right. ecrecover is the Solidity builtin with all remaining gas, so no fixed gas budget. The contract is not a proxy and has no owner or pause. totalSupply is 0 at block 26,438,999, so no holder is affected today; mint/mintFor are open and route CRV to curveVoter 0x6C46...B548.
 
-None needed for funds; add ERC-1271 to keep gasless flows.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 path for owners with code: permit has none (lines 141-143) and the code has no isValidSignature selector.
+- Ruled out: a fixed gas budget for the precompile: ecrecover is the Solidity builtin, which forwards the remaining gas (line 141).
+- Ruled out: unused implementation code: the address is not a proxy target; it has its own name and state at the block.
+- Ruled out: signature checked again after others relied on it: a permit only sets an allowance once, nobody relies on it later.
+- Ruled out: a sender gas-limit issue beside this notice: the scan shows no window calls and no replays for this code.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

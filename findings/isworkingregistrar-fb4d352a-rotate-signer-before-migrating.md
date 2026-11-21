@@ -1,67 +1,156 @@
 ---
 id: isworkingregistrar-fb4d352a-rotate-signer-before-migrating
-title: "IsWorkingRegistrar: signer key to rotate before its account takes code"
+format: 2
+title: Discount vouchers stop working if the relayer's account moves to real code
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0xfb4d352a881877c500d714499728cb76d3939acb"
-  family: "eae2f356b5cbd3790f0ecc321deaa416"
-  name: "IsWorkingRegistrar"
-  upgradeable: "no"
-  rating: LOW
+severity: INFORMATIONAL
+justification: Nothing breaks unless the relayer moves its account to real code, and the admin can replace the key
+  first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xfb4d352a881877c500d714499728cb76d3939acb'
+  name: IsWorkingRegistrar
+  project: isworking-eth
+  code: verified
+  code_url: https://etherscan.io/address/0xfb4d352a881877c500d714499728cb76d3939acb#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0xdffbfc54c6863e6e5ba271e2f0e15fb5d1efe499'
+value:
+  usd: 0
+  basis: held
+activity:
   txs_90d: 21
-  last_active: 2026-11-05
-fix:
-  layer: onchain-config
-  who_acts: "the key holder or owner rotates the key"
-evidence:
-  level: bytecode
-  block: 26438999
+  last: 2026-11-05
+impact: liveness
+action: Replace the relayer with setRoles before moving the relayer's account to real code.
+evidence_level: source
+checks:
+- id: title
+  source: '0xfb4d352a881877c500d714499728cb76d3939acb'
+  file: src/IsWorkingRegistrar.sol
+  line: 37
+  has: Sells permanent, revocable subnames of isworking.eth.
+  says: the contract sells subnames of isworking.eth
+  for:
+  - what
+- id: recover
+  source: '0xfb4d352a881877c500d714499728cb76d3939acb'
+  file: src/IsWorkingRegistrar.sol
+  line: 309
+  has: if (ECDSA.recover(hashVoucher(v), sig) != relayer) revert BadVoucher();
+  says: a voucher is refused unless ECDSA recovers the stored relayer from its signature
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: novoucher
+  source: '0xfb4d352a881877c500d714499728cb76d3939acb'
+  file: src/IsWorkingRegistrar.sol
+  line: 306
+  has: if (v.codeHash == bytes32(0) && v.ticket == bytes32(0)) return (0, false);
+  says: an empty voucher gives no discount and no signature is checked
+  for:
+  - what
+- id: setroles
+  source: '0xfb4d352a881877c500d714499728cb76d3939acb'
+  file: src/IsWorkingRegistrar.sol
+  lines:
+  - 464
+  - 468
+  has: relayer = _relayer;
+  says: setRoles writes a new relayer
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: onlyadmin
+  source: '0xfb4d352a881877c500d714499728cb76d3939acb'
+  file: src/IsWorkingRegistrar.sol
+  line: 464
+  has: function setRoles(address _admin, address _treasury, address _relayer) external onlyAdmin {
+  says: only the admin can call setRoles
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: admin
+  call: '0xfb4d352a881877c500d714499728cb76d3939acb'
+  fn: admin()(address)
+  is: '0xdffbfc54c6863e6e5ba271e2f0e15fb5d1efe499'
+  says: the admin that can call setRoles
+  for:
+  - action
+  - evidence-2
+  - justification
+- id: admin-code
+  code: '0xdffbfc54c6863e6e5ba271e2f0e15fb5d1efe499'
+  is: delegation
+  target: '0x612373d7003d694220f7800eeaf8e3924c0951d3'
+  says: the admin is a key account with an EIP-7702 delegation, so it can still send transactions
+  for:
+  - action
+  - justification
+- id: relayer
+  call: '0xfb4d352a881877c500d714499728cb76d3939acb'
+  fn: relayer()(address)
+  is: '0x6347dc03f42afdf284fd3c24a7d7467038aa4cf3'
+  says: the stored relayer key
+  for:
+  - evidence-3
+  - what
+- id: relayer-code
+  code: '0x6347dc03f42afdf284fd3c24a7d7467038aa4cf3'
+  is: empty
+  says: the relayer account has no code
+  for:
+  - evidence-3
+  - justification
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-`IsWorkingRegistrar` at `0xfb4d352a881877c500d714499728cb76d3939acb`. It accepts signatures from a key that a function can replace; the holder rotates it before the account takes code.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+This registrar sells isworking.eth subnames and gives a discount only on a voucher signed by its relayer key. If the relayer's account moves to real code, vouchers are refused until the admin sets a new relayer. Full-price purchases need no signature.
 
 ## Evidence
 
-- How it was placed: the signer is one key kept in storage; functions replace it (setRoles). Whoever holds it must replace it before that account takes code. Rule: stored-key.
-- Reviewed through the root issue's mechanism (D-025): the reading for this address names a function that replaces the checked key (a setter, a role grant or an owner hand-over), so its holder can rotate before the key's account takes code: LOW
-- Not checked per row: whether the party allowed to call that function is live at block 26,438,999
-- Mechanical check: the scanner finds an ecrecover call in this address's code
-- A random sample of 25 of the 18,615 rows below Anon's thresholds: 15 held at LOW, 5 were unused implementations (not affected), 1 had owners that cannot be replaced (MEDIUM), 4 could not be settled while the node was down
+- The [verified source](https://etherscan.io/address/0xfb4d352a881877c500d714499728cb76d3939acb#code) recovers each voucher's signer with ECDSA and rejects it unless it is the stored relayer.
+- `setRoles` lets the [admin](https://etherscan.io/address/0xdffbfc54c6863e6e5ba271e2f0e15fb5d1efe499) replace the relayer.
+- The [relayer](https://etherscan.io/address/0x6347dc03f42afdf284fd3c24a7d7467038aa4cf3) is an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens).
-- Activity: 21 transactions called it in the 90 days before that block; last on 2026-11-05.
+### Mechanism
 
-## Remediation
+registerWithETH, registerWithToken and registerSponsored all call _useVoucher (lines 302-317). With an all-zero voucher it returns no discount before any signature is read (line 306), so full-price purchases never recover. Otherwise ECDSA.recover of the EIP-712 voucher hash must equal the stored relayer (line 309), or the call reverts BadVoucher. The voucher is checked once, when it is used. registerSponsored also requires msg.sender to be the relayer (line 296). relayer is set in the constructor and written only by setRoles (lines 464-470, onlyAdmin). At the block the relayer 0x6347...4cf3 has empty code and the admin 0xdffb...e499 is an account with an EIP-7702 delegation, which can still send the setRoles call. The contract holds nothing: payments are forwarded to the treasury in the same call (line 275).
 
-Rotate the key before its account takes code.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 path for a relayer with code: line 309 is a bare ECDSA.recover compared with relayer; the source has no isValidSignature call.
+- Ruled out: a proxy or unused implementation: the dossier reads no proxy slots and no delegatecall; relayer() and admin() are set at this address.
+- Ruled out: an unset or contract key: relayer() is 0x6347...4cf3 with empty code at the block.
+- Ruled out: a dead setter: setRoles writes relayer (line 468) under onlyAdmin (line 168); admin() is an account with a 7702 delegation, not a contract with real code, so it can still send transactions.
+- Ruled out: a path closed for good: the Devcon window is over (devconEndsAt 1793989799, block timestamp 1794969479), but coupons have no global end and the admin can call setCoupon or setDevcon again (lines 413-444).
+- Ruled out: a signature rechecked after others relied on it: the voucher is recovered once, in the transaction that uses it; its holder has given nothing before that.
+- Ruled out: a fixed gas amount: the recovery goes through OpenZeppelin ECDSA.recover, and the scan found no constant gas on the precompile call (ec_gas_const null).
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

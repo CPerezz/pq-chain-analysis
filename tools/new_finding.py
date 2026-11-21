@@ -248,9 +248,13 @@ class Value:
         return total, eth, held
 
     def supply_usd(self, address: str) -> float | None:
-        """A priced token's whole supply in USD at the block: the upper bound a forged permit can reach. None if the
-        address is not a token of tokens.json that passes its checks."""
+        """A priced token's whole supply in USD at the block: the upper bound a forged permit can reach. An Aave
+        aToken is priced as its underlying (1:1). None if neither is a token of tokens.json that passes its checks."""
         t = next((t for t in self.priced().values() if t["address"].lower() == address.lower()), None)
+        if t is None:
+            under = call(address, sel("UNDERLYING_ASSET_ADDRESS()"), self.at)
+            u = "0x" + under[12:32].hex() if under and len(under) >= 32 else None
+            t = next((t for t in self.priced().values() if u and t["address"].lower() == u), None)
         raw = call(address, sel("totalSupply()"), self.at) if t else None
         return int.from_bytes(raw[:32], "big") / 10 ** t["decimals"] * t["usd"] if raw else None
 

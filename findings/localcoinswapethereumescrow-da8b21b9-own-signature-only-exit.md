@@ -1,70 +1,140 @@
 ---
 id: localcoinswapethereumescrow-da8b21b9-own-signature-only-exit
-title: "LocalCoinSwapEthereumEscrow: funds released only by the party's own signature"
-status: confirmed
-severity: HIGH
-patterns: [PQ-16]
-impact: funds-locked
-contracts:
-- address: "0xda8b21b94668300ddbc0ecbaf57530d396287848"
-  family: "14aa34f42cea291ad40ae28fc8637398"
-  name: "LocalCoinSwapEthereumEscrow"
-  upgradeable: "no"
-  rating: HIGH
-  value_usd: 2215
-  value_basis: held
-  value_as_of: 2026-11-18
+format: 2
+title: LocalCoinSwap escrow parties must settle trades before moving to real code
+status: candidate
+severity: INFORMATIONAL
+justification: 'Breaks only for a party that moves to real code: it then cannot cancel or dispute, so its ETH waits
+  on the other side.'
+category: migration-notice
+pattern: PQ-16
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xda8b21b94668300ddbc0ecbaf57530d396287848'
+  name: LocalCoinSwapEthereumEscrow
+  code: verified
+  code_url: https://etherscan.io/address/0xda8b21b94668300ddbc0ecbaf57530d396287848#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0x665f3e7a712c470c7c5036ed0f762f936dfe36a7'
+value:
+  usd: 2215
+  whose: users
+  basis: held
+activity:
   txs_90d: 0
-fix:
-  layer: new-deployment
-  who_acts: "escrow buyers/sellers"
-evidence:
-  level: source-read
-  block: 26438999
+impact: funds-locked
+action: Tell sellers and buyers to cancel, release or settle any open trade before they move their account to real
+  code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0xda8b21b94668300ddbc0ecbaf57530d396287848'
+  file: LocalCoinSwapEthereumEscrow.sol
+  line: 694
+  has: return ecrecover(_prefixedHash, _v, _r, _s);
+  says: signatures are recovered with plain ecrecover
+  for:
+  - justification
+  - what
+- id: dispute
+  source: '0xda8b21b94668300ddbc0ecbaf57530d396287848'
+  file: LocalCoinSwapEthereumEscrow.sol
+  line: 158
+  has: require(_signature == _buyer || _signature == _seller, "Must be buyer or seller");
+  says: the arbitrator settles a dispute only with a signature recovered to the buyer or seller
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: sellercancel
+  source: '0xda8b21b94668300ddbc0ecbaf57530d396287848'
+  file: LocalCoinSwapEthereumEscrow.sol
+  lines:
+  - 419
+  - 426
+  has: return doSellerCancel(
+  says: a seller cancel happens in relay when the recovered sender is the seller
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: deposit
+  source: '0xda8b21b94668300ddbc0ecbaf57530d396287848'
+  file: LocalCoinSwapEthereumEscrow.sol
+  line: 123
+  has: require(msg.value == _value && msg.value > 0, "Incorrect ether sent");
+  says: escrows are funded with the trade's ETH
+  for:
+  - what
+  - whose
+- id: fees
+  call: '0xda8b21b94668300ddbc0ecbaf57530d396287848'
+  fn: feesAvailableForWithdraw()(uint256)
+  is: '0'
+  says: no collected fees are held, so the ETH held is not the operator's fees
+  for:
+  - whose
+- id: release-direct
+  source: '0xda8b21b94668300ddbc0ecbaf57530d396287848'
+  file: LocalCoinSwapEthereumEscrow.sol
+  line: 200
+  has: require(msg.sender == _seller, "Must be seller");
+  says: the seller can still release the ETH to the buyer by a direct call, without a signature
+  for:
+  - justification
+- id: buyercancel-direct
+  source: '0xda8b21b94668300ddbc0ecbaf57530d396287848'
+  file: LocalCoinSwapEthereumEscrow.sol
+  lines:
+  - 236
+  - 237
+  has: return doBuyerCancel(
+  says: the buyer can still cancel and return the ETH to the seller by a direct call, without a signature
+  for:
+  - justification
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-own-signature-only-exit"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: HIGH
-  note: "No update path, no ETH sweep: escrowed users' ETH can be locked when the honest party has code and the counterparty won't sign -> HIGH; txs_90d=0."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-P2P ETH escrow: the funds are released by seller release/cancel or by the arbitrator's resolveDispute, which needs an ECDSA signature by the buyer or the seller. A party whose account takes non-7702 code can no longer sign a dispute request; if the counterparty refuses to sign (seller won't release after mark-paid, or buyer marks paid without paying), the escrowed ETH stays stuck.
-
-## Mechanism
-
-PQ-16. Once the party's account has real code the signature recovers no address, and nobody else can act for it unless an administrator can.
+This escrow holds a seller's ETH for a trade. A seller cancels, and the arbitrator settles a dispute, only with an ECDSA signature of the seller or buyer. A party that moved to real code cannot sign, so its ETH stays locked unless the other side acts.
 
 ## Evidence
 
-- How it was placed: LocalCoinSwap ETH escrow (variant): a dispute can be resolved only with a signature of the buyer or of the seller. Read by hand.
-- Update path, read at block 26,438,999: no proxy slot, no upgrade function.
-- source/LocalCoinSwapEthereumEscrow.sol: resolveDispute is onlyArbitrator and requires ecrecover(tradeID+resolve instruction) == buyer or seller (L143-183, recover at L694); no isValidSignature/code check
-- Direct-call paths exist (release by seller, buyerCancel/disableSellerCancel by buyer, sellerCancel/sellerRequestCancel by seller via msg.sender), but once the buyer marks paid (disableSellerCancel) only release or resolveDispute moves the escrow
-- Owner sweeps: withdrawFees capped at feesAvailableForWithdraw; transferToken/transferTokenFrom move ERC20 only - no ETH sweep. ETH held 1.227 ETH (row value $2,215) at block 26438999
-- owner()=0x665f..36A7 (EOA), arbitrator()=0x877c..5ce5 (EOA); no proxy slot or upgrade function
+- [resolveDispute](https://etherscan.io/address/0xda8b21b94668300ddbc0ecbaf57530d396287848#code) requires a signature that recovers to the buyer or the seller.
+- [relay](https://etherscan.io/address/0xda8b21b94668300ddbc0ecbaf57530d396287848#code) is the only route to a seller cancel, and it needs the seller's recovered signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $2,215 (ETH and 49 priced tokens).
-- Activity: 0 transactions called it in the 90 days before that block.
+### Mechanism
 
-## Remediation
+recoverAddress (lines 686-695) calls ecrecover on a prefixed hash. resolveDispute (143-184) is onlyArbitrator, and it requires the recovered address to be _buyer or _seller (line 158). doSellerCancel, which returns the ETH to the seller after the payment window, is reached only from relay (line 424-426), where the recovered sender must equal _seller. The direct-call functions are release (seller), disableSellerCancel (buyer), buyerCancel (buyer) and sellerRequestCancel (seller), and none of them calls doSellerCancel. So a seller with code can get its ETH back only if the buyer cancels or signs a dispute. A buyer that marked the trade paid gets the ETH only if the seller releases or a dispute is signed by one of them. At the block the contract holds 1.227 ETH, feesAvailableForWithdraw is 0, and the arbitrator and relayer are 0x877cf5f0...5ce5.
 
-Parties should not move escrow-participant keys to code-bearing accounts while a trade is open; a fixed release needs a new deployment.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 path: recoverAddress uses plain ecrecover and there is no other signature check (lines 686-695).
+- Ruled out: a direct seller cancel: no external function calls doSellerCancel; only relay does (line 426).
+- Ruled out: an admin rescue of ETH: withdrawFees is capped by feesAvailableForWithdraw (line 308), which is 0, and the token functions move only ERC-20s.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-own-signature-only-exit` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: HIGH. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### Questions
+
+- Which open trades the 1.227 ETH belongs to cannot be read from the contract without scanning its logs.
+
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.
