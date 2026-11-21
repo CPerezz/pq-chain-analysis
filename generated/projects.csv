@@ -61,7 +61,7 @@ gala,not-contacted,MEDIUM,,1,0,2643462,gala-bridge-authorities
 unidentified-2da512ea,not-contacted,MEDIUM,,1,0,2353248,unidentified-2da512ea-signer-key
 zklink,not-contacted,MEDIUM,,2,0,1423325,zklink-bdc4dd4d-fixed-signer zklink-bdc4dd4d-sender-gas-limits
 symbiosis,not-contacted,MEDIUM,,2,0,1420204,symbiosis-mpc-signer synterc20-70b7f704-signed-shortcut-lost
-etherflip,not-contacted,MEDIUM,,6,0,1388221,etherflip-3023d5ee-fixed-gas-recovery etherflip-48d8f22d-fixed-gas-recovery etherflip-48d8f22d-fixed-signer etherflip-e5a04d98-fixed-gas-recovery etherflip-e5a04d98-fixed-signer etherflip-ffc08dd8-fixed-gas-recovery
+etherflip,not-contacted,MEDIUM,,5,0,1388221,etherflip-48d8f22d-fixed-gas-recovery etherflip-48d8f22d-fixed-signer etherflip-e5a04d98-fixed-gas-recovery etherflip-e5a04d98-fixed-signer etherflip-ffc08dd8-fixed-gas-recovery
 daimo,not-contacted,MEDIUM,,1,0,1237800,daimo-p256-verifier
 unidentified-fbeedcfe,not-contacted,MEDIUM,,1,0,1133444,unidentified-fbeedcfe-signer-key
 gonka,not-contacted,MEDIUM,,1,0,884234,gonka-bridge-bls12-381-group-key
@@ -186,7 +186,5 @@ zkpassport,not-contacted,LOW,,1,0,0,zkpassport-honk-verifier
 localcryptos,not-contacted,INFORMATIONAL,,1,0,6170,localcryptosethescrows-ede26ccc-own-signature-only-exit
 cap-labs,not-contacted,INFORMATIONAL,,1,0,0,token-99991c6a-signed-shortcut-lost
 isworking-eth,not-contacted,INFORMATIONAL,,1,0,0,isworkingregistrar-fb4d352a-rotate-signer-before-migrating
-raiden,not-contacted,INFORMATIONAL,,1,0,0,monitoringservice-9a59aee2-own-signature-only-exit
 yat,not-contacted,INFORMATIONAL,,1,0,0,yat-7d256d82-rotate-signer-before-migrating
 yearn-finance,not-contacted,INFORMATIONAL,,1,0,0,vyper-contract-b6246cb8-signed-shortcut-lost
-yodl,not-contacted,INFORMATIONAL,,1,0,0,yodlrouter-37f17bc0-fixed-signer

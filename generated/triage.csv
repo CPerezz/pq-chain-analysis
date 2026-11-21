@@ -1,8 +1,5 @@
 id,project,status,proposed_rating,patterns,rows,addresses,exposure_usd,exposure_basis,recoveries_14d,txs_30d,evidence_level,title,class,studies,reviews_confirmed,reviews_refuted
-eip-8151-signature-rechecked,,candidate,CRITICAL,PQ-15,3,14296,,,0,0,executed,Signatures checked again after others relied on them fail once the signer's account has code under EIP-8151,migration-hazard,eip-8151-impact,0,0
-eip-8151-signer-upgrade-only,archetype,candidate,HIGH,PQ-17,100,1213,17616,held,136,0,executed,Signers that only an upgrade can replace stop their contracts once they have code under EIP-8151,migration-hazard,eip-8151-impact,0,0
-eip-8151-fixed-signer,,candidate,HIGH,PQ-17,64,4758,621,held,856,0,executed,Contracts whose signer is fixed in code stop once that signer's account has code under EIP-8151,migration-hazard,eip-8151-impact,0,0
-eip-8151-fixed-gas-recovery,,candidate,HIGH,PQ-14,2,4,,,0,0,executed,Contracts that give ecrecover a fixed gas amount below EIP-8151's price: every valid signature fails from activation day,regression,eip-8151-impact,0,0
-eip-8151-wallets-fixed-signers,,candidate,HIGH,PQ-17,2,10,,,0,0,executed,Wallets whose signers are fixed in code lock once enough of their signers take code under EIP-8151,migration-hazard,eip-8151-impact,0,0
+eip-8151-signer-upgrade-only,archetype,candidate,HIGH,PQ-17,43,971,17616,held,136,0,executed,Signers that only an upgrade can replace stop their contracts once they have code under EIP-8151,migration-hazard,eip-8151-impact,0,0
+eip-8151-fixed-signer,,candidate,HIGH,PQ-17,43,423,621,held,856,0,executed,Contracts whose signer is fixed in code stop once that signer's account has code under EIP-8151,migration-hazard,eip-8151-impact,0,0
 eip-8151-rotate-signer-before-migrating,localethereum,candidate,LOW,PQ-17,1311,65969,3758114,held,31330,0,executed,Signer keys that must be rotated before their account takes code under EIP-8151,migration-hazard,eip-8151-impact,0,0
 eip-8151-signed-shortcut-lost,localethereum,candidate,LOW,PQ-19,1234,6645,866133,held,21339,0,executed,Signed shortcuts (permit and the like) that a user with code loses under EIP-8151,migration-hazard,eip-8151-impact,0,0
