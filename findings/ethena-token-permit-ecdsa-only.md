@@ -31,16 +31,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-16
   txs_30d: 21822
-- address: "0xc139190f447e929f090edeb554d95abb8b18ac1c"
-  implementation: "0x9d6d77a21702b9afcf924983fbfb84aaaae79589"
-  name: USDtb, TransparentUpgradeableProxy → AnchorageTokenUSDtb
-  upgradeable: "yes"
-  admin: ProxyAdmin 0x3c405f68d5c6ece868e5646cac926679839acd68, owned by EOA 0xd93826bb299765c87d13aeba2a7e5d9b27a03956 (block 26431788)
-  value_usd: 317905055
-  value_basis: market-cap
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: null
 families: []
 fix:
   layer: account-migration

@@ -151,16 +151,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-10-23
   txs_30d: 4
-- address: "0xbd02c51150a4ab6ce97b9de2025644594f3e75b8"
-  implementation: null
-  name: WalletSimple (standalone, constructor signers)
-  upgradeable: "no"
-  admin: "none: signers fixed at creation, 2-of-3, all 3 EOAs (most active: 0x9c58bcb0084a50950e24d072fef5200bab279a64, nonce 144547); signers.json"
-  value_usd: 221002788
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: 4541
 - address: "0x1522900b6dafac587d499a862861c0869be6e428"
   implementation: "0x5b9e8728e316bbeb692d22daaab74f6cbf2c4691"
   name: WalletSimple (delegatecall forwarder proxy to 0x5b9e8728…)

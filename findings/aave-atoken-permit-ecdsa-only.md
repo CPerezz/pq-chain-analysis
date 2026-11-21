@@ -31,16 +31,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-16
   txs_30d: 42506
-- address: "0x5e8c8a7243651db1384c0ddfdbe39761e8e7e51a"
-  implementation: "0xadc45df3cf1584624c97338bef33363bf5b97ada"
-  name: aEthLINK (AToken proxy)
-  upgradeable: "yes"
-  admin: "PoolConfigurator 0x64b761d848206f447fe2dd461b0c635ec39ebb27 (immutable proxy admin, address in proxy bytecode) under Aave Governance V3 Executor 0x5300a1a15135ea4dc7ad5a167152c01efc9b192a (read at block 26431537)"
-  value_usd: 68431505
-  value_basis: market-cap
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: 3484
 - address: "0x5c647ce0ae10658ec44fa4e11a51c96e94efd1dd"
   implementation: "0xadc45df3cf1584624c97338bef33363bf5b97ada"
   name: aEthcbBTC (AToken proxy)

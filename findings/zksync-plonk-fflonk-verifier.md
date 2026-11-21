@@ -11,16 +11,6 @@ impact: funds-loss
 alternative: configurable-verifier
 role: core
 contracts:
-- address: "0x5d5d33b16d9e79d9d9b8196ec760e70a31a44711"
-  implementation: null
-  name: "DualVerifier (ZKsync Era, Sophon, Abstract, Lens; v33)"
-  upgradeable: "no"
-  admin: "none (FFLONK_VERIFIER/PLONK_VERIFIER immutable); chains' verifier is set by protocol upgrades of EraChainTypeManager 0xc2ee6b6af7d616f6e27ce7f4a451aedc2b0f5f5c (owner ProtocolUpgradeHandler 0xe30dca3047b37dc7d88849de4a4dc07937ad5ab3: ZKsync token governance, security council 0x29d2e773a31c07d375c50f0110422832bd044d08)"
-  value_usd: 93271011
-  value_basis: escrow
-  value_as_of: 2026-11-17
-  last_active: null
-  txs_30d: null
 - address: "0xcef0218c0c6db0768e48debee26e41b8dade7081"
   implementation: null
   name: "DualVerifier (Cronos zkEVM, GRVT, chain 1345; v30.1)"

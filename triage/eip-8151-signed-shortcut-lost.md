@@ -1249,7 +1249,7 @@ sources:
   date: 2026-11-19
   verdict: reported
   rating: LOW
-related: [0x-v2-order-sig-scheme-select, aave-atoken-permit-ecdsa-only, airswap-maker-sig-ecdsa-first, circle-gateway-burn-signer, clipper-designated-signer, cow-order-sig-scheme-select, ethena-token-permit-ecdsa-only, etherdelta-order-sig, weeth-cd5fe23c-permit-signature, boringvault-f0bb2086-share-permit, eeth-35fa1647-permit-ecdsa-only, gho-token-permit-ecdsa-only, infinex-forwarder-ecdsa-only, lido-wsteth-permit, localcoinswap-relayer-signer, memeland-meme-permit, morpho-permit-auth-ecdsa-only, opensea-seaport-order-sig, opensea-zone-and-drop-signers, pendle-limit-order-sig, polygon-pos-checkpoint-validators, relay-allocator-signer, sky-dai-permit-ecdsa-only, stakewise-oseth-permit, uniswap-permit2-code-first, uniswapx-cosigner, usd0pp-35d89493-permit-ecdsa-only, wlfi-authorized-signer]
+related: [0x-v2-order-sig-scheme-select, aave-atoken-permit-ecdsa-only, airswap-maker-sig-ecdsa-first, circle-gateway-burn-signer, clipper-designated-signer, cow-order-sig-scheme-select, ethena-token-permit-ecdsa-only, etherdelta-8d12a197-order-signature, weeth-cd5fe23c-permit-signature, boringvault-f0bb2086-share-permit, eeth-35fa1647-permit-ecdsa-only, gho-token-permit-ecdsa-only, infinex-forwarder-ecdsa-only, lido-wsteth-permit, localcoinswap-relayer-signer, memeland-meme-permit, morpho-permit-auth-ecdsa-only, opensea-seaport-order-sig, opensea-zone-and-drop-signers, pendle-limit-order-sig, polygon-pos-checkpoint-validators, relay-allocator-signer, sky-dai-permit-ecdsa-only, stakewise-oseth-permit, uniswap-permit2-code-first, uniswapx-cosigner, usd0pp-35d89493-permit-ecdsa-only, wlfi-authorized-signer]
 reviews: []
 ---
 
