@@ -247,6 +247,13 @@ class Value:
                 held += 1
         return total, eth, held
 
+    def supply_usd(self, address: str) -> float | None:
+        """A priced token's whole supply in USD at the block: the upper bound a forged permit can reach. None if the
+        address is not a token of tokens.json that passes its checks."""
+        t = next((t for t in self.priced().values() if t["address"].lower() == address.lower()), None)
+        raw = call(address, sel("totalSupply()"), self.at) if t else None
+        return int.from_bytes(raw[:32], "big") / 10 ** t["decimals"] * t["usd"] if raw else None
+
 
 def _text(raw: bytes) -> str:
     if len(raw) >= 96 and int.from_bytes(raw[:32], "big") == 32:
