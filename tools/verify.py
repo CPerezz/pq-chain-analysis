@@ -34,6 +34,7 @@ import build  # noqa: E402
 import new_finding as nf  # noqa: E402
 
 OK, FAIL, SKIP = "ok", "FAIL", "skip"
+LOG_WINDOW = 10_000  # blocks per eth_getLogs request of a `logs` check (the node refuses more)
 
 
 def hexaddr(v) -> str:
@@ -189,6 +190,19 @@ def run_check(c: dict, block: int, ctx: dict) -> tuple[str, str]:
         if runs is None or c["run"] not in runs:
             return SKIP, "not re-run: needs the fork engine's results (--replays)"
         return (OK if runs[c["run"]] == truth(c["ok"]) else FAIL), f"{c['run']}: {'succeeded' if runs[c['run']] else 'failed'}"
+    if kind == "logs":  # one emitter, one event; fixed windows so a re-run asks the node the same questions
+        last, topics = c.get("to") or block, [c["topic"]] + list(c.get("topics") or [])
+        got = []
+        try:
+            for a in range(c["from"], last + 1, LOG_WINDOW):
+                got += nf.rpc("eth_getLogs", [{"address": target, "topics": topics, "fromBlock": hex(a), "toBlock": hex(min(a + LOG_WINDOW - 1, last))}])
+        except RuntimeError as e:
+            return FAIL, f"the logs were not read: {str(e)[:100]}"
+        blob = " ".join(" ".join(x["topics"]) + " " + x["data"] for x in got).lower()
+        ok = ((c.get("count") is None or len(got) == to_int(c["count"])) and (c.get("min") is None or len(got) >= to_int(c["min"]))
+              and (c.get("has") is None or str(c["has"]).lower().removeprefix("0x") in blob))
+        tail = f", the last in block {int(got[-1]['blockNumber'], 16):,}" if got else ""
+        return (OK if ok else FAIL), f"{len(got):,} logs in blocks {c['from']:,} to {last:,}{tail}"
     if kind == "ref":
         try:
             status = urllib.request.urlopen(urllib.request.Request(target, method="HEAD"), timeout=60).status

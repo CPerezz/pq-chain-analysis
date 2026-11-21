@@ -93,7 +93,8 @@ SHOWN_BANNED = ((re.compile(r"\bCHECKED\b|\bINFERRED\b"), "CHECKED or INFERRED")
 CHECK_KINDS = {"code": ({"is"}, {"bytes", "target"}), "bytecode": ({"has"}, {"absent"}), "storage": ({"slot", "is"}, set()),
                "call": (set(), {"fn", "data", "args", "is", "reverts", "reverts_with", "from"}), "source": ({"file", "has"}, {"line", "lines"}),
                "selector": ({"fn"}, {"absent"}), "tx": (set(), {"to", "ok"}), "nonce": (set(), {"is", "min"}),
-               "replay": ({"run", "ok"}, set()), "ref": (set(), set())}
+               "replay": ({"run", "ok"}, set()), "ref": (set(), set()),
+               "logs": ({"topic", "from"}, {"to", "topics", "count", "min", "has"})}  # one emitter, one event, a range (D-028)
 CHECK_COMMON = {"id", "says", "for", "at"}
 CHECK_FACTS = ("proxy_of", "upgradeable", "admin", "name", "whose")  # header facts a check may back, where the tool reads none or differs
 CHECK_FOR = ("what", "evidence-1", "evidence-2", "evidence-3", "justification", "action", "notes") + CHECK_FACTS
@@ -479,6 +480,17 @@ def check_checks(p: Problems, w: str, checks, final: bool, parts: list[str]) -> 
             p.add(cw, "a nonce check needs `is` or `min`")
         if kind == "replay" and c.get("run") not in REPLAY_RUNS:
             p.add(cw, f"run: one of {list(REPLAY_RUNS)}")
+        if kind == "logs":
+            if not (isinstance(c.get("topic"), str) and re.fullmatch(r"0x[0-9a-f]{64}", c["topic"])):
+                p.add(cw, "topic: the event's topic 0, 0x and 64 lowercase hex, quoted")
+            if not isinstance(c.get("from"), int) or (c.get("to") is not None and (not isinstance(c["to"], int) or c["to"] < c["from"])):
+                p.add(cw, "from (and to, if given) must be block numbers, from <= to")
+            extra = c.get("topics")
+            if extra is not None and not (isinstance(extra, list) and len(extra) <= 3
+                                          and all(t is None or (isinstance(t, str) and re.fullmatch(r"0x[0-9a-f]{64}", t)) for t in extra)):
+                p.add(cw, "topics: up to three of topic 1 to 3, each null or 0x and 64 lowercase hex")
+            if not {"count", "min", "has"} & set(c):
+                p.add(cw, "a logs check needs `count`, `min` or `has`")
     if final:
         if not checks:
             p.add(w, "checks empty: every part of the card needs a check that tools/verify.py can re-run")
