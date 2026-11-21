@@ -45,7 +45,7 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: NONE
-related: [aave-atoken-permit-ecdsa-only]
+related: [atokeninstance-4d5f47fa-permit-signature, atokeninstance-23878914-permit-signature, atokeninstance-98c23e9d-permit-signature, atokeninstance-bdfa7b78-permit-signature, atokeninstance-5ee5bf7a-permit-signature, atokeninstance-0b925ed1-permit-signature, atokeninstance-5c647ce0-permit-signature, atokeninstance-4f5923fc-atoken-permit, atokeninstance-4579a27a-permit-ecdsa-only, atokenwithdelegationinstance-a700b4eb-permit-ecdsa-only, atokeninstance-5e8c8a72-permit-signature]
 ---
 
 ## Summary

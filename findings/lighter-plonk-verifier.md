@@ -11,16 +11,6 @@ impact: funds-loss
 alternative: sole
 role: core
 contracts:
-- address: "0xac3ce44b6ff4e402858c99d5699ff63131572baa"
-  implementation: "0x329d7d7f7b3f2879991b83e1a53bce6d7ce63e6f"
-  name: Proxy → ZkLighterVerifier
-  upgradeable: "yes"
-  admin: "UpgradeGatekeeper 0x94da8a995d0d82ef0fe7e509c6d76c22603b6f67, master Safe 0x97a90ec950b6bcd9b190b566525b2bb92a2c03a2 (3 of 5), 3-week notice that security council Safe 0x92b12c9d85bf7bd2ef5d2f53f4cd4ce0be432045 (4 of 7) can cut; read at block 26,431,454"
-  value_usd: 907780551
-  value_basis: escrow
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: 19443
 - address: "0x975210588389526a3a1def1628e7a4d7abdfd121"
   implementation: null
   name: DesertVerifier (desert-mode exit proofs)

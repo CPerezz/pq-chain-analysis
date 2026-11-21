@@ -11,16 +11,6 @@ impact: funds-loss
 alternative: configurable-verifier
 role: core
 contracts:
-- address: "0x9b9671db83cfcb4508bf361942488c5ca2b1286d"
-  implementation: null
-  name: FflonkVerifier_12 (rollup types 6 and 7; rollups 8, 13, 15)
-  upgradeable: "no"
-  admin: none; AgglayerManager 0x5132a183e9f3cb7c848b0aac5ae0c4f0491b7ab2 (timelock 0xef1462451c30ea7ad8555386226059fe837ca4ef holds ADD_ROLLUP_TYPE_ROLE and UPDATE_ROLLUP_ROLE) can move rollups to another verifier
-  value_usd: 125835764
-  value_basis: escrow
-  value_as_of: 2026-11-17
-  last_active: 2026-09-15
-  txs_30d: 0
 - address: "0x0775e11309d75aa6b0967917fb0213c5673edf81"
   implementation: null
   name: FflonkVerifier (rollup types 3 and 4; rollups 2, 4, 5, 6, 9, 11, 12)

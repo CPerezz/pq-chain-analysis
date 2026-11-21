@@ -11,16 +11,6 @@ impact: funds-loss
 alternative: configurable-verifier
 role: core
 contracts:
-- address: "0x0459d576a6223feea177fb3df53c9c77bf84c459"
-  implementation: null
-  name: SP1Verifier (Plonk v5.0.0)
-  upgradeable: "no"
-  admin: "none (immutable); routed by SP1VerifierGateway 0x3b6041173b80e77f038f3f2c0f9744f04837185e (owner Safe 0xcafef00d348adbd57c37d1b77e0619c6244c6878, 2 of 3) and by AgglayerGateway 0x046bb8bb98db4cecbb2929542686b74b516274b3 routes 0x00000004 and 0x00000008; read at block 26,431,737"
-  value_usd: 125849129
-  value_basis: escrow
-  value_as_of: 2026-11-17
-  last_active: 2026-07-17
-  txs_30d: 0
 - address: "0x50acfbedecf4cbe350e1a86fc6f03a821772f1e5"
   implementation: null
   name: SP1Verifier (Groth16 v5.0.0)

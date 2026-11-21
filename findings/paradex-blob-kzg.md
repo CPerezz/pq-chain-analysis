@@ -45,7 +45,7 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: LOW
-related: [starknet-blob-kzg]
+related: [proxy-c662c410-blob-kzg-opening]
 ---
 
 ## Summary
