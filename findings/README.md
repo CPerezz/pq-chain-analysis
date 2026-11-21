@@ -183,13 +183,19 @@ that its signer can void by migrating (a payment voucher, a channel balance proo
 | LOW | A simple update fixes it (a live admin or owner upgrade, a setting, a sender's gas limit), or the same act stays open to the affected party by another path |
 | INFORMATIONAL | Breaks only if a key holder moves its own account to code. The finding says what to do first (rotate the key, upgrade, move the funds out, exit, enter); `impact` says what happens if the holder migrates unprepared |
 
+A gas amount fixed in the code (pattern PQ-14) with no update path is `CRITICAL` whatever the contract holds or locks
+today: nobody can know whether value arrives later, and the function is dead for good. With an update path it is
+`LOW`. The `HIGH` and `MEDIUM` rows above do not apply to it (D-029).
+
 A key that has never sent a transaction is presumed live; an admin is unable to act only when that is shown (zero or
 dead address, renounced, a contract with no way to call). For a migration notice, when the holder's only ETH exit
 is a 2,300-gas transfer (`transfer`, `send`) and every other path needs its signature, `impact` is `funds-locked`.
 
 One finding describes one address in use. A row whose address is not in use (an implementation never used alone, a
-retired copy) is not affected there; each copy in use is its own finding. A dormant contract that a live owner could
-restart keeps its finding, and its card states the dormancy (D-028).
+retired copy) is not affected there; each copy in use is its own finding. An address that held nothing (ETH and the
+priced tokens) at the block and received no call in the study's 30- or 90-day window has no finding: it is dropped
+without review, whatever its code would do (D-029, replacing D-028's dormancy rule). A finding whose value is an
+escrow or a token supply is about money in other contracts and is not dropped that way.
 
 ## Checks before you state a fact
 
