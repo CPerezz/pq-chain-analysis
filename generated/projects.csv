@@ -47,7 +47,7 @@ taiko,not-contacted,MEDIUM,,2,0,19893566,taiko-sgx-instance-keys taiko-zk-verifi
 chainflip,not-contacted,MEDIUM,,1,0,18403584,chainflip-aggkey-schnorr-ecrecover
 hashflow,not-contacted,MEDIUM,,1,0,10155185,hashflow-pool-quote-signer
 ambire,not-contacted,MEDIUM,,8,0,9724811,ambire-5a7fc113-fixed-signer ambire-66b71dc6-fixed-signer ambire-9701ae64-7702-own-key-only ambire-9701ae64-signed-shortcut-lost ambire-d7974ab5-7702-own-key-only ambire-d7974ab5-rotate-signer-before-migrating ambire-fde6d730-fixed-signer ambire-fde6d730-sender-gas-limits
-zksync,not-contacted,MEDIUM,,11,0,8451729,dualverifier-5d5d33b1-bn254-batch-proof zksync-803b96fa-signer-upgrade-only zksync-8e972b35-entry-by-own-signature-only zksync-8e972b35-signed-shortcut-lost zksync-8e972b35-signer-upgrade-only zksync-abea9132-entry-by-own-signature-only zksync-abea9132-signed-shortcut-lost zksync-abea9132-signer-upgrade-only zksync-blob-kzg zksync-lite-plonk-verifier zksync-plonk-fflonk-verifier
+zksync,not-contacted,MEDIUM,,10,0,8451729,dualverifier-5d5d33b1-bn254-batch-proof zksync-8e972b35-entry-by-own-signature-only zksync-8e972b35-signed-shortcut-lost zksync-8e972b35-signer-upgrade-only zksync-abea9132-entry-by-own-signature-only zksync-abea9132-signed-shortcut-lost zksync-abea9132-signer-upgrade-only zksync-blob-kzg zksync-lite-plonk-verifier zksync-plonk-fflonk-verifier
 aztec,not-contacted,MEDIUM,,5,0,6962170,aztec-blob-kzg aztec-committee-attestations aztec-governance-proposer-sig aztec-honk-verifier aztec-validator-bls-pop-bn254
 native,not-contacted,MEDIUM,,1,0,6787698,native-rfq-signer
 socket,not-contacted,MEDIUM,,2,0,5589031,bungee-auction-signers socket-dl-signature-verifier
@@ -147,7 +147,7 @@ zerodev,not-contacted,MEDIUM,,1,0,0,zerodev-ecdsa-validator
 zkpass,not-contacted,MEDIUM,,1,0,0,zkp-airdrop-supervisor-signer
 etherdelta,not-contacted,LOW,,1,0,36635794,etherdelta-8d12a197-order-signature
 paradex,not-contacted,LOW,,1,0,25142677,paradex-blob-kzg
-world-liberty-financial,not-contacted,LOW,,2,0,12214810,world-liberty-financial-196fee96-signer-upgrade-only world-liberty-financial-f76e7ade-signer-upgrade-only
+world-liberty-financial,not-contacted,LOW,,1,0,12214810,world-liberty-financial-196fee96-signer-upgrade-only
 abstract,not-contacted,LOW,,1,0,8804084,abstract-blob-kzg
 okx,not-contacted,LOW,,2,0,2267121,okx-pmm-protocol-maker-sig okx-wallet-link-groth16
 relay,not-contacted,LOW,,1,0,920119,relay-allocator-signer
