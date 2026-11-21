@@ -22,6 +22,7 @@ without them it is reported as not re-run. Exit code 1 if anything fails.
 
 import argparse
 import json
+import re
 import sys
 import urllib.request
 from pathlib import Path
@@ -145,8 +146,13 @@ def run_check(c: dict, block: int, ctx: dict) -> tuple[str, str]:
             raw = bytes.fromhex(nf.rpc("eth_call", [tx, at])[2:])
         except RuntimeError as e:
             msg = str(e)
-            if c.get("reverts_with") is not None:  # the reason as text, or the revert data as hex
-                return (OK if str(c["reverts_with"]).lower() in msg.lower() else FAIL), f"reverted ({msg[:160]})"
+            if c.get("reverts_with") is not None:  # the reason as text, or the revert data as hex (a prefix of it)
+                want = str(c["reverts_with"]).lower()
+                if want.startswith("0x"):
+                    hit = any(h.startswith(want) for h in re.findall(r"0x[0-9a-f]+", msg.lower()))
+                else:
+                    hit = want in msg.lower()
+                return (OK if hit else FAIL), f"reverted ({msg[:160]})"
             return (OK if truth(c.get("reverts")) else FAIL), f"reverted ({msg[:80]})"
         if truth(c.get("reverts")) or c.get("reverts_with") is not None:
             return FAIL, "did not revert"

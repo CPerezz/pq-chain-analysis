@@ -477,6 +477,12 @@ def check_checks(p: Problems, w: str, checks, final: bool, parts: list[str]) -> 
             p.add(cw, "data must be 0x calldata: a 4-byte selector and its arguments, quoted")
         if kind == "call" and not {"is", "reverts", "reverts_with"} & set(c):
             p.add(cw, "a call check needs `is`, `reverts` or `reverts_with`")
+        rw = c.get("reverts_with")
+        if kind == "call" and rw is not None and not (
+                re.fullmatch(r"0x(?:[0-9a-fA-F]{2}){4,}", str(rw)) if str(rw).lower().startswith("0x")
+                else len(str(rw)) >= 4 and str(rw).lower() not in "execution reverted"):
+            p.add(cw, "reverts_with: the revert data as 0x hex of at least a 4-byte selector, or reason text of 4 or more"
+                      " characters that is not part of 'execution reverted' (a shorter value matches any revert)")
         if kind == "nonce" and "is" not in c and "min" not in c:
             p.add(cw, "a nonce check needs `is` or `min`")
         if kind == "replay" and c.get("run") not in REPLAY_RUNS:
