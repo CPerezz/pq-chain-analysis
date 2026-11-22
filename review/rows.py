@@ -4,6 +4,8 @@
     ... -m review.rows take --who NAME [--n 5] [--wave N]   claim the next rows: CRITICAL first, then HIGH, MEDIUM, LOW
     ... -m review.rows take --who NAME --keys KEY,KEY  claim these rows
     ... -m review.rows release KEY --who NAME          give back a claimed row that has no draft yet
+    ... -m review.rows requeue KEY[,KEY] --who NAME --note TEXT   a settled row back to todo for a full review; its
+                                                       filed card stays until the review files the row again
     ... -m review.rows show KEY                        the row (its old claim), its state and its steps
     ... -m review.rows add KEY --note TEXT [--from KEY] a row found in review: a copy in use, or another issue of an address
     ... -m review.rows save                            write queue.tsv and ledger.tsv (run before every commit)
@@ -175,6 +177,17 @@ def cmd_release(args):
     log(c, args.key, args.who, "release")
     print(f"released {args.key}")
 
+def cmd_requeue(args):
+    c = db()
+    for key in args.keys.split(","):
+        n = c.execute("UPDATE rows SET state = 'todo', who = NULL, taken_at = NULL, outcome = NULL, reason = NULL, settled_at = NULL"
+                      " WHERE key = ? AND state = 'settled'", (key,)).rowcount
+        if not n:
+            sys.exit(f"{key} is not a settled row")
+        log(c, key, args.who, "requeue", None, args.note[:500])
+        print(f"requeued {key}")
+
+
 
 def cmd_show(args):
     print(json.dumps(row(args.key), indent=1))
@@ -220,6 +233,10 @@ def main():
     r = sub.add_parser("release")
     r.add_argument("key")
     r.add_argument("--who", required=True)
+    q = sub.add_parser("requeue")
+    q.add_argument("keys")
+    q.add_argument("--who", required=True)
+    q.add_argument("--note", required=True)
     s = sub.add_parser("show")
     s.add_argument("key")
     a = sub.add_parser("add")
@@ -231,7 +248,7 @@ def main():
     args = ap.parse_args()
     if args.cmd == "save":
         return print(save())
-    {"status": cmd_status, "take": cmd_take, "release": cmd_release, "show": cmd_show, "add": cmd_add}[args.cmd](args)
+    {"status": cmd_status, "take": cmd_take, "release": cmd_release, "requeue": cmd_requeue, "show": cmd_show, "add": cmd_add}[args.cmd](args)
 
 
 if __name__ == "__main__":

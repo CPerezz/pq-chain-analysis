@@ -127,9 +127,11 @@ def relink(c, rows: dict) -> int:
         if not (REGISTRY / "findings" / f"{old_id}.md").exists():
             done = [c.execute("SELECT detail FROM ledger WHERE key = ? AND step = 'file' ORDER BY at DESC", (k,)).fetchone() for k in keys]
             new[old_id] = [Path(x[0]).stem for x in done if x and x[0] and x[0].startswith("findings/") and x[0] != f"findings/{old_id}.md"]
-    for (detail,) in c.execute("SELECT DISTINCT detail FROM ledger WHERE step = 'file' AND detail LIKE 'findings/%'"):
-        if not (REGISTRY / detail).exists():  # a card that was filed and later removed or reopened: entries naming it go
-            new.setdefault(Path(detail).stem, [])
+    for key, detail in c.execute("SELECT DISTINCT key, detail FROM ledger WHERE step = 'file' AND detail LIKE 'findings/%'").fetchall():
+        if not (REGISTRY / detail).exists():  # a card filed and later removed or reopened (entries naming it go), or filed again under another name
+            last = c.execute("SELECT detail FROM ledger WHERE key = ? AND step = 'file' ORDER BY at DESC, rowid DESC", (key,)).fetchone()
+            again = last and last[0] != detail and last[0].startswith("findings/") and (REGISTRY / last[0]).exists()
+            new.setdefault(Path(detail).stem, [Path(last[0]).stem] if again else [])
     changed = 0
     for p in sorted((REGISTRY / "findings").glob("*.md")) + sorted((REGISTRY / "triage").glob("*.md")):
         text = p.read_text()
@@ -275,12 +277,12 @@ def main():
                 for other in json.loads((WORK / "out" / key_dir(key) / "draft.json").read_text()).get("related") or []:
                     set_related(head["id"], [other])  # links recorded with --link survive a re-file, both ways
                     set_related(other, [head["id"]])
-        if outcome in ("removed", "unused"):  # a row that had been filed as a card and was settled again: the card goes too
-            was = c.execute("SELECT detail FROM ledger WHERE key = ? AND step = 'file' AND outcome IN ('kept', 're-rated', 'moved', 'trusted') ORDER BY at DESC, rowid DESC", (key,)).fetchone()
-            if was and was[0] != old and (REGISTRY / was[0]).exists():
-                if not args.dry:
-                    (REGISTRY / was[0]).unlink()
-                what += f"; deleted its card {was[0]}"
+        # the card this row was filed as before (settled again, or requeued and reviewed again) goes unless this filing rewrote it
+        was = c.execute("SELECT detail FROM ledger WHERE key = ? AND step = 'file' AND outcome IN ('kept', 're-rated', 'moved', 'trusted') ORDER BY at DESC, rowid DESC", (key,)).fetchone()
+        if was and was[0] != old and (not target or was[0] != f"findings/{target.name}") and (REGISTRY / was[0]).exists():
+            if not args.dry:
+                (REGISTRY / was[0]).unlink()
+            what += f"; deleted its card {was[0]}"
         if r["src"] == "triage" and old and (REGISTRY / old).exists():
             p = REGISTRY / old
             lines = p.read_text().split("\n")

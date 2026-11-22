@@ -218,7 +218,9 @@ def render(draft: dict, d: dict, backs: dict[str, set]) -> tuple[str, str, dict]
     checks = [{**c, "for": sorted(backs.get(c["id"], {"notes"}))} for c in draft["checks"]]
     old = None
     if r["src"] == "finding":  # once filed, the old file is gone and the card it became keeps its sources
-        p = next((x for x in (REGISTRY / r["old_path"], out_dir(d["key"]) / "finding.md") if x.exists()), None)
+        filed = R.db().execute("SELECT detail FROM ledger WHERE key = ? AND step = 'file' AND detail LIKE 'findings/%' ORDER BY at DESC, rowid DESC",
+                               (d["key"],)).fetchone()
+        p = next((x for x in (REGISTRY / r["old_path"], out_dir(d["key"]) / "finding.md", REGISTRY / (filed or ("-",))[0]) if x.exists()), None)
         old = build.split(p, build.Problems())[0] if p else None
     sources = [{k: s[k] for k in ("study", "who", "date", "by", "verdict", "rating") if s.get(k) is not None} for s in (old or {}).get("sources") or r.get("sources") or []] or [
         {"study": "eip-8151-impact", "who": "Claude (families read, judged from bytecode or placed by measured rules)", "date": "2026-11-19",
