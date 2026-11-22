@@ -1,6 +1,8 @@
 name: check
 
-# Every push and pull request: the registry's rules, and the proof that they reject what they should.
+# Every push and pull request: the registry's rules, and the proof that they reject what they should; then the
+# outreach board's own check, and every card of the commit imported into SQLite and checked against its file, as the
+# board's server does when main moves (board/README.md).
 on:
   push:
   pull_request:
@@ -12,3 +14,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
       - run: uv run tools/build.py --check --selftest
+
+  board:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv run --with pyyaml python board/check.py .
+      - run: uv run --with pyyaml python board/ingest.py . "$RUNNER_TEMP/registry.db"

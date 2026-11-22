@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PQ findings · outreach</title>
+<link rel="stylesheet" href="app.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><b>PQ findings</b><span>outreach</span></div>
+  <div class="meta" id="meta"></div>
+</header>
+
+<main>
+  <section class="filters" aria-label="Filters">
+    <div class="searchrow">
+      <input id="q" type="search" placeholder="Search titles, teams, addresses, card text and comments…  ( / )" autocomplete="off" spellcheck="false" aria-label="Search">
+      <label class="opt">Held now ≥ $<input id="min" type="number" min="0" step="1000" placeholder="any"></label>
+      <button id="clear" class="link" hidden>Clear all filters</button>
+    </div>
+    <div id="chips"></div>
+    <div class="frow"><span class="fl">More</span><div id="dropdowns" class="dds"></div></div>
+  </section>
+  <div id="listhead" class="listhead"></div>
+  <div class="tablewrap"><table class="grid" id="grid"></table></div>
+  <div class="pager" id="pager"></div>
+</main>
+
+<div id="bulk" class="bulk" hidden></div>
+<div id="scrim" class="scrim" hidden></div>
+<aside id="drawer" class="drawer" hidden aria-label="Finding"></aside>
+<div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
+</body>
+</html>

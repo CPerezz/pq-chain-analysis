@@ -24,6 +24,7 @@ are kept apart because several studies can find the same issue, and one study fi
 | [`templates/`](templates/) | A blank form for each kind of record, and filled examples of a finding and a study |
 | `tools/` | `build.py` checks the records and builds `generated/`; `find.py` looks an address up; `new_finding.py` starts a finding with its facts read from the chain; `site_data.py` builds the site's data |
 | [`code/`](code/) | Decompiled code that findings link, for contracts without verified source |
+| [`board/`](board/) | The outreach board: the reviewed findings in SQLite, rebuilt from `findings/` whenever `main` changes and checked against the files, and the private page where the outreach team records contact with each team. See [`board/README.md`](board/README.md) |
 | [`AGENTS.md`](AGENTS.md) | The rules agents follow when they file or review findings (`CLAUDE.md` points here) |
 | `docs/` | The site |
 
@@ -70,7 +71,8 @@ uv run tools/build.py             # check everything, then rebuild generated/ to
 uv run tools/build.py --selftest  # also prove the rules reject what they should
 ```
 
-Rebuild `generated/` (`uv run tools/build.py`) before a filing commit. Every push and pull request runs the check.
+Rebuild `generated/` (`uv run tools/build.py`) before a filing commit. Every push and pull request runs the check, and
+imports every card into the outreach board's database as `main` will (`board/README.md`).
 
 ## Licence
 

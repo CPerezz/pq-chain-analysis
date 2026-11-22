@@ -1,0 +1,2 @@
+# Quick tunnel: an empty config, so that cloudflared does not pick up /etc/cloudflared/config.yml (another tunnel).
+{}

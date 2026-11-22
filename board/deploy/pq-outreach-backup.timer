@@ -1,0 +1,9 @@
+[Unit]
+Description=PQ findings outreach board: back up the outreach records daily
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target
