@@ -1,67 +1,125 @@
 ---
 id: mysterymints-0dad337e-fixed-signer
-title: "MysteryMints: signer fixed in code"
+format: 2
+title: 'MysteryMints: its signer cannot be replaced and must not take real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x0dad337e30af2a196f04ec1efd21ad2d6553d5b8"
-  family: "54a480b941c935af4b2b7b28e46e1205"
-  name: "MysteryMints"
-  upgradeable: "no"
-  rating: LOW
+severity: INFORMATIONAL
+justification: Breaks only if a signer's account takes real code; the signer is fixed, so a new contract is then
+  needed.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x0dad337e30af2a196f04ec1efd21ad2d6553d5b8'
+  name: MysteryMints
+  code: verified
+  code_url: https://etherscan.io/address/0x0dad337e30af2a196f04ec1efd21ad2d6553d5b8#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0x1c90081cd1c161a3e9de8e2c9d4c1754a49143c0'
+value:
+  usd: 0
+  basis: held
+activity:
   txs_90d: 4
-  last_active: 2026-11-01
-fix:
-  layer: onchain-config
-  who_acts: "nobody today (owner 0x1c90081c…, live EOA, only if they re-enable the whitelist)"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Keep the signer's account free of real code, or deploy a replacement with a new signer first.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x0dad337e30af2a196f04ec1efd21ad2d6553d5b8'
+  file: contracts/MysteryMints.sol
+  line: 175
+  has: return recoverSigner(ethSignedMessageHash, signature) == WHITELIST_SIGNER;
+  says: isWhitelisted recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x0dad337e30af2a196f04ec1efd21ad2d6553d5b8'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x0dad337e30af2a196f04ec1efd21ad2d6553d5b8'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: written
+  source: '0x0dad337e30af2a196f04ec1efd21ad2d6553d5b8'
+  file: contracts/MysteryMints.sol
+  line: 45
+  has: address public constant WHITELIST_SIGNER = 0x8430e0B7be3315735C303b82E4471D59AC152Aa5;
+  says: the signer is written here, at deployment
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x0dad337e30af2a196f04ec1efd21ad2d6553d5b8'
+  fn: WHITELIST_SIGNER()(address)
+  is: '0x8430e0b7be3315735c303b82e4471d59ac152aa5'
+  says: A signer fixed at deployment is 0x8430e0b7be3315735c303b82e4471d59ac152aa5 at the block
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signer-code
+  code: '0x8430e0b7be3315735c303b82e4471d59ac152aa5'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-fixed-signer"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "The same act (mintNFT at the same price) is open to everyone without a signature, and an owner setting controls whether the check runs at all: LOW."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-MysteryMints (TheEveryones idiom): mintNFT checks the constant WHITELIST_SIGNER only while block.timestamp < disableWhitelistTimestamp, an owner setting. That timestamp is 1637949600 (2021-11-26), so the same mint already runs without any signature.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code, every signed function stops. Users' funds behind it are stuck unless another path releases them; where only the operator's own money is at stake the operator withdraws and redeploys.
+MysteryMints checks an ECDSA signature in isWhitelisted and accepts only a signer fixed at deployment. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. The verified source has no function that replaces the signer.
 
 ## Evidence
 
-- How it was placed: TheEveryones isWhitelisted: WHITELIST_SIGNER, a constant / PayToUnlock recoverSigner: returns the recovered address. Read (function text).
-- Update path, read at block 26,438,999: no proxy slot, no upgrade function.
-- source MysteryMints.sol: isWhitelisted only inside `if (block.timestamp < disableWhitelistTimestamp)` in mintNFT; setDisableWhitelistTimestamp is onlyOwner
-- disableWhitelistTimestamp = 1637949600, salePaused = false, totalSupply 644 of maxSupply 20000 (reserved 116) at block 26438999
-- WHITELIST_SIGNER 0x8430e0b7… no code (nonce 1); owner 0x1c90081c… EOA nonce 155; contract holds 0 ETH, owner withdraw needs no signature
+- [isWhitelisted](https://etherscan.io/address/0x0dad337e30af2a196f04ec1efd21ad2d6553d5b8#code) recovers the signature with ECDSA and accepts only a signer fixed at deployment; the code never asks that account.
+- The signer is written [at deployment](https://etherscan.io/address/0x0dad337e30af2a196f04ec1efd21ad2d6553d5b8#code); the verified source has no function that writes it afterwards.
+- The signer at the block is [0x8430…2aa5](https://etherscan.io/address/0x8430e0b7be3315735c303b82e4471d59ac152aa5), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens).
-- Activity: 4 transactions called it in the 90 days before that block; last on 2026-11-01.
+### Mechanism
 
-## Remediation
+isWhitelisted (contracts/MysteryMints.sol, line 172) recovers a signer on line 175 and tests it on line 175 against a signer fixed at deployment (WHITELIST_SIGNER() returns 0x8430e0b7be3315735c303b82e4471d59ac152aa5). Neither isValidSignature selector is in the code, so that account is never asked. WHITELIST_SIGNER is written on line 45 of contracts/MysteryMints.sol (at deployment); a search of every source file, libraries and constructors included, finds no other write, and the contract's own functions use no sstore and no delegatecall. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Nothing needed; if the owner ever re-enables the whitelist, setDisableWhitelistTimestamp to a past time reopens the unsigned mint.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2022-01-12, recovering 0x8430…2aa5; 4 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 items 33 and 40): the same reasoning on every card of this kind; the source lines, the function that changes the signer or the line that fixes it, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-fixed-signer` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

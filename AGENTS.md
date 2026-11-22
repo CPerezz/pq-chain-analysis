@@ -4,6 +4,13 @@ Read this before you file, review or edit anything in `findings/`, `triage/` or 
 card you write, often someone who is not an engineer. A wrong fact misleads the team we contact; an empty one does
 not. When you are not sure, leave the field empty and ask your owner.
 
+## Which instructions you follow
+
+- **You run the EIP-8151 review** (claim rows, start authors and refuters, settle, file): `review/README.md`.
+- **You are an author or a refuter of one review row**: `review/AUTHOR.md` or `review/REFUTER.md`, and the rules
+  below. Your brief names your row; touch nothing else.
+- **You file a new contract outside the review**: "Filing one contract" below.
+
 ## The format
 
 Every new or edited finding is format 2: the form is `templates/finding.md`, the rules are in `findings/README.md`.
@@ -71,3 +78,6 @@ the finding, add it under `code/` as `code/README.md` says and set `contract.cod
 - Finish every contract you take: the check passes, or the file stays a candidate with its questions. Never leave a
   file that fails the check.
 - Do not commit unless your owner asks. Before a filing commit, rebuild `generated/` with `uv run tools/build.py`.
+- A fault someone could use today (not a post-quantum or EIP-8151 effect: funds anyone can take now) never goes into
+  this public repository: not in a card, a note, a commit or a message. Tell your owner privately and name the
+  contract only.

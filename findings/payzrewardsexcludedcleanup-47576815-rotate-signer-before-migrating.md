@@ -1,71 +1,125 @@
 ---
 id: payzrewardsexcludedcleanup-47576815-rotate-signer-before-migrating
-title: "PayzRewardsExcludedCleanup: signer key to rotate before its account takes code"
+format: 2
+title: 'This contract: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x47576815ac8744fb421e154e2b872d21c52a0229"
-  family: "983b47bc833f650f2b4525355f44bd43"
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x47576815ac8744fb421e154e2b872d21c52a0229'
+  name: PayzRewardsExcludedCleanup
+  code: verified
+  code_url: https://etherscan.io/address/0xb82dab2c8f8a70e04496f1da2a1332e4ed7e900d#code
+  proxy_of: '0xb82dab2c8f8a70e04496f1da2a1332e4ed7e900d'
   copies: 2
-  name: "PayzRewardsExcludedCleanup"
-  upgradeable: "yes"
-  rating: LOW
-  value_usd: 2
-  value_basis: held
-  value_as_of: 2026-11-18
+  family: 983b47bc833f650f2b4525355f44bd43
+  upgradeable: 'yes'
+  admin: '0x18f4939f0e7b8a39faa0afdb205ceb21fa7060c5'
+value:
+  usd: 2
+  basis: held
+activity:
   txs_90d: 133
-  last_active: 2026-10-10
-fix:
-  layer: contract-upgrade
-  who_acts: "the admin upgrades the code"
-evidence:
-  level: bytecode
-  block: 26438999
+impact: liveness
+action: Replace the signer with transferOwnership before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0xb82dab2c8f8a70e04496f1da2a1332e4ed7e900d'
+  file: contracts/PayzRewardsUpgradeable.sol
+  line: 171
+  has: if (_recover(digest, signature) != owner()) revert InvalidRedemptionAuthorization();
+  says: redeem recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0xb82dab2c8f8a70e04496f1da2a1332e4ed7e900d'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0xb82dab2c8f8a70e04496f1da2a1332e4ed7e900d'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: setter
+  selector: '0xb82dab2c8f8a70e04496f1da2a1332e4ed7e900d'
+  fn: transferOwnership(address)
+  says: the code has transferOwnership
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x47576815ac8744fb421e154e2b872d21c52a0229'
+  fn: owner()(address)
+  is: '0x18f4939f0e7b8a39faa0afdb205ceb21fa7060c5'
+  says: Its owner is 0x18f4939f0e7b8a39faa0afdb205ceb21fa7060c5 at the block
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signer-code
+  code: '0x18f4939f0e7b8a39faa0afdb205ceb21fa7060c5'
+  is: delegation
+  target: '0x69007702764179f14f51cdce752f4f775d74e139'
+  says: 'the signer''s account holds an EIP-7702 delegation: an ECDSA key still controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-`PayzRewardsExcludedCleanup` at `0x47576815ac8744fb421e154e2b872d21c52a0229`, with 1 more addresses running its code. It accepts signatures from a key that a function can replace; the holder rotates it before the account takes code.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+This contract accepts a call to redeem only with an ECDSA signature of its owner. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. transferOwnership changes the signer.
 
 ## Evidence
 
-- How it was placed: the signer is one address in storage and the only such address the code names is its owner, which can be handed over (acceptOwnership, renounceOwnership, transferOwnership). Rule: stored-key (the owner).
-- Reviewed through the root issue's mechanism (D-025): the reading for this address names a function that replaces the checked key (a setter, a role grant or an owner hand-over), so its holder can rotate before the key's account takes code: LOW
-- Not checked per row: whether the party allowed to call that function is live at block 26,438,999
-- Mechanical check: the scanner finds an ecrecover call in this address's code
-- A random sample of 25 of the 18,615 rows below Anon's thresholds: 15 held at LOW, 5 were unused implementations (not affected), 1 had owners that cannot be replaced (MEDIUM), 4 could not be settled while the node was down
+- [redeem](https://etherscan.io/address/0xb82dab2c8f8a70e04496f1da2a1332e4ed7e900d#code) recovers the signature with ECDSA and accepts only its owner; the code never asks that account.
+- [transferOwnership](https://etherscan.io/address/0xb82dab2c8f8a70e04496f1da2a1332e4ed7e900d#code) changes the signer; only the owner can call it.
+- The signer at the block is [0x18f4…60c5](https://etherscan.io/address/0x18f4939f0e7b8a39faa0afdb205ceb21fa7060c5), an account with an EIP-7702 delegation, which keeps working.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $2 (ETH and 49 priced tokens, over 2 addresses).
-- Activity: 133 transactions called it in the 90 days before that block; last on 2026-10-10.
+### Mechanism
 
-## Remediation
+redeem (contracts/PayzRewardsUpgradeable.sol, line 158) recovers a signer on line 171 and tests it on line 171 against its owner (owner() returns 0x18f4939f0e7b8a39faa0afdb205ceb21fa7060c5). Neither isValidSignature selector is in the code, so that account is never asked. transferOwnership is in the code. The signer's account holds an EIP-7702 delegation to 0x69007702764179f14f51cdce752f4f775d74e139. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Rotate the key before its account takes code.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 2 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). No signature recovery by this address is on record; 133 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 items 33 and 40): the same reasoning on every card of this kind; the source lines, the function that changes the signer or the line that fixes it, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

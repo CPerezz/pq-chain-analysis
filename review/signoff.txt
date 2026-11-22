@@ -1,0 +1,1 @@
+# CRITICAL and HIGH rows whose card the owner has read and signed off, one key per line; review.file files only these.

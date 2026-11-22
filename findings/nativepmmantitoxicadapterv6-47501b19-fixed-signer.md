@@ -1,69 +1,130 @@
 ---
 id: nativepmmantitoxicadapterv6-47501b19-fixed-signer
-title: "NativePmmAntiToxicAdapterV6: signer fixed in code"
+format: 2
+title: 'This contract: its signer cannot be replaced and must not take real code'
 status: confirmed
-severity: MEDIUM
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x47501b19d6db513308d126a3460382cdc61ab3a7"
-  family: "bfe89089af5b7c0aca8a07c84c9c4cc4"
-  name: "NativePmmAntiToxicAdapterV6"
-  upgradeable: "no"
-  rating: MEDIUM
+severity: INFORMATIONAL
+justification: Breaks only if a signer's account takes real code; the signer is fixed, so a new contract is then
+  needed.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x47501b19d6db513308d126a3460382cdc61ab3a7'
+  name: NativePmmAntiToxicAdapterV6
+  code: verified
+  code_url: https://etherscan.io/address/0x47501b19d6db513308d126a3460382cdc61ab3a7#code
+  copies: 1
+  upgradeable: 'no'
+value:
+  usd: 0
+  basis: held
+activity:
   txs_90d: 7172
-  last_active: 2026-11-18
-  recoveries_14d: 6583
-fix:
-  layer: new-deployment
-  who_acts: "operator"
-evidence:
-  level: executed
-  block: 26438999
+impact: liveness
+action: Keep the signer's account free of real code, or deploy a replacement with a new signer first.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x47501b19d6db513308d126a3460382cdc61ab3a7'
+  file: src/libraries/CallerAuth.sol
+  line: 32
+  has: if (ECDSA.recover(ECDSA.toEthSignedMessageHash(inner), r, vs) != AUTH_SIGNER) {
+  says: _verifyAuthCommon recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x47501b19d6db513308d126a3460382cdc61ab3a7'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x47501b19d6db513308d126a3460382cdc61ab3a7'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: written
+  source: '0x47501b19d6db513308d126a3460382cdc61ab3a7'
+  file: src/libraries/CallerAuth.sol
+  line: 19
+  has: AUTH_SIGNER = authSigner;
+  says: the signer is written here, at deployment
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x47501b19d6db513308d126a3460382cdc61ab3a7'
+  fn: AUTH_SIGNER()(address)
+  is: '0x9a2d7c63a53c9e40ababe7d285a971c11035d0e6'
+  says: A signer fixed at deployment is 0x9a2d7c63a53c9e40ababe7d285a971c11035d0e6 at the block
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signer-code
+  code: '0x9a2d7c63a53c9e40ababe7d285a971c11035d0e6'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signed-tx
+  tx: '0x52087209713258a3ff66e7d286ad3c2d514465cf1b608508bcb83be061095859'
+  ok: true
+  says: a transaction in which this contract recovered a signature
+  for:
+  - evidence-3
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-fixed-signer"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: MEDIUM
-  note: "No update path. No money is held by design."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-NativePmmAntiToxicAdapterV6 always checks the immutable AUTH_SIGNER 0x9a2d…e6 on sellBase/sellQuote. If that key gets code, the adapter dies for good. It holds no funds.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code, every signed function stops. Users' funds behind it are stuck unless another path releases them; where only the operator's own money is at stake the operator withdraws and redeploys.
+This contract checks an ECDSA signature in _verifyAuthCommon and accepts only a signer fixed at deployment. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. The verified source has no function that replaces the signer.
 
 ## Evidence
 
-- How it was placed: CallerAuth (variant): the signer must be AUTH_SIGNER, fixed in the code. Read from source. Executed: a real transaction reverts with code at the signer.
-- Update path, read at block 26,438,999: no proxy slot, no upgrade function.
-- CallerAuth.sol:8 immutable AUTH_SIGNER; cast call = 0x9a2D…e6, cast code = 0x
-- both entries call _verifyNativeAuth; there is no ERC-1271 path and no owner bypass
-- not a proxy
+- [_verifyAuthCommon](https://etherscan.io/address/0x47501b19d6db513308d126a3460382cdc61ab3a7#code) recovers the signature with ECDSA and accepts only a signer fixed at deployment; the code never asks that account.
+- The signer is written [at deployment](https://etherscan.io/address/0x47501b19d6db513308d126a3460382cdc61ab3a7#code); the verified source has no function that writes it afterwards.
+- The signer at the block is [0x9a2d…d0e6](https://etherscan.io/address/0x9a2d7c63a53c9e40ababe7d285a971c11035d0e6), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens).
-- Activity: 7,172 transactions called it in the 90 days before that block; last on 2026-11-18.
-- 6,583 signature recoveries in the study's two-week trace window.
+### Mechanism
 
-## Remediation
+_verifyAuthCommon (src/libraries/CallerAuth.sol, line 22) recovers a signer on line 32 and tests it on line 32 against a signer fixed at deployment (AUTH_SIGNER() returns 0x9a2d7c63a53c9e40ababe7d285a971c11035d0e6). Neither isValidSignature selector is in the code, so that account is never asked. AUTH_SIGNER is written on line 19 of src/libraries/CallerAuth.sol (at deployment); a search of every source file, libraries and constructors included, finds no other write, and the contract's own functions use no sstore and no delegatecall. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Deploy a new adapter.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2026-11-18, recovering 0x9a2d…d0e6; 7,172 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 items 33 and 40): the same reasoning on every card of this kind; the source lines, the function that changes the signer or the line that fixes it, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-fixed-signer` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: MEDIUM. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

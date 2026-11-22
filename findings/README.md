@@ -214,5 +214,6 @@ escrow or a token supply is about money in other contracts and is not dropped th
 ## Format 1
 
 Files without `format: 2` are format 1 (the field reference is in this file at commit
-`0ca5495cb3b79559c72e805ec0798d07b90e39fa`). The build accepts them until every finding is converted; then
-format 1 is removed. Do not create new format 1 files.
+`0ca5495cb3b79559c72e805ec0798d07b90e39fa`): the EIP-8151 study's bulk entries and the first study's findings, not
+yet reviewed. `review/` converts them, one contract at a time; a format-1 file leaves when the last of its contracts
+is filed or removed. The build accepts them until then. Do not create new format 1 files.

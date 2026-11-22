@@ -1,70 +1,115 @@
 ---
 id: fractaluniverse-0e4dfc33-fixed-signer
-title: "FractalUniverse: signer fixed in code"
+format: 2
+title: 'FractalUniverse: its signer cannot be replaced and must not take real code'
 status: confirmed
-severity: MEDIUM
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x0e4dfc3328f10e3c6e3016b90a68f09fb0f72293"
-  family: "d54afcae85c538f4174c7a7e1090a120"
-  name: "FractalUniverse"
-  upgradeable: "no"
-  rating: MEDIUM
-  value_usd: 2
-  value_basis: held
-  value_as_of: 2026-11-18
+severity: INFORMATIONAL
+justification: Breaks only if a signer's account takes real code; the signer is fixed, so a new contract is then
+  needed.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x0e4dfc3328f10e3c6e3016b90a68f09fb0f72293'
+  name: FractalUniverse
+  code: verified
+  code_url: https://etherscan.io/address/0x0e4dfc3328f10e3c6e3016b90a68f09fb0f72293#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0xab8da4a15424e0a51b31317f3a69f76f1c4033c1'
+value:
+  usd: 2
+  basis: held
+activity:
   txs_90d: 5
-  last_active: 2026-11-01
-fix:
-  layer: new-deployment
-  who_acts: "owner"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Keep the signer's account free of real code, or deploy a replacement with a new signer first.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x0e4dfc3328f10e3c6e3016b90a68f09fb0f72293'
+  file: FractalUniverse.sol
+  line: 105
+  has: return _signerAddress == ECDSA.recover(hash, signature);
+  says: _isTrustedSigner recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x0e4dfc3328f10e3c6e3016b90a68f09fb0f72293'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x0e4dfc3328f10e3c6e3016b90a68f09fb0f72293'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: written
+  source: '0x0e4dfc3328f10e3c6e3016b90a68f09fb0f72293'
+  file: FractalUniverse.sol
+  line: 40
+  has: address constant private _signerAddress = 0x0d80a03C234f9464c046481F554FE0948D299F3f;
+  says: the signer is written here, at deployment
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer-code
+  code: '0x0d80a03c234f9464c046481f554fe0948d299f3f'
+  is: empty
+  says: 'the address recovered in the latest signature check on record has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-fixed-signer"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: MEDIUM
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: MEDIUM
-  note: "A signed NFT mint with no update path. Nothing is held for claimers, and owner paths still move the ETH, so only the function dies."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-FractalUniverse claimMint accepts only signatures that recover to the private constant _signerAddress 0x0d80…9f3f. If that key gets code, free claims die for good, but the owner can still mint by airdrop and withdraw the ETH.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code, every signed function stops. Users' funds behind it are stuck unless another path releases them; where only the operator's own money is at stake the operator withdraws and redeploys.
+FractalUniverse checks an ECDSA signature in _isTrustedSigner and accepts only a signer fixed at deployment. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. The verified source has no function that replaces the signer.
 
 ## Evidence
 
-- How it was placed: Helmets2117 mint: signed by SIGNER_ADDRESS, fixed in the code; nothing is held for minters, so only the mint stops (MEDIUM). Rule: same text up to names.
-- Update path, read at block 26,438,999: no proxy slot, no upgrade function.
-- FractalUniverse.sol:40 `address constant private _signerAddress`; line 105 `_signerAddress == ECDSA.recover(hash, signature)`
-- airdropMint and withdrawMoney are onlyOwner (lines 73-76, 109); owner 0xab8d…33c1 has no code
-- isHoldersClaimOn() = true, totalSupply 438 of 999; contract balance 0.0009 ETH; cast code 0x0d80… = 0x
+- [_isTrustedSigner](https://etherscan.io/address/0x0e4dfc3328f10e3c6e3016b90a68f09fb0f72293#code) recovers the signature with ECDSA and accepts only a signer fixed at deployment; the code never asks that account.
+- The signer is written [at deployment](https://etherscan.io/address/0x0e4dfc3328f10e3c6e3016b90a68f09fb0f72293#code); the verified source has no function that writes it afterwards.
+- The address recovered in its latest signature check on record is [0x0d80…9f3f](https://etherscan.io/address/0x0d80a03c234f9464c046481f554fe0948d299f3f), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $2 (ETH and 49 priced tokens).
-- Activity: 5 transactions called it in the 90 days before that block; last on 2026-11-01.
+### Mechanism
 
-## Remediation
+_isTrustedSigner (FractalUniverse.sol, line 104) recovers a signer on line 105 and tests it on line 105 against a signer fixed at deployment. Neither isValidSignature selector is in the code, so that account is never asked. _signerAddress is written on line 40 of FractalUniverse.sol (at deployment); a search of every source file, libraries and constructors included, finds no other write, and the contract's own functions use no sstore and no delegatecall. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-The owner mints the remaining claims by airdropMint.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2022-08-17, recovering 0x0d80…9f3f; 5 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 items 33 and 40): the same reasoning on every card of this kind; the source lines, the function that changes the signer or the line that fixes it, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-fixed-signer` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: MEDIUM. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

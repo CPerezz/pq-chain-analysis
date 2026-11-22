@@ -1,7 +1,7 @@
 ---
 id: slippery-fish-co-genesis-2caf975f-rotate-signer-before-migrating
 format: 2
-title: 'Slippery_Fish_Co_Genesis: replace the signer before its account moves to real co'
+title: 'Slippery_Fish_Co_Genesis: replace the signer before it takes real code'
 status: confirmed
 severity: INFORMATIONAL
 justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.

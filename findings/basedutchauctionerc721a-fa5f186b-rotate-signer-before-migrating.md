@@ -1,7 +1,7 @@
 ---
 id: basedutchauctionerc721a-fa5f186b-rotate-signer-before-migrating
 format: 2
-title: 'BaseDutchAuctionERC721A: replace the signer before its account moves to real cod'
+title: 'BaseDutchAuctionERC721A: replace the signer before it takes real code'
 status: confirmed
 severity: INFORMATIONAL
 justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.

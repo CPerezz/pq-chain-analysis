@@ -17,18 +17,23 @@ are kept apart because several studies can find the same issue, and one study fi
 | [`studies/<id>/`](studies/) | One folder per study: goal, setup, procedure, how to reproduce, results, limits. See [`studies/README.md`](studies/README.md) |
 | [`triage/<id>.md`](triage/) | New entries, until someone other than the reporter has checked them. See [`triage/README.md`](triage/README.md) |
 | [`findings/<id>.md`](findings/) | One self-contained file per issue, for all studies, once reviewed. Each names the studies that found it. See [`findings/README.md`](findings/README.md) |
+| [`review/`](review/) | The review that turns the EIP-8151 study's bulk entries into reviewed cards: the open rows, their dossiers, the tools and the agents' instructions. See [`review/README.md`](review/README.md) |
 | [`patterns.md`](patterns.md) | The patterns findings are grouped by, each with its category and a plain description |
 | [`outreach/<project>.md`](outreach/) | Where contact with each affected team stands |
 | [`generated/`](generated/) | The lists and CSV files, built from the four above |
 | [`templates/`](templates/) | A blank form for each kind of record, and filled examples of a finding and a study |
 | `tools/` | `build.py` checks the records and builds `generated/`; `find.py` looks an address up; `new_finding.py` starts a finding with its facts read from the chain; `site_data.py` builds the site's data |
 | [`code/`](code/) | Decompiled code that findings link, for contracts without verified source |
-| [`AGENTS.md`](AGENTS.md) | The rules agents follow when they file or review findings |
+| [`AGENTS.md`](AGENTS.md) | The rules agents follow when they file or review findings (`CLAUDE.md` points here) |
 | `docs/` | The site |
 
 No study code lives here. A study links its code, at a full commit hash, in its header. A finding links the contract's
 code (verified on Etherscan or Sourcify, or decompiled in `code/`) and gives state as a contract, a block and, where
 there is one, a transaction, which anyone can read again from the chain.
+
+**Review in progress.** Findings in format 2 have been reviewed one contract at a time. Findings still in format 1,
+and the rows of `triage/eip-8151-*.md`, are the EIP-8151 study's bulk entries waiting for that review; `review/`
+holds the queue and the way to work it.
 
 ## Levels
 

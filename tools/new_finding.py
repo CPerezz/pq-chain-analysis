@@ -82,10 +82,13 @@ def rpc(method: str, params: list):
 
 
 def call(to: str, data: str, at: str) -> bytes | None:
-    """eth_call; None on revert (never raises for a revert, since 'no answer' is itself a fact)."""
+    """eth_call; None on revert (never raises for a revert, since 'no answer' is itself a fact). A node that could not
+    answer (a timeout, a pruned state, a gateway that did not reach it) raises: that is no fact about the contract."""
     try:
         return bytes.fromhex(rpc("eth_call", [{"to": to, "data": "0x" + data}, at])[2:])
-    except RuntimeError:
+    except RuntimeError as e:
+        if re.search(r"did not answer|timeout|timed out|missing trie node|header not found|state.*not available|rate limit|too many", str(e), re.I):
+            raise
         return None
 
 

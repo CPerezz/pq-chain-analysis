@@ -2,8 +2,8 @@
 
 New entries land here, never directly in `findings/`. A new entry is one contract and one root issue in format 2
 (`templates/finding.md`, field rules in `findings/README.md`), started with `tools/new_finding.py`. Agents follow
-[`AGENTS.md`](../AGENTS.md). The root-issue entries `eip-8151-*.md`, with one row per contract, are format 1: they
-are re-triaged into format 2 files and leave this folder.
+[`AGENTS.md`](../AGENTS.md). The root-issue entries `eip-8151-*.md`, with one row per contract, are format 1: the
+review (`review/README.md`) turns each row into a format-2 finding or removes it, and the row leaves this folder.
 
 Each row has its own `rating`; the entry's `severity` is only its highest row. A row's rating says how hard the fix
 is, never how much is at stake (D-024 and D-026 of the EIP-8151 study). A consequence that needs a key holder to move

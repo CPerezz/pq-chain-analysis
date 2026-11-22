@@ -1,67 +1,125 @@
 ---
 id: blackisbeautiful-9b0674fe-fixed-signer
-title: "BlackIsBeautiful: signer fixed in code"
+format: 2
+title: 'BlackIsBeautiful: its signer cannot be replaced and must not take real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x9b0674fe9c91414378a5dfafb3376775a65cdeba"
-  family: "46809be95a0ef237cf3ed22fd83dcfa7"
-  name: "BlackIsBeautiful"
-  upgradeable: "no"
-  rating: LOW
+severity: INFORMATIONAL
+justification: Breaks only if a signer's account takes real code; the signer is fixed, so a new contract is then
+  needed.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x9b0674fe9c91414378a5dfafb3376775a65cdeba'
+  name: BlackIsBeautiful
+  code: verified
+  code_url: https://etherscan.io/address/0x9b0674fe9c91414378a5dfafb3376775a65cdeba#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0xb2c7c59fb26932a673993a85d0fa66c6298f8f01'
+value:
+  usd: 0
+  basis: held
+activity:
   txs_90d: 20
-  last_active: 2026-11-12
-fix:
-  layer: onchain-config
-  who_acts: "owner"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Keep the signer's account free of real code, or deploy a replacement with a new signer first.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x9b0674fe9c91414378a5dfafb3376775a65cdeba'
+  file: BlackIsBeautiful.sol
+  line: 122
+  has: return recoverSigner(ethSignedMessageHash, signature) == ALLOWLIST_SIGNER;
+  says: isAllowlisted recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x9b0674fe9c91414378a5dfafb3376775a65cdeba'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x9b0674fe9c91414378a5dfafb3376775a65cdeba'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: written
+  source: '0x9b0674fe9c91414378a5dfafb3376775a65cdeba'
+  file: BlackIsBeautiful.sol
+  line: 58
+  has: address public constant ALLOWLIST_SIGNER = 0x8430e0B7be3315735C303b82E4471D59AC152Aa5;
+  says: the signer is written here, at deployment
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x9b0674fe9c91414378a5dfafb3376775a65cdeba'
+  fn: ALLOWLIST_SIGNER()(address)
+  is: '0x8430e0b7be3315735c303b82e4471d59ac152aa5'
+  says: A signer fixed at deployment is 0x8430e0b7be3315735c303b82e4471d59ac152aa5 at the block
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signer-code
+  code: '0x8430e0b7be3315735c303b82e4471d59ac152aa5'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-fixed-signer"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "A setting (Merkle mode) replaces the signed allowlist, and an owner airdrop covers ambassadors."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-BlackIsBeautiful: isAllowlisted compares ecrecover to the constant ALLOWLIST_SIGNER. It gates allowlistMintNFT only when signatureMode is on, and it always gates ambassadorMintNFT. The owner can switch the allowlist to its Merkle root (setSignatureMode/setMerkleRoot) and airdrop to ambassadors (airdropToAmbassador), so the same acts stay open.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code, every signed function stops. Users' funds behind it are stuck unless another path releases them; where only the operator's own money is at stake the operator withdraws and redeploys.
+BlackIsBeautiful checks an ECDSA signature in isAllowlisted and accepts only a signer fixed at deployment. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. The verified source has no function that replaces the signer.
 
 ## Evidence
 
-- How it was placed: TheEveryones isWhitelisted: WHITELIST_SIGNER, a constant / PayToUnlock recoverSigner: returns the recovered address. Rule: same text up to names.
-- Update path, read at block 26,438,999: no proxy slot, no upgrade function.
-- BlackIsBeautiful.sol:58: ALLOWLIST_SIGNER constant 0x8430e0B7…2Aa5, which has no code (cast code).
-- allowlistMintNFT uses a Merkle proof when signatureMode is false; signatureMode()=false today; setSignatureMode/setMerkleRoot are onlyOwner (source).
-- Balance 0 ETH; withdraw() is onlyOwner with no signature; owner 0xb2C7c59f… is an EOA.
+- [isAllowlisted](https://etherscan.io/address/0x9b0674fe9c91414378a5dfafb3376775a65cdeba#code) recovers the signature with ECDSA and accepts only a signer fixed at deployment; the code never asks that account.
+- The signer is written [at deployment](https://etherscan.io/address/0x9b0674fe9c91414378a5dfafb3376775a65cdeba#code); the verified source has no function that writes it afterwards.
+- The signer at the block is [0x8430…2aa5](https://etherscan.io/address/0x8430e0b7be3315735c303b82e4471d59ac152aa5), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens).
-- Activity: 20 transactions called it in the 90 days before that block; last on 2026-11-12.
+### Mechanism
 
-## Remediation
+isAllowlisted (BlackIsBeautiful.sol, line 119) recovers a signer on line 122 and tests it on line 122 against a signer fixed at deployment (ALLOWLIST_SIGNER() returns 0x8430e0b7be3315735c303b82e4471d59ac152aa5). Neither isValidSignature selector is in the code, so that account is never asked. ALLOWLIST_SIGNER is written on line 58 of BlackIsBeautiful.sol (at deployment); a search of every source file, libraries and constructors included, finds no other write, and the contract's own functions use no sstore and no delegatecall. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-The owner keeps Merkle mode (already on) and uses airdropToAmbassador for ambassadors.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). No signature recovery by this address is on record; 20 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 items 33 and 40): the same reasoning on every card of this kind; the source lines, the function that changes the signer or the line that fixes it, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-fixed-signer` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

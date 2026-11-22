@@ -1,68 +1,125 @@
 ---
 id: remarkablewomen-3e69baab-fixed-signer
-title: "RemarkableWomen: signer fixed in code"
+format: 2
+title: 'RemarkableWomen: its signer cannot be replaced and must not take real code'
 status: confirmed
-severity: MEDIUM
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x3e69baab7a742c83499661c5db92386b2424df11"
-  family: "e7167128e25d8a628d0ce1ca64569bb7"
-  name: "RemarkableWomen"
-  upgradeable: "no"
-  rating: MEDIUM
+severity: INFORMATIONAL
+justification: Breaks only if a signer's account takes real code; the signer is fixed, so a new contract is then
+  needed.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x3e69baab7a742c83499661c5db92386b2424df11'
+  name: RemarkableWomen
+  code: verified
+  code_url: https://etherscan.io/address/0x3e69baab7a742c83499661c5db92386b2424df11#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0xb2c7c59fb26932a673993a85d0fa66c6298f8f01'
+value:
+  usd: 0
+  basis: held
+activity:
   txs_90d: 36
-  last_active: 2026-11-12
-fix:
-  layer: new-deployment
-  who_acts: "owner"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Keep the signer's account free of real code, or deploy a replacement with a new signer first.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x3e69baab7a742c83499661c5db92386b2424df11'
+  file: contracts/RemarkableWomen.sol
+  line: 102
+  has: return recoverSigner(ethSignedMessageHash, signature) == WHITELIST_SIGNER;
+  says: isWhitelisted recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x3e69baab7a742c83499661c5db92386b2424df11'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x3e69baab7a742c83499661c5db92386b2424df11'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: written
+  source: '0x3e69baab7a742c83499661c5db92386b2424df11'
+  file: contracts/RemarkableWomen.sol
+  line: 50
+  has: address public constant WHITELIST_SIGNER = 0x333D70087c40b98bAC3C955AcB263213b63D9C1c;
+  says: the signer is written here, at deployment
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x3e69baab7a742c83499661c5db92386b2424df11'
+  fn: WHITELIST_SIGNER()(address)
+  is: '0x333d70087c40b98bac3c955acb263213b63d9c1c'
+  says: A signer fixed at deployment is 0x333d70087c40b98bac3c955acb263213b63d9c1c at the block
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signer-code
+  code: '0x333d70087c40b98bac3c955acb263213b63d9c1c'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-fixed-signer"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: MEDIUM
-  note: "No update path for the gate; a signed NFT mint that dies, with nothing locked, is MEDIUM. Public mint and gifting stand in only by dropping the whitelist gate."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-RemarkableWomen: whitelistMintNFT accepts only signatures by the constant WHITELIST_SIGNER. If that key's account takes real code, whitelist (and ambassador) mints die for good. No money is locked: the contract holds 0 ETH, and the owner withdraws by direct call.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code, every signed function stops. Users' funds behind it are stuck unless another path releases them; where only the operator's own money is at stake the operator withdraws and redeploys.
+RemarkableWomen checks an ECDSA signature in isWhitelisted and accepts only a signer fixed at deployment. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. The verified source has no function that replaces the signer.
 
 ## Evidence
 
-- How it was placed: TheEveryones isWhitelisted: WHITELIST_SIGNER, a constant / PayToUnlock recoverSigner: returns the recovered address. Read (function text).
-- Update path, read at block 26,438,999: no proxy slot, no upgrade function.
-- RemarkableWomen.sol:50: WHITELIST_SIGNER is a `constant` (0x333D7008…9C1c); isWhitelisted compares ecrecover to it; no setter (source).
-- Signer 0x333D7008…9C1c has no code at block 26438999; owner 0xb2C7c59f… is an EOA (cast code).
-- Contract balance 0 ETH; withdraw() is onlyOwner and needs no signature; public mintNFT() and owner giftNFT() need no signature (source).
-- salePaused()=true today; the owner can reopen it.
+- [isWhitelisted](https://etherscan.io/address/0x3e69baab7a742c83499661c5db92386b2424df11#code) recovers the signature with ECDSA and accepts only a signer fixed at deployment; the code never asks that account.
+- The signer is written [at deployment](https://etherscan.io/address/0x3e69baab7a742c83499661c5db92386b2424df11#code); the verified source has no function that writes it afterwards.
+- The signer at the block is [0x333d…9c1c](https://etherscan.io/address/0x333d70087c40b98bac3c955acb263213b63d9c1c), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens).
-- Activity: 36 transactions called it in the 90 days before that block; last on 2026-11-12.
+### Mechanism
 
-## Remediation
+isWhitelisted (contracts/RemarkableWomen.sol, line 99) recovers a signer on line 102 and tests it on line 102 against a signer fixed at deployment (WHITELIST_SIGNER() returns 0x333d70087c40b98bac3c955acb263213b63d9c1c). Neither isValidSignature selector is in the code, so that account is never asked. WHITELIST_SIGNER is written on line 50 of contracts/RemarkableWomen.sol (at deployment); a search of every source file, libraries and constructors included, finds no other write, and the contract's own functions use no sstore and no delegatecall. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Keep the whitelist key free of code; otherwise the owner opens the public sale or gifts NFTs to former whitelisters.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2022-03-21, recovering 0x333d…9c1c; 36 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 items 33 and 40): the same reasoning on every card of this kind; the source lines, the function that changes the signer or the line that fixes it, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-fixed-signer` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: MEDIUM. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

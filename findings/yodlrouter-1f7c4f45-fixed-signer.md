@@ -1,69 +1,124 @@
 ---
 id: yodlrouter-1f7c4f45-fixed-signer
-title: "YodlRouter: signer fixed in code"
+format: 2
+title: 'YodlRouter: its signer cannot be replaced and must not take real code'
 status: confirmed
-severity: MEDIUM
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x1f7c4f45c8a398381616c74269f9fb8060e3ddc9"
-  family: "f2fa03bc01defeded04ae77f20c2f67d"
-  name: "YodlRouter"
-  upgradeable: "no"
-  rating: MEDIUM
-  value_usd: 83
-  value_basis: held
-  value_as_of: 2026-11-18
+severity: INFORMATIONAL
+justification: Breaks only if a signer's account takes real code; the signer is fixed, so a new contract is then
+  needed.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x1f7c4f45c8a398381616c74269f9fb8060e3ddc9'
+  name: YodlRouter
+  code: verified
+  code_url: https://etherscan.io/address/0x1f7c4f45c8a398381616c74269f9fb8060e3ddc9#code
+  copies: 1
+  upgradeable: 'no'
+value:
+  usd: 83
+  basis: held
+activity:
   txs_90d: 0
-fix:
-  layer: none
-  who_acts: "none"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Keep the signer's account free of real code, or deploy a replacement with a new signer first.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x1f7c4f45c8a398381616c74269f9fb8060e3ddc9'
+  file: src/AbstractYodlRouter.sol
+  line: 261
+  has: return ECDSA.recover(ethSignedMessageHash, priceFeed.signature) == RATE_VERIFIER;
+  says: verifyRateSignature recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x1f7c4f45c8a398381616c74269f9fb8060e3ddc9'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x1f7c4f45c8a398381616c74269f9fb8060e3ddc9'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: written
+  source: '0x1f7c4f45c8a398381616c74269f9fb8060e3ddc9'
+  file: src/AbstractYodlRouter.sol
+  line: 18
+  has: address public constant RATE_VERIFIER = 0xc71f6e1e4665d319610afA526BE529202cA13bB7;
+  says: the signer is written here, at deployment
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x1f7c4f45c8a398381616c74269f9fb8060e3ddc9'
+  fn: RATE_VERIFIER()(address)
+  is: '0xc71f6e1e4665d319610afa526be529202ca13bb7'
+  says: A signer fixed at deployment is 0xc71f6e1e4665d319610afa526be529202ca13bb7 at the block
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signer-code
+  code: '0xc71f6e1e4665d319610afa526be529202ca13bb7'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-fixed-signer"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: MEDIUM
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: MEDIUM
-  note: "The signed-rate conversion has no substitute, but nothing is locked, so MEDIUM. One could argue LOW, since payment itself stays open without a feed."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-RATE_VERIFIER is a constant, and verifyRateSignature compares ECDSA.recover to it. Once it has code, payments priced by an EXTERNAL_FEED rate revert. Chainlink-feed and no-feed payments continue, and the router holds only fees, which anyone can sweep to the treasury.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code, every signed function stops. Users' funds behind it are stuck unless another path releases them; where only the operator's own money is at stake the operator withdraws and redeploys.
+YodlRouter checks an ECDSA signature in verifyRateSignature and accepts only a signer fixed at deployment. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. The verified source has no function that replaces the signer.
 
 ## Evidence
 
-- How it was placed: YodlRouter: payments priced by a rate signed by RATE_VERIFIER, fixed in the code; the router holds no deposits, so only rate-signed payments stop (MEDIUM). Read.
-- Update path, read at block 26,438,999: no proxy slot, no upgrade function.
-- AbstractYodlRouter.sol: `address public constant RATE_VERIFIER = 0xc71f…3bB7`, which has no code; it is checked only in exchangeRate when feedType == EXTERNAL_FEED.
-- sweep(token) has no access control and sends the router's balance to yodlFeeTreasury.
-- No proxy and no setter for RATE_VERIFIER.
+- [verifyRateSignature](https://etherscan.io/address/0x1f7c4f45c8a398381616c74269f9fb8060e3ddc9#code) recovers the signature with ECDSA and accepts only a signer fixed at deployment; the code never asks that account.
+- The signer is written [at deployment](https://etherscan.io/address/0x1f7c4f45c8a398381616c74269f9fb8060e3ddc9#code); the verified source has no function that writes it afterwards.
+- The signer at the block is [0xc71f…3bb7](https://etherscan.io/address/0xc71f6e1e4665d319610afa526be529202ca13bb7), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $83 (ETH and 49 priced tokens).
-- Activity: 0 transactions called it in the 90 days before that block.
+### Mechanism
 
-## Remediation
+verifyRateSignature (src/AbstractYodlRouter.sol, line 253) recovers a signer on line 261 and tests it on line 261 against a signer fixed at deployment (RATE_VERIFIER() returns 0xc71f6e1e4665d319610afa526be529202ca13bb7). Neither isValidSignature selector is in the code, so that account is never asked. RATE_VERIFIER is written on line 18 of src/AbstractYodlRouter.sol (at deployment); a search of every source file, libraries and constructors included, finds no other write, and the contract's own functions use no sstore and no delegatecall. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Deploy a new router with a new verifier; meanwhile pay through Chainlink or without a feed.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). No signature recovery by this address is on record; 0 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 items 33 and 40): the same reasoning on every card of this kind; the source lines, the function that changes the signer or the line that fixes it, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-fixed-signer` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: MEDIUM. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

@@ -1,69 +1,130 @@
 ---
 id: nhifeed-014dabf6-fixed-signer
-title: "NhiFeed: signer fixed in code"
+format: 2
+title: 'NhiFeed: its signer cannot be replaced and must not take real code'
 status: confirmed
-severity: MEDIUM
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x014dabf6f940c9c383d9ef48636f70d842f65d7a"
-  family: "85bd66059e9383b115a2e577baf117fa"
-  name: "NhiFeed"
-  upgradeable: "no"
-  rating: MEDIUM
+severity: INFORMATIONAL
+justification: Breaks only if a signer's account takes real code; the signer is fixed, so a new contract is then
+  needed.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x014dabf6f940c9c383d9ef48636f70d842f65d7a'
+  name: NhiFeed
+  code: verified
+  code_url: https://etherscan.io/address/0x014dabf6f940c9c383d9ef48636f70d842f65d7a#code
+  copies: 1
+  upgradeable: 'no'
+value:
+  usd: 0
+  basis: held
+activity:
   txs_90d: 591
-  last_active: 2026-11-17
-  recoveries_14d: 18
-fix:
-  layer: new-deployment
-  who_acts: "the feed's operator deploys a new feed; consumers switch to it"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Keep the signer's account free of real code, or deploy a replacement with a new signer first.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x014dabf6f940c9c383d9ef48636f70d842f65d7a'
+  file: src/SwarmFeed.sol
+  line: 273
+  has: if (_recover(digest, sig) != attester) revert InvalidSignature();
+  says: submitAttestation recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x014dabf6f940c9c383d9ef48636f70d842f65d7a'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x014dabf6f940c9c383d9ef48636f70d842f65d7a'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: written
+  source: '0x014dabf6f940c9c383d9ef48636f70d842f65d7a'
+  file: src/SwarmFeed.sol
+  line: 225
+  has: attester = attester_;
+  says: the signer is written here, at deployment
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x014dabf6f940c9c383d9ef48636f70d842f65d7a'
+  fn: attester()(address)
+  is: '0x5598aa9146215bc13eb26f2c692ad1461fd32982'
+  says: A signer fixed at deployment is 0x5598aa9146215bc13eb26f2c692ad1461fd32982 at the block
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signer-code
+  code: '0x5598aa9146215bc13eb26f2c692ad1461fd32982'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signed-tx
+  tx: '0x00879ba7ea7b53a9ea33b2396a50592004032d48ec4f5ed38ef32c4fa074a5c4'
+  ok: true
+  says: a transaction in which this contract recovered a signature
+  for:
+  - evidence-3
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-fixed-signer"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: MEDIUM
-  note: "A price feed whose only updater is a fixed key with no setter: once that key has code the feed stops for good, and the feed itself holds nothing, so only a function stops: MEDIUM. Whether its consumers can switch feeds, or lock funds on a stale price, was not traced and belongs to the consumer."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-SwarmFeed NhiFeed, the same SwarmFeed.sol: only the immutable attester 0x5598aa91… (no code) can update it.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code, every signed function stops. Users' funds behind it are stuck unless another path releases them; where only the operator's own money is at stake the operator withdraws and redeploys.
+NhiFeed accepts a call to submitAttestation only with an ECDSA signature of a signer fixed at deployment. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. The verified source has no function that replaces the signer.
 
 ## Evidence
 
-- How it was placed: SwarmFeed: the attestation must be signed by `attester`, fixed in the code / SwarmFeed._recover: returns the signer. Read from source. Executed: a real transaction loses its effect with code at the signer.
-- Update path, read at block 26,438,999: no proxy slot, no upgrade function.
-- SwarmFeed.sol is identical to the 0x070e… dossier (diff); attester() = 0x5598…, which has no code
-- isStale() = false at block 26438999 (1-day lifetime)
-- feed holds 0 ETH
+- [submitAttestation](https://etherscan.io/address/0x014dabf6f940c9c383d9ef48636f70d842f65d7a#code) recovers the signature with ECDSA and accepts only a signer fixed at deployment; the code never asks that account.
+- The signer is written [at deployment](https://etherscan.io/address/0x014dabf6f940c9c383d9ef48636f70d842f65d7a#code); the verified source has no function that writes it afterwards.
+- The signer at the block is [0x5598…2982](https://etherscan.io/address/0x5598aa9146215bc13eb26f2c692ad1461fd32982), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens).
-- Activity: 591 transactions called it in the 90 days before that block; last on 2026-11-17.
-- 18 signature recoveries in the study's two-week trace window.
+### Mechanism
 
-## Remediation
+submitAttestation (src/SwarmFeed.sol, line 262) recovers a signer on line 273 and tests it on line 273 against a signer fixed at deployment (attester() returns 0x5598aa9146215bc13eb26f2c692ad1461fd32982). Neither isValidSignature selector is in the code, so that account is never asked. attester is written on line 225 of src/SwarmFeed.sol (at deployment); a search of every source file, libraries and constructors included, finds no other write, and the contract's own functions use no sstore and no delegatecall. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Redeploy the feeds and vault with a new attester.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2026-11-17, recovering 0x5598…2982; 591 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 items 33 and 40): the same reasoning on every card of this kind; the source lines, the function that changes the signer or the line that fixes it, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-fixed-signer` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: MEDIUM. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

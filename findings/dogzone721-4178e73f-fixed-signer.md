@@ -1,70 +1,105 @@
 ---
 id: dogzone721-4178e73f-fixed-signer
-title: "DogZone721: signer fixed in code"
+format: 2
+title: 'DogZone721: its signer cannot be replaced and must not take real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x4178e73f2f942b814ca454a77706429f53dfae10"
-  family: "d4de1d4c15c279b893ebf91a46f663fa"
-  name: "DogZone721"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 2
-  value_basis: held
-  value_as_of: 2026-11-18
+severity: INFORMATIONAL
+justification: Breaks only if a signer's account takes real code; the signer is fixed, so a new contract is then
+  needed.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x4178e73f2f942b814ca454a77706429f53dfae10'
+  name: DogZone721
+  code: verified
+  code_url: https://etherscan.io/address/0x4178e73f2f942b814ca454a77706429f53dfae10#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0xfb38b903bca8426f65a600aa239fdcccf9a3c911'
+value:
+  usd: 2
+  basis: held
+activity:
   txs_90d: 0
-fix:
-  layer: onchain-config
-  who_acts: "contract owner 0xfb38b903bca8426f65a600aa239fdcccf9a3c911"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Keep the signer's account free of real code, or deploy a replacement with a new signer first.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x4178e73f2f942b814ca454a77706429f53dfae10'
+  file: DogZone721.sol
+  line: 1908
+  has: recoverSigner(hash, signature) == signer && !usedSignatures[signature],
+  says: freeMint recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x4178e73f2f942b814ca454a77706429f53dfae10'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x4178e73f2f942b814ca454a77706429f53dfae10'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: written
+  source: '0x4178e73f2f942b814ca454a77706429f53dfae10'
+  file: DogZone721.sol
+  line: 1720
+  has: address private immutable signer = 0x304cE1e59421aCBc6adA104ba1b5F07f2f4676Cb;
+  says: the signer is written here, at deployment
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-fixed-signer"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "LOW: the same act (a free token to the recipient) stays open through the owner setting price 0 / teamMint; nothing locked. Study said HIGH."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-DogZone721 NFT: freeMint(hash,sig) accepts giveaway signatures only from an immutable signer 0x304cE1e5…76Cb; after EIP-8151 only if that key gets real code, which would end the 25-spot giveaway.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code, every signed function stops. Users' funds behind it are stuck unless another path releases them; where only the operator's own money is at stake the operator withdraws and redeploys.
+DogZone721 accepts a call to freeMint only with an ECDSA signature of a signer fixed at deployment. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. The verified source has no function that replaces the signer.
 
 ## Evidence
 
-- How it was placed: DogZone721 free mint: signed by `signer`, set at construction, no setter in the source. Read by hand.
-- Update path, read at block 26,438,999: no proxy slot, no upgrade function.
-- verified source DogZone721.sol: freeMint requires recoverSigner(hash,sig)==signer; signer is `address private immutable` 0x304ce1e59421acbc6ada104ba1b5f07f2f4676cb, no setter
-- signer 0x304c…76cb: cast code = 0x (EOA) at block 26438999
-- other paths to the same token: public mint(uint256) priced by onlyOwner adjustMintPrice (can be set to 0), onlyOwner teamMint(receiver)
-- ETH leaves via onlyOwner disbursePayments; balance at block 26438999: 0.00099997 ETH; txs_90d=0, last_active=None, value $2
+- [freeMint](https://etherscan.io/address/0x4178e73f2f942b814ca454a77706429f53dfae10#code) recovers the signature with ECDSA and accepts only a signer fixed at deployment; the code never asks that account.
+- The signer is written [at deployment](https://etherscan.io/address/0x4178e73f2f942b814ca454a77706429f53dfae10#code); the verified source has no function that writes it afterwards.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $2 (ETH and 49 priced tokens).
-- Activity: 0 transactions called it in the 90 days before that block.
+### Mechanism
 
-## Remediation
+freeMint (DogZone721.sol, line 1900) recovers a signer on line 1908 and tests it on line 1908 against a signer fixed at deployment. Neither isValidSignature selector is in the code, so that account is never asked. signer is written on line 1720 of DogZone721.sol (at deployment); a search of every source file, libraries and constructors included, finds no other write, and the contract's own functions use no sstore and no delegatecall. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Owner sets mint price to 0 or uses teamMint to give the giveaway tokens; keep the signer key an EOA.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). No signature recovery by this address is on record; 0 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 items 33 and 40): the same reasoning on every card of this kind; the source lines, the function that changes the signer or the line that fixes it, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-fixed-signer` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

@@ -1,7 +1,7 @@
 ---
 id: mangrovestrategytrading-6f2b8d95-rotate-signer-before-migrating
 format: 2
-title: 'MangroveStrategyTrading: replace the signer before its account moves to real cod'
+title: 'MangroveStrategyTrading: replace the signer before it takes real code'
 status: confirmed
 severity: INFORMATIONAL
 justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.

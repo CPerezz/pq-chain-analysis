@@ -1,68 +1,142 @@
 ---
 id: utbfeemanager-183e9b24-rotate-signer-before-migrating
-title: "UTBFeeManager: signer key to rotate before its account takes code"
+format: 2
+title: 'UTBFeeManager: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x183e9b247521fe2149516c98ce2dd0e2367bb6fa"
-  family: "a905692ed5a154bab376f6e74d877334"
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x183e9b247521fe2149516c98ce2dd0e2367bb6fa'
+  name: UTBFeeManager
+  code: verified
+  code_url: https://etherscan.io/address/0x183e9b247521fe2149516c98ce2dd0e2367bb6fa#code
   copies: 2
-  name: "UTBFeeManager"
-  upgradeable: "no"
-  rating: LOW
+  family: a905692ed5a154bab376f6e74d877334
+  upgradeable: 'no'
+  admin: '0x690f4e2f19717a06e1c146b2dce68c2d23e36f4c'
+value:
+  usd: 0
+  basis: held
+activity:
   txs_90d: 95882
-  last_active: 2026-11-18
-  recoveries_14d: 16756
-fix:
-  layer: onchain-config
-  who_acts: "admin/owner EOA 0x690f…6f4c"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Replace the signer with setSigner before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x183e9b247521fe2149516c98ce2dd0e2367bb6fa'
+  file: src/UTBFeeManager.sol
+  line: 30
+  has: address recovered = ecrecover(constructedHash, v, r, s);
+  says: verifySignature recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x183e9b247521fe2149516c98ce2dd0e2367bb6fa'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x183e9b247521fe2149516c98ce2dd0e2367bb6fa'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: match
+  source: '0x183e9b247521fe2149516c98ce2dd0e2367bb6fa'
+  file: src/UTBFeeManager.sol
+  line: 31
+  has: if (recovered == address(0)) revert ZeroSig();
+  says: the recovered address must be the signer it keeps in storage
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: setter
+  source: '0x183e9b247521fe2149516c98ce2dd0e2367bb6fa'
+  file: src/UTBFeeManager.sol
+  line: 16
+  has: function setSigner
+  says: setSigner changes the signer
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x183e9b247521fe2149516c98ce2dd0e2367bb6fa'
+  fn: signer()(address)
+  is: '0xf5a5e415061470a8b9137959180901aea72450a4'
+  says: The signer it keeps in storage is 0xf5a5e415061470a8b9137959180901aea72450a4 at the block
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signer-code
+  code: '0xf5a5e415061470a8b9137959180901aea72450a4'
+  is: delegation
+  target: '0x8a67b5020ee254ef48e3b6a04927f39baf7e408a'
+  says: 'the signer''s account holds an EIP-7702 delegation: an ECDSA key still controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signed-tx
+  tx: '0x383655e54a30d1a63d50b6927bad13464b9c1be789db3ffd7f207cb1db90724e'
+  ok: true
+  says: a transaction in which this contract recovered a signature
+  for:
+  - evidence-3
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "setter callable by a live EOA."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-UTB fee manager: fee quotes must be signed by the stored signer; a signer with code fails.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+UTBFeeManager checks an ECDSA signature in verifySignature and accepts only the signer it keeps in storage. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. setSigner changes the signer.
 
 ## Evidence
 
-- How it was placed: the recovered address must be the stored signer, or be in a stored set or role of signers. Read from source. Executed: a real transaction reverts with code at the signer.
-- UTBFeeManager.sol:16 setSigner(address) onlyAdmin; eth_call at block 26438999 from the owner succeeds, from 0x…dEaD reverts
-- owner() = 0x690f4e2f… EOA, nonce 1067
+- [verifySignature](https://etherscan.io/address/0x183e9b247521fe2149516c98ce2dd0e2367bb6fa#code) recovers the signature with ECDSA and accepts only the signer it keeps in storage; the code never asks that account.
+- [setSigner](https://etherscan.io/address/0x183e9b247521fe2149516c98ce2dd0e2367bb6fa#code) changes the signer; only a role holder can call it.
+- The signer at the block is [0xf5a5…50a4](https://etherscan.io/address/0xf5a5e415061470a8b9137959180901aea72450a4), an account with an EIP-7702 delegation, which keeps working.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens, over 2 addresses).
-- Activity: 95,882 transactions called it in the 90 days before that block; last on 2026-11-18.
-- 16,756 signature recoveries in the study's two-week trace window.
+### Mechanism
 
-## Remediation
+verifySignature (src/UTBFeeManager.sol, line 22) recovers a signer on line 30 and tests it on line 31 against the signer it keeps in storage (signer() returns 0xf5a5e415061470a8b9137959180901aea72450a4). Neither isValidSignature selector is in the code, so that account is never asked. setSigner (src/UTBFeeManager.sol, line 16) writes it. The signer's account holds an EIP-7702 delegation to 0x8a67b5020ee254ef48e3b6a04927f39baf7e408a. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Rotate the key with the setter before the signer's account takes non-delegation code.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 2 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2026-11-18, recovering 0xf5a5…50a4; 95,882 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 items 33 and 40): the same reasoning on every card of this kind; the source lines, the function that changes the signer or the line that fixes it, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

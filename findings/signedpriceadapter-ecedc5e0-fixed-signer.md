@@ -1,71 +1,141 @@
 ---
 id: signedpriceadapter-ecedc5e0-fixed-signer
-title: "SignedPriceAdapter: signer fixed in code"
+format: 2
+title: 'SignedPriceAdapter: its signer cannot be replaced and must not take real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0xecedc5e05f9bff567f7ad976bd0b35c5be6d348c"
-  family: "5317f1d06e22de0f1c9f575cd66b87fe"
+severity: INFORMATIONAL
+justification: Breaks only if a signer's account takes real code; the signer is fixed, so a new contract is then
+  needed.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xecedc5e05f9bff567f7ad976bd0b35c5be6d348c'
+  name: SignedPriceAdapter
+  code: verified
+  code_url: https://etherscan.io/address/0xecedc5e05f9bff567f7ad976bd0b35c5be6d348c#code
   copies: 90
-  name: "SignedPriceAdapter"
-  upgradeable: "no"
-  rating: LOW
-  txs_90d: 1196
-  last_active: 2026-11-18
-  recoveries_14d: 408
-fix:
-  layer: onchain-config
-  who_acts: "consumer hub's Safe (e.g. 0x51bd2a8ddb426e368aa6fc76a6b1c3b3ea57f8c0, 2-of-n Gnosis Safe)"
-evidence:
-  level: source-read
-  block: 26438999
+  family: 5317f1d06e22de0f1c9f575cd66b87fe
+  upgradeable: 'no'
+value:
+  usd: 0
+  basis: held
+activity:
+  txs_90d: 286
+impact: liveness
+action: Keep the signer's account free of real code, or deploy a replacement with a new signer first.
+evidence_level: source
+checks:
+- id: recover
+  source: '0xecedc5e05f9bff567f7ad976bd0b35c5be6d348c'
+  file: src/adapters/SignedPriceAdapter.sol
+  line: 76
+  has: address recovered = ecrecover(digest, v, r, s);
+  says: post recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0xecedc5e05f9bff567f7ad976bd0b35c5be6d348c'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0xecedc5e05f9bff567f7ad976bd0b35c5be6d348c'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: match
+  source: '0xecedc5e05f9bff567f7ad976bd0b35c5be6d348c'
+  file: src/adapters/SignedPriceAdapter.sol
+  line: 77
+  has: if (recovered == address(0) || recovered != signer) revert BadSignature();
+  says: the recovered address must be a signer fixed at deployment
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: written
+  source: '0xecedc5e05f9bff567f7ad976bd0b35c5be6d348c'
+  file: src/adapters/SignedPriceAdapter.sol
+  line: 42
+  has: signer = _signer;
+  says: the signer is written here, at deployment
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0xecedc5e05f9bff567f7ad976bd0b35c5be6d348c'
+  fn: signer()(address)
+  is: '0x2f30f7911f5d53c6284e380f3df8fd40b1cca35f'
+  says: A signer fixed at deployment is 0x2f30f7911f5d53c6284e380f3df8fd40b1cca35f at the block
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signer-code
+  code: '0x2f30f7911f5d53c6284e380f3df8fd40b1cca35f'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signed-tx
+  tx: '0xc61e01cd60fddaf8bb6fa266cdde156afc0cff6f23c9bff1d06d1c73dc5f42fc'
+  ok: true
+  says: a transaction in which this contract recovered a signature
+  for:
+  - evidence-3
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-fixed-signer"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "The consumer can swap the source by a setting, so LOW. Only one of the 90 copies' consumers was checked."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-SignedPriceAdapter accepts price reports only from its immutable bot signer, so the adapter is dead once that key has code. Each asset has several signed slots, and the consuming hub's Safe can queue a replacement source.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code, every signed function stops. Users' funds behind it are stuck unless another path releases them; where only the operator's own money is at stake the operator withdraws and redeploys.
+SignedPriceAdapter accepts a call to post only with an ECDSA signature of a signer fixed at deployment. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. The verified source has no function that replaces the signer.
 
 ## Evidence
 
-- How it was placed: SignedPriceAdapter: the signer must be `signer`, fixed in the code. Read from source. Executed: a real transaction reverts with code at the signer.
-- Update path, read at block 26,438,999: no proxy slot, no upgrade function.
-- source: `address public immutable signer`, no setter; signer() = 0x2f30f791…, which has no code
-- the traced consumer hub 0xdca18f3e… has a Safe-gated f83b6f34(asset, slot, adapter) source replacement executed after a delay (8ff098f1); safe() = 0x51bd2a8d…, a Gnosis Safe with threshold 2
-- the same asset has a second signed slot with a different signer (0x46f9ca9e…, signer 0x5ceb2898…)
-- adapter holds no funds
+- [post](https://etherscan.io/address/0xecedc5e05f9bff567f7ad976bd0b35c5be6d348c#code) recovers the signature with ECDSA and accepts only a signer fixed at deployment; the code never asks that account.
+- The signer is written [at deployment](https://etherscan.io/address/0xecedc5e05f9bff567f7ad976bd0b35c5be6d348c#code); the verified source has no function that writes it afterwards.
+- The signer at the block is [0x2f30…a35f](https://etherscan.io/address/0x2f30f7911f5d53c6284e380f3df8fd40b1cca35f), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens, over 90 addresses).
-- Activity: 1,196 transactions called it in the 90 days before that block; last on 2026-11-18.
-- 408 signature recoveries in the study's two-week trace window.
+### Mechanism
 
-## Remediation
+post (src/adapters/SignedPriceAdapter.sol, line 61) recovers a signer on line 76 and tests it on line 77 against a signer fixed at deployment (signer() returns 0x2f30f7911f5d53c6284e380f3df8fd40b1cca35f). Neither isValidSignature selector is in the code, so that account is never asked. signer is written on line 42 of src/adapters/SignedPriceAdapter.sol (at deployment); a search of every source file, libraries and constructors included, finds no other write, and the contract's own functions use no sstore and no delegatecall. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-The hub Safe replaces the adapter with one that has a fresh signer.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 90 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2026-11-18, recovering 0x2f30…a35f; 286 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 items 33 and 40): the same reasoning on every card of this kind; the source lines, the function that changes the signer or the line that fixes it, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-fixed-signer` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

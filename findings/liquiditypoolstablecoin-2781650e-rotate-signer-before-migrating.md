@@ -1,7 +1,7 @@
 ---
 id: liquiditypoolstablecoin-2781650e-rotate-signer-before-migrating
 format: 2
-title: 'LiquidityPoolStablecoin: replace the signer before its account moves to real cod'
+title: 'LiquidityPoolStablecoin: replace the signer before it takes real code'
 status: confirmed
 severity: INFORMATIONAL
 justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
