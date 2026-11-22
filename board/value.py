@@ -6,17 +6,17 @@ Runs on the board's server with a venv (python3 -m venv .venv && .venv/bin/pip i
 step resumes where it stopped. It reads and writes BOARD_DATA (default: data/ beside this file) and works under
 vdata/ beside it:
 
-  .venv/bin/python value.py universe       addresses to value: every address of the flagged code families
-                                           (vdata/flagged_addresses.parquet and flagged_codes.parquet, from the
-                                           eip-8151-scan's data/join) and every card's address in data/registry.db
+  .venv/bin/python value.py universe       addresses to value: every address of the flagged code families and every
+                                           card's address in data/registry.db
   .venv/bin/python value.py discover       the tokens each one ever received: Xatu's erc20 transfers, every partition
   .venv/bin/python value.py prices         prices of the tokens CoinGecko lists on Ethereum: DefiLlama, confidence >= 0.9
   .venv/bin/python value.py balances       ETH and token balances at the chain head: eth_call through Multicall3
   .venv/bin/python value.py publish        data/values.db: value per address and per code family, and the blocks
 
-publish also copies vdata/deployers.csv when it is there (address, deployer, factory, block_number: who sent the
-creating transaction of each card's address, and the contract that created it), cut from the eip-8151-scan's
-data/creations on the node. ingest.py then shows both on every card.
+Two inputs come from the EIP-8151 study's scan, which is not in this repository: vdata/flagged_addresses.parquet and
+flagged_codes.parquet (every address of the code families it flagged), and, when it is there, vdata/deployers.csv
+(address, deployer, factory, block_number: who sent each address's creating transaction, and the contract that
+created it), which publish copies and ingest.py shows on every card.
 
 Not counted, as on an explorer: NFTs, positions in pools and vaults, and tokens without a reliable price. A token
 that reached an address without a Transfer event is missed, except WETH (deposits emit none), asked of every address.

@@ -33,7 +33,7 @@ flowchart LR
 
 ## Why the database is not in git
 
-`registry.db` is a build product: about 50 MB for the 5,958 cards of November 2026, more as review files the rest.
+`registry.db` is a build product, tens of megabytes and growing as review files the rest of the cards.
 Committed, every change of a card would add a new binary copy to the history, and two branches could never be merged.
 Built from the commit, it is never out of date and never conflicts. `outreach.db` is written by the page, by several
 people at once, many times a minute; it lives only on the server and is backed up there.
