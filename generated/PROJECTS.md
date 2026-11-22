@@ -225,7 +225,6 @@ A tag from a block explorer is a lead for outreach, never a name: it can be wron
 | Joyso | 1 | MEDIUM | $150k | [joyso-04f06280-signed-shortcut-lost](../findings/joyso-04f06280-signed-shortcut-lost.md) |
 | Fortunity | 2 | MEDIUM | $83k | [bonusroll-46403e94-fixed-gas-recovery](../findings/bonusroll-46403e94-fixed-gas-recovery.md), [bonusroll-46403e94-fixed-signer](../findings/bonusroll-46403e94-fixed-signer.md) |
 | The OpenDAO | 1 | MEDIUM | $25k | [opendao-3b484b82-fixed-signer](../findings/opendao-3b484b82-fixed-signer.md) |
-| 1inch | 10 | MEDIUM | $23k | [156cca58-signer-upgrade-only](../findings/156cca58-signer-upgrade-only.md), [7246999f-signer-upgrade-only](../findings/7246999f-signer-upgrade-only.md), [ad3b67bc-signer-upgrade-only](../findings/ad3b67bc-signer-upgrade-only.md), [cb13e91f-signer-upgrade-only](../findings/cb13e91f-signer-upgrade-only.md), [contract-84d99aa5-fixed-signer](../findings/contract-84d99aa5-fixed-signer.md), [deversifi-11111111-signed-shortcut-lost](../findings/deversifi-11111111-signed-shortcut-lost.md), [e0e294ba-signer-upgrade-only](../findings/e0e294ba-signer-upgrade-only.md), [leftoverexchanger-b01f8f52-signer-upgrade-only](../findings/leftoverexchanger-b01f8f52-signer-upgrade-only.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | JurasickPets | 1 | MEDIUM | $18k | [jurasickpets-f061a900-rotate-signer-before-migrating](../findings/jurasickpets-f061a900-rotate-signer-before-migrating.md) |
 | EtherMium | 1 | MEDIUM | $11k | [exchange-a5cc679a-signed-shortcut-lost](../findings/exchange-a5cc679a-signed-shortcut-lost.md) |
 | Switcheo Exchange | 1 | MEDIUM | $10k | [broker-ba3ed686-signed-shortcut-lost](../findings/broker-ba3ed686-signed-shortcut-lost.md) |
@@ -233,6 +232,7 @@ A tag from a block explorer is a lead for outreach, never a name: it can be wron
 | DeBox Guardians Eagle | 1 | MEDIUM | $7k | [3459608d-fixed-signer](../findings/3459608d-fixed-signer.md) |
 | Harpie | 1 | MEDIUM | $6k | [vault-9cde019f-fixed-signer](../findings/vault-9cde019f-fixed-signer.md) |
 | Remilio | 1 | MEDIUM | $5k | [remilia-d3d9ddd0-rotate-signer-before-migrating](../findings/remilia-d3d9ddd0-rotate-signer-before-migrating.md) |
+| 1inch | 9 | MEDIUM | $5k | [156cca58-signer-upgrade-only](../findings/156cca58-signer-upgrade-only.md), [7246999f-signer-upgrade-only](../findings/7246999f-signer-upgrade-only.md), [ad3b67bc-signer-upgrade-only](../findings/ad3b67bc-signer-upgrade-only.md), [cb13e91f-signer-upgrade-only](../findings/cb13e91f-signer-upgrade-only.md), [contract-84d99aa5-fixed-signer](../findings/contract-84d99aa5-fixed-signer.md), [e0e294ba-signer-upgrade-only](../findings/e0e294ba-signer-upgrade-only.md), [leftoverexchanger-b01f8f52-signer-upgrade-only](../findings/leftoverexchanger-b01f8f52-signer-upgrade-only.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | Saito | 1 | MEDIUM | $5k | [saitotoken-fa14fa69-fixed-signer](../findings/saitotoken-fa14fa69-fixed-signer.md) |
 | Apex | 2 | MEDIUM | $4k | [multisigpool-379c1515-fixed-signer](../findings/multisigpool-379c1515-fixed-signer.md), [multisigpool-e95b3dc7-wallets-fixed-signers](../findings/multisigpool-e95b3dc7-wallets-fixed-signers.md) |
 | Asia Crypto Girls | 1 | MEDIUM | $3k | [naffitilaunchpadsign721-0f282e67-fixed-signer](../findings/naffitilaunchpadsign721-0f282e67-fixed-signer.md) |
@@ -277,32 +277,26 @@ A tag from a block explorer is a lead for outreach, never a name: it can be wron
 | Zapper | 1 | MEDIUM |  | [eip-8151-fixed-signer](../triage/eip-8151-fixed-signer.md) |
 | wooonen | 2 | MEDIUM |  | [eb4fe1b6-fixed-signer](../findings/eb4fe1b6-fixed-signer.md), [ec7972f5-fixed-signer](../findings/ec7972f5-fixed-signer.md) |
 | Bitget Wallet | 6 | LOW | $125.9M | [0b186669-rotate-signer-before-migrating](../findings/0b186669-rotate-signer-before-migrating.md), [696ada22-rotate-signer-before-migrating](../findings/696ada22-rotate-signer-before-migrating.md), [86689f69-7702-own-key-only](../findings/86689f69-7702-own-key-only.md), [b122017e-7702-own-key-only](../findings/b122017e-7702-own-key-only.md), [b122017e-sender-gas-limits](../findings/b122017e-sender-gas-limits.md), [contract-37f21ab5-7702-own-key-only](../findings/contract-37f21ab5-7702-own-key-only.md) |
-| Pendle | 35 | LOW | $102.8M | [pendle-80850712-signed-shortcut-lost](../findings/pendle-80850712-signed-shortcut-lost.md), [pendleaavemarket-0195d2a5-signed-shortcut-lost](../findings/pendleaavemarket-0195d2a5-signed-shortcut-lost.md), [pendleerc20withadaptersy-2b8a81d9-signed-shortcut-lost](../findings/pendleerc20withadaptersy-2b8a81d9-signed-shortcut-lost.md), [pendleerc20withsupplycapsy-ca4fe886-signed-shortcut-lost](../findings/pendleerc20withsupplycapsy-ca4fe886-signed-shortcut-lost.md), [pendleerc4626noredeemnodepositup-6240c66e-signed-shortcut-lost](../findings/pendleerc4626noredeemnodepositup-6240c66e-signed-shortcut-lost.md), [pendleerc4626noredeemwithadapter-4e73dfca-signed-shortcut-lost](../findings/pendleerc4626noredeemwithadapter-4e73dfca-signed-shortcut-lost.md), [pendleerc4626noredeemwithadapter-b9cdea29-signed-shortcut-lost](../findings/pendleerc4626noredeemwithadapter-b9cdea29-signed-shortcut-lost.md), [pendleerc4626notredeemabletoasse-d3f2cc98-signed-shortcut-lost](../findings/pendleerc4626notredeemabletoasse-d3f2cc98-signed-shortcut-lost.md), [pendleerc4626sy-90f1935f-signed-shortcut-lost](../findings/pendleerc4626sy-90f1935f-signed-shortcut-lost.md), [pendleerc4626upgsyv2-7e21fd2b-signed-shortcut-lost](../findings/pendleerc4626upgsyv2-7e21fd2b-signed-shortcut-lost.md), [pendleerc4626withadaptersy-10f12496-signed-shortcut-lost](../findings/pendleerc4626withadaptersy-10f12496-signed-shortcut-lost.md), [pendleerc4626withadaptersy-122b0b5d-signed-shortcut-lost](../findings/pendleerc4626withadaptersy-122b0b5d-signed-shortcut-lost.md), [pendleezethsy-22e12a50-signed-shortcut-lost](../findings/pendleezethsy-22e12a50-signed-shortcut-lost.md), [pendlegenericmarket-121b11f4-signed-shortcut-lost](../findings/pendlegenericmarket-121b11f4-signed-shortcut-lost.md), [pendlelbtcsy-c781c0cc-signed-shortcut-lost](../findings/pendlelbtcsy-c781c0cc-signed-shortcut-lost.md), [pendlemarket-34280882-signed-shortcut-lost](../findings/pendlemarket-34280882-signed-shortcut-lost.md), [pendlemarketv3-386f90eb-signed-shortcut-lost](../findings/pendlemarketv3-386f90eb-signed-shortcut-lost.md), [pendlemidassy-01e0f035-signed-shortcut-lost](../findings/pendlemidassy-01e0f035-signed-shortcut-lost.md), [pendlemidassy-04b2aaa4-signed-shortcut-lost](../findings/pendlemidassy-04b2aaa4-signed-shortcut-lost.md), [pendlemidassy-80e95b05-signed-shortcut-lost](../findings/pendlemidassy-80e95b05-signed-shortcut-lost.md), [pendleprincipaltoken-046ffbc0-signed-shortcut-lost](../findings/pendleprincipaltoken-046ffbc0-signed-shortcut-lost.md), [pendleprincipaltoken-270d664d-signed-shortcut-lost](../findings/pendleprincipaltoken-270d664d-signed-shortcut-lost.md), [pendleptlooper-9835a4e1-signed-shortcut-lost](../findings/pendleptlooper-9835a4e1-signed-shortcut-lost.md), [pendlesilowithincentivesy-60d1afd8-signed-shortcut-lost](../findings/pendlesilowithincentivesy-60d1afd8-signed-shortcut-lost.md), [pendlesusdesy-bee9e48f-signed-shortcut-lost](../findings/pendlesusdesy-bee9e48f-signed-shortcut-lost.md), [pendlesusdesy-c4ed348c-signed-shortcut-lost](../findings/pendlesusdesy-c4ed348c-signed-shortcut-lost.md), [pendlesusdesy-d2887555-signed-shortcut-lost](../findings/pendlesusdesy-d2887555-signed-shortcut-lost.md), [pendlesusdssy-be3d4ec4-signed-shortcut-lost](../findings/pendlesusdssy-be3d4ec4-signed-shortcut-lost.md), [pendleusdesy-40e6c994-signed-shortcut-lost](../findings/pendleusdesy-40e6c994-signed-shortcut-lost.md), [pendleusdesy-d29a7d69-signed-shortcut-lost](../findings/pendleusdesy-d29a7d69-signed-shortcut-lost.md), [pendleusdssywithcap-508defdb-signed-shortcut-lost](../findings/pendleusdssywithcap-508defdb-signed-shortcut-lost.md), [pendleweethsy-ac004788-signed-shortcut-lost](../findings/pendleweethsy-ac004788-signed-shortcut-lost.md), [pendlewstethsy-cbc72d92-signed-shortcut-lost](../findings/pendlewstethsy-cbc72d92-signed-shortcut-lost.md), [pendleyieldtoken-22e250ec-signed-shortcut-lost](../findings/pendleyieldtoken-22e250ec-signed-shortcut-lost.md), [pendleyieldtoken-af86da90-signed-shortcut-lost](../findings/pendleyieldtoken-af86da90-signed-shortcut-lost.md) |
+| Pendle | 34 | LOW | $102.8M | [pendleaavemarket-0195d2a5-signed-shortcut-lost](../findings/pendleaavemarket-0195d2a5-signed-shortcut-lost.md), [pendleerc20withadaptersy-2b8a81d9-signed-shortcut-lost](../findings/pendleerc20withadaptersy-2b8a81d9-signed-shortcut-lost.md), [pendleerc20withsupplycapsy-ca4fe886-signed-shortcut-lost](../findings/pendleerc20withsupplycapsy-ca4fe886-signed-shortcut-lost.md), [pendleerc4626noredeemnodepositup-6240c66e-signed-shortcut-lost](../findings/pendleerc4626noredeemnodepositup-6240c66e-signed-shortcut-lost.md), [pendleerc4626noredeemwithadapter-4e73dfca-signed-shortcut-lost](../findings/pendleerc4626noredeemwithadapter-4e73dfca-signed-shortcut-lost.md), [pendleerc4626noredeemwithadapter-b9cdea29-signed-shortcut-lost](../findings/pendleerc4626noredeemwithadapter-b9cdea29-signed-shortcut-lost.md), [pendleerc4626notredeemabletoasse-d3f2cc98-signed-shortcut-lost](../findings/pendleerc4626notredeemabletoasse-d3f2cc98-signed-shortcut-lost.md), [pendleerc4626sy-90f1935f-signed-shortcut-lost](../findings/pendleerc4626sy-90f1935f-signed-shortcut-lost.md), [pendleerc4626upgsyv2-7e21fd2b-signed-shortcut-lost](../findings/pendleerc4626upgsyv2-7e21fd2b-signed-shortcut-lost.md), [pendleerc4626withadaptersy-10f12496-signed-shortcut-lost](../findings/pendleerc4626withadaptersy-10f12496-signed-shortcut-lost.md), [pendleerc4626withadaptersy-122b0b5d-signed-shortcut-lost](../findings/pendleerc4626withadaptersy-122b0b5d-signed-shortcut-lost.md), [pendleezethsy-22e12a50-signed-shortcut-lost](../findings/pendleezethsy-22e12a50-signed-shortcut-lost.md), [pendlegenericmarket-121b11f4-signed-shortcut-lost](../findings/pendlegenericmarket-121b11f4-signed-shortcut-lost.md), [pendlelbtcsy-c781c0cc-signed-shortcut-lost](../findings/pendlelbtcsy-c781c0cc-signed-shortcut-lost.md), [pendlemarket-34280882-signed-shortcut-lost](../findings/pendlemarket-34280882-signed-shortcut-lost.md), [pendlemarketv3-386f90eb-signed-shortcut-lost](../findings/pendlemarketv3-386f90eb-signed-shortcut-lost.md), [pendlemidassy-01e0f035-signed-shortcut-lost](../findings/pendlemidassy-01e0f035-signed-shortcut-lost.md), [pendlemidassy-04b2aaa4-signed-shortcut-lost](../findings/pendlemidassy-04b2aaa4-signed-shortcut-lost.md), [pendlemidassy-80e95b05-signed-shortcut-lost](../findings/pendlemidassy-80e95b05-signed-shortcut-lost.md), [pendleprincipaltoken-046ffbc0-signed-shortcut-lost](../findings/pendleprincipaltoken-046ffbc0-signed-shortcut-lost.md), [pendleprincipaltoken-270d664d-signed-shortcut-lost](../findings/pendleprincipaltoken-270d664d-signed-shortcut-lost.md), [pendleptlooper-9835a4e1-signed-shortcut-lost](../findings/pendleptlooper-9835a4e1-signed-shortcut-lost.md), [pendlesilowithincentivesy-60d1afd8-signed-shortcut-lost](../findings/pendlesilowithincentivesy-60d1afd8-signed-shortcut-lost.md), [pendlesusdesy-bee9e48f-signed-shortcut-lost](../findings/pendlesusdesy-bee9e48f-signed-shortcut-lost.md), [pendlesusdesy-c4ed348c-signed-shortcut-lost](../findings/pendlesusdesy-c4ed348c-signed-shortcut-lost.md), [pendlesusdesy-d2887555-signed-shortcut-lost](../findings/pendlesusdesy-d2887555-signed-shortcut-lost.md), [pendlesusdssy-be3d4ec4-signed-shortcut-lost](../findings/pendlesusdssy-be3d4ec4-signed-shortcut-lost.md), [pendleusdesy-40e6c994-signed-shortcut-lost](../findings/pendleusdesy-40e6c994-signed-shortcut-lost.md), [pendleusdesy-d29a7d69-signed-shortcut-lost](../findings/pendleusdesy-d29a7d69-signed-shortcut-lost.md), [pendleusdssywithcap-508defdb-signed-shortcut-lost](../findings/pendleusdssywithcap-508defdb-signed-shortcut-lost.md), [pendleweethsy-ac004788-signed-shortcut-lost](../findings/pendleweethsy-ac004788-signed-shortcut-lost.md), [pendlewstethsy-cbc72d92-signed-shortcut-lost](../findings/pendlewstethsy-cbc72d92-signed-shortcut-lost.md), [pendleyieldtoken-22e250ec-signed-shortcut-lost](../findings/pendleyieldtoken-22e250ec-signed-shortcut-lost.md), [pendleyieldtoken-af86da90-signed-shortcut-lost](../findings/pendleyieldtoken-af86da90-signed-shortcut-lost.md) |
 | TokenPocket | 2 | LOW | $81.2M | [tokenpocketsimple7702account-126322e3-7702-own-key-only](../findings/tokenpocketsimple7702account-126322e3-7702-own-key-only.md), [tokenpocketstatelessdelegator-7739b688-7702-own-key-only](../findings/tokenpocketstatelessdelegator-7739b688-7702-own-key-only.md) |
-| Aave | 14 | LOW | $73.8M | [aavetokenv3-d72e94e1-signed-shortcut-lost](../findings/aavetokenv3-d72e94e1-signed-shortcut-lost.md), [atoken-130fbed7-signed-shortcut-lost](../findings/atoken-130fbed7-signed-shortcut-lost.md), [atoken-9ff58f4f-signed-shortcut-lost](../findings/atoken-9ff58f4f-signed-shortcut-lost.md), [atoken-b5ae2299-signed-shortcut-lost](../findings/atoken-b5ae2299-signed-shortcut-lost.md), [atoken-b7bf8e49-signed-shortcut-lost](../findings/atoken-b7bf8e49-signed-shortcut-lost.md), [atoken-b803d91e-signed-shortcut-lost](../findings/atoken-b803d91e-signed-shortcut-lost.md), [atoken-c787e5d4-signed-shortcut-lost](../findings/atoken-c787e5d4-signed-shortcut-lost.md), [atoken-c9bc48c7-signed-shortcut-lost](../findings/atoken-c9bc48c7-signed-shortcut-lost.md), [stabledebttoken-b80af100-signed-shortcut-lost](../findings/stabledebttoken-b80af100-signed-shortcut-lost.md), [staketoken-b73908d2-signed-shortcut-lost](../findings/staketoken-b73908d2-signed-shortcut-lost.md), [statatokenv2-b80b3215-signed-shortcut-lost](../findings/statatokenv2-b80b3215-signed-shortcut-lost.md), [staticatokenlm-00f2a835-signed-shortcut-lost](../findings/staticatokenlm-00f2a835-signed-shortcut-lost.md), [variabledebttokeninstance-bae53552-signed-shortcut-lost](../findings/variabledebttokeninstance-bae53552-signed-shortcut-lost.md), [variabledebttokenmainnetinstance-c4bea6ff-signed-shortcut-lost](../findings/variabledebttokenmainnetinstance-c4bea6ff-signed-shortcut-lost.md) |
-| Frax Finance | 8 | LOW | $71.6M | [04acaf8d-signed-shortcut-lost](../findings/04acaf8d-signed-shortcut-lost.md), [fraxswappair-c416be7d-signed-shortcut-lost](../findings/fraxswappair-c416be7d-signed-shortcut-lost.md), [fraxswappair-ccb26b5c-signed-shortcut-lost](../findings/fraxswappair-ccb26b5c-signed-shortcut-lost.md), [frxeth-d1738eb7-signed-shortcut-lost](../findings/frxeth-d1738eb7-signed-shortcut-lost.md), [fxb-0de54cfd-signed-shortcut-lost](../findings/fxb-0de54cfd-signed-shortcut-lost.md), [sfrxeth-c0497c07-signed-shortcut-lost](../findings/sfrxeth-c0497c07-signed-shortcut-lost.md), [stakedfrax-3dd33389-signed-shortcut-lost](../findings/stakedfrax-3dd33389-signed-shortcut-lost.md), [templeuniswapv2pair-6021444f-signed-shortcut-lost](../findings/templeuniswapv2pair-6021444f-signed-shortcut-lost.md) |
 | Uniswap | 3 | LOW | $69.8M | [caliburentry-ce890746-7702-own-key-only](../findings/caliburentry-ce890746-7702-own-key-only.md), [caliburentry-ce890746-rotate-signer-before-migrating](../findings/caliburentry-ce890746-rotate-signer-before-migrating.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
+| Aave | 12 | LOW | $47.4M | [aavetokenv3-d72e94e1-signed-shortcut-lost](../findings/aavetokenv3-d72e94e1-signed-shortcut-lost.md), [atoken-130fbed7-signed-shortcut-lost](../findings/atoken-130fbed7-signed-shortcut-lost.md), [atoken-b5ae2299-signed-shortcut-lost](../findings/atoken-b5ae2299-signed-shortcut-lost.md), [atoken-b7bf8e49-signed-shortcut-lost](../findings/atoken-b7bf8e49-signed-shortcut-lost.md), [atoken-b803d91e-signed-shortcut-lost](../findings/atoken-b803d91e-signed-shortcut-lost.md), [atoken-c787e5d4-signed-shortcut-lost](../findings/atoken-c787e5d4-signed-shortcut-lost.md), [stabledebttoken-b80af100-signed-shortcut-lost](../findings/stabledebttoken-b80af100-signed-shortcut-lost.md), [staketoken-b73908d2-signed-shortcut-lost](../findings/staketoken-b73908d2-signed-shortcut-lost.md), [statatokenv2-b80b3215-signed-shortcut-lost](../findings/statatokenv2-b80b3215-signed-shortcut-lost.md), [staticatokenlm-00f2a835-signed-shortcut-lost](../findings/staticatokenlm-00f2a835-signed-shortcut-lost.md), [variabledebttokeninstance-bae53552-signed-shortcut-lost](../findings/variabledebttokeninstance-bae53552-signed-shortcut-lost.md), [variabledebttokenmainnetinstance-c4bea6ff-signed-shortcut-lost](../findings/variabledebttokenmainnetinstance-c4bea6ff-signed-shortcut-lost.md) |
 | Safe | 5 | LOW | $47.2M | [allowancemodule-cfbfac74-sender-gas-limits](../findings/allowancemodule-cfbfac74-sender-gas-limits.md), [allowancemodule-cfbfac74-signed-shortcut-lost](../findings/allowancemodule-cfbfac74-signed-shortcut-lost.md), [gnosissafe-02479bfc-sender-gas-limits](../findings/gnosissafe-02479bfc-sender-gas-limits.md), [gnosissafe-0a4fd9eb-rotate-signer-before-migrating](../findings/gnosissafe-0a4fd9eb-rotate-signer-before-migrating.md), [portal-2593c582-rotate-signer-before-migrating](../findings/portal-2593c582-rotate-signer-before-migrating.md) |
-| Curve | 18 | LOW | $40.4M | [curveexchangeadapter-73ab2bd1-signed-shortcut-lost](../findings/curveexchangeadapter-73ab2bd1-signed-shortcut-lost.md), [curveexchangeadaptersbtc-aeade605-signed-shortcut-lost](../findings/curveexchangeadaptersbtc-aeade605-signed-shortcut-lost.md), [curvetricryptooptimizedweth-f5f5b976-signed-shortcut-lost](../findings/curvetricryptooptimizedweth-f5f5b976-signed-shortcut-lost.md), [curvetwocryptooptimized-017433c8-signed-shortcut-lost](../findings/curvetwocryptooptimized-017433c8-signed-shortcut-lost.md), [curvetwocryptooptimized-19b85246-signed-shortcut-lost](../findings/curvetwocryptooptimized-19b85246-signed-shortcut-lost.md), [curvetwocryptooptimized-3d0d3313-signed-shortcut-lost](../findings/curvetwocryptooptimized-3d0d3313-signed-shortcut-lost.md), [curvetwocryptooptimized-592878b9-signed-shortcut-lost](../findings/curvetwocryptooptimized-592878b9-signed-shortcut-lost.md), [curvetwocryptooptimized-6031bdd6-signed-shortcut-lost](../findings/curvetwocryptooptimized-6031bdd6-signed-shortcut-lost.md), [curvetwocryptooptimized-86ea1191-signed-shortcut-lost](../findings/curvetwocryptooptimized-86ea1191-signed-shortcut-lost.md), [curvetwocryptooptimized-8c65cec3-signed-shortcut-lost](../findings/curvetwocryptooptimized-8c65cec3-signed-shortcut-lost.md), [curvetwocryptooptimized-8d688646-signed-shortcut-lost](../findings/curvetwocryptooptimized-8d688646-signed-shortcut-lost.md), [curvetwocryptooptimized-a19bf6fb-signed-shortcut-lost](../findings/curvetwocryptooptimized-a19bf6fb-signed-shortcut-lost.md), [curvetwocryptooptimized-ca546ae6-signed-shortcut-lost](../findings/curvetwocryptooptimized-ca546ae6-signed-shortcut-lost.md), [curvetwocryptooptimized-ee351f12-signed-shortcut-lost](../findings/curvetwocryptooptimized-ee351f12-signed-shortcut-lost.md), [curvetwocryptooptimized-fb8b95fb-signed-shortcut-lost](../findings/curvetwocryptooptimized-fb8b95fb-signed-shortcut-lost.md), [liquiditygaugev6-ecbcf829-signed-shortcut-lost](../findings/liquiditygaugev6-ecbcf829-signed-shortcut-lost.md), [liquiditygaugev6-fc3212bd-signed-shortcut-lost](../findings/liquiditygaugev6-fc3212bd-signed-shortcut-lost.md), [yearnv3vault-b73b7dc2-signed-shortcut-lost](../findings/yearnv3vault-b73b7dc2-signed-shortcut-lost.md) |
 | Golem | 3 | LOW | $34.4M | [multisigwallet-7da82c7a-rotate-signer-before-migrating](../findings/multisigwallet-7da82c7a-rotate-signer-before-migrating.md), [multisigwallet-7da82c7a-signed-shortcut-lost](../findings/multisigwallet-7da82c7a-signed-shortcut-lost.md), [newgolemnetworktoken-9a0b6669-signed-shortcut-lost](../findings/newgolemnetworktoken-9a0b6669-signed-shortcut-lost.md) |
 | OKX | 2 | LOW | $30.8M | [walletcore-f36a1461-7702-own-key-only](../findings/walletcore-f36a1461-7702-own-key-only.md), [walletcore-f36a1461-rotate-signer-before-migrating](../findings/walletcore-f36a1461-rotate-signer-before-migrating.md) |
 | Ripple | 5 | LOW | $26.3M | [c2a26188-rotate-signer-before-migrating](../findings/c2a26188-rotate-signer-before-migrating.md), [c2a26188-sender-gas-limits](../findings/c2a26188-sender-gas-limits.md), [multisign-b60fa2ad-rotate-signer-before-migrating](../findings/multisign-b60fa2ad-rotate-signer-before-migrating.md), [multisign-b60fa2ad-sender-gas-limits](../findings/multisign-b60fa2ad-sender-gas-limits.md), [stablecoinupgradeablev2-9747a0d2-signed-shortcut-lost](../findings/stablecoinupgradeablev2-9747a0d2-signed-shortcut-lost.md) |
-| Maple | 4 | LOW | $25.8M | [maplepool-a7f5df53-signed-shortcut-lost](../findings/maplepool-a7f5df53-signed-shortcut-lost.md), [mapletoken-643c4e15-signed-shortcut-lost](../findings/mapletoken-643c4e15-signed-shortcut-lost.md), [pool-c1dd3f01-signed-shortcut-lost](../findings/pool-c1dd3f01-signed-shortcut-lost.md), [syruprouter-134ccaaa-rotate-signer-before-migrating](../findings/syruprouter-134ccaaa-rotate-signer-before-migrating.md) |
-| Ring Protocol | 2 | LOW | $17.2M | [fewwrappedtoken-b84df8a4-signed-shortcut-lost](../findings/fewwrappedtoken-b84df8a4-signed-shortcut-lost.md), [swapv2pair-b57d3fdd-signed-shortcut-lost](../findings/swapv2pair-b57d3fdd-signed-shortcut-lost.md) |
-| SushiSwap | 4 | LOW | $10.8M | [bentoboxv1-f5bce507-signed-shortcut-lost](../findings/bentoboxv1-f5bce507-signed-shortcut-lost.md), [bonetoken-c54ac94b-signed-shortcut-lost](../findings/bonetoken-c54ac94b-signed-shortcut-lost.md), [kashipairmediumriskv1-b5a98cd1-signed-shortcut-lost](../findings/kashipairmediumriskv1-b5a98cd1-signed-shortcut-lost.md), [uniswapv2pair-b580528b-signed-shortcut-lost](../findings/uniswapv2pair-b580528b-signed-shortcut-lost.md) |
+| Curve | 3 | LOW | $18.6M | [curveexchangeadapter-73ab2bd1-signed-shortcut-lost](../findings/curveexchangeadapter-73ab2bd1-signed-shortcut-lost.md), [curveexchangeadaptersbtc-aeade605-signed-shortcut-lost](../findings/curveexchangeadaptersbtc-aeade605-signed-shortcut-lost.md), [yearnv3vault-b73b7dc2-signed-shortcut-lost](../findings/yearnv3vault-b73b7dc2-signed-shortcut-lost.md) |
 | Lista DAO | 1 | LOW | $9.6M | [moolah-d7c98309-signed-shortcut-lost](../findings/moolah-d7c98309-signed-shortcut-lost.md) |
 | zkLink Nova | 1 | LOW | $7.6M | [zklink-35d173cd-signed-shortcut-lost](../findings/zklink-35d173cd-signed-shortcut-lost.md) |
-| Yearn | 13 | LOW | $7.5M | [tokenizedstrategy-b5f4b341-signed-shortcut-lost](../findings/tokenizedstrategy-b5f4b341-signed-shortcut-lost.md), [tokenizedstrategy-b646af5c-signed-shortcut-lost](../findings/tokenizedstrategy-b646af5c-signed-shortcut-lost.md), [tokenizedstrategy-cadf62b5-signed-shortcut-lost](../findings/tokenizedstrategy-cadf62b5-signed-shortcut-lost.md), [vyper-contract-bcbb5b54-signed-shortcut-lost](../findings/vyper-contract-bcbb5b54-signed-shortcut-lost.md), [vyper-contract-bd65955f-signed-shortcut-lost](../findings/vyper-contract-bd65955f-signed-shortcut-lost.md), [yearnv3vault-b5bb36bf-signed-shortcut-lost](../findings/yearnv3vault-b5bb36bf-signed-shortcut-lost.md), [yearnv3vault-bd564bfe-signed-shortcut-lost](../findings/yearnv3vault-bd564bfe-signed-shortcut-lost.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| f(x) protocol | 2 | LOW | $7.3M | [fxusdbasepool-9cfefd90-signed-shortcut-lost](../findings/fxusdbasepool-9cfefd90-signed-shortcut-lost.md), [sharedliquiditygauge-cf904d37-signed-shortcut-lost](../findings/sharedliquiditygauge-cf904d37-signed-shortcut-lost.md) |
-| Threshold Network | 3 | LOW | $6.7M | [mezobridge-a0e054fe-rotate-signer-before-migrating](../findings/mezobridge-a0e054fe-rotate-signer-before-migrating.md), [t-cdf7028c-signed-shortcut-lost](../findings/t-cdf7028c-signed-shortcut-lost.md), [tbtc-18084fba-signed-shortcut-lost](../findings/tbtc-18084fba-signed-shortcut-lost.md) |
-| Balancer | 4 | LOW | $5.8M | [balancergovernancetoken-ba100000-signed-shortcut-lost](../findings/balancergovernancetoken-ba100000-signed-shortcut-lost.md), [stablepool-c05ff985-signed-shortcut-lost](../findings/stablepool-c05ff985-signed-shortcut-lost.md), [vault-ba122222-signed-shortcut-lost](../findings/vault-ba122222-signed-shortcut-lost.md), [weightedpool2tokens-baeec99c-signed-shortcut-lost](../findings/weightedpool2tokens-baeec99c-signed-shortcut-lost.md) |
+| Yearn | 12 | LOW | $7.5M | [tokenizedstrategy-b5f4b341-signed-shortcut-lost](../findings/tokenizedstrategy-b5f4b341-signed-shortcut-lost.md), [tokenizedstrategy-b646af5c-signed-shortcut-lost](../findings/tokenizedstrategy-b646af5c-signed-shortcut-lost.md), [vyper-contract-bcbb5b54-signed-shortcut-lost](../findings/vyper-contract-bcbb5b54-signed-shortcut-lost.md), [vyper-contract-bd65955f-signed-shortcut-lost](../findings/vyper-contract-bd65955f-signed-shortcut-lost.md), [yearnv3vault-b5bb36bf-signed-shortcut-lost](../findings/yearnv3vault-b5bb36bf-signed-shortcut-lost.md), [yearnv3vault-bd564bfe-signed-shortcut-lost](../findings/yearnv3vault-bd564bfe-signed-shortcut-lost.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
+| f(x) protocol | 1 | LOW | $7.2M | [fxusdbasepool-9cfefd90-signed-shortcut-lost](../findings/fxusdbasepool-9cfefd90-signed-shortcut-lost.md) |
+| Threshold Network | 2 | LOW | $6.7M | [mezobridge-a0e054fe-rotate-signer-before-migrating](../findings/mezobridge-a0e054fe-rotate-signer-before-migrating.md), [t-cdf7028c-signed-shortcut-lost](../findings/t-cdf7028c-signed-shortcut-lost.md) |
+| Balancer | 3 | LOW | $5.8M | [balancergovernancetoken-ba100000-signed-shortcut-lost](../findings/balancergovernancetoken-ba100000-signed-shortcut-lost.md), [stablepool-c05ff985-signed-shortcut-lost](../findings/stablepool-c05ff985-signed-shortcut-lost.md), [vault-ba122222-signed-shortcut-lost](../findings/vault-ba122222-signed-shortcut-lost.md) |
 | Orderly Network | 1 | LOW | $4.5M | [816f7224-rotate-signer-before-migrating](../findings/816f7224-rotate-signer-before-migrating.md) |
-| Lido | 5 | LOW | $3.7M | [asteth-bd233d4f-signed-shortcut-lost](../findings/asteth-bd233d4f-signed-shortcut-lost.md), [depositsecuritymodule-39bb5d49-rotate-signer-before-migrating](../findings/depositsecuritymodule-39bb5d49-rotate-signer-before-migrating.md), [metastablepool-a3353f84-signed-shortcut-lost](../findings/metastablepool-a3353f84-signed-shortcut-lost.md), [queryprocessor-063c6246-signed-shortcut-lost](../findings/queryprocessor-063c6246-signed-shortcut-lost.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Shiba Inu | 2 | LOW | $3.3M | [landauctionv2-6b74c588-rotate-signer-before-migrating](../findings/landauctionv2-6b74c588-rotate-signer-before-migrating.md), [uniswapv2pair-b599d182-signed-shortcut-lost](../findings/uniswapv2pair-b599d182-signed-shortcut-lost.md) |
+| Lido | 4 | LOW | $3.7M | [asteth-bd233d4f-signed-shortcut-lost](../findings/asteth-bd233d4f-signed-shortcut-lost.md), [depositsecuritymodule-39bb5d49-rotate-signer-before-migrating](../findings/depositsecuritymodule-39bb5d49-rotate-signer-before-migrating.md), [queryprocessor-063c6246-signed-shortcut-lost](../findings/queryprocessor-063c6246-signed-shortcut-lost.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | Celer Network | 5 | LOW | $3.1M | [bridge-5427fefa-rotate-signer-before-migrating](../findings/bridge-5427fefa-rotate-signer-before-migrating.md), [bridge-5427fefa-sender-gas-limits](../findings/bridge-5427fefa-sender-gas-limits.md), [bridge-c578cbaf-rotate-signer-before-migrating](../findings/bridge-c578cbaf-rotate-signer-before-migrating.md), [staking-8a4b4c2a-rotate-signer-before-migrating](../findings/staking-8a4b4c2a-rotate-signer-before-migrating.md), [staking-8a4b4c2a-sender-gas-limits](../findings/staking-8a4b4c2a-sender-gas-limits.md) |
 | Binance | 1 | LOW | $2.7M | [wraptokenv3eth-a2e33566-signed-shortcut-lost](../findings/wraptokenv3eth-a2e33566-signed-shortcut-lost.md) |
 | Cronos zkEVM CRO | 1 | LOW | $2.6M | [ybusd-d501a4d2-signed-shortcut-lost](../findings/ybusd-d501a4d2-signed-shortcut-lost.md) |
-| kpk | 1 | LOW | $2.3M | [poolv3-bd8ec744-signed-shortcut-lost](../findings/poolv3-bd8ec744-signed-shortcut-lost.md) |
 | Ambire Wallet | 3 | LOW | $2.0M | [identity-563eda2a-rotate-signer-before-migrating](../findings/identity-563eda2a-rotate-signer-before-migrating.md), [identity-563eda2a-sender-gas-limits](../findings/identity-563eda2a-sender-gas-limits.md), [identity-9d4bcc06-rotate-signer-before-migrating](../findings/identity-9d4bcc06-rotate-signer-before-migrating.md) |
 | Bitfinex | 5 | LOW | $1.9M | [wrapperlock-b5dfdfb2-rotate-signer-before-migrating](../findings/wrapperlock-b5dfdfb2-rotate-signer-before-migrating.md), [wrapperlock-ce0d7faf-rotate-signer-before-migrating](../findings/wrapperlock-ce0d7faf-rotate-signer-before-migrating.md), [wrapperlocketh-50cb61af-rotate-signer-before-migrating](../findings/wrapperlocketh-50cb61af-rotate-signer-before-migrating.md), [wrapperlocketh-9fb2fd4b-rotate-signer-before-migrating](../findings/wrapperlocketh-9fb2fd4b-rotate-signer-before-migrating.md), [wrapperlocketh-aa7427d8-rotate-signer-before-migrating](../findings/wrapperlocketh-aa7427d8-rotate-signer-before-migrating.md) |
 | Multichain | 2 | LOW | $1.8M | [anyswapv5erc20-a4fffc75-signed-shortcut-lost](../findings/anyswapv5erc20-a4fffc75-signed-shortcut-lost.md), [anyswapv6erc20-b7250314-signed-shortcut-lost](../findings/anyswapv6erc20-b7250314-signed-shortcut-lost.md) |
@@ -310,97 +304,64 @@ A tag from a block explorer is a lead for outreach, never a name: it can be wron
 | Paxos | 2 | LOW | $1.5M | [boringvault-cba69e0d-signed-shortcut-lost](../findings/boringvault-cba69e0d-signed-shortcut-lost.md), [busdimplementation-2a3f1a37-signed-shortcut-lost](../findings/busdimplementation-2a3f1a37-signed-shortcut-lost.md) |
 | Alchemy | 8 | LOW | $1.4M | [2bd45d29-rotate-signer-before-migrating](../findings/2bd45d29-rotate-signer-before-migrating.md), [5bba6427-signer-upgrade-only](../findings/5bba6427-signer-upgrade-only.md), [8bcaefbe-signer-upgrade-only](../findings/8bcaefbe-signer-upgrade-only.md), [f4a6b3ca-signer-upgrade-only](../findings/f4a6b3ca-signer-upgrade-only.md), [lightaccount-5bd129a8-rotate-signer-before-migrating](../findings/lightaccount-5bd129a8-rotate-signer-before-migrating.md), [lightaccount-f9a37625-rotate-signer-before-migrating](../findings/lightaccount-f9a37625-rotate-signer-before-migrating.md), [multiownerplugin-ce000000-rotate-signer-before-migrating](../findings/multiownerplugin-ce000000-rotate-signer-before-migrating.md), [semimodularaccountbytecode-836e1a84-rotate-signer-before-migrating](../findings/semimodularaccountbytecode-836e1a84-rotate-signer-before-migrating.md) |
 | Turnkey | 2 | LOW | $1.2M | [tkgasdelegate-39c9fb02-7702-own-key-only](../findings/tkgasdelegate-39c9fb02-7702-own-key-only.md), [tkgasdelegate-39c9fb02-sender-gas-limits](../findings/tkgasdelegate-39c9fb02-sender-gas-limits.md) |
-| Nucleus | 1 | LOW | $1.2M | [boringvault-9ed15383-signed-shortcut-lost](../findings/boringvault-9ed15383-signed-shortcut-lost.md) |
 | Sora | 2 | LOW | $1.2M | [bridge-31341687-rotate-signer-before-migrating](../findings/bridge-31341687-rotate-signer-before-migrating.md), [bridge-31341687-sender-gas-limits](../findings/bridge-31341687-sender-gas-limits.md) |
-| dForce | 2 | LOW | $1.2M | [iethv2blp-5acd75f2-signed-shortcut-lost](../findings/iethv2blp-5acd75f2-signed-shortcut-lost.md), [itokenv2blp-bec9a824-signed-shortcut-lost](../findings/itokenv2blp-bec9a824-signed-shortcut-lost.md) |
 | PancakeSwap v2 | 1 | LOW | $1.2M | [pancakepair-b57d2851-signed-shortcut-lost](../findings/pancakepair-b57d2851-signed-shortcut-lost.md) |
-| Agglayer | 1 | LOW | $1.2M | [vbeth-2dc70fb7-signed-shortcut-lost](../findings/vbeth-2dc70fb7-signed-shortcut-lost.md) |
 | Axie Infinity | 2 | LOW | $1.1M | [784e6df1-rotate-signer-before-migrating](../findings/784e6df1-rotate-signer-before-migrating.md), [mainchaingatewayv3-64192819-rotate-signer-before-migrating](../findings/mainchaingatewayv3-64192819-rotate-signer-before-migrating.md) |
-| SmarDex | 4 | LOW | $1.1M | [rebalancer-aebcc85a-signed-shortcut-lost](../findings/rebalancer-aebcc85a-signed-shortcut-lost.md), [smardexpair-b633ffff-signed-shortcut-lost](../findings/smardexpair-b633ffff-signed-shortcut-lost.md), [smardexpair-c1830b5a-signed-shortcut-lost](../findings/smardexpair-c1830b5a-signed-shortcut-lost.md), [usdnprotocolactionsutilslibrary-d4e615ab-signed-shortcut-lost](../findings/usdnprotocolactionsutilslibrary-d4e615ab-signed-shortcut-lost.md) |
 | Aave Umbrella | 1 | LOW | $1.1M | [umbrellastaketoken-a484ab92-signed-shortcut-lost](../findings/umbrellastaketoken-a484ab92-signed-shortcut-lost.md) |
+| SmarDex | 2 | LOW | $1.0M | [rebalancer-aebcc85a-signed-shortcut-lost](../findings/rebalancer-aebcc85a-signed-shortcut-lost.md), [usdnprotocolactionsutilslibrary-d4e615ab-signed-shortcut-lost](../findings/usdnprotocolactionsutilslibrary-d4e615ab-signed-shortcut-lost.md) |
 | Uniswap Protocol | 2 | LOW | $898k | [uni-448a9c8a-sender-gas-limits](../findings/uni-448a9c8a-sender-gas-limits.md), [uni-448a9c8a-signed-shortcut-lost](../findings/uni-448a9c8a-signed-shortcut-lost.md) |
 | Synthetix | 1 | LOW | $852k | [synthetixdepositcontract-d62595c3-rotate-signer-before-migrating](../findings/synthetixdepositcontract-d62595c3-rotate-signer-before-migrating.md) |
 | RSK | 1 | LOW | $836k | [bridge-0fa0b4cc-signed-shortcut-lost](../findings/bridge-0fa0b4cc-signed-shortcut-lost.md) |
-| Crypto.com | 1 | LOW | $730k | [crodefiswappair-b6ca663b-signed-shortcut-lost](../findings/crodefiswappair-b6ca663b-signed-shortcut-lost.md) |
-| Kyber | 1 | LOW | $584k | [dmmpool-c1ea65f3-signed-shortcut-lost](../findings/dmmpool-c1ea65f3-signed-shortcut-lost.md) |
 | Apyx | 4 | LOW | $554k | [apxusd-15c91ebc-signed-shortcut-lost](../findings/apxusd-15c91ebc-signed-shortcut-lost.md), [apyusd-093df218-signed-shortcut-lost](../findings/apyusd-093df218-signed-shortcut-lost.md), [apyusd-38eeb52f-signed-shortcut-lost](../findings/apyusd-38eeb52f-signed-shortcut-lost.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Super Bunnies | 1 | LOW | $513k | [superbunnies-3a3fba79-signed-shortcut-lost](../findings/superbunnies-3a3fba79-signed-shortcut-lost.md) |
-| Mantle | 2 | LOW | $417k | [l1mantletoken-cd368c1d-signed-shortcut-lost](../findings/l1mantletoken-cd368c1d-signed-shortcut-lost.md), [meth-d5f7838f-signed-shortcut-lost](../findings/meth-d5f7838f-signed-shortcut-lost.md) |
 | Wormhole | 2 | LOW | $416k | [wormhole-f92cd566-rotate-signer-before-migrating](../findings/wormhole-f92cd566-rotate-signer-before-migrating.md), [wtoken-34451893-signed-shortcut-lost](../findings/wtoken-34451893-signed-shortcut-lost.md) |
 | Cyan | 3 | LOW | $404k | [cyanvaultv2-460e0cd0-rotate-signer-before-migrating](../findings/cyanvaultv2-460e0cd0-rotate-signer-before-migrating.md), [paymentplanv2logic-e803684b-sender-gas-limits](../findings/paymentplanv2logic-e803684b-sender-gas-limits.md), [paymentplanv2logic-e803684b-signer-upgrade-only](../findings/paymentplanv2logic-e803684b-signer-upgrade-only.md) |
-| Hourglass | 1 | LOW | $394k | [hourglassstablevaultkyc-d9b2cb2f-signed-shortcut-lost](../findings/hourglassstablevaultkyc-d9b2cb2f-signed-shortcut-lost.md) |
 | Swell Network | 1 | LOW | $370k | [tokenizedstrategy-975304c6-signed-shortcut-lost](../findings/tokenizedstrategy-975304c6-signed-shortcut-lost.md) |
-| ether.fi | 2 | LOW | $352k | [boringvault-08c6f91e-signed-shortcut-lost](../findings/boringvault-08c6f91e-signed-shortcut-lost.md), [cellarwithoraclewithbalancerflas-ea1a6307-signed-shortcut-lost](../findings/cellarwithoraclewithbalancerflas-ea1a6307-signed-shortcut-lost.md) |
-| Future Lithium | 1 | LOW | $335k | [swappair-bcaa4389-signed-shortcut-lost](../findings/swappair-bcaa4389-signed-shortcut-lost.md) |
-| Puffer Finance | 3 | LOW | $306k | [puffer-4d1c297d-signed-shortcut-lost](../findings/puffer-4d1c297d-signed-shortcut-lost.md), [puffervaultv5-d9a44285-signed-shortcut-lost](../findings/puffervaultv5-d9a44285-signed-shortcut-lost.md), [soon-c6c33254-signed-shortcut-lost](../findings/soon-c6c33254-signed-shortcut-lost.md) |
-| Stargate Finance | 1 | LOW | $299k | [pool-d8772edb-signed-shortcut-lost](../findings/pool-d8772edb-signed-shortcut-lost.md) |
+| SushiSwap | 2 | LOW | $337k | [bentoboxv1-f5bce507-signed-shortcut-lost](../findings/bentoboxv1-f5bce507-signed-shortcut-lost.md), [bonetoken-c54ac94b-signed-shortcut-lost](../findings/bonetoken-c54ac94b-signed-shortcut-lost.md) |
 | Whales Market | 1 | LOW | $292k | [1ecdb32e-rotate-signer-before-migrating](../findings/1ecdb32e-rotate-signer-before-migrating.md) |
 | Meebits | 1 | LOW | $274k | [meebits-7bd29408-signed-shortcut-lost](../findings/meebits-7bd29408-signed-shortcut-lost.md) |
 | X2Y2 | 3 | LOW | $264k | [presale-c2f44bc5-rotate-signer-before-migrating](../findings/presale-c2f44bc5-rotate-signer-before-migrating.md), [x2y2-r1-74312363-entry-by-own-signature-only](../findings/x2y2-r1-74312363-entry-by-own-signature-only.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Somm Finance | 4 | LOW | $239k | [cellar-bfc413ea-signed-shortcut-lost](../findings/cellar-bfc413ea-signed-shortcut-lost.md), [cellarinitializablev2-2-b5b29320-signed-shortcut-lost](../findings/cellarinitializablev2-2-b5b29320-signed-shortcut-lost.md), [cellarwithoraclewithbalancerflas-97cfac95-signed-shortcut-lost](../findings/cellarwithoraclewithbalancerflas-97cfac95-signed-shortcut-lost.md), [cellarwithoraclewithbalancerflas-c7372ab5-signed-shortcut-lost](../findings/cellarwithoraclewithbalancerflas-c7372ab5-signed-shortcut-lost.md) |
 | Lens | 1 | LOW | $234k | [wrappedghotoken-bada742e-signed-shortcut-lost](../findings/wrappedghotoken-bada742e-signed-shortcut-lost.md) |
 | Paxos Gold | 2 | LOW | $231k | [paxg-45804880-sender-gas-limits](../findings/paxg-45804880-sender-gas-limits.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Open Stablecoin Index | 3 | LOW | $205k | [curvetwocryptooptimized-2034b76b-signed-shortcut-lost](../findings/curvetwocryptooptimized-2034b76b-signed-shortcut-lost.md), [curvetwocryptooptimized-cbcd4d46-signed-shortcut-lost](../findings/curvetwocryptooptimized-cbcd4d46-signed-shortcut-lost.md), [curvetwocryptooptimized-dcd90d86-signed-shortcut-lost](../findings/curvetwocryptooptimized-dcd90d86-signed-shortcut-lost.md) |
-| ORA | 1 | LOW | $200k | [testcoin-24c01f7a-signed-shortcut-lost](../findings/testcoin-24c01f7a-signed-shortcut-lost.md) |
-| Usual | 6 | LOW | $199k | [eth0-734eec79-signed-shortcut-lost](../findings/eth0-734eec79-signed-shortcut-lost.md), [eur0-c3b20caf-signed-shortcut-lost](../findings/eur0-c3b20caf-signed-shortcut-lost.md), [usd0-ff0cb8fc-signed-shortcut-lost](../findings/usd0-ff0cb8fc-signed-shortcut-lost.md), [usd0x-2e7fc02b-signed-shortcut-lost](../findings/usd0x-2e7fc02b-signed-shortcut-lost.md), [usual-c4441c2b-signed-shortcut-lost](../findings/usual-c4441c2b-signed-shortcut-lost.md), [usualusdc-b672b397-signed-shortcut-lost](../findings/usualusdc-b672b397-signed-shortcut-lost.md) |
 | King Protocol | 1 | LOW | $192k | [lrtsquaredcore-1cb489ef-signed-shortcut-lost](../findings/lrtsquaredcore-1cb489ef-signed-shortcut-lost.md) |
-| Peapods Finance | 1 | LOW | $188k | [lendingassetvault-b98d1f7f-signed-shortcut-lost](../findings/lendingassetvault-b98d1f7f-signed-shortcut-lost.md) |
 | Vest | 2 | LOW | $186k | [srcbridge-e80f9207-sender-gas-limits](../findings/srcbridge-e80f9207-sender-gas-limits.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Conflux Network | 1 | LOW | $185k | [bba3c74a-rotate-signer-before-migrating](../findings/bba3c74a-rotate-signer-before-migrating.md) |
-| Radiant Capital | 2 | LOW | $178k | [atoken-d10c3152-signed-shortcut-lost](../findings/atoken-d10c3152-signed-shortcut-lost.md), [uniswapv2pair-cb9aef31-signed-shortcut-lost](../findings/uniswapv2pair-cb9aef31-signed-shortcut-lost.md) |
 | DLC.Link | 1 | LOW | $172k | [bitsafeevmassetbridge-b5d425d6-rotate-signer-before-migrating](../findings/bitsafeevmassetbridge-b5d425d6-rotate-signer-before-migrating.md) |
 | Aktionariat | 4 | LOW | $172k | [authorizedexecutor-dea2ed23-7702-own-key-only](../findings/authorizedexecutor-dea2ed23-7702-own-key-only.md), [tradereactor-699b77b4-entry-by-own-signature-only](../findings/tradereactor-699b77b4-entry-by-own-signature-only.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Nest Treasury Vault | 1 | LOW | $172k | [boringvault-e72fe648-signed-shortcut-lost](../findings/boringvault-e72fe648-signed-shortcut-lost.md) |
 | Biconomy | 12 | LOW | $167k | [00000000-sender-gas-limits](../findings/00000000-sender-gas-limits.md), [0000000031ef-rotate-signer-before-migrating](../findings/0000000031ef-rotate-signer-before-migrating.md), [418349e3-signer-upgrade-only](../findings/418349e3-signer-upgrade-only.md), [bicotokenimplementation-95cc3a10-signed-shortcut-lost](../findings/bicotokenimplementation-95cc3a10-signed-shortcut-lost.md), [e13df91f-signer-upgrade-only](../findings/e13df91f-signer-upgrade-only.md), [k1meevalidator-1cdae7dc-rotate-signer-before-migrating](../findings/k1meevalidator-1cdae7dc-rotate-signer-before-migrating.md), [k1meevalidator-1cdae7dc-sender-gas-limits](../findings/k1meevalidator-1cdae7dc-sender-gas-limits.md), [nexus-86567c5c-7702-own-key-only](../findings/nexus-86567c5c-7702-own-key-only.md), [nexus-88b94086-7702-own-key-only](../findings/nexus-88b94086-7702-own-key-only.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | Ambient Finance | 1 | LOW | $165k | [crocswapdex-aaaaaaaa-signed-shortcut-lost](../findings/crocswapdex-aaaaaaaa-signed-shortcut-lost.md) |
 | Authereum | 5 | LOW | $139k | [authereumaccount-05cefcb9-rotate-signer-before-migrating](../findings/authereumaccount-05cefcb9-rotate-signer-before-migrating.md), [authereumaccount-10e55548-rotate-signer-before-migrating](../findings/authereumaccount-10e55548-rotate-signer-before-migrating.md), [authereumaccount-a7ad82f4-rotate-signer-before-migrating](../findings/authereumaccount-a7ad82f4-rotate-signer-before-migrating.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Ichi.Farm | 1 | LOW | $130k | [c89d8f83-signed-shortcut-lost](../findings/c89d8f83-signed-shortcut-lost.md) |
-| Punk Auction | 2 | LOW | $126k | [fairlaunchstrategytoken-a2b32b7d-signed-shortcut-lost](../findings/fairlaunchstrategytoken-a2b32b7d-signed-shortcut-lost.md), [punkstrategytoken-38778e6d-signed-shortcut-lost](../findings/punkstrategytoken-38778e6d-signed-shortcut-lost.md) |
-| Vesper Finance | 5 | LOW | $111k | [veth-d1c11731-signed-shortcut-lost](../findings/veth-d1c11731-signed-shortcut-lost.md), [vlink-0a27e910-signed-shortcut-lost](../findings/vlink-0a27e910-signed-shortcut-lost.md), [vpool-d948ba1b-signed-shortcut-lost](../findings/vpool-d948ba1b-signed-shortcut-lost.md), [vsp-1b40183e-signed-shortcut-lost](../findings/vsp-1b40183e-signed-shortcut-lost.md), [vvsp-ba4cfe57-signed-shortcut-lost](../findings/vvsp-ba4cfe57-signed-shortcut-lost.md) |
 | Kubz | 6 | LOW | $108k | [apeescape-1bc63887-rotate-signer-before-migrating](../findings/apeescape-1bc63887-rotate-signer-before-migrating.md), [blindauction-4f011b62-rotate-signer-before-migrating](../findings/blindauction-4f011b62-rotate-signer-before-migrating.md), [kubzauction-d923af5d-rotate-signer-before-migrating](../findings/kubzauction-d923af5d-rotate-signer-before-migrating.md), [kubzwaitlist-7eeeadaf-rotate-signer-before-migrating](../findings/kubzwaitlist-7eeeadaf-rotate-signer-before-migrating.md), [traitz-dc7411d5-signer-upgrade-only](../findings/traitz-dc7411d5-signer-upgrade-only.md), [ygpzreserve-3788657e-rotate-signer-before-migrating](../findings/ygpzreserve-3788657e-rotate-signer-before-migrating.md) |
 | DAGrow | 1 | LOW | $103k | [9fc2038b-signed-shortcut-lost](../findings/9fc2038b-signed-shortcut-lost.md) |
 | Nuo Network | 5 | LOW | $102k | [9de1c58a-signer-upgrade-only](../findings/9de1c58a-signer-upgrade-only.md), [afd76c55-signer-upgrade-only](../findings/afd76c55-signer-upgrade-only.md), [kernel-8dc3bcbb-rotate-signer-before-migrating](../findings/kernel-8dc3bcbb-rotate-signer-before-migrating.md), [reserve-64d14595-rotate-signer-before-migrating](../findings/reserve-64d14595-rotate-signer-before-migrating.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Nest Alpha Vault | 1 | LOW | $101k | [boringvault-593ccca4-signed-shortcut-lost](../findings/boringvault-593ccca4-signed-shortcut-lost.md) |
 | Instadapp | 2 | LOW | $98k | [avowallet-aadb40bc-signed-shortcut-lost](../findings/avowallet-aadb40bc-signed-shortcut-lost.md), [avowallet-ef3ee85e-signed-shortcut-lost](../findings/avowallet-ef3ee85e-signed-shortcut-lost.md) |
 | Truth | 3 | LOW | $92k | [truthbridge-96598397-rotate-signer-before-migrating](../findings/truthbridge-96598397-rotate-signer-before-migrating.md), [truthbridge-96598397-sender-gas-limits](../findings/truthbridge-96598397-sender-gas-limits.md), [truthtoken-bc4ddcb0-signed-shortcut-lost](../findings/truthtoken-bc4ddcb0-signed-shortcut-lost.md) |
 | Lyra Finance | 1 | LOW | $89k | [lyrausdcsafetymodulemigration-b9619d73-signed-shortcut-lost](../findings/lyrausdcsafetymodulemigration-b9619d73-signed-shortcut-lost.md) |
-| Polygon | 3 | LOW | $85k | [covalentxtoken-455e53cb-signed-shortcut-lost](../findings/covalentxtoken-455e53cb-signed-shortcut-lost.md), [hermez-a68d85df-signed-shortcut-lost](../findings/hermez-a68d85df-signed-shortcut-lost.md), [spol-3b790d65-signed-shortcut-lost](../findings/spol-3b790d65-signed-shortcut-lost.md) |
+| Polygon | 2 | LOW | $83k | [hermez-a68d85df-signed-shortcut-lost](../findings/hermez-a68d85df-signed-shortcut-lost.md), [spol-3b790d65-signed-shortcut-lost](../findings/spol-3b790d65-signed-shortcut-lost.md) |
 | Blockchain Brawlers | 2 | LOW | $78k | [24b22b03-sender-gas-limits](../findings/24b22b03-sender-gas-limits.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| nsurance | 1 | LOW | $76k | [dvm-b6073347-signed-shortcut-lost](../findings/dvm-b6073347-signed-shortcut-lost.md) |
 | Proof of Humanity | 1 | LOW | $75k | [proofofhumanity-c5e9ddeb-signed-shortcut-lost](../findings/proofofhumanity-c5e9ddeb-signed-shortcut-lost.md) |
-| LuaSwap | 1 | LOW | $72k | [uniswapv2pair-bffd9ff5-signed-shortcut-lost](../findings/uniswapv2pair-bffd9ff5-signed-shortcut-lost.md) |
-| ShibaSwap | 1 | LOW | $72k | [bonetoken-9813037e-signed-shortcut-lost](../findings/bonetoken-9813037e-signed-shortcut-lost.md) |
 | SeeleN | 1 | LOW | $71k | [seelebridge-cad5a42d-rotate-signer-before-migrating](../findings/seelebridge-cad5a42d-rotate-signer-before-migrating.md) |
 | Transit Finance | 1 | LOW | $71k | [transitswaprouterv5-07964f13-rotate-signer-before-migrating](../findings/transitswaprouterv5-07964f13-rotate-signer-before-migrating.md) |
 | Strike ETH | 1 | LOW | $68k | [primerewardpool-b5db3757-rotate-signer-before-migrating](../findings/primerewardpool-b5db3757-rotate-signer-before-migrating.md) |
 | Bitcratic | 2 | LOW | $62k | [amplbitcmedia-232ba9f3-signed-shortcut-lost](../findings/amplbitcmedia-232ba9f3-signed-shortcut-lost.md), [oxygendex-3c020e01-signed-shortcut-lost](../findings/oxygendex-3c020e01-signed-shortcut-lost.md) |
 | Decentrex | 1 | LOW | $61k | [decentrex-bf296858-signed-shortcut-lost](../findings/decentrex-bf296858-signed-shortcut-lost.md) |
-| Arch | 1 | LOW | $58k | [chamber-d1ce69b4-signed-shortcut-lost](../findings/chamber-d1ce69b4-signed-shortcut-lost.md) |
 | IPOR Protocol | 3 | LOW | $58k | [84249464-signed-shortcut-lost](../findings/84249464-signed-shortcut-lost.md), [plasmavaultbase-43ee0243-signed-shortcut-lost](../findings/plasmavaultbase-43ee0243-signed-shortcut-lost.md), [plasmavaultbase-c1926c01-signed-shortcut-lost](../findings/plasmavaultbase-c1926c01-signed-shortcut-lost.md) |
-| Sav3 | 1 | LOW | $54k | [sav3token-6e10aacb-signed-shortcut-lost](../findings/sav3token-6e10aacb-signed-shortcut-lost.md) |
 | BeFi Labs | 1 | LOW | $53k | [7ed67981-rotate-signer-before-migrating](../findings/7ed67981-rotate-signer-before-migrating.md) |
-| Prospective LLC | 4 | LOW | $52k | [curvetwocryptooptimized-1f5766ea-signed-shortcut-lost](../findings/curvetwocryptooptimized-1f5766ea-signed-shortcut-lost.md), [curvetwocryptooptimized-440f952b-signed-shortcut-lost](../findings/curvetwocryptooptimized-440f952b-signed-shortcut-lost.md), [d9439f8e-signed-shortcut-lost](../findings/d9439f8e-signed-shortcut-lost.md), [weightedpool-b8264ce7-signed-shortcut-lost](../findings/weightedpool-b8264ce7-signed-shortcut-lost.md) |
-| ARCx | 2 | LOW | $52k | [sapphirepool-d9c4d6e9-signed-shortcut-lost](../findings/sapphirepool-d9c4d6e9-signed-shortcut-lost.md), [synthetictokenv1-cd91538b-signed-shortcut-lost](../findings/synthetictokenv1-cd91538b-signed-shortcut-lost.md) |
-| Ampleforth Governance | 1 | LOW | $52k | [forth-77fba179-signed-shortcut-lost](../findings/forth-77fba179-signed-shortcut-lost.md) |
 | DMEX | 5 | LOW | $49k | [dmex-base-2101e480-signed-shortcut-lost](../findings/dmex-base-2101e480-signed-shortcut-lost.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | dex.blue | 2 | LOW | $48k | [dexblue-00000000-rotate-signer-before-migrating](../findings/dexblue-00000000-rotate-signer-before-migrating.md), [dexbluesettlementmodule-00000000-signed-shortcut-lost](../findings/dexbluesettlementmodule-00000000-signed-shortcut-lost.md) |
 | Tokemak | 8 | LOW | $48k | [autopooltoken-c7d7f434-signed-shortcut-lost](../findings/autopooltoken-c7d7f434-signed-shortcut-lost.md), [redstonepulloracle-470139ef-sender-gas-limits](../findings/redstonepulloracle-470139ef-sender-gas-limits.md), [rewards-086b9734-rotate-signer-before-migrating](../findings/rewards-086b9734-rotate-signer-before-migrating.md), [rewards-79dd2257-rotate-signer-before-migrating](../findings/rewards-79dd2257-rotate-signer-before-migrating.md), [rewards-ba7c0fbc-rotate-signer-before-migrating](../findings/rewards-ba7c0fbc-rotate-signer-before-migrating.md), [rewards-ba7c0fbc-sender-gas-limits](../findings/rewards-ba7c0fbc-sender-gas-limits.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | Mars Poolin | 1 | LOW | $48k | [a15690e9-signed-shortcut-lost](../findings/a15690e9-signed-shortcut-lost.md) |
 | Teahouse HighTable | 2 | LOW | $44k | [teavaultv2-2ad3b1c0-rotate-signer-before-migrating](../findings/teavaultv2-2ad3b1c0-rotate-signer-before-migrating.md), [teavaultv2-49811020-rotate-signer-before-migrating](../findings/teavaultv2-49811020-rotate-signer-before-migrating.md) |
 | Minter Network | 1 | LOW | $43k | [hub2eth-1c03d454-rotate-signer-before-migrating](../findings/hub2eth-1c03d454-rotate-signer-before-migrating.md) |
-| Inverse USD | 1 | LOW | $42k | [6ae289f4-signed-shortcut-lost](../findings/6ae289f4-signed-shortcut-lost.md) |
+| Vesper Finance | 1 | LOW | $42k | [vpool-d948ba1b-signed-shortcut-lost](../findings/vpool-d948ba1b-signed-shortcut-lost.md) |
 | Cozy Finance | 1 | LOW | $40k | [f8ec0f87-signed-shortcut-lost](../findings/f8ec0f87-signed-shortcut-lost.md) |
 | OLY | 1 | LOW | $40k | [stakingvault-c4d1cf0e-signed-shortcut-lost](../findings/stakingvault-c4d1cf0e-signed-shortcut-lost.md) |
 | Chronicle | 1 | LOW | $38k | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | XDAO | 1 | LOW | $37k | [dao-eebe6f7f-rotate-signer-before-migrating](../findings/dao-eebe6f7f-rotate-signer-before-migrating.md) |
-| YieldNest | 3 | LOW | $37k | [vault-657d9aba-signed-shortcut-lost](../findings/vault-657d9aba-signed-shortcut-lost.md), [vault-cdde0318-signed-shortcut-lost](../findings/vault-cdde0318-signed-shortcut-lost.md), [withdrawer-3527663f-signed-shortcut-lost](../findings/withdrawer-3527663f-signed-shortcut-lost.md) |
 | Portto | 6 | LOW | $35k | [cloneablewallet-01e0237f-rotate-signer-before-migrating](../findings/cloneablewallet-01e0237f-rotate-signer-before-migrating.md), [cloneablewallet-0af7f216-rotate-signer-before-migrating](../findings/cloneablewallet-0af7f216-rotate-signer-before-migrating.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| OlympusDAO | 3 | LOW | $32k | [lovelydaoerc20token-407a3e01-signed-shortcut-lost](../findings/lovelydaoerc20token-407a3e01-signed-shortcut-lost.md), [olympuserc20token-38351818-signed-shortcut-lost](../findings/olympuserc20token-38351818-signed-shortcut-lost.md), [solympus-04906695-signed-shortcut-lost](../findings/solympus-04906695-signed-shortcut-lost.md) |
-| Prism | 1 | LOW | $32k | [prismhook-bd3ab585-signed-shortcut-lost](../findings/prismhook-bd3ab585-signed-shortcut-lost.md) |
-| Zai Finance | 1 | LOW | $32k | [dollar-b6ca5a72-signed-shortcut-lost](../findings/dollar-b6ca5a72-signed-shortcut-lost.md) |
 | The Last Azaraks | 1 | LOW | $31k | [azaraks-0d8f1817-rotate-signer-before-migrating](../findings/azaraks-0d8f1817-rotate-signer-before-migrating.md) |
 | HEX.com | 1 | LOW | $31k | [hex-2b591e99-entry-by-own-signature-only](../findings/hex-2b591e99-entry-by-own-signature-only.md) |
-| Kingswap | 1 | LOW | $30k | [kingswappair-c447c73c-signed-shortcut-lost](../findings/kingswappair-c447c73c-signed-shortcut-lost.md) |
 | InsurAce Protocol | 1 | LOW | $30k | [stakerspoolv2-136d841d-rotate-signer-before-migrating](../findings/stakerspoolv2-136d841d-rotate-signer-before-migrating.md) |
 | Alethea AI | 1 | LOW | $29k | [aletheanft-c2d6b32e-signed-shortcut-lost](../findings/aletheanft-c2d6b32e-signed-shortcut-lost.md) |
 | Highstack | 1 | LOW | $29k | [ammovault-0e9d8e14-rotate-signer-before-migrating](../findings/ammovault-0e9d8e14-rotate-signer-before-migrating.md) |
@@ -409,85 +370,58 @@ A tag from a block explorer is a lead for outreach, never a name: it can be wron
 | StonkSwap | 1 | LOW | $27k | [wstock3-15c5f0f1-rotate-signer-before-migrating](../findings/wstock3-15c5f0f1-rotate-signer-before-migrating.md) |
 | Onrail | 3 | LOW | $26k | [vault-c4a386a0-rotate-signer-before-migrating](../findings/vault-c4a386a0-rotate-signer-before-migrating.md), [vault-c4a386a0-sender-gas-limits](../findings/vault-c4a386a0-sender-gas-limits.md), [vault-c4a386a0-signed-shortcut-lost](../findings/vault-c4a386a0-signed-shortcut-lost.md) |
 | Persona | 1 | LOW | $25k | [raffleauctionminter-de5d4949-rotate-signer-before-migrating](../findings/raffleauctionminter-de5d4949-rotate-signer-before-migrating.md) |
-| Supernova | 1 | LOW | $25k | [pair-c54ac479-signed-shortcut-lost](../findings/pair-c54ac479-signed-shortcut-lost.md) |
 | Mandala Tokens | 1 | LOW | $24k | [mandalatoken-daca8739-entry-by-own-signature-only](../findings/mandalatoken-daca8739-entry-by-own-signature-only.md) |
 | VIMworld | 1 | LOW | $24k | [435c84c7-signed-shortcut-lost](../findings/435c84c7-signed-shortcut-lost.md) |
 | 31Third | 2 | LOW | $23k | [batchtrade-d20c0245-rotate-signer-before-migrating](../findings/batchtrade-d20c0245-rotate-signer-before-migrating.md), [batchtrade-d20c0245-sender-gas-limits](../findings/batchtrade-d20c0245-sender-gas-limits.md) |
-| CoFiX | 2 | LOW | $23k | [cofixpair-053566e3-signed-shortcut-lost](../findings/cofixpair-053566e3-signed-shortcut-lost.md), [cofixpair-5455064a-signed-shortcut-lost](../findings/cofixpair-5455064a-signed-shortcut-lost.md) |
 | Memeland | 2 | LOW | $23k | [bootyclaim-9eafad32-rotate-signer-before-migrating](../findings/bootyclaim-9eafad32-rotate-signer-before-migrating.md), [captainzreserve-da7fb915-rotate-signer-before-migrating](../findings/captainzreserve-da7fb915-rotate-signer-before-migrating.md) |
 | Nest | 2 | LOW | $23k | [nestshareoft-cbd5eb27-rotate-signer-before-migrating](../findings/nestshareoft-cbd5eb27-rotate-signer-before-migrating.md), [nestshareoft-cbd5eb27-signed-shortcut-lost](../findings/nestshareoft-cbd5eb27-signed-shortcut-lost.md) |
 | Gravity Bridge | 2 | LOW | $22k | [gravity-a4108aa1-rotate-signer-before-migrating](../findings/gravity-a4108aa1-rotate-signer-before-migrating.md), [gravity-a4108aa1-sender-gas-limits](../findings/gravity-a4108aa1-sender-gas-limits.md) |
 | Borussia Dortmund | 1 | LOW | $21k | [bvbbox-2ce8e902-rotate-signer-before-migrating](../findings/bvbbox-2ce8e902-rotate-signer-before-migrating.md) |
-| PunkStrategy | 1 | LOW | $21k | [punkstrategy-c50673ed-signed-shortcut-lost](../findings/punkstrategy-c50673ed-signed-shortcut-lost.md) |
 | Bitcoin Dollar | 1 | LOW | $21k | [btcdminting-d22fff18-rotate-signer-before-migrating](../findings/btcdminting-d22fff18-rotate-signer-before-migrating.md) |
 | Artem | 1 | LOW | $20k | [a5646ba7-rotate-signer-before-migrating](../findings/a5646ba7-rotate-signer-before-migrating.md) |
-| Galxe | 2 | LOW | $20k | [5bd25d2f-rotate-signer-before-migrating](../findings/5bd25d2f-rotate-signer-before-migrating.md), [gal-5faa989a-signed-shortcut-lost](../findings/gal-5faa989a-signed-shortcut-lost.md) |
+| CoFiX | 1 | LOW | $20k | [cofixpair-053566e3-signed-shortcut-lost](../findings/cofixpair-053566e3-signed-shortcut-lost.md) |
+| Galxe | 1 | LOW | $19k | [5bd25d2f-rotate-signer-before-migrating](../findings/5bd25d2f-rotate-signer-before-migrating.md) |
 | Unlock Protocol | 2 | LOW | $19k | [publiclock-1abcd0a5-signed-shortcut-lost](../findings/publiclock-1abcd0a5-signed-shortcut-lost.md), [publiclock-f429bb80-signed-shortcut-lost](../findings/publiclock-f429bb80-signed-shortcut-lost.md) |
-| TRAMS.io | 1 | LOW | $19k | [uniswapv2pair-bcf2a5bd-signed-shortcut-lost](../findings/uniswapv2pair-bcf2a5bd-signed-shortcut-lost.md) |
+| Radiant Capital | 1 | LOW | $19k | [uniswapv2pair-cb9aef31-signed-shortcut-lost](../findings/uniswapv2pair-cb9aef31-signed-shortcut-lost.md) |
 | Stackup | 4 | LOW | $18k | [ecdsasigner-6a6f069e-rotate-signer-before-migrating](../findings/ecdsasigner-6a6f069e-rotate-signer-before-migrating.md), [kernel-dac2977f-rotate-signer-before-migrating](../findings/kernel-dac2977f-rotate-signer-before-migrating.md), [eip-8151-signer-upgrade-only](../triage/eip-8151-signer-upgrade-only.md) |
-| SakeSwap.Finance | 1 | LOW | $18k | [sakeswappair-b6e20580-signed-shortcut-lost](../findings/sakeswappair-b6e20580-signed-shortcut-lost.md) |
-| Value DeFi Protocol | 1 | LOW | $18k | [valueliquiditytoken-49e83333-signed-shortcut-lost](../findings/valueliquiditytoken-49e83333-signed-shortcut-lost.md) |
-| Pods Finance | 2 | LOW | $17k | [ethoriavault-03b834b3-signed-shortcut-lost](../findings/ethoriavault-03b834b3-signed-shortcut-lost.md), [stethvault-463f9ed5-signed-shortcut-lost](../findings/stethvault-463f9ed5-signed-shortcut-lost.md) |
 | BTswap | 1 | LOW | $17k | [btswappairtoken-b641745f-signed-shortcut-lost](../findings/btswappairtoken-b641745f-signed-shortcut-lost.md) |
-| Syncus | 1 | LOW | $17k | [syncus-a41d2f8e-signed-shortcut-lost](../findings/syncus-a41d2f8e-signed-shortcut-lost.md) |
 | Nouns DAO | 1 | LOW | $16k | [nounsdaovotes-6f3e6272-signed-shortcut-lost](../findings/nounsdaovotes-6f3e6272-signed-shortcut-lost.md) |
-| The Graph | 1 | LOW | $16k | [graphtoken-c944e90c-signed-shortcut-lost](../findings/graphtoken-c944e90c-signed-shortcut-lost.md) |
 | Manifold | 1 | LOW | $16k | [erc1155lazypayableclaim-26bbea78-rotate-signer-before-migrating](../findings/erc1155lazypayableclaim-26bbea78-rotate-signer-before-migrating.md) |
 | Multibit | 1 | LOW | $15k | [aea5fa28-rotate-signer-before-migrating](../findings/aea5fa28-rotate-signer-before-migrating.md) |
-| Cream.Finance | 1 | LOW | $14k | [comp-2ba592f7-signed-shortcut-lost](../findings/comp-2ba592f7-signed-shortcut-lost.md) |
-| Tokenlon | 1 | LOW | $14k | [lon-00000000-signed-shortcut-lost](../findings/lon-00000000-signed-shortcut-lost.md) |
-| cVault Finance | 1 | LOW | $14k | [core-62359ed7-signed-shortcut-lost](../findings/core-62359ed7-signed-shortcut-lost.md) |
+| ARCx | 1 | LOW | $14k | [sapphirepool-d9c4d6e9-signed-shortcut-lost](../findings/sapphirepool-d9c4d6e9-signed-shortcut-lost.md) |
 | Aqua Patina | 1 | LOW | $14k | [aaaaaaab-signed-shortcut-lost](../findings/aaaaaaab-signed-shortcut-lost.md) |
 | Union Protocol | 1 | LOW | $13k | [226f7b84-signed-shortcut-lost](../findings/226f7b84-signed-shortcut-lost.md) |
-| BitANT | 1 | LOW | $13k | [bitant-15ee120f-signed-shortcut-lost](../findings/bitant-15ee120f-signed-shortcut-lost.md) |
 | FalconSwap | 1 | LOW | $13k | [4837f64c-rotate-signer-before-migrating](../findings/4837f64c-rotate-signer-before-migrating.md) |
-| Interfold | 1 | LOW | $13k | [interfoldtoken-e172e9b6-signed-shortcut-lost](../findings/interfoldtoken-e172e9b6-signed-shortcut-lost.md) |
-| Daiquilibrium | 1 | LOW | $12k | [dollar-73d9e335-signed-shortcut-lost](../findings/dollar-73d9e335-signed-shortcut-lost.md) |
-| Nest Institutional Vault | 1 | LOW | $12k | [boringvault-bfc57706-signed-shortcut-lost](../findings/boringvault-bfc57706-signed-shortcut-lost.md) |
 | LAD | 2 | LOW | $12k | [lad-9ef297c0-rotate-signer-before-migrating](../findings/lad-9ef297c0-rotate-signer-before-migrating.md), [lad-9ef297c0-sender-gas-limits](../findings/lad-9ef297c0-sender-gas-limits.md) |
-| Michael Egorov | 1 | LOW | $12k | [curvetwocryptooptimized-77146b0a-signed-shortcut-lost](../findings/curvetwocryptooptimized-77146b0a-signed-shortcut-lost.md) |
 | Umbra | 3 | LOW | $12k | [stealthkeyregistry-31fe5660-signed-shortcut-lost](../findings/stealthkeyregistry-31fe5660-signed-shortcut-lost.md), [umbra-fb2dc580-sender-gas-limits](../findings/umbra-fb2dc580-sender-gas-limits.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Cover Protocol | 1 | LOW | $12k | [cover-4688a8b1-signed-shortcut-lost](../findings/cover-4688a8b1-signed-shortcut-lost.md) |
 | Noox Protocol | 1 | LOW | $12k | [badgeminterv2-b6728bff-rotate-signer-before-migrating](../findings/badgeminterv2-b6728bff-rotate-signer-before-migrating.md) |
-| Ondo Finance | 1 | LOW | $12k | [ondo-3d72c761-signed-shortcut-lost](../findings/ondo-3d72c761-signed-shortcut-lost.md) |
-| Cult DAO | 1 | LOW | $12k | [cult-b12ca3db-signed-shortcut-lost](../findings/cult-b12ca3db-signed-shortcut-lost.md) |
 | LuckyFish | 1 | LOW | $12k | [luckyfish-38d8b04a-rotate-signer-before-migrating](../findings/luckyfish-38d8b04a-rotate-signer-before-migrating.md) |
 | OpSec | 1 | LOW | $11k | [nettensor-ba0152f0-rotate-signer-before-migrating](../findings/nettensor-ba0152f0-rotate-signer-before-migrating.md) |
 | Rollbit | 1 | LOW | $11k | [046eee2c-signed-shortcut-lost](../findings/046eee2c-signed-shortcut-lost.md) |
 | Tether | 2 | LOW | $11k | [hadrontoken-b8f0308e-signed-shortcut-lost](../findings/hadrontoken-b8f0308e-signed-shortcut-lost.md), [tethertoken-ba2a995b-signed-shortcut-lost](../findings/tethertoken-ba2a995b-signed-shortcut-lost.md) |
 | Wrapped QUIL | 2 | LOW | $11k | [wquil-b395c7f6-rotate-signer-before-migrating](../findings/wquil-b395c7f6-rotate-signer-before-migrating.md), [wquil-b395c7f6-signed-shortcut-lost](../findings/wquil-b395c7f6-signed-shortcut-lost.md) |
 | Baby Shark | 1 | LOW | $11k | [7e3abde9-signed-shortcut-lost](../findings/7e3abde9-signed-shortcut-lost.md) |
-| Clearpool | 1 | LOW | $11k | [cpool-66761fa4-signed-shortcut-lost](../findings/cpool-66761fa4-signed-shortcut-lost.md) |
-| Floki | 1 | LOW | $11k | [floki-cf0c122c-signed-shortcut-lost](../findings/floki-cf0c122c-signed-shortcut-lost.md) |
 | Gala Games | 1 | LOW | $11k | [gala-c7ec0dd4-signed-shortcut-lost](../findings/gala-c7ec0dd4-signed-shortcut-lost.md) |
 | PPADealers | 1 | LOW | $11k | [ppadealers-99120d12-rotate-signer-before-migrating](../findings/ppadealers-99120d12-rotate-signer-before-migrating.md) |
 | MCH | 2 | LOW | $11k | [mchdailyactionv4-d7bec4d6-rotate-signer-before-migrating](../findings/mchdailyactionv4-d7bec4d6-rotate-signer-before-migrating.md), [mchprime-dee34cd4-rotate-signer-before-migrating](../findings/mchprime-dee34cd4-rotate-signer-before-migrating.md) |
 | Ensuro | 3 | LOW | $10k | [etoken-cd71f1e7-signed-shortcut-lost](../findings/etoken-cd71f1e7-signed-shortcut-lost.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Nya | 1 | LOW | $10k | [nya-79ebc9a2-signed-shortcut-lost](../findings/nya-79ebc9a2-signed-shortcut-lost.md) |
-| IAGON | 1 | LOW | $10k | [iagon-40eb746d-signed-shortcut-lost](../findings/iagon-40eb746d-signed-shortcut-lost.md) |
-| XStable | 1 | LOW | $10k | [share-c8f8fe86-signed-shortcut-lost](../findings/share-c8f8fe86-signed-shortcut-lost.md) |
+| Prospective LLC | 2 | LOW | $10k | [d9439f8e-signed-shortcut-lost](../findings/d9439f8e-signed-shortcut-lost.md), [weightedpool-b8264ce7-signed-shortcut-lost](../findings/weightedpool-b8264ce7-signed-shortcut-lost.md) |
 | Xeno | 1 | LOW | $10k | [xenomining-388f4781-rotate-signer-before-migrating](../findings/xenomining-388f4781-rotate-signer-before-migrating.md) |
 | SX Network | 1 | LOW | $9k | [weth-9d7c2a11-signed-shortcut-lost](../findings/weth-9d7c2a11-signed-shortcut-lost.md) |
 | Premia | 1 | LOW | $9k | [vxpremia-f1bb8756-signed-shortcut-lost](../findings/vxpremia-f1bb8756-signed-shortcut-lost.md) |
 | Hashflow | 3 | LOW | $8k | [89aef982-entry-by-own-signature-only](../findings/89aef982-entry-by-own-signature-only.md), [claimer-1a9a4d91-rotate-signer-before-migrating](../findings/claimer-1a9a4d91-rotate-signer-before-migrating.md), [claimer-1a9a4d91-sender-gas-limits](../findings/claimer-1a9a4d91-sender-gas-limits.md) |
 | 5KM Sneaker | 1 | LOW | $8k | [fivekmsneaker-65f2e558-rotate-signer-before-migrating](../findings/fivekmsneaker-65f2e558-rotate-signer-before-migrating.md) |
-| Genomes | 1 | LOW | $8k | [fixedtoken-21413c11-signed-shortcut-lost](../findings/fixedtoken-21413c11-signed-shortcut-lost.md) |
 | Jadu Jetpack | 2 | LOW | $8k | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Mercurity Finance | 1 | LOW | $8k | [governtokenv1-e1b583dc-signed-shortcut-lost](../findings/governtokenv1-e1b583dc-signed-shortcut-lost.md) |
 | Vortex Bridged KOIN | 1 | LOW | $8k | [2f2f36a8-rotate-signer-before-migrating](../findings/2f2f36a8-rotate-signer-before-migrating.md) |
 | AutoMinter | 1 | LOW | $8k | [automintererc20-c00c7337-rotate-signer-before-migrating](../findings/automintererc20-c00c7337-rotate-signer-before-migrating.md) |
 | Dope Wars | 1 | LOW | $8k | [paper-a4c6e3ff-signed-shortcut-lost](../findings/paper-a4c6e3ff-signed-shortcut-lost.md) |
 | Evinco | 1 | LOW | $8k | [evinco-e501afed-rotate-signer-before-migrating](../findings/evinco-e501afed-rotate-signer-before-migrating.md) |
 | HAVAH | 1 | LOW | $8k | [ced332d8-rotate-signer-before-migrating](../findings/ced332d8-rotate-signer-before-migrating.md) |
 | NOTHING | 1 | LOW | $8k | [nobodies-8b6a843e-rotate-signer-before-migrating](../findings/nobodies-8b6a843e-rotate-signer-before-migrating.md) |
-| Doont Buy | 1 | LOW | $7k | [ufragments-4ece5c5c-signed-shortcut-lost](../findings/ufragments-4ece5c5c-signed-shortcut-lost.md) |
 | Coinbase | 2 | LOW | $7k | [fiattokenv2-1-cbb7c000-signed-shortcut-lost](../findings/fiattokenv2-1-cbb7c000-signed-shortcut-lost.md), [stakedtokenv1-be989514-signed-shortcut-lost](../findings/stakedtokenv1-be989514-signed-shortcut-lost.md) |
-| Radio Caca | 1 | LOW | $7k | [racav2token-12bb8905-signed-shortcut-lost](../findings/racav2token-12bb8905-signed-shortcut-lost.md) |
-| Rug Proof | 1 | LOW | $7k | [rugprooftoken-a0bb0027-signed-shortcut-lost](../findings/rugprooftoken-a0bb0027-signed-shortcut-lost.md) |
 | Angryb | 1 | LOW | $7k | [angrycontract-7fc4012b-rotate-signer-before-migrating](../findings/angrycontract-7fc4012b-rotate-signer-before-migrating.md) |
 | Archer DAO | 1 | LOW | $7k | [archtoken-1f3f9d30-signed-shortcut-lost](../findings/archtoken-1f3f9d30-signed-shortcut-lost.md) |
-| Swipe | 1 | LOW | $7k | [uniswapv2pair-b8faf6d7-signed-shortcut-lost](../findings/uniswapv2pair-b8faf6d7-signed-shortcut-lost.md) |
-| Hland Finance | 1 | LOW | $7k | [hlandtoken-ba7b2c09-signed-shortcut-lost](../findings/hlandtoken-ba7b2c09-signed-shortcut-lost.md) |
 | LooksRare | 1 | LOW | $7k | [yolo-00000000-rotate-signer-before-migrating](../findings/yolo-00000000-rotate-signer-before-migrating.md) |
 | MetaCity | 1 | LOW | $7k | [metacity-1fa912cf-rotate-signer-before-migrating](../findings/metacity-1fa912cf-rotate-signer-before-migrating.md) |
 | Omnihorse | 1 | LOW | $7k | [omninftlogic-d665a161-rotate-signer-before-migrating](../findings/omninftlogic-d665a161-rotate-signer-before-migrating.md) |
@@ -495,21 +429,13 @@ A tag from a block explorer is a lead for outreach, never a name: it can be wron
 | Rockside | 2 | LOW | $7k | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Truth AIDOGE | 1 | LOW | $6k | [7fc9c19c-rotate-signer-before-migrating](../findings/7fc9c19c-rotate-signer-before-migrating.md) |
 | Zunami Protocol | 1 | LOW | $6k | [zunstakingrewarddistributor-ce3a40f3-signed-shortcut-lost](../findings/zunstakingrewarddistributor-ce3a40f3-signed-shortcut-lost.md) |
-| Exactly | 1 | LOW | $6k | [market-c4d45003-signed-shortcut-lost](../findings/market-c4d45003-signed-shortcut-lost.md) |
 | Enter Shizuka | 1 | LOW | $6k | [shizuka-07321560-rotate-signer-before-migrating](../findings/shizuka-07321560-rotate-signer-before-migrating.md) |
-| Ether.fi | 1 | LOW | $6k | [etherfigovernancetoken-fe0c3006-signed-shortcut-lost](../findings/etherfigovernancetoken-fe0c3006-signed-shortcut-lost.md) |
-| OpenLM RevShare Token | 1 | LOW | $6k | [erc7641-e5018913-signed-shortcut-lost](../findings/erc7641-e5018913-signed-shortcut-lost.md) |
 | Steakhouse | 1 | LOW | $6k | [batchexecutor-df317738-7702-own-key-only](../findings/batchexecutor-df317738-7702-own-key-only.md) |
 | Vincents | 1 | LOW | $6k | [vincents-0107fa0c-rotate-signer-before-migrating](../findings/vincents-0107fa0c-rotate-signer-before-migrating.md) |
-| xDai | 1 | LOW | $6k | [erc677multibridgetoken-b9c239eb-signed-shortcut-lost](../findings/erc677multibridgetoken-b9c239eb-signed-shortcut-lost.md) |
-| Abracadabra.money | 3 | LOW | $6k | [magicinternetmoneyv1-99d8a9c4-signed-shortcut-lost](../findings/magicinternetmoneyv1-99d8a9c4-signed-shortcut-lost.md), [spell-090185f2-signed-shortcut-lost](../findings/spell-090185f2-signed-shortcut-lost.md), [sspellv1-26fa3fff-signed-shortcut-lost](../findings/sspellv1-26fa3fff-signed-shortcut-lost.md) |
 | Blockparty | 1 | LOW | $6k | [e4f99439-rotate-signer-before-migrating](../findings/e4f99439-rotate-signer-before-migrating.md) |
 | Prambanan Jazz | 1 | LOW | $6k | [pjf-c5204200-rotate-signer-before-migrating](../findings/pjf-c5204200-rotate-signer-before-migrating.md) |
 | Art Blocks | 1 | LOW | $5k | [0c375085-7702-own-key-only](../findings/0c375085-7702-own-key-only.md) |
 | Rarible | 4 | LOW | $5k | [exchangev1-09eab21c-rotate-signer-before-migrating](../findings/exchangev1-09eab21c-rotate-signer-before-migrating.md), [exchangev2-9757f2d2-signed-shortcut-lost](../findings/exchangev2-9757f2d2-signed-shortcut-lost.md), [mintabletoken-60f80121-rotate-signer-before-migrating](../findings/mintabletoken-60f80121-rotate-signer-before-migrating.md), [mintabletoken-60f80121-sender-gas-limits](../findings/mintabletoken-60f80121-sender-gas-limits.md) |
-| Arbitrum Foundation | 1 | LOW | $5k | [l1arbitrumtoken-b50721bc-signed-shortcut-lost](../findings/l1arbitrumtoken-b50721bc-signed-shortcut-lost.md) |
-| Behodler | 1 | LOW | $5k | [weth10-4f5704d9-signed-shortcut-lost](../findings/weth10-4f5704d9-signed-shortcut-lost.md) |
-| IterationSyndicate | 1 | LOW | $5k | [iterationsyndicate-c32cc5b7-signed-shortcut-lost](../findings/iterationsyndicate-c32cc5b7-signed-shortcut-lost.md) |
 | Ballciaga Player Card | 1 | LOW | $5k | [fundpool-73f7e6ae-rotate-signer-before-migrating](../findings/fundpool-73f7e6ae-rotate-signer-before-migrating.md) |
 | PeopleInThePlaceTheyLove | 1 | LOW | $5k | [peopleintheplacetheylove-496a2d17-rotate-signer-before-migrating](../findings/peopleintheplacetheylove-496a2d17-rotate-signer-before-migrating.md) |
 | Unipilot | 1 | LOW | $5k | [pilot-37c997b3-signed-shortcut-lost](../findings/pilot-37c997b3-signed-shortcut-lost.md) |
@@ -523,7 +449,7 @@ A tag from a block explorer is a lead for outreach, never a name: it can be wron
 | Ternoa | 1 | LOW | $5k | [capsulecoin-bc319743-signed-shortcut-lost](../findings/capsulecoin-bc319743-signed-shortcut-lost.md) |
 | Voxelglyph | 1 | LOW | $5k | [dutchauction-86e263ca-rotate-signer-before-migrating](../findings/dutchauction-86e263ca-rotate-signer-before-migrating.md) |
 | Xanthous Core | 1 | LOW | $5k | [archetype-1629da08-rotate-signer-before-migrating](../findings/archetype-1629da08-rotate-signer-before-migrating.md) |
-| Gelato | 1 | LOW | $5k | [gel-15b7c0c9-signed-shortcut-lost](../findings/gel-15b7c0c9-signed-shortcut-lost.md) |
+| YieldNest | 1 | LOW | $5k | [vault-cdde0318-signed-shortcut-lost](../findings/vault-cdde0318-signed-shortcut-lost.md) |
 | Merlin Chain | 2 | LOW | $5k | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Unification | 1 | LOW | $5k | [xfund-892a6f9d-rotate-signer-before-migrating](../findings/xfund-892a6f9d-rotate-signer-before-migrating.md) |
 | Creepz Invasion Pass | 1 | LOW | $4k | [creepzinvasionpass-f3ec2d63-fixed-signer](../findings/creepzinvasionpass-f3ec2d63-fixed-signer.md) |
@@ -533,7 +459,6 @@ A tag from a block explorer is a lead for outreach, never a name: it can be wron
 | Bitox.io | 1 | LOW | $4k | [ndex-b5adb233-signed-shortcut-lost](../findings/ndex-b5adb233-signed-shortcut-lost.md) |
 | Cian | 2 | LOW | $4k | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | POPrism | 1 | LOW | $4k | [7339453b-rotate-signer-before-migrating](../findings/7339453b-rotate-signer-before-migrating.md) |
-| Tree | 1 | LOW | $4k | [tree-ba25b228-signed-shortcut-lost](../findings/tree-ba25b228-signed-shortcut-lost.md) |
 | Vision of Unity | 1 | LOW | $4k | [nefariousnarwhals-a578e04d-signer-upgrade-only](../findings/nefariousnarwhals-a578e04d-signer-upgrade-only.md) |
 | Vow | 3 | LOW | $4k | [vowbridge-f2e6e9e5-rotate-signer-before-migrating](../findings/vowbridge-f2e6e9e5-rotate-signer-before-migrating.md), [vowbridge-f2e6e9e5-sender-gas-limits](../findings/vowbridge-f2e6e9e5-sender-gas-limits.md), [vowtoken-1bbf25e7-signed-shortcut-lost](../findings/vowtoken-1bbf25e7-signed-shortcut-lost.md) |
 | Chaos Cube | 1 | LOW | $4k | [chaoscube-471b0721-signed-shortcut-lost](../findings/chaoscube-471b0721-signed-shortcut-lost.md) |
@@ -542,43 +467,26 @@ A tag from a block explorer is a lead for outreach, never a name: it can be wron
 | OpenSea | 1 | LOW | $4k | [testingwyvernexchangewithbulkcan-31090e25-signed-shortcut-lost](../findings/testingwyvernexchangewithbulkcan-31090e25-signed-shortcut-lost.md) |
 | FCK.com | 2 | LOW | $4k | [fckdice-999999c6-rotate-signer-before-migrating](../findings/fckdice-999999c6-rotate-signer-before-migrating.md), [fckroulette-ddddddd1-rotate-signer-before-migrating](../findings/fckroulette-ddddddd1-rotate-signer-before-migrating.md) |
 | Undeads | 2 | LOW | $4k | [c38eb82a-sender-gas-limits](../findings/c38eb82a-sender-gas-limits.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Apple (Dinari Tokenized Stock) | 1 | LOW | $4k | [assetvault-97da68b0-signed-shortcut-lost](../findings/assetvault-97da68b0-signed-shortcut-lost.md) |
 | Dizzy Demons | 1 | LOW | $4k | [dizzydemons-47c4d346-signed-shortcut-lost](../findings/dizzydemons-47c4d346-signed-shortcut-lost.md) |
 | FutureIcons | 1 | LOW | $4k | [futureicons-90423144-rotate-signer-before-migrating](../findings/futureicons-90423144-rotate-signer-before-migrating.md) |
 | LilNoun | 1 | LOW | $4k | [nounsdaologicv2-5d2c31ce-signed-shortcut-lost](../findings/nounsdaologicv2-5d2c31ce-signed-shortcut-lost.md) |
-| PudgyStrategy | 1 | LOW | $4k | [nftstrategy-b3d6e9e1-signed-shortcut-lost](../findings/nftstrategy-b3d6e9e1-signed-shortcut-lost.md) |
-| TRYfinance | 1 | LOW | $4k | [tryfinance-c12ecee4-signed-shortcut-lost](../findings/tryfinance-c12ecee4-signed-shortcut-lost.md) |
+| Pods Finance | 1 | LOW | $4k | [ethoriavault-03b834b3-signed-shortcut-lost](../findings/ethoriavault-03b834b3-signed-shortcut-lost.md) |
 | Toshify.Finance | 1 | LOW | $4k | [bb5923d7-signed-shortcut-lost](../findings/bb5923d7-signed-shortcut-lost.md) |
 | Auctionity | 2 | LOW | $4k | [auctionitydepositeth-d01c9293-rotate-signer-before-migrating](../findings/auctionitydepositeth-d01c9293-rotate-signer-before-migrating.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Alchemist Coin | 1 | LOW | $3k | [visor-00ae28c7-signed-shortcut-lost](../findings/visor-00ae28c7-signed-shortcut-lost.md) |
 | GEN AI | 1 | LOW | $3k | [genai-c3f78f50-rotate-signer-before-migrating](../findings/genai-c3f78f50-rotate-signer-before-migrating.md) |
-| Inspect | 1 | LOW | $3k | [inspect-186ef81f-signed-shortcut-lost](../findings/inspect-186ef81f-signed-shortcut-lost.md) |
-| Resolv USR | 1 | LOW | $3k | [simpletoken-982d3e61-signed-shortcut-lost](../findings/simpletoken-982d3e61-signed-shortcut-lost.md) |
 | Beanstalk | 1 | LOW | $3k | [well-ba510e11-signed-shortcut-lost](../findings/well-ba510e11-signed-shortcut-lost.md) |
 | Capsule Community Curated Collection | 1 | LOW | $3k | [basefixedpriceauctionerc1155-de371dad-rotate-signer-before-migrating](../findings/basefixedpriceauctionerc1155-de371dad-rotate-signer-before-migrating.md) |
 | FriendRoom | 1 | LOW | $3k | [9bd0474c-rotate-signer-before-migrating](../findings/9bd0474c-rotate-signer-before-migrating.md) |
-| SuperVerse | 1 | LOW | $3k | [goldfarm-430d206f-signed-shortcut-lost](../findings/goldfarm-430d206f-signed-shortcut-lost.md) |
 | XPSR-24 | 1 | LOW | $3k | [xpsrdeposit-b668bdbb-rotate-signer-before-migrating](../findings/xpsrdeposit-b668bdbb-rotate-signer-before-migrating.md) |
 | Illuvium | 1 | LOW | $3k | [illuviumerc20-767fe9ed-signed-shortcut-lost](../findings/illuviumerc20-767fe9ed-signed-shortcut-lost.md) |
-| MetaMonopoly | 1 | LOW | $3k | [monopoly-25e44a1c-signed-shortcut-lost](../findings/monopoly-25e44a1c-signed-shortcut-lost.md) |
-| RWAX | 1 | LOW | $3k | [moonapp-c5d27f27-signed-shortcut-lost](../findings/moonapp-c5d27f27-signed-shortcut-lost.md) |
-| Aevo | 1 | LOW | $3k | [aevotoken-b528edbe-signed-shortcut-lost](../findings/aevotoken-b528edbe-signed-shortcut-lost.md) |
 | BLACKHOLE PROTOCOL | 1 | LOW | $3k | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | Deus Finance | 1 | LOW | $3k | [15e343d8-rotate-signer-before-migrating](../findings/15e343d8-rotate-signer-before-migrating.md) |
 | Dodo eth | 1 | LOW | $3k | [dodo-747e550a-rotate-signer-before-migrating](../findings/dodo-747e550a-rotate-signer-before-migrating.md) |
-| Nexera Foundation | 1 | LOW | $3k | [allianceblocktoken-3a872ae9-signed-shortcut-lost](../findings/allianceblocktoken-3a872ae9-signed-shortcut-lost.md) |
-| Radicle | 1 | LOW | $3k | [radicletoken-31c8eacb-signed-shortcut-lost](../findings/radicletoken-31c8eacb-signed-shortcut-lost.md) |
-| Stader Labs | 1 | LOW | $3k | [stader-30d20208-signed-shortcut-lost](../findings/stader-30d20208-signed-shortcut-lost.md) |
-| Superfluid Finance | 1 | LOW | $3k | [supertoken-c22bea0b-signed-shortcut-lost](../findings/supertoken-c22bea0b-signed-shortcut-lost.md) |
 | ULAND | 1 | LOW | $3k | [ulandheroesdapp-80a84a35-rotate-signer-before-migrating](../findings/ulandheroesdapp-80a84a35-rotate-signer-before-migrating.md) |
 | Mr F | 1 | LOW | $3k | [ethstonks-de3f362a-signer-upgrade-only](../findings/ethstonks-de3f362a-signer-upgrade-only.md) |
 | FU STUDIO MEMBERSHIP | 1 | LOW | $3k | [archetype-1c67d8f0-rotate-signer-before-migrating](../findings/archetype-1c67d8f0-rotate-signer-before-migrating.md) |
-| ParaSwap | 1 | LOW | $3k | [psp-cafe0010-signed-shortcut-lost](../findings/psp-cafe0010-signed-shortcut-lost.md) |
-| Rari Capital | 1 | LOW | $3k | [rarigovernancetoken-d291e7a0-signed-shortcut-lost](../findings/rarigovernancetoken-d291e7a0-signed-shortcut-lost.md) |
 | Synapse Network | 1 | LOW | $3k | [synapsenetwork-6911f552-signed-shortcut-lost](../findings/synapsenetwork-6911f552-signed-shortcut-lost.md) |
-| WalletConnect | 1 | LOW | $3k | [wct-ef446189-signed-shortcut-lost](../findings/wct-ef446189-signed-shortcut-lost.md) |
 | Earthmeta | 7 | LOW | $3k | [3aa07cd5-rotate-signer-before-migrating](../findings/3aa07cd5-rotate-signer-before-migrating.md), [3aa07cd5-sender-gas-limits](../findings/3aa07cd5-sender-gas-limits.md), [74149f6d-entry-by-own-signature-only](../findings/74149f6d-entry-by-own-signature-only.md), [74149f6d-sender-gas-limits](../findings/74149f6d-sender-gas-limits.md), [earthmetacrosschaincheckout-1e530e5f-entry-by-own-signature-only](../findings/earthmetacrosschaincheckout-1e530e5f-entry-by-own-signature-only.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Wombat Exchange | 2 | LOW | $3k | [asset-3c64d987-signed-shortcut-lost](../findings/asset-3c64d987-signed-shortcut-lost.md), [dynamicasset-94019d0f-signed-shortcut-lost](../findings/dynamicasset-94019d0f-signed-shortcut-lost.md) |
 | 1687 Icons 1 | 1 | LOW | $3k | [nft1687icons1collection-7a25a288-signed-shortcut-lost](../findings/nft1687icons1collection-7a25a288-signed-shortcut-lost.md) |
 | Cap | 2 | LOW | $3k | [captoken-bdaa3408-signed-shortcut-lost](../findings/captoken-bdaa3408-signed-shortcut-lost.md), [stakedcap-42c0e0ef-signed-shortcut-lost](../findings/stakedcap-42c0e0ef-signed-shortcut-lost.md) |
 | Gamma | 1 | LOW | $3k | [hypervisor-24fe0b13-signed-shortcut-lost](../findings/hypervisor-24fe0b13-signed-shortcut-lost.md) |
@@ -588,17 +496,10 @@ A tag from a block explorer is a lead for outreach, never a name: it can be wron
 | BitPay | 1 | LOW | $2k | [invoice-52de8d3f-rotate-signer-before-migrating](../findings/invoice-52de8d3f-rotate-signer-before-migrating.md) |
 | BlockchainCuties | 1 | LOW | $2k | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Boxbet | 1 | LOW | $2k | [boxbetrewardsdistribution-6c152a7f-rotate-signer-before-migrating](../findings/boxbetrewardsdistribution-6c152a7f-rotate-signer-before-migrating.md) |
-| KyberSwap | 4 | LOW | $2k | [8f10b468-rotate-signer-before-migrating](../findings/8f10b468-rotate-signer-before-migrating.md), [8f10b468-sender-gas-limits](../findings/8f10b468-sender-gas-limits.md), [kspool-c2995a06-signed-shortcut-lost](../findings/kspool-c2995a06-signed-shortcut-lost.md), [kszaprouterv3-3bdb21ea-rotate-signer-before-migrating](../findings/kszaprouterv3-3bdb21ea-rotate-signer-before-migrating.md) |
-| PepePal | 1 | LOW | $2k | [pepedexpair-c6fdf408-signed-shortcut-lost](../findings/pepedexpair-c6fdf408-signed-shortcut-lost.md) |
-| PinLink | 1 | LOW | $2k | [pinlink-2e44f3f6-signed-shortcut-lost](../findings/pinlink-2e44f3f6-signed-shortcut-lost.md) |
-| Tempus Finance | 1 | LOW | $2k | [tempustoken-a36fdbba-signed-shortcut-lost](../findings/tempustoken-a36fdbba-signed-shortcut-lost.md) |
 | AvantGarde | 1 | LOW | $2k | [avantgarde-0583ce2d-rotate-signer-before-migrating](../findings/avantgarde-0583ce2d-rotate-signer-before-migrating.md) |
 | Coinage Media | 1 | LOW | $2k | [coinage-4776defc-rotate-signer-before-migrating](../findings/coinage-4776defc-rotate-signer-before-migrating.md) |
 | Crypto Gaming United | 1 | LOW | $2k | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Ethena | 1 | LOW | $2k | [ena-1cdef1ee-signed-shortcut-lost](../findings/ena-1cdef1ee-signed-shortcut-lost.md) |
-| Impt | 1 | LOW | $2k | [impt-04c17b9d-signed-shortcut-lost](../findings/impt-04c17b9d-signed-shortcut-lost.md) |
 | Lil Z Adventure | 1 | LOW | $2k | [35c562e8-rotate-signer-before-migrating](../findings/35c562e8-rotate-signer-before-migrating.md) |
-| WhiteRock | 1 | LOW | $2k | [white-9cdf242e-signed-shortcut-lost](../findings/white-9cdf242e-signed-shortcut-lost.md) |
 | dYdX | 1 | LOW | $2k | [dydxtoken-92d6c1e3-signed-shortcut-lost](../findings/dydxtoken-92d6c1e3-signed-shortcut-lost.md) |
 | Official Immortal Cat NFT | 1 | LOW | $2k | [535bea78-rotate-signer-before-migrating](../findings/535bea78-rotate-signer-before-migrating.md) |
 | AMBUSH | 1 | LOW | $2k | [f06c0f48-rotate-signer-before-migrating](../findings/f06c0f48-rotate-signer-before-migrating.md) |
@@ -611,26 +512,17 @@ A tag from a block explorer is a lead for outreach, never a name: it can be wron
 | RabbitX | 1 | LOW | $2k | [rabbit-3b8f6d69-rotate-signer-before-migrating](../findings/rabbit-3b8f6d69-rotate-signer-before-migrating.md) |
 | Ren | 1 | LOW | $2k | [renerc20logicv1-2d7e244a-signed-shortcut-lost](../findings/renerc20logicv1-2d7e244a-signed-shortcut-lost.md) |
 | SODA Cans - Society of Degenerate Apes | 1 | LOW | $2k | [soda-b184b941-rotate-signer-before-migrating](../findings/soda-b184b941-rotate-signer-before-migrating.md) |
-| Sturdy | 1 | LOW | $2k | [token-aeb3607e-signed-shortcut-lost](../findings/token-aeb3607e-signed-shortcut-lost.md) |
-| Three Arrowz Captiel | 1 | LOW | $2k | [tac-2de1218c-signed-shortcut-lost](../findings/tac-2de1218c-signed-shortcut-lost.md) |
 | Tom Sachs Rocket Factory | 1 | LOW | $2k | [38b99963-rotate-signer-before-migrating](../findings/38b99963-rotate-signer-before-migrating.md) |
 | ToonSwap | 1 | LOW | $2k | [b69b13b3-signed-shortcut-lost](../findings/b69b13b3-signed-shortcut-lost.md) |
 | VVS Finance | 1 | LOW | $2k | [bdd5e759-signed-shortcut-lost](../findings/bdd5e759-signed-shortcut-lost.md) |
-| Amphor | 1 | LOW | $2k | [amphorsyntheticvaultwithpermit-2791eb58-signed-shortcut-lost](../findings/amphorsyntheticvaultwithpermit-2791eb58-signed-shortcut-lost.md) |
 | Bounce Finance | 1 | LOW | $2k | [9e2c12d9-rotate-signer-before-migrating](../findings/9e2c12d9-rotate-signer-before-migrating.md) |
 | Mai Finance | 1 | LOW | $2k | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Mushrooms Finance | 1 | LOW | $2k | [mmvault-b0f1a38f-signed-shortcut-lost](../findings/mmvault-b0f1a38f-signed-shortcut-lost.md) |
 | Phanta Bear | 1 | LOW | $2k | [3f15d92b-rotate-signer-before-migrating](../findings/3f15d92b-rotate-signer-before-migrating.md) |
 | Pine | 1 | LOW | $2k | [caed49b7-rotate-signer-before-migrating](../findings/caed49b7-rotate-signer-before-migrating.md) |
-| Sandclock Yield ETH | 1 | LOW | $2k | [scwethv2-4c406c06-signed-shortcut-lost](../findings/scwethv2-4c406c06-signed-shortcut-lost.md) |
 | AXNetDEX | 1 | LOW | $2k | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| KwikSwap Protocol | 1 | LOW | $2k | [kwik-286c0936-signed-shortcut-lost](../findings/kwik-286c0936-signed-shortcut-lost.md) |
-| Wolfage Finance | 1 | LOW | $2k | [wefi-31735f02-signed-shortcut-lost](../findings/wefi-31735f02-signed-shortcut-lost.md) |
 | zKML | 1 | LOW | $2k | [pgpu-d2fcb8aa-rotate-signer-before-migrating](../findings/pgpu-d2fcb8aa-rotate-signer-before-migrating.md) |
-| Boson Protocol | 1 | LOW | $2k | [bosontoken-c477d038-signed-shortcut-lost](../findings/bosontoken-c477d038-signed-shortcut-lost.md) |
 | Xiro Card | 1 | LOW | $2k | [xironft-62b76896-rotate-signer-before-migrating](../findings/xironft-62b76896-rotate-signer-before-migrating.md) |
 | Blockchain Cuties | 2 | LOW | $2k | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Lily | 1 | LOW | $2k | [crazyyfrogcoin-2713c8da-signed-shortcut-lost](../findings/crazyyfrogcoin-2713c8da-signed-shortcut-lost.md) |
 | Zero Exchange | 1 | LOW | $2k | [zero-f0939011-signed-shortcut-lost](../findings/zero-f0939011-signed-shortcut-lost.md) |
 | ImperialThrone Ticket | 1 | LOW | $2k | [itticket-6b31a2ef-rotate-signer-before-migrating](../findings/itticket-6b31a2ef-rotate-signer-before-migrating.md) |
 | Birbs Crew | 1 | LOW | $2k | [birbscrew-cfee93aa-entry-by-own-signature-only](../findings/birbscrew-cfee93aa-entry-by-own-signature-only.md) |
@@ -638,106 +530,65 @@ A tag from a block explorer is a lead for outreach, never a name: it can be wron
 | DRIVEN Alpha Collection | 1 | LOW | $1k | [dvn-bb04aafd-rotate-signer-before-migrating](../findings/dvn-bb04aafd-rotate-signer-before-migrating.md) |
 | MOVΞ M1 | 1 | LOW | $1k | [mov3-m1-80f6a2eb-rotate-signer-before-migrating](../findings/mov3-m1-80f6a2eb-rotate-signer-before-migrating.md) |
 | Vitreus | 2 | LOW | $1k | [tokenerc20-b677d6cd-rotate-signer-before-migrating](../findings/tokenerc20-b677d6cd-rotate-signer-before-migrating.md), [tokenerc20-b677d6cd-signed-shortcut-lost](../findings/tokenerc20-b677d6cd-signed-shortcut-lost.md) |
-| Lever | 1 | LOW | $1k | [lev-8eb624b2-signed-shortcut-lost](../findings/lev-8eb624b2-signed-shortcut-lost.md) |
 | PaperHands | 1 | LOW | $1k | [paperhands-863846e7-rotate-signer-before-migrating](../findings/paperhands-863846e7-rotate-signer-before-migrating.md) |
-| dAMM | 1 | LOW | $1k | [comp-fa372ff1-signed-shortcut-lost](../findings/comp-fa372ff1-signed-shortcut-lost.md) |
 | Blockheads Family | 1 | LOW | $1k | [blockheads-28812ec6-signed-shortcut-lost](../findings/blockheads-28812ec6-signed-shortcut-lost.md) |
-| BuildOnBeam | 1 | LOW | $1k | [beamtoken-62d0a845-signed-shortcut-lost](../findings/beamtoken-62d0a845-signed-shortcut-lost.md) |
-| Lombard | 7 | LOW | $1k | [bard-f0db65d1-signed-shortcut-lost](../findings/bard-f0db65d1-signed-shortcut-lost.md), [c3ecfe77-rotate-signer-before-migrating](../findings/c3ecfe77-rotate-signer-before-migrating.md), [c3ecfe77-sender-gas-limits](../findings/c3ecfe77-sender-gas-limits.md), [consortium-dad58dfa-rotate-signer-before-migrating](../findings/consortium-dad58dfa-rotate-signer-before-migrating.md), [consortium-dad58dfa-sender-gas-limits](../findings/consortium-dad58dfa-sender-gas-limits.md), [nativelbtc-1b53b627-signed-shortcut-lost](../findings/nativelbtc-1b53b627-signed-shortcut-lost.md), [stakedlbtc-8236a870-signed-shortcut-lost](../findings/stakedlbtc-8236a870-signed-shortcut-lost.md) |
-| Keep3r | 1 | LOW | $1k | [keep3rv1-1ceb5cb5-signed-shortcut-lost](../findings/keep3rv1-1ceb5cb5-signed-shortcut-lost.md) |
+| Lombard | 6 | LOW | $1k | [c3ecfe77-rotate-signer-before-migrating](../findings/c3ecfe77-rotate-signer-before-migrating.md), [c3ecfe77-sender-gas-limits](../findings/c3ecfe77-sender-gas-limits.md), [consortium-dad58dfa-rotate-signer-before-migrating](../findings/consortium-dad58dfa-rotate-signer-before-migrating.md), [consortium-dad58dfa-sender-gas-limits](../findings/consortium-dad58dfa-sender-gas-limits.md), [nativelbtc-1b53b627-signed-shortcut-lost](../findings/nativelbtc-1b53b627-signed-shortcut-lost.md), [stakedlbtc-8236a870-signed-shortcut-lost](../findings/stakedlbtc-8236a870-signed-shortcut-lost.md) |
 | Blockchain Badlands | 1 | LOW | $1k | [badlands-478b33d7-rotate-signer-before-migrating](../findings/badlands-478b33d7-rotate-signer-before-migrating.md) |
 | EthXY | 1 | LOW | $1k | [settledethxytoken-c52fafdc-rotate-signer-before-migrating](../findings/settledethxytoken-c52fafdc-rotate-signer-before-migrating.md) |
 | nDEX Market | 1 | LOW | $1k | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| ByteAI | 1 | LOW | $1k | [byteai-9c2b4b0d-signed-shortcut-lost](../findings/byteai-9c2b4b0d-signed-shortcut-lost.md) |
 | Innocent Cats | 1 | LOW | $1k | [babe3dec-rotate-signer-before-migrating](../findings/babe3dec-rotate-signer-before-migrating.md) |
 | Relend Network | 1 | LOW | $1k | [relendwtokenl1-2956f7ab-signed-shortcut-lost](../findings/relendwtokenl1-2956f7ab-signed-shortcut-lost.md) |
 | Integral | 1 | LOW | $1k | [twappair-045950a3-signed-shortcut-lost](../findings/twappair-045950a3-signed-shortcut-lost.md) |
 | DMM | 1 | LOW | $1k | [dmgtoken-ed918799-signed-shortcut-lost](../findings/dmgtoken-ed918799-signed-shortcut-lost.md) |
-| Plasma | 1 | LOW | $1k | [ppay-054d64b7-signed-shortcut-lost](../findings/ppay-054d64b7-signed-shortcut-lost.md) |
 | Mellow Protocol | 1 | LOW | $1k | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | The Nifty Portal | 1 | LOW | $1k | [portalnft-d374410e-rotate-signer-before-migrating](../findings/portalnft-d374410e-rotate-signer-before-migrating.md) |
-| Fei Protocol | 2 | LOW | $1k | [fei-956f47f5-signed-shortcut-lost](../findings/fei-956f47f5-signed-shortcut-lost.md), [tribe-c7283b66-signed-shortcut-lost](../findings/tribe-c7283b66-signed-shortcut-lost.md) |
 | 0xVampire | 1 | LOW | $1k | [vampire-c9e2c971-signed-shortcut-lost](../findings/vampire-c9e2c971-signed-shortcut-lost.md) |
-| AltLayer | 1 | LOW | $1k | [altlayertoken-8457ca50-signed-shortcut-lost](../findings/altlayertoken-8457ca50-signed-shortcut-lost.md) |
 | Api3 | 4 | LOW | $1k | [api3marketv2-3f5c77bb-sender-gas-limits](../findings/api3marketv2-3f5c77bb-sender-gas-limits.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | BOB | 1 | LOW | $1k | [token-b5a497b7-signed-shortcut-lost](../findings/token-b5a497b7-signed-shortcut-lost.md) |
-| BitStable | 1 | LOW | $1k | [brc20-bb881a71-signed-shortcut-lost](../findings/brc20-bb881a71-signed-shortcut-lost.md) |
 | ROBOROVSKI | 1 | LOW | $1k | [roborovski-4ceb477a-rotate-signer-before-migrating](../findings/roborovski-4ceb477a-rotate-signer-before-migrating.md) |
-| Reserve Rights | 1 | LOW | $1k | [rsr-320623b8-signed-shortcut-lost](../findings/rsr-320623b8-signed-shortcut-lost.md) |
 | Skull Troopers | 1 | LOW | $1k | [skulltroopers-ee444648-rotate-signer-before-migrating](../findings/skulltroopers-ee444648-rotate-signer-before-migrating.md) |
 | UXUY | 1 | LOW | $1k | [uxuysmartlogic-df75f756-rotate-signer-before-migrating](../findings/uxuysmartlogic-df75f756-rotate-signer-before-migrating.md) |
 | Zama | 1 | LOW | $1k | [zamaerc20-b84c63bd-signed-shortcut-lost](../findings/zamaerc20-b84c63bd-signed-shortcut-lost.md) |
-| DeversiFi | 2 | LOW | $1k | [tethertoken-93d07077-sender-gas-limits](../findings/tethertoken-93d07077-sender-gas-limits.md), [tethertoken-93d07077-signed-shortcut-lost](../findings/tethertoken-93d07077-signed-shortcut-lost.md) |
-| ENS | 5 | LOW | $1k | [ensgovernor-323a7639-sender-gas-limits](../findings/ensgovernor-323a7639-sender-gas-limits.md), [ensgovernor-323a7639-signed-shortcut-lost](../findings/ensgovernor-323a7639-signed-shortcut-lost.md), [enstoken-c1836021-sender-gas-limits](../findings/enstoken-c1836021-sender-gas-limits.md), [enstoken-c1836021-signed-shortcut-lost](../findings/enstoken-c1836021-signed-shortcut-lost.md), [hcaownerandsessionvalidator-a818428e-rotate-signer-before-migrating](../findings/hcaownerandsessionvalidator-a818428e-rotate-signer-before-migrating.md) |
 | Quadrata Passport | 1 | LOW | $1k | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| SingularityDAO | 1 | LOW | $1k | [singdao-993864e4-signed-shortcut-lost](../findings/singdao-993864e4-signed-shortcut-lost.md) |
-| Yield Protocol | 1 | LOW | $1k | [yieldtoken-a8b61cff-signed-shortcut-lost](../findings/yieldtoken-a8b61cff-signed-shortcut-lost.md) |
-| Your AI | 1 | LOW | $1k | [yourtoken-c5ba042b-signed-shortcut-lost](../findings/yourtoken-c5ba042b-signed-shortcut-lost.md) |
-| Tao Ceti | 1 | LOW | $1k | [tai-272d50fa-signed-shortcut-lost](../findings/tai-272d50fa-signed-shortcut-lost.md) |
 | Swaap Finance | 1 | LOW | $1k | [vault-d315a9c3-signed-shortcut-lost](../findings/vault-d315a9c3-signed-shortcut-lost.md) |
 | Dreamlands | 1 | LOW | $1k | [dreamlands-e26f2c35-rotate-signer-before-migrating](../findings/dreamlands-e26f2c35-rotate-signer-before-migrating.md) |
 | JPG People Date | 1 | LOW | $1k | [jpgpeopledate-c10aa343-rotate-signer-before-migrating](../findings/jpgpeopledate-c10aa343-rotate-signer-before-migrating.md) |
 | DAppNode | 1 | LOW | $1k | [node-da007777-signed-shortcut-lost](../findings/node-da007777-signed-shortcut-lost.md) |
-| Epoch Island | 1 | LOW | $1k | [epochtoken-97d0cfeb-signed-shortcut-lost](../findings/epochtoken-97d0cfeb-signed-shortcut-lost.md) |
-| Indexed | 1 | LOW | $1k | [ndx-86772b14-signed-shortcut-lost](../findings/ndx-86772b14-signed-shortcut-lost.md) |
-| LayerAI | 1 | LOW | $959 | [layerai-168e209d-signed-shortcut-lost](../findings/layerai-168e209d-signed-shortcut-lost.md) |
 | Port3 Network | 1 | LOW | $951 | [caterc20-1bf794d1-rotate-signer-before-migrating](../findings/caterc20-1bf794d1-rotate-signer-before-migrating.md) |
-| VortexDefi | 1 | LOW | $950 | [vortextoken-ceb286c9-signed-shortcut-lost](../findings/vortextoken-ceb286c9-signed-shortcut-lost.md) |
 | CROAKZ | 1 | LOW | $926 | [croakz-7cae7b9b-rotate-signer-before-migrating](../findings/croakz-7cae7b9b-rotate-signer-before-migrating.md) |
 | Muttniks Star | 1 | LOW | $920 | [star-a82f049e-rotate-signer-before-migrating](../findings/star-a82f049e-rotate-signer-before-migrating.md) |
 | Obscurity DAO | 1 | LOW | $902 | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Plume Network | 1 | LOW | $902 | [plume-4c1746a8-signed-shortcut-lost](../findings/plume-4c1746a8-signed-shortcut-lost.md) |
 | Sins Finance | 1 | LOW | $902 | [sinsnode-d2489fd4-rotate-signer-before-migrating](../findings/sinsnode-d2489fd4-rotate-signer-before-migrating.md) |
-| StrongBlock | 1 | LOW | $902 | [stronger-dc0327d5-signed-shortcut-lost](../findings/stronger-dc0327d5-signed-shortcut-lost.md) |
 | SuperSparky | 1 | LOW | $902 | [d000773d-rotate-signer-before-migrating](../findings/d000773d-rotate-signer-before-migrating.md) |
 | GimbutisX | 1 | LOW | $900 | [gxagv2-9fc3f61f-signed-shortcut-lost](../findings/gxagv2-9fc3f61f-signed-shortcut-lost.md) |
 | Crypt3D Punks | 1 | LOW | $884 | [crypt3dpunks-a50c3499-rotate-signer-before-migrating](../findings/crypt3dpunks-a50c3499-rotate-signer-before-migrating.md) |
-| Orta Chain | 1 | LOW | $867 | [ortachain-cb20b537-signed-shortcut-lost](../findings/ortachain-cb20b537-signed-shortcut-lost.md) |
 | Sir Trading | 1 | LOW | $830 | [sir-4da4fb56-signed-shortcut-lost](../findings/sir-4da4fb56-signed-shortcut-lost.md) |
-| Zoracles | 1 | LOW | $806 | [zoracles-2dcdc6b5-signed-shortcut-lost](../findings/zoracles-2dcdc6b5-signed-shortcut-lost.md) |
-| CHEDDA | 1 | LOW | $760 | [cheddatoken-a110260a-signed-shortcut-lost](../findings/cheddatoken-a110260a-signed-shortcut-lost.md) |
-| Kitty Inu | 1 | LOW | $759 | [kittyinu-61a35258-signed-shortcut-lost](../findings/kittyinu-61a35258-signed-shortcut-lost.md) |
-| Data Ownership Protocol | 1 | LOW | $724 | [dop-97a9a151-signed-shortcut-lost](../findings/dop-97a9a151-signed-shortcut-lost.md) |
+| Shiba Inu | 1 | LOW | $740 | [landauctionv2-6b74c588-rotate-signer-before-migrating](../findings/landauctionv2-6b74c588-rotate-signer-before-migrating.md) |
 | 20lab | 1 | LOW | $722 | [896cb155-rotate-signer-before-migrating](../findings/896cb155-rotate-signer-before-migrating.md) |
 | BFH | 2 | LOW | $722 | [bfhprimev1-e0236724-rotate-signer-before-migrating](../findings/bfhprimev1-e0236724-rotate-signer-before-migrating.md), [bfhprimev1-e0236724-sender-gas-limits](../findings/bfhprimev1-e0236724-sender-gas-limits.md) |
 | Bueno.art | 2 | LOW | $722 | [buenomembership-cd044192-rotate-signer-before-migrating](../findings/buenomembership-cd044192-rotate-signer-before-migrating.md), [buenomembership-cd044192-sender-gas-limits](../findings/buenomembership-cd044192-sender-gas-limits.md) |
 | MOVΞ M2 | 1 | LOW | $722 | [mov3-m2-20f72fa3-rotate-signer-before-migrating](../findings/mov3-m2-20f72fa3-rotate-signer-before-migrating.md) |
 | Octra | 3 | LOW | $722 | [octralightclient-c01ca57d-rotate-signer-before-migrating](../findings/octralightclient-c01ca57d-rotate-signer-before-migrating.md), [octralightclient-c01ca57d-sender-gas-limits](../findings/octralightclient-c01ca57d-sender-gas-limits.md), [wrappedoct-4647e1fe-signed-shortcut-lost](../findings/wrappedoct-4647e1fe-signed-shortcut-lost.md) |
-| PoolTogether | 1 | LOW | $722 | [pool-0cec1a91-signed-shortcut-lost](../findings/pool-0cec1a91-signed-shortcut-lost.md) |
 | tofuNFT | 1 | LOW | $713 | [marketng-7bc8b1b5-rotate-signer-before-migrating](../findings/marketng-7bc8b1b5-rotate-signer-before-migrating.md) |
 | Okay Dog | 1 | LOW | $682 | [okaydognft-1272a84d-signed-shortcut-lost](../findings/okaydognft-1272a84d-signed-shortcut-lost.md) |
 | ETH GOBBLERS | 1 | LOW | $651 | [ethgobblers-0a8d311b-rotate-signer-before-migrating](../findings/ethgobblers-0a8d311b-rotate-signer-before-migrating.md) |
 | Meta Labs Field Agents | 1 | LOW | $650 | [mlfieldagents-7a41e410-rotate-signer-before-migrating](../findings/mlfieldagents-7a41e410-rotate-signer-before-migrating.md) |
 | AfroDex | 1 | LOW | $644 | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Chicken Finance | 1 | LOW | $643 | [chifi-e63684bc-signed-shortcut-lost](../findings/chifi-e63684bc-signed-shortcut-lost.md) |
 | ZuckBots | 1 | LOW | $632 | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Karrat | 1 | LOW | $630 | [swearit-63e466cf-signed-shortcut-lost](../findings/swearit-63e466cf-signed-shortcut-lost.md) |
-| Sharpe | 1 | LOW | $622 | [sharpeai-3567aa22-signed-shortcut-lost](../findings/sharpeai-3567aa22-signed-shortcut-lost.md) |
 | pTokens TLOS | 1 | LOW | $618 | [ptoken-8e220b9d-rotate-signer-before-migrating](../findings/ptoken-8e220b9d-rotate-signer-before-migrating.md) |
-| IoTAI | 1 | LOW | $613 | [iotai-erc20-d8e154ed-signed-shortcut-lost](../findings/iotai-erc20-d8e154ed-signed-shortcut-lost.md) |
 | Safemoon | 1 | LOW | $590 | [ptoken-16631e53-rotate-signer-before-migrating](../findings/ptoken-16631e53-rotate-signer-before-migrating.md) |
-| Coinspaid | 1 | LOW | $582 | [cpd-9b31bb42-signed-shortcut-lost](../findings/cpd-9b31bb42-signed-shortcut-lost.md) |
-| Pooh.Money | 1 | LOW | $569 | [eth-cabcb5ad-signed-shortcut-lost](../findings/eth-cabcb5ad-signed-shortcut-lost.md) |
 | GremlinTown.WTF | 1 | LOW | $563 | [gremlintown-247133f8-rotate-signer-before-migrating](../findings/gremlintown-247133f8-rotate-signer-before-migrating.md) |
-| Arch Protocol | 1 | LOW | $559 | [archprotocol-97f3d013-signed-shortcut-lost](../findings/archprotocol-97f3d013-signed-shortcut-lost.md) |
-| CheckStrategy | 1 | LOW | $557 | [nftstrategy-2090dc81-signed-shortcut-lost](../findings/nftstrategy-2090dc81-signed-shortcut-lost.md) |
-| PolkaRARE | 1 | LOW | $549 | [polkararetoken-2c2f7e7c-signed-shortcut-lost](../findings/polkararetoken-2c2f7e7c-signed-shortcut-lost.md) |
-| Ampleforth | 2 | LOW | $541 | [ufragments-d0e3f82a-signed-shortcut-lost](../findings/ufragments-d0e3f82a-signed-shortcut-lost.md), [wampl-edb171c1-signed-shortcut-lost](../findings/wampl-edb171c1-signed-shortcut-lost.md) |
-| EigenLayer | 1 | LOW | $541 | [eigen-2c4a81e2-signed-shortcut-lost](../findings/eigen-2c4a81e2-signed-shortcut-lost.md) |
+| DeversiFi | 1 | LOW | $541 | [tethertoken-93d07077-sender-gas-limits](../findings/tethertoken-93d07077-sender-gas-limits.md) |
+| ENS | 4 | LOW | $541 | [ensgovernor-323a7639-sender-gas-limits](../findings/ensgovernor-323a7639-sender-gas-limits.md), [ensgovernor-323a7639-signed-shortcut-lost](../findings/ensgovernor-323a7639-signed-shortcut-lost.md), [enstoken-c1836021-sender-gas-limits](../findings/enstoken-c1836021-sender-gas-limits.md), [hcaownerandsessionvalidator-a818428e-rotate-signer-before-migrating](../findings/hcaownerandsessionvalidator-a818428e-rotate-signer-before-migrating.md) |
 | Hemi | 1 | LOW | $541 | [hemi-9865bbb4-signed-shortcut-lost](../findings/hemi-9865bbb4-signed-shortcut-lost.md) |
+| Mantle | 1 | LOW | $541 | [l1mantletoken-cd368c1d-signed-shortcut-lost](../findings/l1mantletoken-cd368c1d-signed-shortcut-lost.md) |
 | Morpho | 1 | LOW | $541 | [morphotokenethereum-4364fd23-signed-shortcut-lost](../findings/morphotokenethereum-4364fd23-signed-shortcut-lost.md) |
 | RickHead | 1 | LOW | $541 | [rickhead-d216b6fd-rotate-signer-before-migrating](../findings/rickhead-d216b6fd-rotate-signer-before-migrating.md) |
 | Scapes | 1 | LOW | $541 | [gallerytwentyseven-25ef4d7f-rotate-signer-before-migrating](../findings/gallerytwentyseven-25ef4d7f-rotate-signer-before-migrating.md) |
 | TRON | 1 | LOW | $541 | [btt-b95e2384-signed-shortcut-lost](../findings/btt-b95e2384-signed-shortcut-lost.md) |
 | DelNorte | 1 | LOW | $531 | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Bulls & Apes | 1 | LOW | $530 | [bapgenesis-2cf6be9a-rotate-signer-before-migrating](../findings/bapgenesis-2cf6be9a-rotate-signer-before-migrating.md) |
-| Interport | 1 | LOW | $518 | [vault-5b45b414-signed-shortcut-lost](../findings/vault-5b45b414-signed-shortcut-lost.md) |
 | Rare Folk | 1 | LOW | $505 | [rarefolk-806010c3-rotate-signer-before-migrating](../findings/rarefolk-806010c3-rotate-signer-before-migrating.md) |
-| Reef Finance | 1 | LOW | $501 | [reeftoken-fe3e6a25-signed-shortcut-lost](../findings/reeftoken-fe3e6a25-signed-shortcut-lost.md) |
-| Discovertix Token | 1 | LOW | $500 | [dtix-e8da37f7-signed-shortcut-lost](../findings/dtix-e8da37f7-signed-shortcut-lost.md) |
-| Angle Protocol | 2 | LOW | $496 | [ageurnameable-c3ef7ed4-signed-shortcut-lost](../findings/ageurnameable-c3ef7ed4-signed-shortcut-lost.md), [angle-31429d18-signed-shortcut-lost](../findings/angle-31429d18-signed-shortcut-lost.md) |
-| ChimpStrategy | 1 | LOW | $496 | [chimpstrategy-3ca20831-signed-shortcut-lost](../findings/chimpstrategy-3ca20831-signed-shortcut-lost.md) |
-| Pirate Nation Token | 1 | LOW | $492 | [foxcoin-2c64c8bb-signed-shortcut-lost](../findings/foxcoin-2c64c8bb-signed-shortcut-lost.md) |
 | Evolved Camels | 1 | LOW | $483 | [evolvedcamels-373ffdf2-rotate-signer-before-migrating](../findings/evolvedcamels-373ffdf2-rotate-signer-before-migrating.md) |
 | KaijuMutant | 1 | LOW | $481 | [mutants-83f82414-rotate-signer-before-migrating](../findings/mutants-83f82414-rotate-signer-before-migrating.md) |
 | Little Mutants | 1 | LOW | $451 | [littlemutants-0db55edc-rotate-signer-before-migrating](../findings/littlemutants-0db55edc-rotate-signer-before-migrating.md) |
@@ -746,285 +597,196 @@ A tag from a block explorer is a lead for outreach, never a name: it can be wron
 | The Open Network | 1 | LOW | $441 | [bridge-17d6e670-rotate-signer-before-migrating](../findings/bridge-17d6e670-rotate-signer-before-migrating.md) |
 | Across Protocol | 1 | LOW | $433 | [ethereum-spokepool-4d9079bb-signed-shortcut-lost](../findings/ethereum-spokepool-4d9079bb-signed-shortcut-lost.md) |
 | Recomet | 1 | LOW | $433 | [requestmarketv1-2027d285-signed-shortcut-lost](../findings/requestmarketv1-2027d285-signed-shortcut-lost.md) |
-| Hommies | 1 | LOW | $421 | [hommies-8a370c95-signed-shortcut-lost](../findings/hommies-8a370c95-signed-shortcut-lost.md) |
 | MU Black Shard | 1 | LOW | $411 | [f4e593de-rotate-signer-before-migrating](../findings/f4e593de-rotate-signer-before-migrating.md) |
 | CoinDefi | 1 | LOW | $406 | [cointoken-e61fdaf4-signed-shortcut-lost](../findings/cointoken-e61fdaf4-signed-shortcut-lost.md) |
 | Small Love Potion | 1 | LOW | $405 | [37236cd0-rotate-signer-before-migrating](../findings/37236cd0-rotate-signer-before-migrating.md) |
-| Genius | 1 | LOW | $401 | [genius-44444444-signed-shortcut-lost](../findings/genius-44444444-signed-shortcut-lost.md) |
-| Capital DEX | 1 | LOW | $382 | [uniswapv2pair-24b0b363-signed-shortcut-lost](../findings/uniswapv2pair-24b0b363-signed-shortcut-lost.md) |
 | Mafia Cat Club | 1 | LOW | $370 | [mafiacatclub-effa5dc9-rotate-signer-before-migrating](../findings/mafiacatclub-effa5dc9-rotate-signer-before-migrating.md) |
-| Aleph.im | 1 | LOW | $361 | [eip20-c0134b5b-signed-shortcut-lost](../findings/eip20-c0134b5b-signed-shortcut-lost.md) |
 | Publicae.org | 2 | LOW | $360 | [nwostatepayout-26a61de7-rotate-signer-before-migrating](../findings/nwostatepayout-26a61de7-rotate-signer-before-migrating.md), [nwostatepayout-26a61de7-sender-gas-limits](../findings/nwostatepayout-26a61de7-sender-gas-limits.md) |
 | 0x | 4 | LOW | $357 | [exchange-61935cbd-signed-shortcut-lost](../findings/exchange-61935cbd-signed-shortcut-lost.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Marginswap | 1 | LOW | $350 | [mfi-aa4e3edb-signed-shortcut-lost](../findings/mfi-aa4e3edb-signed-shortcut-lost.md) |
 | DragonFishTokyoSpaceWar | 1 | LOW | $318 | [collection721-7fa48653-rotate-signer-before-migrating](../findings/collection721-7fa48653-rotate-signer-before-migrating.md) |
 | BitBall | 1 | LOW | $306 | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | Metal Dollar | 1 | LOW | $306 | [50295593-signed-shortcut-lost](../findings/50295593-signed-shortcut-lost.md) |
-| Unipeg | 1 | LOW | $299 | [unipeg-44b28991-signed-shortcut-lost](../findings/unipeg-44b28991-signed-shortcut-lost.md) |
 | Hands of Creation | 1 | LOW | $298 | [hand-69f54353-signed-shortcut-lost](../findings/hand-69f54353-signed-shortcut-lost.md) |
-| Monastery Finance | 1 | LOW | $289 | [monasteryerc20-a4e27ea3-signed-shortcut-lost](../findings/monasteryerc20-a4e27ea3-signed-shortcut-lost.md) |
 | Puffer | 1 | LOW | $283 | [guardianmodule-19ad0a71-rotate-signer-before-migrating](../findings/guardianmodule-19ad0a71-rotate-signer-before-migrating.md) |
-| Nimbus Governance Token | 1 | LOW | $282 | [gnbu-28fd5f6c-signed-shortcut-lost](../findings/gnbu-28fd5f6c-signed-shortcut-lost.md) |
-| Mushe World | 1 | LOW | $279 | [mushexmu-20e62b11-signed-shortcut-lost](../findings/mushexmu-20e62b11-signed-shortcut-lost.md) |
+| Abracadabra.money | 1 | LOW | $271 | [sspellv1-26fa3fff-signed-shortcut-lost](../findings/sspellv1-26fa3fff-signed-shortcut-lost.md) |
 | Negative Entropy | 1 | LOW | $271 | [negativeentropy-63ac91d1-rotate-signer-before-migrating](../findings/negativeentropy-63ac91d1-rotate-signer-before-migrating.md) |
 | Pixie Dust | 1 | LOW | $271 | [pixiedust-d6b788c3-rotate-signer-before-migrating](../findings/pixiedust-d6b788c3-rotate-signer-before-migrating.md) |
 | VeeDAO | 1 | LOW | $271 | [veedao-7cc78084-rotate-signer-before-migrating](../findings/veedao-7cc78084-rotate-signer-before-migrating.md) |
-| Yuzu Money | 1 | LOW | $270 | [yuzuilpv3-224e9059-signed-shortcut-lost](../findings/yuzuilpv3-224e9059-signed-shortcut-lost.md) |
 | Mysterymattfurie | 1 | LOW | $266 | [gdoge-b54ef689-rotate-signer-before-migrating](../findings/gdoge-b54ef689-rotate-signer-before-migrating.md) |
-| CHIMNEY TOWN DAO | 1 | LOW | $264 | [chimneytowndao-0c544f47-signed-shortcut-lost](../findings/chimneytowndao-0c544f47-signed-shortcut-lost.md) |
 | DOLZ | 1 | LOW | $261 | [dolz-0c1a28f8-signed-shortcut-lost](../findings/dolz-0c1a28f8-signed-shortcut-lost.md) |
 | VibeStrategy | 1 | LOW | $251 | [vibestrategy-0f8defae-signed-shortcut-lost](../findings/vibestrategy-0f8defae-signed-shortcut-lost.md) |
-| Javelin Games | 1 | LOW | $243 | [merc20-b8cb60d0-signed-shortcut-lost](../findings/merc20-b8cb60d0-signed-shortcut-lost.md) |
 | Hyperlane | 3 | LOW | $237 | [ce74905e-entry-by-own-signature-only](../findings/ce74905e-entry-by-own-signature-only.md), [hypertoken-b935c51d-signed-shortcut-lost](../findings/hypertoken-b935c51d-signed-shortcut-lost.md), [interchaingaspaymaster-0bad2e52-rotate-signer-before-migrating](../findings/interchaingaspaymaster-0bad2e52-rotate-signer-before-migrating.md) |
 | Sumero Finance | 1 | LOW | $237 | [uniswapv2pair-28d054bd-signed-shortcut-lost](../findings/uniswapv2pair-28d054bd-signed-shortcut-lost.md) |
 | Chunk Studio | 1 | LOW | $226 | [chunknft-d9308716-rotate-signer-before-migrating](../findings/chunknft-d9308716-rotate-signer-before-migrating.md) |
-| KeyKey | 1 | LOW | $226 | [locktoken-b7bb4b08-signed-shortcut-lost](../findings/locktoken-b7bb4b08-signed-shortcut-lost.md) |
 | Wipe Buddyz | 1 | LOW | $219 | [masterchefmasatoshi-b0ec81c0-rotate-signer-before-migrating](../findings/masterchefmasatoshi-b0ec81c0-rotate-signer-before-migrating.md) |
 | FamousApeMovieClub | 1 | LOW | $217 | [famousapemovieclub-2a171176-rotate-signer-before-migrating](../findings/famousapemovieclub-2a171176-rotate-signer-before-migrating.md) |
 | Meta Forest Society | 1 | LOW | $217 | [b5e38715-rotate-signer-before-migrating](../findings/b5e38715-rotate-signer-before-migrating.md) |
 | HELIX - Collectables | 1 | LOW | $201 | [helixclaims-72f84c7a-rotate-signer-before-migrating](../findings/helixclaims-72f84c7a-rotate-signer-before-migrating.md) |
-| Arcade | 1 | LOW | $199 | [assetwrapper-1f563cdd-signed-shortcut-lost](../findings/assetwrapper-1f563cdd-signed-shortcut-lost.md) |
 | MsPuiYi Overcome | 1 | LOW | $199 | [mspuiyiovercome-41ed66a4-rotate-signer-before-migrating](../findings/mspuiyiovercome-41ed66a4-rotate-signer-before-migrating.md) |
-| DAOventures | 1 | LOW | $190 | [dvgtoken-51e00a95-signed-shortcut-lost](../findings/dvgtoken-51e00a95-signed-shortcut-lost.md) |
 | Bisou Dolls | 1 | LOW | $187 | [archetype-0b121cce-rotate-signer-before-migrating](../findings/archetype-0b121cce-rotate-signer-before-migrating.md) |
 | NFT Worlds | 1 | LOW | $184 | [wrld-token-ethereum-d5d86fc8-rotate-signer-before-migrating](../findings/wrld-token-ethereum-d5d86fc8-rotate-signer-before-migrating.md) |
 | Idle.finance | 1 | LOW | $181 | [idle-87577378-signed-shortcut-lost](../findings/idle-87577378-signed-shortcut-lost.md) |
-| Animecoin | 1 | LOW | $180 | [animel1-1978ae75-signed-shortcut-lost](../findings/animel1-1978ae75-signed-shortcut-lost.md) |
 | Candide | 1 | LOW | $180 | [candidepaymaster07-8b1f6cb5-rotate-signer-before-migrating](../findings/candidepaymaster07-8b1f6cb5-rotate-signer-before-migrating.md) |
 | Clovers | 1 | LOW | $180 | [cloverscontroller-3c037014-rotate-signer-before-migrating](../findings/cloverscontroller-3c037014-rotate-signer-before-migrating.md) |
 | CryptoNinja | 1 | LOW | $180 | [cnpevolution-eef8101b-rotate-signer-before-migrating](../findings/cnpevolution-eef8101b-rotate-signer-before-migrating.md) |
 | Ethernals | 1 | LOW | $180 | [ethernals-4f8ab77e-rotate-signer-before-migrating](../findings/ethernals-4f8ab77e-rotate-signer-before-migrating.md) |
-| Euler | 1 | LOW | $180 | [eul-d9fcd98c-signed-shortcut-lost](../findings/eul-d9fcd98c-signed-shortcut-lost.md) |
 | Fly | 3 | LOW | $180 | [dexaggregator-20f6ee51-rotate-signer-before-migrating](../findings/dexaggregator-20f6ee51-rotate-signer-before-migrating.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Gearbox | 3 | LOW | $180 | [bytecoderepository-1ce2b1be-entry-by-own-signature-only](../findings/bytecoderepository-1ce2b1be-entry-by-own-signature-only.md), [geartoken-ba333558-signed-shortcut-lost](../findings/geartoken-ba333558-signed-shortcut-lost.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Gitcoin | 1 | LOW | $180 | [gtc-de30da39-signed-shortcut-lost](../findings/gtc-de30da39-signed-shortcut-lost.md) |
-| Lighter | 1 | LOW | $180 | [lighter-232ce3bd-signed-shortcut-lost](../findings/lighter-232ce3bd-signed-shortcut-lost.md) |
-| Linea | 1 | LOW | $180 | [lineatoken-1789e004-signed-shortcut-lost](../findings/lineatoken-1789e004-signed-shortcut-lost.md) |
 | Liquity LUSD | 1 | LOW | $180 | [lusdtoken-aa052d8b-signed-shortcut-lost](../findings/lusdtoken-aa052d8b-signed-shortcut-lost.md) |
 | Marvinaut Game Pass | 1 | LOW | $180 | [marvinautgamepass-a8f9309f-rotate-signer-before-migrating](../findings/marvinautgamepass-a8f9309f-rotate-signer-before-migrating.md) |
-| Milady Cult | 1 | LOW | $180 | [cult-00000000-signed-shortcut-lost](../findings/cult-00000000-signed-shortcut-lost.md) |
 | Native | 1 | LOW | $180 | [depositwithdrawvault-c91807c5-rotate-signer-before-migrating](../findings/depositwithdrawvault-c91807c5-rotate-signer-before-migrating.md) |
-| NetMind | 2 | LOW | $180 | [netmindtoken-03aa6298-signed-shortcut-lost](../findings/netmindtoken-03aa6298-signed-shortcut-lost.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| StarkNet | 1 | LOW | $180 | [testtoken-ca14007e-signed-shortcut-lost](../findings/testtoken-ca14007e-signed-shortcut-lost.md) |
-| Taiko | 2 | LOW | $161 | [68d30f47-signer-upgrade-only](../findings/68d30f47-signer-upgrade-only.md), [taikotoken-10dea674-signed-shortcut-lost](../findings/taikotoken-10dea674-signed-shortcut-lost.md) |
+| Taiko | 1 | LOW | $161 | [68d30f47-signer-upgrade-only](../findings/68d30f47-signer-upgrade-only.md) |
 | Apple | 1 | LOW | $114 | [automintererc721a-024f20b9-rotate-signer-before-migrating](../findings/automintererc721a-024f20b9-rotate-signer-before-migrating.md) |
-| SMARDEX | 1 | LOW | $107 | [smardextoken-a088e801-signed-shortcut-lost](../findings/smardextoken-a088e801-signed-shortcut-lost.md) |
 | Basic EOA Batch Executor | 1 | LOW | $104 | [basiceoabatchexecutor-00000000-7702-own-key-only](../findings/basiceoabatchexecutor-00000000-7702-own-key-only.md) |
 | Zerion | 1 | LOW | $54 | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Aztec | 3 | LOW | $50 | [aztec-a27ec000-signed-shortcut-lost](../findings/aztec-a27ec000-signed-shortcut-lost.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
+| Aztec | 2 | LOW | $50 | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | Sollet | 1 | LOW | $46 | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Wise | 2 | LOW | $36 | [6b0f51c6-fixed-gas-recovery](../findings/6b0f51c6-fixed-gas-recovery.md), [6b0f51c6-fixed-signer](../findings/6b0f51c6-fixed-signer.md) |
 | PANDAAI | 1 | LOW | $32 | [pandaai-60e69429-signed-shortcut-lost](../findings/pandaai-60e69429-signed-shortcut-lost.md) |
 | Bridge Oracle | 1 | LOW | $29 | [multisigbridge-843ecfdb-signer-upgrade-only](../findings/multisigbridge-843ecfdb-signer-upgrade-only.md) |
 | CIAN | 2 | LOW | $18 | [f9dba612-fixed-signer](../findings/f9dba612-fixed-signer.md), [strategycefi-10056707-rotate-signer-before-migrating](../findings/strategycefi-10056707-rotate-signer-before-migrating.md) |
-| ARC | 1 | LOW | $15 | [arcenhanced-76505b87-signed-shortcut-lost](../findings/arcenhanced-76505b87-signed-shortcut-lost.md) |
-| WEN | 1 | LOW | $11 | [wen-830a8512-signed-shortcut-lost](../findings/wen-830a8512-signed-shortcut-lost.md) |
 | Augmented Finance | 1 | LOW | $1 | [deposittoken-08e820fb-signed-shortcut-lost](../findings/deposittoken-08e820fb-signed-shortcut-lost.md) |
 | 4thTech | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | ARCS | 1 | LOW |  | [arcssingletonpaymasterv7-913e4d69-rotate-signer-before-migrating](../findings/arcssingletonpaymasterv7-913e4d69-rotate-signer-before-migrating.md) |
 | ASSDAQ | 1 | LOW |  | [assdaq-dbf2b6cc-signed-shortcut-lost](../findings/assdaq-dbf2b6cc-signed-shortcut-lost.md) |
 | AUTO | 4 | LOW |  | [auto-44d45bf4-signed-shortcut-lost](../findings/auto-44d45bf4-signed-shortcut-lost.md), [rewards-30ddef8c-rotate-signer-before-migrating](../findings/rewards-30ddef8c-rotate-signer-before-migrating.md), [rewards-30ddef8c-sender-gas-limits](../findings/rewards-30ddef8c-sender-gas-limits.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Abachi | 1 | LOW |  | [token-bf0b8b74-signed-shortcut-lost](../findings/token-bf0b8b74-signed-shortcut-lost.md) |
 | Across | 5 | LOW |  | [adminwithdrawmanager-5adabde1-rotate-signer-before-migrating](../findings/adminwithdrawmanager-5adabde1-rotate-signer-before-migrating.md), [adminwithdrawmanager-5adabde1-sender-gas-limits](../findings/adminwithdrawmanager-5adabde1-sender-gas-limits.md), [sponsoredcctpdstperiphery-214c19fb-sender-gas-limits](../findings/sponsoredcctpdstperiphery-214c19fb-sender-gas-limits.md), [sponsoredcctpsrcperiphery-6769155b-rotate-signer-before-migrating](../findings/sponsoredcctpsrcperiphery-6769155b-rotate-signer-before-migrating.md), [sponsoredcctpsrcperiphery-6769155b-sender-gas-limits](../findings/sponsoredcctpsrcperiphery-6769155b-sender-gas-limits.md) |
-| Acurast | 1 | LOW |  | [acurasttoken-216b3643-signed-shortcut-lost](../findings/acurasttoken-216b3643-signed-shortcut-lost.md) |
-| Aegis | 3 | LOW |  | [aegisrewards-8adcfaf1-sender-gas-limits](../findings/aegisrewards-8adcfaf1-sender-gas-limits.md), [yusd-4274cd72-signed-shortcut-lost](../findings/yusd-4274cd72-signed-shortcut-lost.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Aethir | 1 | LOW |  | [aethirtoken-baba6a19-signed-shortcut-lost](../findings/aethirtoken-baba6a19-signed-shortcut-lost.md) |
-| Ajna | 1 | LOW |  | [ajnatoken-9a96ec9b-signed-shortcut-lost](../findings/ajnatoken-9a96ec9b-signed-shortcut-lost.md) |
+| Aegis | 2 | LOW |  | [aegisrewards-8adcfaf1-sender-gas-limits](../findings/aegisrewards-8adcfaf1-sender-gas-limits.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Alephium | 2 | LOW |  | [01e82b67-sender-gas-limits](../findings/01e82b67-sender-gas-limits.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Alien Worlds Trilium | 2 | LOW |  | [teleporttoken-888887e2-rotate-signer-before-migrating](../findings/teleporttoken-888887e2-rotate-signer-before-migrating.md), [teleporttoken-888887e2-sender-gas-limits](../findings/teleporttoken-888887e2-sender-gas-limits.md) |
-| Aligned | 1 | LOW |  | [alignedtoken-50614cc8-signed-shortcut-lost](../findings/alignedtoken-50614cc8-signed-shortcut-lost.md) |
 | AllUnity | 1 | LOW |  | [allunity-815d23fc-signed-shortcut-lost](../findings/allunity-815d23fc-signed-shortcut-lost.md) |
 | AllUnity SEKAU | 1 | LOW |  | [0297b579-signed-shortcut-lost](../findings/0297b579-signed-shortcut-lost.md) |
 | Allbit 2 | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Alto Foundation | 1 | LOW |  | [dusd-63d74d22-signed-shortcut-lost](../findings/dusd-63d74d22-signed-shortcut-lost.md) |
 | Anchored Coins | 1 | LOW |  | [stablecoin-0a66bb08-signed-shortcut-lost](../findings/stablecoin-0a66bb08-signed-shortcut-lost.md) |
+| Angle Protocol | 1 | LOW |  | [ageurnameable-c3ef7ed4-signed-shortcut-lost](../findings/ageurnameable-c3ef7ed4-signed-shortcut-lost.md) |
 | Animoca | 1 | LOW |  | [erc20fixedsupply-9cb7a4ef-signed-shortcut-lost](../findings/erc20fixedsupply-9cb7a4ef-signed-shortcut-lost.md) |
 | Ankr | 1 | LOW |  | [crosschainbridge-r2-c437df90-rotate-signer-before-migrating](../findings/crosschainbridge-r2-c437df90-rotate-signer-before-migrating.md) |
 | Anoma | 1 | LOW |  | [xanv2-c2030d64-signed-shortcut-lost](../findings/xanv2-c2030d64-signed-shortcut-lost.md) |
 | Antimatter | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Any Inu | 1 | LOW |  | [interchaintoken-b6087e1c-signed-shortcut-lost](../findings/interchaintoken-b6087e1c-signed-shortcut-lost.md) |
-| Anzen | 1 | LOW |  | [usdz-a469b7ee-signed-shortcut-lost](../findings/usdz-a469b7ee-signed-shortcut-lost.md) |
 | Aragon | 1 | LOW |  | [antv2-a1170000-signed-shortcut-lost](../findings/antv2-a1170000-signed-shortcut-lost.md) |
 | Argent | 5 | LOW |  | [argentmodule-9d587793-rotate-signer-before-migrating](../findings/argentmodule-9d587793-rotate-signer-before-migrating.md), [relayermanager-10a0847c-rotate-signer-before-migrating](../findings/relayermanager-10a0847c-rotate-signer-before-migrating.md), [walletfactory-536384fc-entry-by-own-signature-only](../findings/walletfactory-536384fc-entry-by-own-signature-only.md), [walletfactory-536384fc-rotate-signer-before-migrating](../findings/walletfactory-536384fc-rotate-signer-before-migrating.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Argon | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Asseto | 3 | LOW |  | [plusfund-257c71ec-signed-shortcut-lost](../findings/plusfund-257c71ec-signed-shortcut-lost.md), [realerouter-b924d6bc-rotate-signer-before-migrating](../findings/realerouter-b924d6bc-rotate-signer-before-migrating.md), [realerouter-b924d6bc-sender-gas-limits](../findings/realerouter-b924d6bc-sender-gas-limits.md) |
-| Audius | 2 | LOW |  | [audiustoken-18aaa711-sender-gas-limits](../findings/audiustoken-18aaa711-sender-gas-limits.md), [audiustoken-18aaa711-signed-shortcut-lost](../findings/audiustoken-18aaa711-signed-shortcut-lost.md) |
-| Avail | 1 | LOW |  | [avail-0015ff79-signed-shortcut-lost](../findings/avail-0015ff79-signed-shortcut-lost.md) |
+| Audius | 1 | LOW |  | [audiustoken-18aaa711-sender-gas-limits](../findings/audiustoken-18aaa711-sender-gas-limits.md) |
 | Aventus | 2 | LOW |  | [avnbridge-38872fad-rotate-signer-before-migrating](../findings/avnbridge-38872fad-rotate-signer-before-migrating.md), [avnbridge-38872fad-sender-gas-limits](../findings/avnbridge-38872fad-sender-gas-limits.md) |
-| Avium Origins | 2 | LOW |  | [myrc-bed7d999-sender-gas-limits](../findings/myrc-bed7d999-sender-gas-limits.md), [myrc-bed7d999-signed-shortcut-lost](../findings/myrc-bed7d999-signed-shortcut-lost.md) |
+| Avium Origins | 1 | LOW |  | [myrc-bed7d999-sender-gas-limits](../findings/myrc-bed7d999-sender-gas-limits.md) |
 | Axelar Network | 1 | LOW |  | [burnablemintablecappederc20-b62f2214-signed-shortcut-lost](../findings/burnablemintablecappederc20-b62f2214-signed-shortcut-lost.md) |
 | Axis | 1 | LOW |  | [usdx-c2735e62-signed-shortcut-lost](../findings/usdx-c2735e62-signed-shortcut-lost.md) |
 | BEANS by Dumb Ways to Die | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Bad Investment Coin | 1 | LOW |  | [vanimestudio-bb04982e-signed-shortcut-lost](../findings/vanimestudio-bb04982e-signed-shortcut-lost.md) |
 | Balancer V3 | 2 | LOW |  | [gyroeclppool-b57c9284-signed-shortcut-lost](../findings/gyroeclppool-b57c9284-signed-shortcut-lost.md), [stablepool-b73df2dd-signed-shortcut-lost](../findings/stablepool-b73df2dd-signed-shortcut-lost.md) |
-| Balancer v2 | 1 | LOW |  | [gyroeclppool-63fc0541-signed-shortcut-lost](../findings/gyroeclppool-63fc0541-signed-shortcut-lost.md) |
-| Bancor Network | 1 | LOW |  | [pooltoken-b6279f7c-signed-shortcut-lost](../findings/pooltoken-b6279f7c-signed-shortcut-lost.md) |
 | Base | 2 | LOW |  | [teeverifier-1fba0c57-rotate-signer-before-migrating](../findings/teeverifier-1fba0c57-rotate-signer-before-migrating.md), [teeverifier-1fba0c57-sender-gas-limits](../findings/teeverifier-1fba0c57-sender-gas-limits.md) |
 | Be VEE - Summer Collection | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | Bebop | 1 | LOW |  | [bebopsettlement-beb09000-signed-shortcut-lost](../findings/bebopsettlement-beb09000-signed-shortcut-lost.md) |
 | Bedrock | 2 | LOW |  | [directstaking-919e8648-rotate-signer-before-migrating](../findings/directstaking-919e8648-rotate-signer-before-migrating.md), [directstaking-919e8648-sender-gas-limits](../findings/directstaking-919e8648-sender-gas-limits.md) |
-| Beefy | 1 | LOW |  | [bifi-b1f1ee12-signed-shortcut-lost](../findings/bifi-b1f1ee12-signed-shortcut-lost.md) |
 | Billions | 1 | LOW |  | [billionsnetworktoken-001b87c2-signed-shortcut-lost](../findings/billionsnetworktoken-001b87c2-signed-shortcut-lost.md) |
-| Bitcoin.com | 1 | LOW |  | [versetoken-249ca826-signed-shortcut-lost](../findings/versetoken-249ca826-signed-shortcut-lost.md) |
-| Bitlayer | 1 | LOW |  | [btr-6c76de48-signed-shortcut-lost](../findings/btr-6c76de48-signed-shortcut-lost.md) |
-| Bitune | 1 | LOW |  | [bituneai-1fac00cc-signed-shortcut-lost](../findings/bituneai-1fac00cc-signed-shortcut-lost.md) |
 | Black Eyed Creatures | 3 | LOW |  | [beclab-9dad5425-rotate-signer-before-migrating](../findings/beclab-9dad5425-rotate-signer-before-migrating.md), [beclab-9dad5425-sender-gas-limits](../findings/beclab-9dad5425-sender-gas-limits.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | Blockchain Capital | 1 | LOW |  | [globalregistryservice-3b1a5da8-rotate-signer-before-migrating](../findings/globalregistryservice-3b1a5da8-rotate-signer-before-migrating.md) |
-| Blur | 1 | LOW |  | [blurtoken-5283d291-signed-shortcut-lost](../findings/blurtoken-5283d291-signed-shortcut-lost.md) |
 | Blur.io | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Boba Network | 1 | LOW |  | [boba-42bbfa2e-signed-shortcut-lost](../findings/boba-42bbfa2e-signed-shortcut-lost.md) |
-| Boundless | 1 | LOW |  | [zkcfreeze-000006c2-signed-shortcut-lost](../findings/zkcfreeze-000006c2-signed-shortcut-lost.md) |
 | Brale | 1 | LOW |  | [braletoken-bff711ec-signed-shortcut-lost](../findings/braletoken-bff711ec-signed-shortcut-lost.md) |
 | Brickken | 2 | LOW |  | [p2phandler-64fdd96d-rotate-signer-before-migrating](../findings/p2phandler-64fdd96d-rotate-signer-before-migrating.md), [stofactorymanagedupgradeable-bb0b08a9-rotate-signer-before-migrating](../findings/stofactorymanagedupgradeable-bb0b08a9-rotate-signer-before-migrating.md) |
-| Bright Union | 1 | LOW |  | [brighttoken-beab7128-signed-shortcut-lost](../findings/brighttoken-beab7128-signed-shortcut-lost.md) |
 | Brix | 2 | LOW |  | [emusdsolverrouter-604ae9c5-rotate-signer-before-migrating](../findings/emusdsolverrouter-604ae9c5-rotate-signer-before-migrating.md), [signednavyieldminter-6fad52bb-rotate-signer-before-migrating](../findings/signednavyieldminter-6fad52bb-rotate-signer-before-migrating.md) |
-| Caldera | 1 | LOW |  | [calderatokenv2-e2ad0bf7-signed-shortcut-lost](../findings/calderatokenv2-e2ad0bf7-signed-shortcut-lost.md) |
 | Captain & Company | 2 | LOW |  | [rewardvault-bbae9cc8-sender-gas-limits](../findings/rewardvault-bbae9cc8-sender-gas-limits.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Cashmere | 1 | LOW |  | [cashmerecctp-d156ffb5-rotate-signer-before-migrating](../findings/cashmerecctp-d156ffb5-rotate-signer-before-migrating.md) |
 | Centrifuge | 1 | LOW |  | [cfg-cccccccc-signed-shortcut-lost](../findings/cfg-cccccccc-signed-shortcut-lost.md) |
-| Cerebrum DAO | 1 | LOW |  | [cerebrumdaotoken-ab814ce6-signed-shortcut-lost](../findings/cerebrumdaotoken-ab814ce6-signed-shortcut-lost.md) |
-| Changer | 1 | LOW |  | [token-327612ac-signed-shortcut-lost](../findings/token-327612ac-signed-shortcut-lost.md) |
 | Chellecoin.com | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Circle | 2 | LOW |  | [feemanager-3efbd12c-sender-gas-limits](../findings/feemanager-3efbd12c-sender-gas-limits.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| CoW Protocol | 1 | LOW |  | [cowprotocoltoken-bad70ca8-signed-shortcut-lost](../findings/cowprotocoltoken-bad70ca8-signed-shortcut-lost.md) |
 | Colombian Peso | 1 | LOW |  | [latamstable-ba0030bb-signed-shortcut-lost](../findings/latamstable-ba0030bb-signed-shortcut-lost.md) |
 | CompatibleCreative | 1 | LOW |  | [signaturedrop-b74231fc-rotate-signer-before-migrating](../findings/signaturedrop-b74231fc-rotate-signer-before-migrating.md) |
 | Concrete | 1 | LOW |  | [concretetoken-433ca6f7-signed-shortcut-lost](../findings/concretetoken-433ca6f7-signed-shortcut-lost.md) |
 | Covenants | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| CreateMyToken | 1 | LOW |  | [ultimatetokenownable-21715ce8-signed-shortcut-lost](../findings/ultimatetokenownable-21715ce8-signed-shortcut-lost.md) |
-| DeFi | 1 | LOW |  | [defitoken-6b0faca7-signed-shortcut-lost](../findings/defitoken-6b0faca7-signed-shortcut-lost.md) |
 | Decagon | 2 | LOW |  | [decagontimelock-ea73a0c1-rotate-signer-before-migrating](../findings/decagontimelock-ea73a0c1-rotate-signer-before-migrating.md), [decagontimelock-ea73a0c1-sender-gas-limits](../findings/decagontimelock-ea73a0c1-sender-gas-limits.md) |
 | DerivaDEX | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | Digitals Aniamls | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Dinero | 1 | LOW |  | [pxeth-04c154b6-signed-shortcut-lost](../findings/pxeth-04c154b6-signed-shortcut-lost.md) |
 | DoDoFrens | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Dynex | 3 | LOW |  | [255443d8-sender-gas-limits](../findings/255443d8-sender-gas-limits.md), [dnx-9928a860-signed-shortcut-lost](../findings/dnx-9928a860-signed-shortcut-lost.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| ETHGas | 1 | LOW |  | [ethgastoken-2798b1cc-signed-shortcut-lost](../findings/ethgastoken-2798b1cc-signed-shortcut-lost.md) |
+| Dynex | 2 | LOW |  | [255443d8-sender-gas-limits](../findings/255443d8-sender-gas-limits.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | EURØP | 1 | LOW |  | [europtoken-888883b5-signed-shortcut-lost](../findings/europtoken-888883b5-signed-shortcut-lost.md) |
 | Eco | 1 | LOW |  | [ecdsaexecutor-ec2c96e7-rotate-signer-before-migrating](../findings/ecdsaexecutor-ec2c96e7-rotate-signer-before-migrating.md) |
 | Elastos | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Element Finance | 1 | LOW |  | [weightedpool-b6b9b165-signed-shortcut-lost](../findings/weightedpool-b6b9b165-signed-shortcut-lost.md) |
 | Emblem Vault | 2 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Energy Web | 2 | LOW |  | [energywebtoken-b66a5d30-signed-shortcut-lost](../findings/energywebtoken-b66a5d30-signed-shortcut-lost.md), [permittabletoken-b581bc15-signed-shortcut-lost](../findings/permittabletoken-b581bc15-signed-shortcut-lost.md) |
 | Enso | 1 | LOW |  | [ensotokenv3-ffa7969e-signed-shortcut-lost](../findings/ensotokenv3-ffa7969e-signed-shortcut-lost.md) |
 | Etheremon | 2 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Ethfinex | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | EthicHub | 1 | LOW |  | [ethixtoken-37679620-signed-shortcut-lost](../findings/ethixtoken-37679620-signed-shortcut-lost.md) |
 | Eurite | 1 | LOW |  | [stablecoin-039a26c8-signed-shortcut-lost](../findings/stablecoin-039a26c8-signed-shortcut-lost.md) |
 | Everything Audio | 1 | LOW |  | [niftyerc721token-b5c2a29b-rotate-signer-before-migrating](../findings/niftyerc721token-b5c2a29b-rotate-signer-before-migrating.md) |
-| FX Protocol | 1 | LOW |  | [leveragedtokenv2-2bb0c321-signed-shortcut-lost](../findings/leveragedtokenv2-2bb0c321-signed-shortcut-lost.md) |
-| Fake_Phishing391608 | 1 | LOW |  | [rerc20-bda808c1-signed-shortcut-lost](../findings/rerc20-bda808c1-signed-shortcut-lost.md) |
-| Falcon Finance | 4 | LOW |  | [ff-fa1c09fc-signed-shortcut-lost](../findings/ff-fa1c09fc-signed-shortcut-lost.md), [precollateralizedminter-3a4f41da-rotate-signer-before-migrating](../findings/precollateralizedminter-3a4f41da-rotate-signer-before-migrating.md), [stakedusdf-c8cf6d79-signed-shortcut-lost](../findings/stakedusdf-c8cf6d79-signed-shortcut-lost.md), [usdf-3adf34c0-signed-shortcut-lost](../findings/usdf-3adf34c0-signed-shortcut-lost.md) |
-| Fjord Foundry | 1 | LOW |  | [fjordtoken-69457a1c-signed-shortcut-lost](../findings/fjordtoken-69457a1c-signed-shortcut-lost.md) |
-| Flayer | 1 | LOW |  | [flaytoken-f1a70000-signed-shortcut-lost](../findings/flaytoken-f1a70000-signed-shortcut-lost.md) |
+| Falcon Finance | 2 | LOW |  | [precollateralizedminter-3a4f41da-rotate-signer-before-migrating](../findings/precollateralizedminter-3a4f41da-rotate-signer-before-migrating.md), [usdf-3adf34c0-signed-shortcut-lost](../findings/usdf-3adf34c0-signed-shortcut-lost.md) |
 | Fluent | 1 | LOW |  | [blendtoken-d8a27197-signed-shortcut-lost](../findings/blendtoken-d8a27197-signed-shortcut-lost.md) |
-| Fluid | 1 | LOW |  | [ftoken-2bbe31d6-signed-shortcut-lost](../findings/ftoken-2bbe31d6-signed-shortcut-lost.md) |
 | Fluid.io | 1 | LOW |  | [instatokendelegate-31de2088-signed-shortcut-lost](../findings/instatokendelegate-31de2088-signed-shortcut-lost.md) |
 | Flying Tulip | 2 | LOW |  | [flyingtulipusd-f47bb65f-signed-shortcut-lost](../findings/flyingtulipusd-f47bb65f-signed-shortcut-lost.md), [leveragerfqengine-8263a075-signed-shortcut-lost](../findings/leveragerfqengine-8263a075-signed-shortcut-lost.md) |
-| Folks Finance | 1 | LOW |  | [ff7f8f30-signed-shortcut-lost](../findings/ff7f8f30-signed-shortcut-lost.md) |
-| Forest Road USDfr | 3 | LOW |  | [attestationoracle-b53977a7-rotate-signer-before-migrating](../findings/attestationoracle-b53977a7-rotate-signer-before-migrating.md), [attestationoracle-b53977a7-sender-gas-limits](../findings/attestationoracle-b53977a7-sender-gas-limits.md), [usdfr-cc07e7c4-signed-shortcut-lost](../findings/usdfr-cc07e7c4-signed-shortcut-lost.md) |
+| Forest Road USDfr | 2 | LOW |  | [attestationoracle-b53977a7-rotate-signer-before-migrating](../findings/attestationoracle-b53977a7-rotate-signer-before-migrating.md), [attestationoracle-b53977a7-sender-gas-limits](../findings/attestationoracle-b53977a7-sender-gas-limits.md) |
 | Forgotten Runes Wizards Cult | 2 | LOW |  | [nightmareimpdoor-d52c79d8-rotate-signer-before-migrating](../findings/nightmareimpdoor-d52c79d8-rotate-signer-before-migrating.md), [nightmareimpdoor-d52c79d8-sender-gas-limits](../findings/nightmareimpdoor-d52c79d8-sender-gas-limits.md) |
 | Forte | 1 | LOW |  | [stablecoin-c9357d8f-signed-shortcut-lost](../findings/stablecoin-c9357d8f-signed-shortcut-lost.md) |
-| Frankencoin | 1 | LOW |  | [frankencoin-b58e61c3-signed-shortcut-lost](../findings/frankencoin-b58e61c3-signed-shortcut-lost.md) |
 | Franklin Templeton BENJI | 2 | LOW |  | [7687da95-rotate-signer-before-migrating](../findings/7687da95-rotate-signer-before-migrating.md), [a2bd91fb-rotate-signer-before-migrating](../findings/a2bd91fb-rotate-signer-before-migrating.md) |
+| Frax Finance | 3 | LOW |  | [04acaf8d-signed-shortcut-lost](../findings/04acaf8d-signed-shortcut-lost.md), [frxeth-d1738eb7-signed-shortcut-lost](../findings/frxeth-d1738eb7-signed-shortcut-lost.md), [sfrxeth-c0497c07-signed-shortcut-lost](../findings/sfrxeth-c0497c07-signed-shortcut-lost.md) |
 | Fuel Network | 1 | LOW |  | [token-4ced0596-signed-shortcut-lost](../findings/token-4ced0596-signed-shortcut-lost.md) |
 | Fuse | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | GMT | 2 | LOW |  | [themineboxv2-2b3c1760-sender-gas-limits](../findings/themineboxv2-2b3c1760-sender-gas-limits.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| GMX | 1 | LOW |  | [glvtoken-oft-0bc5ab50-signed-shortcut-lost](../findings/glvtoken-oft-0bc5ab50-signed-shortcut-lost.md) |
 | Galvan | 2 | LOW |  | [bridgeminter-ce6e3394-sender-gas-limits](../findings/bridgeminter-ce6e3394-sender-gas-limits.md), [bridgeminter-f79ab7db-fixed-signer](../findings/bridgeminter-f79ab7db-fixed-signer.md) |
 | Garbage Bags | 2 | LOW |  | [garbagefriends-ef371a11-rotate-signer-before-migrating](../findings/garbagefriends-ef371a11-rotate-signer-before-migrating.md), [walkingcans-b367b1a7-rotate-signer-before-migrating](../findings/walkingcans-b367b1a7-rotate-signer-before-migrating.md) |
-| Gas DAO | 1 | LOW |  | [gasdaotoken-6bba316c-signed-shortcut-lost](../findings/gasdaotoken-6bba316c-signed-shortcut-lost.md) |
 | Gavun Wud | 1 | LOW |  | [tokenlib-d7c3935c-signed-shortcut-lost](../findings/tokenlib-d7c3935c-signed-shortcut-lost.md) |
 | GazeCoin | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Gelotto | 1 | LOW |  | [gelottobeast-d73175f9-signed-shortcut-lost](../findings/gelottobeast-d73175f9-signed-shortcut-lost.md) |
+| Gearbox | 2 | LOW |  | [bytecoderepository-1ce2b1be-entry-by-own-signature-only](../findings/bytecoderepository-1ce2b1be-entry-by-own-signature-only.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Global Dollar | 2 | LOW |  | [crosschainbridgemessenger-b9de5840-rotate-signer-before-migrating](../findings/crosschainbridgemessenger-b9de5840-rotate-signer-before-migrating.md), [crosschainbridgemessenger-b9de5840-sender-gas-limits](../findings/crosschainbridgemessenger-b9de5840-sender-gas-limits.md) |
 | Gluwacoin | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Goat Token | 1 | LOW |  | [droperc20-05f10abd-signed-shortcut-lost](../findings/droperc20-05f10abd-signed-shortcut-lost.md) |
-| Gravity | 1 | LOW |  | [gravitytokeng-9c7beba8-signed-shortcut-lost](../findings/gravitytokeng-9c7beba8-signed-shortcut-lost.md) |
 | Guru Fund | 1 | LOW |  | [fundfactory-d0f4de81-rotate-signer-before-migrating](../findings/fundfactory-d0f4de81-rotate-signer-before-migrating.md) |
 | H2O | 1 | LOW |  | [coin-32e255ed-signed-shortcut-lost](../findings/coin-32e255ed-signed-shortcut-lost.md) |
-| Hastra | 2 | LOW |  | [autostakingvault-bd49537c-signed-shortcut-lost](../findings/autostakingvault-bd49537c-signed-shortcut-lost.md), [yieldvaultv2-06e0b915-signed-shortcut-lost](../findings/yieldvaultv2-06e0b915-signed-shortcut-lost.md) |
+| Hastra | 1 | LOW |  | [yieldvaultv2-06e0b915-signed-shortcut-lost](../findings/yieldvaultv2-06e0b915-signed-shortcut-lost.md) |
 | Hedgey Finance | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Henlo | 1 | LOW |  | [henlo-960fce87-signed-shortcut-lost](../findings/henlo-960fce87-signed-shortcut-lost.md) |
-| Hop | 1 | LOW |  | [hoptoken-c5102fe9-signed-shortcut-lost](../findings/hoptoken-c5102fe9-signed-shortcut-lost.md) |
 | Hydro | 2 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| International Meme Fund | 1 | LOW |  | [imf-05be1d4c-signed-shortcut-lost](../findings/imf-05be1d4c-signed-shortcut-lost.md) |
-| Inverse Finance | 6 | LOW |  | [dolaborrowingrights-ad038eb6-signed-shortcut-lost](../findings/dolaborrowingrights-ad038eb6-signed-shortcut-lost.md), [govtoken-b8690587-signed-shortcut-lost](../findings/govtoken-b8690587-signed-shortcut-lost.md), [market-0971b169-signed-shortcut-lost](../findings/market-0971b169-signed-shortcut-lost.md), [market-63df5e23-signed-shortcut-lost](../findings/market-63df5e23-signed-shortcut-lost.md), [market-79ef6d28-signed-shortcut-lost](../findings/market-79ef6d28-signed-shortcut-lost.md), [sdola-2142c7c0-signed-shortcut-lost](../findings/sdola-2142c7c0-signed-shortcut-lost.md) |
+| Inverse Finance | 5 | LOW |  | [govtoken-b8690587-signed-shortcut-lost](../findings/govtoken-b8690587-signed-shortcut-lost.md), [market-0971b169-signed-shortcut-lost](../findings/market-0971b169-signed-shortcut-lost.md), [market-63df5e23-signed-shortcut-lost](../findings/market-63df5e23-signed-shortcut-lost.md), [market-79ef6d28-signed-shortcut-lost](../findings/market-79ef6d28-signed-shortcut-lost.md), [sdola-2142c7c0-signed-shortcut-lost](../findings/sdola-2142c7c0-signed-shortcut-lost.md) |
 | JPY Prepaid | 2 | LOW |  | [fiattokenv1-431d5dff-sender-gas-limits](../findings/fiattokenv1-431d5dff-sender-gas-limits.md), [fiattokenv1-431d5dff-signed-shortcut-lost](../findings/fiattokenv1-431d5dff-signed-shortcut-lost.md) |
 | JPYSC Global | 1 | LOW |  | [gaslessdelegate-ba1fb3b9-7702-own-key-only](../findings/gaslessdelegate-ba1fb3b9-7702-own-key-only.md) |
 | Jiri123 | 1 | LOW |  | [trustedforwarder-b622716e-rotate-signer-before-migrating](../findings/trustedforwarder-b622716e-rotate-signer-before-migrating.md) |
-| KernelDAO | 1 | LOW |  | [kernel-3f80b1c5-signed-shortcut-lost](../findings/kernel-3f80b1c5-signed-shortcut-lost.md) |
 | KiiChain | 2 | LOW |  | [offchainquotedlinearfee-b9602598-rotate-signer-before-migrating](../findings/offchainquotedlinearfee-b9602598-rotate-signer-before-migrating.md), [offchainquotedlinearfee-b9602598-sender-gas-limits](../findings/offchainquotedlinearfee-b9602598-sender-gas-limits.md) |
 | Kine Governance Token | 2 | LOW |  | [kineexchangetreasury-545a25cb-rotate-signer-before-migrating](../findings/kineexchangetreasury-545a25cb-rotate-signer-before-migrating.md), [kineexchangetreasury-545a25cb-sender-gas-limits](../findings/kineexchangetreasury-545a25cb-sender-gas-limits.md) |
-| Kromatika | 1 | LOW |  | [opiumtoken-3af33bef-signed-shortcut-lost](../findings/opiumtoken-3af33bef-signed-shortcut-lost.md) |
 | Krystal | 1 | LOW |  | [v3automation-bf913d29-signed-shortcut-lost](../findings/v3automation-bf913d29-signed-shortcut-lost.md) |
-| Lagrange | 1 | LOW |  | [latokenmintable-0fc2a55d-signed-shortcut-lost](../findings/latokenmintable-0fc2a55d-signed-shortcut-lost.md) |
-| Layer3 | 1 | LOW |  | [layer3-88909d48-signed-shortcut-lost](../findings/layer3-88909d48-signed-shortcut-lost.md) |
+| KyberSwap | 3 | LOW |  | [8f10b468-rotate-signer-before-migrating](../findings/8f10b468-rotate-signer-before-migrating.md), [8f10b468-sender-gas-limits](../findings/8f10b468-sender-gas-limits.md), [kszaprouterv3-3bdb21ea-rotate-signer-before-migrating](../findings/kszaprouterv3-3bdb21ea-rotate-signer-before-migrating.md) |
 | Ledger | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Level | 1 | LOW |  | [lvlusd-7c1156e5-signed-shortcut-lost](../findings/lvlusd-7c1156e5-signed-shortcut-lost.md) |
-| LightLink | 1 | LOW |  | [lightlink-0921799c-signed-shortcut-lost](../findings/lightlink-0921799c-signed-shortcut-lost.md) |
 | Limit Break | 2 | LOW |  | [moduletrades-9a1d0059-rotate-signer-before-migrating](../findings/moduletrades-9a1d0059-rotate-signer-before-migrating.md), [moduletradesadvanced-9a1d0089-rotate-signer-before-migrating](../findings/moduletradesadvanced-9a1d0089-rotate-signer-before-migrating.md) |
 | Liquity | 1 | LOW |  | [lqtytoken-05f1b3d2-signed-shortcut-lost](../findings/lqtytoken-05f1b3d2-signed-shortcut-lost.md) |
 | Locker Name Service | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | M0 | 2 | LOW |  | [pyusdx-0568d0a7-sender-gas-limits](../findings/pyusdx-0568d0a7-sender-gas-limits.md), [pyusdx-0568d0a7-signed-shortcut-lost](../findings/pyusdx-0568d0a7-signed-shortcut-lost.md) |
 | MARBLE-NFT | 2 | LOW |  | [2422b2e7-rotate-signer-before-migrating](../findings/2422b2e7-rotate-signer-before-migrating.md), [2422b2e7-sender-gas-limits](../findings/2422b2e7-sender-gas-limits.md) |
 | MYR Stablecoin | 1 | LOW |  | [myrt-b6522e94-sender-gas-limits](../findings/myrt-b6522e94-sender-gas-limits.md) |
+| Maple | 1 | LOW |  | [syruprouter-134ccaaa-rotate-signer-before-migrating](../findings/syruprouter-134ccaaa-rotate-signer-before-migrating.md) |
 | Markov's Dream | 2 | LOW |  | [mutationcontroller-e1cefd31-rotate-signer-before-migrating](../findings/mutationcontroller-e1cefd31-rotate-signer-before-migrating.md), [mutationcontroller-e1cefd31-sender-gas-limits](../findings/mutationcontroller-e1cefd31-sender-gas-limits.md) |
 | Martian Premier League | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | MeshBox Token | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Metronome | 1 | LOW |  | [metronome2-2ebd53d0-signed-shortcut-lost](../findings/metronome2-2ebd53d0-signed-shortcut-lost.md) |
-| Mezo | 1 | LOW |  | [musd-dd468a1d-signed-shortcut-lost](../findings/musd-dd468a1d-signed-shortcut-lost.md) |
 | Monerium | 2 | LOW |  | [ethereumcontrollertoken-d6969df7-sender-gas-limits](../findings/ethereumcontrollertoken-d6969df7-sender-gas-limits.md), [ethereumcontrollertoken-d6969df7-signed-shortcut-lost](../findings/ethereumcontrollertoken-d6969df7-signed-shortcut-lost.md) |
-| Moolahverse | 1 | LOW |  | [moolahverse-df87270e-signed-shortcut-lost](../findings/moolahverse-df87270e-signed-shortcut-lost.md) |
 | Moonsama | 2 | LOW |  | [1b30a3b5-sender-gas-limits](../findings/1b30a3b5-sender-gas-limits.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Mountain Protocol | 1 | LOW |  | [usdm-59d9356e-signed-shortcut-lost](../findings/usdm-59d9356e-signed-shortcut-lost.md) |
 | Movement | 1 | LOW |  | [movetokenv2-2e2bc0e2-signed-shortcut-lost](../findings/movetokenv2-2e2bc0e2-signed-shortcut-lost.md) |
 | Multisender.app | 2 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | Mutant Hounds | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Mysterium | 1 | LOW |  | [mysttoken-4cf89ca0-signed-shortcut-lost](../findings/mysttoken-4cf89ca0-signed-shortcut-lost.md) |
 | NFTfi Promissory Note | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| NUVA nvPRIME | 1 | LOW |  | [c360e625-signed-shortcut-lost](../findings/c360e625-signed-shortcut-lost.md) |
-| Naoris Protocol | 1 | LOW |  | [naoristokenv3-1b379a79-signed-shortcut-lost](../findings/naoristokenv3-1b379a79-signed-shortcut-lost.md) |
-| Nchart Token | 1 | LOW |  | [nchart-f62ac0fc-signed-shortcut-lost](../findings/nchart-f62ac0fc-signed-shortcut-lost.md) |
-| New Frontier Presents | 1 | LOW |  | [odc-299698b4-signed-shortcut-lost](../findings/odc-299698b4-signed-shortcut-lost.md) |
-| Nexira DAEP | 1 | LOW |  | [nexiratoken-e3872dd4-signed-shortcut-lost](../findings/nexiratoken-e3872dd4-signed-shortcut-lost.md) |
+| NetMind | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Nifty Gateway | 1 | LOW |  | [niftyerc721token-b57cde6a-rotate-signer-before-migrating](../findings/niftyerc721token-b57cde6a-rotate-signer-before-migrating.md) |
-| Nonos | 1 | LOW |  | [nonos-nox-mainnet-v3-1-0a26c80b-signed-shortcut-lost](../findings/nonos-nox-mainnet-v3-1-0a26c80b-signed-shortcut-lost.md) |
 | NxtUnity | 2 | LOW |  | [6efa9273-rotate-signer-before-migrating](../findings/6efa9273-rotate-signer-before-migrating.md), [6efa9273-sender-gas-limits](../findings/6efa9273-sender-gas-limits.md) |
 | Olla | 1 | LOW |  | [staztec-3d5416ac-signed-shortcut-lost](../findings/staztec-3d5416ac-signed-shortcut-lost.md) |
 | Opcode | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | Open Standard | 1 | LOW |  | [26404823-signed-shortcut-lost](../findings/26404823-signed-shortcut-lost.md) |
 | OpenCover | 1 | LOW |  | [quote-789d89eb-rotate-signer-before-migrating](../findings/quote-789d89eb-rotate-signer-before-migrating.md) |
 | Openeden | 1 | LOW |  | [cusdo-b9413a34-signed-shortcut-lost](../findings/cusdo-b9413a34-signed-shortcut-lost.md) |
-| Orbofi | 1 | LOW |  | [obi-bb3a8fd6-signed-shortcut-lost](../findings/obi-bb3a8fd6-signed-shortcut-lost.md) |
-| Origami Finance | 2 | LOW |  | [origamihohmvault-1db15915-signed-shortcut-lost](../findings/origamihohmvault-1db15915-signed-shortcut-lost.md), [origamilovtoken-71520ce2-signed-shortcut-lost](../findings/origamilovtoken-71520ce2-signed-shortcut-lost.md) |
+| Origami Finance | 1 | LOW |  | [origamilovtoken-71520ce2-signed-shortcut-lost](../findings/origamilovtoken-71520ce2-signed-shortcut-lost.md) |
 | Origin Protocol | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Ouroboros ORX | 1 | LOW |  | [stable-ddf73eac-signed-shortcut-lost](../findings/stable-ddf73eac-signed-shortcut-lost.md) |
 | PARSIQ | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | POKT Network | 2 | LOW |  | [mintcontroller-0d006d9e-rotate-signer-before-migrating](../findings/mintcontroller-0d006d9e-rotate-signer-before-migrating.md), [mintcontroller-0d006d9e-sender-gas-limits](../findings/mintcontroller-0d006d9e-sender-gas-limits.md) |
 | PRDCTR | 1 | LOW |  | [configurabletokenupgradeable-c8478285-signed-shortcut-lost](../findings/configurabletokenupgradeable-c8478285-signed-shortcut-lost.md) |
 | Panini Blockchain | 2 | LOW |  | [paniniblockchain-290ae017-rotate-signer-before-migrating](../findings/paniniblockchain-290ae017-rotate-signer-before-migrating.md), [paniniblockchain-290ae017-sender-gas-limits](../findings/paniniblockchain-290ae017-sender-gas-limits.md) |
 | Parallel Alpha | 1 | LOW |  | [3d553709-rotate-signer-before-migrating](../findings/3d553709-rotate-signer-before-migrating.md) |
-| Parallel Protocol | 1 | LOW |  | [prl-6c0aecee-signed-shortcut-lost](../findings/prl-6c0aecee-signed-shortcut-lost.md) |
 | Paxos Labs | 3 | LOW |  | [transitstation-49aaa987-rotate-signer-before-migrating](../findings/transitstation-49aaa987-rotate-signer-before-migrating.md), [transitstation-49aaa987-sender-gas-limits](../findings/transitstation-49aaa987-sender-gas-limits.md), [transitstation-49aaa987-signed-shortcut-lost](../findings/transitstation-49aaa987-signed-shortcut-lost.md) |
 | PearlBridge Bridged WPRL (Ethereum) | 4 | LOW |  | [bridgecontroller-a6571b73-rotate-signer-before-migrating](../findings/bridgecontroller-a6571b73-rotate-signer-before-migrating.md), [bridgecontroller-a6571b73-signed-shortcut-lost](../findings/bridgecontroller-a6571b73-signed-shortcut-lost.md), [wpearl-07696dca-rotate-signer-before-migrating](../findings/wpearl-07696dca-rotate-signer-before-migrating.md), [wpearl-07696dca-signed-shortcut-lost](../findings/wpearl-07696dca-signed-shortcut-lost.md) |
 | PepeTeam Bridge | 2 | LOW |  | [executorv3-3ffd8b91-rotate-signer-before-migrating](../findings/executorv3-3ffd8b91-rotate-signer-before-migrating.md), [executorv3-3ffd8b91-sender-gas-limits](../findings/executorv3-3ffd8b91-sender-gas-limits.md) |
 | Permian Labs | 1 | LOW |  | [otoken-24a92e28-signed-shortcut-lost](../findings/otoken-24a92e28-signed-shortcut-lost.md) |
 | Phala Network | 1 | LOW |  | [phalaclaimer-44aadf7d-rotate-signer-before-migrating](../findings/phalaclaimer-44aadf7d-rotate-signer-before-migrating.md) |
-| Piku | 1 | LOW |  | [piku-2e4039e8-signed-shortcut-lost](../findings/piku-2e4039e8-signed-shortcut-lost.md) |
-| Portal | 1 | LOW |  | [portaltoken-1bbe973b-signed-shortcut-lost](../findings/portaltoken-1bbe973b-signed-shortcut-lost.md) |
 | Premu | 2 | LOW |  | [premuvault-fbd0caab-rotate-signer-before-migrating](../findings/premuvault-fbd0caab-rotate-signer-before-migrating.md), [premuvault-fbd0caab-sender-gas-limits](../findings/premuvault-fbd0caab-sender-gas-limits.md) |
 | Psychedelics Anonymous Component #2 | 1 | LOW |  | [paholder-3fed135c-rotate-signer-before-migrating](../findings/paholder-3fed135c-rotate-signer-before-migrating.md) |
+| Puffer Finance | 1 | LOW |  | [soon-c6c33254-signed-shortcut-lost](../findings/soon-c6c33254-signed-shortcut-lost.md) |
 | REAL | 2 | LOW |  | [weightedstakingpool-e570e438-rotate-signer-before-migrating](../findings/weightedstakingpool-e570e438-rotate-signer-before-migrating.md), [weightedstakingpool-e570e438-sender-gas-limits](../findings/weightedstakingpool-e570e438-sender-gas-limits.md) |
 | RabbitHole Credentials | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Re Protocol | 1 | LOW |  | [reprotocoltoken-b533d33b-signed-shortcut-lost](../findings/reprotocoltoken-b533d33b-signed-shortcut-lost.md) |
 | Reality Clash Weapon | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Rekt | 1 | LOW |  | [rekt-dd3b11ef-signed-shortcut-lost](../findings/rekt-dd3b11ef-signed-shortcut-lost.md) |
 | Relay | 2 | LOW |  | [65758a8a-fixed-signer](../findings/65758a8a-fixed-signer.md), [e921bf7b-fixed-signer](../findings/e921bf7b-fixed-signer.md) |
-| Renzo Finance | 1 | LOW |  | [renzo-3b508054-signed-shortcut-lost](../findings/renzo-3b508054-signed-shortcut-lost.md) |
 | Reserve | 1 | LOW |  | [18ba6e33-signed-shortcut-lost](../findings/18ba6e33-signed-shortcut-lost.md) |
-| Reservoir | 1 | LOW |  | [dam-0fedba91-signed-shortcut-lost](../findings/dam-0fedba91-signed-shortcut-lost.md) |
-| Resolv | 1 | LOW |  | [resolvtoken-25933865-signed-shortcut-lost](../findings/resolvtoken-25933865-signed-shortcut-lost.md) |
 | Rhinestone | 3 | LOW |  | [00000000-signer-upgrade-only](../findings/00000000-signer-upgrade-only.md), [ownablevalidator-00000000-sender-gas-limits](../findings/ownablevalidator-00000000-sender-gas-limits.md), [ownablevalidator-2483da3a-rotate-signer-before-migrating](../findings/ownablevalidator-2483da3a-rotate-signer-before-migrating.md) |
 | Risk Labs | 3 | LOW |  | [offchainauctionplanner-8e33f930-sender-gas-limits](../findings/offchainauctionplanner-8e33f930-sender-gas-limits.md), [sponsoredcctpsrcperiphery-78c10059-rotate-signer-before-migrating](../findings/sponsoredcctpsrcperiphery-78c10059-rotate-signer-before-migrating.md), [sponsoredcctpsrcperiphery-78c10059-sender-gas-limits](../findings/sponsoredcctpsrcperiphery-78c10059-sender-gas-limits.md) |
 | Rocket Pool | 1 | LOW |  | [rocketsignerregistry-c1062617-sender-gas-limits](../findings/rocketsignerregistry-c1062617-sender-gas-limits.md) |
@@ -1032,40 +794,27 @@ A tag from a block explorer is a lead for outreach, never a name: it can be wron
 | SODAX | 3 | LOW |  | [4555ac13-rotate-signer-before-migrating](../findings/4555ac13-rotate-signer-before-migrating.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | STRATO GOLDST Tokenized Gold | 2 | LOW |  | [stratonativerepresentationbridge-92008b21-rotate-signer-before-migrating](../findings/stratonativerepresentationbridge-92008b21-rotate-signer-before-migrating.md), [stratonativerepresentationbridge-92008b21-sender-gas-limits](../findings/stratonativerepresentationbridge-92008b21-sender-gas-limits.md) |
 | SatLayer | 1 | LOW |  | [slaytoken-a5d4c37d-signed-shortcut-lost](../findings/slaytoken-a5d4c37d-signed-shortcut-lost.md) |
-| Satoshi Stablecoin | 1 | LOW |  | [1958853a-signed-shortcut-lost](../findings/1958853a-signed-shortcut-lost.md) |
 | Saturn | 2 | LOW |  | [stakedusdat-d1663374-signed-shortcut-lost](../findings/stakedusdat-d1663374-signed-shortcut-lost.md), [usdat-23238f20-signed-shortcut-lost](../findings/usdat-23238f20-signed-shortcut-lost.md) |
 | SchizoPosters | 1 | LOW |  | [ddc6625f-rotate-signer-before-migrating](../findings/ddc6625f-rotate-signer-before-migrating.md) |
 | Scroll | 2 | LOW |  | [enforcedtxgateway-72cacbcf-sender-gas-limits](../findings/enforcedtxgateway-72cacbcf-sender-gas-limits.md), [enforcedtxgateway-72cacbcf-signed-shortcut-lost](../findings/enforcedtxgateway-72cacbcf-signed-shortcut-lost.md) |
 | Securitize | 1 | LOW |  | [securitizeonramp-368e7478-rotate-signer-before-migrating](../findings/securitizeonramp-368e7478-rotate-signer-before-migrating.md) |
 | ShareRing | 2 | LOW |  | [swap-6f27b4c3-rotate-signer-before-migrating](../findings/swap-6f27b4c3-rotate-signer-before-migrating.md), [swap-6f27b4c3-sender-gas-limits](../findings/swap-6f27b4c3-sender-gas-limits.md) |
-| Silo Finance | 1 | LOW |  | [silotoken-f0b2dd79-signed-shortcut-lost](../findings/silotoken-f0b2dd79-signed-shortcut-lost.md) |
-| Sophon | 1 | LOW |  | [sophontoken-6b7774cb-signed-shortcut-lost](../findings/sophontoken-6b7774cb-signed-shortcut-lost.md) |
-| Space and Time | 1 | LOW |  | [spaceandtime-2c9973f4-signed-shortcut-lost](../findings/spaceandtime-2c9973f4-signed-shortcut-lost.md) |
 | Spark | 1 | LOW |  | [variabledebttoken-b7a86117-signed-shortcut-lost](../findings/variabledebttoken-b7a86117-signed-shortcut-lost.md) |
 | Spectra | 1 | LOW |  | [spectra-100f2212-signed-shortcut-lost](../findings/spectra-100f2212-signed-shortcut-lost.md) |
 | Spiko | 1 | LOW |  | [token-b9a1b923-signed-shortcut-lost](../findings/token-b9a1b923-signed-shortcut-lost.md) |
-| Stable Mint | 1 | LOW |  | [usdsm-399b2997-signed-shortcut-lost](../findings/usdsm-399b2997-signed-shortcut-lost.md) |
 | Stake.link | 2 | LOW |  | [45240118-sender-gas-limits](../findings/45240118-sender-gas-limits.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | StakeWise | 1 | LOW |  | [stakewisetoken-a28c2d79-signed-shortcut-lost](../findings/stakewisetoken-a28c2d79-signed-shortcut-lost.md) |
-| Steakhouse Financial | 1 | LOW |  | [governancewrappederc20-b71c4738-signed-shortcut-lost](../findings/governancewrappederc20-b71c4738-signed-shortcut-lost.md) |
 | Stork | 2 | LOW |  | [upgradeablestork-035b5438-rotate-signer-before-migrating](../findings/upgradeablestork-035b5438-rotate-signer-before-migrating.md), [upgradeablestork-035b5438-sender-gas-limits](../findings/upgradeablestork-035b5438-sender-gas-limits.md) |
-| Strata | 3 | LOW |  | [tranche-011e55d2-signed-shortcut-lost](../findings/tranche-011e55d2-signed-shortcut-lost.md), [tranche-c58d0444-signed-shortcut-lost](../findings/tranche-c58d0444-signed-shortcut-lost.md), [tranche-c8efd590-signed-shortcut-lost](../findings/tranche-c8efd590-signed-shortcut-lost.md) |
-| Streamr | 1 | LOW |  | [datav2-8f693ca8-signed-shortcut-lost](../findings/datav2-8f693ca8-signed-shortcut-lost.md) |
+| Strata | 1 | LOW |  | [tranche-c8efd590-signed-shortcut-lost](../findings/tranche-c8efd590-signed-shortcut-lost.md) |
 | Succinct | 1 | LOW |  | [succinct-319c1e1b-signed-shortcut-lost](../findings/succinct-319c1e1b-signed-shortcut-lost.md) |
-| Superform | 1 | LOW |  | [up-1d926bbe-signed-shortcut-lost](../findings/up-1d926bbe-signed-shortcut-lost.md) |
 | Supreme Kong 2 | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| SwissBorg | 1 | LOW |  | [swissborgtoken-3cc06230-signed-shortcut-lost](../findings/swissborgtoken-3cc06230-signed-shortcut-lost.md) |
-| Symbiosis Finance | 1 | LOW |  | [symbiosis-d38bb408-signed-shortcut-lost](../findings/symbiosis-d38bb408-signed-shortcut-lost.md) |
 | Synapse | 1 | LOW |  | [synapseerc20-bc122391-signed-shortcut-lost](../findings/synapseerc20-bc122391-signed-shortcut-lost.md) |
 | TBAC | 2 | LOW |  | [dojo-a40829b3-rotate-signer-before-migrating](../findings/dojo-a40829b3-rotate-signer-before-migrating.md), [dojo-a40829b3-sender-gas-limits](../findings/dojo-a40829b3-sender-gas-limits.md) |
-| THORSwap | 1 | LOW |  | [thortoken-a5f2211b-signed-shortcut-lost](../findings/thortoken-a5f2211b-signed-shortcut-lost.md) |
 | TODAY | 1 | LOW |  | [stakingupgradablev2-21d956ea-rotate-signer-before-migrating](../findings/stakingupgradablev2-21d956ea-rotate-signer-before-migrating.md) |
-| TRIA | 1 | LOW |  | [triatoken-228bec41-signed-shortcut-lost](../findings/triatoken-228bec41-signed-shortcut-lost.md) |
 | Tacit | 1 | LOW |  | [canonicalbridgederc20-b91bcbff-signed-shortcut-lost](../findings/canonicalbridgederc20-b91bcbff-signed-shortcut-lost.md) |
 | Tari | 1 | LOW |  | [wxtm-26f88404-signed-shortcut-lost](../findings/wxtm-26f88404-signed-shortcut-lost.md) |
 | Telcoin | 1 | LOW |  | [telcoinv3-7e13b430-signed-shortcut-lost](../findings/telcoinv3-7e13b430-signed-shortcut-lost.md) |
 | Tenbin | 2 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
-| Tenbin Labs | 1 | LOW |  | [assettoken-4c1b46ad-signed-shortcut-lost](../findings/assettoken-4c1b46ad-signed-shortcut-lost.md) |
 | Term Finance | 2 | LOW |  | [termrepotoken-b599f474-signed-shortcut-lost](../findings/termrepotoken-b599f474-signed-shortcut-lost.md), [termrepotoken-b5c160ca-signed-shortcut-lost](../findings/termrepotoken-b5c160ca-signed-shortcut-lost.md) |
 | TermMax | 1 | LOW |  | [gearingtokenwitherc20v2-b5ccdb50-signed-shortcut-lost](../findings/gearingtokenwitherc20v2-b5ccdb50-signed-shortcut-lost.md) |
 | Terra Classic | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
@@ -1073,47 +822,31 @@ A tag from a block explorer is a lead for outreach, never a name: it can be wron
 | TheMosqueNFT | 1 | LOW |  | [berezkawithdraw-ce90d38b-rotate-signer-before-migrating](../findings/berezkawithdraw-ce90d38b-rotate-signer-before-migrating.md) |
 | Theo | 3 | LOW |  | [thusd-bb26a8d0-signed-shortcut-lost](../findings/thusd-bb26a8d0-signed-shortcut-lost.md), [thusdminter-2c2347f3-entry-by-own-signature-only](../findings/thusdminter-2c2347f3-entry-by-own-signature-only.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | Thieves x End | 1 | LOW |  | [erc721moperatorfilterer-0ab6a1da-rotate-signer-before-migrating](../findings/erc721moperatorfilterer-0ab6a1da-rotate-signer-before-migrating.md) |
-| Tori Finance | 2 | LOW |  | [stakedtrusd-28083998-signed-shortcut-lost](../findings/stakedtrusd-28083998-signed-shortcut-lost.md), [trusd-d0580192-signed-shortcut-lost](../findings/trusd-d0580192-signed-shortcut-lost.md) |
-| Treehouse | 2 | LOW |  | [tasset-d11c452f-signed-shortcut-lost](../findings/tasset-d11c452f-signed-shortcut-lost.md), [treehousetoken-77146784-signed-shortcut-lost](../findings/treehousetoken-77146784-signed-shortcut-lost.md) |
 | Troverse | 2 | LOW |  | [troversegalaxybucksmanager-ce3ab27f-rotate-signer-before-migrating](../findings/troversegalaxybucksmanager-ce3ab27f-rotate-signer-before-migrating.md), [troversegalaxybucksmanager-ce3ab27f-sender-gas-limits](../findings/troversegalaxybucksmanager-ce3ab27f-sender-gas-limits.md) |
 | Turtle | 1 | LOW |  | [turtle-66fd8de5-signed-shortcut-lost](../findings/turtle-66fd8de5-signed-shortcut-lost.md) |
-| U2U Network | 1 | LOW |  | [u2utoken-558e7139-signed-shortcut-lost](../findings/u2utoken-558e7139-signed-shortcut-lost.md) |
 | USD.AI | 1 | LOW |  | [otoken-c233a565-signed-shortcut-lost](../findings/otoken-c233a565-signed-shortcut-lost.md) |
 | USDD | 2 | LOW |  | [valuewbtcusd-b8e21d2a-rotate-signer-before-migrating](../findings/valuewbtcusd-b8e21d2a-rotate-signer-before-migrating.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| USDD.io | 1 | LOW |  | [usdd-4f8e5de4-signed-shortcut-lost](../findings/usdd-4f8e5de4-signed-shortcut-lost.md) |
 | USDM1 | 1 | LOW |  | [92dee100-sender-gas-limits](../findings/92dee100-sender-gas-limits.md) |
-| USDU Finance | 1 | LOW |  | [stablecoin-4b43f48a-signed-shortcut-lost](../findings/stablecoin-4b43f48a-signed-shortcut-lost.md) |
-| USDV | 1 | LOW |  | [usdvmain-0e573ce2-signed-shortcut-lost](../findings/usdvmain-0e573ce2-signed-shortcut-lost.md) |
 | UXLINK | 2 | LOW |  | [uxairdropv2-c2ae5507-sender-gas-limits](../findings/uxairdropv2-c2ae5507-sender-gas-limits.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Unicorn Super Secret Sauce | 2 | LOW |  | [tokenerc20-b961b90c-rotate-signer-before-migrating](../findings/tokenerc20-b961b90c-rotate-signer-before-migrating.md), [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | Uniswap V2 | 1 | LOW |  | [073dd1d8-signed-shortcut-lost](../findings/073dd1d8-signed-shortcut-lost.md) |
 | Unstoppable Domains | 1 | LOW |  | [eip-8151-signed-shortcut-lost](../triage/eip-8151-signed-shortcut-lost.md) |
 | Upshift Finance | 1 | LOW |  | [bridgeablereceipttoken-b67769f8-signed-shortcut-lost](../findings/bridgeablereceipttoken-b67769f8-signed-shortcut-lost.md) |
+| Usual | 2 | LOW |  | [eur0-c3b20caf-signed-shortcut-lost](../findings/eur0-c3b20caf-signed-shortcut-lost.md), [usd0-ff0cb8fc-signed-shortcut-lost](../findings/usd0-ff0cb8fc-signed-shortcut-lost.md) |
 | VNX Commodities | 2 | LOW |  | [6b456a9b-sender-gas-limits](../findings/6b456a9b-sender-gas-limits.md), [6b456a9b-signed-shortcut-lost](../findings/6b456a9b-signed-shortcut-lost.md) |
 | Vara Network | 2 | LOW |  | [beefyclient-3105eb89-rotate-signer-before-migrating](../findings/beefyclient-3105eb89-rotate-signer-before-migrating.md), [beefyclient-3105eb89-sender-gas-limits](../findings/beefyclient-3105eb89-sender-gas-limits.md) |
 | Velas | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Veloce | 1 | LOW |  | [childvext-a458f400-signed-shortcut-lost](../findings/childvext-a458f400-signed-shortcut-lost.md) |
-| Vestra DAO | 1 | LOW |  | [vestradao-92d5942f-signed-shortcut-lost](../findings/vestradao-92d5942f-signed-shortcut-lost.md) |
-| Vetro USD | 1 | LOW |  | [peggedtoken-ca83dde9-signed-shortcut-lost](../findings/peggedtoken-ca83dde9-signed-shortcut-lost.md) |
-| Vision | 1 | LOW |  | [visiontoken-699ccf91-signed-shortcut-lost](../findings/visiontoken-699ccf91-signed-shortcut-lost.md) |
 | Wasabi | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Wildcat | 1 | LOW |  | [wildcat4626wrapper-04fb87c5-signed-shortcut-lost](../findings/wildcat4626wrapper-04fb87c5-signed-shortcut-lost.md) |
-| World Mobile Token | 2 | LOW |  | [worldmobiletoken-dbb5cf12-sender-gas-limits](../findings/worldmobiletoken-dbb5cf12-sender-gas-limits.md), [worldmobiletoken-dbb5cf12-signed-shortcut-lost](../findings/worldmobiletoken-dbb5cf12-signed-shortcut-lost.md) |
-| Wrapped NXM | 1 | LOW |  | [wnxm-0d438f3b-signed-shortcut-lost](../findings/wnxm-0d438f3b-signed-shortcut-lost.md) |
-| Wren Staked tGBP (wstGBP) | 1 | LOW |  | [maseerone-57c3571f-signed-shortcut-lost](../findings/maseerone-57c3571f-signed-shortcut-lost.md) |
+| World Mobile Token | 1 | LOW |  | [worldmobiletoken-dbb5cf12-sender-gas-limits](../findings/worldmobiletoken-dbb5cf12-sender-gas-limits.md) |
 | Xether.io | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
-| Yala | 1 | LOW |  | [yala-f9707060-signed-shortcut-lost](../findings/yala-f9707060-signed-shortcut-lost.md) |
 | Yellow | 1 | LOW |  | [yellowtoken-236eb848-signed-shortcut-lost](../findings/yellowtoken-236eb848-signed-shortcut-lost.md) |
 | Zharta | 3 | LOW |  | [p2plendingnfts-5f19431b-entry-by-own-signature-only](../findings/p2plendingnfts-5f19431b-entry-by-own-signature-only.md), [p2plendingnfts-a5bc4304-entry-by-own-signature-only](../findings/p2plendingnfts-a5bc4304-entry-by-own-signature-only.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | Zircuit | 1 | LOW |  | [zrc-b835ec5f-signed-shortcut-lost](../findings/zrc-b835ec5f-signed-shortcut-lost.md) |
 | dotmoovs | 2 | LOW |  | [depositer-f32cbb9d-rotate-signer-before-migrating](../findings/depositer-f32cbb9d-rotate-signer-before-migrating.md), [depositer-f32cbb9d-sender-gas-limits](../findings/depositer-f32cbb9d-sender-gas-limits.md) |
 | edgeX | 1 | LOW |  | [edgetoken-9406dd76-signed-shortcut-lost](../findings/edgetoken-9406dd76-signed-shortcut-lost.md) |
-| ephemeral | 1 | LOW |  | [ephemeraltoken-c1a5d2a6-signed-shortcut-lost](../findings/ephemeraltoken-c1a5d2a6-signed-shortcut-lost.md) |
-| f(x) Protocol | 1 | LOW |  | [fxusdregeneracy-08578063-signed-shortcut-lost](../findings/fxusdregeneracy-08578063-signed-shortcut-lost.md) |
-| f(x) USD Saving | 1 | LOW |  | [savingfxusd-7743e50f-signed-shortcut-lost](../findings/savingfxusd-7743e50f-signed-shortcut-lost.md) |
-| infiniFi | 1 | LOW |  | [receipttoken-48f9e38f-signed-shortcut-lost](../findings/receipttoken-48f9e38f-signed-shortcut-lost.md) |
-| unshETH | 1 | LOW |  | [unsheth-0ae38f7e-signed-shortcut-lost](../findings/unsheth-0ae38f7e-signed-shortcut-lost.md) |
-| xdeployer | 2 | LOW |  | [erc20-22d76e6e-signed-shortcut-lost](../findings/erc20-22d76e6e-signed-shortcut-lost.md), [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
+| xdeployer | 1 | LOW |  | [eip-8151-rotate-signer-before-migrating](../triage/eip-8151-rotate-signer-before-migrating.md) |
 | zkPass | 1 | LOW |  | [zkptoken-2606ae57-signed-shortcut-lost](../findings/zkptoken-2606ae57-signed-shortcut-lost.md) |
 | APY Vision | 1 | INFORMATIONAL | $96k | [visiontoken-f406f7a9-signed-shortcut-lost](../findings/visiontoken-f406f7a9-signed-shortcut-lost.md) |
 | Chai | 1 | INFORMATIONAL | $2k | [dach-64043a98-signed-shortcut-lost](../findings/dach-64043a98-signed-shortcut-lost.md) |

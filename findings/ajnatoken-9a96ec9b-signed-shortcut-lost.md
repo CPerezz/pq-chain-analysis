@@ -1,70 +1,208 @@
 ---
 id: ajnatoken-9a96ec9b-signed-shortcut-lost
-title: "AjnaToken: signed shortcut lost by users with code"
+format: 2
+title: AJNA holders whose accounts take real code lose permit and signed delegation
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: none
-contracts:
-- address: "0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079"
-  family: "6e547333bd642213a11824a9037b8426"
-  name: "AjnaToken"
-  label: "Ajna: AJNA Token"
-  upgradeable: "no"
-  rating: LOW
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  name: AjnaToken
+  code: verified
+  code_url: https://etherscan.io/address/0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079#code
+  copies: 1
+  upgradeable: 'no'
+value:
+  usd: 0
+  basis: held
+activity:
   txs_90d: 1789
-  last_active: 2026-11-17
-  recoveries_14d: 1
-fix:
-  layer: offchain
-  who_acts: "the holder (calls approve/delegate/transfer directly)"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Tell holders that permit and delegateBySig stop once their account takes real code; a direct approve and
+  delegate call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - evidence-2
+  - what
+- id: no-1271-legacy
+  bytecode: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - evidence-2
+  - what
+- id: permit-fn
+  selector: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: permit-body
+  source: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  file: lib/openzeppelin-contracts/contracts/token/ERC20/extensions/draft-ERC20Permit.sol
+  line: 49
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  file: lib/openzeppelin-contracts/contracts/token/ERC20/extensions/draft-ERC20Permit.sol
+  line: 64
+  has: address signer = ECDSA.recover(hash, v, r, s);
+  says: permit recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  file: lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol
+  line: 136
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-3
+- id: match
+  source: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  file: lib/openzeppelin-contracts/contracts/token/ERC20/extensions/draft-ERC20Permit.sol
+  line: 65
+  has: 'require(signer == owner, "ERC20Permit: invalid signature");'
+  says: the recovered address must be the holder
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: bysig-fn
+  selector: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  fn: delegateBySig(address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has delegateBySig
+  for:
+  - what
+- id: delegate-fn
+  selector: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  fn: delegate(address)
+  says: the code has a direct delegate
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: bysig-body
+  source: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  file: lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Votes.sol
+  line: 133
+  has: delegateBySig
+  says: delegateBySig is defined here
+  for:
+  - evidence-2
+  - what
+- id: bysig-recover
+  source: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  file: lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Votes.sol
+  line: 142
+  has: address signer = ECDSA.recover(
+  says: delegateBySig recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: bysig-acts
+  source: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  file: lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Votes.sol
+  line: 149
+  has: _delegate(signer, delegatee);
+  says: the votes delegated are the recovered signer's
+  for:
+  - evidence-2
+  - what
+- id: delegate-body
+  source: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  file: lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Votes.sol
+  line: 126
+  has: delegate
+  says: delegate is a direct call of the holder
+  for:
+  - action
+  - evidence-3
+- id: supply
+  call: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  fn: totalSupply()(uint256)
+  is: 979038153001668635858402729
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079'
+  fn: symbol()(string)
+  is: AJNA
+  says: the token's symbol is AJNA
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "signed shortcut only; the same act stays open to the same party by direct call → LOW"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-AjnaToken is an ERC-20 with permit, delegateBySig; under EIP-8151 a holder whose address has non-delegation code can no longer use the signed path.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The AJNA token lets a holder approve a spender and delegate its votes with an ECDSA signature, or with direct approve and delegate calls. A holder whose account takes real code can no longer use permit and delegateBySig; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: delegateBySig (OZ 4 ERC20Votes) / OpenZeppelin 4 permit: ECDSA.recover must equal the owner named in the call. Read from source.
-- signed path(s) in code: permit, delegateBySig
-- direct calls in code: approve, delegate, transfer (msg.sender-based ERC-20/votes, callable by the holder itself)
-- no ERC-1271 isValidSignature selector (0x1626ba7e) in code: signer with code not handled on the signed path
-- txs_90d 1789, last_active 2026-11-17; value not material to rating
+- [permit](https://etherscan.io/address/0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079#code) recovers the signer with ECDSA and requires it to equal the holder; the code never asks the holder's account.
+- [delegateBySig](https://etherscan.io/address/0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079#code) recovers the signer with ECDSA and delegates that signer's votes; the code never asks the signer's account.
+- [approve and delegate](https://etherscan.io/address/0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079#code) act for the caller and take no signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens).
-- Activity: 1,789 transactions called it in the 90 days before that block; last on 2026-11-17.
-- 1 signature recoveries in the study's two-week trace window.
+### Mechanism
 
-## Remediation
+permit (lib/openzeppelin-contracts/contracts/token/ERC20/extensions/draft-ERC20Permit.sol, line 49) builds its digest and recovers the signer on line 64; the recovered address must equal the holder (line 65) before the allowance is set. approve (lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol, line 136) sets the caller's own allowance. delegateBySig (lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Votes.sol, line 133) recovers the signer on line 142 and delegates that signer's votes on line 149. delegate (lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Votes.sol, line 126) delegates the caller's own votes. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-holder uses approve/delegate/transfer from its own address instead of the signature
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit and delegateBySig has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and delegateBySig and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 979,038,153,001,668,635,858,402,729 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

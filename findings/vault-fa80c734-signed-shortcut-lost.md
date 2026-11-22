@@ -1,66 +1,151 @@
 ---
 id: vault-fa80c734-signed-shortcut-lost
-title: "Vault: signed shortcut lost by users with code"
+format: 2
+title: sSwanUSD holders whose accounts take real code lose permit
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: none
-contracts:
-- address: "0xfa80c7349cc2357c42a64c2954b24b1a61c29435"
-  family: "c10e21864b0e2ca998f835f5aae867fc"
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xfa80c7349cc2357c42a64c2954b24b1a61c29435'
+  name: Vault
+  code: verified
+  code_url: https://etherscan.io/address/0xfa80c7349cc2357c42a64c2954b24b1a61c29435#code
   copies: 7
-  name: "Vault"
-  upgradeable: "no"
-  rating: LOW
-  txs_90d: 1566
-  last_active: 2026-11-18
-fix:
-  layer: offchain
-  who_acts: "the affected holder (calls the direct function itself)"
-evidence:
-  level: bytecode
-  block: 26438999
+  family: c10e21864b0e2ca998f835f5aae867fc
+  upgradeable: 'no'
+value:
+  usd: 0
+  basis: held
+activity: {}
+impact: liveness
+action: Tell holders that permit stops once their account takes real code; a direct approve call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0xfa80c7349cc2357c42a64c2954b24b1a61c29435'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0xfa80c7349cc2357c42a64c2954b24b1a61c29435'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: permit-fn
+  selector: '0xfa80c7349cc2357c42a64c2954b24b1a61c29435'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0xfa80c7349cc2357c42a64c2954b24b1a61c29435'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: permit-body
+  source: '0xfa80c7349cc2357c42a64c2954b24b1a61c29435'
+  file: lib/solmate/src/tokens/ERC20.sol
+  line: 116
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0xfa80c7349cc2357c42a64c2954b24b1a61c29435'
+  file: lib/solmate/src/tokens/ERC20.sol
+  line: 130
+  has: address recoveredAddress = ecrecover(
+  says: permit recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0xfa80c7349cc2357c42a64c2954b24b1a61c29435'
+  file: lib/solmate/src/tokens/ERC20.sol
+  line: 68
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: match
+  source: '0xfa80c7349cc2357c42a64c2954b24b1a61c29435'
+  file: lib/solmate/src/tokens/ERC20.sol
+  line: 154
+  has: require(recoveredAddress != address(0) && recoveredAddress == owner, "INVALID_SIGNER");
+  says: the recovered address must be the holder
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: supply
+  call: '0xfa80c7349cc2357c42a64c2954b24b1a61c29435'
+  fn: totalSupply()(uint256)
+  is: 7205223819905639808288409
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0xfa80c7349cc2357c42a64c2954b24b1a61c29435'
+  fn: symbol()(string)
+  is: sSwanUSD
+  says: the token's symbol is sSwanUSD
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Direct path exists for the same party (msg.sender-based approve/transfer/delegate); only a way of signing is lost, so LOW."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-Vault: a signed shortcut (permit) recovers the holder's key; under EIP-8151 a holder whose address has non-delegation code can no longer use it, while the same act stays open by direct call.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The sSwanUSD token lets a holder approve a spender with an ECDSA-signed permit or with a direct approve call. A holder whose account takes real code can no longer use permit; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: as its template 8f1fc8e5: solmate permit: the recovered address must be the owner named in the call, zero rejected; nothing else is accepted here. Template.
-- Direct functions present in bytecode at block 26438999: approve (0x095ea7b3), transfer (0xa9059cbb); each acts for msg.sender, so a holder with code calls them itself.
-- Signed path(s) lost for a signer with code: permit; study reading: as its template 8f1fc8e5: solmate permit: the recovered address must be the owner named in the call, zero rejected; nothing else is accepted here
+- [permit](https://etherscan.io/address/0xfa80c7349cc2357c42a64c2954b24b1a61c29435#code) recovers the signer with ECDSA and requires it to equal the holder; the code never asks the holder's account.
+- [approve](https://etherscan.io/address/0xfa80c7349cc2357c42a64c2954b24b1a61c29435#code) sets the caller's own allowance without a signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens, over 7 addresses).
-- Activity: 1,566 transactions called it in the 90 days before that block; last on 2026-11-18.
+### Mechanism
 
-## Remediation
+permit (lib/solmate/src/tokens/ERC20.sol, line 116) builds its digest and recovers the signer on line 130; the recovered address must equal the holder (line 154) before the allowance is set. approve (lib/solmate/src/tokens/ERC20.sol, line 68) sets the caller's own allowance. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Holder with code calls approve/transfer/delegate directly instead of signing.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 7 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 7,205,223,819,905,639,808,288,409 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

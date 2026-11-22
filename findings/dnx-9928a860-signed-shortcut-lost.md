@@ -1,69 +1,153 @@
 ---
 id: dnx-9928a860-signed-shortcut-lost
-title: "DNX: signed shortcut lost by users with code"
+format: 2
+title: 0xDNX holders whose accounts take real code lose permit
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: none
-contracts:
-- address: "0x9928a8600d14ac22c0be1e8d58909834d7ceaf13"
-  family: "4b000e117b1e8936f5cf39cb811f270b"
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x9928a8600d14ac22c0be1e8d58909834d7ceaf13'
+  name: DNX
+  code: verified
+  code_url: https://etherscan.io/address/0x4baa55ce549b2a252b898926134645228dec713b#code
+  proxy_of: '0x4baa55ce549b2a252b898926134645228dec713b'
   copies: 2
-  name: "DNX"
-  label: "Dynex: 0xDNX Token"
-  upgradeable: "yes"
-  rating: LOW
-  txs_90d: 9311
-  last_active: 2026-11-18
-  recoveries_14d: 50
-fix:
-  layer: none
-  who_acts: "the affected holder (calls the direct function itself)"
-evidence:
-  level: bytecode
-  block: 26438999
+  family: 4b000e117b1e8936f5cf39cb811f270b
+  upgradeable: 'yes'
+  admin: '0x793f464d5a9b3a7481560602cc451f0de1904e0d'
+value:
+  usd: 0
+  basis: held
+activity: {}
+impact: liveness
+action: Tell holders that permit stops once their account takes real code; a direct approve call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0x4baa55ce549b2a252b898926134645228dec713b'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x4baa55ce549b2a252b898926134645228dec713b'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: permit-fn
+  selector: '0x4baa55ce549b2a252b898926134645228dec713b'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0x4baa55ce549b2a252b898926134645228dec713b'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: permit-body
+  source: '0x4baa55ce549b2a252b898926134645228dec713b'
+  file: '@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20PermitUpgradeable.sol'
+  line: 49
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0x4baa55ce549b2a252b898926134645228dec713b'
+  file: '@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20PermitUpgradeable.sol'
+  line: 66
+  has: address signer = ECDSA.recover(hash, v, r, s);
+  says: permit recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0x4baa55ce549b2a252b898926134645228dec713b'
+  file: '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol'
+  line: 155
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: match
+  source: '0x4baa55ce549b2a252b898926134645228dec713b'
+  file: '@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20PermitUpgradeable.sol'
+  line: 67
+  has: if (signer != owner) {
+  says: the recovered address must be the holder
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: supply
+  call: '0x9928a8600d14ac22c0be1e8d58909834d7ceaf13'
+  fn: totalSupply()(uint256)
+  is: 109499121576338491
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0x9928a8600d14ac22c0be1e8d58909834d7ceaf13'
+  fn: symbol()(string)
+  is: 0xDNX
+  says: the token's symbol is 0xDNX
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Standard signed shortcut; approve remain open to the same holder."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-DNX: permit stops working for a holder whose address has code; the act stays open by direct call.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The 0xDNX token lets a holder approve a spender with an ECDSA-signed permit or with a direct approve call. A holder whose account takes real code can no longer use permit; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: OpenZeppelin 5 permit: ECDSA.recover must equal the owner named in the call. Read from source. Executed: a real transaction loses its effect with code at the signer.
-- bytecode (proxy+implementation 0x4baa55ce549b2a252b898926134645228dec713b) exposes approve(address,uint256) 0x095ea7b3 and transfer 0xa9059cbb
-- study note: OpenZeppelin 5 permit: ECDSA.recover must equal the owner named in the call. Read from source. Executed: a real transaction loses its effect with code at the signer.
+- [permit](https://etherscan.io/address/0x4baa55ce549b2a252b898926134645228dec713b#code) recovers the signer with ECDSA and requires it to equal the holder; the code never asks the holder's account.
+- [approve](https://etherscan.io/address/0x4baa55ce549b2a252b898926134645228dec713b#code) sets the caller's own allowance without a signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens, over 2 addresses).
-- Activity: 9,311 transactions called it in the 90 days before that block; last on 2026-11-18.
-- 50 signature recoveries in the study's two-week trace window.
+### Mechanism
 
-## Remediation
+permit (@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20PermitUpgradeable.sol, line 49) builds its digest and recovers the signer on line 66; the recovered address must equal the holder (line 67) before the allowance is set. approve (@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol, line 155) sets the caller's own allowance. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Holder calls approve itself.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 2 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 109,499,121,576,338,491 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

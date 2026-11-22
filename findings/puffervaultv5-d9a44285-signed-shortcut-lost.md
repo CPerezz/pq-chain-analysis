@@ -1,73 +1,152 @@
 ---
 id: puffervaultv5-d9a44285-signed-shortcut-lost
-title: "PufferVaultV5: signed shortcut lost by users with code"
+format: 2
+title: pufETH holders whose accounts take real code lose permit
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: liveness
-contracts:
-- address: "0xd9a442856c234a39a81a089c06451ebaa4306a72"
-  family: "41c9d515a3b12062146e133cc69d815f"
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xd9a442856c234a39a81a089c06451ebaa4306a72'
+  name: PufferVaultV5
+  code: verified
+  code_url: https://etherscan.io/address/0x3b2fdfdefe919dbcce0bc5ac426097d5523b8afa#code
+  proxy_of: '0x3b2fdfdefe919dbcce0bc5ac426097d5523b8afa'
   copies: 2
-  name: "PufferVaultV5"
-  label: "Puffer Finance: pufETH Token"
-  upgradeable: "yes"
-  rating: LOW
-  value_usd: 303527
-  value_basis: held
-  value_as_of: 2026-11-18
-  txs_90d: 6024
-  last_active: 2026-11-17
-  recoveries_14d: 26
-fix:
-  layer: account-migration
-  who_acts: "the token holder"
-evidence:
-  level: source-read
-  block: 26438999
+  family: 41c9d515a3b12062146e133cc69d815f
+  upgradeable: 'yes'
+value:
+  usd: 303542
+  basis: held
+activity: {}
+impact: liveness
+action: Tell holders that permit stops once their account takes real code; a direct approve call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0x3b2fdfdefe919dbcce0bc5ac426097d5523b8afa'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x3b2fdfdefe919dbcce0bc5ac426097d5523b8afa'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: permit-fn
+  selector: '0x3b2fdfdefe919dbcce0bc5ac426097d5523b8afa'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0x3b2fdfdefe919dbcce0bc5ac426097d5523b8afa'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: permit-body
+  source: '0x3b2fdfdefe919dbcce0bc5ac426097d5523b8afa'
+  file: node_modules/@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20PermitUpgradeable.sol
+  line: 49
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0x3b2fdfdefe919dbcce0bc5ac426097d5523b8afa'
+  file: node_modules/@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20PermitUpgradeable.sol
+  line: 66
+  has: address signer = ECDSA.recover(hash, v, r, s);
+  says: permit recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0x3b2fdfdefe919dbcce0bc5ac426097d5523b8afa'
+  file: node_modules/@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol
+  line: 155
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: match
+  source: '0x3b2fdfdefe919dbcce0bc5ac426097d5523b8afa'
+  file: node_modules/@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20PermitUpgradeable.sol
+  line: 67
+  has: if (signer != owner) {
+  says: the recovered address must be the holder
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: supply
+  call: '0xd9a442856c234a39a81a089c06451ebaa4306a72'
+  fn: totalSupply()(uint256)
+  is: 9041558627928542971596
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0xd9a442856c234a39a81a089c06451ebaa4306a72'
+  fn: symbol()(string)
+  is: pufETH
+  says: the token's symbol is pufETH
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Standard signed shortcut; same act open by direct call → LOW."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-PufferVaultV5 (Puffer Finance: pufETH Token): a signed shortcut (permit/authorization) requires the recovered address to equal the named owner; EIP-8151 makes it fail for an owner whose address holds non-delegation code.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The pufETH token lets a holder approve a spender with an ECDSA-signed permit or with a direct approve call. A holder whose account takes real code can no longer use permit; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: OpenZeppelin 5 permit: ECDSA.recover must equal the owner named in the call. Read from source. Executed: a real transaction reverts with code at the signer.
-- the dossier source has the standard approve (and transfer) the holder calls directly
-- code at block has approve selector 0x095ea7b3 or source defines approve; no signature needed
-- study note: OpenZeppelin 5 permit: ECDSA.recover must equal the owner named in the call. Read from source. Executed: a real transaction reverts with code at the signer.
+- [permit](https://etherscan.io/address/0x3b2fdfdefe919dbcce0bc5ac426097d5523b8afa#code) recovers the signer with ECDSA and requires it to equal the holder; the code never asks the holder's account.
+- [approve](https://etherscan.io/address/0x3b2fdfdefe919dbcce0bc5ac426097d5523b8afa#code) sets the caller's own allowance without a signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $303,527 (ETH and 49 priced tokens, over 2 addresses).
-- Activity: 6,024 transactions called it in the 90 days before that block; last on 2026-11-17.
-- 26 signature recoveries in the study's two-week trace window.
+### Mechanism
 
-## Remediation
+permit (node_modules/@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20PermitUpgradeable.sol, line 49) builds its digest and recovers the signer on line 66; the recovered address must equal the holder (line 67) before the allowance is set. approve (node_modules/@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol, line 155) sets the caller's own allowance. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Holder calls approve (or the direct function) itself instead of signing.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 2 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 9,041,558,627,928,542,971,596 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

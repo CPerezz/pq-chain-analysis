@@ -1,70 +1,153 @@
 ---
 id: wspair-bb28baca-signed-shortcut-lost
-title: "WSPair: signed shortcut lost by users with code"
+format: 2
+title: WSS holders whose accounts take real code lose permit
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: liveness
-contracts:
-- address: "0xbb28baca3757fd08f607357d83d225ec43f77282"
-  family: "da20d19001b1e5b2444576ceba6491d7"
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xbb28baca3757fd08f607357d83d225ec43f77282'
+  name: WSPair
+  code: verified
+  code_url: https://etherscan.io/address/0x524818cb8081941b618613c6f990c17bb3da0866#code
+  proxy_of: '0x524818cb8081941b618613c6f990c17bb3da0866'
   copies: 22
-  name: "WSPair"
-  upgradeable: "yes"
-  rating: LOW
-  value_usd: 366687
-  value_basis: held
-  value_as_of: 2026-11-18
-  txs_90d: 2581
-  last_active: 2026-11-18
-fix:
-  layer: account-migration
-  who_acts: "the token holder"
-evidence:
-  level: source-read
-  block: 26438999
+  family: da20d19001b1e5b2444576ceba6491d7
+  upgradeable: 'yes'
+  admin: '0xa9229c9d3720cd359cec51a259003c845e4c8224'
+value:
+  usd: 1
+  basis: held
+activity: {}
+impact: liveness
+action: Tell holders that permit stops once their account takes real code; a direct approve call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0x524818cb8081941b618613c6f990c17bb3da0866'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x524818cb8081941b618613c6f990c17bb3da0866'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: permit-fn
+  selector: '0x524818cb8081941b618613c6f990c17bb3da0866'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0x524818cb8081941b618613c6f990c17bb3da0866'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: permit-body
+  source: '0x524818cb8081941b618613c6f990c17bb3da0866'
+  file: WSPair.sol
+  line: 159
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0x524818cb8081941b618613c6f990c17bb3da0866'
+  file: WSPair.sol
+  line: 168
+  has: address recoveredAddress = ecrecover(digest, v, r, s);
+  says: permit recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0x524818cb8081941b618613c6f990c17bb3da0866'
+  file: WSPair.sol
+  line: 141
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: match
+  source: '0x524818cb8081941b618613c6f990c17bb3da0866'
+  file: WSPair.sol
+  line: 169
+  has: 'require(recoveredAddress != address(0) && recoveredAddress == owner, ''WSwap: INVALID_SIGNATURE'');'
+  says: the recovered address must be the holder
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: supply
+  call: '0xbb28baca3757fd08f607357d83d225ec43f77282'
+  fn: totalSupply()(uint256)
+  is: 313930860066407
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0xbb28baca3757fd08f607357d83d225ec43f77282'
+  fn: symbol()(string)
+  is: WSS
+  says: the token's symbol is WSS
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Standard signed shortcut; same act open by direct call → LOW."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-WSPair (0xbb28baca3757fd08f607357d83d225ec43f77282): a signed shortcut (permit/authorization) requires the recovered address to equal the named owner; EIP-8151 makes it fail for an owner whose address holds non-delegation code.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The WSS token lets a holder approve a spender with an ECDSA-signed permit or with a direct approve call. A holder whose account takes real code can no longer use permit; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: permit: the owner named in the call must equal the recovered address; the holder can call approve itself. Read from source.
-- the dossier source has the standard approve (and transfer) the holder calls directly
-- code at block has approve selector 0x095ea7b3 or source defines approve; no signature needed
-- study note: permit: the owner named in the call must equal the recovered address; the holder can call approve itself. Read from source.
+- [permit](https://etherscan.io/address/0x524818cb8081941b618613c6f990c17bb3da0866#code) recovers the signer with ECDSA and requires it to equal the holder; the code never asks the holder's account.
+- [approve](https://etherscan.io/address/0x524818cb8081941b618613c6f990c17bb3da0866#code) sets the caller's own allowance without a signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $366,687 (ETH and 49 priced tokens, over 22 addresses).
-- Activity: 2,581 transactions called it in the 90 days before that block; last on 2026-11-18.
+### Mechanism
 
-## Remediation
+permit (WSPair.sol, line 159) builds its digest and recovers the signer on line 168; the recovered address must equal the holder (line 169) before the allowance is set. approve (WSPair.sol, line 141) sets the caller's own allowance. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Holder calls approve (or the direct function) itself instead of signing.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 22 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 313,930,860,066,407 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

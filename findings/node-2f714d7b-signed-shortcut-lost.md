@@ -1,68 +1,209 @@
 ---
 id: node-2f714d7b-signed-shortcut-lost
-title: "NODE: signed shortcut lost by users with code"
+format: 2
+title: NODE holders whose accounts take real code lose permit and signed delegation
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: none
-contracts:
-- address: "0x2f714d7b9a035d4ce24af8d9b6091c07e37f43fb"
-  family: "ab796e71277eebf46eca4fb4e6fd93b6"
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x2f714d7b9a035d4ce24af8d9b6091c07e37f43fb'
+  name: NODE
+  code: verified
+  code_url: https://etherscan.io/address/0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77#code
+  proxy_of: '0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77'
   copies: 2
-  name: "NODE"
-  upgradeable: "yes"
-  rating: LOW
-  txs_90d: 2131
-  last_active: 2026-11-18
-fix:
-  layer: offchain
-  who_acts: "the holder (calls approve/delegate/transfer directly)"
-evidence:
-  level: bytecode
-  block: 26438999
+  family: ab796e71277eebf46eca4fb4e6fd93b6
+  upgradeable: 'yes'
+value:
+  usd: 0
+  basis: held
+activity: {}
+impact: liveness
+action: Tell holders that permit and delegateBySig stop once their account takes real code; a direct approve and
+  delegate call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - evidence-2
+  - what
+- id: no-1271-legacy
+  bytecode: '0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - evidence-2
+  - what
+- id: permit-fn
+  selector: '0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: permit-body
+  source: '0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77'
+  file: '@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20PermitUpgradeable.sol'
+  line: 49
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77'
+  file: '@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20PermitUpgradeable.sol'
+  line: 66
+  has: address signer = ECDSA.recover(hash, v, r, s);
+  says: permit recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77'
+  file: '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol'
+  line: 149
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-3
+- id: match
+  source: '0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77'
+  file: '@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20PermitUpgradeable.sol'
+  line: 67
+  has: if (signer != owner) {
+  says: the recovered address must be the holder
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: bysig-fn
+  selector: '0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77'
+  fn: delegateBySig(address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has delegateBySig
+  for:
+  - what
+- id: delegate-fn
+  selector: '0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77'
+  fn: delegate(address)
+  says: the code has a direct delegate
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: bysig-body
+  source: '0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77'
+  file: '@openzeppelin/contracts-upgradeable/governance/utils/VotesUpgradeable.sol'
+  line: 166
+  has: delegateBySig
+  says: delegateBySig is defined here
+  for:
+  - evidence-2
+  - what
+- id: bysig-recover
+  source: '0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77'
+  file: '@openzeppelin/contracts-upgradeable/governance/utils/VotesUpgradeable.sol'
+  line: 177
+  has: address signer = ECDSA.recover(
+  says: delegateBySig recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: bysig-acts
+  source: '0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77'
+  file: '@openzeppelin/contracts-upgradeable/governance/utils/VotesUpgradeable.sol'
+  line: 184
+  has: _delegate(signer, delegatee);
+  says: the votes delegated are the recovered signer's
+  for:
+  - evidence-2
+  - what
+- id: delegate-body
+  source: '0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77'
+  file: '@openzeppelin/contracts-upgradeable/governance/utils/VotesUpgradeable.sol'
+  line: 158
+  has: delegate
+  says: delegate is a direct call of the holder
+  for:
+  - action
+  - evidence-3
+- id: supply
+  call: '0x2f714d7b9a035d4ce24af8d9b6091c07e37f43fb'
+  fn: totalSupply()(uint256)
+  is: 680324170021996400129867776
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0x2f714d7b9a035d4ce24af8d9b6091c07e37f43fb'
+  fn: symbol()(string)
+  is: NODE
+  says: the token's symbol is NODE
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "signed shortcut only; the same act stays open to the same party by direct call → LOW"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-NODE is an ERC-20 with permit, delegateBySig; under EIP-8151 a holder whose address has non-delegation code can no longer use the signed path.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The NODE token lets a holder approve a spender and delegate its votes with an ECDSA signature, or with direct approve and delegate calls. A holder whose account takes real code can no longer use permit and delegateBySig; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: a holder whose address has code can no longer use delegateBySig, permit; it can still call approve, delegate itself: a way of signing is lost, no right. Rule: permit-like.
-- signed path(s) in code: permit, delegateBySig
-- direct calls in code: approve, delegate, transfer (msg.sender-based ERC-20/votes, callable by the holder itself)
-- no ERC-1271 isValidSignature selector (0x1626ba7e) in code: signer with code not handled on the signed path
-- txs_90d 2131, last_active 2026-11-18; value not material to rating
+- [permit](https://etherscan.io/address/0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77#code) recovers the signer with ECDSA and requires it to equal the holder; the code never asks the holder's account.
+- [delegateBySig](https://etherscan.io/address/0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77#code) recovers the signer with ECDSA and delegates that signer's votes; the code never asks the signer's account.
+- [approve and delegate](https://etherscan.io/address/0x41d0b9dfbf915a77e6db1c1880c4d3b4f27a9b77#code) act for the caller and take no signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens, over 2 addresses).
-- Activity: 2,131 transactions called it in the 90 days before that block; last on 2026-11-18.
+### Mechanism
 
-## Remediation
+permit (@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20PermitUpgradeable.sol, line 49) builds its digest and recovers the signer on line 66; the recovered address must equal the holder (line 67) before the allowance is set. approve (@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol, line 149) sets the caller's own allowance. delegateBySig (@openzeppelin/contracts-upgradeable/governance/utils/VotesUpgradeable.sol, line 166) recovers the signer on line 177 and delegates that signer's votes on line 184. delegate (@openzeppelin/contracts-upgradeable/governance/utils/VotesUpgradeable.sol, line 158) delegates the caller's own votes. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-holder uses approve/delegate/transfer from its own address instead of the signature
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 2 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit and delegateBySig has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and delegateBySig and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 680,324,170,021,996,400,129,867,776 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

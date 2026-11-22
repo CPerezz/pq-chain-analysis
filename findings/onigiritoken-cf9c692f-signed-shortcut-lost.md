@@ -1,67 +1,151 @@
 ---
 id: onigiritoken-cf9c692f-signed-shortcut-lost
-title: "OnigiriToken: signed shortcut lost by users with code"
+format: 2
+title: ONIGIRI holders whose accounts take real code lose signed vote delegation
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: none
-contracts:
-- address: "0xcf9c692f7e62af3c571d4173fd4abf9a3e5330d0"
-  family: "0d33e55fa82c2ed25b80803e3652ec13"
-  name: "OnigiriToken"
-  upgradeable: "no"
-  rating: LOW
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xcf9c692f7e62af3c571d4173fd4abf9a3e5330d0'
+  name: OnigiriToken
+  code: verified
+  code_url: https://etherscan.io/address/0xcf9c692f7e62af3c571d4173fd4abf9a3e5330d0#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0x7d433ca5b0d4f4edfac5ae3925cb407860b8cf57'
+value:
+  usd: 0
+  basis: held
+activity:
   txs_90d: 2105
-  last_active: 2026-11-18
-fix:
-  layer: offchain
-  who_acts: "the holder (calls approve/delegate/transfer directly)"
-evidence:
-  level: bytecode
-  block: 26438999
+impact: liveness
+action: Tell holders that delegateBySig stops once their account takes real code; a direct delegate call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0xcf9c692f7e62af3c571d4173fd4abf9a3e5330d0'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0xcf9c692f7e62af3c571d4173fd4abf9a3e5330d0'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: bysig-fn
+  selector: '0xcf9c692f7e62af3c571d4173fd4abf9a3e5330d0'
+  fn: delegateBySig(address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has delegateBySig
+  for:
+  - what
+- id: delegate-fn
+  selector: '0xcf9c692f7e62af3c571d4173fd4abf9a3e5330d0'
+  fn: delegate(address)
+  says: the code has a direct delegate
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: bysig-body
+  source: '0xcf9c692f7e62af3c571d4173fd4abf9a3e5330d0'
+  file: OnigiriToken.sol
+  line: 856
+  has: delegateBySig
+  says: delegateBySig is defined here
+  for:
+  - evidence-1
+  - what
+- id: bysig-recover
+  source: '0xcf9c692f7e62af3c571d4173fd4abf9a3e5330d0'
+  file: OnigiriToken.sol
+  line: 892
+  has: address signatory = ecrecover(digest, v, r, s);
+  says: delegateBySig recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: bysig-acts
+  source: '0xcf9c692f7e62af3c571d4173fd4abf9a3e5330d0'
+  file: OnigiriToken.sol
+  line: 896
+  has: return _delegate(signatory, delegatee);
+  says: the votes delegated are the recovered signer's
+  for:
+  - evidence-1
+  - what
+- id: delegate-body
+  source: '0xcf9c692f7e62af3c571d4173fd4abf9a3e5330d0'
+  file: OnigiriToken.sol
+  line: 843
+  has: delegate
+  says: delegate is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: supply
+  call: '0xcf9c692f7e62af3c571d4173fd4abf9a3e5330d0'
+  fn: totalSupply()(uint256)
+  is: 23088560841666666666664693
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0xcf9c692f7e62af3c571d4173fd4abf9a3e5330d0'
+  fn: symbol()(string)
+  is: ONIGIRI
+  says: the token's symbol is ONIGIRI
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "signed shortcut only; the same act stays open to the same party by direct call → LOW"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-OnigiriToken is an ERC-20 with delegateBySig; under EIP-8151 a holder whose address has non-delegation code can no longer use the signed path.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The ONIGIRI token lets a holder delegate its votes with an ECDSA-signed message or with a direct delegate call. A holder whose account takes real code can no longer use delegateBySig; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: as its template 989a2cc5: delegateBySig (Compound style): whoever signed delegates; zero rejected. Template.
-- signed path(s) in code: delegateBySig
-- direct calls in code: approve, delegate, transfer (msg.sender-based ERC-20/votes, callable by the holder itself)
-- no ERC-1271 isValidSignature selector (0x1626ba7e) in code: signer with code not handled on the signed path
-- txs_90d 2105, last_active 2026-11-18; value not material to rating
+- [delegateBySig](https://etherscan.io/address/0xcf9c692f7e62af3c571d4173fd4abf9a3e5330d0#code) recovers the signer with ECDSA and delegates that signer's votes; the code never asks the signer's account.
+- [delegate](https://etherscan.io/address/0xcf9c692f7e62af3c571d4173fd4abf9a3e5330d0#code) delegates the caller's own votes without a signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens).
-- Activity: 2,105 transactions called it in the 90 days before that block; last on 2026-11-18.
+### Mechanism
 
-## Remediation
+delegateBySig (OnigiriToken.sol, line 856) recovers the signer on line 892 and delegates that signer's votes on line 896. delegate (OnigiriToken.sol, line 843) delegates the caller's own votes. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-holder uses approve/delegate/transfer from its own address instead of the signature
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of delegateBySig has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except delegateBySig and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 23,088,560,841,666,666,666,664,693 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

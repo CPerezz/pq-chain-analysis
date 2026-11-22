@@ -1,65 +1,150 @@
 ---
 id: btrst-799ebfab-signed-shortcut-lost
-title: "BTRST: signed shortcut lost by users with code"
+format: 2
+title: BTRST holders whose accounts take real code lose signed vote delegation
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: none
-contracts:
-- address: "0x799ebfabe77a6e34311eeee9825190b9ece32824"
-  family: "28a7f64ac6180fab83b8b6595a5f97a5"
-  name: "BTRST"
-  upgradeable: "no"
-  rating: LOW
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x799ebfabe77a6e34311eeee9825190b9ece32824'
+  name: BTRST
+  code: verified
+  code_url: https://etherscan.io/address/0x799ebfabe77a6e34311eeee9825190b9ece32824#code
+  copies: 1
+  upgradeable: 'no'
+value:
+  usd: 0
+  basis: held
+activity:
   txs_90d: 1256
-  last_active: 2026-11-18
-fix:
-  layer: offchain
-  who_acts: "the affected holder (calls the direct function itself)"
-evidence:
-  level: bytecode
-  block: 26438999
+impact: liveness
+action: Tell holders that delegateBySig stops once their account takes real code; a direct delegate call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0x799ebfabe77a6e34311eeee9825190b9ece32824'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x799ebfabe77a6e34311eeee9825190b9ece32824'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: bysig-fn
+  selector: '0x799ebfabe77a6e34311eeee9825190b9ece32824'
+  fn: delegateBySig(address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has delegateBySig
+  for:
+  - what
+- id: delegate-fn
+  selector: '0x799ebfabe77a6e34311eeee9825190b9ece32824'
+  fn: delegate(address)
+  says: the code has a direct delegate
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: bysig-body
+  source: '0x799ebfabe77a6e34311eeee9825190b9ece32824'
+  file: contracts/BTRST.sol
+  line: 161
+  has: delegateBySig
+  says: delegateBySig is defined here
+  for:
+  - evidence-1
+  - what
+- id: bysig-recover
+  source: '0x799ebfabe77a6e34311eeee9825190b9ece32824'
+  file: contracts/BTRST.sol
+  line: 165
+  has: address signatory = ecrecover(digest, v, r, s);
+  says: delegateBySig recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: bysig-acts
+  source: '0x799ebfabe77a6e34311eeee9825190b9ece32824'
+  file: contracts/BTRST.sol
+  line: 169
+  has: return _delegate(signatory, delegatee);
+  says: the votes delegated are the recovered signer's
+  for:
+  - evidence-1
+  - what
+- id: delegate-body
+  source: '0x799ebfabe77a6e34311eeee9825190b9ece32824'
+  file: contracts/BTRST.sol
+  line: 148
+  has: delegate
+  says: delegate is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: supply
+  call: '0x799ebfabe77a6e34311eeee9825190b9ece32824'
+  fn: totalSupply()(uint256)
+  is: 250000000000000000000000000
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0x799ebfabe77a6e34311eeee9825190b9ece32824'
+  fn: symbol()(string)
+  is: BTRST
+  says: the token's symbol is BTRST
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Direct path exists for the same party (msg.sender-based approve/transfer/delegate); only a way of signing is lost, so LOW."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-BTRST: a signed shortcut (delegateBySig) recovers the holder's key; under EIP-8151 a holder whose address has non-delegation code can no longer use it, while the same act stays open by direct call.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The BTRST token lets a holder delegate its votes with an ECDSA-signed message or with a direct delegate call. A holder whose account takes real code can no longer use delegateBySig; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: a holder whose address has code can no longer use delegateBySig; it can still call delegate itself: a way of signing is lost, no right. Rule: permit-like.
-- Direct functions present in bytecode at block 26438999: approve (0x095ea7b3), transfer (0xa9059cbb), delegate (0x5c19a95c); each acts for msg.sender, so a holder with code calls them itself.
-- Signed path(s) lost for a signer with code: delegateBySig; study reading: a holder whose address has code can no longer use delegateBySig; it can still call delegate itself: a way of signing is lost, no right
+- [delegateBySig](https://etherscan.io/address/0x799ebfabe77a6e34311eeee9825190b9ece32824#code) recovers the signer with ECDSA and delegates that signer's votes; the code never asks the signer's account.
+- [delegate](https://etherscan.io/address/0x799ebfabe77a6e34311eeee9825190b9ece32824#code) delegates the caller's own votes without a signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens).
-- Activity: 1,256 transactions called it in the 90 days before that block; last on 2026-11-18.
+### Mechanism
 
-## Remediation
+delegateBySig (contracts/BTRST.sol, line 161) recovers the signer on line 165 and delegates that signer's votes on line 169. delegate (contracts/BTRST.sol, line 148) delegates the caller's own votes. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Holder with code calls approve/transfer/delegate directly instead of signing.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of delegateBySig has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except delegateBySig and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 250,000,000,000,000,000,000,000,000 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

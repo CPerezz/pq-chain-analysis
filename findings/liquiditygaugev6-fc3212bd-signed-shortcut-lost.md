@@ -1,70 +1,134 @@
 ---
 id: liquiditygaugev6-fc3212bd-signed-shortcut-lost
-title: "LiquidityGaugeV6: signed shortcut lost by users with code"
+format: 2
+title: Holders of this token whose accounts take real code lose permit
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: none
-contracts:
-- address: "0xfc3212bd9ad9a28da6b2bd50a2918969c126894f"
-  family: "2bc2a3d7e6e27da9daaeaef906c1058c"
-  name: "LiquidityGaugeV6"
-  label: "created by Curve: Stableswap Factory"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 46738
-  value_basis: held
-  value_as_of: 2026-11-18
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xfc3212bd9ad9a28da6b2bd50a2918969c126894f'
+  name: LiquidityGaugeV6
+  code: verified
+  code_url: https://etherscan.io/address/0xfc3212bd9ad9a28da6b2bd50a2918969c126894f#code
+  copies: 1
+  upgradeable: 'no'
+value:
+  usd: 46817
+  basis: held
+activity:
   txs_90d: 3461
-  last_active: 2026-11-18
-fix:
-  layer: offchain
-  who_acts: "the holder"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Tell holders that permit stops once their account takes real code; a direct approve call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0xfc3212bd9ad9a28da6b2bd50a2918969c126894f'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0xfc3212bd9ad9a28da6b2bd50a2918969c126894f'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: permit-fn
+  selector: '0xfc3212bd9ad9a28da6b2bd50a2918969c126894f'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0xfc3212bd9ad9a28da6b2bd50a2918969c126894f'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: permit-body
+  source: '0xfc3212bd9ad9a28da6b2bd50a2918969c126894f'
+  file: LiquidityGaugeV6.vy
+  line: 534
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0xfc3212bd9ad9a28da6b2bd50a2918969c126894f'
+  file: LiquidityGaugeV6.vy
+  line: 573
+  has: assert ecrecover(digest, _v, _r, _s) == _owner
+  says: permit recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0xfc3212bd9ad9a28da6b2bd50a2918969c126894f'
+  file: LiquidityGaugeV6.vy
+  line: 514
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: supply
+  call: '0xfc3212bd9ad9a28da6b2bd50a2918969c126894f'
+  fn: totalSupply()(uint256)
+  is: 30540211237010319454731653
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Signed shortcut whose act stays open by a direct call for the same party → LOW. value $46738, txs_90d 3461."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-LiquidityGaugeV6 exposes an EIP-2612-style permit; under EIP-8151 a holder whose address has code can no longer approve by signature.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+This token lets a holder approve a spender with an ECDSA-signed permit or with a direct approve call. A holder whose account takes real code can no longer use permit; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: Vyper permit (Curve gauge): ecrecover must equal _owner. Read from source.
-- Gauge permit: `assert ecrecover(digest, _v, _r, _s) == _owner`; the docstring claims ERC-1271 support but the code has no 1271 branch (LiquidityGaugeV6.vy:546-573)
-- approve(_spender,_value) is external, called by the holder (LiquidityGaugeV6.vy:514)
-- Same party in both paths
+- [permit](https://etherscan.io/address/0xfc3212bd9ad9a28da6b2bd50a2918969c126894f#code) recovers the signer with ECDSA and requires it to equal the holder; the code never asks the holder's account.
+- [approve](https://etherscan.io/address/0xfc3212bd9ad9a28da6b2bd50a2918969c126894f#code) sets the caller's own allowance without a signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $46,738 (ETH and 49 priced tokens).
-- Activity: 3,461 transactions called it in the 90 days before that block; last on 2026-11-18.
+### Mechanism
 
-## Remediation
+permit (LiquidityGaugeV6.vy, line 534) builds its digest and recovers the signer on line 573; the recovered address must equal the holder (line 573) before the allowance is set. approve (LiquidityGaugeV6.vy, line 514) sets the caller's own allowance. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-The holder calls approve itself (or uses another approval method).
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 30,540,211,237,010,319,454,731,653 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

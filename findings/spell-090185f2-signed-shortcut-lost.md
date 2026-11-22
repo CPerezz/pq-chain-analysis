@@ -1,69 +1,143 @@
 ---
 id: spell-090185f2-signed-shortcut-lost
-title: "Spell: signed shortcut lost by users with code"
+format: 2
+title: SPELL holders whose accounts take real code lose permit
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: none
-contracts:
-- address: "0x090185f2135308bad17527004364ebcc2d37e5f6"
-  family: "8e065e7b75490be59f564a04b4b5d7f6"
-  name: "Spell"
-  label: "Abracadabra.money: SPELL Token"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 4331
-  value_basis: held
-  value_as_of: 2026-11-18
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x090185f2135308bad17527004364ebcc2d37e5f6'
+  name: Spell
+  code: verified
+  code_url: https://etherscan.io/address/0x090185f2135308bad17527004364ebcc2d37e5f6#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0xdf2c270f610dc35d8ffda5b453e74db5471e126b'
+value:
+  usd: 4362
+  basis: held
+activity:
   txs_90d: 15109
-  last_active: 2026-11-18
-fix:
-  layer: offchain
-  who_acts: "the affected holder (signer with code)"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Tell holders that permit stops once their account takes real code; a direct approve call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0x090185f2135308bad17527004364ebcc2d37e5f6'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x090185f2135308bad17527004364ebcc2d37e5f6'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: permit-fn
+  selector: '0x090185f2135308bad17527004364ebcc2d37e5f6'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0x090185f2135308bad17527004364ebcc2d37e5f6'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: permit-body
+  source: '0x090185f2135308bad17527004364ebcc2d37e5f6'
+  file: Spell.sol
+  line: 250
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0x090185f2135308bad17527004364ebcc2d37e5f6'
+  file: Spell.sol
+  line: 262
+  has: ecrecover(_getDigest(keccak256(abi.encode(PERMIT_SIGNATURE_HASH, owner_, spender, value, nonces[owner_]++,
+    dea
+  says: permit recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0x090185f2135308bad17527004364ebcc2d37e5f6'
+  file: Spell.sol
+  line: 231
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: supply
+  call: '0x090185f2135308bad17527004364ebcc2d37e5f6'
+  fn: totalSupply()(uint256)
+  is: 419996432678717845856679824844
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0x090185f2135308bad17527004364ebcc2d37e5f6'
+  fn: symbol()(string)
+  is: SPELL
+  says: the token's symbol is SPELL
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Permit has a direct twin. Value $4331, txs_90d 15109 (not rating inputs)."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-Spell: EIP-2612-style permit (ECDSA must equal the named owner). A holder whose address has code can't use permit, but still calls approve.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The SPELL token lets a holder approve a spender with an ECDSA-signed permit or with a direct approve call. A holder whose account takes real code can no longer use permit; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: permit or an approval by signature: the owner named in the call must equal the recovered address; the holder can call approve itself. Read from source.
-- source (8e065e7b75490be59f564a04b4b5d7f6): signed functions [permit]; standard approve present
-- no ERC-1271 fallback in permit
+- [permit](https://etherscan.io/address/0x090185f2135308bad17527004364ebcc2d37e5f6#code) recovers the signer with ECDSA and requires it to equal the holder; the code never asks the holder's account.
+- [approve](https://etherscan.io/address/0x090185f2135308bad17527004364ebcc2d37e5f6#code) sets the caller's own allowance without a signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $4,331 (ETH and 49 priced tokens).
-- Activity: 15,109 transactions called it in the 90 days before that block; last on 2026-11-18.
+### Mechanism
 
-## Remediation
+permit (Spell.sol, line 250) builds its digest and recovers the signer on line 262; the recovered address must equal the holder (line 262) before the allowance is set. approve (Spell.sol, line 231) sets the caller's own allowance. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Call approve directly.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 419,996,432,678,717,845,856,679,824,844 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

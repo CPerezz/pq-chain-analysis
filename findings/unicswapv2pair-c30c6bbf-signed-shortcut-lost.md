@@ -1,70 +1,151 @@
 ---
 id: unicswapv2pair-c30c6bbf-signed-shortcut-lost
-title: "UnicSwapV2Pair: signed shortcut lost by users with code"
+format: 2
+title: UPT holders whose accounts take real code lose permit
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: none
-contracts:
-- address: "0xc30c6bbf8907acac79454a0b2a49ca1be2ddee82"
-  family: "b2d09f3e75211e893e18aaa3aec61543"
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xc30c6bbf8907acac79454a0b2a49ca1be2ddee82'
+  name: UnicSwapV2Pair
+  code: verified
+  code_url: https://etherscan.io/address/0xc30c6bbf8907acac79454a0b2a49ca1be2ddee82#code
   copies: 91
-  name: "UnicSwapV2Pair"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 178651
-  value_basis: held
-  value_as_of: 2026-11-18
-  txs_90d: 900
-  last_active: 2026-11-18
-fix:
-  layer: none
-  who_acts: "the affected holder (calls the direct function itself)"
-evidence:
-  level: source-read
-  block: 26438999
+  family: b2d09f3e75211e893e18aaa3aec61543
+  upgradeable: 'no'
+value:
+  usd: 2
+  basis: held
+activity: {}
+impact: liveness
+action: Tell holders that permit stops once their account takes real code; a direct approve call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0xc30c6bbf8907acac79454a0b2a49ca1be2ddee82'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0xc30c6bbf8907acac79454a0b2a49ca1be2ddee82'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: permit-fn
+  selector: '0xc30c6bbf8907acac79454a0b2a49ca1be2ddee82'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0xc30c6bbf8907acac79454a0b2a49ca1be2ddee82'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: permit-body
+  source: '0xc30c6bbf8907acac79454a0b2a49ca1be2ddee82'
+  file: UnicSwapV2Pair.sol
+  line: 199
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0xc30c6bbf8907acac79454a0b2a49ca1be2ddee82'
+  file: UnicSwapV2Pair.sol
+  line: 208
+  has: address recoveredAddress = ecrecover(digest, v, r, s);
+  says: permit recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0xc30c6bbf8907acac79454a0b2a49ca1be2ddee82'
+  file: UnicSwapV2Pair.sol
+  line: 181
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: match
+  source: '0xc30c6bbf8907acac79454a0b2a49ca1be2ddee82'
+  file: UnicSwapV2Pair.sol
+  line: 209
+  has: 'require(recoveredAddress != address(0) && recoveredAddress == owner, ''UnicSwap: INVALID_SIGNATURE'');'
+  says: the recovered address must be the holder
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: supply
+  call: '0xc30c6bbf8907acac79454a0b2a49ca1be2ddee82'
+  fn: totalSupply()(uint256)
+  is: 12961568687867126
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0xc30c6bbf8907acac79454a0b2a49ca1be2ddee82'
+  fn: symbol()(string)
+  is: UPT
+  says: the token's symbol is UPT
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "The signed shortcut is lost, but approve is open to the same owner and nothing is locked: LOW."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-UnicSwapV2Pair: an EIP-2612-style permit checks ecrecover against the owner named in the call. EIP-8151 makes the permit fail for an owner whose address has code; approve still works for that owner.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The UPT token lets a holder approve a spender with an ECDSA-signed permit or with a direct approve call. A holder whose account takes real code can no longer use permit; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: permit: the owner named in the call must equal the recovered address; the holder can call approve itself. Read from source.
-- approve(address,uint256) 0x095ea7b3 and permit 0xd505accf (or the Vyper variant) are in the runtime code (own code) at block 26438999
-- Row note: permit: the owner named in the call must equal the recovered address; the holder can call approve itself. Read from source.
-- approve uses msg.sender as owner (standard ERC-20), so an owner with code calls it directly
+- [permit](https://etherscan.io/address/0xc30c6bbf8907acac79454a0b2a49ca1be2ddee82#code) recovers the signer with ECDSA and requires it to equal the holder; the code never asks the holder's account.
+- [approve](https://etherscan.io/address/0xc30c6bbf8907acac79454a0b2a49ca1be2ddee82#code) sets the caller's own allowance without a signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $178,651 (ETH and 49 priced tokens, over 91 addresses).
-- Activity: 900 transactions called it in the 90 days before that block; last on 2026-11-18.
+### Mechanism
 
-## Remediation
+permit (UnicSwapV2Pair.sol, line 199) builds its digest and recovers the signer on line 208; the recovered address must equal the holder (line 209) before the allowance is set. approve (UnicSwapV2Pair.sol, line 181) sets the caller's own allowance. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-The owner calls approve directly (or approves through its smart account); a dapp falls back from permit to approve.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 91 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 12,961,568,687,867,126 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

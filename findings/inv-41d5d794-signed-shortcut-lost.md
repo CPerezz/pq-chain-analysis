@@ -1,66 +1,209 @@
 ---
 id: inv-41d5d794-signed-shortcut-lost
-title: "INV: signed shortcut lost by users with code"
+format: 2
+title: INV holders whose accounts take real code lose permit and signed delegation
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: none
-contracts:
-- address: "0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68"
-  family: "9e9cf39d0f92603e9a785964f7b79d18"
-  name: "INV"
-  upgradeable: "no"
-  rating: LOW
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  name: INV
+  code: verified
+  code_url: https://etherscan.io/address/0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0x926df14a23be491164dcf93f4c468a50ef659d5b'
+value:
+  usd: 0
+  basis: held
+activity:
   txs_90d: 7410
-  last_active: 2026-11-17
-fix:
-  layer: none
-  who_acts: "the affected holder (calls the direct function itself)"
-evidence:
-  level: bytecode
-  block: 26438999
+impact: liveness
+action: Tell holders that permit and delegateBySig stop once their account takes real code; a direct approve and
+  delegate call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - evidence-2
+  - what
+- id: no-1271-legacy
+  bytecode: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - evidence-2
+  - what
+- id: permit-fn
+  selector: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: permit-body
+  source: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  file: contracts/token/INV.sol
+  line: 201
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  file: contracts/token/INV.sol
+  line: 212
+  has: address signatory = ecrecover(digest, v, r, s);
+  says: permit recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  file: contracts/token/INV.sol
+  line: 177
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-3
+- id: match
+  source: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  file: contracts/token/INV.sol
+  line: 214
+  has: 'require(signatory == _owner, "INV::permit: unauthorized");'
+  says: the recovered address must be the holder
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: bysig-fn
+  selector: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  fn: delegateBySig(address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has delegateBySig
+  for:
+  - what
+- id: delegate-fn
+  selector: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  fn: delegate(address)
+  says: the code has a direct delegate
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: bysig-body
+  source: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  file: contracts/token/INV.sol
+  line: 283
+  has: delegateBySig
+  says: delegateBySig is defined here
+  for:
+  - evidence-2
+  - what
+- id: bysig-recover
+  source: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  file: contracts/token/INV.sol
+  line: 287
+  has: address signatory = ecrecover(digest, v, r, s);
+  says: delegateBySig recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: bysig-acts
+  source: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  file: contracts/token/INV.sol
+  line: 291
+  has: return _delegate(signatory, delegatee);
+  says: the votes delegated are the recovered signer's
+  for:
+  - evidence-2
+  - what
+- id: delegate-body
+  source: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  file: contracts/token/INV.sol
+  line: 270
+  has: delegate
+  says: delegate is a direct call of the holder
+  for:
+  - action
+  - evidence-3
+- id: supply
+  call: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  fn: totalSupply()(uint256)
+  is: 727000000000000000000000
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68'
+  fn: symbol()(string)
+  is: INV
+  says: the token's symbol is INV
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Standard signed shortcut; approve and delegate remain open to the same holder."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-INV: permit / delegateBySig stops working for a holder whose address has code; the act stays open by direct call.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The INV token lets a holder approve a spender and delegate its votes with an ECDSA signature, or with direct approve and delegate calls. A holder whose account takes real code can no longer use permit and delegateBySig; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: as its template ee89f472: VSP delegateBySig: whoever signed delegates / VSP permit: the owner named must have signed. Template.
-- bytecode exposes approve(address,uint256) 0x095ea7b3 and transfer 0xa9059cbb
-- bytecode exposes delegate(address) 0x5c19a95c next to delegateBySig 0xc3cda520
-- study note: as its template ee89f472: VSP delegateBySig: whoever signed delegates / VSP permit: the owner named must have signed. Template.
+- [permit](https://etherscan.io/address/0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68#code) recovers the signer with ECDSA and requires it to equal the holder; the code never asks the holder's account.
+- [delegateBySig](https://etherscan.io/address/0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68#code) recovers the signer with ECDSA and delegates that signer's votes; the code never asks the signer's account.
+- [approve and delegate](https://etherscan.io/address/0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68#code) act for the caller and take no signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens).
-- Activity: 7,410 transactions called it in the 90 days before that block; last on 2026-11-17.
+### Mechanism
 
-## Remediation
+permit (contracts/token/INV.sol, line 201) builds its digest and recovers the signer on line 212; the recovered address must equal the holder (line 214) before the allowance is set. approve (contracts/token/INV.sol, line 177) sets the caller's own allowance. delegateBySig (contracts/token/INV.sol, line 283) recovers the signer on line 287 and delegates that signer's votes on line 291. delegate (contracts/token/INV.sol, line 270) delegates the caller's own votes. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Holder calls approve / delegate itself.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit and delegateBySig has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and delegateBySig and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 727,000,000,000,000,000,000,000 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

@@ -1,69 +1,151 @@
 ---
 id: core-62359ed7-signed-shortcut-lost
-title: "CORE: signed shortcut lost by users with code"
+format: 2
+title: CORE holders whose accounts take real code lose signed vote delegation
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: none
-contracts:
-- address: "0x62359ed7505efc61ff1d56fef82158ccaffa23d7"
-  family: "f63231d4a1086c25c2d0c29dbd9aaa23"
-  name: "CORE"
-  label: "cVault Finance: CORE Token"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 14076
-  value_basis: held
-  value_as_of: 2026-11-18
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x62359ed7505efc61ff1d56fef82158ccaffa23d7'
+  name: CORE
+  code: verified
+  code_url: https://etherscan.io/address/0x62359ed7505efc61ff1d56fef82158ccaffa23d7#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0x5a16552f59ea34e44ec81e58b3817833e9fd5436'
+value:
+  usd: 13977
+  basis: held
+activity:
   txs_90d: 1587
-  last_active: 2026-11-18
-fix:
-  layer: offchain
-  who_acts: "the affected holder (signer with code)"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Tell holders that delegateBySig stops once their account takes real code; a direct delegate call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0x62359ed7505efc61ff1d56fef82158ccaffa23d7'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x62359ed7505efc61ff1d56fef82158ccaffa23d7'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: bysig-fn
+  selector: '0x62359ed7505efc61ff1d56fef82158ccaffa23d7'
+  fn: delegateBySig(address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has delegateBySig
+  for:
+  - what
+- id: delegate-fn
+  selector: '0x62359ed7505efc61ff1d56fef82158ccaffa23d7'
+  fn: delegate(address)
+  says: the code has a direct delegate
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: bysig-body
+  source: '0x62359ed7505efc61ff1d56fef82158ccaffa23d7'
+  file: contracts/CORE.sol
+  line: 102
+  has: delegateBySig
+  says: delegateBySig is defined here
+  for:
+  - evidence-1
+  - what
+- id: bysig-recover
+  source: '0x62359ed7505efc61ff1d56fef82158ccaffa23d7'
+  file: contracts/CORE.sol
+  line: 138
+  has: address signatory = ecrecover(digest, v, r, s);
+  says: delegateBySig recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: bysig-acts
+  source: '0x62359ed7505efc61ff1d56fef82158ccaffa23d7'
+  file: contracts/CORE.sol
+  line: 142
+  has: return _delegate(signatory, delegatee);
+  says: the votes delegated are the recovered signer's
+  for:
+  - evidence-1
+  - what
+- id: delegate-body
+  source: '0x62359ed7505efc61ff1d56fef82158ccaffa23d7'
+  file: contracts/CORE.sol
+  line: 89
+  has: delegate
+  says: delegate is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: supply
+  call: '0x62359ed7505efc61ff1d56fef82158ccaffa23d7'
+  fn: totalSupply()(uint256)
+  is: 10000000000000000000000
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0x62359ed7505efc61ff1d56fef82158ccaffa23d7'
+  fn: symbol()(string)
+  is: CORE
+  says: the token's symbol is CORE
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Direct twins exist (standard EIP-2612 / Compound-style delegation). Value $14076, txs_90d 1587 (not rating inputs)."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-CORE: permit/delegateBySig-style signed shortcuts (ECDSA must equal the named owner/delegator). A holder with code still calls approve and delegate itself.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The CORE token lets a holder delegate its votes with an ECDSA-signed message or with a direct delegate call. A holder whose account takes real code can no longer use delegateBySig; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: delegateBySig (Compound style): whoever signed delegates; zero rejected. Read from source.
-- source (f63231d4a1086c25c2d0c29dbd9aaa23): signed functions [delegateBySig,permit]; direct approve and delegate(address) present
-- no ERC-1271 fallback in the signed path
+- [delegateBySig](https://etherscan.io/address/0x62359ed7505efc61ff1d56fef82158ccaffa23d7#code) recovers the signer with ECDSA and delegates that signer's votes; the code never asks the signer's account.
+- [delegate](https://etherscan.io/address/0x62359ed7505efc61ff1d56fef82158ccaffa23d7#code) delegates the caller's own votes without a signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $14,076 (ETH and 49 priced tokens).
-- Activity: 1,587 transactions called it in the 90 days before that block; last on 2026-11-18.
+### Mechanism
 
-## Remediation
+delegateBySig (contracts/CORE.sol, line 102) recovers the signer on line 138 and delegates that signer's votes on line 142. delegate (contracts/CORE.sol, line 89) delegates the caller's own votes. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Call approve / delegate directly.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of delegateBySig has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except delegateBySig and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 10,000,000,000,000,000,000,000 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

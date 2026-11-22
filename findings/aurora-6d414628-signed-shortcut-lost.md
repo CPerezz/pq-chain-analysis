@@ -1,70 +1,152 @@
 ---
 id: aurora-6d414628-signed-shortcut-lost
-title: "Aurora: signed shortcut lost by users with code"
+format: 2
+title: AUR holders whose accounts take real code lose permit
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: liveness
-contracts:
-- address: "0x6d414628ff99124aa82db9a623a988c7d308ea44"
-  family: "bb9fb6d251354beb5d1481a42c5cce12"
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x6d414628ff99124aa82db9a623a988c7d308ea44'
+  name: Aurora
+  code: verified
+  code_url: https://etherscan.io/address/0x6d414628ff99124aa82db9a623a988c7d308ea44#code
   copies: 2
-  name: "Aurora"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 621
-  value_basis: held
-  value_as_of: 2026-11-18
-  txs_90d: 12
-  last_active: 2026-09-18
-fix:
-  layer: none
-  who_acts: "nobody for funds; the team adds ERC-1271 to keep gasless flows"
-evidence:
-  level: bytecode
-  block: 26438999
+  family: bb9fb6d251354beb5d1481a42c5cce12
+  upgradeable: 'no'
+  admin: '0xd6893d3e7ac40f50b70678a3ea9c43eb439c906d'
+value:
+  usd: 310
+  basis: held
+activity: {}
+impact: liveness
+action: Tell holders that permit stops once their account takes real code; a direct approve call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0x6d414628ff99124aa82db9a623a988c7d308ea44'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x6d414628ff99124aa82db9a623a988c7d308ea44'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: permit-fn
+  selector: '0x6d414628ff99124aa82db9a623a988c7d308ea44'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0x6d414628ff99124aa82db9a623a988c7d308ea44'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: permit-body
+  source: '0x6d414628ff99124aa82db9a623a988c7d308ea44'
+  file: lib/solady/src/tokens/ERC20.sol
+  line: 389
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0x6d414628ff99124aa82db9a623a988c7d308ea44'
+  file: lib/solady/src/tokens/ERC20.sol
+  line: 448
+  has: let t := staticcall(gas(), 1, 0x00, 0x80, 0x20, 0x20)
+  says: permit calls the ecrecover precompile with all the gas
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0x6d414628ff99124aa82db9a623a988c7d308ea44'
+  file: lib/solady/src/tokens/ERC20.sol
+  line: 186
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: match
+  source: '0x6d414628ff99124aa82db9a623a988c7d308ea44'
+  file: lib/solady/src/tokens/ERC20.sol
+  line: 454
+  has: if iszero(eq(mload(returndatasize()), owner)) {
+  says: the recovered address must be the holder
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: supply
+  call: '0x6d414628ff99124aa82db9a623a988c7d308ea44'
+  fn: totalSupply()(uint256)
+  is: 1000000000000000000000000
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0x6d414628ff99124aa82db9a623a988c7d308ea44'
+  fn: symbol()(string)
+  is: AUR
+  says: the token's symbol is AUR
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-`Aurora` at `0x6d414628ff99124aa82db9a623a988c7d308ea44`, with 1 more addresses running its code. It lets a user act through an ECDSA signature or by a direct call; a user whose account has code loses the signed path only.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The AUR token lets a holder approve a spender with an ECDSA-signed permit or with a direct approve call. A holder whose account takes real code can no longer use permit; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: a holder whose address has code can no longer use permit; it can still call approve itself: a way of signing is lost, no right. Rule: permit-like.
-- Reviewed through the root issue's mechanism (D-025): the reading states a direct path for the signed act (approve next to permit, delegate next to delegateBySig, castVote next to castVoteBySig, a direct call next to a meta-transaction, or an order the maker can place or approve on chain), so a holder whose account has code keeps the act: LOW
-- Mechanical checks: where the reading names permit, delegateBySig or castVoteBySig, this address's code holds that function and its direct twin; the scanner finds an ecrecover call in the code
-- A random sample of 25 of the 18,891 rows below Anon's thresholds: 24 held at LOW, 1 (an NFT exchange whose orders can only be signed) was MEDIUM; readings of that kind were sent to one-by-one checks
+- [permit](https://etherscan.io/address/0x6d414628ff99124aa82db9a623a988c7d308ea44#code) calls the ecrecover precompile in assembly and reverts unless the result is the holder; the code never asks the holder's account.
+- [approve](https://etherscan.io/address/0x6d414628ff99124aa82db9a623a988c7d308ea44#code) sets the caller's own allowance without a signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $621 (ETH and 49 priced tokens, over 2 addresses).
-- Activity: 12 transactions called it in the 90 days before that block; last on 2026-09-18.
+### Mechanism
 
-## Remediation
+permit (lib/solady/src/tokens/ERC20.sol, line 389) builds its digest and recovers the signer on line 448; the recovered address must equal the holder (line 454) before the allowance is set. approve (lib/solady/src/tokens/ERC20.sol, line 186) sets the caller's own allowance. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-None needed for funds; add ERC-1271 to keep gasless flows.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 2 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 1,000,000,000,000,000,000,000,000 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

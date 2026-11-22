@@ -1,70 +1,141 @@
 ---
 id: curvetwocryptooptimized-ca546ae6-signed-shortcut-lost
-title: "CurveTwocryptoOptimized: signed shortcut lost by users with code"
+format: 2
+title: crvUSDCJPY holders whose accounts take real code lose permit
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: none
-contracts:
-- address: "0xca546ae6c3b2bb9fba2b6e5eeb0881097cece5b0"
-  family: "9855bfb2dcfdee178aa8fdc378ad12de"
-  name: "CurveTwocryptoOptimized"
-  label: "Curve: crvUSDCJPY Pool"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 113146
-  value_basis: held
-  value_as_of: 2026-11-18
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xca546ae6c3b2bb9fba2b6e5eeb0881097cece5b0'
+  name: CurveTwocryptoOptimized
+  code: verified
+  code_url: https://etherscan.io/address/0xca546ae6c3b2bb9fba2b6e5eeb0881097cece5b0#code
+  copies: 1
+  admin: '0xeda0108d5bb8cde2ba4a59e22f3ed5d211c77187'
+value:
+  usd: 113094
+  basis: held
+activity:
   txs_90d: 1170
-  last_active: 2026-11-17
-fix:
-  layer: none
-  who_acts: "the affected holder (calls the direct function itself)"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Tell holders that permit stops once their account takes real code; a direct approve call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0xca546ae6c3b2bb9fba2b6e5eeb0881097cece5b0'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0xca546ae6c3b2bb9fba2b6e5eeb0881097cece5b0'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: permit-fn
+  selector: '0xca546ae6c3b2bb9fba2b6e5eeb0881097cece5b0'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0xca546ae6c3b2bb9fba2b6e5eeb0881097cece5b0'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: permit-body
+  source: '0xca546ae6c3b2bb9fba2b6e5eeb0881097cece5b0'
+  file: CurveTwocryptoOptimized.vy
+  line: 1438
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0xca546ae6c3b2bb9fba2b6e5eeb0881097cece5b0'
+  file: CurveTwocryptoOptimized.vy
+  line: 1478
+  has: assert ecrecover(digest, _v, _r, _s) == _owner
+  says: permit recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0xca546ae6c3b2bb9fba2b6e5eeb0881097cece5b0'
+  file: CurveTwocryptoOptimized.vy
+  line: 1424
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: supply
+  call: '0xca546ae6c3b2bb9fba2b6e5eeb0881097cece5b0'
+  fn: totalSupply()(uint256)
+  is: 1806185491830344911867926
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0xca546ae6c3b2bb9fba2b6e5eeb0881097cece5b0'
+  fn: symbol()(string)
+  is: crvUSDCJPY
+  says: the token's symbol is crvUSDCJPY
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "The signed shortcut is lost, but approve is open to the same owner and nothing is locked: LOW."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-CurveTwocryptoOptimized: an EIP-2612-style permit checks ecrecover against the owner named in the call. EIP-8151 makes the permit fail for an owner whose address has code; approve still works for that owner.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The crvUSDCJPY token lets a holder approve a spender with an ECDSA-signed permit or with a direct approve call. A holder whose account takes real code can no longer use permit; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: Vyper permit (Curve pools): ecrecover must equal _owner, which may not be zero. Read from source.
-- approve(address,uint256) 0x095ea7b3 and permit 0xd505accf (or the Vyper variant) are in the runtime code (own code) at block 26438999
-- Row note: Vyper permit (Curve pools): ecrecover must equal _owner, which may not be zero. Read from source.
-- approve uses msg.sender as owner (standard ERC-20), so an owner with code calls it directly
+- [permit](https://etherscan.io/address/0xca546ae6c3b2bb9fba2b6e5eeb0881097cece5b0#code) recovers the signer with ECDSA and requires it to equal the holder; the code never asks the holder's account.
+- [approve](https://etherscan.io/address/0xca546ae6c3b2bb9fba2b6e5eeb0881097cece5b0#code) sets the caller's own allowance without a signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $113,146 (ETH and 49 priced tokens).
-- Activity: 1,170 transactions called it in the 90 days before that block; last on 2026-11-17.
+### Mechanism
 
-## Remediation
+permit (CurveTwocryptoOptimized.vy, line 1438) builds its digest and recovers the signer on line 1478; the recovered address must equal the holder (line 1478) before the allowance is set. approve (CurveTwocryptoOptimized.vy, line 1424) sets the caller's own allowance. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-The owner calls approve directly (or approves through its smart account); a dapp falls back from permit to approve.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 1,806,185,491,830,344,911,867,926 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

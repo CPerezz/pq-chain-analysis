@@ -1,71 +1,152 @@
 ---
 id: chamber-d1ce69b4-signed-shortcut-lost
-title: "Chamber: signed shortcut lost by users with code"
+format: 2
+title: ACAI holders whose accounts take real code lose permit
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: none
-contracts:
-- address: "0xd1ce69b4bdd3dda553ea55a2a57c21c65190f3d5"
-  family: "ea78a124eb536c244130a1f93efc098c"
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xd1ce69b4bdd3dda553ea55a2a57c21c65190f3d5'
+  name: Chamber
+  code: verified
+  code_url: https://etherscan.io/address/0xd1ce69b4bdd3dda553ea55a2a57c21c65190f3d5#code
   copies: 10
-  name: "Chamber"
-  label: "Arch: CHAIN Token"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 58287
-  value_basis: held
-  value_as_of: 2026-11-18
-  txs_90d: 69
-  last_active: 2026-11-10
-fix:
-  layer: none
-  who_acts: "the affected holder (calls the direct function itself)"
-evidence:
-  level: source-read
-  block: 26438999
+  family: ea78a124eb536c244130a1f93efc098c
+  upgradeable: 'no'
+  admin: '0x818feb1d51e8681a020b2c0df4820071102fdd38'
+value:
+  usd: 13166
+  basis: held
+activity: {}
+impact: liveness
+action: Tell holders that permit stops once their account takes real code; a direct approve call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0xd1ce69b4bdd3dda553ea55a2a57c21c65190f3d5'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0xd1ce69b4bdd3dda553ea55a2a57c21c65190f3d5'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: permit-fn
+  selector: '0xd1ce69b4bdd3dda553ea55a2a57c21c65190f3d5'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0xd1ce69b4bdd3dda553ea55a2a57c21c65190f3d5'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: permit-body
+  source: '0xd1ce69b4bdd3dda553ea55a2a57c21c65190f3d5'
+  file: lib/solmate/src/tokens/ERC20.sol
+  line: 116
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0xd1ce69b4bdd3dda553ea55a2a57c21c65190f3d5'
+  file: lib/solmate/src/tokens/ERC20.sol
+  line: 130
+  has: address recoveredAddress = ecrecover(
+  says: permit recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0xd1ce69b4bdd3dda553ea55a2a57c21c65190f3d5'
+  file: lib/solmate/src/tokens/ERC20.sol
+  line: 68
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: match
+  source: '0xd1ce69b4bdd3dda553ea55a2a57c21c65190f3d5'
+  file: lib/solmate/src/tokens/ERC20.sol
+  line: 154
+  has: require(recoveredAddress != address(0) && recoveredAddress == owner, "INVALID_SIGNER");
+  says: the recovered address must be the holder
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: supply
+  call: '0xd1ce69b4bdd3dda553ea55a2a57c21c65190f3d5'
+  fn: totalSupply()(uint256)
+  is: 11177976012472750674818
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0xd1ce69b4bdd3dda553ea55a2a57c21c65190f3d5'
+  fn: symbol()(string)
+  is: ACAI
+  says: the token's symbol is ACAI
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "The signed shortcut is lost, but approve is open to the same owner and nothing is locked: LOW."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-Chamber: an EIP-2612-style permit checks ecrecover against the owner named in the call. EIP-8151 makes the permit fail for an owner whose address has code; approve still works for that owner.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The ACAI token lets a holder approve a spender with an ECDSA-signed permit or with a direct approve call. A holder whose account takes real code can no longer use permit; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: solmate permit: the recovered address must be the owner named in the call, zero rejected; nothing else is accepted here. Read from source.
-- approve(address,uint256) 0x095ea7b3 and permit 0xd505accf (or the Vyper variant) are in the runtime code (own code) at block 26438999
-- Row note: solmate permit: the recovered address must be the owner named in the call, zero rejected; nothing else is accepted here. Read from source.
-- approve uses msg.sender as owner (standard ERC-20), so an owner with code calls it directly
+- [permit](https://etherscan.io/address/0xd1ce69b4bdd3dda553ea55a2a57c21c65190f3d5#code) recovers the signer with ECDSA and requires it to equal the holder; the code never asks the holder's account.
+- [approve](https://etherscan.io/address/0xd1ce69b4bdd3dda553ea55a2a57c21c65190f3d5#code) sets the caller's own allowance without a signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $58,287 (ETH and 49 priced tokens, over 10 addresses).
-- Activity: 69 transactions called it in the 90 days before that block; last on 2026-11-10.
+### Mechanism
 
-## Remediation
+permit (lib/solmate/src/tokens/ERC20.sol, line 116) builds its digest and recovers the signer on line 130; the recovered address must equal the holder (line 154) before the allowance is set. approve (lib/solmate/src/tokens/ERC20.sol, line 68) sets the caller's own allowance. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-The owner calls approve directly (or approves through its smart account); a dapp falls back from permit to approve.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 10 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 11,177,976,012,472,750,674,818 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

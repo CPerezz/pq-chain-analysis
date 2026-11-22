@@ -1,69 +1,152 @@
 ---
 id: gsp-201939f5-signed-shortcut-lost
-title: "GSP: signed shortcut lost by users with code"
+format: 2
+title: GLP holders whose accounts take real code lose permit
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: liveness
-contracts:
-- address: "0x201939f5c74f5fd3beef1cf03a9cfcc75beba9d9"
-  family: "1a139437e81220621d999d5d9bae9d93"
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x201939f5c74f5fd3beef1cf03a9cfcc75beba9d9'
+  name: GSP
+  code: verified
+  code_url: https://etherscan.io/address/0xb375ccf52923287ec525351c2c11030fd95b856f#code
+  proxy_of: '0xb375ccf52923287ec525351c2c11030fd95b856f'
   copies: 4
-  name: "GSP"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 5
-  value_basis: held
-  value_as_of: 2026-11-18
-  txs_90d: 2764
-  last_active: 2026-11-17
-fix:
-  layer: offchain
-  who_acts: "token holder (calls approve itself)"
-evidence:
-  level: bytecode
-  block: 26438999
+  family: 1a139437e81220621d999d5d9bae9d93
+  upgradeable: 'no'
+value:
+  usd: 5
+  basis: held
+activity: {}
+impact: liveness
+action: Tell holders that permit stops once their account takes real code; a direct approve call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0xb375ccf52923287ec525351c2c11030fd95b856f'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0xb375ccf52923287ec525351c2c11030fd95b856f'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: permit-fn
+  selector: '0xb375ccf52923287ec525351c2c11030fd95b856f'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0xb375ccf52923287ec525351c2c11030fd95b856f'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: permit-body
+  source: '0xb375ccf52923287ec525351c2c11030fd95b856f'
+  file: contracts/GasSavingPool/impl/GSPVault.sol
+  line: 288
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0xb375ccf52923287ec525351c2c11030fd95b856f'
+  file: contracts/GasSavingPool/impl/GSPVault.sol
+  line: 316
+  has: address recoveredAddress = ecrecover(digest, v, r, s);
+  says: permit recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0xb375ccf52923287ec525351c2c11030fd95b856f'
+  file: contracts/GasSavingPool/impl/GSPVault.sol
+  line: 247
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: match
+  source: '0xb375ccf52923287ec525351c2c11030fd95b856f'
+  file: contracts/GasSavingPool/impl/GSPVault.sol
+  line: 318
+  has: recoveredAddress != address(0) && recoveredAddress == owner,
+  says: the recovered address must be the holder
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: supply
+  call: '0x201939f5c74f5fd3beef1cf03a9cfcc75beba9d9'
+  fn: totalSupply()(uint256)
+  is: 301549
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0x201939f5c74f5fd3beef1cf03a9cfcc75beba9d9'
+  fn: symbol()(string)
+  is: GLP
+  says: the token's symbol is GLP
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "signed shortcut lost, approve stays open to the same holder → LOW."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-GSP: permit needs the holder's ECDSA signature; under EIP-8151 a holder whose address has code can no longer use it, but keeps approve.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The GLP token lets a holder approve a spender with an ECDSA-signed permit or with a direct approve call. A holder whose account takes real code can no longer use permit; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: as its template 8e54df5e: permit: the owner named in the call must equal the recovered address; the holder can call approve itself. Template.
-- bytecode at block 26438999 (proxy + implementation) holds direct selectors
-- EIP-1167 clone; implementation 0xb375ccf52923287ec525351c2c11030fd95b856f holds approve 0x095ea7b3 and permit 0xd505accf
+- [permit](https://etherscan.io/address/0xb375ccf52923287ec525351c2c11030fd95b856f#code) recovers the signer with ECDSA and requires it to equal the holder; the code never asks the holder's account.
+- [approve](https://etherscan.io/address/0xb375ccf52923287ec525351c2c11030fd95b856f#code) sets the caller's own allowance without a signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $5 (ETH and 49 priced tokens, over 4 addresses).
-- Activity: 2,764 transactions called it in the 90 days before that block; last on 2026-11-17.
+### Mechanism
 
-## Remediation
+permit (contracts/GasSavingPool/impl/GSPVault.sol, line 288) builds its digest and recovers the signer on line 316; the recovered address must equal the holder (line 318) before the allowance is set. approve (contracts/GasSavingPool/impl/GSPVault.sol, line 247) sets the caller's own allowance. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-holder calls approve directly instead of signing
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 4 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 301,549 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

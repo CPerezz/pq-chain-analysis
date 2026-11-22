@@ -1,73 +1,150 @@
 ---
 id: uniswapv2pair-b580528b-signed-shortcut-lost
-title: "UniswapV2Pair: signed shortcut lost by users with code"
+format: 2
+title: SLP holders whose accounts take real code lose permit
 status: confirmed
-severity: LOW
-patterns: [PQ-19]
-impact: liveness
-contracts:
-- address: "0xb580528b439bc4ba9f0ba6f19b1bb2926740adc6"
-  family: "6f7eca54b26e08fb2448c49de6203641"
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xb580528b439bc4ba9f0ba6f19b1bb2926740adc6'
+  name: UniswapV2Pair
+  code: verified
+  code_url: https://etherscan.io/address/0xb580528b439bc4ba9f0ba6f19b1bb2926740adc6#code
   copies: 4831
-  name: "UniswapV2Pair"
-  label: "SushiSwap: TOWER-QUIDD"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 10500374
-  value_basis: held
-  value_as_of: 2026-11-18
-  txs_90d: 480713
-  last_active: 2026-11-18
-  recoveries_14d: 17
-fix:
-  layer: account-migration
-  who_acts: "the token holder"
-evidence:
-  level: source-read
-  block: 26438999
+  family: 6f7eca54b26e08fb2448c49de6203641
+value:
+  usd: 0
+  basis: held
+activity: {}
+impact: liveness
+action: Tell holders that permit stops once their account takes real code; a direct approve call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0xb580528b439bc4ba9f0ba6f19b1bb2926740adc6'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0xb580528b439bc4ba9f0ba6f19b1bb2926740adc6'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: permit-fn
+  selector: '0xb580528b439bc4ba9f0ba6f19b1bb2926740adc6'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0xb580528b439bc4ba9f0ba6f19b1bb2926740adc6'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: permit-body
+  source: '0xb580528b439bc4ba9f0ba6f19b1bb2926740adc6'
+  file: UniswapV2Pair.sol
+  line: 123
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0xb580528b439bc4ba9f0ba6f19b1bb2926740adc6'
+  file: UniswapV2Pair.sol
+  line: 132
+  has: address recoveredAddress = ecrecover(digest, v, r, s);
+  says: permit recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0xb580528b439bc4ba9f0ba6f19b1bb2926740adc6'
+  file: UniswapV2Pair.sol
+  line: 105
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: match
+  source: '0xb580528b439bc4ba9f0ba6f19b1bb2926740adc6'
+  file: UniswapV2Pair.sol
+  line: 133
+  has: 'require(recoveredAddress != address(0) && recoveredAddress == owner, ''UniswapV2: INVALID_SIGNATURE'');'
+  says: the recovered address must be the holder
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: supply
+  call: '0xb580528b439bc4ba9f0ba6f19b1bb2926740adc6'
+  fn: totalSupply()(uint256)
+  is: 686122235796254585197
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0xb580528b439bc4ba9f0ba6f19b1bb2926740adc6'
+  fn: symbol()(string)
+  is: SLP
+  says: the token's symbol is SLP
+  for:
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-signed-shortcut-lost"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Standard signed shortcut; same act open by direct call → LOW."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-UniswapV2Pair (SushiSwap: TOWER-QUIDD): a signed shortcut (permit/authorization) requires the recovered address to equal the named owner; EIP-8151 makes it fail for an owner whose address holds non-delegation code.
-
-## Mechanism
-
-PQ-19. A user whose account has real code loses the signed path only; gasless and relayed flows stop for that user.
+The SLP token lets a holder approve a spender with an ECDSA-signed permit or with a direct approve call. A holder whose account takes real code can no longer use permit; an EIP-7702 delegation keeps working.
 
 ## Evidence
 
-- How it was placed: permit: the owner named in the call must equal the recovered address; the holder can call approve itself. Read from source.
-- the dossier source has the standard approve (and transfer) the holder calls directly
-- code at block has approve selector 0x095ea7b3 or source defines approve; no signature needed
-- study note: permit: the owner named in the call must equal the recovered address; the holder can call approve itself. Read from source.
+- [permit](https://etherscan.io/address/0xb580528b439bc4ba9f0ba6f19b1bb2926740adc6#code) recovers the signer with ECDSA and requires it to equal the holder; the code never asks the holder's account.
+- [approve](https://etherscan.io/address/0xb580528b439bc4ba9f0ba6f19b1bb2926740adc6#code) sets the caller's own allowance without a signature.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $10.5M (ETH and 49 priced tokens, over 4,831 addresses).
-- Activity: 480,713 transactions called it in the 90 days before that block; last on 2026-11-18.
-- 17 signature recoveries in the study's two-week trace window.
+### Mechanism
 
-## Remediation
+permit (UniswapV2Pair.sol, line 123) builds its digest and recovers the signer on line 132; the recovered address must equal the holder (line 133) before the allowance is set. approve (UniswapV2Pair.sol, line 105) sets the caller's own allowance. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Holder calls approve (or the direct function) itself instead of signing.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 4,831 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 686,122,235,796,254,585,197 base units.
+- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-signed-shortcut-lost` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.
