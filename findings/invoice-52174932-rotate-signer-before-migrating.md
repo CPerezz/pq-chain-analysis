@@ -1,71 +1,129 @@
 ---
 id: invoice-52174932-rotate-signer-before-migrating
-title: "Invoice: signer key to rotate before its account takes code"
+format: 2
+title: 'Invoice: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x5217493257fcbf209580342e6929e20d2ac914f1"
-  family: "d217865e3f6cd96c64500a7c4ea51492"
-  name: "Invoice"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 27249
-  value_basis: held
-  value_as_of: 2026-11-18
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x5217493257fcbf209580342e6929e20d2ac914f1'
+  name: Invoice
+  code: verified
+  code_url: https://etherscan.io/address/0x5217493257fcbf209580342e6929e20d2ac914f1#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0x891ad309b9bab30cee3ef001ac73178812b6de08'
+value:
+  usd: 27302
+  basis: held
+activity:
   txs_90d: 6243
-  last_active: 2026-11-18
-  recoveries_14d: 833
-fix:
-  layer: onchain-config
-  who_acts: "owner EOA 0x891a…de08"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Replace the signer with setSigner before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x5217493257fcbf209580342e6929e20d2ac914f1'
+  file: Invoice.sol
+  line: 50
+  has: isValid = isValid && (ecrecover(payloadHash, v, r, s) == quoteSigner);
+  says: isValidPayment recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x5217493257fcbf209580342e6929e20d2ac914f1'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x5217493257fcbf209580342e6929e20d2ac914f1'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: setter
+  source: '0x5217493257fcbf209580342e6929e20d2ac914f1'
+  file: Invoice.sol
+  line: 115
+  has: function setSigner
+  says: setSigner changes the signer
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x5217493257fcbf209580342e6929e20d2ac914f1'
+  fn: quoteSigner()(address)
+  is: '0xa97ceb180ca61d124b6a4aadc5530bc53198922f'
+  says: The signer it keeps in storage is 0xa97ceb180ca61d124b6a4aadc5530bc53198922f at the block
+  for:
+  - action
+  - evidence-3
+  - what
+- id: signer-code
+  code: '0xa97ceb180ca61d124b6a4aadc5530bc53198922f'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signed-tx
+  tx: '0x6958f0e4bbc9874e83d575a936a09c65238beb2cddce0f35ec87febf0d2404e7'
+  ok: true
+  says: a transaction in which this contract recovered a signature
+  for:
+  - evidence-3
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Live EOA admin replaces the key."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-Invoice payment contract: pay() requires a quote signed by quoteSigner (0xa97C…922F, nonce 0).
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+Invoice checks an ECDSA signature in isValidPayment and accepts only the signer it keeps in storage. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. setSigner changes the signer.
 
 ## Evidence
 
-- How it was placed: the recovered address must be the stored signer, or be in a stored set or role of signers. Read from source.
-- setSigner(address) is isAdmin (msg.sender == owner) (Invoice.sol:115)
-- owner() = 0x891a…de08, EOA nonce 612 at 26438999
-- Owner also holds withdraw()
+- [isValidPayment](https://etherscan.io/address/0x5217493257fcbf209580342e6929e20d2ac914f1#code) recovers the signature with ECDSA and accepts only the signer it keeps in storage; the code never asks that account.
+- [setSigner](https://etherscan.io/address/0x5217493257fcbf209580342e6929e20d2ac914f1#code) changes the signer.
+- The signer at the block is [0xa97c…922f](https://etherscan.io/address/0xa97ceb180ca61d124b6a4aadc5530bc53198922f), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $27,249 (ETH and 49 priced tokens).
-- Activity: 6,243 transactions called it in the 90 days before that block; last on 2026-11-18.
-- 833 signature recoveries in the study's two-week trace window.
+### Mechanism
 
-## Remediation
+isValidPayment (Invoice.sol, line 33) recovers a signer on line 50 and tests it on line 50 against the signer it keeps in storage (quoteSigner() returns 0xa97ceb180ca61d124b6a4aadc5530bc53198922f). Neither isValidSignature selector is in the code, so that account is never asked. setSigner (Invoice.sol, line 115) writes it. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Owner calls setSigner(newKey) before the quote key migrates.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2026-11-18, recovering 0xa97c…922f; 6,243 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

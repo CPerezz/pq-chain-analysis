@@ -1,70 +1,124 @@
 ---
 id: marketplacev2-cfd3e772-rotate-signer-before-migrating
-title: "MarketplaceV2: signer key to rotate before its account takes code"
+format: 2
+title: 'MarketplaceV2: replace a signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0xcfd3e772338ee65193e74eb0e70ecb228afb5df7"
-  family: "2327f2f04503b957b8d50e7a21ee1d30"
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xcfd3e772338ee65193e74eb0e70ecb228afb5df7'
+  name: MarketplaceV2
+  code: verified
+  code_url: https://etherscan.io/address/0x6d2907c8fa418045e57c02913df73ed05a536f19#code
+  proxy_of: '0x6d2907c8fa418045e57c02913df73ed05a536f19'
   copies: 2
-  name: "MarketplaceV2"
-  upgradeable: "yes"
-  rating: LOW
-  value_usd: 9384
-  value_basis: held
-  value_as_of: 2026-11-18
+  family: 2327f2f04503b957b8d50e7a21ee1d30
+  upgradeable: 'yes'
+  admin: '0xe305ab43425f550288010a3ea9785366b4f2f1fd'
+value:
+  usd: 9360
+  basis: held
+activity:
   txs_90d: 2
-  last_active: 2026-10-01
-fix:
-  layer: onchain-config
-  who_acts: "owner/admin 0x8A58f8Ab…9952 (EOA)"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Before a signer's account moves to real code, use grantRole so that another key can sign in its place.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x6d2907c8fa418045e57c02913df73ed05a536f19'
+  file: project:/contracts/MarketplaceV2.sol
+  line: 444
+  has: address signer = recoverSigner(prefixed(hashWithoutPrefix), _signature);
+  says: _createNftItem recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x6d2907c8fa418045e57c02913df73ed05a536f19'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x6d2907c8fa418045e57c02913df73ed05a536f19'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: match
+  source: '0x6d2907c8fa418045e57c02913df73ed05a536f19'
+  file: project:/contracts/MarketplaceV2.sol
+  line: 447
+  has: hasRole(AUCTION_FINISHER_ROLE, signer),
+  says: the recovered address must be a holder of its signing role
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: setter
+  selector: '0x6d2907c8fa418045e57c02913df73ed05a536f19'
+  fn: grantRole(bytes32,address)
+  says: the code has grantRole
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer-code
+  code: '0xfa6a7e9157fe8df1d9cfa2a2c6e67e65aa3e9d9f'
+  is: empty
+  says: the address recovered in the latest signature check on record has no code
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Role setter plus upgrade path, both held by a live EOA. [INFERENCE] that EOA holds DEFAULT_ADMIN_ROLE (not checked); the upgrade path is verified."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-MarketplaceV2 NFT creation requires a signature recovered to an AUCTION_FINISHER_ROLE holder. A role holder with code fails.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+MarketplaceV2 checks an ECDSA signature in _createNftItem and accepts only a holder of its signing role. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. grantRole changes who may sign.
 
 ## Evidence
 
-- How it was placed: the recovered address must be the stored signer, or be in a stored set or role of signers / returns the recovered address, or whether it equals an address its caller passes in. Read from source.
-- MarketplaceV2.sol:444-449 recoverSigner then hasRole(AUCTION_FINISHER_ROLE, signer); AccessControlUpgradeable grant/revoke
-- owner() = 0x8A58f8Ab955313DE64633F7Dc61F2dB1F12b9952, no code, nonce 5
-- Also upgradeable: EIP-1967 admin 0xe305ab43… (ProxyAdmin) whose owner() is the same EOA
+- [_createNftItem](https://etherscan.io/address/0x6d2907c8fa418045e57c02913df73ed05a536f19#code) recovers the signature with ECDSA and accepts only a holder of its signing role; the code never asks that account.
+- [grantRole](https://etherscan.io/address/0x6d2907c8fa418045e57c02913df73ed05a536f19#code) changes who may sign.
+- The address recovered in its latest signature check on record is [0xfa6a…9d9f](https://etherscan.io/address/0xfa6a7e9157fe8df1d9cfa2a2c6e67e65aa3e9d9f), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $9,384 (ETH and 49 priced tokens, over 2 addresses).
-- Activity: 2 transactions called it in the 90 days before that block; last on 2026-10-01.
+### Mechanism
 
-## Remediation
+_createNftItem (project:/contracts/MarketplaceV2.sol, line 429) recovers a signer on line 444 and tests it on line 447 against a holder of its signing role. Neither isValidSignature selector is in the code, so that account is never asked. grantRole is in the code. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-The role admin grants AUCTION_FINISHER_ROLE to a key without code, or upgrades.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 2 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2025-03-23, recovering 0xfa6a…9d9f; 2 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

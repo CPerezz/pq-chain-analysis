@@ -1,69 +1,107 @@
 ---
 id: stakerspoolv2-136d841d-rotate-signer-before-migrating
-title: "StakersPoolV2: signer key to rotate before its account takes code"
+format: 2
+title: 'StakersPoolV2: replace a signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x136d841d4bece3fc0e4debb94356d8b6b4b93209"
-  family: "c9d97a3cbc3068e5c53a65ac254c8131"
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x136d841d4bece3fc0e4debb94356d8b6b4b93209'
+  name: StakersPoolV2
+  code: verified
+  code_url: https://etherscan.io/address/0xa03d480cd2e10ad36ed098898357dbe4c349fb02#code
+  proxy_of: '0xa03d480cd2e10ad36ed098898357dbe4c349fb02'
   copies: 2
-  name: "StakersPoolV2"
-  label: "InsurAce Protocol: Stakers Pool V2"
-  upgradeable: "yes"
-  rating: LOW
-  value_usd: 29956
-  value_basis: held
-  value_as_of: 2026-11-18
+  family: c9d97a3cbc3068e5c53a65ac254c8131
+  upgradeable: 'yes'
+  admin: '0x1161e866e4bc69e3109c0721f13569b235e219b7'
+value:
+  usd: 29862
+  basis: held
+activity:
   txs_90d: 0
-fix:
-  layer: onchain-config
-  who_acts: "owner EOA 0x345c…2488"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Before a signer's account moves to real code, use setStakersPoolSigner so that another key can sign in its
+  place.
+evidence_level: source
+checks:
+- id: recover
+  source: '0xa03d480cd2e10ad36ed098898357dbe4c349fb02'
+  file: contracts/pool/StakersPoolV2.sol
+  line: 329
+  has: address signer1 = ecrecover(prefixedHash, v[0], r[0], s[0]);
+  says: _checkSignature recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0xa03d480cd2e10ad36ed098898357dbe4c349fb02'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0xa03d480cd2e10ad36ed098898357dbe4c349fb02'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: setter
+  source: '0xa03d480cd2e10ad36ed098898357dbe4c349fb02'
+  file: contracts/pool/StakersPoolV2.sol
+  line: 336
+  has: function setStakersPoolSigner
+  says: setStakersPoolSigner changes who may sign
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Live EOA owner controls the signer set; no ERC-1271."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-Insur StakersPoolV2 (proxy): _checkSignature needs two distinct signers from signerFlagMap (recovered via ecrecover) to set reward info.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+StakersPoolV2 checks an ECDSA signature in _checkSignature and accepts only an address on the signer list it keeps. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. setStakersPoolSigner changes who may sign.
 
 ## Evidence
 
-- How it was placed: a loop of recoveries: each signer must be in the stored set (signer, validator, authority, relayer), distinct or ordered; a quorum or weight is needed. Read from source.
-- setStakersPoolSigner(address,bool) is onlyOwner (StakersPoolV2.sol:336)
-- owner() = 0x345c…2488, EOA nonce 1820 at 26438999
+- [_checkSignature](https://etherscan.io/address/0xa03d480cd2e10ad36ed098898357dbe4c349fb02#code) recovers the signature with ECDSA and accepts only an address on the signer list it keeps; the code never asks that account.
+- [setStakersPoolSigner](https://etherscan.io/address/0xa03d480cd2e10ad36ed098898357dbe4c349fb02#code) changes who may sign; only the owner can call it.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $29,956 (ETH and 49 priced tokens, over 2 addresses).
-- Activity: 0 transactions called it in the 90 days before that block.
+### Mechanism
 
-## Remediation
+_checkSignature (contracts/pool/StakersPoolV2.sol, line 316) recovers a signer on line 329 and tests it on line 329 against an address on the signer list it keeps. Neither isValidSignature selector is in the code, so that account is never asked. setStakersPoolSigner (contracts/pool/StakersPoolV2.sol, line 336) writes it. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Owner enables new signers and disables migrated ones via setStakersPoolSigner.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 2 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). No signature recovery by this address is on record; 0 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

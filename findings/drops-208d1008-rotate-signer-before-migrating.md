@@ -1,67 +1,124 @@
 ---
 id: drops-208d1008-rotate-signer-before-migrating
-title: "Drops: signer key to rotate before its account takes code"
+format: 2
+title: 'Drops: replace a signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x208d1008fa508414b6dc63738bc8560a12ef5279"
-  family: "7930d4d4a8d267b6a9d5e925e7270867"
-  name: "Drops"
-  upgradeable: "no"
-  rating: LOW
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x208d1008fa508414b6dc63738bc8560a12ef5279'
+  name: Drops
+  code: verified
+  code_url: https://etherscan.io/address/0x208d1008fa508414b6dc63738bc8560a12ef5279#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0x27676d628ab0979754f01af51074680dfa38d3e9'
+value:
+  usd: 0
+  basis: held
+activity:
   txs_90d: 1
-  last_active: 2026-09-29
-fix:
-  layer: onchain-config
-  who_acts: "the key holder or owner rotates the key"
-evidence:
-  level: bytecode
-  block: 26438999
+impact: liveness
+action: Before a signer's account moves to real code, use addSigner so that another key can sign in its place.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x208d1008fa508414b6dc63738bc8560a12ef5279'
+  file: packages/contracts/src/Drops.sol
+  line: 241
+  has: address addr = ECDSA.recover(digest, data.signature);
+  says: claimDrop recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x208d1008fa508414b6dc63738bc8560a12ef5279'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x208d1008fa508414b6dc63738bc8560a12ef5279'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: match
+  source: '0x208d1008fa508414b6dc63738bc8560a12ef5279'
+  file: packages/contracts/src/Drops.sol
+  line: 242
+  has: require(approvedSigners[addr] && addr != address(0), "INVALID_SIGNATURE");
+  says: the recovered address must be an address on the signer list it keeps
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: setter
+  source: '0x208d1008fa508414b6dc63738bc8560a12ef5279'
+  file: packages/contracts/src/Drops.sol
+  line: 288
+  has: function addSigner
+  says: addSigner changes who may sign
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer-code
+  code: '0xaa6bf8f3a77f9a71a778204e3f4049a416dbb72a'
+  is: empty
+  says: the address recovered in the latest signature check on record has no code
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-`Drops` at `0x208d1008fa508414b6dc63738bc8560a12ef5279`. It accepts signatures from a key that a function can replace; the holder rotates it before the account takes code.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+Drops accepts a call to claimDrop only with an ECDSA signature of an address on the signer list it keeps. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. addSigner changes who may sign.
 
 ## Evidence
 
-- How it was placed: the signer is a set of keys kept in storage; functions replace it (addSigner, drop, removeSigner). Whoever holds it must replace it before that account takes code. Rule: stored-key.
-- Reviewed through the root issue's mechanism (D-025): the reading for this address names a function that replaces the checked key (a setter, a role grant or an owner hand-over), so its holder can rotate before the key's account takes code: LOW
-- Not checked per row: whether the party allowed to call that function is live at block 26,438,999
-- Mechanical check: the scanner finds an ecrecover call in this address's code
-- A random sample of 25 of the 18,615 rows below Anon's thresholds: 15 held at LOW, 5 were unused implementations (not affected), 1 had owners that cannot be replaced (MEDIUM), 4 could not be settled while the node was down
+- [claimDrop](https://etherscan.io/address/0x208d1008fa508414b6dc63738bc8560a12ef5279#code) recovers the signature with ECDSA and accepts only an address on the signer list it keeps; the code never asks that account.
+- [addSigner](https://etherscan.io/address/0x208d1008fa508414b6dc63738bc8560a12ef5279#code) changes who may sign; only the owner can call it.
+- The address recovered in its latest signature check on record is [0xaa6b…b72a](https://etherscan.io/address/0xaa6bf8f3a77f9a71a778204e3f4049a416dbb72a), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens).
-- Activity: 1 transactions called it in the 90 days before that block; last on 2026-09-29.
+### Mechanism
 
-## Remediation
+claimDrop (packages/contracts/src/Drops.sol, line 213) recovers a signer on line 241 and tests it on line 242 against an address on the signer list it keeps. Neither isValidSignature selector is in the code, so that account is never asked. addSigner (packages/contracts/src/Drops.sol, line 288) writes it. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Rotate the key before its account takes code.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2023-03-12, recovering 0xaa6b…b72a; 1 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

@@ -1,68 +1,123 @@
 ---
 id: listedevmrouterlogic-81a27ff2-rotate-signer-before-migrating
-title: "ListedEvmRouterLogic: signer key to rotate before its account takes code"
+format: 2
+title: 'ListedEvmRouterLogic: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x81a27ff244caea0d2ce37706b2f136597e879253"
-  family: "76520f9560c73bcd0b81cfb2ffe5aa9a"
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x81a27ff244caea0d2ce37706b2f136597e879253'
+  name: ListedEvmRouterLogic
+  code: verified
+  code_url: https://etherscan.io/address/0xf2b9563fb4b5154539e22a4240ba735361d28fd1#code
+  proxy_of: '0xf2b9563fb4b5154539e22a4240ba735361d28fd1'
   copies: 2
-  name: "ListedEvmRouterLogic"
-  upgradeable: "yes"
-  rating: LOW
+  family: 76520f9560c73bcd0b81cfb2ffe5aa9a
+value:
+  usd: 0
+  basis: held
+activity:
   txs_90d: 8
-  last_active: 2026-10-31
-fix:
-  layer: contract-upgrade
-  who_acts: "the admin upgrades the code"
-evidence:
-  level: bytecode
-  block: 26438999
+impact: liveness
+action: Replace the signer with setSplitSigner before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0xf2b9563fb4b5154539e22a4240ba735361d28fd1'
+  file: ListedEvmRouterLogic.sol
+  line: 553
+  has: if (ecrecover(digest, v, r, vs) != splitSigner) return s;
+  says: _parseSplit recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0xf2b9563fb4b5154539e22a4240ba735361d28fd1'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0xf2b9563fb4b5154539e22a4240ba735361d28fd1'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: setter
+  source: '0xf2b9563fb4b5154539e22a4240ba735361d28fd1'
+  file: ListedEvmRouterLogic.sol
+  line: 559
+  has: function setSplitSigner
+  says: setSplitSigner changes the signer
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x81a27ff244caea0d2ce37706b2f136597e879253'
+  fn: splitSigner()(address)
+  is: '0xfbb4bb92d78fc66be38797378573d33fea355973'
+  says: The signer it keeps in storage is 0xfbb4bb92d78fc66be38797378573d33fea355973 at the block
+  for:
+  - action
+  - evidence-3
+  - what
+- id: signer-code
+  code: '0xfbb4bb92d78fc66be38797378573d33fea355973'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-`ListedEvmRouterLogic` at `0x81a27ff244caea0d2ce37706b2f136597e879253`, with 1 more addresses running its code. It accepts signatures from a key that a function can replace; the holder rotates it before the account takes code.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+ListedEvmRouterLogic checks an ECDSA signature in _parseSplit and accepts only the signer it keeps in storage. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. setSplitSigner changes the signer.
 
 ## Evidence
 
-- How it was placed: the signer is one key kept in storage; functions replace it (setGuardian, setSplitSigner). Whoever holds it must replace it before that account takes code. Rule: stored-key.
-- Reviewed through the root issue's mechanism (D-025): the reading for this address names a function that replaces the checked key (a setter, a role grant or an owner hand-over), so its holder can rotate before the key's account takes code: LOW
-- Not checked per row: whether the party allowed to call that function is live at block 26,438,999
-- Mechanical check: the scanner finds an ecrecover call in this address's code
-- A random sample of 25 of the 18,615 rows below Anon's thresholds: 15 held at LOW, 5 were unused implementations (not affected), 1 had owners that cannot be replaced (MEDIUM), 4 could not be settled while the node was down
+- [_parseSplit](https://etherscan.io/address/0xf2b9563fb4b5154539e22a4240ba735361d28fd1#code) recovers the signature with ECDSA and accepts only the signer it keeps in storage; the code never asks that account.
+- [setSplitSigner](https://etherscan.io/address/0xf2b9563fb4b5154539e22a4240ba735361d28fd1#code) changes the signer; only the owner can call it.
+- The signer at the block is [0xfbb4…5973](https://etherscan.io/address/0xfbb4bb92d78fc66be38797378573d33fea355973), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens, over 2 addresses).
-- Activity: 8 transactions called it in the 90 days before that block; last on 2026-10-31.
+### Mechanism
 
-## Remediation
+_parseSplit (ListedEvmRouterLogic.sol, line 502) recovers a signer on line 553 and tests it on line 553 against the signer it keeps in storage (splitSigner() returns 0xfbb4bb92d78fc66be38797378573d33fea355973). Neither isValidSignature selector is in the code, so that account is never asked. setSplitSigner (ListedEvmRouterLogic.sol, line 559) writes it. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Rotate the key before its account takes code.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 2 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). No signature recovery by this address is on record; 8 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

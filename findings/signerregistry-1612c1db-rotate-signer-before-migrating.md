@@ -1,70 +1,121 @@
 ---
 id: signerregistry-1612c1db-rotate-signer-before-migrating
-title: "SignerRegistry: signer key to rotate before its account takes code"
+format: 2
+title: 'SignerRegistry: replace a signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x1612c1db1e373019b35748e3e57bddef8a8c8fde"
-  family: "195f2a99db6bd2502f066a49335b877b"
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x1612c1db1e373019b35748e3e57bddef8a8c8fde'
+  name: SignerRegistry
+  code: verified
+  code_url: https://etherscan.io/address/0x1612c1db1e373019b35748e3e57bddef8a8c8fde#code
   copies: 2
-  name: "SignerRegistry"
-  upgradeable: "no"
-  rating: LOW
-  txs_90d: 47
-  last_active: 2026-11-16
-  recoveries_14d: 12
-fix:
-  layer: onchain-config
-  who_acts: "the key holder or owner rotates the key"
-evidence:
-  level: source-read
-  block: 26438999
+  family: 195f2a99db6bd2502f066a49335b877b
+  upgradeable: 'no'
+  admin: '0x36bb43bed1338ab7d9f07e06bf5e330d4fdbfd6f'
+value:
+  usd: 0
+  basis: held
+activity:
+  txs_90d: 15
+impact: liveness
+action: Before a signer's account moves to real code, use setAdmin so that another key can sign in its place.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x1612c1db1e373019b35748e3e57bddef8a8c8fde'
+  file: contracts/signerRegistry/SignerRegistry.sol
+  line: 267
+  has: address recovered = ECDSA.recover(digest, adminSigs[i]);
+  says: _checkAdmins recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x1612c1db1e373019b35748e3e57bddef8a8c8fde'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x1612c1db1e373019b35748e3e57bddef8a8c8fde'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: setter
+  source: '0x1612c1db1e373019b35748e3e57bddef8a8c8fde'
+  file: contracts/signerRegistry/SignerRegistry.sol
+  line: 212
+  has: function setAdmin
+  says: setAdmin changes who may sign
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer-code
+  code: '0x9920c45570dc76acb48b215308b7d3791e3518ce'
+  is: empty
+  says: the address recovered in the latest signature check on record has no code
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signed-tx
+  tx: '0x5e0b591d0d44beaa36aca6780df9e4449a56d902dd096420a803599a97ccb8d7'
+  ok: true
+  says: a transaction in which this contract recovered a signature
+  for:
+  - evidence-3
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-`SignerRegistry` at `0x1612c1db1e373019b35748e3e57bddef8a8c8fde`, with 1 more addresses running its code. It accepts signatures from a key that a function can replace; the holder rotates it before the account takes code.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+SignerRegistry checks an ECDSA signature in _checkAdmins and accepts only an address on the signer list it keeps. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. setAdmin changes who may sign.
 
 ## Evidence
 
-- How it was placed: rotation of the signer: signed by the admins and accepted by an ECDSA signature of the new signer / a loop of recoveries: each signer must be in the stored set (validator, operator, guardian, admin,…. Read from source.
-- Reviewed through the root issue's mechanism (D-025): the checked signers are a committee or validator set that its own quorum replaces by a signed update, so while enough keys are still EOAs the set rotates before migrating: LOW, as for wallets their own signers can upgrade
-- Not checked per row: whether the party allowed to call that function is live at block 26,438,999
-- Mechanical check: the scanner finds an ecrecover call in this address's code
-- A random sample of 25 of the 18,615 rows below Anon's thresholds: 15 held at LOW, 5 were unused implementations (not affected), 1 had owners that cannot be replaced (MEDIUM), 4 could not be settled while the node was down
+- [_checkAdmins](https://etherscan.io/address/0x1612c1db1e373019b35748e3e57bddef8a8c8fde#code) recovers the signature with ECDSA and accepts only an address on the signer list it keeps; the code never asks that account.
+- [setAdmin](https://etherscan.io/address/0x1612c1db1e373019b35748e3e57bddef8a8c8fde#code) changes who may sign; only the owner can call it.
+- Its latest signed [transaction](https://etherscan.io/tx/0x5e0b591d0d44beaa36aca6780df9e4449a56d902dd096420a803599a97ccb8d7) on record recovered [0x9920…18ce](https://etherscan.io/address/0x9920c45570dc76acb48b215308b7d3791e3518ce), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens, over 2 addresses).
-- Activity: 47 transactions called it in the 90 days before that block; last on 2026-11-16.
-- 12 signature recoveries in the study's two-week trace window.
+### Mechanism
 
-## Remediation
+_checkAdmins (contracts/signerRegistry/SignerRegistry.sol, line 261) recovers a signer on line 267 and tests it on line 267 against an address on the signer list it keeps. Neither isValidSignature selector is in the code, so that account is never asked. setAdmin (contracts/signerRegistry/SignerRegistry.sol, line 212) writes it. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Rotate the key before its account takes code.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 2 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2026-11-16, recovering 0x9920…18ce; 15 transactions called the address in the 90 days before the block. 3 different addresses were recovered on record (a wrong signature recovers a random one).
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

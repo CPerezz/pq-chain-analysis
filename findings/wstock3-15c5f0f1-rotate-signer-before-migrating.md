@@ -1,68 +1,133 @@
 ---
 id: wstock3-15c5f0f1-rotate-signer-before-migrating
-title: "WStock3: signer key to rotate before its account takes code"
+format: 2
+title: 'WStock3: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x15c5f0f18feb8a9f5808ccd2fc4ac279d9d89bb8"
-  family: "58f0e620a2935567b1d0de5314614dd5"
-  name: "WStock3"
-  label: "deployed by StonkSwap: Deployer"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 26888
-  value_basis: held
-  value_as_of: 2026-11-18
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x15c5f0f18feb8a9f5808ccd2fc4ac279d9d89bb8'
+  name: WStock3
+  code: verified
+  code_url: https://etherscan.io/address/0x15c5f0f18feb8a9f5808ccd2fc4ac279d9d89bb8#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0x99e12094c228f550809f20ba196dcc95e6b8faea'
+value:
+  usd: 26894
+  basis: held
+activity:
   txs_90d: 0
-fix:
-  layer: onchain-config
-  who_acts: "authAddress EOA 0x99E1…faeA"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Replace the signer with setAuthAddress before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x15c5f0f18feb8a9f5808ccd2fc4ac279d9d89bb8'
+  file: WStock3.sol
+  line: 45
+  has: address signer = ecrecover(hash, v, r, s);
+  says: buy recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x15c5f0f18feb8a9f5808ccd2fc4ac279d9d89bb8'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x15c5f0f18feb8a9f5808ccd2fc4ac279d9d89bb8'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: match
+  source: '0x15c5f0f18feb8a9f5808ccd2fc4ac279d9d89bb8'
+  file: WStock3.sol
+  line: 46
+  has: require(signer == authAddress, "Invalid signature");
+  says: the recovered address must be the signer it keeps in storage
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: setter
+  source: '0x15c5f0f18feb8a9f5808ccd2fc4ac279d9d89bb8'
+  file: WStock3.sol
+  line: 102
+  has: function setAuthAddress
+  says: setAuthAddress changes the signer
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x15c5f0f18feb8a9f5808ccd2fc4ac279d9d89bb8'
+  fn: getAuthAddress()(address)
+  is: '0x99e12094c228f550809f20ba196dcc95e6b8faea'
+  says: The signer it keeps in storage is 0x99e12094c228f550809f20ba196dcc95e6b8faea at the block
+  for:
+  - action
+  - evidence-3
+  - what
+- id: signer-code
+  code: '0x99e12094c228f550809f20ba196dcc95e6b8faea'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "The key holder itself is a live EOA and the setter is a direct call, so it stays usable even after migration."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-WStock3: buy/sell require a signature recovered to authAddress. ETH leaves only through signed sell(); there is no owner withdrawal.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+WStock3 accepts a call to buy only with an ECDSA signature of the signer it keeps in storage. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. setAuthAddress changes the signer.
 
 ## Evidence
 
-- How it was placed: the recovered address must be one stored signer of the contract (an affiliate, system, consensus, updater, admin or whitelist key). Read from source.
-- setAuthAddress(address) is onlyAuthorized, i.e. msg.sender == authAddress (WStock3.sol:101), so only the key holder rotates it; Ownable owner has no setter
-- getAuthAddress() = 0x99E1…faeA, EOA nonce 198 at 26438999 (also owner)
+- [buy](https://etherscan.io/address/0x15c5f0f18feb8a9f5808ccd2fc4ac279d9d89bb8#code) recovers the signature with ECDSA and accepts only the signer it keeps in storage; the code never asks that account.
+- [setAuthAddress](https://etherscan.io/address/0x15c5f0f18feb8a9f5808ccd2fc4ac279d9d89bb8#code) changes the signer.
+- The signer at the block is [0x99e1…faea](https://etherscan.io/address/0x99e12094c228f550809f20ba196dcc95e6b8faea), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $26,888 (ETH and 49 priced tokens).
-- Activity: 0 transactions called it in the 90 days before that block.
+### Mechanism
 
-## Remediation
+buy (WStock3.sol, line 41) recovers a signer on line 45 and tests it on line 46 against the signer it keeps in storage (getAuthAddress() returns 0x99e12094c228f550809f20ba196dcc95e6b8faea). Neither isValidSignature selector is in the code, so that account is never asked. setAuthAddress (WStock3.sol, line 102) writes it. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-authAddress holder calls setAuthAddress(newKey) before migrating; if it migrates first, the setter still works by direct call.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2022-02-23, recovering 0x99e1…faea; 0 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

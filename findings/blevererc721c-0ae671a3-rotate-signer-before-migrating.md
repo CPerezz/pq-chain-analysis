@@ -1,69 +1,116 @@
 ---
 id: blevererc721c-0ae671a3-rotate-signer-before-migrating
-title: "BleverErc721C: signer key to rotate before its account takes code"
+format: 2
+title: 'BleverErc721C: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x0ae671a34935151c2de2e2e185d0c2dbdfe0645c"
-  family: "b07d18456c8d8b2e89265b983ae08cc8"
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x0ae671a34935151c2de2e2e185d0c2dbdfe0645c'
+  name: BleverErc721C
+  code: verified
+  code_url: https://etherscan.io/address/0x50cfd65701c8eb6953aa65952ae1111a042862c1#code
+  proxy_of: '0x50cfd65701c8eb6953aa65952ae1111a042862c1'
   copies: 32
-  name: "BleverErc721C"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 14
-  value_basis: held
-  value_as_of: 2026-11-18
-  txs_90d: 3029
-  last_active: 2026-11-17
-fix:
-  layer: onchain-config
-  who_acts: "owner 0x5f15…E7C"
-evidence:
-  level: bytecode
-  block: 26438999
+  family: b07d18456c8d8b2e89265b983ae08cc8
+  upgradeable: 'no'
+  admin: '0x5f15bdcc69ca38409895d21f23665eb084adbe7c'
+value:
+  usd: 0
+  basis: held
+activity:
+  txs_90d: 1344
+impact: liveness
+action: Replace the signer with setSigner before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x50cfd65701c8eb6953aa65952ae1111a042862c1'
+  file: src/v1/utils/Signature.sol
+  line: 26
+  has: return data.toEthSignedMessageHash().recover(signature) == signer;
+  says: _verifySignature recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x50cfd65701c8eb6953aa65952ae1111a042862c1'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x50cfd65701c8eb6953aa65952ae1111a042862c1'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: setter
+  source: '0x50cfd65701c8eb6953aa65952ae1111a042862c1'
+  file: src/v1/BleverErc721C.sol
+  line: 157
+  has: function setSigner
+  says: setSigner changes the signer
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer-code
+  code: '0xcde62eeed764a138d07651fd6ae2f84b1c340803'
+  is: empty
+  says: the address recovered in the latest signature check on record has no code
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "stored-key setter callable by a live (7702-delegated) EOA owner"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-BleverErc721C minimal-proxy clone (impl 0x50cfd657…62c1) with a stored mint signer.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+BleverErc721C checks an ECDSA signature in _verifySignature and accepts only the signer it keeps in storage. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. setSigner changes the signer.
 
 ## Evidence
 
-- How it was placed: the signer is one key kept in storage; functions replace it (setAutomaticApprovalOfTransfersFromValidator, setSigner, setTransferValidator). Whoever holds it must replace it before that account takes…. Rule: stored-key.
-- setSigner(address) onlyOwner in impl decompile
-- owner() at the clone = 0x5f15bDcC69CA38409895d21f23665Eb084ADbE7C at block 26438999; EOA with EIP-7702 delegation (0xef0100…), nonce 799
+- [_verifySignature](https://etherscan.io/address/0x50cfd65701c8eb6953aa65952ae1111a042862c1#code) recovers the signature with ECDSA and accepts only the signer it keeps in storage; the code never asks that account.
+- [setSigner](https://etherscan.io/address/0x50cfd65701c8eb6953aa65952ae1111a042862c1#code) changes the signer (through _setSigner).
+- The address recovered in its latest signature check on record is [0xcde6…0803](https://etherscan.io/address/0xcde62eeed764a138d07651fd6ae2f84b1c340803), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $14 (ETH and 49 priced tokens, over 32 addresses).
-- Activity: 3,029 transactions called it in the 90 days before that block; last on 2026-11-17.
+### Mechanism
 
-## Remediation
+_verifySignature (src/v1/utils/Signature.sol, line 22) recovers a signer on line 26 and tests it on line 26 against the signer it keeps in storage. Neither isValidSignature selector is in the code, so that account is never asked. _setSigner (src/v1/utils/Signature.sol, line 13) writes it, called by setSigner. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-owner calls setSigner with a fresh EOA
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 32 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2025-08-07, recovering 0xcde6…0803; 1,344 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

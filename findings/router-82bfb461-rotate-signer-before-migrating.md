@@ -1,70 +1,134 @@
 ---
 id: router-82bfb461-rotate-signer-before-migrating
-title: "Router: signer key to rotate before its account takes code"
+format: 2
+title: 'Router: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x82bfb461f3a718060e17af228541b54a18011f98"
-  family: "7d7b8ec6084f5b2b93eeb1e28d493997"
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x82bfb461f3a718060e17af228541b54a18011f98'
+  name: Router
+  code: verified
+  code_url: https://etherscan.io/address/0x82bfb461f3a718060e17af228541b54a18011f98#code
   copies: 31
-  name: "Router"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 4331
-  value_basis: held
-  value_as_of: 2026-11-18
+  family: 7d7b8ec6084f5b2b93eeb1e28d493997
+  upgradeable: 'no'
+  admin: '0x1f2414d0af8741bc822dbc2f88069c2b2907a840'
+value:
+  usd: 1578
+  basis: held
+activity:
   txs_90d: 0
-fix:
-  layer: onchain-config
-  who_acts: "the key holder or owner rotates the key"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Replace the signer with init before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x82bfb461f3a718060e17af228541b54a18011f98'
+  file: contracts/Router.sol
+  line: 153
+  has: address recovered = recoverSignature(abi.encode(payload), signature);
+  says: removeLiquidity recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x82bfb461f3a718060e17af228541b54a18011f98'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x82bfb461f3a718060e17af228541b54a18011f98'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: match
+  source: '0x82bfb461f3a718060e17af228541b54a18011f98'
+  file: contracts/Router.sol
+  line: 154
+  has: require(recovered == routerSigner, "#RC_RL:040");
+  says: the recovered address must be the signer it keeps in storage
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: setter
+  source: '0x82bfb461f3a718060e17af228541b54a18011f98'
+  file: contracts/Router.sol
+  line: 87
+  has: function init
+  says: init changes the signer
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x82bfb461f3a718060e17af228541b54a18011f98'
+  fn: routerSigner()(address)
+  is: '0x26895be6305bec5e5fd9314b624584237c8d4ef2'
+  says: The signer it keeps in storage is 0x26895be6305bec5e5fd9314b624584237c8d4ef2 at the block
+  for:
+  - action
+  - evidence-3
+  - what
+- id: signer-code
+  code: '0x26895be6305bec5e5fd9314b624584237c8d4ef2'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-`Router` at `0x82bfb461f3a718060e17af228541b54a18011f98`, with 30 more addresses running its code. It accepts signatures from a key that a function can replace; the holder rotates it before the account takes code.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+Router accepts a call to removeLiquidity only with an ECDSA signature of the signer it keeps in storage. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. init changes the signer.
 
 ## Evidence
 
-- How it was placed: the recovered address must be the stored signer, or be in a stored set or role of signers / Connext NXTP recoverSignature: returns the signer. Read from source.
-- Reviewed through the root issue's mechanism (D-025): the reading for this address names a function that replaces the checked key (a setter, a role grant or an owner hand-over), so its holder can rotate before the key's account takes code: LOW
-- Not checked per row: whether the party allowed to call that function is live at block 26,438,999
-- Mechanical check: the scanner finds an ecrecover call in this address's code
-- A random sample of 25 of the 18,615 rows below Anon's thresholds: 15 held at LOW, 5 were unused implementations (not affected), 1 had owners that cannot be replaced (MEDIUM), 4 could not be settled while the node was down
+- [removeLiquidity](https://etherscan.io/address/0x82bfb461f3a718060e17af228541b54a18011f98#code) recovers the signature with ECDSA and accepts only the signer it keeps in storage; the code never asks that account.
+- [init](https://etherscan.io/address/0x82bfb461f3a718060e17af228541b54a18011f98#code) changes the signer.
+- The signer at the block is [0x2689…4ef2](https://etherscan.io/address/0x26895be6305bec5e5fd9314b624584237c8d4ef2), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $4,331 (ETH and 49 priced tokens, over 31 addresses).
-- Activity: 0 transactions called it in the 90 days before that block.
+### Mechanism
 
-## Remediation
+removeLiquidity (contracts/Router.sol, line 137) recovers a signer on line 153 and tests it on line 154 against the signer it keeps in storage (routerSigner() returns 0x26895be6305bec5e5fd9314b624584237c8d4ef2). Neither isValidSignature selector is in the code, so that account is never asked. init (contracts/Router.sol, line 87) writes it. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Rotate the key before its account takes code.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 31 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2023-02-06, recovering 0x2689…4ef2; 0 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

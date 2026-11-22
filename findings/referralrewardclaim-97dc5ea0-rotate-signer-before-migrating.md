@@ -1,72 +1,139 @@
 ---
 id: referralrewardclaim-97dc5ea0-rotate-signer-before-migrating
-title: "ReferralRewardClaim: signer key to rotate before its account takes code"
+format: 2
+title: 'ReferralRewardClaim: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x97dc5ea031f0424e3a8994a66316c736bb99d8f7"
-  family: "a70965afd6f84ff90c43d1e109bba57d"
-  name: "ReferralRewardClaim"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 3068
-  value_basis: held
-  value_as_of: 2026-11-18
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x97dc5ea031f0424e3a8994a66316c736bb99d8f7'
+  name: ReferralRewardClaim
+  code: verified
+  code_url: https://etherscan.io/address/0x97dc5ea031f0424e3a8994a66316c736bb99d8f7#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0xcde1efd73175ed0e36d3db86c323ef3480389378'
+value:
+  usd: 2994
+  basis: held
+activity:
   txs_90d: 27
-  last_active: 2026-11-17
-  recoveries_14d: 6
-fix:
-  layer: onchain-config
-  who_acts: "the key holder or owner rotates the key"
-evidence:
-  level: executed
-  block: 26438999
+impact: liveness
+action: Replace the signer with setSigner before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x97dc5ea031f0424e3a8994a66316c736bb99d8f7'
+  file: remittixclaim.sol
+  line: 35
+  has: address recovered = recoverSigner(messageHash, signature);
+  says: claimReward recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x97dc5ea031f0424e3a8994a66316c736bb99d8f7'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x97dc5ea031f0424e3a8994a66316c736bb99d8f7'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: match
+  source: '0x97dc5ea031f0424e3a8994a66316c736bb99d8f7'
+  file: remittixclaim.sol
+  line: 37
+  has: require(recovered == signer, "Invalid signature");
+  says: the recovered address must be the signer it keeps in storage
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: setter
+  source: '0x97dc5ea031f0424e3a8994a66316c736bb99d8f7'
+  file: remittixclaim.sol
+  line: 23
+  has: function setSigner
+  says: setSigner changes the signer
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x97dc5ea031f0424e3a8994a66316c736bb99d8f7'
+  fn: signer()(address)
+  is: '0x54cf128c53b8d9c001d4fd1294151bdf1de30843'
+  says: The signer it keeps in storage is 0x54cf128c53b8d9c001d4fd1294151bdf1de30843 at the block
+  for:
+  - action
+  - evidence-3
+  - what
+- id: signer-code
+  code: '0x54cf128c53b8d9c001d4fd1294151bdf1de30843'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signed-tx
+  tx: '0xd81d446c24828aab199651ff35784f989ba9f33258a7b174d047ad9a1f79710d'
+  ok: true
+  says: a transaction in which this contract recovered a signature
+  for:
+  - evidence-3
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-`ReferralRewardClaim` at `0x97dc5ea031f0424e3a8994a66316c736bb99d8f7`. It accepts signatures from a key that a function can replace; the holder rotates it before the account takes code.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+ReferralRewardClaim accepts a call to claimReward only with an ECDSA signature of the signer it keeps in storage. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. setSigner changes the signer.
 
 ## Evidence
 
-- How it was placed: the recovered address must be the stored signer, or be in a stored set or role of signers / returns the recovered address or its id to a caller that decides. Read from source. Executed: a real transaction reverts with code at the signer.
-- Reviewed through the root issue's mechanism (D-025): the reading for this address names a function that replaces the checked key (a setter, a role grant or an owner hand-over), so its holder can rotate before the key's account takes code: LOW
-- Not checked per row: whether the party allowed to call that function is live at block 26,438,999
-- Mechanical check: the scanner finds an ecrecover call in this address's code
-- A random sample of 25 of the 18,615 rows below Anon's thresholds: 15 held at LOW, 5 were unused implementations (not affected), 1 had owners that cannot be replaced (MEDIUM), 4 could not be settled while the node was down
+- [claimReward](https://etherscan.io/address/0x97dc5ea031f0424e3a8994a66316c736bb99d8f7#code) recovers the signature with ECDSA and accepts only the signer it keeps in storage; the code never asks that account.
+- [setSigner](https://etherscan.io/address/0x97dc5ea031f0424e3a8994a66316c736bb99d8f7#code) changes the signer; only the owner can call it.
+- The signer at the block is [0x54cf…0843](https://etherscan.io/address/0x54cf128c53b8d9c001d4fd1294151bdf1de30843), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $3,068 (ETH and 49 priced tokens).
-- Activity: 27 transactions called it in the 90 days before that block; last on 2026-11-17.
-- 6 signature recoveries in the study's two-week trace window.
+### Mechanism
 
-## Remediation
+claimReward (remittixclaim.sol, line 27) recovers a signer on line 35 and tests it on line 37 against the signer it keeps in storage (signer() returns 0x54cf128c53b8d9c001d4fd1294151bdf1de30843). Neither isValidSignature selector is in the code, so that account is never asked. setSigner (remittixclaim.sol, line 23) writes it. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Rotate the key before its account takes code.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2026-11-17, recovering 0x54cf…0843; 27 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

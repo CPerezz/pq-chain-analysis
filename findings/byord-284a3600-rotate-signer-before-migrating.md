@@ -1,67 +1,123 @@
 ---
 id: byord-284a3600-rotate-signer-before-migrating
-title: "Byord: signer key to rotate before its account takes code"
+format: 2
+title: 'Byord: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x284a36005a6724dd4a0f7d86c4771d17a56b9328"
-  family: "f20c6722b0e88b43e15f9c05ddd5259d"
-  name: "Byord"
-  upgradeable: "no"
-  rating: LOW
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x284a36005a6724dd4a0f7d86c4771d17a56b9328'
+  name: Byord
+  code: verified
+  code_url: https://etherscan.io/address/0x284a36005a6724dd4a0f7d86c4771d17a56b9328#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0x226898680e38d21ceacd4385caa35bab11dbe308'
+value:
+  usd: 0
+  basis: held
+activity:
   txs_90d: 28
-  last_active: 2026-11-10
-fix:
-  layer: onchain-config
-  who_acts: "the key holder or owner rotates the key"
-evidence:
-  level: bytecode
-  block: 26438999
+impact: liveness
+action: Replace the signer with setSigner before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x284a36005a6724dd4a0f7d86c4771d17a56b9328'
+  file: Byord.sol
+  line: 2110
+  has: return recoverSigner(ethSignedMessageHash, signature) == _signer;
+  says: verifyQuant recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x284a36005a6724dd4a0f7d86c4771d17a56b9328'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x284a36005a6724dd4a0f7d86c4771d17a56b9328'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: setter
+  source: '0x284a36005a6724dd4a0f7d86c4771d17a56b9328'
+  file: Byord.sol
+  line: 2064
+  has: function setSigner
+  says: setSigner changes the signer
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x284a36005a6724dd4a0f7d86c4771d17a56b9328'
+  fn: _signer()(address)
+  is: '0x6412745280a56143716373035244432110357134'
+  says: The signer it keeps in storage is 0x6412745280a56143716373035244432110357134 at the block
+  for:
+  - action
+  - evidence-3
+  - what
+- id: signer-code
+  code: '0x6412745280a56143716373035244432110357134'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-`Byord` at `0x284a36005a6724dd4a0f7d86c4771d17a56b9328`. It accepts signatures from a key that a function can replace; the holder rotates it before the account takes code.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+Byord checks an ECDSA signature in verifyQuant and accepts only the signer it keeps in storage. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. setSigner changes the signer.
 
 ## Evidence
 
-- How it was placed: as its template 5f48faed: Apollox treasury: claims are signed by a stored key that the owner replaces (_changeTruthHolder, _setOperator). Template.
-- Reviewed through the root issue's mechanism (D-025): the reading for this address names how the checked key or key set is replaced (a setter, a role grant, an owner hand-over or an edit of the signer set), so it can rotate before the key's account takes code: LOW
-- Not checked per row: whether the party allowed to call that function is live at block 26,438,999
-- Mechanical check: the scanner finds an ecrecover call in this address's code
-- A random sample of 25 of the 18,615 rows below Anon's thresholds: 15 held at LOW, 5 were unused implementations (not affected), 1 had owners that cannot be replaced (MEDIUM), 4 could not be settled while the node was down
+- [verifyQuant](https://etherscan.io/address/0x284a36005a6724dd4a0f7d86c4771d17a56b9328#code) recovers the signature with ECDSA and accepts only the signer it keeps in storage; the code never asks that account.
+- [setSigner](https://etherscan.io/address/0x284a36005a6724dd4a0f7d86c4771d17a56b9328#code) changes the signer; only the owner can call it.
+- The signer at the block is [0x6412…7134](https://etherscan.io/address/0x6412745280a56143716373035244432110357134), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens).
-- Activity: 28 transactions called it in the 90 days before that block; last on 2026-11-10.
+### Mechanism
 
-## Remediation
+verifyQuant (Byord.sol, line 2102) recovers a signer on line 2110 and tests it on line 2110 against the signer it keeps in storage (_signer() returns 0x6412745280a56143716373035244432110357134). Neither isValidSignature selector is in the code, so that account is never asked. setSigner (Byord.sol, line 2064) writes it. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Rotate the key before its account takes code.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2022-07-20, recovering 0x6412…7134; 28 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

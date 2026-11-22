@@ -1,70 +1,135 @@
 ---
 id: captainzreserve-da7fb915-rotate-signer-before-migrating
-title: "CaptainzReserve: signer key to rotate before its account takes code"
+format: 2
+title: 'CaptainzReserve: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0xda7fb91545545d044a9fd118f85a4f10a8d4c6b5"
-  family: "18a9cecdf2b951c9acabf06a03e09402"
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xda7fb91545545d044a9fd118f85a4f10a8d4c6b5'
+  name: CaptainzReserve
+  code: verified
+  code_url: https://etherscan.io/address/0x78c3c32b3d569d2a5a19f9f59e9a36589441c674#code
+  proxy_of: '0x78c3c32b3d569d2a5a19f9f59e9a36589441c674'
   copies: 2
-  name: "CaptainzReserve"
-  label: "deployed by Memeland: Deployer"
-  upgradeable: "yes"
-  rating: LOW
-  value_usd: 15519
-  value_basis: held
-  value_as_of: 2026-11-18
+  family: 18a9cecdf2b951c9acabf06a03e09402
+  upgradeable: 'yes'
+  admin: '0x2f7f26351642d3126768369529a27b13d6397396'
+value:
+  usd: 15433
+  basis: held
+activity:
   txs_90d: 0
-fix:
-  layer: onchain-config
-  who_acts: "owner (EOA 0x1c593c36…)"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Replace the signer with setSigner before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x78c3c32b3d569d2a5a19f9f59e9a36589441c674'
+  file: contracts/CaptainzReserve.sol
+  line: 55
+  has: ECDSA.recover(
+  says: checkValidity recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x78c3c32b3d569d2a5a19f9f59e9a36589441c674'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x78c3c32b3d569d2a5a19f9f59e9a36589441c674'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: match
+  source: '0x78c3c32b3d569d2a5a19f9f59e9a36589441c674'
+  file: contracts/CaptainzReserve.sol
+  line: 60
+  has: ) == signer,
+  says: the recovered address must be the signer it keeps in storage
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: setter
+  source: '0x78c3c32b3d569d2a5a19f9f59e9a36589441c674'
+  file: contracts/CaptainzReserve.sol
+  line: 117
+  has: function setSigner
+  says: setSigner changes the signer
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0xda7fb91545545d044a9fd118f85a4f10a8d4c6b5'
+  fn: signer()(address)
+  is: '0x069e8e0917da9a47a2648a0efdcb99ee32e6aacd'
+  says: The signer it keeps in storage is 0x069e8e0917da9a47a2648a0efdcb99ee32e6aacd at the block
+  for:
+  - action
+  - evidence-3
+  - what
+- id: signer-code
+  code: '0x069e8e0917da9a47a2648a0efdcb99ee32e6aacd'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Setter with a live EOA owner (the proxy is also upgradeable)."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-CaptainzReserve checkValidity requires ECDSA.recover == signer. Reserve actions stop if the signer key holds code.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+CaptainzReserve checks an ECDSA signature in checkValidity and accepts only the signer it keeps in storage. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. setSigner changes the signer.
 
 ## Evidence
 
-- How it was placed: the recovered address must be the stored signer, or be in a stored set or role of signers. Read from source.
-- CaptainzReserve.sol:49-63: recover(...) == signer
-- CaptainzReserve.sol:117 setSigner onlyOwner (OwnableUpgradeable)
-- owner() 0x1c593c36…: EOA, nonce 1930; signer 0x069e8e09…, nonce 0
+- [checkValidity](https://etherscan.io/address/0x78c3c32b3d569d2a5a19f9f59e9a36589441c674#code) recovers the signature with ECDSA and accepts only the signer it keeps in storage; the code never asks that account.
+- [setSigner](https://etherscan.io/address/0x78c3c32b3d569d2a5a19f9f59e9a36589441c674#code) changes the signer; only the owner can call it.
+- The signer at the block is [0x069e…aacd](https://etherscan.io/address/0x069e8e0917da9a47a2648a0efdcb99ee32e6aacd), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $15,519 (ETH and 49 priced tokens, over 2 addresses).
-- Activity: 0 transactions called it in the 90 days before that block.
+### Mechanism
 
-## Remediation
+checkValidity (contracts/CaptainzReserve.sol, line 49) recovers a signer on line 55 and tests it on line 60 against the signer it keeps in storage (signer() returns 0x069e8e0917da9a47a2648a0efdcb99ee32e6aacd). Neither isValidSignature selector is in the code, so that account is never asked. setSigner (contracts/CaptainzReserve.sol, line 117) writes it. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-The owner calls setSigner with a fresh EOA.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 2 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2023-04-21, recovering 0x069e…aacd; 0 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

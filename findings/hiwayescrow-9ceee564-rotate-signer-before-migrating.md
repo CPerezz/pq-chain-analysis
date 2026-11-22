@@ -1,70 +1,126 @@
 ---
 id: hiwayescrow-9ceee564-rotate-signer-before-migrating
-title: "HiwayEscrow: signer key to rotate before its account takes code"
+format: 2
+title: 'HiwayEscrow: replace a signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x9ceee5644dd1b123ce96bae5fe03d2ee25834da9"
-  family: "324f5000d25431c1663f8899d329689f"
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x9ceee5644dd1b123ce96bae5fe03d2ee25834da9'
+  name: HiwayEscrow
+  code: verified
+  code_url: https://etherscan.io/address/0x9ceee5644dd1b123ce96bae5fe03d2ee25834da9#code
   copies: 2
-  name: "HiwayEscrow"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 2
-  value_basis: held
-  value_as_of: 2026-11-18
+  family: 324f5000d25431c1663f8899d329689f
+  upgradeable: 'no'
+  admin: '0xf0fe7749efef7372876cf6487691163e333d6986'
+value:
+  usd: 2
+  basis: held
+activity:
   txs_90d: 0
-fix:
-  layer: onchain-config
-  who_acts: "the key holder or owner rotates the key"
-evidence:
-  level: bytecode
-  block: 26438999
+impact: liveness
+action: Before a signer's account moves to real code, use setCertificateSigner so that another key can sign in its
+  place.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x9ceee5644dd1b123ce96bae5fe03d2ee25834da9'
+  file: HiwayEscrow.sol
+  line: 157
+  has: address recovered = _ecrecoverFromSig(txHash, sig);
+  says: _checkCertificate recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x9ceee5644dd1b123ce96bae5fe03d2ee25834da9'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x9ceee5644dd1b123ce96bae5fe03d2ee25834da9'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: match
+  source: '0x9ceee5644dd1b123ce96bae5fe03d2ee25834da9'
+  file: HiwayEscrow.sol
+  line: 159
+  has: return _certificateSigners[recovered];
+  says: the recovered address must be an address on the signer list it keeps
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: setter
+  source: '0x9ceee5644dd1b123ce96bae5fe03d2ee25834da9'
+  file: HiwayEscrow.sol
+  line: 238
+  has: function setCertificateSigner
+  says: setCertificateSigner changes who may sign
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer-code
+  code: '0xf0fe7749efef7372876cf6487691163e333d6986'
+  is: empty
+  says: the address recovered in the latest signature check on record has no code
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-`HiwayEscrow` at `0x9ceee5644dd1b123ce96bae5fe03d2ee25834da9`, with 1 more addresses running its code. It accepts signatures from a key that a function can replace; the holder rotates it before the account takes code.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+HiwayEscrow checks an ECDSA signature in _checkCertificate and accepts only an address on the signer list it keeps. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. setCertificateSigner changes who may sign.
 
 ## Evidence
 
-- How it was placed: the signer is a set of keys kept in storage; functions replace it (setCertificateSigner, setControllers). Whoever holds it must replace it before that account takes code. Rule: stored-key.
-- Reviewed through the root issue's mechanism (D-025): the reading for this address names a function that replaces the checked key (a setter, a role grant or an owner hand-over), so its holder can rotate before the key's account takes code: LOW
-- Not checked per row: whether the party allowed to call that function is live at block 26,438,999
-- Mechanical check: the scanner finds an ecrecover call in this address's code
-- A random sample of 25 of the 18,615 rows below Anon's thresholds: 15 held at LOW, 5 were unused implementations (not affected), 1 had owners that cannot be replaced (MEDIUM), 4 could not be settled while the node was down
+- [_checkCertificate](https://etherscan.io/address/0x9ceee5644dd1b123ce96bae5fe03d2ee25834da9#code) recovers the signature with ECDSA and accepts only an address on the signer list it keeps; the code never asks that account.
+- [setCertificateSigner](https://etherscan.io/address/0x9ceee5644dd1b123ce96bae5fe03d2ee25834da9#code) changes who may sign (through _setCertificateSigner); only the owner can call it.
+- The address recovered in its latest signature check on record is [0xf0fe…6986](https://etherscan.io/address/0xf0fe7749efef7372876cf6487691163e333d6986), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $2 (ETH and 49 priced tokens, over 2 addresses).
-- Activity: 0 transactions called it in the 90 days before that block.
+### Mechanism
 
-## Remediation
+_checkCertificate (HiwayEscrow.sol, line 148) recovers a signer on line 157 and tests it on line 159 against an address on the signer list it keeps. Neither isValidSignature selector is in the code, so that account is never asked. _setCertificateSigner (HiwayEscrow.sol, line 143) writes it, called by setCertificateSigner. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Rotate the key before its account takes code.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 2 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2020-07-12, recovering 0xf0fe…6986; 0 transactions called the address in the 90 days before the block. 2 different addresses were recovered on record (a wrong signature recovers a random one).
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

@@ -1,72 +1,129 @@
 ---
 id: transitswaprouterv5-07964f13-rotate-signer-before-migrating
-title: "TransitSwapRouterV5: signer key to rotate before its account takes code"
+format: 2
+title: 'TransitSwapRouterV5: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x07964f135f276412b3182a3b2407b8dd45000000"
-  family: "3d3d2bfaf10b786c377669bba71a9413"
-  name: "TransitSwapRouterV5"
-  label: "Transit Finance: Transit Swap Router V5"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 71100
-  value_basis: held
-  value_as_of: 2026-11-18
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x07964f135f276412b3182a3b2407b8dd45000000'
+  name: TransitSwapRouterV5
+  code: verified
+  code_url: https://etherscan.io/address/0x07964f135f276412b3182a3b2407b8dd45000000#code
+  copies: 1
+  upgradeable: 'no'
+value:
+  usd: 71156
+  basis: held
+activity:
   txs_90d: 128892
-  last_active: 2026-11-18
-  recoveries_14d: 1073
-fix:
-  layer: onchain-config
-  who_acts: "executor Safe 0x7b57…0711"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Replace the signer with changeTransitProxy before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x07964f135f276412b3182a3b2407b8dd45000000'
+  file: BaseCore.sol
+  line: 239
+  has: address recovered = ecrecover(digest, v, r, s);
+  says: verifySignature recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x07964f135f276412b3182a3b2407b8dd45000000'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x07964f135f276412b3182a3b2407b8dd45000000'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: match
+  source: '0x07964f135f276412b3182a3b2407b8dd45000000'
+  file: BaseCore.sol
+  line: 240
+  has: return recovered == _fee_signer;
+  says: the recovered address must be the signer it keeps in storage
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: setter
+  source: '0x07964f135f276412b3182a3b2407b8dd45000000'
+  file: BaseCore.sol
+  line: 160
+  has: function changeTransitProxy
+  says: changeTransitProxy changes the signer
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer-code
+  code: '0x01c54379c4323844273a7ce865fbd94d77f78849'
+  is: empty
+  says: the address recovered in the latest signature check on record has no code
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signed-tx
+  tx: '0xfabeaea17fee02d61c1350d94a0c5403f3b6cbfa96b4851cd2f2d38e356be0c4'
+  ok: true
+  says: a transaction in which this contract recovered a signature
+  for:
+  - evidence-3
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Executor-gated setter; executor is a live Safe."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-TransitSwapRouterV5: fee signatures must recover to _fee_signer. A fee signer with code makes signed-fee swaps revert.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+TransitSwapRouterV5 checks an ECDSA signature in verifySignature and accepts only the signer it keeps in storage. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. changeTransitProxy changes the signer.
 
 ## Evidence
 
-- How it was placed: TransitSwap router: the fee signature must come from _fee_signer, which a function of the contract replaces (assignment read in the source). Read by hand. Executed: a real transaction reverts with code at the signer.
-- BaseCore.sol:160-167 changeTransitProxy(aggregator, signer, vault) is onlyExecutor and replaces _fee_signer
-- executor() = 0x7b570fec…0711, a Safe 2-of-3 with owner EOAs at nonces 60/623/12
-- current fee signer 0x01C54379…8849 is an EOA with nonce 0
+- [verifySignature](https://etherscan.io/address/0x07964f135f276412b3182a3b2407b8dd45000000#code) recovers the signature with ECDSA and accepts only the signer it keeps in storage; the code never asks that account.
+- [changeTransitProxy](https://etherscan.io/address/0x07964f135f276412b3182a3b2407b8dd45000000#code) changes the signer.
+- Its latest signed [transaction](https://etherscan.io/tx/0xfabeaea17fee02d61c1350d94a0c5403f3b6cbfa96b4851cd2f2d38e356be0c4) on record recovered [0x01c5…8849](https://etherscan.io/address/0x01c54379c4323844273a7ce865fbd94d77f78849), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $71,100 (ETH and 49 priced tokens).
-- Activity: 128,892 transactions called it in the 90 days before that block; last on 2026-11-18.
-- 1,073 signature recoveries in the study's two-week trace window.
+### Mechanism
 
-## Remediation
+verifySignature (BaseCore.sol, line 230) recovers a signer on line 239 and tests it on line 240 against the signer it keeps in storage. Neither isValidSignature selector is in the code, so that account is never asked. changeTransitProxy (BaseCore.sol, line 160) writes it. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Executor Safe calls changeTransitProxy with a new fee signer before the current one migrates.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2026-11-18, recovering 0x01c5…8849; 128,892 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

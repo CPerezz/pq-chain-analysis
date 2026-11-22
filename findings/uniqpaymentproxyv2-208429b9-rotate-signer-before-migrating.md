@@ -1,69 +1,121 @@
 ---
 id: uniqpaymentproxyv2-208429b9-rotate-signer-before-migrating
-title: "UniqPaymentProxyV2: signer key to rotate before its account takes code"
+format: 2
+title: 'UniqPaymentProxyV2: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x208429b9d0cb6eae9bedaa34aeee5d80524fb4ef"
-  family: "1b3f186b22ca24eeeb2a86a41d6b7884"
-  name: "UniqPaymentProxyV2"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 579
-  value_basis: held
-  value_as_of: 2026-11-18
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x208429b9d0cb6eae9bedaa34aeee5d80524fb4ef'
+  name: UniqPaymentProxyV2
+  code: verified
+  code_url: https://etherscan.io/address/0x208429b9d0cb6eae9bedaa34aeee5d80524fb4ef#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0xeb443863e3aaebafd470d40d3e088c573b0630ae'
+value:
+  usd: 579
+  basis: held
+activity:
   txs_90d: 0
-fix:
-  layer: onchain-config
-  who_acts: "the key holder or owner rotates the key"
-evidence:
-  level: bytecode
-  block: 26438999
+impact: liveness
+action: Replace the signer with transferOwnership before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x208429b9d0cb6eae9bedaa34aeee5d80524fb4ef'
+  file: contracts/utils/uniq/UniqPaymentProxyV2.sol
+  line: 119
+  has: return recoverSigner(ethSignedMessageHash, _signature) == owner();
+  says: verifySignature recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x208429b9d0cb6eae9bedaa34aeee5d80524fb4ef'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x208429b9d0cb6eae9bedaa34aeee5d80524fb4ef'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: setter
+  selector: '0x208429b9d0cb6eae9bedaa34aeee5d80524fb4ef'
+  fn: transferOwnership(address)
+  says: the code has transferOwnership
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x208429b9d0cb6eae9bedaa34aeee5d80524fb4ef'
+  fn: owner()(address)
+  is: '0xeb443863e3aaebafd470d40d3e088c573b0630ae'
+  says: Its owner is 0xeb443863e3aaebafd470d40d3e088c573b0630ae at the block
+  for:
+  - action
+  - evidence-3
+  - what
+- id: signer-code
+  code: '0xeb443863e3aaebafd470d40d3e088c573b0630ae'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-`UniqPaymentProxyV2` at `0x208429b9d0cb6eae9bedaa34aeee5d80524fb4ef`. It accepts signatures from a key that a function can replace; the holder rotates it before the account takes code.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+UniqPaymentProxyV2 accepts a call to verifySignature only with an ECDSA signature of its owner. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. transferOwnership changes the signer.
 
 ## Evidence
 
-- How it was placed: the signer is one address in storage and the only such address the code names is its owner, which can be handed over (renounceOwnership, transferOwnership). Rule: stored-key (the owner).
-- Reviewed through the root issue's mechanism (D-025): the reading for this address names a function that replaces the checked key (a setter, a role grant or an owner hand-over), so its holder can rotate before the key's account takes code: LOW
-- Not checked per row: whether the party allowed to call that function is live at block 26,438,999
-- Mechanical check: the scanner finds an ecrecover call in this address's code
-- A random sample of 25 of the 18,615 rows below Anon's thresholds: 15 held at LOW, 5 were unused implementations (not affected), 1 had owners that cannot be replaced (MEDIUM), 4 could not be settled while the node was down
+- [verifySignature](https://etherscan.io/address/0x208429b9d0cb6eae9bedaa34aeee5d80524fb4ef#code) recovers the signature with ECDSA and accepts only its owner; the code never asks that account.
+- [transferOwnership](https://etherscan.io/address/0x208429b9d0cb6eae9bedaa34aeee5d80524fb4ef#code) changes the signer.
+- The signer at the block is [0xeb44…30ae](https://etherscan.io/address/0xeb443863e3aaebafd470d40d3e088c573b0630ae), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $579 (ETH and 49 priced tokens).
-- Activity: 0 transactions called it in the 90 days before that block.
+### Mechanism
 
-## Remediation
+verifySignature (contracts/utils/uniq/UniqPaymentProxyV2.sol, line 93) recovers a signer on line 119 and tests it on line 119 against its owner (owner() returns 0xeb443863e3aaebafd470d40d3e088c573b0630ae). Neither isValidSignature selector is in the code, so that account is never asked. transferOwnership is in the code. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Rotate the key before its account takes code.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2023-07-11, recovering 0xeb44…30ae; 0 transactions called the address in the 90 days before the block. 3 different addresses were recovered on record (a wrong signature recovers a random one).
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

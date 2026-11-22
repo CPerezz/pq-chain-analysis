@@ -15,7 +15,7 @@ bitgo,not-contacted,HIGH,,1,0,303115504,bitgo-walletsimple-ecdsa-signers
 blur,not-contacted,HIGH,,1,0,8943430,blur-order-sig-ecdsa-only
 ownbit,not-contacted,HIGH,,8,0,6403851,ownbit-0f498806-wallets-fixed-signers ownbit-3e408dfe-wallets-fixed-signers ownbit-4ea9872d-wallets-fixed-signers ownbit-a7e55efa-rotate-signer-before-migrating ownbit-ac48c371-wallets-fixed-signers ownbit-b916796b-wallets-fixed-signers ownbit-f2c50016-wallets-fixed-signers ownbitmultisig-b7edb5d7-wallets-fixed-signers
 archetype,not-contacted,LOW,HIGH,4,1,49082,archetype-13b58991-fixed-signer archetype-2c20bae7-fixed-signer archetype-47c6ac05-fixed-signer archetype-fed18c82-fixed-signer eip-8151-signer-upgrade-only
-localethereum,not-contacted,HIGH,LOW,4,2,20933,localethereum-09678741-own-signature-only-exit localethereum-867ffb5a-rotate-signer-before-migrating localethereum-867ffb5a-signed-shortcut-lost localethereumescrows-867ffb5a-own-signature-only-exit eip-8151-rotate-signer-before-migrating eip-8151-signed-shortcut-lost
+localethereum,not-contacted,HIGH,LOW,3,1,20933,localethereum-09678741-own-signature-only-exit localethereum-867ffb5a-signed-shortcut-lost localethereumescrows-867ffb5a-own-signature-only-exit eip-8151-signed-shortcut-lost
 lido,not-contacted,HIGH,,3,0,5435,lido-predeposit-bls12-381 lido-steth-permit-code-first wsteth-7f39c581-permit-signature
 houdini-swap,not-contacted,HIGH,,1,0,18,houdini-swap-bn254-schnorr
 1inch,not-contacted,HIGH,,2,0,0,1inch-lop-order-sig-scheme-select 1inch-v6-executor-signer

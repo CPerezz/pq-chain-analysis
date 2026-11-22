@@ -1,69 +1,124 @@
 ---
 id: fusingfeeescrow-2c2ca37e-rotate-signer-before-migrating
-title: "FusingFeeEscrow: signer key to rotate before its account takes code"
+format: 2
+title: 'FusingFeeEscrow: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x2c2ca37e1aaca05011942eca70a19549c9a119a9"
-  family: "e7b78373259cace22099d4f65d86173e"
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x2c2ca37e1aaca05011942eca70a19549c9a119a9'
+  name: FusingFeeEscrow
+  code: verified
+  code_url: https://etherscan.io/address/0x2c2ca37e1aaca05011942eca70a19549c9a119a9#code
   copies: 4
-  name: "FusingFeeEscrow"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 340
-  value_basis: held
-  value_as_of: 2026-11-18
-  txs_90d: 1294
-  last_active: 2026-11-17
-fix:
-  layer: onchain-config
-  who_acts: "hard-coded admin"
-evidence:
-  level: bytecode
-  block: 26438999
+  family: e7b78373259cace22099d4f65d86173e
+  upgradeable: 'no'
+  admin: '0x0ebefe57f39c4ab3a93f0cb314399c376b8c1413'
+value:
+  usd: 3
+  basis: held
+activity:
+  txs_90d: 40
+impact: liveness
+action: Replace the signer with setAttester before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x2c2ca37e1aaca05011942eca70a19549c9a119a9'
+  file: src/v2/FusingFeeEscrow.sol
+  line: 301
+  has: if (_recover(digest, signature) != attester) revert BadAttestation();
+  says: claimHandle recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x2c2ca37e1aaca05011942eca70a19549c9a119a9'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x2c2ca37e1aaca05011942eca70a19549c9a119a9'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: setter
+  source: '0x2c2ca37e1aaca05011942eca70a19549c9a119a9'
+  file: src/v2/FusingFeeEscrow.sol
+  line: 272
+  has: function setAttester
+  says: setAttester changes the signer
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x2c2ca37e1aaca05011942eca70a19549c9a119a9'
+  fn: attester()(address)
+  is: '0x0ebefe57f39c4ab3a93f0cb314399c376b8c1413'
+  says: The signer it keeps in storage is 0x0ebefe57f39c4ab3a93f0cb314399c376b8c1413 at the block
+  for:
+  - action
+  - evidence-3
+  - what
+- id: signer-code
+  code: '0x0ebefe57f39c4ab3a93f0cb314399c376b8c1413'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Setter callable by a live EOA."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-FusingFeeEscrow (unverified); credits rely on an attester signature from a stored key. Under EIP-8151 a signer that takes non-delegation code stops recovering, so this path stops until the key is rotated.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+FusingFeeEscrow accepts a call to claimHandle only with an ECDSA signature of the signer it keeps in storage. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. setAttester changes the signer.
 
 ## Evidence
 
-- How it was placed: the signer is one key kept in storage; functions replace it (setAttester). Whoever holds it must replace it before that account takes code. Rule: stored-key.
-- heimdall decompile: setAttester requires msg.sender == 0x0ebefe57… (hard-coded)
-- 0x0ebefe57… is an EOA (no code, nonce 406) at block 26438999; it is also owner()
+- [claimHandle](https://etherscan.io/address/0x2c2ca37e1aaca05011942eca70a19549c9a119a9#code) recovers the signature with ECDSA and accepts only the signer it keeps in storage; the code never asks that account.
+- [setAttester](https://etherscan.io/address/0x2c2ca37e1aaca05011942eca70a19549c9a119a9#code) changes the signer.
+- The signer at the block is [0x0ebe…1413](https://etherscan.io/address/0x0ebefe57f39c4ab3a93f0cb314399c376b8c1413), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $340 (ETH and 49 priced tokens, over 4 addresses).
-- Activity: 1,294 transactions called it in the 90 days before that block; last on 2026-11-17.
+### Mechanism
 
-## Remediation
+claimHandle (src/v2/FusingFeeEscrow.sol, line 293) recovers a signer on line 301 and tests it on line 301 against the signer it keeps in storage (attester() returns 0x0ebefe57f39c4ab3a93f0cb314399c376b8c1413). Neither isValidSignature selector is in the code, so that account is never asked. setAttester (src/v2/FusingFeeEscrow.sol, line 272) writes it. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-That address calls setAttester with a fresh EOA.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 4 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). No signature recovery by this address is on record; 40 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

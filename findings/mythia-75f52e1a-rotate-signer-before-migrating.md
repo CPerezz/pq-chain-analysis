@@ -1,68 +1,132 @@
 ---
 id: mythia-75f52e1a-rotate-signer-before-migrating
-title: "Mythia: signer key to rotate before its account takes code"
+format: 2
+title: 'Mythia: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x75f52e1a6062bf46e125feeb6f16812c838dc07e"
-  family: "30f95a250519bfe733fe806b9521cde2"
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x75f52e1a6062bf46e125feeb6f16812c838dc07e'
+  name: Mythia
+  code: verified
+  code_url: https://etherscan.io/address/0x75f52e1a6062bf46e125feeb6f16812c838dc07e#code
   copies: 2
-  name: "Mythia"
-  upgradeable: "no"
-  rating: LOW
-  txs_90d: 5
-  last_active: 2026-10-31
-fix:
-  layer: onchain-config
-  who_acts: "the key holder or owner rotates the key"
-evidence:
-  level: bytecode
-  block: 26438999
+  family: 30f95a250519bfe733fe806b9521cde2
+  upgradeable: 'no'
+  admin: '0xf8f766db6dd1c206cd2c98a35f5f7e0689d1fda8'
+value:
+  usd: 0
+  basis: held
+activity:
+  txs_90d: 4
+impact: liveness
+action: Replace the signer with transferOwnership before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x75f52e1a6062bf46e125feeb6f16812c838dc07e'
+  file: contracts/Mythia/ControlledAccess.sol
+  line: 46
+  has: address sender = ecrecover(
+  says: isValidAccessMessage recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x75f52e1a6062bf46e125feeb6f16812c838dc07e'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x75f52e1a6062bf46e125feeb6f16812c838dc07e'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: match
+  source: '0x75f52e1a6062bf46e125feeb6f16812c838dc07e'
+  file: contracts/Mythia/ControlledAccess.sol
+  line: 54
+  has: return (owner() == sender);
+  says: the recovered address must be its owner
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: setter
+  selector: '0x75f52e1a6062bf46e125feeb6f16812c838dc07e'
+  fn: transferOwnership(address)
+  says: the code has transferOwnership
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x75f52e1a6062bf46e125feeb6f16812c838dc07e'
+  fn: owner()(address)
+  is: '0xf8f766db6dd1c206cd2c98a35f5f7e0689d1fda8'
+  says: Its owner is 0xf8f766db6dd1c206cd2c98a35f5f7e0689d1fda8 at the block
+  for:
+  - action
+  - evidence-3
+  - what
+- id: signer-code
+  code: '0xf8f766db6dd1c206cd2c98a35f5f7e0689d1fda8'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-`Mythia` at `0x75f52e1a6062bf46e125feeb6f16812c838dc07e`, with 1 more addresses running its code. It accepts signatures from a key that a function can replace; the holder rotates it before the account takes code.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+Mythia checks an ECDSA signature in isValidAccessMessage and accepts only its owner. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. transferOwnership changes the signer.
 
 ## Evidence
 
-- How it was placed: the signer is one address in storage and the only such address the code names is its owner, which can be handed over (renounceOwnership, transferOwnership). Rule: stored-key (the owner).
-- Reviewed through the root issue's mechanism (D-025): the reading for this address names a function that replaces the checked key (a setter, a role grant or an owner hand-over), so its holder can rotate before the key's account takes code: LOW
-- Not checked per row: whether the party allowed to call that function is live at block 26,438,999
-- Mechanical check: the scanner finds an ecrecover call in this address's code
-- A random sample of 25 of the 18,615 rows below Anon's thresholds: 15 held at LOW, 5 were unused implementations (not affected), 1 had owners that cannot be replaced (MEDIUM), 4 could not be settled while the node was down
+- [isValidAccessMessage](https://etherscan.io/address/0x75f52e1a6062bf46e125feeb6f16812c838dc07e#code) recovers the signature with ECDSA and accepts only its owner; the code never asks that account.
+- [transferOwnership](https://etherscan.io/address/0x75f52e1a6062bf46e125feeb6f16812c838dc07e#code) changes the signer.
+- The signer at the block is [0xf8f7…fda8](https://etherscan.io/address/0xf8f766db6dd1c206cd2c98a35f5f7e0689d1fda8), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens, over 2 addresses).
-- Activity: 5 transactions called it in the 90 days before that block; last on 2026-10-31.
+### Mechanism
 
-## Remediation
+isValidAccessMessage (contracts/Mythia/ControlledAccess.sol, line 39) recovers a signer on line 46 and tests it on line 54 against its owner (owner() returns 0xf8f766db6dd1c206cd2c98a35f5f7e0689d1fda8). Neither isValidSignature selector is in the code, so that account is never asked. transferOwnership is in the code. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Rotate the key before its account takes code.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 2 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2022-04-10, recovering 0xb75a…a29a; 4 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

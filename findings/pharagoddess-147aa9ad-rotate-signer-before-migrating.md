@@ -1,71 +1,116 @@
 ---
 id: pharagoddess-147aa9ad-rotate-signer-before-migrating
-title: "PharaGoddess: signer key to rotate before its account takes code"
+format: 2
+title: 'PharaGoddess: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x147aa9ada01b70c4c8c8b89b06afe767908aced7"
-  family: "d1d8280de275670fce00b7ef8fa888a3"
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x147aa9ada01b70c4c8c8b89b06afe767908aced7'
+  name: PharaGoddess
+  code: verified
+  code_url: https://etherscan.io/address/0x147aa9ada01b70c4c8c8b89b06afe767908aced7#code
   copies: 3
-  name: "PharaGoddess"
-  label: "PharaGoddess: PGS Token"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 27249
-  value_basis: held
-  value_as_of: 2026-11-18
+  family: d1d8280de275670fce00b7ef8fa888a3
+  upgradeable: 'no'
+  admin: '0xd4744e4b59f4a1576255d652f7286eb121003768'
+value:
+  usd: 27298
+  basis: held
+activity:
   txs_90d: 18
-  last_active: 2026-11-14
-fix:
-  layer: onchain-config
-  who_acts: "owner EOA 0xd474…3768"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Replace the signer with changeDummy before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x147aa9ada01b70c4c8c8b89b06afe767908aced7'
+  file: PharaGoddess.sol
+  line: 1974
+  has: return dummy == ecrecover(keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", hash)), _v, _r,
+    _s);
+  says: isValidAccessMessage recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x147aa9ada01b70c4c8c8b89b06afe767908aced7'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x147aa9ada01b70c4c8c8b89b06afe767908aced7'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: setter
+  source: '0x147aa9ada01b70c4c8c8b89b06afe767908aced7'
+  file: PharaGoddess.sol
+  line: 2058
+  has: function changeDummy
+  says: changeDummy changes the signer
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer-code
+  code: '0x80e4929c869102140e69550bbecc20bed61b080c'
+  is: empty
+  says: the address recovered in the latest signature check on record has no code
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Live EOA owner replaces the key."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-PharaGoddess NFT: presale mint requires a signature recovered to the stored 'dummy' address.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+PharaGoddess checks an ECDSA signature in isValidAccessMessage and accepts only the signer it keeps in storage. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. changeDummy changes the signer.
 
 ## Evidence
 
-- How it was placed: the recovered address must be one stored signer of the contract (an affiliate, system, consensus, updater, admin or whitelist key). Read from source.
-- changeDummy(address) is onlyOwner (PharaGoddess.sol:2058)
-- owner() = 0xd474…3768, EOA nonce 13 at 26438999
-- withdrawFund is onlyOwner
+- [isValidAccessMessage](https://etherscan.io/address/0x147aa9ada01b70c4c8c8b89b06afe767908aced7#code) recovers the signature with ECDSA and accepts only the signer it keeps in storage; the code never asks that account.
+- [changeDummy](https://etherscan.io/address/0x147aa9ada01b70c4c8c8b89b06afe767908aced7#code) changes the signer; only the owner can call it.
+- The address recovered in its latest signature check on record is [0x80e4…080c](https://etherscan.io/address/0x80e4929c869102140e69550bbecc20bed61b080c), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $27,249 (ETH and 49 priced tokens, over 3 addresses).
-- Activity: 18 transactions called it in the 90 days before that block; last on 2026-11-14.
+### Mechanism
 
-## Remediation
+isValidAccessMessage (PharaGoddess.sol, line 1972) recovers a signer on line 1974 and tests it on line 1974 against the signer it keeps in storage. Neither isValidSignature selector is in the code, so that account is never asked. changeDummy (PharaGoddess.sol, line 2058) writes it. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Owner calls changeDummy(newKey).
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 3 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2022-06-22, recovering 0x80e4…080c; 18 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

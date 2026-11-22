@@ -1,69 +1,123 @@
 ---
 id: azaraks-0d8f1817-rotate-signer-before-migrating
-title: "Azaraks: signer key to rotate before its account takes code"
+format: 2
+title: 'Azaraks: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0x0d8f1817c644101a915852841a3b5933b0b8dcc7"
-  family: "bd5dfcd3d6ff2de8845a141217402424"
-  name: "Azaraks"
-  label: "The Last Azaraks: AZRKS Token"
-  upgradeable: "no"
-  rating: LOW
-  value_usd: 31399
-  value_basis: held
-  value_as_of: 2026-11-18
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0x0d8f1817c644101a915852841a3b5933b0b8dcc7'
+  name: Azaraks
+  code: verified
+  code_url: https://etherscan.io/address/0x0d8f1817c644101a915852841a3b5933b0b8dcc7#code
+  copies: 1
+  upgradeable: 'no'
+  admin: '0xcc6eaa08a653c0d2b518cbe0c8270b9a5ad86a5e'
+value:
+  usd: 31447
+  basis: held
+activity:
   txs_90d: 45
-  last_active: 2026-11-14
-fix:
-  layer: onchain-config
-  who_acts: "owner 0xcC6e…6A5e"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Replace the signer with setSignerAddress before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x0d8f1817c644101a915852841a3b5933b0b8dcc7'
+  file: Azaraks.sol
+  line: 1689
+  has: require(verifySignature(data, v, r, s)==signerAddress,"Invalid signature");
+  says: VIPMint recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x0d8f1817c644101a915852841a3b5933b0b8dcc7'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x0d8f1817c644101a915852841a3b5933b0b8dcc7'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: setter
+  source: '0x0d8f1817c644101a915852841a3b5933b0b8dcc7'
+  file: Azaraks.sol
+  line: 1774
+  has: function setSignerAddress
+  says: setSignerAddress changes the signer
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0x0d8f1817c644101a915852841a3b5933b0b8dcc7'
+  fn: signerAddress()(address)
+  is: '0x0e059ae67825ff280429268c2b924bc14c9f42ce'
+  says: The signer it keeps in storage is 0x0e059ae67825ff280429268c2b924bc14c9f42ce at the block
+  for:
+  - action
+  - evidence-3
+  - what
+- id: signer-code
+  code: '0x0e059ae67825ff280429268c2b924bc14c9f42ce'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "The only missing fact was whether the controlling party is live: its owner 0xcc6eaa08a653c0d2b518cbe0c8270b9a5ad86a5e is a plain account (no code, nonce 92), read at the latest block (26,455,6xx; the node was down). Live by Anon's rule of 2026-11-20 (a key is presumed live unless shown lost), so it can rotate the signer or upgrade the code: LOW. Earlier doubt: setter exists; RPC (reth.dappnode) timed out on all nonce/codesize reads late in the run; liveness of the controlling party not verified (owner liveness). Missing read: cast nonce/codesize --block 26438999 0xcC6eaA08a653C0d2b518cBE0c8270b9A5AD86A5e (owner)."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-Azaraks NFT: mint signatures compared with signerAddress.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+Azaraks accepts a call to VIPMint only with an ECDSA signature of the signer it keeps in storage. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. setSignerAddress changes the signer.
 
 ## Evidence
 
-- How it was placed: NFT mint verifySignature: returns the signer, which the callers compare with signerAddress (by name), a stored address with a setter. Read from source.
-- Azaraks.sol:1774 setSignerAddress onlyOwner; 1781 ecrecover
-- owner() = 0xcC6eaA08a653C0d2b518cBE0c8270b9A5AD86A5e; signerAddress() = 0x0E059Ae6…42Ce
+- [VIPMint](https://etherscan.io/address/0x0d8f1817c644101a915852841a3b5933b0b8dcc7#code) recovers the signature with ECDSA and accepts only the signer it keeps in storage; the code never asks that account.
+- [setSignerAddress](https://etherscan.io/address/0x0d8f1817c644101a915852841a3b5933b0b8dcc7#code) changes the signer; only the owner can call it.
+- The signer at the block is [0x0e05…42ce](https://etherscan.io/address/0x0e059ae67825ff280429268c2b924bc14c9f42ce), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $31,399 (ETH and 49 priced tokens).
-- Activity: 45 transactions called it in the 90 days before that block; last on 2026-11-14.
+### Mechanism
 
-## Remediation
+VIPMint (Azaraks.sol, line 1686) recovers a signer on line 1689 and tests it on line 1689 against the signer it keeps in storage (signerAddress() returns 0x0e059ae67825ff280429268c2b924bc14c9f42ce). Neither isValidSignature selector is in the code, so that account is never asked. setSignerAddress (Azaraks.sol, line 1774) writes it. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-replace the checked key via the setter before the key account takes code
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2022-12-26; 45 transactions called the address in the 90 days before the block. 112 different addresses were recovered on record (a wrong signature recovers a random one).
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

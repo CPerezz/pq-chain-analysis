@@ -1,70 +1,120 @@
 ---
 id: bridgecontroller-a6571b73-rotate-signer-before-migrating
-title: "BridgeController: signer key to rotate before its account takes code"
+format: 2
+title: 'BridgeController: replace a signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0xa6571b73489d4ebfa269a107208665df7c80aef5"
-  family: "87ffbc11da5a708dab38516eb7a86356"
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xa6571b73489d4ebfa269a107208665df7c80aef5'
+  name: BridgeController
+  code: verified
+  code_url: https://etherscan.io/address/0xf73ed14e53c834ad06353b44be3dbcac74d96620#code
+  proxy_of: '0xf73ed14e53c834ad06353b44be3dbcac74d96620'
   copies: 3
-  name: "BridgeController"
-  label: "deployed by PearlBridge Bridged WPRL (Ethereum): Deployer"
-  upgradeable: "yes"
-  rating: LOW
+  family: 87ffbc11da5a708dab38516eb7a86356
+  upgradeable: 'yes'
+  admin: '0xc07c5b10fa35c0db94ab47484b9f667b7b649762'
+value:
+  usd: 0
+  basis: held
+activity:
   txs_90d: 4264
-  last_active: 2026-11-18
-  recoveries_14d: 1230
-fix:
-  layer: onchain-config
-  who_acts: "DEFAULT_ADMIN_ROLE holder: TimelockController 0xc07c5B10 (24h delay), with Safe 0x0f78d385 (2-of-3) as proposer"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Before a signer's account moves to real code, use grantRole so that another key can sign in its place.
+evidence_level: source
+checks:
+- id: recover
+  source: '0xf73ed14e53c834ad06353b44be3dbcac74d96620'
+  file: contracts/BridgeController.sol
+  line: 1492
+  has: address signer = ECDSA.recover(digest, signatures[i]);
+  says: _verifyAttesterQuorum recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0xf73ed14e53c834ad06353b44be3dbcac74d96620'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0xf73ed14e53c834ad06353b44be3dbcac74d96620'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: setter
+  selector: '0xf73ed14e53c834ad06353b44be3dbcac74d96620'
+  fn: grantRole(bytes32,address)
+  says: the code has grantRole
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer-code
+  code: '0x600a5e734d435d125914976f614904ebfea2d563'
+  is: empty
+  says: the address recovered in the latest signature check on record has no code
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
+- id: signed-tx
+  tx: '0x330d8c70890e5998b813b56b1fdc2c3249cc9f3bf4c63b0be16e9c27d22dad9b'
+  ok: true
+  says: a transaction in which this contract recovered a signature
+  for:
+  - evidence-3
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "The admin is a working timelock whose proposer is a live Safe, and the relayer set can be rotated by grantRole/revokeRole. The proxy can also be upgraded."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-BridgeController (PearlBridge, upgradeable proxy). Its attestation quorum requires every recovered signer to hold RELAYER_ROLE, so under EIP-8151 a relayer key with code stops counting toward the quorum.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+BridgeController checks an ECDSA signature in _verifyAttesterQuorum and accepts only a holder of its signing role. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. grantRole changes who may sign.
 
 ## Evidence
 
-- How it was placed: OpenZeppelin 5 permit: ECDSA.recover must equal the owner named in the call / attester quorum: each recovered signer must hold RELAYER_ROLE, ascending order. Read from source. Executed: a real transaction reverts with code at the signer.
-- BridgeController.sol:1492-1493 ECDSA.recover then hasRole(RELAYER_ROLE, signer); _grantRole/_revokeRole overrides (1541-1571) keep standard AccessControl grantRole/revokeRole
-- getRoleAdmin(RELAYER_ROLE)=0x0 at 26438999; 3 relayers; role0/owner = timelock 0xc07c5B10 getMinDelay=86400
-- timelock hasRole(PROPOSER_ROLE, 0x0f78d385...)=true; that Safe getThreshold=2, owners [0xBd4Eb029,0x708b5c36,0x802864B6]
+- [_verifyAttesterQuorum](https://etherscan.io/address/0xf73ed14e53c834ad06353b44be3dbcac74d96620#code) recovers the signature with ECDSA and accepts only a holder of its signing role; the code never asks that account.
+- [grantRole](https://etherscan.io/address/0xf73ed14e53c834ad06353b44be3dbcac74d96620#code) changes who may sign.
+- Its latest signed [transaction](https://etherscan.io/tx/0x330d8c70890e5998b813b56b1fdc2c3249cc9f3bf4c63b0be16e9c27d22dad9b) on record recovered [0x600a…d563](https://etherscan.io/address/0x600a5e734d435d125914976f614904ebfea2d563), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $0 (ETH and 49 priced tokens, over 3 addresses).
-- Activity: 4,264 transactions called it in the 90 days before that block; last on 2026-11-18.
-- 1,230 signature recoveries in the study's two-week trace window.
+### Mechanism
 
-## Remediation
+_verifyAttesterQuorum (contracts/BridgeController.sol, line 1478) recovers a signer on line 1492 and tests it on line 1492 against a holder of its signing role. Neither isValidSignature selector is in the code, so that account is never asked. grantRole is in the code. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-The timelock grants RELAYER_ROLE to a fresh EOA key and revokes the key with code, keeping the count at or above the threshold.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 3 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2026-11-18, recovering 0x600a…d563; 4,264 transactions called the address in the 90 days before the block. 2 different addresses were recovered on record (a wrong signature recovers a random one).
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

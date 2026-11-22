@@ -1,71 +1,135 @@
 ---
 id: kubzauction-d923af5d-rotate-signer-before-migrating
-title: "KubzAuction: signer key to rotate before its account takes code"
+format: 2
+title: 'KubzAuction: replace the signer before its account moves to real code'
 status: confirmed
-severity: LOW
-patterns: [PQ-17]
-impact: liveness
-contracts:
-- address: "0xd923af5d509042a3b24b711caaba8c408d4d4c23"
-  family: "aa68edc9fd8910d366ddefbdc45e46bc"
+severity: INFORMATIONAL
+justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
+category: migration-notice
+pattern: PQ-17
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xd923af5d509042a3b24b711caaba8c408d4d4c23'
+  name: KubzAuction
+  code: verified
+  code_url: https://etherscan.io/address/0x05a325bdc872602f0700e45ef968b6ed40125154#code
+  proxy_of: '0x05a325bdc872602f0700e45ef968b6ed40125154'
   copies: 2
-  name: "KubzAuction"
-  label: "deployed by Kubz: Deployer"
-  upgradeable: "yes"
-  admin: "ProxyAdmin 0xf025a72ed25c5d24a0179c93a75ca74a9fa5744c owned by EOA 0x759c5F293EdC487aA02186f0099864Ebc53191C1"
-  rating: LOW
-  value_usd: 44573
-  value_basis: held
-  value_as_of: 2026-11-18
+  family: aa68edc9fd8910d366ddefbdc45e46bc
+  upgradeable: 'yes'
+  admin: '0xf025a72ed25c5d24a0179c93a75ca74a9fa5744c'
+value:
+  usd: 44569
+  basis: held
+activity:
   txs_90d: 0
-fix:
-  layer: onchain-config
-  who_acts: "owner 0x6c8ee01f (EOA)"
-evidence:
-  level: source-read
-  block: 26438999
+impact: liveness
+action: Replace the signer with setSigner before moving the current signer's account to real code.
+evidence_level: source
+checks:
+- id: recover
+  source: '0x05a325bdc872602f0700e45ef968b6ed40125154'
+  file: contracts/KubzAuction.sol
+  line: 70
+  has: ECDSA.recover(
+  says: checkValidity recovers a signer with ECDSA
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: no-1271
+  bytecode: '0x05a325bdc872602f0700e45ef968b6ed40125154'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0x05a325bdc872602f0700e45ef968b6ed40125154'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: match
+  source: '0x05a325bdc872602f0700e45ef968b6ed40125154'
+  file: contracts/KubzAuction.sol
+  line: 75
+  has: ) == signer,
+  says: the recovered address must be the signer it keeps in storage
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: setter
+  source: '0x05a325bdc872602f0700e45ef968b6ed40125154'
+  file: contracts/KubzAuction.sol
+  line: 182
+  has: function setSigner
+  says: setSigner changes the signer
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: signer
+  call: '0xd923af5d509042a3b24b711caaba8c408d4d4c23'
+  fn: signer()(address)
+  is: '0xabcddc2312d1b91b0b1ee811b922b2e80798b7c2'
+  says: The signer it keeps in storage is 0xabcddc2312d1b91b0b1ee811b922b2e80798b7c2 at the block
+  for:
+  - action
+  - evidence-3
+  - what
+- id: signer-code
+  code: '0xabcddc2312d1b91b0b1ee811b922b2e80798b7c2'
+  is: empty
+  says: 'the signer''s account has no code: an ECDSA key controls it'
+  for:
+  - action
+  - evidence-3
+  - justification
+  - what
 sources:
-- by: ai-assisted
-  study: eip-8151-impact
-  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
-  ref: "triage entry eip-8151-rotate-signer-before-migrating"
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
   date: 2026-11-19
+  by: ai-assisted
   verdict: reported
   rating: LOW
-reviews:
-- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
-  date: 2026-11-20
-  by: ai-assisted
-  verdict: confirmed
-  rating: LOW
-  note: "Setter and upgrade both have live EOA callers."
+reviews: []
+related: []
 ---
 
-## Summary
+## What happens
 
-KubzAuction (proxy): refunds and claims need an ECDSA signature from the stored signer 0xabcddc23. If it gets code, those calls revert.
-
-## Mechanism
-
-PQ-17. Once that key's account has real code its signatures stop counting; its holder rotates first, or the owner afterwards.
+KubzAuction checks an ECDSA signature in checkValidity and accepts only the signer it keeps in storage. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. setSigner changes the signer.
 
 ## Evidence
 
-- How it was placed: the recovered address must be the stored signer, or be in a stored set or role of signers. Read from source.
-- KubzAuction.sol:70 ECDSA.recover compared with signer; :182 setSigner onlyOwner
-- owner() at block 26438999 = 0x6c8ee01f1f8b62e987b3d18f6f28b22a0ada755f, no code, nonce 2429
-- EIP-1967 admin = ProxyAdmin 0xf025a72e, owner 0x759c5F29 (no code, nonce 1780)
+- [checkValidity](https://etherscan.io/address/0x05a325bdc872602f0700e45ef968b6ed40125154#code) recovers the signature with ECDSA and accepts only the signer it keeps in storage; the code never asks that account.
+- [setSigner](https://etherscan.io/address/0x05a325bdc872602f0700e45ef968b6ed40125154#code) changes the signer; only the owner can call it.
+- The signer at the block is [0xabcd…b7c2](https://etherscan.io/address/0xabcddc2312d1b91b0b1ee811b922b2e80798b7c2), an account without code.
 
-## Impact and exposure
+## Reviewer notes
 
-- Value held at block 26,438,999: $44,573 (ETH and 49 priced tokens, over 2 addresses).
-- Activity: 0 transactions called it in the 90 days before that block.
+### Mechanism
 
-## Remediation
+checkValidity (contracts/KubzAuction.sol, line 64) recovers a signer on line 70 and tests it on line 75 against the signer it keeps in storage (signer() returns 0xabcddc2312d1b91b0b1ee811b922b2e80798b7c2). Neither isValidSignature selector is in the code, so that account is never asked. setSigner (contracts/KubzAuction.sol, line 182) writes it. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
 
-Owner calls setSigner with an EOA, or upgrades through the ProxyAdmin.
+### Checks
 
-## History
+- Header facts: this address alone, at block 26,438,999; 2 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for a signer with code: neither selector is in the code, and no function that recovers has such a branch.
+- Ruled out: Not read here: whether the signed function can still run (a sale that ended, a cap reached, a one-time call). It last recovered a signature on record on 2023-02-05, recovering 0xabcd…b7c2; 0 transactions called the address in the 90 days before the block.
+- Ruled out: On record means: the study's traced two weeks, the three latest transactions of the last 90 days, and a public table that ends in March 2026.
+- Ruled out: Written by the signer recipe (D-029 item 33): the same reasoning on every card of this kind; the source lines, the function that changes the signer, the signer and the history were read at this contract and every check was run here. No author or refuter read this contract.
 
-- 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.
