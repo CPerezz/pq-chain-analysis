@@ -6,12 +6,13 @@ for the owner. Rows already settled are in `findings/` (format 2) and are not in
 
 ## State at the hand-over (2026-11-22)
 
-9,482 rows are open, every one `todo`, ordered CRITICAL first. By issue and by the rating the old registry gave them
+9,557 rows are open, every one `todo`, ordered CRITICAL first. By issue and by the rating the old registry gave them
 (untrusted: reviewers have re-rated many, mostly down):
 
 | Issue | CRITICAL | HIGH | MEDIUM | LOW | other | Total |
 |---|---|---|---|---|---|---|
 | `signature-rechecked` | 33 |  | 2 | 1 |  | 36 |
+| first study (`first/…`), unverified code |  | 4 | 67 | 4 |  | 75 |
 | `fixed-gas-recovery` | 3 | 23 | 95 | 3 |  | 124 |
 | `fixed-signer` | 1 | 61 | 183 | 63 | 2 | 310 |
 | `wallets-fixed-signers` |  | 109 | 6 | 4 |  | 119 |
@@ -25,7 +26,7 @@ for the owner. Rows already settled are in `findings/` (format 2) and are not in
 | `7702-own-key-only` |  |  |  | 340 |  | 340 |
 | `entry-by-own-signature-only` |  |  |  | 92 |  | 92 |
 | `signed-4337-gas-limits` |  |  |  | 2 |  | 2 |
-| Total | 37 | 265 | 336 | 8,839 | 5 | 9,482 |
+| Total | 37 | 269 | 403 | 8,843 | 5 | 9,557 |
 
 What the review has learned about these rows:
 
@@ -35,7 +36,8 @@ What the review has learned about these rows:
   fixed at deployment). Each scripted card says in its Reviewer notes that no agent read the contract. The rest were
   dropped as unused (nothing held, nothing called) or removed as not affected. The first study's 457 open rows were
   filed as cards on the owner's word that its findings hold (outcome `trusted`): each restates the study's finding for
-  one contract, with checks re-run at the block, and no refuter read it.
+  one contract, with checks re-run at the block, and no refuter read it. The 75 of them whose code is unverified are
+  back in this queue (`review.rows requeue`): their cards stay filed as candidates until the review files them again.
 - **The scripts already read every open `rotate-signer-before-migrating`, `fixed-signer`, `signer-upgrade-only` and
   `signed-shortcut-lost` row and could not write it**: no verified source, a comparison a pattern cannot follow, an
   ERC-1271 path, several kinds of signer, a signer nobody can replace, 1,000 USD or more held with the signed path
