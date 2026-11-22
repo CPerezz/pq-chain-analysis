@@ -93,6 +93,7 @@ def main(repo: Path) -> None:
         ingest.main(small, db)
         n = len(ingest.cards_on_disk(small))
         assert n == 3 and ingest.verify(small, db) == [], "the database holds the cards, and only them"
+        server.orphans()  # as sync.sh runs it before the board has ever started: no outreach.db yet
 
         password, salt = secrets.token_urlsafe(9), secrets.token_bytes(16)
         with server.board() as con:

@@ -384,6 +384,7 @@ def backup() -> None:
 
 def orphans() -> None:
     """The outreach records of findings the registry no longer has (removed, renamed): kept in case they come back."""
+    board().close()
     con = connect()
     try:
         rows = con.execute("SELECT finding_id, status, assignee FROM b.outreach WHERE finding_id NOT IN (SELECT id FROM finding) "
