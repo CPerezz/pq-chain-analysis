@@ -21,16 +21,6 @@ contracts:
   value_as_of: null
   last_active: 2026-11-16
   txs_30d: 80434
-- address: "0x589dedbd617e0cbcb916a9223f4d1300c294236b"
-  implementation: null
-  name: DVN (LayerZero Labs)
-  upgradeable: config-only
-  admin: "signer quorum (2 of 3) via onlySelf setSigner/setQuorum and quorumChangeAdmin; ECDSA scheme fixed; OApps choose DVNs in ReceiveUln302 config"
-  value_usd: 51334998
-  value_basis: escrow
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: 121361
 - address: "0x8fafae7dd957044088b3d0f67359c327c6200d18"
   implementation: null
   name: DVN (Stargate; deprecated in LayerZero metadata)

@@ -52,7 +52,7 @@ sources:
   date: 2026-11-19
   verdict: reported
   rating: LOW
-related: [messagetransmitterv2-81d40f21-attester-keys, messagetransmitter-0a992d19-attester-committee, circle-gateway-burn-signer, gatewayminter-2222222d-attestation-key, fiattokenproxy-a0b86991-sender-gas-limits]
+related: [messagetransmitterv2-81d40f21-attester-keys, messagetransmitter-0a992d19-attester-committee, gatewaywallet-77777777-operator-signer-keys, gatewayminter-2222222d-attestation-key, fiattokenproxy-a0b86991-sender-gas-limits]
 ---
 
 ## Summary

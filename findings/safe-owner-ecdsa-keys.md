@@ -41,16 +41,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-09-07
   txs_30d: 0
-- address: "0x2bf916f8169ed2a77324d3e168284fc252ae4087"
-  implementation: "0xff51a5898e281db6dfc7855790607438df2ca44b"
-  name: "SafeProxy → Safe 1.5.0 (2 of 4)"
-  upgradeable: "yes"
-  admin: "owners, 2 of 4 (all EOAs), via self-call (swapOwner/addOwnerWithThreshold, changeMasterCopy); singleton 0xff51a5898e281db6dfc7855790607438df2ca44b; modules: AllowanceModule"
-  value_usd: 48973864
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: 1967
 - address: "0x0632dcc37b1fabf2cad20538a5390d23c830962e"
   implementation: "0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
   name: "110-byte proxy → Safe 1.3.0 (2 of 3)"
@@ -241,16 +231,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-13
   txs_30d: 16
-- address: "0xe40d278afd00e6187db21ff8c96d572359ef03bf"
-  implementation: "0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
-  name: "SafeProxy → Safe 1.3.0 (2 of 5)"
-  upgradeable: "yes"
-  admin: "owners, 2 of 5 (all EOAs), via self-call (swapOwner/addOwnerWithThreshold, changeMasterCopy); singleton 0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
-  value_usd: 65266334
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-11-13
-  txs_30d: 10
 - address: "0x507b3f6d4f85c451f7914006c647391a1afb96d6"
   implementation: "0x41675c099f32341bf84bfc5382af534df5c7461a"
   name: "SafeProxy → Safe 1.4.1 (3 of 7)"
@@ -291,16 +271,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-14
   txs_30d: 33
-- address: "0x245cc372c84b3645bf0ffe6538620b04a217988b"
-  implementation: "0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
-  name: "SafeProxy → Safe 1.3.0 (4 of 8)"
-  upgradeable: "yes"
-  admin: "owners, 4 of 8 (all EOAs), via self-call (swapOwner/addOwnerWithThreshold, changeMasterCopy); singleton 0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
-  value_usd: 58161525
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-11-15
-  txs_30d: 44
 - address: "0x8180d59b7175d4064bdfa8138a58e9babffda44a"
   implementation: "0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
   name: "SafeProxy → Safe 1.3.0 (2 of 4)"

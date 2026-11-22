@@ -45,7 +45,7 @@ sources:
   date: 2026-11-19
   verdict: reported
   rating: LOW
-related: [gnosis-bridge-validators]
+related: [eternalstorageproxy-4c36d291-validator-signatures, eternalstorageproxy-4aa42145-validator-signatures]
 ---
 
 ## Summary

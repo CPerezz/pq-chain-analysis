@@ -11,16 +11,6 @@ impact: funds-loss
 alternative: configurable-verifier
 role: core
 contracts:
-- address: "0x0b3943f4b1397c7a9f268d8b84f127a78c66414c"
-  implementation: null
-  name: PlonkVerifierFull (LineaRollup proofType 0, current)
-  upgradeable: "no"
-  admin: "none (immutable); LineaRollup.setVerifierAddress by TimeLock 0xd6b95c960779c72b8c6752119849318e5d550574 (min delay 0; Security Council Safe 0x892bb7eed71efb060ab90140e7825d8127991dd3, 5 of 9), read at block 26431459"
-  value_usd: 46177353
-  value_basis: escrow
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: null
 - address: "0x1d930e3fac9fbc7026ec17962d2f57d558d37532"
   implementation: null
   name: PlonkVerifierFull (LineaRollup proofType 1, current)
@@ -125,7 +115,7 @@ sources:
   date: 2026-11-17
   verdict: confirmed
   rating: MEDIUM
-related: [linea-blob-kzg]
+related: [linearollup-d19d4b5d-blob-kzg-opening]
 ---
 
 ## Summary

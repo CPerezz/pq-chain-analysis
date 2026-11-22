@@ -10,8 +10,8 @@ unidentified-a9babc55,not-contacted,CRITICAL,,1,0,56,unidentified-a9babc55-snark
 foom,not-contacted,CRITICAL,,1,0,0,foom-lottery-groth16
 tornado-cash,not-contacted,CRITICAL,,1,0,0,verifier-ce172ce1-forged-withdraw-proof
 morpho,not-contacted,HIGH,,3,0,2226804360,metamorpho-beef0173-share-permit morpho-bbbbbbbb-authorization-signature morpho-permit-auth-ecdsa-only
-bitgo,not-contacted,HIGH,,1,0,472674751,bitgo-walletsimple-ecdsa-signers
 aave,not-contacted,HIGH,,13,0,472453305,atokeninstance-0b925ed1-permit-signature atokeninstance-23878914-permit-signature atokeninstance-4d5f47fa-permit-signature atokeninstance-4f5923fc-atoken-permit atokeninstance-5c647ce0-permit-signature atokeninstance-5e8c8a72-permit-signature atokeninstance-5ee5bf7a-permit-signature atokeninstance-98c23e9d-permit-signature atokeninstance-bdfa7b78-permit-signature atokenwithdelegationinstance-a700b4eb-permit-ecdsa-only ghotoken-40d16fc0-permit-ecdsa-only sgho-e1753f2e-permit-ecdsa-only stakedaavev3-4da27a54-signed-shortcut-lost
+bitgo,not-contacted,HIGH,,1,0,376158190,bitgo-walletsimple-ecdsa-signers
 blur,not-contacted,HIGH,,1,0,8943430,blur-order-sig-ecdsa-only
 ownbit,not-contacted,HIGH,,8,0,6403851,ownbit-0f498806-wallets-fixed-signers ownbit-3e408dfe-wallets-fixed-signers ownbit-4ea9872d-wallets-fixed-signers ownbit-a7e55efa-rotate-signer-before-migrating ownbit-ac48c371-wallets-fixed-signers ownbit-b916796b-wallets-fixed-signers ownbit-f2c50016-wallets-fixed-signers ownbitmultisig-b7edb5d7-wallets-fixed-signers
 archetype,not-contacted,LOW,HIGH,4,1,49082,archetype-13b58991-fixed-signer archetype-2c20bae7-fixed-signer archetype-47c6ac05-fixed-signer archetype-fed18c82-fixed-signer eip-8151-signer-upgrade-only
@@ -27,22 +27,17 @@ opensea,not-contacted,HIGH,,2,0,0,opensea-seaport-order-sig opensea-zone-and-dro
 paraswap,not-contacted,HIGH,,1,0,0,velora-augustus-rfq-maker-sig
 sky,not-contacted,HIGH,,1,0,0,dai-6b175474-permit-signature
 stakewise,not-contacted,HIGH,,2,0,0,keeper-6b581546-rotate-signer-before-migrating ostoken-f1c9acdc-permit-signature
-safe,not-contacted,MEDIUM,,1,0,671130263,safe-owner-ecdsa-keys
 usual,not-contacted,MEDIUM,,1,0,499265914,usd0pp-35d89493-permit-ecdsa-only
+safe,not-contacted,MEDIUM,,1,0,498728540,safe-owner-ecdsa-keys
 wormhole,not-contacted,MEDIUM,,2,0,271199404,bridgeimplementation-3ee18b22-sender-gas-limits wormhole-98f3c9e6-guardian-signatures
 aster,not-contacted,MEDIUM,,2,0,183084351,aster-treasury-claim-signer astherusvault-604dd02d-validator-quorum-withdrawal
 railgun,not-contacted,MEDIUM,,1,0,98425406,railgunsmartwallet-fa7093cd-groth16-unshield
-linea,not-contacted,MEDIUM,,2,0,92354706,linea-blob-kzg linea-plonk-verifier-bn254
-unidentified-54805468,not-contacted,MEDIUM,,1,0,64502798,unidentified-54805468-owner-keys
-circle,not-contacted,MEDIUM,,5,0,56445676,circle-gateway-burn-signer gatewayminter-2222222d-attestation-key gatewayminter-2222222d-sender-gas-limits messagetransmitter-0a992d19-attester-committee messagetransmitterv2-81d40f21-attester-keys
 scroll,not-contacted,MEDIUM,,2,0,52004722,scroll-blob-kzg scroll-plonk-verifier-bn254
-layerzero,not-contacted,MEDIUM,,1,0,51334998,layerzero-dvn-ecdsa-signers
-near,not-contacted,MEDIUM,,1,0,50887232,near-omni-bridge-mpc-key
-gnosis,not-contacted,MEDIUM,,1,0,47728330,gnosis-bridge-validators
 unidentified-9cbdbd7f,not-contacted,MEDIUM,,1,0,41803499,simplemultisig-owner-keys
 pulsechain,not-contacted,MEDIUM,,1,0,40094354,pulsechain-bridge-validators
 axelar,not-contacted,MEDIUM,,1,0,39499251,axelar-weighted-signers
 zama,not-contacted,MEDIUM,,2,0,38472577,zama-coprocessor-signers zama-kms-verifier-signers
+linea,not-contacted,MEDIUM,,3,0,35371732,linea-plonk-verifier-bn254 linearollup-d19d4b5d-blob-kzg-opening plonkverifierfull-0b3943f4-bn254-plonk-proof
 taiko,not-contacted,MEDIUM,,2,0,19893566,taiko-sgx-instance-keys taiko-zk-verifiers
 chainflip,not-contacted,MEDIUM,,1,0,18403584,chainflip-aggkey-schnorr-ecrecover
 hashflow,not-contacted,MEDIUM,,1,0,10155185,hashflow-pool-quote-signer
@@ -108,6 +103,7 @@ drosera,not-contacted,MEDIUM,,1,0,65,drosera-bls-bn254
 biconomy,not-contacted,MEDIUM,,1,0,33,biconomy-ecdsa-validator
 zkgarden,not-contacted,MEDIUM,,1,0,30,zkgarden-groth16-verifier
 unidentified-7251febe,not-contacted,MEDIUM,,1,0,13,unidentified-7251febe-signer-key
+circle,not-contacted,MEDIUM,,4,0,11,gatewayminter-2222222d-attestation-key gatewayminter-2222222d-sender-gas-limits messagetransmitter-0a992d19-attester-committee messagetransmitterv2-81d40f21-attester-keys
 othentic,not-contacted,MEDIUM,,1,0,5,othentic-obls-bn254
 bitget,not-contacted,MEDIUM,,1,0,2,bitget-swap-router-signer
 gamma-satoris,not-contacted,MEDIUM,,1,0,1,gamma-satoris-executor-signer
@@ -124,6 +120,7 @@ hyperlane,not-contacted,MEDIUM,,1,0,0,hyperlane-multisig-ism-validators
 infinex,not-contacted,MEDIUM,,1,0,0,infinex-forwarder-ecdsa-only
 kyberswap,not-contacted,MEDIUM,,2,0,0,kyberswap-order-sig-ecdsa-first kyberswap-quote-signer
 lagrange,not-contacted,MEDIUM,,1,0,0,lagrange-groth16-verifier
+layerzero,not-contacted,MEDIUM,,1,0,0,layerzero-dvn-ecdsa-signers
 lighter,not-contacted,MEDIUM,,2,0,0,lighter-plonk-verifier zklighterverifier-ac3ce44b-plonk-bn254-verifier
 meson,not-contacted,MEDIUM,,1,0,0,meson-swap-sig-ecdsa-only
 mumutycoon,not-contacted,MEDIUM,,1,0,0,mumutycoon-claim-signer
