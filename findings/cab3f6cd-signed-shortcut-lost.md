@@ -50,7 +50,7 @@ PQ-19. A user whose account has real code loses the signed path only; gasless an
 - How it was placed: a holder whose address has code can no longer use cancelAuthorization, permit, receiveWithAuthorization, transferWithAuthorization; it can still call approve, transfer itself: a way of signing is…. Rule: permit-like. Executed: a real transaction reverts with code at the signer.
 - Direct functions present in bytecode at block 26438999: approve (0x095ea7b3), transfer (0xa9059cbb); each acts for msg.sender, so a holder with code calls them itself.
 - Signed path(s) lost for a signer with code: permit, transferWithAuthorization/receiveWithAuthorization; study reading: a holder whose address has code can no longer use cancelAuthorization, permit, receiveWithAuthorization, transferWithAuthorization; it can still call approve, transfer itself: a way of signing is lost, no right
-- Dossier ~/dev/pq-chain-analysis/goals/eip-8151-analysis/readings/48b529f31bdff9838116b47a945827db (source + scanner: STATICCALL to precompile 0x01 present).
+- Source and scanner: a STATICCALL to precompile 0x01 is present.
 
 ## Impact and exposure
 

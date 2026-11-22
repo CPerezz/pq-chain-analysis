@@ -48,10 +48,10 @@ PQ-19. A user whose account has real code loses the signed path only; gasless an
 ## Evidence
 
 - How it was placed: EURS delegatedTransfer: whoever signed transfers; transfer is the direct call. Read (function text).
-- EURSToken.sol: transfer(address,uint256) is the msg.sender twin of delegatedTransfer (dossier ~/dev/pq-chain-analysis/goals/eip-8151-analysis/gate1/readings/bad024f0b218da942bfcba9e10f9c1f8).
+- EURSToken.sol: transfer(address,uint256) is the msg.sender twin of delegatedTransfer.
 - Direct functions present in bytecode at block 26438999: approve (0x095ea7b3), transfer (0xa9059cbb); each acts for msg.sender, so a holder with code calls them itself.
 - Signed path(s) lost for a signer with code: delegatedTransfer (signed transfer); study reading: EURS delegatedTransfer: whoever signed transfers; transfer is the direct call
-- Dossier ~/dev/pq-chain-analysis/goals/eip-8151-analysis/gate1/readings/bad024f0b218da942bfcba9e10f9c1f8 (source + scanner: STATICCALL to precompile 0x01 present).
+- Source and scanner: a STATICCALL to precompile 0x01 is present.
 
 ## Impact and exposure
 

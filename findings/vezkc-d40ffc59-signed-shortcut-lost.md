@@ -51,7 +51,7 @@ PQ-19. A user whose account has real code loses the signed path only; gasless an
 - veZKC source: delegate(address) Votes.sol l.45 and delegateRewards(address) Rewards.sol l.61 are msg.sender-based twins of delegateBySig l.51 / delegateRewardsBySig l.67.
 - Direct functions present in bytecode at block 26438999: approve (0x095ea7b3), transfer (0xa9059cbb), delegate (0x5c19a95c); each acts for msg.sender, so a holder with code calls them itself.
 - Signed path(s) lost for a signer with code: permit, delegateBySig; study reading: veZKC delegateRewardsBySig: whoever signed delegates; the direct delegation exists / delegateBySig: the named delegator must sign; the holder can call delegate itself
-- Dossier ~/dev/pq-chain-analysis/goals/eip-8151-analysis/gate1/readings/2e0320b2250da7167bd92584e53b88ff (source + scanner: STATICCALL to precompile 0x01 present).
+- Source and scanner: a STATICCALL to precompile 0x01 is present.
 
 ## Impact and exposure
 

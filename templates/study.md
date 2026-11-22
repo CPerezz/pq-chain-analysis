@@ -35,8 +35,7 @@ The commands, in order, at the commit linked in the header; what they need and h
 
 ## Results
 
-What was found, with numbers. Small tables go in `results/`. The findings are listed under this study in
-`generated/STUDIES.md`.
+What was found, with numbers. Small tables go in `results/`.
 
 ## Limits
 

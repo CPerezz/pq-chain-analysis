@@ -1,4 +1,4 @@
-/* Tokens follow the registry's public site (docs/index.html), without web fonts. */
+/* Theme tokens; system fonts only. */
 :root {
   color-scheme: light dark;  /* native controls (selects, checkboxes) follow the theme */
   --paper: #fbfaf7; --card: #ffffff; --ink: #1c1b19; --ink2: #47453f; --muted: #8a857c; --rule: #e6e2d9; --rule2: #d6d1c6; --tint: #f3f0e9;

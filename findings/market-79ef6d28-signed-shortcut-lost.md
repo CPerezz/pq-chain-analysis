@@ -50,7 +50,7 @@ PQ-19. A user whose account has real code loses the signed path only; gasless an
 
 - How it was placed: Inverse FiRM borrowOnBehalf: the account named `from` must have signed for this caller / Inverse FiRM withdrawOnBehalf: the account named `from` must have signed for this caller. Read from source.
 - src/Market.sol: borrow(uint) l.421 and withdraw(uint) l.486 act for msg.sender; borrowOnBehalf l.435 / withdrawOnBehalf l.500 need from's signature.
-- Dossier ~/dev/pq-chain-analysis/goals/eip-8151-analysis/readings/5f94ff57f53bd06727dc9ffed2129e77; study replay: +200 gas.
+- Study replay: +200 gas.
 
 ## Impact and exposure
 

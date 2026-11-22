@@ -205,11 +205,11 @@ def render(draft: dict, d: dict, backs: dict[str, set]) -> tuple[str, str, dict]
     code_hash = ((d.get("implementation") or {}).get("facts") or f)["code_hash"]
     solo = (r.get("copies") or 1) == 1
     fams = [x for x in str(r.get("family") or "").split(", ") if x]
-    # Money is what the tool reads as held at this address (D-028: one card describes one address in use; its copies
+    # Money is what the tool reads as held at this address (one card describes one address in use; its copies
     # are their own rows). Old escrow and market-cap figures are not carried over: no tool here re-reads them; what is
     # at stake elsewhere goes in What happens, checked.
     usd, basis = f.get("value_usd"), "held"
-    if draft.get("pattern") in ("PQ-1", "PQ-2"):  # a forged permit reaches every holder: the token's supply (README)
+    if draft.get("pattern") in ("PQ-1", "PQ-2"):  # a forged permit reaches every holder: the token's supply (AGENTS.md, value.basis)
         cap = verify.nf.Value(hex(H), verify.nf.block_time(H)[1]).supply_usd(r["address"])
         if cap is not None:
             usd, basis = cap, "market-cap"

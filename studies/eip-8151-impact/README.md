@@ -44,7 +44,7 @@ Find every deployed contract whose behaviour EIP-8151 changes, as specified at t
 6. **Reading.** Every recovery site with verified source is read and classed by what a signer with code loses.
    Families without source are judged from bytecode, function names, decompiled code and their own traces. Measured
    rules place the rest.
-7. **Rating.** By shape and by who can fix it (`findings/README.md`). Value and activity never lower a rating.
+7. **Rating.** By shape and by who can fix it (`AGENTS.md`, "Severity"). Value and activity never lower a rating.
    Entries go to `triage/`.
 8. **Review.** Every entry is read again, one contract under one issue at a time (`review/README.md`): an author
    agent writes the card from checks that re-run, a second agent tries to break it, and a reader settles it. Notices
@@ -59,7 +59,7 @@ Not yet possible: the code will be linked at a commit when it is published.
 ## Results
 
 Filed in `findings/` (format 2: reviewed cards) and, until the review reaches them, in `findings/` (format 1) and
-`triage/`; listed in `generated/STUDIES.md` and `generated/TRIAGE.md`. The open rows are in `review/`.
+`triage/`. The open rows are in `review/`.
 
 ## Limits
 

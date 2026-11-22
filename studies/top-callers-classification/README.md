@@ -34,7 +34,7 @@ mechanism, rated by whether the exposure can be removed without a protocol chang
 | 2 | `12_state.py` | On-chain state of every classified contract at one block |
 | 3 | `13_activity.py` | 30-day activity and last-active date |
 | 4 | `14_excerpts.py` | Source lines around each signature or proof check |
-| 5 | `15_findings.py` | Drafts one finding per project and mechanism, rated with the rubric in [`findings/README.md`](../../findings/README.md) |
+| 5 | `15_findings.py` | Drafts one finding per project and mechanism, rated with the rubric in [`AGENTS.md`](../../AGENTS.md#severity) |
 | 6 | Review passes | A second read of each finding against source and chain; corrections are in each finding's History |
 
 The classification working files (`data/curation/`) are at
@@ -50,7 +50,7 @@ existing finding.
 
 ## Results
 
-- 225 findings, listed in [generated/STUDIES.md](../../generated/STUDIES.md). The 217 that are confirmed or
+- 225 findings, filed in [`findings/`](../../findings/). The 217 that are confirmed or
   candidates cover 555 contracts. 202 are
   confirmed, 15 are candidates and 8 are not affected. Confirmed and candidate findings are rated CRITICAL 2, HIGH 18,
   MEDIUM 96, LOW 101.

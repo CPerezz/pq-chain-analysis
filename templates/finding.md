@@ -1,7 +1,7 @@
 ---
 # Format 2. Start a finding with `uv run tools/new_finding.py`, which fills the facts; read AGENTS.md first.
 # Readers see everything above `## Reviewer notes` except the fields marked "not shown". Leave a field empty when
-# it is not established; never guess. Field rules: findings/README.md.
+# it is not established; never guess. Field rules: AGENTS.md.
 id: name-12345678-issue            # = file name: <contract name>-<first 8 hex of the address>-<issue>
 format: 2
 title:                             # 20-80 characters, plain words: what is wrong, for whom. No amounts, ids or codes
@@ -35,7 +35,7 @@ activity:
 impact:                            # funds-loss | funds-locked | liveness: what happens if nobody acts
 action:                            # up to 140 characters, for the contract's team, starting with a verb; empty if not sure
 evidence_level:                    # source | bytecode | onchain | trace | executed
-checks: []                         # not shown: what tools/verify.py re-runs; every part of the card needs one (findings/README.md)
+checks: []                         # not shown: what tools/verify.py re-runs; every part of the card needs one (AGENTS.md)
 sources:
 - study: study-id
   who:                             # person or agent

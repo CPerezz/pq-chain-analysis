@@ -4,7 +4,7 @@
 
 **Question.** Suppose user accounts become post-quantum (PQ), for example via EIP-8141 frame transactions with PQ verification. How much of what users rely on still sits on contracts that verify pre-quantum cryptography? How many such contracts are there, can they change, do they have an alternative path, and how much value moves through them?
 
-**Per-project detail.** Each affected project and mechanism has its own file in [`findings/`](findings/), with a severity rating, the contracts, who can fix it, value at risk and evidence; see the [index](generated/INDEX.md) and the [rubric](findings/README.md#severity).
+**Per-project detail.** Each affected project and mechanism has its own file in [`findings/`](findings/), with a severity rating, the contracts, who can fix it, value at risk and evidence; see the [rubric](AGENTS.md#severity).
 
 ---
 

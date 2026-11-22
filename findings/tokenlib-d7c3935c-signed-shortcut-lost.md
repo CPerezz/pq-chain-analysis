@@ -53,7 +53,7 @@ PQ-19. A user whose account has real code loses the signed path only; gasless an
 - TokenLib.sol: permit requires ECDSA.recover == issuer (l.84-85); approve (l.35) uses msg.sender.
 - Direct functions present in bytecode at block 26438999: approve (0x095ea7b3), transfer (0xa9059cbb); each acts for msg.sender, so a holder with code calls them itself.
 - Signed path(s) lost for a signer with code: permit; study reading: TokenLib permit: the issuer named must have signed
-- Dossier ~/dev/pq-chain-analysis/goals/eip-8151-analysis/readings/0c06c22a8edfa5f204d87dacd90a976f (source + scanner: STATICCALL to precompile 0x01 present).
+- Source and scanner: a STATICCALL to precompile 0x01 is present.
 
 ## Impact and exposure
 

@@ -506,7 +506,7 @@ Largest rows by value held at block 26,438,999:
 - `0xe80f92077131b9890599e418ae323de71ce1c35a` (SrcBridge): $93k, LOW, 2 addresses
 - `0x223ca78df868367d214b444d561b9123c018963a` (unverified): $43k, LOW
 
-Every row is in the header; `generated/triage_contracts.csv` lists them for search.
+Every row is in the header.
 
 ## Remediation
 

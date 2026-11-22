@@ -93,7 +93,7 @@ function valueTip(r) {
     + (r.value_usd != null ? `Card: ${money(r.value_usd)} ${r.value_basis || ''}` : '');
 }
 
-// ---------- card text: paragraphs and bullets with inline code, links and bold (findings/README.md allows no more) ----------
+// ---------- card text: paragraphs and bullets with inline code, links and bold (AGENTS.md allows no more) ----------
 const esc = s => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const INLINE = /`([^`]+)`|\[((?:`[^`]*`|[^\]])+)\]\((https?:\/\/[^)\s]+)\)|\*\*(.+?)\*\*|<(https?:\/\/[^>\s]+)>/g;
 function inline(s) {
@@ -470,7 +470,7 @@ function contactView(d) {
     same.length ? h('p', { class: 'same' }, same) : '');
 }
 
-// A finding as its readers see it (findings/README.md): the card, with "not established" for an empty field, then
+// A finding as its readers see it (AGENTS.md): the card, with "not established" for an empty field, then
 // what the board adds. The server sends neither the Reviewer notes nor the fields marked "not shown".
 const WHOSE = { users: "users' money", operator: "the operator's money", mixed: "users' and the operator's money" };
 function cardView(d) {

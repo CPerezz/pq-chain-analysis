@@ -36,7 +36,7 @@ DATA = Path(os.environ.get("BOARD_DATA", HERE / "data"))
 REGISTRY, BOARD = DATA / "registry.db", DATA / "outreach.db"
 STATIC = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"), "/app.css": ("app.css", "text/css")}
 
-# The registry's outreach statuses and what each means (its outreach/README.md), kept here per finding.
+# The outreach statuses of a finding, and what each means.
 STATUS_HELP = {
     "not-contacted": "Nobody has written to the team yet.",
     "contacted": "A message was sent; no reply yet.",
@@ -79,7 +79,7 @@ LIST = ("f.id, f.title, f.severity, f.level, f.category, f.category_name, f.patt
         "f.held_addresses, f.held_at, f.txs_90d, f.gaps, "
         "COALESCE(o.status, 'not-contacted') AS status, o.assignee, o.updated_at, o.updated_by, "
         "COALESCE(c.n, 0) AS comments, lc.new AS last_comment, lc.who AS last_comment_by, lc.at AS last_comment_at")
-# What the page may show of a finding: the card without the fields findings/README.md marks "not shown" (admin,
+# What the page may show of a finding: the card without the fields AGENTS.md marks "not shown" (admin,
 # activity.last, primitive, checks) and without the Reviewer notes, plus what the board adds.
 SHOWN = ("id, title, level, severity, justification, category, category_name, pattern, pattern_words, study, as_of, block, "
          "address, name, project, label, code, code_url, proxy_of, copies, family, upgradeable, value_usd, value_whose, "

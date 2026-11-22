@@ -61,7 +61,7 @@ Largest rows by value held at block 26,438,999:
 - `0xaf0b0000f0210d0f421f0009c72406703b50506b` (unverified): $1, MEDIUM
 - `0xe2f011b751bc2421ce0618bff526ad3de582ce7d` (unverified): $1, MEDIUM
 
-Every row is in the header; `generated/triage_contracts.csv` lists them for search.
+Every row is in the header.
 
 ## Remediation
 

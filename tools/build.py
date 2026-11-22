@@ -3,21 +3,18 @@
 # requires-python = ">=3.10"
 # dependencies = ["pyyaml>=6"]
 # ///
-"""Check studies/, triage/, findings/, outreach/ and patterns.md, and build generated/.
+"""Check studies/, triage/, findings/ and patterns.md: the rules of AGENTS.md and studies/README.md.
 
-  uv run tools/build.py             check, then write generated/
-  uv run tools/build.py --check     check only
+  uv run tools/build.py             check
   uv run tools/build.py --selftest  also prove that the rules reject what they should
 
-Field references: studies/README.md, findings/README.md, outreach/README.md. templates/examples/ is checked on every run.
+templates/examples/ is checked on every run.
 """
 
 from __future__ import annotations
 
 import argparse
-import csv
 import datetime as dt
-import io
 import re
 import shutil
 import sys
@@ -27,7 +24,6 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
-GENERATED = ROOT / "generated"
 EXAMPLES = ROOT / "templates" / "examples"
 
 LEVELS = ("reproduced", "confirmed", "candidate")  # live findings, strongest first
@@ -53,7 +49,6 @@ PROTOCOL_CHANGE = ("required", "helps", "not-needed")
 
 STUDY_STATUS = ("planned", "running", "published")
 STUDY_SECTIONS = ("Goal", "Setup", "Procedure", "Reproduce", "Results", "Limits")
-OUTREACH = ("not-contacted", "contacted", "acknowledged", "fix-planned", "fixed", "unresponsive", "declined")
 
 SLUG = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 ADDRESS = re.compile(r"^0x[0-9a-f]{40}$")
@@ -67,7 +62,7 @@ CATEGORY_ITEM = re.compile(r'^- \*\*([a-z][a-z-]*)\*\* \("([^"]+)"\):', re.M)
 CATEGORY_LINE = re.compile(r"^\*\*Category:\*\* *([a-z-]+)", re.M)
 WORDS_LINE = re.compile(r"^\*\*In words:\*\* *(\S.*)$", re.M)
 
-# Format 2 (findings/README.md): one contract per finding, a card for readers, reviewer notes for re-checks.
+# Format 2 (AGENTS.md): one contract per finding, a card for readers, reviewer notes for re-checks.
 STATUS2 = ("candidate", "confirmed", "reproduced", "duplicate")
 SEVERITY2 = ("CRITICAL", "HIGH", "MEDIUM", "LOW", "INFORMATIONAL")
 CODE2 = ("verified", "decompiled", "bytecode")
@@ -94,7 +89,7 @@ CHECK_KINDS = {"code": ({"is"}, {"bytes", "target"}), "bytecode": ({"has"}, {"ab
                "call": (set(), {"fn", "data", "args", "is", "reverts", "reverts_with", "from"}), "source": ({"file", "has"}, {"line", "lines"}),
                "selector": ({"fn"}, {"absent"}), "tx": (set(), {"to", "ok"}), "nonce": (set(), {"is", "min"}),
                "replay": ({"run", "ok"}, set()), "ref": (set(), set()),
-               "logs": ({"topic", "from"}, {"to", "topics", "count", "min", "has"})}  # one emitter, one event, a range (D-028)
+               "logs": ({"topic", "from"}, {"to", "topics", "count", "min", "has"})}  # one emitter, one event, a range
 CHECK_COMMON = {"id", "says", "for", "at"}
 CHECK_FACTS = ("proxy_of", "upgradeable", "admin", "name", "whose")  # header facts a check may back, where the tool reads none or differs
 CHECK_FOR = ("what", "evidence-1", "evidence-2", "evidence-3", "justification", "action", "notes") + CHECK_FACTS
@@ -510,7 +505,7 @@ def check_checks(p: Problems, w: str, checks, final: bool, parts: list[str]) -> 
 
 def load_finding2(path: Path, head: dict, body: str, patterns: dict[str, dict], studies: dict[str, dict], p: Problems,
                   pool: str, root: Path):
-    """A format-2 finding (findings/README.md), returned with the fields the views of format 1 read."""
+    """A format-2 finding (AGENTS.md), with `patterns` and `contracts` as format 1 has them, for cross_check."""
     w, f = (path.name if pool == "findings" else f"{pool}/{path.name}"), dict(head)
     if set(f) - KEYS2:
         p.add(w, f"unknown fields {sorted(set(f) - KEYS2)}")
@@ -647,17 +642,9 @@ def load_finding2(path: Path, head: dict, body: str, patterns: dict[str, dict], 
     check_checks(p, w, f.get("checks"), final, parts)
 
     f["title"] = title or str(f.get("title") or "")
-    f["patterns"], f["_class"] = ([pid] if pid in patterns else []), patterns.get(pid, {}).get("class")
+    f["patterns"] = [pid] if pid in patterns else []
     f["severity"] = sev if sev in SEVERITY2 else "UNRATED"
-    f["contracts"] = [{"address": c.get("address"), "name": c.get("name"), "project": c.get("project"), "label": c.get("label"),
-                       "implementation": c.get("proxy_of"), "upgradeable": c.get("upgradeable"), "admin": c.get("admin"),
-                       "value_usd": v.get("usd"), "value_basis": v.get("basis"),
-                       "value_as_of": f.get("as_of") if v.get("usd") is not None else None, "last_active": a.get("last"),
-                       "txs_90d": a.get("txs_90d"), "copies": copies if isinstance(copies, int) else 1, "family": c.get("family"),
-                       "rating": sev if sev in SEVERITY2 else None}] if isinstance(c.get("address"), str) else []
-    f["families"], f["fix"] = [], {"who_acts": action or ""}
-    f["evidence"] = {"level": f.get("evidence_level"), "block": f.get("block")}
-    f["_projects"] = [c["project"]] if isinstance(c.get("project"), str) else []
+    f["contracts"] = [{"address": c["address"]}] if isinstance(c.get("address"), str) else []
     return f
 
 
@@ -665,24 +652,6 @@ def section_texts(body: str) -> tuple[str, list[tuple[str, str]]]:
     """The text before the first `## ` heading, and (heading, text) for every `## ` section."""
     chunks = re.split(r"^## (.+)$", body, flags=re.M)
     return chunks[0], [(chunks[i].strip(), chunks[i + 1]) for i in range(1, len(chunks), 2)]
-
-
-def load_outreach(path: Path, projects: set[str], p: Problems):
-    head, body = split(path, p)
-    if head is None:
-        return None
-    w, o = f"outreach/{path.name}", dict(head)
-    if o.get("project") != path.stem:
-        p.add(w, f"project {o.get('project')!r} must equal the file name")
-    if path.stem not in projects:
-        p.add(w, "no finding names this project")
-    status = enum(p, w, o, "status", OUTREACH)
-    date(p, w, o, "fix_eta")
-    if "Log" not in sections(body):
-        p.add(w, "body needs a `## Log` section")
-    if status not in (None, "not-contacted") and not DATED.search(body.split("## Log", 1)[-1]):
-        p.add(w, f"status {status} needs at least one dated line in the log")
-    return o
 
 
 def cross_check(findings: list[dict], p: Problems) -> None:
@@ -709,343 +678,16 @@ def cross_check(findings: list[dict], p: Problems) -> None:
 
 
 def load_tree(root: Path, patterns: dict[str, dict], p: Problems, more_studies: dict[str, dict] | None = None
-              ) -> tuple[dict[str, dict], list[dict], dict[str, dict], list[dict]]:
-    """Studies, findings, outreach files and triage entries under `root` (the repo, or templates/examples, whose
-    findings may also name the repo's studies, given as `more_studies`)."""
+              ) -> tuple[dict[str, dict], list[dict], list[dict]]:
+    """Studies, findings and triage entries under `root` (the repo, or templates/examples, whose findings may also
+    name the repo's studies, given as `more_studies`)."""
     studies = {**(more_studies or {}),
                **{s["id"]: s for path in sorted(root.glob("studies/*/README.md")) if (s := load_study(path, p)) is not None}}
-    findings = [f for path in sorted(root.glob("findings/*.md")) if path.name != "README.md"
-                if (f := load_finding(path, patterns, studies, p)) is not None]
-    triage = [f for path in sorted(root.glob("triage/*.md")) if path.name != "README.md"
+    findings = [f for path in sorted(root.glob("findings/*.md")) if (f := load_finding(path, patterns, studies, p)) is not None]
+    triage = [f for path in sorted(root.glob("triage/*.md"))
               if (f := load_finding(path, patterns, studies, p, pool="triage")) is not None]
     cross_check(findings + triage, p)
-    projects = {x for f in findings + triage for x in f["_projects"]}
-    outreach = {o["project"]: o for path in sorted(root.glob("outreach/*.md")) if path.name != "README.md"
-                if (o := load_outreach(path, projects, p)) is not None}
-    return studies, findings, outreach, triage
-
-
-# ---- views -----------------------------------------------------------------------------------------------------
-
-def money(v) -> str:
-    if v is None:
-        return ""
-    v = float(v)
-    return f"${v / 1e9:.1f}B" if v >= 1e9 else f"${v / 1e6:.1f}M" if v >= 1e6 else f"${v / 1e3:.0f}k" if v >= 1e3 else f"${v:.0f}"
-
-
-def exposure(f) -> tuple[float | None, str]:
-    """The finding's measured exposure: summed held/escrow value, else the largest market cap."""
-    held = [c.get("value_usd") for c in f["contracts"] + f["families"]
-            if c.get("value_usd") is not None and c.get("value_basis") in ("held", "escrow")]
-    caps = [c.get("value_usd") for c in f["contracts"] if c.get("value_usd") is not None and c.get("value_basis") == "market-cap"]
-    if held:
-        return float(sum(held)), "held"
-    if caps:
-        return float(max(caps)), "market cap"
-    return None, ""
-
-
-def activity(f) -> int:
-    return sum(c.get("txs_30d") or 0 for c in f["contracts"])
-
-
-def upgradeable(f) -> str:
-    vals = {c.get("upgradeable") for c in f["contracts"] + f["families"]}
-    return "/".join(v for v in UPGRADEABLE if v in vals)
-
-
-def order(f):
-    return (STATUS.index(f["status"]), SEVERITY.index(f["severity"]), -(exposure(f)[0] or 0), f["id"])
-
-
-def outreach_of(projects: list[str], outreach: dict[str, dict]) -> str:
-    seen = {outreach.get(x, {}).get("status") or "not-contacted" for x in projects}
-    return "/".join(s for s in OUTREACH if s in seen)
-
-
-def found_by(f) -> str:
-    n = len(f["_studies"])
-    return (f"**found by {n}:** " if n > 1 else "") + ", ".join(f["_studies"])
-
-
-def project_cell(f) -> str:
-    return ", ".join(f["_projects"][:3]) + (f" +{len(f['_projects']) - 3}" if len(f["_projects"]) > 3 else "")
-
-
-def link(f, up="../") -> str:
-    return f"[{f['id']}]({up}{f.get('_pool', 'findings')}/{f['id']}.md)"
-
-
-def table(header: list[str], rows: list[list]) -> list[str]:
-    return ["| " + " | ".join(header) + " |", "|" + "---|" * len(header)] + ["| " + " | ".join(str(c) for c in r) + " |" for r in rows] + [""]
-
-
-def index_md(findings, outreach, pending: int = 0) -> str:
-    live = [f for f in findings if f["status"] in LEVELS]
-    counts = {s: sum(1 for f in live if f["severity"] == s) for s in SEVERITY}
-    lines = [
-        "# Findings by severity", "",
-        "Generated by `tools/build.py` from the file headers; do not edit. Severity rubric and levels: "
-        "`findings/README.md`. Other views: [by class and pattern](PATTERNS.md), [by study](STUDIES.md).", "",
-        "Live findings: " + ", ".join(f"{s} {counts[s]}" for s in SEVERITY if counts[s]) + ". "
-        + ", ".join(f"{lvl.capitalize()} {sum(1 for f in live if f['status'] == lvl)}" for lvl in LEVELS)
-        + f". Not affected {sum(1 for f in findings if f['status'] == 'not-affected')}. Contracts covered "
-        f"{sum(len(f['contracts']) for f in live)}. Found by two or more studies: "
-        f"{sum(1 for f in live if len(f['_studies']) > 1)}. Not yet reviewed: {pending} in the [triage pool](TRIAGE.md).", "",
-    ]
-    for sev in SEVERITY:
-        rows = sorted((f for f in live if f["severity"] == sev), key=order)
-        if not rows:
-            continue
-        lines += [f"## {sev}", ""]
-        lines += table(
-            ["Finding", "Project", "Patterns", "Trigger", "Impact", "Alternative", "Upgradeable", "Fix", "Protocol change",
-             "Exposure", "30-day txs", "Level", "Found by", "Outreach"],
-            [[link(f), project_cell(f), ", ".join(f["patterns"]), f.get("trigger") or "", f.get("impact") or "",
-              f.get("alternative") or "", upgradeable(f), f["fix"].get("layer") or "", f["fix"].get("protocol_change") or "",
-              money(exposure(f)[0]) + (" (market cap)" if exposure(f)[1] == "market cap" else ""), f"{activity(f):,}",
-              f["status"], found_by(f), outreach_of(f["_projects"], outreach)] for f in rows])
-    rest = sorted((f for f in findings if f["status"] not in LEVELS), key=lambda f: f["id"])
-    if rest:
-        lines += ["## Not affected or duplicate", ""]
-        lines += table(["Finding", "Project", "Status", "Why"], [[link(f), project_cell(f), f["status"], f["title"]] for f in rest])
-    return "\n".join(lines)
-
-
-def patterns_md(findings, classes, patterns, outreach) -> str:
-    live = [f for f in findings if f["status"] in LEVELS]
-    lines = ["# Findings by class and pattern", "",
-             "Generated by `tools/build.py`; do not edit. Classes and patterns are defined in [`patterns.md`](../patterns.md). "
-             "A finding with several patterns is listed under each.", ""]
-    lines += table(["Class", "Patterns", "Findings"] + list(SEVERITY[:5]),
-                   [[c, sum(1 for x in patterns.values() if x["class"] == c), sum(1 for f in live if f["_class"] == c)]
-                    + [sum(1 for f in live if f["_class"] == c and f["severity"] == s) for s in SEVERITY[:5]] for c in classes])
-    for c in classes:
-        lines += [f"## {c}", ""]
-        mine = {pid: x for pid, x in patterns.items() if x["class"] == c}
-        if not mine:
-            lines += ["No patterns yet.", ""]
-        for pid, x in mine.items():
-            rows = sorted((f for f in live if pid in f["patterns"]), key=order)
-            lines += [f"### {pid}: {x['title']}", ""]
-            lines += table(["Finding", "Severity", "Level", "Project", "Found by", "Outreach"],
-                           [[link(f), f["severity"], f["status"], project_cell(f), found_by(f),
-                             outreach_of(f["_projects"], outreach)] for f in rows]) if rows else ["No findings yet.", ""]
-    return "\n".join(lines)
-
-
-def studies_md(findings, studies) -> str:
-    mine = {sid: sorted((f for f in findings if sid in f["_studies"]), key=order) for sid in studies}
-    lines = ["# Findings by study", "",
-             "Generated by `tools/build.py`; do not edit. A study says how something was investigated; its folder is "
-             "linked in each heading. A finding found by several studies is listed under each.", ""]
-    lines += table(["Study", "Status", "Topic", "Authors", "Findings"] + [lvl.capitalize() for lvl in LEVELS],
-                   [[f"[{sid}](#{sid})", s.get("status"), s.get("topic"), ", ".join(s["authors"]), len(mine[sid])]
-                    + [sum(1 for f in mine[sid] if f["status"] == lvl) for lvl in LEVELS] for sid, s in studies.items()])
-    for sid, s in studies.items():
-        lines += [f"## {sid}", "", f"[{s.get('title')}](../studies/{sid}/README.md)", ""]
-        lines += table(["Finding", "Severity", "Level", "Also found by"],
-                       [[link(f), f["severity"], f["status"], ", ".join(x for x in f["_studies"] if x != sid)]
-                        for f in mine[sid]]) if mine[sid] else ["No findings.", ""]
-    return "\n".join(lines)
-
-
-def to_csv(header, rows) -> str:
-    buf = io.StringIO()
-    w = csv.writer(buf, lineterminator="\n")
-    w.writerow(header)
-    w.writerows(rows)
-    return buf.getvalue()
-
-
-def findings_csv(findings, outreach) -> str:
-    header = ["id", "project", "status", "severity", "patterns", "primitives", "trigger", "impact", "alternative", "role",
-              "upgradeable", "fix_layer", "protocol_change", "who_acts", "exposure_usd", "exposure_basis", "txs_30d",
-              "contracts", "evidence_level", "title", "class", "studies", "n_studies", "outreach"]
-    rows = []
-    for f in sorted(findings, key=order):
-        v, basis = exposure(f)
-        rows.append([f["id"], " ".join(f["_projects"]), f["status"], f["severity"], " ".join(f["patterns"]),
-                     " ".join(f.get("primitives") or []), f.get("trigger") or "", f.get("impact") or "",
-                     f.get("alternative") or "", f.get("role") or "", upgradeable(f), f["fix"].get("layer") or "",
-                     f["fix"].get("protocol_change") or "", f["fix"].get("who_acts") or "", "" if v is None else round(v),
-                     basis, activity(f), len(f["contracts"]), f["evidence"].get("level") or "", f["title"],
-                     f["_class"] or "", " ".join(f["_studies"]), len(f["_studies"]), outreach_of(f["_projects"], outreach)])
-    return to_csv(header, rows)
-
-
-def contracts_csv(findings, outreach) -> str:
-    header = ["address", "finding", "severity", "status", "name", "implementation", "upgradeable", "admin", "value_usd",
-              "value_basis", "value_as_of", "last_active", "txs_30d", "txs_90d", "copies", "label", "project", "outreach"]
-    rows = []
-    for f in sorted(findings, key=order):
-        for c in f["contracts"]:
-            project = c.get("project") or f.get("project") or ""
-            rows.append([c["address"], f["id"], c.get("rating") or f["severity"], f["status"], c.get("name") or "", c.get("implementation") or "",
-                         c.get("upgradeable") or "", c.get("admin") or "", "" if c.get("value_usd") is None else round(c["value_usd"]),
-                         c.get("value_basis") or "", c.get("value_as_of") or "", c.get("last_active") or "",
-                         "" if c.get("txs_30d") is None else c["txs_30d"], "" if c.get("txs_90d") is None else c["txs_90d"],
-                         c.get("copies") or 1, c.get("label") or "", project, outreach_of([project], outreach) if project else ""])
-    return to_csv(header, rows)
-
-
-def studies_csv(findings, studies) -> str:
-    header = ["id", "title", "authors", "status", "topic", "started", "published", "code", "spec_commit", "findings"] + list(LEVELS)
-    rows = []
-    for sid, s in studies.items():
-        mine = [f for f in findings if sid in f["_studies"]]
-        rows.append([sid, s.get("title"), " ".join(s["authors"]), s.get("status"), s.get("topic"), s.get("started") or "",
-                     s.get("published") or "", "none" if s.get("code") == "none" else " ".join(s.get("code") or []),
-                     (s.get("spec") or {}).get("commit", ""), len(mine)] + [sum(1 for f in mine if f["status"] == lvl) for lvl in LEVELS])
-    return to_csv(header, rows)
-
-
-def proposed(f) -> str:
-    """The rating a triage entry proposes: its own severity, else the first rating a source gave."""
-    rated = [f["severity"]] + [s.get("rating") for s in f["sources"]]
-    return next((r for r in rated if r in SEVERITY and r != "UNRATED"), "UNRATED")
-
-
-def verdicts(f, v) -> list[dict]:
-    return [r for r in f["reviews"] if isinstance(r, dict) and r.get("verdict") == v]
-
-
-def addresses_of(f) -> int:
-    """Addresses an entry covers: one per contract row, or its `copies`, plus the instances of its families."""
-    return sum(c.get("copies") or 1 for c in f["contracts"]) + sum(fam.get("instances") or 0 for fam in f["families"])
-
-
-def recoveries_of(f) -> int:
-    return sum(c.get("recoveries_14d") or 0 for c in f["contracts"])
-
-
-def rows_by_rating(f) -> str:
-    """How many of an entry's rows sit at each rating, most severe first ("HIGH 12, LOW 300")."""
-    n = {}
-    for c in f["contracts"]:
-        r = c.get("rating") or f["severity"]
-        n[r] = n.get(r, 0) + 1
-    return ", ".join(f"{r} {n[r]:,}" for r in SEVERITY if r in n)
-
-
-def triage_md(triage) -> str:
-    live = sorted((f for f in triage if f["status"] != "discarded"),
-                  key=lambda f: (SEVERITY.index(proposed(f)), -(exposure(f)[0] or 0), -recoveries_of(f), f["id"]))
-    lines = ["# Triage pool", "",
-             "Generated by `tools/build.py`; do not edit. Entries nobody but their reporter has checked yet; how to review "
-             "them: `triage/README.md`. Each row has its own rating; an entry is sorted by its highest row, exposure, then "
-             "recoveries in the study's two-week window. [triage.csv](triage.csv) has the same entries; "
-             "[triage_contracts.csv](triage_contracts.csv) has every row, by value held, then by recoveries.", ""]
-    lines += table(["Entry", "Patterns", "Rows by rating", "Addresses", "Exposure", "Recoveries (14 d)", "Level", "Found by",
-                    "Reviews"],
-                   [[link(f), ", ".join(f["patterns"]), rows_by_rating(f), f"{addresses_of(f):,}",
-                     money(exposure(f)[0]), f"{recoveries_of(f):,}", f["status"], found_by(f),
-                     f"{len(verdicts(f, 'confirmed'))} confirmed, {len(verdicts(f, 'refuted'))} refuted"] for f in live])
-    gone = sorted((f for f in triage if f["status"] == "discarded"), key=lambda f: f["id"])
-    if gone:
-        lines += ["## Discarded", ""]
-        lines += table(["Entry", "By", "Why"], [[link(f), ", ".join(str(r["who"]) for r in verdicts(f, "refuted")),
-                                                 "; ".join(str(r.get("note") or "") for r in verdicts(f, "refuted"))] for f in gone])
-    return "\n".join(lines)
-
-
-def triage_csv(triage) -> str:
-    header = ["id", "project", "status", "proposed_rating", "patterns", "rows", "addresses", "exposure_usd", "exposure_basis",
-              "recoveries_14d", "txs_30d", "evidence_level", "title", "class", "studies", "reviews_confirmed", "reviews_refuted"]
-    rows = []
-    for f in sorted(triage, key=lambda f: (f["status"] == "discarded", SEVERITY.index(proposed(f)), -(exposure(f)[0] or 0), f["id"])):
-        v, basis = exposure(f)
-        rows.append([f["id"], " ".join(f["_projects"]), f["status"], proposed(f), " ".join(f["patterns"]), len(f["contracts"]),
-                     addresses_of(f), "" if v is None else round(v), basis, recoveries_of(f), activity(f),
-                     f["evidence"].get("level") or "", f["title"], f["_class"] or "", " ".join(f["_studies"]),
-                     len(verdicts(f, "confirmed")), len(verdicts(f, "refuted"))])
-    return to_csv(header, rows)
-
-
-def triage_contracts_csv(triage) -> str:
-    """Every contract row of the triage pool, by value held, then by recoveries in the window: the priority order.
-    Search it for an address."""
-    header = ["address", "entry", "entry_status", "rating", "patterns", "family", "copies", "name", "label", "project",
-              "upgradeable", "value_usd", "value_basis", "value_as_of", "recoveries_14d", "note"]
-    rows = []
-    for f in triage:
-        for c in f["contracts"]:
-            rows.append([c.get("address"), f["id"], f["status"], c.get("rating") or f["severity"], " ".join(f["patterns"]),
-                         c.get("family") or "", c.get("copies") or 1, c.get("name") or "", c.get("label") or "",
-                         c.get("project") or f.get("project") or "", c.get("upgradeable") or "",
-                         "" if c.get("value_usd") is None else round(c["value_usd"]), c.get("value_basis") or "",
-                         c.get("value_as_of") or "", c.get("recoveries_14d") or 0, c.get("note") or ""])
-    rows.sort(key=lambda r: (-(r[11] or 0), -r[14], r[0] or "", r[1]))
-    return to_csv(header, rows)
-
-
-def label_owner(label: str) -> str:
-    """The organisation a public tag names: "Amina Deposit: 0x…" -> "Amina Deposit"; "deployed by Pimlico: Bundler 4" -> "Pimlico"."""
-    return re.sub(r"^(deployed|created) by ", "", label).split(":")[0].strip()
-
-
-def by_project(findings, triage) -> dict[str, dict]:
-    """Every project named by a live finding or a pending triage entry: its entries, contracts and exposure."""
-    out: dict[str, dict] = {}
-    entries = [f for f in findings if f["status"] in LEVELS] + [f for f in triage if f["status"] != "discarded"]
-    for f in entries:
-        for proj in f["_projects"]:
-            d = out.setdefault(proj, {"findings": [], "triage": [], "held": {}})
-            d["triage" if f["_pool"] == "triage" else "findings"].append(f)
-            rows = [c for c in f["contracts"] if (c.get("project") or f.get("project")) == proj]
-            rows += f["families"] if f.get("project") == proj else []
-            for c in rows:
-                if c.get("value_usd") is not None and c.get("value_basis") in ("held", "escrow"):
-                    key = c.get("address") or c.get("code")
-                    d["held"][key] = max(d["held"].get(key, 0), float(c["value_usd"]))
-    return out
-
-
-def worst(fs, rate) -> str:
-    return min((rate(f) for f in fs), key=SEVERITY.index, default="")
-
-
-def projects_rows(findings, triage, outreach):
-    rows = []
-    for proj, d in by_project(findings, triage).items():
-        rows.append([proj, outreach_of([proj], outreach), worst(d["findings"], lambda f: f["severity"]),
-                     worst(d["triage"], proposed), len(d["findings"]), len(d["triage"]), round(sum(d["held"].values())),
-                     " ".join(f["id"] for f in d["findings"] + d["triage"]), d])
-    key = lambda r: (min(SEVERITY.index(x) for x in (r[2] or "UNRATED", r[3] or "UNRATED")), -r[6], r[0])
-    return sorted(rows, key=key)
-
-
-def projects_md(findings, triage, outreach) -> str:
-    lines = ["# Findings by project", "",
-             "Generated by `tools/build.py`; do not edit. One row per project (the team that has to act), for outreach: its "
-             "reviewed findings and its entries still in triage. Exposure counts each contract once. "
-             "[projects.csv](projects.csv) has the same rows.", ""]
-    lines += table(["Project", "Outreach", "Worst finding", "Worst in triage", "Exposure", "Entries"],
-                   [[r[0], r[1], r[2], r[3], money(r[6] or None),
-                     ", ".join(link(f) for f in r[8]["findings"] + r[8]["triage"])] for r in projects_rows(findings, triage, outreach)])
-    owners: dict[str, dict] = {}
-    for f in [f for f in findings if f["status"] in LEVELS] + [f for f in triage if f["status"] != "discarded"]:
-        for c in f["contracts"]:
-            if c.get("project") or f.get("project") or not c.get("label"):
-                continue
-            d = owners.setdefault(label_owner(c["label"]), {"rows": 0, "worst": "UNRATED", "held": 0.0, "entries": {}})
-            d["rows"] += 1
-            d["worst"] = min(d["worst"], c.get("rating") or f["severity"], key=SEVERITY.index)
-            d["held"] += float(c.get("value_usd") or 0) if c.get("value_basis") in ("held", "escrow") else 0
-            d["entries"][f["id"]] = f
-    if owners:
-        lines += ["## Rows with no project, by public tag (unverified)", "",
-                  "A tag from a block explorer is a lead for outreach, never a name: it can be wrong or stale.", ""]
-        lines += table(["Tag owner", "Rows", "Worst rating", "Exposure", "Entries"],
-                       [[k, d["rows"], d["worst"], money(d["held"] or None), ", ".join(link(f) for f in d["entries"].values())]
-                        for k, d in sorted(owners.items(), key=lambda kv: (SEVERITY.index(kv[1]["worst"]), -kv[1]["held"], kv[0]))])
-    return "\n".join(lines)
-
-
-def projects_csv(findings, triage, outreach) -> str:
-    header = ["project", "outreach", "worst_finding", "worst_triage", "findings", "triage", "exposure_usd", "ids"]
-    return to_csv(header, [r[:8] for r in projects_rows(findings, triage, outreach)])
+    return studies, findings, triage
 
 
 # ---- self-test ---------------------------------------------------------------------------------------------------
@@ -1066,7 +708,7 @@ def selftest(patterns: dict[str, dict], studies: dict[str, dict]) -> list[str]:
                 assert old in text, f"selftest is out of date: {old!r} not in {path}"
                 (root / path).write_text(text.replace(old, new), encoding="utf-8")
             p = Problems()
-            _, findings, _, triage = load_tree(root, pats or patterns, p, more_studies=studies)
+            _, findings, triage = load_tree(root, pats or patterns, p, more_studies=studies)
             return p, {f["id"]: f for f in findings + triage}
 
     ed, study = "findings/etherdelta-8d12a197-order-signature.md", "studies/example-study/README.md"
@@ -1126,13 +768,6 @@ def selftest(patterns: dict[str, dict], studies: dict[str, dict]) -> list[str]:
          {"change": (ed, f'  storage: "{ed_addr}"', f"  storage: {ed_addr}")}, "must be a lowercase 0x address, quoted"),
         ("a check of no known kind", {"change": (ed, f'  selector: "{ed_addr}"', f'  selektor: "{ed_addr}"')}, "needs exactly one of"),
         ("a source check without a line", {"change": (ed, "  line: 256\n", "")}, "a source check needs"),
-        ("outreach as filled", {"extra": {"outreach/etherdelta.md": OUTREACH_FILE}}, None),
-        ("outreach for a project no finding names", {"extra": {"outreach/nobody.md": OUTREACH_FILE.replace("project: etherdelta", "project: nobody")}},
-         "no finding names this project"),
-        ("outreach status without a log line", {"extra": {"outreach/etherdelta.md": OUTREACH_FILE.replace("- 2026-", "- undated ")}},
-         "needs at least one dated line"),
-        ("outreach status that does not exist", {"extra": {"outreach/etherdelta.md": OUTREACH_FILE.replace("status: contacted", "status: contact")}},
-         "status='contact' not in"),
         ("a study without Limits", {"change": (study, "## Limits", "## Caveats")}, "sections must be"),
         ("a study whose code link has no commit", {"change": (study, "/tree/0123456789abcdef0123456789abcdef01234567", "/tree/main")},
          "full commit hash"),
@@ -1169,12 +804,12 @@ def selftest(patterns: dict[str, dict], studies: dict[str, dict]) -> list[str]:
         if expect is not None and not any(expect in g for g in got):
             wrong.append(f"{name}: expected a problem containing {expect!r}, got {got}")
 
-    # a finding that two studies found is marked
+    # a finding that two studies found keeps both
     one = "sources:\n- study: top-callers-classification"
     two = "sources:\n- study: eip-8151-impact\n  who: someone-else\n  date: 2026-11-19\n  by: ai-assisted\n  verdict: confirmed\n" + one[9:]
     got, found = run(change=(ed, one, two))
-    if got or not found_by(found[ed_id]).startswith("**found by 2:**"):
-        wrong.append(f"found by two studies: {got or found_by(found[ed_id])}")
+    if got or set(found[ed_id]["_studies"]) != {"top-callers-classification", "eip-8151-impact"}:
+        wrong.append(f"found by two studies: {got or found[ed_id]['_studies']}")
 
     # a pull request can add a class and a pattern together with the finding that needs them
     with tempfile.TemporaryDirectory() as tmp:
@@ -1188,19 +823,6 @@ def selftest(patterns: dict[str, dict], studies: dict[str, dict]) -> list[str]:
     if p or got or "example-class" not in classes2 or found["example-minimal"]["_class"] != "example-class":
         wrong.append(f"a new class and pattern: {list(p) + list(got)}")
     return wrong
-
-
-OUTREACH_FILE = """---
-project: etherdelta
-status: contacted
-channel: "security@example.org"
-fix_eta: null
----
-
-## Log
-
-- 2026-11-18 (someone, email): sent the finding; asked whether the team still runs the contract.
-"""
 
 
 MINIMAL = """---
@@ -1362,12 +984,11 @@ TODO: the path through the code.
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--check", action="store_true", help="check only; write nothing")
     ap.add_argument("--selftest", action="store_true", help="also prove the rules reject what they should")
     args = ap.parse_args()
     p = Problems()
-    classes, patterns = load_patterns(p)
-    studies, findings, outreach, triage = load_tree(ROOT, patterns, p)
+    _, patterns = load_patterns(p)
+    studies, findings, triage = load_tree(ROOT, patterns, p)
     examples = Problems()  # filled examples: real contracts, so they may name the repo's studies
     load_tree(EXAMPLES, patterns, examples, more_studies=studies)
     p += [f"templates/examples: {x}" for x in examples]
@@ -1377,18 +998,7 @@ def main() -> int:
         print("\n".join(p))
         print(f"{len(p)} problem(s)")
         return 1
-    if not args.check:
-        GENERATED.mkdir(exist_ok=True)
-        pending = sum(1 for f in triage if f["status"] != "discarded")
-        out = {"INDEX.md": index_md(findings, outreach, pending), "PATTERNS.md": patterns_md(findings, classes, patterns, outreach),
-               "STUDIES.md": studies_md(findings, studies), "findings.csv": findings_csv(findings, outreach),
-               "contracts.csv": contracts_csv(findings, outreach), "studies.csv": studies_csv(findings, studies),
-               "TRIAGE.md": triage_md(triage), "triage.csv": triage_csv(triage), "triage_contracts.csv": triage_contracts_csv(triage),
-               "PROJECTS.md": projects_md(findings, triage, outreach), "projects.csv": projects_csv(findings, triage, outreach)}
-        for name, text in out.items():
-            (GENERATED / name).write_text(text, encoding="utf-8")
-    print(f"OK: {len(findings)} findings, {len(triage)} in triage, {len(studies)} studies, {len(outreach)} outreach files"
-          + (", selftest passed" if args.selftest else ""))
+    print(f"OK: {len(findings)} findings, {len(triage)} in triage, {len(studies)} studies" + (", selftest passed" if args.selftest else ""))
     return 0
 
 

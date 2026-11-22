@@ -5,8 +5,8 @@
 # Pull main. When what data/registry.db is built from changed (findings, the importer, data/values.db...) or board/
 # differs from app/: test the board code of that commit (check.py), rebuild the database (ingest.py checks the new one
 # against the files before it replaces the old one), deploy board/ to app/ and restart the board. A failed step leaves
-# the last good database and code in place, and the next run tries again; a commit that changes neither (the rebuild
-# of generated/) costs one fetch. data/outreach.db, the team's work, is never touched here.
+# the last good database and code in place, and the next run tries again; a commit that changes neither costs one
+# fetch. data/outreach.db, the team's work, is never touched here.
 set -eu
 cd "$(dirname "$0")/.."
 git -C registry fetch --quiet --depth 1 origin main

@@ -33,8 +33,6 @@ def scan(addresses: list[str]) -> dict[str, list[dict]]:
     hits = {a: [] for a in want}
     for folder in ("findings", "triage"):
         for f in sorted((ROOT / folder).glob("*.md")):
-            if f.name == "README.md":
-                continue
             text = f.read_text(errors="replace")
             end = text.find("\n---\n", 3)  # the header: between the first and the second ---
             head = (text if end < 0 else text[:end]).lower()

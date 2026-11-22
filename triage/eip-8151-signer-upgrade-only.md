@@ -77,7 +77,7 @@ Largest rows by value held at block 26,438,999:
 - `0x8d94b4d8bf8397152253fa8efece7fe33072d951` (deployed by Stackup: ERC-4337 Factory 1): $322, LOW
 - `0xcc04f1f4ea249ea2d540e47fb225a469c199eb8c` (deployed by Stackup: ERC-4337 Bundler 5): $134, LOW, 8 addresses
 
-Every row is in the header; `generated/triage_contracts.csv` lists them for search.
+Every row is in the header.
 
 ## Remediation
 

@@ -1,5 +1,0 @@
-id,project,status,proposed_rating,patterns,rows,addresses,exposure_usd,exposure_basis,recoveries_14d,txs_30d,evidence_level,title,class,studies,reviews_confirmed,reviews_refuted
-eip-8151-signer-upgrade-only,archetype,candidate,HIGH,PQ-17,32,956,17616,held,136,0,executed,Signers that only an upgrade can replace stop their contracts once they have code under EIP-8151,migration-hazard,eip-8151-impact,0,0
-eip-8151-fixed-signer,,candidate,HIGH,PQ-17,19,388,76,held,12,0,executed,Contracts whose signer is fixed in code stop once that signer's account has code under EIP-8151,migration-hazard,eip-8151-impact,0,0
-eip-8151-rotate-signer-before-migrating,,candidate,LOW,PQ-17,461,59016,3674772,held,21591,0,executed,Signer keys that must be rotated before their account takes code under EIP-8151,migration-hazard,eip-8151-impact,0,0
-eip-8151-signed-shortcut-lost,localethereum,candidate,LOW,PQ-19,425,3689,844747,held,4150,0,executed,Signed shortcuts (permit and the like) that a user with code loses under EIP-8151,migration-hazard,eip-8151-impact,0,0

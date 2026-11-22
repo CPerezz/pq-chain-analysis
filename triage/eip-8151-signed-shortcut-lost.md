@@ -470,7 +470,7 @@ Largest rows by value held at block 26,438,999:
 - `0xb98df7163e61bf053564bde010985f67279bbcec` (Vyper_contract): $8k, LOW, 13 addresses
 - `0xb85e3fe36a6084985e66d704abd4be4ea51e06ce` (unverified): $8k, LOW, 10 addresses
 
-Every row is in the header; `generated/triage_contracts.csv` lists them for search.
+Every row is in the header.
 
 ## Remediation
 

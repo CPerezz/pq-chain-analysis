@@ -51,7 +51,7 @@ PQ-19. A user whose account has real code loses the signed path only; gasless an
 - How it was placed: solmate permit: the recovered address must be the owner named in the call, zero rejected; nothing else is accepted here / Rysk checkSignature: SignatureChecker on the account named. Read from source. Executed: a real transaction reverts with code at the signer.
 - Direct functions present in bytecode at block 26438999 of 0x81f038db75b14f9be3488216fbf0649e3e912fce (implementation/clone target): approve (0x095ea7b3), transfer (0xa9059cbb); each acts for msg.sender, so a holder with code calls them itself.
 - Signed path(s) lost for a signer with code: permit-style signature; study reading: solmate permit: the recovered address must be the owner named in the call, zero rejected; nothing else is accepted here / Rysk checkSignature: SignatureChecker on the account named
-- Dossier ~/dev/pq-chain-analysis/goals/eip-8151-analysis/readings/5caa4e48a76df7bea3e93d8cc7b3a543 (source + scanner: STATICCALL to precompile 0x01 present).
+- Source and scanner: a STATICCALL to precompile 0x01 is present.
 - Rysk.checkSignature uses OZ SignatureChecker.isValidSignatureNow (src/Rysk.sol l.729-736), which falls back to ERC-1271 for accounts with code, so trader-signed trade paths still work for 1271 wallets.
 
 ## Impact and exposure

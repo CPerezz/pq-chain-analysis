@@ -16,7 +16,7 @@ it be published. A wrong card that you let through is the failure.
   untrusted; `copies`, other addresses running the same code, whose state can differ; `dependents`, addresses whose
   code holds or calls this one), `source/…` (verified source), `decompiled.sol` (a decompiler's reading: a lead, it
   can be wrong).
-- The rules: `findings/README.md` (format, severity, checks), `patterns.md`, `studies/eip-8151-impact/README.md`.
+- The rules: `AGENTS.md` (format, severity, checks), `patterns.md`, `studies/eip-8151-impact/README.md`.
 
 The change the study is about: `ecrecover` returns nothing when the recovered account has real code (an EIP-7702
 delegation still recovers), and a recovery costs up to 6,100 gas instead of 3,000.
@@ -81,7 +81,7 @@ or "also accepting ERC-1271" is not a fix. An owner-only setter does nothing whe
 }
 ```
 
-Checks have the same kinds as the author's (`findings/README.md`, "Checks"); they are run, and must give what they
+Checks have the same kinds as the author's (`AGENTS.md`, "Checks"); they are run, and must give what they
 state. An attempt marked `tried-holds` names the check that shows it.
 
 ```

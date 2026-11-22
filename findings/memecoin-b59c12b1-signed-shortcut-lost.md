@@ -50,7 +50,7 @@ PQ-19. A user whose account has real code loses the signed path only; gasless an
 - How it was placed: OpenZeppelin 4 upgradeable permit / delegateBySig (OZ upgradeable): whoever signed is the account that delegates; its nonce is checked. Read from source.
 - Direct functions present in bytecode at block 26438999 of 0xa0a28fa1d75d8ef2b9e650f21a8f969732a374a9 (implementation/clone target): approve (0x095ea7b3), transfer (0xa9059cbb), delegate (0x5c19a95c); each acts for msg.sender, so a holder with code calls them itself.
 - Signed path(s) lost for a signer with code: permit, delegateBySig; study reading: OpenZeppelin 4 upgradeable permit / delegateBySig (OZ upgradeable): whoever signed is the account that delegates; its nonce is checked
-- Dossier ~/dev/pq-chain-analysis/goals/eip-8151-analysis/readings/2358cd39a7ad076fa59e7d9e406210e4 (source + scanner: STATICCALL to precompile 0x01 present).
+- Source and scanner: a STATICCALL to precompile 0x01 is present.
 
 ## Impact and exposure
 

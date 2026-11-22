@@ -35,7 +35,7 @@ long they take.
 
 ## Results
 
-What was found, with numbers, and links to the findings (they are listed under this study in `generated/STUDIES.md`).
+What was found, with numbers, and links to the findings.
 Small result tables go in `results/` next to this file. A study that found nothing says so here.
 
 ## Limits

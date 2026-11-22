@@ -225,7 +225,7 @@ def eth_call(data: str, tries: int = 8) -> str:
             if "result" not in out:
                 raise RuntimeError(str(out.get("error"))[:120])
             return out["result"]
-        except Exception as e:
+        except Exception:
             _conn.c = None
             if i == tries - 1:
                 raise

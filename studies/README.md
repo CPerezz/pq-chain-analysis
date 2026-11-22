@@ -14,9 +14,9 @@ A study is a folder, `studies/<id>/`, with a `README.md` and, if it produced sma
    see it is under way.
 3. Keep the code somewhere else: a repository or a gist you own. Link it in `code` with a full commit hash or gist
    revision, so the link always shows the code that was run. This repository holds no study code.
-4. File what the study found as findings (see [`findings/README.md`](../findings/README.md)). If a finding is already
+4. File what the study found as findings (see [`AGENTS.md`](../AGENTS.md)). If a finding is already
    in the list, add your own entry to its `sources` instead of creating a second file.
-5. Run `uv run tools/build.py`. The study and its findings then appear in `generated/STUDIES.md`.
+5. Run `uv run tools/build.py`: it checks the study and its findings.
 
 Two studies of the same topic by different people are two folders. Give the second a distinguishing id.
 

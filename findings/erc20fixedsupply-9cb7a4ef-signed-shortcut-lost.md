@@ -52,7 +52,7 @@ PQ-19. A user whose account has real code loses the signed path only; gasless an
 - How it was placed: permit: the owner named in the call must equal the recovered address; the holder can call approve itself. Read from source. Executed: a real transaction loses its effect with code at the signer.
 - Direct functions present in bytecode at block 26438999: approve (0x095ea7b3), transfer (0xa9059cbb); each acts for msg.sender, so a holder with code calls them itself.
 - Signed path(s) lost for a signer with code: permit; study reading: permit: the owner named in the call must equal the recovered address; the holder can call approve itself
-- Dossier ~/dev/pq-chain-analysis/goals/eip-8151-analysis/readings/10a3e4a514da425a8752f6041cb06d77 (source + scanner: STATICCALL to precompile 0x01 present).
+- Source and scanner: a STATICCALL to precompile 0x01 is present.
 
 ## Impact and exposure
 

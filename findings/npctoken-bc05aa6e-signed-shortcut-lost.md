@@ -51,7 +51,7 @@ PQ-19. A user whose account has real code loses the signed path only; gasless an
 - How it was placed: OpenZeppelin 5 permit: ECDSA.recover must equal the owner named in the call. Read from source. Executed: a real transaction loses its effect with code at the signer.
 - Direct functions present in bytecode at block 26438999: approve (0x095ea7b3), transfer (0xa9059cbb); each acts for msg.sender, so a holder with code calls them itself.
 - Signed path(s) lost for a signer with code: permit; study reading: OpenZeppelin 5 permit: ECDSA.recover must equal the owner named in the call
-- Dossier ~/dev/pq-chain-analysis/goals/eip-8151-analysis/readings/2ca88cd9420d74d92c736c5d1afd6f68 (source + scanner: STATICCALL to precompile 0x01 present).
+- Source and scanner: a STATICCALL to precompile 0x01 is present.
 
 ## Impact and exposure
 

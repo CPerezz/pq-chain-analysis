@@ -4,7 +4,7 @@
   python3 ingest.py REPO DB [VALUES]             rebuild DB from REPO/findings/ (VALUES: value.py's values.db)
   python3 ingest.py --current REPO DB [VALUES]   exit 0 if DB was built from what REPO holds now, else 1
 
-Only format 2 findings are copied: the cards review has filed (REPO/findings/README.md). Format 1 files are the bulk
+Only format 2 findings are copied: the cards review has filed (REPO/AGENTS.md). Format 1 files are the bulk
 rows review has not reached; each one arrives here when review files its card. The checkout is read with the
 registry's own checker, REPO/tools/build.py, so a field means here what it means there, and the problems it reports
 are kept per finding. A finding is one card: one contract, what a reader sees, and what the card keeps but never shows
@@ -37,7 +37,7 @@ GAPS = {
     "invalid": "tools/build.py reports problems with this file",
 }
 GENERIC_CHANGE = "the change"  # a category name's <change> when the study names none (patterns.md, Categories)
-DERIVED = ("patterns", "contracts", "families", "fix", "evidence")  # what build.load_finding2 adds for format 1's views
+DERIVED = ("patterns", "contracts")  # what build.load_finding2 adds to a card's header, for its duplicate check
 # What a DB is built from in REPO besides this file and VALUES (see inputs()).
 SOURCES = ("findings", "tools", "patterns.md", "studies", "code")
 CARD = re.compile(rb"^format:\s*2\s*$", re.M)  # in a header: the file is a card
@@ -46,7 +46,7 @@ SCHEMA = """
 CREATE TABLE meta (key TEXT PRIMARY KEY, value TEXT);
 CREATE TABLE pattern (id TEXT PRIMARY KEY, title TEXT, category TEXT, words TEXT);
 CREATE TABLE study (id TEXT PRIMARY KEY, title TEXT);
-CREATE TABLE finding (                    -- one card (findings/README.md, format 2): one contract, one root issue
+CREATE TABLE finding (                    -- one card (AGENTS.md, format 2): one contract, one root issue
     id TEXT PRIMARY KEY,
     source_sha TEXT NOT NULL,             -- SHA-256 of findings/<id>.md: verify() compares it with the file
     title TEXT NOT NULL,
@@ -164,8 +164,8 @@ def row_of(f: dict, body: str, problems: list[str], build, values: Values | None
 
 
 def inputs(repo: Path, values_path: Path | None) -> str:
-    """What a DB is built from: the git trees of SOURCES at HEAD (a commit that changes none of them, such as the
-    rebuild of generated/, changes nothing here), this importer's text, and the values file's modification time."""
+    """What a DB is built from: the git trees of SOURCES at HEAD (a commit that changes none of them changes nothing
+    here), this importer's text, and the values file's modification time."""
     trees = git(repo, "ls-tree", "HEAD", "--", *SOURCES)
     stamp = values_path.stat().st_mtime_ns if values_path and values_path.exists() else None
     return json.dumps([trees, hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), stamp])
@@ -186,7 +186,7 @@ def cards_on_disk(repo: Path) -> dict[str, str]:
     out = {}
     for path in sorted((repo / "findings").glob("*.md")):
         data = path.read_bytes()
-        if path.name != "README.md" and CARD.search(data.split(b"\n---", 1)[0]):
+        if CARD.search(data.split(b"\n---", 1)[0]):
             out[path.stem] = hashlib.sha256(data).hexdigest()
     return out
 
@@ -219,7 +219,7 @@ def main(repo: Path, db: Path, values_path: Path | None = None) -> None:
     build.split = keep_body
     p = build.Problems()
     _, patterns = build.load_patterns(p, repo / "patterns.md")
-    studies, findings, _, _ = build.load_tree(repo, patterns, p)
+    studies, findings, _ = build.load_tree(repo, patterns, p)
     cards = [f for f in findings if f.get("format") == 2]
     ids = {f["id"] for f in cards}
     problems: dict[str, list[str]] = {}

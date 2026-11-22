@@ -10,7 +10,7 @@ against the files, and keeps its own records, the team's work, beside it.
 
 ```mermaid
 flowchart LR
-  A["Agent or person<br/>files or removes cards"] -->|pull request| CI["CI on every push and pull request:<br/>tools/build.py --check --selftest<br/>board/check.py<br/>every card into SQLite, checked"]
+  A["Agent or person<br/>files or removes cards"] -->|pull request| CI["CI on every push and pull request:<br/>tools/build.py --selftest<br/>board/check.py<br/>every card into SQLite, checked"]
   CI -->|merge| M[(main)]
   M -->|"within a minute: sync.sh"| S["Board server:<br/>test the commit's board code,<br/>rebuild registry.db, check it against findings/,<br/>swap it in, deploy board/ if it changed"]
   S --> P["The page (login),<br/>through the tunnel"]
@@ -21,7 +21,7 @@ flowchart LR
   the board code of the new commit (`check.py`), rebuilds `registry.db` from that commit's cards (`ingest.py`), and
   checks the new database against the files: the same cards, each with the SHA-256 of its file. Only then does the new
   database replace the old one. New cards appear, removed ones disappear, edited ones change: the database is always
-  exactly one commit of `main`. A commit that changes nothing it is built from (the bot's rebuild of `generated/`)
+  exactly one commit of `main`. A commit that changes nothing it is built from (a README, the review's queue)
   costs one `git fetch`.
 - **A broken commit changes nothing.** If the check or the import fails, the last good database and code stay, the
   run fails in the journal, and the next minute tries again. CI runs the same check and import on every pull request,
@@ -63,7 +63,7 @@ For the outreach team's loop: pick, contact, record, follow up.
   rows for a status, an assignee or a comment on all of them.
 - A finding: status buttons with what each means, assignee and "Assign to me", the thread (comments, with links, and
   every change), a comment box (⌘/Ctrl + Enter), who to contact (team, contract, deployer, all findings of the same
-  project or deployer), the card as `findings/README.md` defines it ("not established" for an empty field), held now.
+  project or deployer), the card as `AGENTS.md` defines it ("not established" for an empty field), held now.
   `j`/`k` go to the next and previous finding, `/` searches, Esc closes.
 - Every change is saved at once and logged. A change to one finding carries what the page showed: if someone changed
   it since, the server refuses (409) and the page shows what is there now. An assignee must have an account. Coming
@@ -136,6 +136,6 @@ Protect `main` (pull requests with the `check` workflow passing) so that only ch
 
 ## Later: a public search
 
-A site where a team looks its contracts up, like the census's address lookup in `docs/`, can come from the same
+A site where a team looks its contracts up can come from the same
 import: CI on `main` builds `registry.db` exactly as above (without values), exports the card fields a reader may see,
 and publishes static lookup files. Nothing here needs to change for it.

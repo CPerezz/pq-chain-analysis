@@ -127,8 +127,8 @@ After every batch of settled rows (any size):
 
 ```
 $R review.file --who reader-1                     # writes findings/, removes the old entries, saves the queue's state
-uv run tools/build.py && uv run tools/build.py --check
-git add -A findings triage code generated review/queue.tsv review/ledger.tsv review/held review/added.jsonl review/signoff.txt
+uv run tools/build.py
+git add -A findings triage code review/queue.tsv review/ledger.tsv review/held review/added.jsonl review/signoff.txt
 git commit -m "review: N rows settled (kept K, re-rated R, moved M, removed X)"
 ```
 
@@ -143,7 +143,7 @@ git commit -m "review: N rows settled (kept K, re-rated R, moved M, removed X)"
 
 ## Rules that are not in the briefs
 
-- **Severity** follows `findings/README.md`. A key holder that must move its own account to code before anything
+- **Severity** follows `AGENTS.md`. A key holder that must move its own account to code before anything
   breaks is a migration notice (INFORMATIONAL), whatever it would lock; value and activity never change a rating.
 - **Unused does not matter, value does.** An address that held nothing at the block (ETH and the priced tokens) and
   that nothing called in the 90 days before it has no finding. When a row stands for one address and its dossier

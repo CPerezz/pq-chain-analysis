@@ -28,7 +28,7 @@ worse than no card.
       addresses whose code holds this address as a constant or calls it.
   - `source/<address>/…`: verified source of the address and of the code it runs. `decompiled.sol`: a decompiler's
     reading of unverified code; it can be wrong, treat it as a lead.
-- The rules: `AGENTS.md`, `findings/README.md` (the format, the severity rules, the checks), `patterns.md` (PQ-14 to
+- The rules: `AGENTS.md` (the format, the severity rules, the checks), `patterns.md` (PQ-14 to
   PQ-21 for the EIP-8151 study), `studies/eip-8151-impact/README.md` (what the change does), and the filled examples
   in `templates/examples/findings/`. Read them before you write.
 
@@ -57,7 +57,7 @@ Decide from the code what the recovered address is compared with, and what happe
 | A wallet whose owners are ECDSA keys a quantum computer could forge (no EIP-8151 effect; a lead from a wallet's migration notice) | `wallet-owner-keys` | PQ-12 | Yes, by the `quantum-exposure` table |
 
 "No" means a migration notice: severity `INFORMATIONAL`, and the action says what the key holder does **before**
-moving its account to code. The rated ones follow the table in `findings/README.md`, "Categories of a protocol
+moving its account to code. The rated ones follow the table in `AGENTS.md`, "Categories of a protocol
 change". The row's old root issue may be wrong: use the one the code shows. A row from the first study (key
 `first/…`) keeps its `quantum-exposure` pattern (PQ-1 to PQ-13) and is rated by that category's table.
 
@@ -128,8 +128,8 @@ You write judgment and checks. The tool writes the finding file from the dossier
   the signature, what goes wrong. `evidence`: one to three bullets (200 characters each), each with a link: the
   contract's code page, or a transaction (`https://etherscan.io/tx/0x…`).
 - **Every sentence, bullet, the justification, the action and `whose` name the checks that back them.** The check
-  kinds are in `findings/README.md`, "Checks": `source` (text at lines of the verified source), `call`, `storage`,
-  `code`, `bytecode`, `selector`, `tx`, `nonce`, `replay` (a transaction and run listed in the dossier's
+  kinds are in `AGENTS.md`, "Checks": `source` (text at lines of the verified source), `call`, `storage`,
+  `code`, `bytecode`, `selector`, `tx`, `nonce`, `logs`, `replay` (a transaction and run listed in the dossier's
   `scan.families.*.replays`), `ref`. Leave `for` out; the tool fills it. Reads are at block 26,438,999 unless the
   check has `at`. An ETH balance is a `call` to Multicall3 `0xcA11bde05977b3631167028862bE2a173976CA11`,
   `getEthBalance(address)`; a token balance, the token's `balanceOf(address)`.
