@@ -138,7 +138,7 @@ none proven or settled.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated HIGH (step 4: depends on the KZG precompile; only a protocol change replaces it).
 - 2026-11-17 review (Review17): HIGH -> MEDIUM, step 5: under $50k held (~$3 across the three contracts, measured); steps 4/6 give HIGH because no calldata fallback can be established from unverified bytecode. Impact funds-loss -> funds-locked: only the operator posts blob commitments (non-operator `postBatch` reverts `Unauthorized`). Project still unidentified.
 - 2026-11-19: MEDIUM -> HIGH, step 5 removed (value no longer lowers a rating); step 4 gives HIGH.
-- 2026-11-20: moved to triage with the rest of the pool and reviewed (D-025); state re-read at block 26,438,999; filed confirmed, HIGH; fixed the stale MEDIUM/step-5 wording in the Summary.
+- 2026-11-20: moved to triage with the rest of the pool and reviewed; state re-read at block 26,438,999; filed confirmed, HIGH; fixed the stale MEDIUM/step-5 wording in the Summary.
 
 # Source excerpts: unidentified-ee2707b0-blob-kzg
 

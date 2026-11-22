@@ -69,10 +69,10 @@ The operator keeps the signing key without code, or moves users to a new deploym
 
 ## History
 
-- 2026-11-19: filed from study `eip-8151-impact`, one entry per root issue (D-022). The per-project entries filed earlier that day are in git history (commit `d9c90af`).
+- 2026-11-19: filed from study `eip-8151-impact`, one entry per root issue. The per-project entries filed earlier that day are in git history (commit `d9c90af`).
 - 2026-11-19: 58 rows added with --add from `verdicts.csv`.
 - 2026-11-19: 76 rows added with --add from `verdicts.csv`.
-- 2026-11-19: rows rated by how hard the fix is, one row per family and update path (D-024).
+- 2026-11-19: rows rated by how hard the fix is, one row per family and update path.
 - 2026-11-20: 5 rows added with --add from `verdicts.csv`.
 - 2026-11-20: 25 rows added from gate-1 `verdicts.csv`.
 - 2026-11-20: 10 rows added from gate-1 `verdicts.csv`.

@@ -149,7 +149,7 @@ The address is a 77-byte EIP-1167 clone with 32 extra bytes: it delegatecalls ev
 - Header facts: this address alone, at block 26,438,999.
 - Ruled out: fixed-gas-recovery: line 201 is a plain external call with no gas argument, and the clone's delegatecall forwards all gas (opcode 5a before f4); the amount is the sender's.
 - Ruled out: children: the recovery is in the CCTP MessageTransmitterV2, which has its own row; the failing transaction calls this address and its sender sets the limit, so the gas-limit card belongs here.
-- Ruled out: unused-implementation / D-028: this address is a clone in use (owner set, a real call at block 26,389,949), not the implementation; the implementation 0xc4f076f0... and any other clones of it are other rows.
+- Ruled out: unused-implementation: this address is a clone in use (owner set, a real call at block 26,389,949), not the implementation; the implementation 0xc4f076f0... and any other clones of it are other rows.
 - Ruled out: the replay bundles no other signed step: the transaction is one cctpReceiveMessage call; the only signatures are the CCTP attesters', checked once by the transmitter, and the failure clears with more gas alone.
 - Ruled out: direct-path: the message in the transaction names this address as destinationCaller (calldata bytes after the recipient), so the transmitter accepts it only through this clone; not put on the card because no check kind reads calldata.
 - Ruled out: proxy_of left to the tool: the tool's clone detector misses this clone because of its 32 appended bytes, and the registry wants a call or storage read naming the implementation, which this clone has none of; the bytecode check `clone` shows the target.

@@ -85,9 +85,9 @@ The admin upgrades the verification, or the key holder keeps the key without cod
 
 ## History
 
-- 2026-11-19: filed from study `eip-8151-impact`, one entry per root issue (D-022). The per-project entries filed earlier that day are in git history (commit `d9c90af`).
+- 2026-11-19: filed from study `eip-8151-impact`, one entry per root issue. The per-project entries filed earlier that day are in git history (commit `d9c90af`).
 - 2026-11-19: 88 rows added with --add from `verdicts.csv`.
 - 2026-11-19: 27 rows added with --add from `verdicts.csv`.
-- 2026-11-19: rows rated by how hard the fix is, one row per family and update path (D-024).
+- 2026-11-19: rows rated by how hard the fix is, one row per family and update path.
 - 2026-11-20: 1 row added with --add from `verdicts.csv`.
 - 2026-11-20: 2 rows added from gate-1 `verdicts.csv`.

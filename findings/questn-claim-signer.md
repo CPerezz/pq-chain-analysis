@@ -112,7 +112,7 @@ QuestN's logic.
 - 2026-11-17 review (Review11): MEDIUM -> LOW, step 5: the claims pay from reward vault 0x0376a356…, which held $0 on 2026-11-17. Project identified as QuestN (Quest3NFT contracts, nft.questn.com base URI); id kept. Removed the unrelated proxy-code family (63 contracts sharing the generic proxy code). Status stays candidate (implementation unverified).
 - 2026-11-17 integration: id renamed from `unidentified-7c838b25-signer-key` (project identified).
 - 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
-- 2026-11-20: moved to triage with the rest of the pool and reviewed (D-025); state re-read at block 26,438,999; filed confirmed, MEDIUM; fixed the stale LOW/step-5 wording in the Summary.
+- 2026-11-20: moved to triage with the rest of the pool and reviewed; state re-read at block 26,438,999; filed confirmed, MEDIUM; fixed the stale LOW/step-5 wording in the Summary.
 
 # Source excerpts: questn-claim-signer
 

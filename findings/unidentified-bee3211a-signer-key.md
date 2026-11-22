@@ -135,7 +135,7 @@ The holdings are the market maker's own inventory, which forged operator-signed 
   bytecode (operator-gated `isValidSignature` and signed requests); sibling `0xbee02256…` checked (USD 0). Operator not
   identified.
 - 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
-- 2026-11-20: moved to triage with the rest of the pool and reviewed (D-025); state re-read at block 26,438,999; filed confirmed, MEDIUM; corrected the held WBTC (0.275 BTC ≈ $17.7k, not ~USD 0.23M) and the total (~$9.64M plus BBTC, not $10.7M); admin EOA nonce is 245 at this block (finding: 244 at 26,431,737), not an error, just later.
+- 2026-11-20: moved to triage with the rest of the pool and reviewed; state re-read at block 26,438,999; filed confirmed, MEDIUM; corrected the held WBTC (0.275 BTC ≈ $17.7k, not ~USD 0.23M) and the total (~$9.64M plus BBTC, not $10.7M); admin EOA nonce is 245 at this block (finding: 244 at 26,431,737), not an error, just later.
 
 # Source excerpts: unidentified-bee3211a-signer-key
 

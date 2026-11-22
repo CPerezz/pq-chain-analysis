@@ -257,7 +257,7 @@ generate (anyone, payable) sets from/to and sends a Provable 'random' query with
 - Ruled out: a skipped check: the cached session-key flag skips only steps 6-7; step 5 (line 1198) runs on every answer.
 - Ruled out: the signers having code: the keys are Ledger and Provable session keys passed as public keys; the break is the gas, with nobody migrating.
 - Ruled out: funds locked: the contract has no withdraw function; its 0.0019 ETH can only pay query fees (line 647), before and after the change, and is less than one query's price (0.00404 ETH at the block).
-- Ruled out: path closed (oracle dead): the sender seen in 2021 is deregistered and idle, so __callback would already revert 'Bad Address'; but the connector's sender mapping cannot be listed without logs, so a later sender is not excluded. Kept as a finding and rated as if the oracle answers (D-028 rule 2).
+- Ruled out: path closed (oracle dead): the sender seen in 2021 is deregistered and idle, so __callback would already revert 'Bad Address'; but the connector's sender mapping cannot be listed without logs, so a later sender is not excluded. Kept as a finding and rated as if the oracle answers.
 
 ### Questions
 

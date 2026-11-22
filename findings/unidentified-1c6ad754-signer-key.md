@@ -223,7 +223,7 @@ smart accounts behind module `0xba418fa6…` are reachable only with both the ac
 - 2026-11-17 review (Review22, move): module `0xba418fa6…` moved here from `biconomy-ecdsa-validator` (same deployer `0xac6a87c6…`; there it was rated MEDIUM at step 4). Here MEDIUM at step 4 (owners switch modules), LOW at step 5 (852 accounts, USD 6,557); finding stays LOW. Pattern PQ-12 added.
 - 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer is fixed; once its account has code the signed functions stop; the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
 - 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
-- 2026-11-20: moved to triage with the rest of the pool and reviewed (D-025); state re-read at block 26,438,999; filed confirmed, MEDIUM; fixed the stale LOW/step-5 wording in the Summary.
+- 2026-11-20: moved to triage with the rest of the pool and reviewed; state re-read at block 26,438,999; filed confirmed, MEDIUM; fixed the stale LOW/step-5 wording in the Summary.
 
 # Source excerpts: unidentified-1c6ad754-signer-key
 

@@ -144,7 +144,7 @@ permit (node_modules/@openzeppelin/contracts-upgradeable/token/ERC20/extensions/
 - Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit has no such branch.
 - Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and the ECDSA library they call.
 - Ruled out: an unused copy: totalSupply() at this address is 9,041,558,627,928,542,971,596 base units.
-- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
+- Ruled out: Written by the shortcut recipe: the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
 ### History
 

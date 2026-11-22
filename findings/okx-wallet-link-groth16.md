@@ -119,7 +119,7 @@ this registry yet.
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review19): MEDIUM -> LOW, step 4: identified as OKX (project set to okx, id kept); the verifier gates an OKX CEX-wallet link path whose ZK validator can be disabled at once by one known pauser (simulated); exposure measured at USD 28.8k (step 5 would also lower). ECDSA cosigner added as PQ-4. Linked `unidentified-cd815022-pmm-vault-signer`.
 - 2026-11-17 integration: id renamed from `unidentified-c3dace2f-snark-verifier` (project identified). `related` changed from `unidentified-cd815022-pmm-vault-signer` (its OKX attribution was not established) to `okx-pmm-protocol-maker-sig`, the other OKX finding.
-- 2026-11-20: moved to triage with the rest of the pool and reviewed (D-025); state re-read at block 26,438,999; filed confirmed, LOW; dropped the stale 'under USD 50k measured' clause from the Summary (value no longer changes a rating).
+- 2026-11-20: moved to triage with the rest of the pool and reviewed; state re-read at block 26,438,999; filed confirmed, LOW; dropped the stale 'under USD 50k measured' clause from the Summary (value no longer changes a rating).
 
 # Source excerpts: okx-wallet-link-groth16
 

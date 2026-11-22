@@ -38,7 +38,7 @@ reviews:
   by: ai-assisted
   verdict: confirmed
   rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks"
 ---
 
 ## Summary
@@ -53,7 +53,7 @@ PQ-17. Once that key's account has real code, the signed functions stop until th
 
 - How it was placed: the signer is one key kept in storage; no function replaces it, the code itself can be replaced (upgradeToAndCall). Rule: stored-key (by upgrade). Executed: a real transaction reverts with code at the signer.
 - Update path, read at block 26,438,999: proxy to 0x10c14bf223735f7a3f7a257bf20a51555e2c81fe with UPGRADE_INTERFACE_VERSION(), owner 0x31bb26934d372024f44fb04bf2e3d37d317dbe0a.
-- Reviewed through the root issue's mechanism (D-025): the signer is replaceable only by upgrading the code, and a live upgrade path was measured at this address (the admin or owner behind its proxy slot or upgrade function): LOW
+- Reviewed through the root issue's mechanism: the signer is replaceable only by upgrading the code, and a live upgrade path was measured at this address (the admin or owner behind its proxy slot or upgrade function): LOW
 - Mechanical check: this address does not run a UUPS implementation directly (those cannot upgrade at their own address and were sent to one-by-one checks)
 - A random sample of 25 of the 210 rows below Anon's thresholds: 16 held at LOW, 5 were such implementations, 4 could not be settled while the node was down
 
@@ -70,4 +70,4 @@ The admin upgrades the verification, or the key holder keeps the key without cod
 ## History
 
 - 2026-11-19: reported as a row of triage entry `eip-8151-signer-upgrade-only` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry.

@@ -143,7 +143,7 @@ permit (lib/solady/src/tokens/ERC20.sol, line 303) builds its digest and recover
 - Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit has no such branch.
 - Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and the ECDSA library they call.
 - Ruled out: an unused copy: totalSupply() at this address is 112,358,132,134,558,914,423,337,761,098,715,972,584,418,167,651,094,617,711,286,574,637,036,828,520,267 base units.
-- Ruled out: Written by the shortcut recipe (D-029): the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
+- Ruled out: Written by the shortcut recipe: the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
 
 ### History
 

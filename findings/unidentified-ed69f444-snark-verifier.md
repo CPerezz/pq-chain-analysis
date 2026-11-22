@@ -115,7 +115,7 @@ off-chain consumer would change this.
   whitelisted EOA and no contract reads the stored metadata, so the measured escrow is zero; `impact` funds-loss ->
   unknown (no consumer identified). Admin role read on-chain (deployer EOA).
 - 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
-- 2026-11-20: moved to triage with the rest of the pool and reviewed (D-025); state re-read at block 26,438,999; filed confirmed, MEDIUM; fixed the stale LOW/step-5 wording in the Summary; impact unknown -> none (no consumer identified).
+- 2026-11-20: moved to triage with the rest of the pool and reviewed; state re-read at block 26,438,999; filed confirmed, MEDIUM; fixed the stale LOW/step-5 wording in the Summary; impact unknown -> none (no consumer identified).
 
 # Source excerpts: unidentified-ed69f444-snark-verifier
 

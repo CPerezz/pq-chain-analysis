@@ -113,7 +113,7 @@ VaultV2 (Morpho Association code, named 'Splits Earn USDT', asset USDT) has one 
 - Header facts: this address alone, at block 26,438,999; 808 addresses run this code.
 - Ruled out: an ERC-1271 path for holders with code: permit (lines 896-911) only uses ecrecover.
 - Ruled out: a break with nobody migrating: Solidity's ecrecover forwards all available gas, there is no fixed gas amount; the dossier's only family replay (tx 0xf7ea...f5d5, another address 0x8ac9...475c) succeeds under EIP-8151 and is not cited.
-- Ruled out: unused address (D-028): the vault is configured (name, asset, an adapter) and holds a seed deposit, so it is a deployed vault rather than an uninitialized implementation; it has no holders besides the burn address, which the card states.
+- Ruled out: unused address: the vault is configured (name, asset, an adapter) and holds a seed deposit, so it is a deployed vault rather than an uninitialized implementation; it has no holders besides the burn address, which the card states.
 - Ruled out: other copies of this code (808 in the family) are not described here; each in use is its own row.
 
 ### History

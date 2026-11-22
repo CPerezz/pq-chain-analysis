@@ -514,10 +514,10 @@ Rotate the key before its account takes code.
 
 ## History
 
-- 2026-11-19: filed from study `eip-8151-impact`, one entry per root issue (D-022). The per-project entries filed earlier that day are in git history (commit `d9c90af`).
+- 2026-11-19: filed from study `eip-8151-impact`, one entry per root issue. The per-project entries filed earlier that day are in git history (commit `d9c90af`).
 - 2026-11-19: 16,850 rows added with --add from `verdicts.csv`.
 - 2026-11-19: 878 rows added with --add from `verdicts.csv`.
-- 2026-11-19: rows rated by how hard the fix is, one row per family and update path (D-024).
+- 2026-11-19: rows rated by how hard the fix is, one row per family and update path.
 - 2026-11-20: 1 row added with --add from `verdicts.csv`.
 - 2026-11-20: 40 rows added from gate-1 `verdicts.csv`.
 - 2026-11-20: 23 rows added from gate-1 `verdicts.csv`.

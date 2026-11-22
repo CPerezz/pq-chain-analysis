@@ -33,7 +33,7 @@ reviews:
   by: ai-assisted
   verdict: confirmed
   rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks"
 ---
 
 ## Summary
@@ -47,7 +47,7 @@ PQ-17. Once that key's account has real code its signatures stop counting; its h
 ## Evidence
 
 - How it was placed: as its template 6b86a9fd: a loop of recoveries: each signer must be in the stored set (signer, validator, authority, relayer), distinct or ordered; a quorum or weight is needed. Template.
-- Reviewed through the root issue's mechanism (D-025): the checked signers are a committee or validator set that its own quorum replaces by a signed update, so while enough keys are still EOAs the set rotates before migrating: LOW, as for wallets their own signers can upgrade
+- Reviewed through the root issue's mechanism: the checked signers are a committee or validator set that its own quorum replaces by a signed update, so while enough keys are still EOAs the set rotates before migrating: LOW, as for wallets their own signers can upgrade
 - Not checked per row: whether the party allowed to call that function is live at block 26,438,999
 - Mechanical check: the scanner finds an ecrecover call in this address's code
 - A random sample of 25 of the 18,615 rows below Anon's thresholds: 15 held at LOW, 5 were unused implementations (not affected), 1 had owners that cannot be replaced (MEDIUM), 4 could not be settled while the node was down
@@ -64,4 +64,4 @@ Rotate the key before its account takes code.
 ## History
 
 - 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry.

@@ -70,5 +70,5 @@ Finance accounts pay out directly.
 ## History
 
 - 2026-11-19: reported as a row of triage entry `eip-8151-fixed-signer` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: MEDIUM. Anon assigned the review to Claude, which also filed the triage entry (D-025).
-- 2026-11-20: re-rated LOW (was MEDIUM the same day): withdrawByFinancial lets a finance account, even one with code, make the same payout to a whitelisted address by direct call, so the act stays open (D-025).
+- 2026-11-20: reviewed and filed: MEDIUM. Anon assigned the review to Claude, which also filed the triage entry.
+- 2026-11-20: re-rated LOW (was MEDIUM the same day): withdrawByFinancial lets a finance account, even one with code, make the same payout to a whitelisted address by direct call, so the act stays open.

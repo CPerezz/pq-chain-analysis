@@ -67,4 +67,4 @@ operator sets new notary
 
 - 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
 - 2026-11-20: the review found that root issue `eip-8151-own-signature-only-exit` applies, not `eip-8151-rotate-signer-before-migrating`; filed under it.
-- 2026-11-20: reviewed and filed: HIGH. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+- 2026-11-20: reviewed and filed: HIGH. Anon assigned the review to Claude, which also filed the triage entry.

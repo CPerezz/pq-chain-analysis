@@ -68,6 +68,6 @@ Cosigners approve and the owner disbands, by direct calls.
 ## History
 
 - 2026-11-19: reported as a row of triage entry `eip-8151-fixed-gas-recovery` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
-- 2026-11-20: re-rated MEDIUM (was LOW the same day): the signed transfers die for good and the disband only moves the funds out, which the scale rates MEDIUM; LOW is kept for a simple update or the same act staying open (D-025).
-- 2026-11-20: the same contract was also a row of triage entry `eip-8151-rotate-signer-before-migrating`; its rotation reading does not apply: every signature check of this wallet forwards a constant 3,000 gas, so signatures fail from activation whoever signs; the fixed-gas finding covers it (D-025).
+- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry.
+- 2026-11-20: re-rated MEDIUM (was LOW the same day): the signed transfers die for good and the disband only moves the funds out, which the scale rates MEDIUM; LOW is kept for a simple update or the same act staying open.
+- 2026-11-20: the same contract was also a row of triage entry `eip-8151-rotate-signer-before-migrating`; its rotation reading does not apply: every signature check of this wallet forwards a constant 3,000 gas, so signatures fail from activation whoever signs; the fixed-gas finding covers it.

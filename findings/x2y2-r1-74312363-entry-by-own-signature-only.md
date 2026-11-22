@@ -37,7 +37,7 @@ reviews:
   by: ai-assisted
   verdict: confirmed
   rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks"
 ---
 
 ## Summary
@@ -51,7 +51,7 @@ PQ-21. An account with real code can no longer enter. Nothing it already holds i
 ## Evidence
 
 - How it was placed: X2Y2 cancel: must be signed by one of the platform's signers / X2Y2 run input: must be signed by one of the platform's signers / X2Y2 order: the user named in the order must have signed with ECDSA;…. Read from source.
-- Reviewed through the root issue's mechanism (D-025): entering or registering needs the entrant's own signature and nothing the entrant holds sits behind it; an account that takes real code enters before migrating or keeps an EIP-7702 delegation, which EIP-8151 exempts: LOW
+- Reviewed through the root issue's mechanism: entering or registering needs the entrant's own signature and nothing the entrant holds sits behind it; an account that takes real code enters before migrating or keeps an EIP-7702 delegation, which EIP-8151 exempts: LOW
 - Mechanical check: the scanner finds an ecrecover call in this address's code
 - A random sample of 25 of the 197 rows below Anon's thresholds: 21 held at LOW, 3 had no ecrecover call (rows like those are now filed not affected by the mechanical check), 1 belonged to the rotation issue
 
@@ -67,4 +67,4 @@ Add a direct call or ERC-1271 to the entry path.
 ## History
 
 - 2026-11-19: reported as a row of triage entry `eip-8151-entry-by-own-signature-only` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry.

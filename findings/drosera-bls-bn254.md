@@ -115,7 +115,7 @@ or anything else), which is set per trap and not enumerated; `impact` is left `u
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review15): MEDIUM kept (step 4: upgrade by the 2-of-7 Safe). Project identified as Drosera (deployer and "Staked Drosera" token, ClaimSubmitted/OperatorOptedIntoTrap events); mechanism PQ-7 SNARK -> PQ-6 BLS-style two-pair pairing (trigger trusted-setup -> committee-keys, impact funds-loss -> unknown); stays candidate (unverified source).
 - 2026-11-17 integration: id renamed from `unidentified-01c344b8-snark-verifier` (project identified).
-- 2026-11-20: moved to triage with the rest of the pool and reviewed (D-025); state re-read at block 26,438,999; filed confirmed, MEDIUM.
+- 2026-11-20: moved to triage with the rest of the pool and reviewed; state re-read at block 26,438,999; filed confirmed, MEDIUM.
 
 # Source excerpts: drosera-bls-bn254
 

@@ -33,7 +33,7 @@ reviews:
   by: ai-assisted
   verdict: confirmed
   rating: LOW
-  note: "A role holder whose account takes code can no longer sign approvals, so multi-role actions that need its signature stop until the role is granted to a plain key. The flow holds its own admin role and owns its upgrade chain, so its holders re-grant or upgrade through it while their keys are still plain accounts: LOW, a rotation, as for wallets whose own signers can replace themselves (D-025). Filed under the rotation issue; the study's SimpleMultiSig mapping was wrong. Not read: the policy that governs role changes (which roles must sign it)."
+  note: "A role holder whose account takes code can no longer sign approvals, so multi-role actions that need its signature stop until the role is granted to a plain key. The flow holds its own admin role and owns its upgrade chain, so its holders re-grant or upgrade through it while their keys are still plain accounts: LOW, a rotation, as for wallets whose own signers can replace themselves. Filed under the rotation issue; the study's SimpleMultiSig mapping was wrong. Not read: the policy that governs role changes (which roles must sign it)."
 ---
 
 ## Summary
@@ -64,4 +64,4 @@ Read the implementation and 0x4815 to find who can actually drive an upgrade.
 
 - 2026-11-19: reported as a row of triage entry `eip-8151-wallets-fixed-signers` (study `eip-8151-impact`).
 - 2026-11-20: the review found that root issue `eip-8151-rotate-signer-before-migrating` applies, not `eip-8151-wallets-fixed-signers`; filed under it.
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry.

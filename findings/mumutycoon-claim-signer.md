@@ -107,7 +107,7 @@ exposed. MUTY has 1,134 holders and no Blockscout price.
   it pays out (inferred); signer and owner read on-chain; status stays candidate (bytecode only).
 - 2026-11-17 integration: id renamed from `unidentified-9f954ca5-signer-key` (project identified).
 - 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
-- 2026-11-20: moved to triage with the rest of the pool and reviewed (D-025); state re-read at block 26,438,999; filed confirmed, MEDIUM; fixed the stale LOW/step-5 wording in the Summary.
+- 2026-11-20: moved to triage with the rest of the pool and reviewed; state re-read at block 26,438,999; filed confirmed, MEDIUM; fixed the stale LOW/step-5 wording in the Summary.
 
 # Source excerpts: mumutycoon-claim-signer
 

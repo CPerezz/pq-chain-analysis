@@ -200,7 +200,7 @@ This wallet moves its ETH and tokens when one of its signers sends the transacti
 
 ### Mechanism
 
-Same runtime code as 0x8028270e06fca18e212306a7c93bfee52b440fc5, whose card an author wrote and a refuter checked: the path through the code and what was ruled out are in that card's notes. Here its 17 checks were run again at this address (D-029).
+Same runtime code as 0x8028270e06fca18e212306a7c93bfee52b440fc5, whose card an author wrote and a refuter checked: the path through the code and what was ruled out are in that card's notes. Here its 17 checks were run again at this address.
 
 ### Checks
 

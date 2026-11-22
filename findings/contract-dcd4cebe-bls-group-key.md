@@ -294,7 +294,7 @@ Unverified code; judged from the bytecode, the decompiled reading and calls at t
 - Ruled out: path-closed: the bridge is in state 1 (open) at the block; it is shut only once someone calls checkAndHandleTimeout, which nobody had done.
 - Ruled out: an upgrade or verifier swap: no upgradeTo/upgradeToAndCall selectors and the tool read no proxy.
 - Ruled out: ECDSA owner path (separate, not folded in): the owner 0xeec5...36c6 is an EOA that has sent 95+ transactions; a CRQC that breaks that key can enter admin control, install its own group key and reopen. The reviewer may want a separate owner-key finding.
-- Ruled out: D-028 dormancy: no key since 2025-11-21 but a live owner could restart it, so the finding stays and the card states the dormancy. The other Gonka bridge, 0x972a7a92d92796a98801a8818bcf91f1648f2f68, has code at the block and is its own row.
+- Ruled out: dormancy: no key since 2025-11-21 but a live owner could restart it, so the finding stays and the card states the dormancy. The other Gonka bridge, 0x972a7a92d92796a98801a8818bcf91f1648f2f68, has code at the block and is its own row.
 - Ruled out: value: the $3 is 3 USDT held by this address; who deposited it cannot be read without logs, so whose is left empty.
 
 ### Questions

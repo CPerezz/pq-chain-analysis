@@ -35,7 +35,7 @@ reviews:
   by: ai-assisted
   verdict: confirmed
   rating: LOW
-  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks (D-025)"
+  note: "reviewed through the root issue's mechanism, a random sample and mechanical checks"
 ---
 
 ## Summary
@@ -49,7 +49,7 @@ PQ-17. Once that key's account has real code its signatures stop counting; its h
 ## Evidence
 
 - How it was placed: solmate permit: the recovered address must be the owner named in the call, zero rejected; nothing else is accepted here / UniswapX CosignerLib: the cosignature must come from the cosigner that the…. Read from source. Executed: a real transaction reverts with code at the signer.
-- Reviewed through the root issue's mechanism (D-025): the owner is the checked signer, and this address's code holds transferOwnership, so the owner hands over before its key takes code: LOW
+- Reviewed through the root issue's mechanism: the owner is the checked signer, and this address's code holds transferOwnership, so the owner hands over before its key takes code: LOW
 - Not checked per row: whether the party allowed to call that function is live at block 26,438,999
 - Mechanical check: the scanner finds an ecrecover call in this address's code
 - A random sample of 25 of the 18,615 rows below Anon's thresholds: 15 held at LOW, 5 were unused implementations (not affected), 1 had owners that cannot be replaced (MEDIUM), 4 could not be settled while the node was down
@@ -67,4 +67,4 @@ Rotate the key before its account takes code.
 ## History
 
 - 2026-11-19: reported as a row of triage entry `eip-8151-rotate-signer-before-migrating` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry.

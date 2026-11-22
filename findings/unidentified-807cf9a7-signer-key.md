@@ -105,7 +105,7 @@ different executor key) holds USD 240 and last called `ecrecover` on 2024-09-25;
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review14): MEDIUM -> LOW, step 5: the vault holds USD 152 (measured), under USD 50k. Mechanism refined: the check answers 1inch's `isValidSignature` calls; the proxy admin is a 2-of-3 multisig.
 - 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
-- 2026-11-20: moved to triage with the rest of the pool and reviewed (D-025); state re-read at block 26,438,999; filed confirmed, MEDIUM; fixed the stale LOW/step-5 wording in the Summary.
+- 2026-11-20: moved to triage with the rest of the pool and reviewed; state re-read at block 26,438,999; filed confirmed, MEDIUM; fixed the stale LOW/step-5 wording in the Summary.
 
 # Source excerpts: unidentified-807cf9a7-signer-key
 

@@ -455,7 +455,7 @@ Bitlagio settles dice bets in a Provable oracle callback carrying a signed rando
 
 ### Mechanism
 
-A non-owner's ETH to the fallback calls makeBet, which records the bet and asks Provable for Ledger-proven randomness. __callback accepts only msg.sender == oraclize_cbAddress() and runs oraclize_randomDS_proofVerify. Step 5 verifies the session key's signature (sig1) on every callback; verifySig calls safer_ecrecover, which CALLs 0x01 with a literal 3,000 gas (line 995; bytecode 6001610bb8f1). Under EIP-8151 a valid recovery costs 3,200 or 6,100, so the CALL fails, the output word keeps the input hash, the address never matches sha3(pubkey), verifySig returns false and the modifier throws. The callback reverts, numberRolled stays 0 and the bet is never paid; no function refunds it, so the stake stays in the pot. withdrawFromPot (onlyOwner) moves any amount to the owner; setMinBet can make every new bet throw. No proxy slot, no upgrade function. The connector returns 0 for cbAddress() from both of its two known senders, 0x2658...2d51 (584,553 txs) and 0x0000...324b (63,426 txs), at blocks 14,000,000 and 26,438,999, and neither sender's nonce moved between those blocks: both went silent by January 2022. The sender mapping cannot be listed without logs, so a later sender is not excluded (D-028: card stays a finding and states this).
+A non-owner's ETH to the fallback calls makeBet, which records the bet and asks Provable for Ledger-proven randomness. __callback accepts only msg.sender == oraclize_cbAddress() and runs oraclize_randomDS_proofVerify. Step 5 verifies the session key's signature (sig1) on every callback; verifySig calls safer_ecrecover, which CALLs 0x01 with a literal 3,000 gas (line 995; bytecode 6001610bb8f1). Under EIP-8151 a valid recovery costs 3,200 or 6,100, so the CALL fails, the output word keeps the input hash, the address never matches sha3(pubkey), verifySig returns false and the modifier throws. The callback reverts, numberRolled stays 0 and the bet is never paid; no function refunds it, so the stake stays in the pot. withdrawFromPot (onlyOwner) moves any amount to the owner; setMinBet can make every new bet throw. No proxy slot, no upgrade function. The connector returns 0 for cbAddress() from both of its two known senders, 0x2658...2d51 (584,553 txs) and 0x0000...324b (63,426 txs), at blocks 14,000,000 and 26,438,999, and neither sender's nonce moved between those blocks: both went silent by January 2022. The sender mapping cannot be listed without logs, so a later sender is not excluded (card stays a finding and states this).
 
 ### Checks
 
@@ -465,11 +465,11 @@ A non-owner's ETH to the fallback calls makeBet, which records the bet and asks 
 - Ruled out: open bets whose stakes would be players' money: betsKeys has six entries and every bet has numberRolled > 0, so the 2.65 ETH is the house pot.
 - Ruled out: a closed path: bets are still accepted at the block (an eth_call from an unrelated address to the fallback succeeded, paid from the pot); not a card check, the check kinds cannot send value.
 - Ruled out: an owner that cannot act: owner() is an account without code that has sent 6 transactions.
-- Ruled out: Rating: Anon's rule (D-029): a gas amount fixed in the code with no update path is CRITICAL whatever the contract holds or locks today. It was MEDIUM under the older rubric row for nothing locked or the operator's own money.
+- Ruled out: Rating: Anon's rule: a gas amount fixed in the code with no update path is CRITICAL whatever the contract holds or locks today. It was MEDIUM under the older rubric row for nothing locked or the operator's own money.
 
 ### Questions
 
-- Whether any Provable callback sender is registered at the block is not established: the sender mapping cannot be listed without logs, only individual addresses can be checked. Both known senders are unregistered and silent since January 2022. If none exists, bets already never settle and the change adds nothing; per D-028 the card keeps the finding and states the silence.
+- Whether any Provable callback sender is registered at the block is not established: the sender mapping cannot be listed without logs, only individual addresses can be checked. Both known senders are unregistered and silent since January 2022. If none exists, bets already never settle and the change adds nothing; the card keeps the finding and states the silence.
 
 ### History
 

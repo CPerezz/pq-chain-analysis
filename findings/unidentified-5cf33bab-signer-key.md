@@ -116,7 +116,7 @@ is unverified.
   `0xbad9ada0…`, whose inventory (USD 21 at 2026-11-17) is what a forged quote releases. Admin read as a custom
   "MultiSign v1.0" contract. Status stays candidate (unverified code).
 - 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
-- 2026-11-20: moved to triage with the rest of the pool and reviewed (D-025); state re-read at block 26,438,999; filed confirmed, MEDIUM; fixed the stale LOW/step-5 wording in the Summary.
+- 2026-11-20: moved to triage with the rest of the pool and reviewed; state re-read at block 26,438,999; filed confirmed, MEDIUM; fixed the stale LOW/step-5 wording in the Summary.
 
 # Source excerpts: unidentified-5cf33bab-signer-key
 

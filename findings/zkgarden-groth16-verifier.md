@@ -112,7 +112,7 @@ was found.
 - 2026-11-17 review (Review23): MEDIUM -> LOW, step 5: the pool holds its own deposits, $30 measured (under $50k); step 4 alone gives MEDIUM (upgrade by one owner EOA). Project set to zkgarden (inferred from the deployer's verified `ZkGardenPriceOracle`); status stays candidate (implementation unverified).
 - 2026-11-17 integration: id renamed from `unidentified-31981405-snark-verifier` (project identified).
 - 2026-11-19: LOW -> MEDIUM, step 5 removed (value no longer lowers a rating); step 4 gives MEDIUM.
-- 2026-11-20: moved to triage with the rest of the pool and reviewed (D-025); state re-read at block 26,438,999; filed confirmed, MEDIUM; fixed the stale LOW/step-5 wording in the Summary.
+- 2026-11-20: moved to triage with the rest of the pool and reviewed; state re-read at block 26,438,999; filed confirmed, MEDIUM; fixed the stale LOW/step-5 wording in the Summary.
 
 # Source excerpts: zkgarden-groth16-verifier
 

@@ -38,7 +38,7 @@ reviews:
   by: ai-assisted
   verdict: confirmed
   rating: LOW
-  note: "reviewed through the root issue's mechanism and a random sample (D-025)"
+  note: "reviewed through the root issue's mechanism and a random sample"
 ---
 
 ## Summary
@@ -52,7 +52,7 @@ PQ-20. As a 7702 delegation they keep working: EIP-8151 exempts delegation indic
 ## Evidence
 
 - How it was placed: BasicEOABatchExecutor isValidSignature: the recovered address must be the account itself. Read (function text).
-- Reviewed through the root issue's mechanism (D-025): the delegate's signature check requires the recovered address to be the account itself, so an account that later holds real code fails its own check; the account fixes it by re-delegating to logic that does not rely on its own key, or by keeping its EIP-7702 delegation, which EIP-8151 exempts (LOW)
+- Reviewed through the root issue's mechanism: the delegate's signature check requires the recovered address to be the account itself, so an account that later holds real code fails its own check; the account fixes it by re-delegating to logic that does not rely on its own key, or by keeping its EIP-7702 delegation, which EIP-8151 exempts (LOW)
 - A random sample of 25 of the 668 rows below Anon's thresholds was checked one by one: all 25 hold at LOW
 - The 100 rows over the thresholds (5 ETH or 1,000 transactions in 90 days) were checked one by one: 95 LOW, 5 not affected
 
@@ -68,4 +68,4 @@ Delegates must not be offered as real-code migration targets; accounts keep the 
 ## History
 
 - 2026-11-19: reported as a row of triage entry `eip-8151-7702-own-key-only` (study `eip-8151-impact`).
-- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry (D-025).
+- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry.

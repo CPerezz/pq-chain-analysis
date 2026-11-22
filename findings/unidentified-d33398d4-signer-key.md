@@ -139,7 +139,7 @@ above, but neither the deployer nor the owner was linked to a named team, so `pr
 - 2026-11-17: finding created by `scripts/15_findings.py` from that classification, on-chain state at block 26,431,214 and activity 2026-10-16 to 2026-11-16. Rated MEDIUM (step 4: fix by an upgrade, a new verifier or signer contract the admin points at, or a new deployment).
 - 2026-11-17 review (Review02): MEDIUM -> LOW, step 4: the approver signature only gates access (no return-delta hook permissions, so nothing can be taken through it) and one known owner (EOA 0xc5d3c245…, read at block 26,431,583) can upgrade all 8 hooks. Impact funds-loss -> none. Family confirmed (8 proxies, same implementation, owner and approver). Operator still unidentified; pools trade ELEVATE and related tokens.
 - 2026-11-19 (study `eip-8151-impact`, PQ-17): under EIP-8151 the signer key can be replaced; it must be rotated before its account takes code. Executed: a real transaction reverts when its signer has code.
-- 2026-11-20: moved to triage with the rest of the pool and reviewed (D-025); state re-read at block 26,438,999; filed confirmed, LOW.
+- 2026-11-20: moved to triage with the rest of the pool and reviewed; state re-read at block 26,438,999; filed confirmed, LOW.
 
 # Source excerpts: unidentified-d33398d4-signer-key
 
