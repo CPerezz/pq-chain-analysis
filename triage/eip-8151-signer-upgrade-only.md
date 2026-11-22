@@ -1,0 +1,93 @@
+---
+id: eip-8151-signer-upgrade-only
+title: "Signers that only an upgrade can replace stop their contracts once they have code under EIP-8151"
+status: candidate
+severity: HIGH
+patterns: [PQ-17]
+impact: liveness
+contracts:
+- {address: "0xc71d3638e2f14c115eb53163ae97ae76eae9d7f6", family: "78965b68b81ae1b1c1fd83c6c8d1dc63", copies: 2, upgradeable: "no", rating: HIGH, value_usd: 1917, value_basis: "held", value_as_of: 2026-11-18, note: "the signer is one key kept in storage; no function replaces it, the code itself can be replaced (proxy). Rule: stored-key (by upgrade). Update path: proxy to 0xbde06754f9184f79227832d1621f57abed594a53: no admin, no upgrade function in the implementation."}
+- {address: "0x968de1a8ee18a1ec4723cb9262a0ae0c8708fe1f", family: "60847f23fa1c2513e8525727cf400eab", copies: 2, upgradeable: "no", rating: HIGH, value_usd: 1805, value_basis: "held", value_as_of: 2026-11-18, note: "the signer is one key kept in storage; no function replaces it, the code itself can be replaced (proxy). Rule: stored-key (by upgrade). Update path: no proxy slot, no upgrade function."}
+- {address: "0xfa120f80e619318d24d7d46f35c4723aa6bbe7f6", family: "c20329902318ddb453c320731bef4409", copies: 25, name: "SubscriptionETH", upgradeable: "no", rating: HIGH, value_usd: 1321, value_basis: "held", value_as_of: 2026-11-18, note: "Subscription tickets: signed by the stored ticketProvider. Read. Update path: no proxy slot, no upgrade function."}
+- {address: "0xf86a01143eedecd880aa2cbf4b3c7b125b583189", family: "16b829f05172c402e45a80881f981b85", copies: 4, name: "ArchetypeLogic", project: "archetype", upgradeable: "no", rating: HIGH, value_usd: 1239, value_basis: "held", value_as_of: 2026-11-18, note: "Archetype affiliate check: the signer must be the affiliate signer of the collection's configuration. Read from source. Update path: delegates to a fixed address."}
+- {address: "0xb0800fc3af73f583f297583f38d693b551eb9091", family: "7c3308e3411f9a033c6a5443566fa448", copies: 75, name: "SmartAccountV2", upgradeable: "no", rating: HIGH, value_usd: 1221, value_basis: "held", value_as_of: 2026-11-18, note: "the user operation must be signed by the stored owner / isValidSignature: the recovered address must be an owner. Read (function text). Update path: proxy to 0xac78f1101883a68babcfbaccccaadc7d55e657ba: no admin, no upgrade function in the implementation."}
+- {address: "0x7b36869ca50b6a90655890199b5fe0998028cd6c", family: "b30106ea6cf274f21fa3c2292cc6af3f", copies: 145, upgradeable: "no", rating: HIGH, value_usd: 52, value_basis: "held", value_as_of: 2026-11-18, note: "the signer is a set of keys kept in storage; no function replaces it, the code itself can be replaced (proxy). Rule: stored-key (by upgrade). Update path: proxy to 0xdbb60b8ae494bd4976ab36a601250e48cdb1bcb0: no admin, no upgrade function in the implementation."}
+- {address: "0x00f1d033343bc17f9672878ec97cd8c0eccf514a", family: "2e617b8fbdb8cdc0619f219c7f4bd49b", copies: 2, name: "Safe7579Launchpad", upgradeable: "no", rating: HIGH, value_usd: 2, value_basis: "held", value_as_of: 2026-11-18, note: "Safe7579Launchpad _isValidSafeSigners: the threshold of the owners in the setup data. Read (function text). Update path: no proxy slot, no upgrade function."}
+- {address: "0xbdf5e32c9b525e7dceaada11da50037274125f16", family: "3afcb2ec93884c6c52206ee9cd0032a5, 0f196c7eda68c28ecea3afab93573e17", copies: 6, upgradeable: "yes", rating: HIGH, recoveries_14d: 34, note: "the signer is a set of keys kept in storage; no function replaces it, the code itself can be replaced (upgradeToAndCall). Rule: stored-key (by upgrade). Executed: a real transaction reverts with code at the signer."}
+- {address: "0x2d627ff93d32f5febb04d68409a889895b4aef2d", family: "3ac61356fdcc096e67d58e245fed71af", name: "SpotLogic", label: "Gluon Network: Spot Logic", upgradeable: "no", rating: HIGH, recoveries_14d: 1, note: "Gluon SpotLogic: withdrawals and exits need an entry signed by `operator`, set in the constructor with no setter; the app is replaced by a successor version through Gluon's upgrade proposals, which…. Read by hand. Update path: setUpgradeOperator(address), but owner() is zero or absent. 1 with an upgrade function whose caller was not read."}
+- {address: "0x21c2fd6c68078b68e13db558ac22b66f2655591b", family: "6dc5b6826e4454bbd1c886c1bd90e2dc", copies: 2, upgradeable: "no", rating: HIGH, note: "151 proxies whose upgrade is signed by a signer that is a constant in the code. Bytecode and names. Update path: UPGRADE_TYPEHASH(), but owner() is zero or absent. 2 with an upgrade function whose caller was not read."}
+- {address: "0x53fe041aa9dbcba0a72ec778af83b10433559546", family: "4c3472f5a76ca91e6818b86795a8bdb5", upgradeable: "no", rating: HIGH, note: "the signer is a set of keys kept in storage; no function replaces it, the code itself can be replaced (updateImplementation). Rule: stored-key (by upgrade). Update path: updateImplementation(address), but owner() is zero or absent. 1 with an upgrade function whose caller was not read."}
+- {address: "0x644aad821ac7bbb2e83887893fbeb8f2d72706c9", family: "559a2e4e66b046e069231fade380d9b2", copies: 3, name: "Bridge", label: "Tricorn V1: Proxy Bridge", upgradeable: "no", rating: HIGH, note: "bridge requests must be signed by one stored signer address (read); no setter among its function names; the contract sits behind a proxy. Read by hand. Update path: no proxy slot, no upgrade function."}
+- {address: "0x64a6dc2ba8493800e5ee8d7776cf2c1dcbe12a74", family: "6ea853c9bde99be6b97c07d80aaf2c71", copies: 2, upgradeable: "no", rating: HIGH, note: "a constant and a stored key behind an upgradeable proxy. Bytecode and names. Executed: a real transaction reverts with code at the signer. Update path: upgrade(address), but owner() is zero or absent. 1 with an upgrade function whose caller was not read."}
+- {address: "0x6d104cb9ba954fcff85d8a83cf9cf35f596ab56c", family: "e257736ab831dda52b05d68f2f63e28b", copies: 4, upgradeable: "no", rating: HIGH, note: "the signer is one key kept in storage; no function replaces it, the code itself can be replaced (proxy). Rule: stored-key (by upgrade). Update path: no proxy slot, no upgrade function."}
+- {address: "0x8854e133a4ebf1dbcd526471015abbceec6d841c", family: "1ef102aa64566b00f724099db76eee6b", upgradeable: "no", rating: HIGH, note: "stored-key (by upgrade): the signer is one key kept in storage; no function replaces it, the code itself can be replaced (upgradeTo, upgradeToAndCall). Placed by a rule; copy of template ee56db4b, not read on its own. Update path: upgradeTo(address), but owner() is zero or absent. 1 with an upgrade function whose caller was not read."}
+- {address: "0x94f55258670a0a9b2722f7d9ddf3d0eca2d8bbcc", family: "69fedfd0054f5eaf60711b61796c59da", upgradeable: "no", rating: HIGH, note: "the signer is one key kept in storage; no function replaces it, the code itself can be replaced (upgradeTo, upgradeToAndCall). Rule: stored-key (by upgrade). Executed: a real transaction reverts with code at the signer. Update path: upgradeTo(address), but owner() is zero or absent. 1 with an upgrade function whose caller was not read."}
+- {address: "0xd38bbb03e34c0a1c9fe503f71d05296c4fd0361c", family: "843015c2e5f212f81fa2c6acb14c6ee3", copies: 3, upgradeable: "no", rating: HIGH, note: "the signer is one key kept in storage; no function replaces it, the code itself can be replaced (proxy). Rule: stored-key (by upgrade). Update path: proxy to 0x81c81b724dba8d394aafbeba6c089ec031624197: no admin, no upgrade function in the implementation."}
+- {address: "0xdce246b9778e63714fc085c498d908295acad0e8", family: "c3c533c32ed35e30a498259a6e1a7bfa", upgradeable: "no", rating: HIGH, note: "the signer is a set of keys kept in storage; no function replaces it, the code itself can be replaced (updateImplementation). Rule: stored-key (by upgrade). Update path: updateImplementation(address), but owner() is zero or absent. 1 with an upgrade function whose caller was not read."}
+- {address: "0xe9a02ce2319bbc263baab66f8f6b74305cf42777", family: "c43fd5ca18cb64065bcadf7c2d1c4bf4", copies: 609, name: "SimpleAccount", label: "deployed by Pimlico: ERC-4337 Bundler 2", upgradeable: "yes", rating: LOW, value_usd: 7961, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 86, note: "SimpleAccount: user operations need the owner's ECDSA signature and the owner has no setter; execute also accepts a direct call from the owner (read), and the owner may upgrade the code. Read (same text as a family read). Executed: a real transaction reverts with code at the signer. Update path: proxy to 0x8abb13360b87be5eeb1b98647a016add927a136c with upgradeTo(address), owner 0x2b99916997eacd664c2dd2cb99f5db4c46014e80."}
+- {address: "0x0f729b59358cb3f45b50e4a828644925acfe291f", family: "f45a30a7e0b7f2cc159280b300c5acee", name: "PlagueShareholders", upgradeable: "yes", rating: LOW, value_usd: 1022, value_basis: "held", value_as_of: 2026-11-18, note: "PlagueShareholders mint: the stored _signer must sign each mint / PlagueShareholders move: the stored _signer must sign each move of a share / PlagueShareholders _recoverSigner: returns the recovered…. Read (function text). Update path: proxy to 0xf7c8c299460c717c47ba64410d277d7a63e7bbdf with UPGRADE_INTERFACE_VERSION(), owner 0xea9b1ed511632e48ddd3e5a231cd2f5f3a3a4a9b."}
+- {address: "0xb8f6e30c84daed5043cb070de8997fc1af8e95ed", family: "c5d4e50f7583b149fa5de4c8f05e7854", copies: 10, upgradeable: "yes", rating: LOW, value_usd: 521, value_basis: "held", value_as_of: 2026-11-18, note: "stored-key (by upgrade): the signer is one key kept in storage; no function replaces it, the code itself can be replaced (upgradeTo, upgradeToAndCall). Placed by a rule; copy of template ee56db4b, not read on its own. Update path: proxy to 0xf0bfad0c5fd362b733f67514ea097cc5f616e476 with upgradeTo(address), owner 0x3871d07d42e0d3cfd9b4f966e736c7ad8149e8e2."}
+- {address: "0x8d94b4d8bf8397152253fa8efece7fe33072d951", family: "6b8a52b31dd4ba623673eb5aad3a0683", label: "deployed by Stackup: ERC-4337 Factory 1", upgradeable: "yes", rating: LOW, value_usd: 322, value_basis: "held", value_as_of: 2026-11-18, note: "stored-key (by upgrade): the signer is one key kept in storage; no function replaces it, the code itself can be replaced (upgradeTo, upgradeToAndCall). Placed by a rule; copy of template ee56db4b, not read on its own. Update path: proxy to 0x323e8114855a13cedbf84fa1ac51294ef46038c1 with upgradeTo(address), owner 0xe5809d85ef88d2706509d4735075fb49d4978be8."}
+- {address: "0xcc04f1f4ea249ea2d540e47fb225a469c199eb8c", family: "97e0c34d975106d2f446b1ef359824f1", copies: 8, label: "deployed by Stackup: ERC-4337 Bundler 5", upgradeable: "yes", rating: LOW, value_usd: 134, value_basis: "held", value_as_of: 2026-11-18, note: "stored-key (by upgrade): the signer is one key kept in storage; no function replaces it, the code itself can be replaced (upgradeTo, upgradeToAndCall). Placed by a rule; copy of template ee56db4b, not read on its own. Update path: proxy to 0x4cc8335e1368e1f7fcadced71d34da6e60a8a699 with upgradeTo(address), owner 0xb6867559070bdce9992c51386f310c91ca0436ed."}
+- {address: "0x4bea17e1ebde0a304773f1e6fba572d80a8f1e2b", family: "39452700f9c708bcef74ba5ec734c4b1", upgradeable: "yes", rating: LOW, value_usd: 69, value_basis: "held", value_as_of: 2026-11-18, note: "stored-key (by upgrade): the signer is one key kept in storage; no function replaces it, the code itself can be replaced (updateImplementation). Placed by a rule; copy of template ee56db4b, not read on its own. Update path: proxy to 0xbea0f0631dd5b088fbed6dfc87b1b04b604cef4f with updateImplementation(address), called through its own checks."}
+- {address: "0xdfca25a7250bafac013c3bb9a3640c781e95765e", family: "f9825a2e7b4ae61f6ce0179343f662d8", copies: 20, label: "deployed by Pimlico: ERC-4337 Bundler 414", upgradeable: "yes", rating: LOW, value_usd: 30, value_basis: "held", value_as_of: 2026-11-18, recoveries_14d: 6, note: "the signer is one key kept in storage; no function replaces it, the code itself can be replaced (upgradeToAndCall). Rule: stored-key (by upgrade). Executed: a real transaction reverts with code at the signer. Update path: proxy to 0x28426d752372d68d34340bd94390950dce3c9ec3 with UPGRADE_INTERFACE_VERSION(), owner 0x62ad03ae1f70011e75d7e695c3509c77af18aff3."}
+- {address: "0x294bfd6ae3ba6332d0d7740d00329d6504cc1163", family: "2f524076841e2c1341bcd09b70bd1610", copies: 6, upgradeable: "yes", rating: LOW, recoveries_14d: 9, note: "an upgradeable CoW order-signing contract (8 recoveries); whose signatures count is not established beyond the owner and the upgrade. Bytecode and names. Executed: a real transaction reverts with code at the signer. Update path: proxy to 0x338852f54c10f487ee44f6f6169d3a4377c12c71 with UPGRADE_INTERFACE_VERSION(), owner 0xea9b4993afe08b16a09548a8539ec7fd12d212b6."}
+- {address: "0x02cf9321fbf07f78f6c557216de430c540eb9a2a", family: "bb86b48b76c7cb8388f862dc3fbe4274", copies: 2, upgradeable: "yes", rating: LOW, note: "stored-key (by upgrade): the signer is one key kept in storage; no function replaces it, the code itself can be replaced (upgradeToAndCall). Placed by a rule; copy of template fc2a6174, not read on its own. Update path: UPGRADE_INTERFACE_VERSION(), owner 0x996213ed4099707059b8b5d7489fff23dac9770d."}
+- {address: "0x160b96e89e0b98f7e5f5689374b056439e3f3068", family: "e9f8acd4c5229a24252b60db461bb0d5", copies: 2, upgradeable: "yes", rating: LOW, note: "stored-key (by upgrade): the signer is one key kept in storage; no function replaces it, the code itself can be replaced (upgradeToAndCall). Placed by a rule; copy of template fc2a6174, not read on its own. Update path: UPGRADE_INTERFACE_VERSION(), owner 0x996213ed4099707059b8b5d7489fff23dac9770d."}
+- {address: "0x37bfb8ac7c960e558657871d41ca70e07e7dbfff", family: "55eca32f8ce54900cb6781b7bb1b87fe", copies: 2, name: "ProtectedHook", upgradeable: "yes", rating: LOW, note: "ProtectedHook/IMDWeather.submitWeather: an oracle-style data submission gate on a Uniswap v4 hook, not a funds path; quick read. The key is replaced only by an upgrade; the contract is upgradeable…. Placed by contract type, not checked in source."}
+- {address: "0x6046bec873c98c862086d8e682e4e5b02d37b285", family: "6615c8c95b69d954890798bb1778ab1b", upgradeable: "yes", rating: LOW, note: "stored-key (by upgrade): the signer is one key kept in storage; no function replaces it, the code itself can be replaced (upgradeToAndCall). Placed by a rule; copy of template fc2a6174, not read on its own. Update path: UPGRADE_INTERFACE_VERSION(), owner 0x996213ed4099707059b8b5d7489fff23dac9770d."}
+- {address: "0xb6ec4fbea1db4a226004e4ad4ff1268bc48dd0be", family: "85b3a1f8d8bf6a90470cd8f2b6f0cd1c", copies: 12, upgradeable: "yes", rating: LOW, note: "stored-key (by upgrade): the signer is one key kept in storage; no function replaces it, the code itself can be replaced (upgradeTo, upgradeToAndCall). Placed by a rule; copy of template ee56db4b, not read on its own. Update path: proxy to 0xacc9d9d99ff62812b80056dbb04a54ae1a052ad4 with upgradeTo(address), owner 0xae1efe11efec713305a986991a9771a7314fe81f."}
+- {address: "0xf202fa23a358527b7d317d8c99fc54559b1c7a81", family: "48c896a279245d06f8a46f5ff5f7bec1", upgradeable: "yes", rating: LOW, note: "the same design as 2f524076. Bytecode and names. Executed: a real transaction reverts with code at the signer. Update path: UPGRADE_INTERFACE_VERSION(), owner 0x12ee2de7bf086388b1d560eb95e7191edfab9823."}
+evidence: {level: executed, block: 26438999}
+sources:
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions; not reviewed by a person)"
+  ref: "studies/eip-8151-impact, fixed by upgrade only"
+  date: 2026-11-19
+  verdict: reported
+  rating: HIGH
+related: [ethereummultifeedadapterwithoutroundsv3-d72a6ba4-data-signers]
+reviews: []
+---
+
+## Summary
+
+These contracts accept signatures from a key that no function replaces; only an upgrade of the code does. 100 code families, 1,213 addresses, $18k held, 136 recoveries in the study's two-week window. Rows by rating: HIGH 76, LOW 24. 11 rows were checked on a real transaction; the others were read from source, judged from bytecode or placed by measured rules (each row's note says which).
+
+## Mechanism
+
+PQ-17. Once that key's account has real code, the signed functions stop until the admin upgrades.
+
+## Evidence
+
+- Each row's note says how it was decided: read from verified source, judged from bytecode and function names, placed by a rule measured against hand readings, or executed: a real transaction replayed on the fork's reference implementation with only the precompile changed, state at block 26,438,999.
+
+## Impact and exposure
+
+Largest rows by value held at block 26,438,999:
+- `0xe9a02ce2319bbc263baab66f8f6b74305cf42777` (SimpleAccount): $8k, LOW, 609 addresses
+- `0xc71d3638e2f14c115eb53163ae97ae76eae9d7f6` (unverified): $2k, HIGH, 2 addresses
+- `0x968de1a8ee18a1ec4723cb9262a0ae0c8708fe1f` (unverified): $2k, HIGH, 2 addresses
+- `0xfa120f80e619318d24d7d46f35c4723aa6bbe7f6` (SubscriptionETH): $1k, HIGH, 25 addresses
+- `0xf86a01143eedecd880aa2cbf4b3c7b125b583189` (ArchetypeLogic): $1k, HIGH, 4 addresses
+- `0xb0800fc3af73f583f297583f38d693b551eb9091` (SmartAccountV2): $1k, HIGH, 75 addresses
+- `0x0f729b59358cb3f45b50e4a828644925acfe291f` (PlagueShareholders): $1k, LOW
+- `0xb8f6e30c84daed5043cb070de8997fc1af8e95ed` (unverified): $521, LOW, 10 addresses
+- `0x8d94b4d8bf8397152253fa8efece7fe33072d951` (deployed by Stackup: ERC-4337 Factory 1): $322, LOW
+- `0xcc04f1f4ea249ea2d540e47fb225a469c199eb8c` (deployed by Stackup: ERC-4337 Bundler 5): $134, LOW, 8 addresses
+
+Every row is in the header.
+
+## Remediation
+
+The admin upgrades the verification, or the key holder keeps the key without code.
+
+## History
+
+- 2026-11-19: filed from study `eip-8151-impact`, one entry per root issue. The per-project entries filed earlier that day are in git history (commit `d9c90af`).
+- 2026-11-19: 88 rows added with --add from `verdicts.csv`.
+- 2026-11-19: 27 rows added with --add from `verdicts.csv`.
+- 2026-11-19: rows rated by how hard the fix is, one row per family and update path.
+- 2026-11-20: 1 row added with --add from `verdicts.csv`.
+- 2026-11-20: 2 rows added from gate-1 `verdicts.csv`.

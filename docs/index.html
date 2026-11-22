@@ -83,12 +83,20 @@ h1 { font: 500 clamp(34px, 4.8vw, 56px)/1.06 var(--serif); letter-spacing: -.02e
 .r-verdict { margin-top: var(--s6); padding: var(--s1) 0 var(--s1) var(--s5); border-left: 4px solid var(--c); }
 .r-verdict .t { font: 500 24px/1.25 var(--serif); color: var(--c); }
 .r-verdict .s { font-size: 15px; color: var(--ink2); margin-top: var(--s2); max-width: var(--prose); }
-.r-finding { display: flex; gap: var(--s3); align-items: baseline; margin-top: var(--s5); padding: var(--s3) var(--s4); border: 1px solid var(--rule2); border-radius: 10px; text-decoration: none; color: var(--ink); }
-.r-finding:hover { border-color: var(--ink); }
 .sev { display: inline-block; font: 600 11.5px/1 var(--sans); letter-spacing: .06em; padding: 5px 8px; border-radius: 5px; color: #fff; white-space: nowrap; }
 .sev.CRITICAL { background: #7a1f16; } .sev.HIGH { background: var(--sole); } .sev.MEDIUM { background: var(--rot); }
-.sev.LOW { background: var(--ver); } .sev.NONE { background: var(--alt); } .sev.UNRATED { background: var(--muted); }
-.r-finding .ft { font-size: 14.5px; line-height: 1.4; } .r-finding .ft small { display: block; color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+.sev.LOW { background: var(--ver); } .sev.INFORMATIONAL, .sev.NONE { background: var(--alt); } .sev.UNRATED { background: var(--muted); }
+.r-cards { display: grid; gap: var(--s3); }
+.fcard { border: 1px solid var(--rule2); border-radius: 10px; padding: var(--s3) var(--s4); }
+.fcard[open] { border-color: var(--ink2); }
+.fcard summary { display: flex; gap: var(--s3); align-items: baseline; cursor: pointer; list-style: none; }
+.fcard summary::-webkit-details-marker { display: none; }
+.fcard .ft { font-size: 15px; line-height: 1.4; } .fcard .ft small { display: block; color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+.fcard .fb { margin-top: var(--s3); font-size: 15px; line-height: 1.55; color: var(--ink2); max-width: 760px; }
+.fcard .fb p { margin: 0; }
+.fcard h4 { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; color: var(--muted); margin: var(--s4) 0 var(--s2); }
+.fcard ul { margin: 0; padding-left: 20px; } .fcard li { margin-bottom: var(--s2); }
+.fcard .r-dl { margin-top: var(--s4); font-size: 13.5px; grid-template-columns: 140px minmax(0, 1fr); }
 .r-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s5); margin-top: var(--s6); }
 .r-facts > div { border-top: 1px solid var(--rule); padding-top: var(--s3); }
 .r-facts .k { font-size: 12px; color: var(--muted); margin-bottom: var(--s1); }
@@ -466,12 +474,45 @@ const SIGNER = { end_user: ['User signs', '--ink'], protocol_operator_single_key
 const dataP = fetch('data.json').then(r => r.json());
 let FIND = null;
 dataP.then(D => { FIND = D; });
-const REPO = 'https://github.com/kevaundray/pq-chain-analysis/blob/main/';
-function findingBadge(a) {
-  const id = FIND?.finding_of?.[a], f = id && FIND.findings[id];
-  if (!f) return '';
-  return `<a class="r-finding" href="${REPO}findings/${id}.md" target="_blank" rel="noopener"><span class="sev ${f.severity}">${f.severity}</span>` +
-    `<span class="ft">${esc(f.title)}<small>Finding <span class="mono">${id}</span> · ${f.status} · read the evidence, who can fix it, and the rating ↗</small></span></a>`;
+const CARDS = new Map();  // cards/<xx>.json, by the first two hex digits of a card's address
+const cardShard = a => { const k = a.slice(2, 4); if (!CARDS.has(k)) CARDS.set(k, getJSON(`cards/${k}.json`).then(x => x || {})); return CARDS.get(k); };
+const SEV_RANK = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', 'INFORMATIONAL', 'NONE', 'UNRATED'];
+const md = s => esc(s).replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+  .replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+const BASIS = { held: 'Holds', 'market-cap': 'Token supply', escrow: 'Can release' };
+const WHOSE = { users: "users' money", operator: "the operator's money", mixed: "users' and the operator's money" };
+const CODE_T = { verified: 'Verified source', decompiled: 'Bytecode, decompiled', bytecode: 'Bytecode' };
+function cardHtml(c, a, open) {
+  const ev = (c.evidence || '').split('\n').map(l => l.replace(/^\s*-\s*/, '').trim()).filter(Boolean);
+  const facts = [
+    ['Contract', `${esc(c.name || 'Unnamed contract')}${c.address === a ? '' : `<span class="sub">on the proxy ${addrLink(c.address)}, which runs this code</span>`}`],
+    c.value_usd != null && ['Value', `${c.value_usd ? `${BASIS[c.value_basis] || 'Holds'} ${fmtUSD(c.value_usd)}${c.value_whose ? `, ${WHOSE[c.value_whose]}` : ''}` : 'Holds no ETH or priced tokens'}<span class="sub">as of ${esc(c.as_of)}</span>`],
+    c.upgradeable && ['Upgradeable', c.upgradeable === 'no' ? 'No' : 'Yes'],
+    c.txs_90d != null && ['Activity', `${fmtN(c.txs_90d)} transactions in the 90 days to ${esc(c.as_of)}`],
+    c.code_url && ['Code', `<a href="${esc(c.code_url)}" target="_blank" rel="noopener">${CODE_T[c.code] || 'Code'} ↗</a>`],
+    ['Found by', esc(c.study_title || c.study || '—')],
+    ['Finding', `<span class="mono">${esc(c.id)}</span>`],
+  ].filter(Boolean);
+  return `<details class="fcard"${open ? ' open' : ''}><summary><span class="sev ${c.severity}">${c.severity}</span><span class="ft">${esc(c.title)}` +
+    `<small>${esc(c.category_name || '')}${c.level === 'candidate' ? ' · not yet confirmed' : ''}</small></span></summary><div class="fb">` +
+    (c.justification ? `<p>${md(c.justification)}</p>` : '') +
+    (c.what_happens ? `<h4>What happens</h4><p>${md(c.what_happens)}</p>` : '') +
+    (ev.length ? `<h4>Evidence</h4><ul>${ev.map(x => `<li>${md(x)}</li>`).join('')}</ul>` : '') +
+    (c.action ? `<h4>What its team can do</h4><p>${md(c.action)}</p>` : '') +
+    `<dl class="r-dl">${facts.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl></div></details>`;
+}
+async function showFindings(a, token) {
+  const ids = FIND?.finding_of?.[a] || [];
+  if (!ids.length) return;
+  const shards = await Promise.all([...new Set(ids.map(id => FIND.findings[id].address))].map(cardShard));
+  const el = $('#rFindings');
+  if (token !== LK.token || !el) return;
+  const cards = ids.map(id => shards.find(s => s[id])?.[id]).filter(Boolean)
+    .sort((x, y) => SEV_RANK.indexOf(x.severity) - SEV_RANK.indexOf(y.severity));
+  el.innerHTML = `<div class="r-sec"><h3>${cards.length === 1 ? 'A finding' : `${cards.length} findings`} for this contract</h3>` +
+    `<div class="r-cards">${cards.map((c, i) => cardHtml(c, a, i === 0)).join('')}</div>` +
+    `<p class="note">Each finding says what is wrong with this contract, how bad it is and why, and what its team can do. Every fact on it was read from the chain at the date it gives.</p></div>`;
+  el.querySelectorAll('[data-lookup]').forEach(x => x.onclick = () => openLookup(x.dataset.lookup));
 }
 
 // ======================= lookup =======================
@@ -672,7 +713,8 @@ function renderResult(a, meta, fams, rec, cur, live, tgtRec, label) {
   const role = fam?.[0];
   const name = cur?.protocol || rec?.n || label || (fam && (role === 'a' || role === 'w') ? fam[5] : null) ||
     (live?.kind === 'eoa' && !rec ? 'Externally owned account' : live?.kind === 'eip7702' || role === 'd' ? 'Account with EIP-7702 code' : 'Unnamed contract');
-  const [col, title, sub] = verdict(meta, rec, fam, cur, live);
+  const nf = FIND?.finding_of?.[a]?.length || 0;
+  const [col, title, sub] = !cur && !rec && nf ? ['--sole', `${nf === 1 ? 'A finding' : `${nf} findings`} for this contract`, 'Read below what is wrong, how bad it is, and what its team can do.'] : verdict(meta, rec, fam, cur, live);
   const first = cats.length ? Math.min(...cats.map(k => u[k][2])) : null, last = cats.length ? Math.max(...cats.map(k => u[k][3])) : null;
 
   const roleTxt = cur ? (cur.is_account ? 'Contract wallet' : 'Application') : fam ? ROLE_L[role] : rec?.im ? 'Implementation contract' :
@@ -693,7 +735,7 @@ function renderResult(a, meta, fams, rec, cur, live, tgtRec, label) {
   let h = `<div class="r-head"><div><div class="r-name">${esc(name)}</div><div class="r-addr">${a}</div></div>
     <div class="r-links"><a href="https://etherscan.io/address/${a}" target="_blank" rel="noopener">Etherscan ↗</a><button type="button" id="lkCopy">Copy link</button></div></div>
     <div class="r-verdict" style="--c: var(${col === '--ink' ? '--ink' : col})"><div class="t">${title}</div><div class="s">${sub}</div></div>
-    ${findingBadge(a)}
+    <div id="rFindings"></div>
     <div class="r-facts">${facts.map(([k, v]) => `<div><div class="k">${k}</div><div class="v">${v}</div></div>`).join('')}</div>`;
 
   if (cats.length) h += `<div class="r-sec"><h3>What it used</h3><table class="r-use"><thead><tr><th>Primitive</th><th>Transactions, year</th><th class="hide-sm">Calls, all time</th><th class="hide-sm">First used</th><th>Last used</th></tr></thead><tbody>` +
@@ -751,6 +793,7 @@ function renderResult(a, meta, fams, rec, cur, live, tgtRec, label) {
   box.querySelectorAll('[data-lookup]').forEach(el => el.onclick = () => openLookup(el.dataset.lookup));
   const copy = $('#lkCopy');
   if (copy) copy.onclick = () => { navigator.clipboard?.writeText(location.href); copy.textContent = 'Link copied'; };
+  showFindings(a, LK.token);
 }
 
 async function openLookup(input, { push = true, scroll = true } = {}) {
@@ -787,14 +830,17 @@ async function openLookup(input, { push = true, scroll = true } = {}) {
   let matches = [], sel = 0;
   const drawSug = () => {
     sug.hidden = !matches.length;
-    sug.innerHTML = matches.map((c, i) => `<button type="button" class="${i === sel ? 'on' : ''}" data-a="${c.address}"><span>${esc(c.protocol)}</span><small>${esc(FUNC[c.function] || '')} · ${short(c.address)}</small></button>`).join('');
+    sug.innerHTML = matches.map((c, i) => `<button type="button" class="${i === sel ? 'on' : ''}" data-a="${c.address}"><span>${esc(c.name)}</span><small>${esc(c.sub)} · ${short(c.address)}</small></button>`).join('');
     sug.querySelectorAll('button').forEach(b => b.onmousedown = e => { e.preventDefault(); openLookup(b.dataset.a, { scroll: false }); });
   };
   input.addEventListener('input', async () => {
     const q = input.value.trim().toLowerCase();
     if (!q || q.startsWith('0x') || ADDR_RE.test(q)) { matches = []; return drawSug(); }
     const D = await dataP;
-    matches = D.contracts.filter(c => (c.protocol + ' ' + c.contract_name).toLowerCase().includes(q)).slice(0, 8);
+    const seen = new Set();
+    matches = [...D.contracts.filter(c => (c.protocol + ' ' + c.contract_name).toLowerCase().includes(q)).map(c => ({ address: c.address, name: c.protocol, sub: FUNC[c.function] || '' })),
+               ...Object.values(D.findings).filter(f => f.who && f.who.toLowerCase().includes(q)).map(f => ({ address: f.address, name: f.who, sub: 'has a finding' }))]
+      .filter(m => !seen.has(m.address) && seen.add(m.address)).slice(0, 8);
     sel = 0; drawSug();
   });
   input.addEventListener('keydown', e => {
@@ -954,8 +1000,7 @@ dataP.then(D => {
   $('#nAll').textContent = all.length;
   for (const [id, labels] of [['#fRel', Object.fromEntries(Object.entries(REL).map(([k, v]) => [k, v[0]]))], ['#fUpg', UPG]])
     Object.entries(labels).forEach(([k, v]) => $(id).insertAdjacentHTML('beforeend', `<option value="${k}">${v}</option>`));
-  const SEV_ORDER = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', 'NONE', 'UNRATED'];
-  for (const r of all) { r.severity = D.findings[D.finding_of[r.address]]?.severity || 'UNRATED'; r.sev_rank = SEV_ORDER.indexOf(r.severity); }
+  for (const r of all) { r.severity = (D.finding_of[r.address] || []).map(id => D.findings[id].severity).sort((x, y) => SEV_RANK.indexOf(x) - SEV_RANK.indexOf(y))[0] || 'UNRATED'; r.sev_rank = SEV_RANK.indexOf(r.severity); }
   let sortKey = 'sev_rank', dir = 1, showAll = false;
   const COLS = [['protocol', 'Contract'], ['sev_rank', 'Severity'], ['reliance', 'Reliance', 'hide-sm'], ['upgradeability', 'Code', 'hide-sm'], ['txs_y1', 'Transactions', 'n hide-sm'], ['usd_tx_y1', 'Value / year', 'n'], ['usd_held_now', 'Held', 'n hide-sm']];
   function render() {

@@ -1,0 +1,11 @@
+# Run by pq-outreach-sync.timer: app/sync.sh follows main. It restarts pq-outreach.service when it deploys new board
+# code, through sudo, so this unit has no NoNewPrivileges.
+[Unit]
+Description=PQ findings outreach board: follow main
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/pq-outreach
+ExecStart=/bin/sh /home/ubuntu/pq-outreach/app/sync.sh
+Nice=10

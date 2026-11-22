@@ -1,0 +1,24 @@
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.8.0;
+
+/// @title            Decompiled Contract
+/// @author           Jonathan Becker <jonathan@jbecker.dev>
+/// @custom:version   heimdall-rs v0.9.2
+///
+/// @notice           This contract was decompiled using the heimdall-rs decompiler.
+///                     It was generated directly by tracing the EVM opcodes from this contract.
+///                     As a result, it may not compile or even be valid solidity code.
+///                     Despite this, it should be obvious what each function does. Overall
+///                     logic should have been preserved throughout decompiling.
+///
+/// @custom:github    You can find the open-source decompiler here:
+///                       https://heimdall.rs
+
+contract DecompiledContract {
+    fallback() external payable {
+        (bool success, bytes memory ret0) = address(0xd4dacca08737d2a910b4ad401f805f83d0c170f3).Unresolved_(memory[ret0.length:ret0.length + (msg.data.length + (this.code.length - 0x36))]); // delegatecall
+        require(success);
+        return ;
+    }
+    
+}

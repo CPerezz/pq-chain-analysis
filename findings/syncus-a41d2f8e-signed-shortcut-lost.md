@@ -1,0 +1,152 @@
+---
+id: syncus-a41d2f8e-signed-shortcut-lost
+format: 2
+title: SYNC holders whose accounts take real code lose permit
+status: confirmed
+severity: INFORMATIONAL
+justification: A holder loses only the signed way, and only by moving its account to real code; the direct call
+  still works.
+category: migration-notice
+pattern: PQ-19
+study: eip-8151-impact
+as_of: 2026-11-18
+block: 26438999
+contract:
+  address: '0xa41d2f8ee4f47d3b860a149765a7df8c3287b7f0'
+  name: Syncus
+  code: verified
+  code_url: https://etherscan.io/address/0xa41d2f8ee4f47d3b860a149765a7df8c3287b7f0#code
+  copies: 2
+  family: 5de968c6b9213642197c59ac0d0017b5
+  upgradeable: 'no'
+  admin: '0xafa3533adeef8e076b792083eb0ee6fa3fe03b4c'
+value:
+  usd: 16802
+  basis: held
+activity: {}
+impact: liveness
+action: Tell holders that permit stops once their account takes real code; a direct approve call keeps working.
+evidence_level: source
+checks:
+- id: no-1271
+  bytecode: '0xa41d2f8ee4f47d3b860a149765a7df8c3287b7f0'
+  has: 1626ba7e
+  absent: true
+  says: the code holds no ERC-1271 isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: no-1271-legacy
+  bytecode: '0xa41d2f8ee4f47d3b860a149765a7df8c3287b7f0'
+  has: 20c13b0b
+  absent: true
+  says: the code holds no legacy isValidSignature selector
+  for:
+  - evidence-1
+  - what
+- id: permit-fn
+  selector: '0xa41d2f8ee4f47d3b860a149765a7df8c3287b7f0'
+  fn: permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+  says: the code has the permit function
+  for:
+  - what
+- id: approve-fn
+  selector: '0xa41d2f8ee4f47d3b860a149765a7df8c3287b7f0'
+  fn: approve(address,uint256)
+  says: the code has a direct approve
+  for:
+  - action
+  - evidence-2
+  - justification
+  - what
+- id: permit-body
+  source: '0xa41d2f8ee4f47d3b860a149765a7df8c3287b7f0'
+  file: src/ERC20Permit.sol
+  line: 43
+  has: permit
+  says: permit is defined here
+  for:
+  - evidence-1
+  - what
+- id: recover
+  source: '0xa41d2f8ee4f47d3b860a149765a7df8c3287b7f0'
+  file: src/ERC20Permit.sol
+  line: 69
+  has: address signer = ecrecover(_hash, v, r, s);
+  says: permit recovers the signer with ECDSA
+  for:
+  - action
+  - evidence-1
+  - justification
+  - what
+- id: approve-body
+  source: '0xa41d2f8ee4f47d3b860a149765a7df8c3287b7f0'
+  file: src/ERC20.sol
+  line: 75
+  has: approve
+  says: approve is a direct call of the holder
+  for:
+  - action
+  - evidence-2
+- id: match
+  source: '0xa41d2f8ee4f47d3b860a149765a7df8c3287b7f0'
+  file: src/ERC20Permit.sol
+  line: 71
+  has: signer != address(0) && signer == owner,
+  says: the recovered address must be the holder
+  for:
+  - evidence-1
+  - justification
+  - what
+- id: supply
+  call: '0xa41d2f8ee4f47d3b860a149765a7df8c3287b7f0'
+  fn: totalSupply()(uint256)
+  is: 4304762550449430275
+  says: 'the token has a supply at this address: it is in use here'
+  for:
+  - what
+- id: symbol
+  call: '0xa41d2f8ee4f47d3b860a149765a7df8c3287b7f0'
+  fn: symbol()(string)
+  is: SYNC
+  says: the token's symbol is SYNC
+  for:
+  - what
+sources:
+- study: eip-8151-impact
+  who: Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)
+  date: 2026-11-19
+  by: ai-assisted
+  verdict: reported
+  rating: LOW
+reviews: []
+related: []
+---
+
+## What happens
+
+The SYNC token lets a holder approve a spender with an ECDSA-signed permit or with a direct approve call. A holder whose account takes real code can no longer use permit; an EIP-7702 delegation keeps working.
+
+## Evidence
+
+- [permit](https://etherscan.io/address/0xa41d2f8ee4f47d3b860a149765a7df8c3287b7f0#code) recovers the signer with ECDSA and requires it to equal the holder; the code never asks the holder's account.
+- [approve](https://etherscan.io/address/0xa41d2f8ee4f47d3b860a149765a7df8c3287b7f0#code) sets the caller's own allowance without a signature.
+
+## Reviewer notes
+
+### Mechanism
+
+permit (src/ERC20Permit.sol, line 43) builds its digest and recovers the signer on line 69; the recovered address must equal the holder (line 71) before the allowance is set. approve (src/ERC20.sol, line 75) sets the caller's own allowance. Nothing in the code calls the holder's account: neither isValidSignature selector is present. Under EIP-8151 the recovery returns no address for an account with real code, so its signatures are refused; a delegated account still recovers.
+
+### Checks
+
+- Header facts: this address alone, at block 26,438,999; 2 addresses run this code.
+- Ruled out: an ERC-1271 or code-test path for holders with code: neither selector is in the code, and the source of permit has no such branch.
+- Ruled out: another signed function left out of this card: no function in the source recovers a signature except permit and the ECDSA library they call.
+- Ruled out: an unused copy: totalSupply() at this address is 4,304,762,550,449,430,275 base units.
+- Ruled out: Written by the shortcut recipe: the reasoning is that of the permit and delegateBySig cards authors wrote and refuters checked; the source lines, the symbol and the supply were read at this contract and every check was run here. No author or refuter read this contract.
+
+### History
+
+- 2026-11-19: reported by study eip-8151-impact.
+- 2026-11-20: reviewed again and rewritten from checks that were re-run.

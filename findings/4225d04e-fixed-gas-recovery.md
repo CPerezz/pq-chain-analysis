@@ -1,0 +1,70 @@
+---
+id: 4225d04e-fixed-gas-recovery
+title: "0x4225d04e: fixed gas for ecrecover below EIP-8151's price"
+status: confirmed
+severity: MEDIUM
+patterns: [PQ-14]
+impact: liveness
+contracts:
+- address: "0x4225d04ea2e2235e6dd15062d004a0cc769b6ad0"
+  family: "8f8e691102c82d666b6650c33f4e0693"
+  copies: 180
+  upgradeable: "no"
+  rating: MEDIUM
+  value_usd: 32181
+  value_basis: held
+  value_as_of: 2026-11-18
+  txs_90d: 0
+fix:
+  layer: new-deployment
+  who_acts: "cosigners approve a disband by direct call and the owner sends the funds with disbandTo"
+evidence:
+  level: bytecode
+  block: 26438999
+sources:
+- by: ai-assisted
+  study: eip-8151-impact
+  who: "Claude (families read, judged from bytecode or placed by measured rules; active ones replayed on real transactions)"
+  ref: "triage entry eip-8151-fixed-gas-recovery"
+  date: 2026-11-19
+  verdict: reported
+  rating: HIGH
+reviews:
+- who: "Claude, reviewer assigned by Anon (also the reporter of the triage entry)"
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: "signed transfers die for good; a direct disband only moves the funds out, so MEDIUM"
+---
+
+## Summary
+
+Contract `0x4225d04ea2e2235e6dd15062d004a0cc769b6ad0`, with 179 more addresses running its code. A Teambrella-style cosigner wallet: every signed operation recovers with a constant 3,000 gas and fails from activation day, but the funds can leave through a disband that needs no signature.
+
+## Mechanism
+
+PQ-14. The gas operand of the call to `0x01` is a constant: 3,000 in the Oraclize helper and its copies, 3,072 in two wallet factories. From activation day every valid signature fails, with nobody migrating. What follows decides the damage: a revert kills the function; code that ignores the call's result reads "no signer" as a fact (Fuel v1 rewards it as fraud).
+
+## Evidence
+
+- How it was placed: every valid signature fails: the code gives the precompile 3,000 gas. Bytecode.
+- Update path, read at block 26,438,999: no proxy slot, no upgrade function.
+- Functions at this address: transfer and changeAllCosigners (signed, every recovery with 3,000 gas), approveDisband, disbandTo, m_cosigners, m_owner.
+- Way out: cosigners call approveDisband directly (msg.sender checked against the cosigners) and the owner calls disbandTo, which sends the whole balance once enough cosigners approved; no ECDSA involved (Teambrella source read for the same design).
+- No proxy, no upgrade.
+
+## Impact and exposure
+
+- Value held at block 26,438,999: $32,181 (ETH and 49 priced tokens, over 180 addresses).
+- Activity: 0 transactions called it in the 90 days before that block.
+
+## Remediation
+
+Cosigners approve and the owner disbands, by direct calls.
+
+## History
+
+- 2026-11-19: reported as a row of triage entry `eip-8151-fixed-gas-recovery` (study `eip-8151-impact`).
+- 2026-11-20: reviewed and filed: LOW. Anon assigned the review to Claude, which also filed the triage entry.
+- 2026-11-20: re-rated MEDIUM (was LOW the same day): the signed transfers die for good and the disband only moves the funds out, which the scale rates MEDIUM; LOW is kept for a simple update or the same act staying open.

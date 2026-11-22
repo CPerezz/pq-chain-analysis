@@ -1,0 +1,12 @@
+# Run by pq-outreach-backup.timer: copy data/outreach.db (statuses, assignees, comments, users) to
+# data/backups/outreach.db, over the previous copy. data/registry.db needs none: the sync rebuilds it from git.
+[Unit]
+Description=PQ findings outreach board: back up the outreach records
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/pq-outreach/app
+Environment=BOARD_DATA=/home/ubuntu/pq-outreach/data
+ExecStart=/usr/bin/python3 server.py backup
+Nice=10

@@ -1,0 +1,19 @@
+# The board: python3 server.py serve, on 127.0.0.1:8090 only; people reach it through the tunnel. app/ is the deployed
+# copy of board/, data/ the databases (board/README.md, "Deploy").
+[Unit]
+Description=PQ findings outreach board
+After=network-online.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/pq-outreach/app
+Environment=BOARD_DATA=/home/ubuntu/pq-outreach/data
+ExecStart=/usr/bin/python3 server.py serve 8090
+Restart=on-failure
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=/home/ubuntu/pq-outreach/data
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

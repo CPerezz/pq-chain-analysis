@@ -1,61 +1,65 @@
 # pq-chain-analysis
 
-How many Ethereum mainnet contracts rely on pre-quantum cryptography (ecrecover, elliptic curves incl. precompiles, RSA; plus a scan for lattice verifiers), whether they can change, whether they have an alternative path, and how much value goes through them.
+What the move to post-quantum cryptography breaks, exposes or leaves unprotected on Ethereum mainnet: the studies that
+looked, and what they found, one file per contract and issue.
 
-**Findings registry: [`generated/INDEX.md`](generated/INDEX.md)** — one markdown file per affected project and mechanism in [`findings/`](findings/), each with a severity, the contracts, who can fix it, value at risk and evidence. Narrative: [REPORT.md](REPORT.md). Check any address: **https://kevaundray.github.io/pq-chain-analysis/**
+- **Rules for findings:** [AGENTS.md](AGENTS.md), for people and agents
+- **Report:** [REPORT.md](REPORT.md), the census of pre-quantum cryptography in mainnet contracts (November 2026)
+- **Check a contract:** <https://kevaundray.github.io/pq-chain-analysis/>, the census and every finding of an address
 
-| Path | Content |
-|---|---|
-| `findings/` | One file per finding. Threat model, fields and the severity rubric: [`findings/README.md`](findings/README.md) |
-| `patterns.md` | The ways contracts depend on pre-quantum cryptography (`PQ-1` … `PQ-12`) |
-| `evidence/<id>/` | Per finding: the classification, on-chain state (proxy, admin, holdings, at a block), 30-day activity, and verified-source excerpts of the checks |
-| `generated/` | `INDEX.md`, `findings.csv`, `contracts.csv`, built by `tools/build.py` |
-| `templates/finding.md` | Blank finding |
-| `REPORT.md` | The census report |
-| `data/report/*.csv` | Report tables; `curated_contracts.csv` is the per-contract classification of the 433 largest callers |
-| `data/curation/` | Raw per-contract classifications (`out_*.jsonl`) and their grouping into findings (`findings_map.csv`) |
-| `docs/` | GitHub Pages site: `index.html`, `data.json` (from `scripts/10_site_data.py`), and `lookup/` — a per-address index of every contract seen using pre-quantum crypto, sharded by address prefix (from `scripts/11_lookup_index.py`). The page also reads each looked-up address's current code from a public RPC in the browser |
-| `research/pq-research.md` | PQ verifier landscape, EIP status, replacement options and gas costs, with sources |
-| `scripts/` | Pipeline |
+## How it works
 
-## Working on findings
+```mermaid
+flowchart LR
+  S["studies/&lt;id&gt;/"] --> T["triage/&lt;id&gt;.md"]
+  T -->|reviewed| F["findings/&lt;id&gt;.md"]
+  F -->|"pull request: check.yml"| M[(main)]
+  M -->|"the board's server pulls"| B["board/: outreach"]
+  M -->|pages.yml| P["docs/: the public site"]
+```
 
-Edit or add `findings/<id>.md` (copy `templates/finding.md`), keep evidence under `evidence/<id>/`, then run
-`python3 tools/build.py` until it prints `OK` and commit `generated/` with it. `tools/build.py --check` validates without
-writing and fails if `generated/` is stale.
+1. A **study** says how something was investigated: goal, setup, procedure, how to reproduce, results, limits. Its
+   code lives in another repository, linked at a commit; small result tables sit in its `results/`.
+2. A **finding** is one contract and one issue. It starts in `triage/`: `tools/find.py` looks the address up,
+   `tools/new_finding.py` writes the facts it reads from the chain at one block, and the author writes the judgment
+   and the `checks` that back it. `tools/build.py` checks the format; `tools/verify.py` re-runs the facts and the
+   checks on an archive node.
+3. Someone other than the author reviews it and moves it to `findings/`. Its card is what readers see; its Reviewer
+   notes are never shown.
+4. Every push and pull request runs `.github/workflows/check.yml`: the rules and their self-test, the outreach board's
+   check and import of every card, and the public site's data built from that import.
+5. After a merge to `main`, `pages.yml` publishes the site with that commit's cards, and the board's server pulls it
+   and rebuilds its database within a minute.
 
-## Reproducing
+Format-1 files in `findings/` (from the EIP-8151 study) and the root-issue entries
+`triage/eip-8151-*.md` were filed in bulk, by rules, before anyone read the contracts. `review/` turns them into cards,
+one contract at a time.
 
-Requires Python 3.13, `duckdb pyarrow pandas requests`, and a mainnet RPC that supports `eth_call` state overrides (`ETH_RPC_URL`, default publicnode).
+## Layout
 
-1. Get the [precompile-usage](https://s3-dcl1.ethquokkaops.io/evm-parquet/) parquet corpus (≈56 GB, produced by [precompile-tracer](https://github.com/CPerezz/precompile-tracer)). `scripts/01_precompile_agg.py` expects it in `~/work/xatu/precompile-usage/`.
-2. Run, in order:
-   ```
-   python scripts/01_precompile_agg.py      # per-caller aggregates, modexp moduli
-   python scripts/02_contracts_pass.py 0 17999 && python scripts/02_contracts_pass.py 18000 <head/1000>  # Xatu contracts
-   python scripts/03_probe_callers.py       # code/balance at head
-   python scripts/03b_caller_family.py      # code families
-   python scripts/04_families.py            # proxy resolution, selectors, fingerprints
-   python scripts/05_code_scan.py           # chain-wide bytecode fingerprint scan (EC / lattice)
-   scripts/download_sample.sh && python scripts/06_value_flows.py   # 1-in-10 transfer sample, USD flows
-   python scripts/blockscout.py address <list> ; python scripts/sourcify.py <list>  # labels, sources
-   python scripts/07_classify.py            # rule-based role / mutability
-   python scripts/08_holdings.py            # current holdings
-   python scripts/09_report_tables.py       # data/report/*.csv
-   python scripts/10_site_data.py           # docs/data.json for the site
-   python scripts/11_lookup_index.py        # docs/lookup/ address index for the site's checker
-   # findings registry; 12-14 are network- and data-heavy and run on a remote box (see below)
-   python scripts/12_state.py               # on-chain state of the classified contracts -> data/state/
-   python scripts/13_activity.py            # 30-day activity and last-active from Xatu -> data/activity/
-   python scripts/14_excerpts.py            # verified-source excerpts of each check -> data/excerpts/
-   python scripts/15_findings.py            # draft findings/<id>.md and evidence/<id>/ (never overwrites a finding)
-   python tools/build.py                    # validate, build generated/
-   python scripts/10_site_data.py           # again, so the site shows each contract's finding
-   ```
+| Path | What it holds | Its rules |
+|---|---|---|
+| `studies/<id>/` | One folder per study | [`studies/README.md`](studies/README.md) |
+| `triage/` | New entries until someone else has reviewed them; the EIP-8151 root-issue entries | [`AGENTS.md`](AGENTS.md) |
+| `findings/` | One file per contract and issue: format 2 (the reviewed cards) and format 1 (bulk entries waiting for review) | [`AGENTS.md`](AGENTS.md) |
+| `review/` | The EIP-8151 review: the open rows, their dossiers, its tools and its agents' instructions | [`review/README.md`](review/README.md) |
+| `patterns.md` | The patterns (`PQ-n`) findings are grouped by, each with its category and the words a card shows | |
+| `code/` | Decompiled code that findings link, for contracts without verified source | [`code/README.md`](code/README.md) |
+| `templates/` | Blank forms; `examples/` holds filled ones, which the rules are tested against | |
+| `tools/` | `build.py` (the rules and their self-test), `find.py`, `new_finding.py`, `verify.py`, `site_data.py` (the site's data), `tokens.json` (the tokens a value counts) | Each file's docstring |
+| `board/` | The outreach board: the cards in SQLite, rebuilt whenever `main` changes and checked against the files, and the private page where the outreach team records contact | [`board/README.md`](board/README.md) |
+| `docs/` | The public site: `index.html`, and `lookup/`, the census per address (a snapshot built outside this repository); CI adds the cards a reader may see | `tools/site_data.py` |
+| `REPORT.md` | The census report | |
+| `AGENTS.md` | The rules for findings: levels, the file, checks, severity, filing and reviewing (`CLAUDE.md` points here) | |
 
-Remote runs: scripts 12–14 read ~45 GB from Xatu and make thousands of RPC/Blockscout/Sourcify calls. They were run on a
-96-core box with 60 MB/s to Xatu (about 200× this laptop): clone the repo there, `rsync` the derived `data/` files it
-reads (`data/agg`, `data/sourcify`, `data/blockscout`, `data/state`), run the scripts under `tmux`, and `rsync` back
-`data/{state,activity,excerpts}`. `data/activity/raw/` (the matched Xatu rows, several GB) can stay on the remote.
+## Checking a change
 
-The curated classifications in `data/curation/` were produced by reading verified source and bytecode per contract; they are inputs, not regenerated by the scripts.
+```
+uv run tools/build.py --selftest                     # the rules, and proof that they reject what they should
+uv run --with pyyaml python board/check.py .         # the board's check
+ETH_RPC_URL=<archive node> uv run tools/verify.py findings/<id>.md   # re-run a card's facts and checks
+```
+
+## Licence
+
+[CC0 1.0](LICENSE).

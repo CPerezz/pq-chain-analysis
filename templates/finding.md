@@ -1,70 +1,70 @@
 ---
-# Copy to findings/<id>.md. Field reference and severity rubric: findings/README.md. Then run tools/build.py.
-id: project-mechanism                   # = file name without .md; lowercase letters, digits, '-'
-title: "One line: what a quantum attacker can do, or what breaks for post-quantum users"
-project: project-slug                   # the team that has to act
-status: candidate                       # confirmed | candidate | not-affected | duplicate
-severity: UNRATED                       # CRITICAL | HIGH | MEDIUM | LOW | NONE | UNRATED
-patterns: []                            # IDs from patterns.md, e.g. [PQ-4]
-primitives: []                          # ecrecover | bn254 | kzg | bls12381 | p256 | sw_p256 | sw_secp256k1 | sw_bn254 | sw_ed25519 | sw_bls12381 | rsa
-trigger: unknown                        # user-key | operator-key | committee-keys | trusted-setup | owner-keys | issuer-key | none
-impact: unknown                         # funds-loss | funds-locked | liveness | none | unknown
-alternative: sole                       # sole | key-rotation-only | alternative-exists | configurable-verifier
-role: core                              # core | auxiliary
-contracts:                              # the address users call; for a proxy, add its implementation
-  - address: "0x0000000000000000000000000000000000000000"
-    implementation: null
-    name: ContractName
-    upgradeable: unknown                # yes | no | config-only | unknown
-    admin: null                         # who can upgrade or reconfigure, with address
-    value_usd: null
-    value_basis: null                   # held | market-cap | escrow
-    value_as_of: null
-    last_active: null
-    txs_30d: null
-families: []                            # many deployments of one code: code, name, instances, list, upgradeable, value_usd, value_basis, value_as_of
-fix:
-  layer: unknown                        # contract-upgrade | onchain-config | new-deployment | account-migration | offchain | protocol | none | unknown
-  who_acts: unknown
-  protocol_change: not-needed           # required | helps | not-needed
-evidence:
-  level: source-read                    # onchain-read | source-read | bytecode | trace
-  links: []                             # files under evidence/<id>/
+# Format 2. Start a finding with `uv run tools/new_finding.py`, which fills the facts; read AGENTS.md first.
+# Readers see everything above `## Reviewer notes` except the fields marked "not shown". Leave a field empty when
+# it is not established; never guess. Field rules: AGENTS.md.
+id: name-12345678-issue            # = file name: <contract name>-<first 8 hex of the address>-<issue>
+format: 2
+title:                             # 20-80 characters, plain words: what is wrong, for whom. No amounts, ids or codes
+status: candidate                  # candidate | confirmed | reproduced | duplicate
+severity:                          # CRITICAL | HIGH | MEDIUM | LOW | INFORMATIONAL (migration notices only)
+justification:                     # up to 120 characters: why it is an issue, and why at this level
+category:                          # the pattern's: quantum-exposure | breaks-at-activation | voided-by-migration | migration-notice
+pattern: PQ-0                      # one id from patterns.md
+study: study-id                    # the study that flagged it: a folder in studies/
+as_of: 2026-11-18                  # the date of `block`
+block: 0                           # every state read in this file is at this block
+contract:
+  address: "0x0000000000000000000000000000000000000000"
+  name:                            # from verified source or the chain
+  project:                         # slug; only from verified source, the chain or the team
+  label:                           # the explorer's public tag: a lead, never a name
+  code:                            # verified | decompiled | bytecode
+  code_url:                        # verified or bytecode: the Etherscan or Sourcify page; decompiled: code/<code hash>.sol
+  proxy_of:                        # the implementation, when this address is a proxy
+  copies: 1                        # addresses running the same code
+  family:                          # the code family, when copies is above 1
+  upgradeable:                     # yes | no | config-only
+  admin:                           # not shown: the address that can upgrade or reconfigure, or none
+value:
+  usd:                             # what the address (and its copies) holds
+  whose:                           # users | operator | mixed
+  basis:                           # held | market-cap | escrow
+activity:
+  txs_90d:                         # transactions that called it, any function, in the 90 days to `block`
+  last:                            # not shown: the date of the last one
+impact:                            # funds-loss | funds-locked | liveness: what happens if nobody acts
+action:                            # up to 140 characters, for the contract's team, starting with a verb; empty if not sure
+evidence_level:                    # source | bytecode | onchain | trace | executed
+checks: []                         # not shown: what tools/verify.py re-runs; every part of the card needs one (AGENTS.md)
 sources:
-  - by: ai-assisted                     # ai-assisted | project-team | other
-    who: ""
-    ref: ""
-    date: 2026-11-17
-    verdict: reported                   # reported | confirmed | refuted
-    rating: ""
-related: []
+- study: study-id
+  who:                             # person or agent
+  date: 2026-11-18
+  by: ai-assisted                  # ai-assisted | project-team | other
+  verdict: reported                # reported | confirmed | refuted
+reviews: []                        # added by reviewers: who, date, by, verdict (confirmed | refuted), note
+related: []                        # other findings on the same contract
 ---
 
-## Summary
+## What happens
 
-What a quantum attacker can do through this contract, or what post-quantum users cannot do, and how much is exposed.
-Two to five sentences.
-
-## Mechanism
-
-The path through the code: which function checks which signature or proof, against which key or setup, and what it
-releases. Link the pattern (PQ-n) and the source excerpt.
+Up to 300 characters about this contract: what it does, where it trusts the signature, what goes wrong.
 
 ## Evidence
 
-What was read (verified source, bytecode, precompile trace) and what was read on-chain at which block. Mark every
-statement CHECKED or INFERRED.
+- One fact that shows the problem, with its [link](https://etherscan.io/address/0x0000000000000000000000000000000000000000#code).
+  At most three bullets, every one with a link.
 
-## Impact and exposure
+## Reviewer notes
 
-Value exposed with its basis and date; activity (last active, 30-day transactions and value); every deployment and
-sibling checked.
+### Mechanism
 
-## Remediation
+The path through the code, for this contract. Never shown.
 
-The post-quantum replacement, who must act (admin, governance, operator, owners), whether it needs a protocol change,
-and what helps without the team.
+### Checks
 
-## History
+- What was read, how, and what it gave; what was ruled out.
 
-- 2026-11-17: created from ... (source).
+### History
+
+- 2026-11-18: filed from study study-id.
