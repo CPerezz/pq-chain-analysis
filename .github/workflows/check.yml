@@ -1,8 +1,8 @@
 name: check
 
 # Every push and pull request: the registry's rules, and the proof that they reject what they should; then the
-# outreach board's own check, and every card of the commit imported into SQLite and checked against its file, as the
-# board's server does when main moves (board/README.md).
+# outreach board's own check, every card of the commit imported into SQLite and checked against its file, as the
+# board's server does when main moves (board/README.md), and the public site's data built from that import.
 on:
   push:
   pull_request:
@@ -22,3 +22,4 @@ jobs:
       - uses: astral-sh/setup-uv@v6
       - run: uv run --with pyyaml python board/check.py .
       - run: uv run --with pyyaml python board/ingest.py . "$RUNNER_TEMP/registry.db"
+      - run: uv run tools/site_data.py "$RUNNER_TEMP/registry.db" "$RUNNER_TEMP/site"

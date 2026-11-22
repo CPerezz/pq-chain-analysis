@@ -5,6 +5,7 @@ looked, and what they found, one file per contract and issue.
 
 - **Rules for findings:** [AGENTS.md](AGENTS.md), for people and agents
 - **Report:** [REPORT.md](REPORT.md), the census of pre-quantum cryptography in mainnet contracts (November 2026)
+- **Check a contract:** <https://kevaundray.github.io/pq-chain-analysis/>, the census and every finding of an address
 
 ## How it works
 
@@ -14,6 +15,7 @@ flowchart LR
   T -->|reviewed| F["findings/&lt;id&gt;.md"]
   F -->|"pull request: check.yml"| M[(main)]
   M -->|"the board's server pulls"| B["board/: outreach"]
+  M -->|pages.yml| P["docs/: the public site"]
 ```
 
 1. A **study** says how something was investigated: goal, setup, procedure, how to reproduce, results, limits. Its
@@ -24,9 +26,10 @@ flowchart LR
    checks on an archive node.
 3. Someone other than the author reviews it and moves it to `findings/`. Its card is what readers see; its Reviewer
    notes are never shown.
-4. Every push and pull request runs `.github/workflows/check.yml`: the rules and their self-test, and the outreach
-   board's check and import of every card.
-5. After a merge to `main`, the board's server pulls it and rebuilds its database within a minute.
+4. Every push and pull request runs `.github/workflows/check.yml`: the rules and their self-test, the outreach board's
+   check and import of every card, and the public site's data built from that import.
+5. After a merge to `main`, `pages.yml` publishes the site with that commit's cards, and the board's server pulls it
+   and rebuilds its database within a minute.
 
 Format-1 files in `findings/` (from the EIP-8151 study) and the root-issue entries
 `triage/eip-8151-*.md` were filed in bulk, by rules, before anyone read the contracts. `review/` turns them into cards,
@@ -43,8 +46,9 @@ one contract at a time.
 | `patterns.md` | The patterns (`PQ-n`) findings are grouped by, each with its category and the words a card shows | |
 | `code/` | Decompiled code that findings link, for contracts without verified source | [`code/README.md`](code/README.md) |
 | `templates/` | Blank forms; `examples/` holds filled ones, which the rules are tested against | |
-| `tools/` | `build.py` (the rules and their self-test), `find.py`, `new_finding.py`, `verify.py`, `tokens.json` (the tokens a value counts) | Each file's docstring |
+| `tools/` | `build.py` (the rules and their self-test), `find.py`, `new_finding.py`, `verify.py`, `site_data.py` (the site's data), `tokens.json` (the tokens a value counts) | Each file's docstring |
 | `board/` | The outreach board: the cards in SQLite, rebuilt whenever `main` changes and checked against the files, and the private page where the outreach team records contact | [`board/README.md`](board/README.md) |
+| `docs/` | The public site: `index.html`, and `lookup/`, the census per address (a snapshot built outside this repository); CI adds the cards a reader may see | `tools/site_data.py` |
 | `REPORT.md` | The census report | |
 | `AGENTS.md` | The rules for findings: levels, the file, checks, severity, filing and reviewing (`CLAUDE.md` points here) | |
 

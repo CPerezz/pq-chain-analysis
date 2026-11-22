@@ -3,3 +3,5 @@ __pycache__/
 review/work/
 board/data/
 board/vdata/
+docs/data.json
+docs/cards/

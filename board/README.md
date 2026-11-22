@@ -134,8 +134,7 @@ Protect `main` (pull requests with the `check` workflow passing) so that only ch
   do, and a permit token's exposure is its holders' balances. The card's own figure, with its basis, stays beside it.
   Tokens Etherscan prices but CoinGecko does not list at that address count as zero.
 
-## Later: a public search
+## The public site
 
-A site where a team looks its contracts up can come from the same
-import: CI on `main` builds `registry.db` exactly as above (without values), exports the card fields a reader may see,
-and publishes static lookup files. Nothing here needs to change for it.
+The site in `docs/` reads the same import: `pages.yml` builds `registry.db` on `main` exactly as above (without
+values), and `tools/site_data.py` exports the card fields a reader may see, by address, for the site's lookup.
