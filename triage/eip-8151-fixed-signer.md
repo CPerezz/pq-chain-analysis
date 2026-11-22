@@ -34,7 +34,7 @@ sources:
   date: 2026-11-19
   verdict: reported
   rating: CRITICAL
-related: [clipper-designated-signer, unidentified-1c6ad754-signer-key, unidentified-fbeedcfe-signer-key]
+related: [clipperapproximatecaravelexchange-655edce4-designated-signer, contract-ba418fa6-signer-key, contract-82eace5d-signer-key, contract-3762a79b-signer-key, contract-1c6ad754-signer-key, contract-fbeedcfe-signer-key]
 reviews: []
 ---
 

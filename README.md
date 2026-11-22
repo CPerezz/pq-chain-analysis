@@ -28,7 +28,7 @@ flowchart LR
    board's check and import of every card.
 5. After a merge to `main`, the board's server pulls it and rebuilds its database within a minute.
 
-Format-1 files in `findings/` (from the EIP-8151 study and the first study) and the root-issue entries
+Format-1 files in `findings/` (from the EIP-8151 study) and the root-issue entries
 `triage/eip-8151-*.md` were filed in bulk, by rules, before anyone read the contracts. `review/` turns them into cards,
 one contract at a time.
 

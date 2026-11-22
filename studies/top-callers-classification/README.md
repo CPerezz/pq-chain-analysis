@@ -1,6 +1,6 @@
 ---
 id: top-callers-classification
-title: "The 433 largest callers of pre-quantum cryptography, read at source level and turned into findings"
+title: "Kev's initial general study: the 433 largest callers of pre-quantum cryptography, read at source level and turned into findings"
 authors: [kevaundray]
 status: published
 started: null
@@ -50,10 +50,10 @@ existing finding.
 
 ## Results
 
-- 225 findings, filed in [`findings/`](../../findings/). The 217 that are confirmed or
-  candidates cover 555 contracts. 202 are
-  confirmed, 15 are candidates and 8 are not affected. Confirmed and candidate findings are rated CRITICAL 2, HIGH 18,
-  MEDIUM 96, LOW 101.
+- 225 findings. The 217 that are confirmed or candidates cover 555 contracts. 202 are confirmed, 15 are candidates
+  and 8 are not affected. Confirmed and candidate findings are rated CRITICAL 2, HIGH 18, MEDIUM 96, LOW 101. In
+  [`findings/`](../../findings/) each is filed as one card per contract, under this study; the 8 not affected are
+  removed.
 - Of the 346 applications, 34 offer a real alternative path, 117 can only rotate keys, 96 depend on the check alone,
   and 99 have a verifier the consumer can repoint.
 - The narrative is [REPORT.md](../../REPORT.md), sections 4 to 6.

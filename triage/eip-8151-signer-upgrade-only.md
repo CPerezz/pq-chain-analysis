@@ -47,7 +47,7 @@ sources:
   date: 2026-11-19
   verdict: reported
   rating: HIGH
-related: [redstone-data-signers]
+related: [ethereummultifeedadapterwithoutroundsv3-d72a6ba4-data-signers]
 reviews: []
 ---
 

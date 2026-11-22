@@ -11,8 +11,9 @@ Outcomes: kept (a finding of the row's issue), re-rated, moved (another root iss
 author's disproof, and the refuter's agreement or a note saying how the reader resolved each objection), question
 (stays open for the owner, never filed), redo (back to the author with the note), covered (--by: another row of the
 same address carries the card; this row is filed with it, like a removal), unused (no agent: a row for one address
-that holds nothing and that nothing called in the 90 days before the block; the tool checks the dossier). Nothing is
-filed into the registry here.
+that holds nothing and that nothing called in the 90 days before the block; the tool checks the dossier), trusted
+(a first-study row whose finding the owner takes as valid: the author's draft is accepted with every check re-run,
+and no refuter is sent). Nothing is filed into the registry here.
 
 A card the reader corrected after its refuter answered keeps that answer as refute-before-edit.json and is settled
 with --note saying how each objection was resolved; no second refuter is sent.
@@ -26,7 +27,7 @@ from . import REGISTRY
 from . import rows as R
 from .submit import dossier, out_dir
 
-OUTCOMES = ("kept", "re-rated", "moved", "removed", "question", "redo", "covered", "unused")
+OUTCOMES = ("kept", "re-rated", "moved", "removed", "question", "redo", "covered", "unused", "trusted")
 
 
 def reopen(key: str, who: str, note: str) -> str:
@@ -179,6 +180,15 @@ def main():
                 sys.exit("--by must name a row of the same address whose draft is a finding, with --note saying why it covers this row")
             R.advance(args.key, "settled", args.who, "reader", "covered", f"by {args.by}. {args.note}")
             return print("settled as covered")
+        if args.outcome == "trusted":
+            # the owner's rule for the first study's findings: they are taken as valid; the card is the author's accepted
+            # draft, its checks re-run by review.submit, and no refuter is sent
+            if not args.key.startswith("first/"):
+                sys.exit("trusted is only for first-study rows (first/…)")
+            if not ((out / "finding.md").exists() and json.loads((out / "draft.json").read_text()).get("verdict") == "finding" and args.note):
+                sys.exit("trusted needs an accepted finding (review.submit printed ACCEPTED) and --note")
+            R.advance(args.key, "settled", args.who, "reader", "trusted", args.note)
+            return print("settled as trusted")
         answer = next((p for p in (out / "refute.json", out / "refute-before-edit.json") if p.exists()), None)
         if answer is None or (answer.name != "refute.json" and not args.note):
             sys.exit("not refuted yet: a row is settled only after the author, the refuter and your own reading"

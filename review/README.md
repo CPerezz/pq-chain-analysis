@@ -1,18 +1,17 @@
 # review/: the open rows of the EIP-8151 study, and how to finish them
 
-Every row is one contract under one root issue that the EIP-8151 study (or the first study) filed in bulk, by rules,
+Every row is one contract under one root issue that the EIP-8151 study filed in bulk, by rules,
 before anyone read the contract. Each row ends as a reviewed format-2 card in `findings/`, a removal, or a question
 for the owner. Rows already settled are in `findings/` (format 2) and are not in this queue.
 
 ## State at the hand-over (2026-11-22)
 
-9,939 rows are open, every one `todo`, ordered CRITICAL first. By issue and by the rating the old registry gave them
+9,482 rows are open, every one `todo`, ordered CRITICAL first. By issue and by the rating the old registry gave them
 (untrusted: reviewers have re-rated many, mostly down):
 
 | Issue | CRITICAL | HIGH | MEDIUM | LOW | other | Total |
 |---|---|---|---|---|---|---|
 | `signature-rechecked` | 33 |  | 2 | 1 |  | 36 |
-| first study (`first/…`) | 11 | 36 | 361 | 49 |  | 457 |
 | `fixed-gas-recovery` | 3 | 23 | 95 | 3 |  | 124 |
 | `fixed-signer` | 1 | 61 | 183 | 63 | 2 | 310 |
 | `wallets-fixed-signers` |  | 109 | 6 | 4 |  | 119 |
@@ -26,7 +25,7 @@ for the owner. Rows already settled are in `findings/` (format 2) and are not in
 | `7702-own-key-only` |  |  |  | 340 |  | 340 |
 | `entry-by-own-signature-only` |  |  |  | 92 |  | 92 |
 | `signed-4337-gas-limits` |  |  |  | 2 |  | 2 |
-| Total | 48 | 301 | 697 | 8,888 | 5 | 9,939 |
+| Total | 37 | 265 | 336 | 8,839 | 5 | 9,482 |
 
 What the review has learned about these rows:
 
@@ -34,14 +33,16 @@ What the review has learned about these rows:
   author agent, checked by a refuter agent and settled by a reader; the rest written by script for notices whose
   shape reviewed cards fixed (token permit and signed delegation, a stored signer that a function replaces, a signer
   fixed at deployment). Each scripted card says in its Reviewer notes that no agent read the contract. The rest were
-  dropped as unused (nothing held, nothing called) or removed as not affected.
+  dropped as unused (nothing held, nothing called) or removed as not affected. The first study's 457 open rows were
+  filed as cards on the owner's word that its findings hold (outcome `trusted`): each restates the study's finding for
+  one contract, with checks re-run at the block, and no refuter read it.
 - **The scripts already read every open `rotate-signer-before-migrating`, `fixed-signer`, `signer-upgrade-only` and
   `signed-shortcut-lost` row and could not write it**: no verified source, a comparison a pattern cannot follow, an
   ERC-1271 path, several kinds of signer, a signer nobody can replace, 1,000 USD or more held with the signed path
   off. These rows need a reader's judgment, not another script.
 - **Re-ratings so far go mostly down:** of the fixed-signer and wallet rows the old registry rated HIGH, every one
   reviewed became INFORMATIONAL (a key holder must move its account to code before anything breaks). Rated issues
-  (`signature-rechecked`, `fixed-gas-recovery`, first-study rows) keep real CRITICAL and HIGH cards: a gas amount
+  (`signature-rechecked`, `fixed-gas-recovery`) keep real CRITICAL and HIGH cards: a gas amount
   fixed in code with no update path is CRITICAL whatever the contract holds.
 - **Leads are leads.** The study's scanner, its family tables and its rules have been wrong in both directions; the
   dossier's `scan` and `use` blocks say where to look, never what is true.
@@ -218,4 +219,5 @@ What you refute: `review/work/out/DIR/refuter_input.md`. Dossier: `review/work/d
 | `*.py` | `rows` (the queue), `dossier`, `submit` (author), `refute` (refuter), `sheet` (reader), `file` (filer), `gateway` | yes |
 
 A row's states: `todo`, `taken`, `authored` (the author's draft is accepted), `refuted`, `settled`. The outcomes of
-a settled row: `kept`, `re-rated`, `moved`, `removed`, `covered`, `unused`, `question`.
+a settled row: `kept`, `re-rated`, `moved`, `removed`, `covered`, `unused`, `trusted` (a first-study row the owner
+took as valid, without a refuter), `question`.

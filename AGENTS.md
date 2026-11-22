@@ -249,13 +249,10 @@ other contracts and is not dropped that way.
 ## Format 1
 
 Files without `format: 2` are format 1 (the field reference is `findings/README.md` at commit
-`0ca5495cb3b79559c72e805ec0798d07b90e39fa`): the EIP-8151 study's bulk entries and the first study's findings, not
-yet reviewed. `review/` converts them, one contract at a time; a format-1 file leaves when the last of its contracts
+`0ca5495cb3b79559c72e805ec0798d07b90e39fa`): the EIP-8151 study's bulk entries, not yet reviewed. `review/` converts
+them, one contract at a time; a format-1 file leaves when the last of its contracts
 is filed or removed. The build accepts them until then. Do not create new format 1 files.
 
 The EIP-8151 root-issue entries, `triage/eip-8151-*.md`, list one row per contract. Each row has its own `rating`, by
 the rubric for a protocol change, and the entry's `severity` is its highest row. A family whose addresses differ is
 one row per answer: its proxies with a live admin are one row, its copies with no update path another.
-
-The 8 findings with `status: not-affected` are format 1, published before a finding that is not affected was
-removed instead; they stay so that links to them keep working.

@@ -7,10 +7,10 @@
                                                    (two issues on one address under one pattern: the checker asks
                                                    for it); the row's draft keeps the link for a later re-file
 Takes settled rows that are not filed since they were last settled, in settle order, up to --batch:
-- kept, re-rated or moved: the card is rendered again from its draft (no check is re-run, the row's state does not
+- kept, re-rated, moved or trusted: the card is rendered again from its draft (no check is re-run, the row's state does not
   change), validated, and written to findings/<id>.md;
 - removed: nothing new is written.
-A row waits when it is not ready: any card needs its refuter's results; a removal whose refuter agreed needs a second
+A row waits when it is not ready: any card but a trusted one needs its refuter's results; a removal whose refuter agreed needs a second
 refuter's answer (work/refute1/ holds the first); CRITICAL and HIGH need the owner's sign-off (review/signoff.txt, one
 key per line). Questions are never filed.
 
@@ -47,7 +47,7 @@ def due(c) -> list[tuple[str, str]]:
     return c.execute("""
         WITH last AS (SELECT key, step, row_number() OVER (PARTITION BY key ORDER BY at DESC, rowid DESC) AS n FROM ledger)
         SELECT r.key, r.outcome FROM rows r JOIN last l ON l.key = r.key AND l.n = 1
-        WHERE r.state = 'settled' AND r.outcome IN ('kept', 're-rated', 'moved', 'removed', 'covered', 'unused') AND l.step != 'file'
+        WHERE r.state = 'settled' AND r.outcome IN ('kept', 're-rated', 'moved', 'trusted', 'removed', 'covered', 'unused') AND l.step != 'file'
         ORDER BY r.settled_at""").fetchall()
 
 
@@ -59,7 +59,7 @@ def ready(key: str, outcome: str, head: dict | None, signed: set, now: set = fro
     if outcome == "covered":  # its card is another row's (sheet settle --by); it goes once that row is filed, this run included
         by = R.db().execute("SELECT reason FROM rows WHERE key = ?", (key,)).fetchone()[0].split(". ", 1)[0].removeprefix("by ")
         return None if by in now or R.db().execute("SELECT 1 FROM ledger WHERE key = ? AND step = 'file'", (by,)).fetchone() else "waits for its covering row"
-    if not any((out / f).exists() for f in ("refute_results.json", "refute-before-edit.json")):
+    if outcome != "trusted" and not any((out / f).exists() for f in ("refute_results.json", "refute-before-edit.json")):
         return "no refuter's results"
     if (outcome == "removed" and not (WORK / "refute1" / key_dir(key) / "refute.json").exists()
             and (out / "refute.json").exists() and json.loads((out / "refute.json").read_text()).get("verdict") == "agree"):
@@ -220,7 +220,7 @@ def main():
         if len(filed) >= args.batch:
             break
         head = text = None
-        if outcome in ("kept", "re-rated", "moved"):
+        if outcome in ("kept", "re-rated", "moved", "trusted"):
             out = WORK / "out" / key_dir(key)
             try:
                 draft, d = json.loads((out / "draft.json").read_text()), S.dossier(key)
@@ -239,16 +239,27 @@ def main():
             continue
         r = rows[key]
         target = REGISTRY / "findings" / f"{head['id']}.md" if head else None
-        mine = lambda t: c.execute("SELECT 1 FROM ledger WHERE key = ? AND step = 'file' AND detail = ?", (key, f"findings/{t.name}")).fetchone()
-        if target and target.exists() and f"findings/{target.name}" != r.get("old_path") and not mine(target):
-            # another contract of the same name whose address starts with the same eight digits (vanity addresses): this card's id takes twelve,
-            # as the old registry's did (afeth-00000000fbaa-…)
-            longer = head["id"].replace(f"-{r['address'][2:10]}-", f"-{r['address'][2:14]}-", 1)
-            text, head = text.replace(f"id: {head['id']}\n", f"id: {longer}\n", 1), dict(head, id=longer)
-            target = REGISTRY / "findings" / f"{longer}.md"
-            if longer not in text or (target.exists() and f"findings/{target.name}" != r.get("old_path") and not mine(target)):
+        taken = {f[2] for f in filed if f[2]}
+
+        def other(t: Path) -> bool:
+            """The file holds another contract's card, or another row of this run takes it."""
+            if t in taken:
+                return True
+            if not t.exists() or f"findings/{t.name}" == r.get("old_path"):
+                return False
+            return not re.search(rf"^  address: ['\"]?{r['address']}['\"]?$", t.read_text(), re.M)
+        if target and other(target):
+            # another contract of the same name whose address starts with the same eight digits (vanity addresses): this card's id
+            # takes as many as it needs, as the old registry's did (afeth-00000000fbaa-…)
+            for n in (12, 16, 20, 40):
+                longer = head["id"].replace(f"-{r['address'][2:10]}-", f"-{r['address'][2:2 + n]}-", 1)
+                if not other(REGISTRY / "findings" / f"{longer}.md"):
+                    break
+            else:
                 problems.append(f"{key}: findings/{target.name} exists and belongs to another row")
                 continue
+            text, head = text.replace(f"id: {head['id']}\n", f"id: {longer}\n", 1), dict(head, id=longer)
+            target = REGISTRY / "findings" / f"{longer}.md"
         filed.append((key, outcome, target, text, head, r))
     gone = set()
     filing = {f[0] for f in filed}
@@ -265,7 +276,7 @@ def main():
                     set_related(head["id"], [other])  # links recorded with --link survive a re-file, both ways
                     set_related(other, [head["id"]])
         if outcome in ("removed", "unused"):  # a row that had been filed as a card and was settled again: the card goes too
-            was = c.execute("SELECT detail FROM ledger WHERE key = ? AND step = 'file' AND outcome IN ('kept', 're-rated', 'moved') ORDER BY at DESC, rowid DESC", (key,)).fetchone()
+            was = c.execute("SELECT detail FROM ledger WHERE key = ? AND step = 'file' AND outcome IN ('kept', 're-rated', 'moved', 'trusted') ORDER BY at DESC, rowid DESC", (key,)).fetchone()
             if was and was[0] != old and (REGISTRY / was[0]).exists():
                 if not args.dry:
                     (REGISTRY / was[0]).unlink()

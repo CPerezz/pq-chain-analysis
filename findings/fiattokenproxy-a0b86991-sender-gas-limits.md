@@ -225,7 +225,7 @@ sources:
   by: ai-assisted
   verdict: reported
 reviews: []
-related: [circle-usdc-permit-code-first]
+related: []
 ---
 
 ## What happens
