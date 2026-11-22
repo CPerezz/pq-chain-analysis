@@ -96,7 +96,7 @@ The server keeps everything in `/home/ubuntu/pq-outreach` (the units name that p
 | `pq-outreach.service` | The board on 127.0.0.1:8090 |
 | `pq-outreach-sync.timer` | Every minute: `app/sync.sh` |
 | `pq-outreach-backup.timer` | Daily: `data/backups/outreach.db`, over the previous copy |
-| `pq-outreach-tunnel.service` | The https address (a Cloudflare quick tunnel for now) |
+| `pq-outreach-tunnel.service` | The https address, through a Cloudflare quick tunnel |
 
 First setup, or a move to another server (Python 3 with PyYAML, git, rsync, cloudflared):
 

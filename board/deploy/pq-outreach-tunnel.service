@@ -1,6 +1,6 @@
-# The board's https address, for now: a Cloudflare quick tunnel. No account needed, but no uptime guarantee and the
-# address changes on every restart: `journalctl -u pq-outreach-tunnel | grep -o 'https://.*trycloudflare.com'`.
-# A named tunnel in a Cloudflare account of ours gives a fixed name; see board/README.md.
+# The board's https address: a Cloudflare quick tunnel. No account needed, but no uptime guarantee, and the address
+# changes on every restart: `journalctl -u pq-outreach-tunnel | grep -o 'https://.*trycloudflare.com'`. A named
+# tunnel in a Cloudflare account gives a fixed name (board/README.md, "Operate").
 [Unit]
 Description=PQ findings outreach board: Cloudflare quick tunnel
 After=pq-outreach.service network-online.target
