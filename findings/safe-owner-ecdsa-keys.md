@@ -41,26 +41,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-09-07
   txs_30d: 0
-- address: "0x0632dcc37b1fabf2cad20538a5390d23c830962e"
-  implementation: "0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
-  name: "110-byte proxy → Safe 1.3.0 (2 of 3)"
-  upgradeable: "yes"
-  admin: "owners, 2 of 3 (all EOAs), via self-call (swapOwner/addOwnerWithThreshold, changeMasterCopy); singleton 0xd9db270c1b5e3bd161e8c8503c55ceabee709552; modules: AllowanceModule"
-  value_usd: 32919368
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-05-13
-  txs_30d: 0
-- address: "0x7440cd37c794c4bcf1748915098280706c9b6099"
-  implementation: "0x41675c099f32341bf84bfc5382af534df5c7461a"
-  name: "SafeProxy → Safe 1.4.1 (2 of 3)"
-  upgradeable: "yes"
-  admin: "owners, 2 of 3 (all EOAs), via self-call (swapOwner/addOwnerWithThreshold, changeMasterCopy); singleton 0x41675c099f32341bf84bfc5382af534df5c7461a"
-  value_usd: 39855640
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-05-13
-  txs_30d: 0
 - address: "0x738744237b7fd97af670d9ddf54390c24263cea8"
   implementation: "0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
   name: "SafeProxy → Safe 1.3.0 (2 of 3)"
@@ -131,26 +111,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-12
   txs_30d: 76
-- address: "0x0cb1d4a24292bb89862f599ac5b10f42b6de07e4"
-  implementation: "0x34cfac646f301356faa8b21e94227e3583fe3f5f"
-  name: "SafeProxy → Safe 1.1.1 (2 of 4)"
-  upgradeable: "yes"
-  admin: "owners, 2 of 4 (all EOAs), via self-call (swapOwner/addOwnerWithThreshold, changeMasterCopy); singleton 0x34cfac646f301356faa8b21e94227e3583fe3f5f; modules: AllowanceModule"
-  value_usd: 41302508
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-11-12
-  txs_30d: 2
-- address: "0xcde525bd723090284ee2f958c729d83cf117aff9"
-  implementation: "0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
-  name: "SafeProxy → Safe 1.3.0 (3 of 6)"
-  upgradeable: "yes"
-  admin: "owners, 3 of 6 (one owner is Safe 0x705199fe, rest EOAs), via self-call (swapOwner/addOwnerWithThreshold, changeMasterCopy); singleton 0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
-  value_usd: 36236922
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-10-30
-  txs_30d: 1
 - address: "0x4fb312915b779b1339388e14b6d079741ca83128"
   implementation: "0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
   name: "SafeProxy → Safe 1.3.0 (3 of 6)"
@@ -281,26 +241,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-11
   txs_30d: 13
-- address: "0x705199fe234a7a2f1bc8b95dd7d08284c8f467f1"
-  implementation: "0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
-  name: "SafeProxy → Safe 1.3.0 (3 of 10)"
-  upgradeable: "yes"
-  admin: "owners, 3 of 10 (all EOAs), via self-call (swapOwner/addOwnerWithThreshold, changeMasterCopy); singleton 0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
-  value_usd: 32582036
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-11-14
-  txs_30d: 4
-- address: "0xa99f29a2fbdcafbf057b3d8efc47cfcee670bb43"
-  implementation: "0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
-  name: "SafeProxy → Safe 1.3.0 (5 of 9)"
-  upgradeable: "yes"
-  admin: "owners, 5 of 9 (1 EIP-7702 EOA, rest EOAs), via self-call (swapOwner/addOwnerWithThreshold, changeMasterCopy); singleton 0xd9db270c1b5e3bd161e8c8503c55ceabee709552; modules: AllowanceModule"
-  value_usd: 42390098
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-10-23
-  txs_30d: 1
 - address: "0xacce2d0b77bcb844a1b95c64696b071ab8c7ada3"
   implementation: "0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
   name: "SafeProxy → Safe 1.3.0 (2 of 4)"

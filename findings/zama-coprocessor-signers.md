@@ -52,7 +52,7 @@ sources:
   date: 2026-11-19
   verdict: reported
   rating: LOW
-related: [zama-kms-verifier-signers]
+related: [kmsverifier-77627828-kms-committee-ecdsa]
 ---
 
 ## Summary

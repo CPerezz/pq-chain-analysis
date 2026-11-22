@@ -141,16 +141,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-11-16
   txs_30d: 3964
-- address: "0x273a4db9f7cb388ec216df8c347f0529b22f4bd8"
-  implementation: "0xe5dcdc13b628c2df813db1080367e929c1507ca0"
-  name: WalletSimple (EIP-1167 clone of 0xe5dcdc13…)
-  upgradeable: "no"
-  admin: "none: signers fixed at init, 2-of-3, all 3 EOAs (most active: 0x3a1ec84c16a1ff604f0d97e1004068e3814b1586, nonce 165380); signers.json"
-  value_usd: 43179293
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-11-13
-  txs_30d: 28
 - address: "0xa07b07e4542bea95f38c54f39ec25750ffc3dfcd"
   implementation: "0xe8e847cf573fc8ed75621660a36affd18c543d7e"
   name: WalletSimple (EIP-1167 clone of 0xe8e847cf…, FlattenedWalletSimple)

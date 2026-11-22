@@ -11,16 +11,6 @@ impact: funds-loss
 alternative: key-rotation-only
 role: core
 contracts:
-- address: "0x3d3c73e91b1b0c243f1437f2d8363b1d5b093bd0"
-  implementation: null
-  name: AxelarAuthWeighted (current auth module, since 2026-11-12)
-  upgradeable: config-only
-  admin: owner AxelarGateway 0x4f4495243837681061c4743b74b3eedf548d56a5 (operator rotation via signed transferOperatorship; gateway upgradeable by AxelarServiceGovernance 0x7acbae6cba67d78aaf69e47000884ae00f9b2525)
-  value_usd: 39499251
-  value_basis: escrow
-  value_as_of: 2026-11-17
-  last_active: 2026-11-16
-  txs_30d: null
 - address: "0xe3b83f79fbf01b25659f8a814945ab82186a8ad0"
   implementation: null
   name: AxelarAuthWeighted (retired auth module, replaced 2026-11-12)
