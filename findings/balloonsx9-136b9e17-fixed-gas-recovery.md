@@ -3,9 +3,9 @@ id: balloonsx9-136b9e17-fixed-gas-recovery
 format: 2
 title: BalloonsX9 draws cannot pass their proof check under EIP-8151
 status: confirmed
-severity: MEDIUM
-justification: 'No update path, and only the operator''s own money is at stake: the one unrefunded balloon is the
-  owner''s.'
+severity: CRITICAL
+justification: 'No update path: the fixed gas makes the check fail for good under EIP-8151, whatever the contract
+  holds then.'
 category: breaks-at-activation
 pattern: PQ-14
 study: eip-8151-impact
@@ -441,6 +441,7 @@ _buyBalloon opens a draw when totalBalloons reaches winnerDetectionTime (1424-14
 - Ruled out: buyers' money at stake today: every round from 10 to 79 was drawn and paid, and 0-8 were refunded. New buyers can still buy; a stuck round's stakes come back through refundPendingId (send) after another full round sells.
 - Ruled out: an owner action to stop sales: none exists (canPlay is cleared only inside a draw on a price change), so the action is left empty.
 - Ruled out: the second root issue of the Oraclize helper (fixed Ledger key) is a separate row; not folded here.
+- Ruled out: Rating: Anon's rule (D-029): a gas amount fixed in the code with no update path is CRITICAL whatever the contract holds or locks today. It was MEDIUM under the older rubric row for nothing locked or the operator's own money.
 
 ### History
 

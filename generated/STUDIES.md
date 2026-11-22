@@ -46,6 +46,7 @@ No findings.
 | [channelhub-1a2f7501-signature-rechecked](../findings/channelhub-1a2f7501-signature-rechecked.md) | CRITICAL | confirmed |  |
 | [logofclaimedmevblocks-61eccc35-signature-rechecked](../findings/logofclaimedmevblocks-61eccc35-signature-rechecked.md) | CRITICAL | confirmed |  |
 | [tokennetwork-21787564-signature-rechecked](../findings/tokennetwork-21787564-signature-rechecked.md) | CRITICAL | confirmed |  |
+| [balloonsx9-136b9e17-fixed-gas-recovery](../findings/balloonsx9-136b9e17-fixed-gas-recovery.md) | CRITICAL | confirmed |  |
 | [59bd11f8-fixed-gas-recovery](../findings/59bd11f8-fixed-gas-recovery.md) | CRITICAL | confirmed |  |
 | [b1a71b35-fixed-gas-recovery](../findings/b1a71b35-fixed-gas-recovery.md) | CRITICAL | confirmed |  |
 | [7c5fcccd-fixed-gas-recovery](../findings/7c5fcccd-fixed-gas-recovery.md) | CRITICAL | confirmed |  |
@@ -520,7 +521,6 @@ No findings.
 | [n2merc721a-c448f7d8-fixed-signer](../findings/n2merc721a-c448f7d8-fixed-signer.md) | MEDIUM | confirmed |  |
 | [b8f81bb8-fixed-gas-recovery](../findings/b8f81bb8-fixed-gas-recovery.md) | MEDIUM | confirmed |  |
 | [b8f81bb8-fixed-signer](../findings/b8f81bb8-fixed-signer.md) | MEDIUM | confirmed |  |
-| [balloonsx9-136b9e17-fixed-gas-recovery](../findings/balloonsx9-136b9e17-fixed-gas-recovery.md) | MEDIUM | confirmed |  |
 | [yodlrouter-1f7c4f45-fixed-signer](../findings/yodlrouter-1f7c4f45-fixed-signer.md) | MEDIUM | confirmed |  |
 | [ejackpot-442c5fda-fixed-gas-recovery](../findings/ejackpot-442c5fda-fixed-gas-recovery.md) | MEDIUM | confirmed |  |
 | [f166415c-fixed-gas-recovery](../findings/f166415c-fixed-gas-recovery.md) | MEDIUM | confirmed |  |
@@ -14313,14 +14313,16 @@ No findings.
 | [zulu-7b67d8b4-signed-shortcut-lost](../findings/zulu-7b67d8b4-signed-shortcut-lost.md) | INFORMATIONAL | confirmed |  |
 | [zusdpoolv2-712533e4-signed-shortcut-lost](../findings/zusdpoolv2-712533e4-signed-shortcut-lost.md) | INFORMATIONAL | confirmed |  |
 | [zyxtoken-f974b5f9-signed-shortcut-lost](../findings/zyxtoken-f974b5f9-signed-shortcut-lost.md) | INFORMATIONAL | confirmed |  |
+| [bitlagio-fa65bb26-fixed-gas-recovery](../findings/bitlagio-fa65bb26-fixed-gas-recovery.md) | CRITICAL | candidate |  |
 | [contract-6880f6fd-fixed-gas-recovery](../findings/contract-6880f6fd-fixed-gas-recovery.md) | CRITICAL | candidate |  |
+| [game-52d757cb-fixed-gas-recovery](../findings/game-52d757cb-fixed-gas-recovery.md) | CRITICAL | candidate |  |
+| [r-28acf731-fixed-gas-recovery](../findings/r-28acf731-fixed-gas-recovery.md) | CRITICAL | candidate |  |
 | [gnosissafe-220866b1-owner-ecdsa-keys](../findings/gnosissafe-220866b1-owner-ecdsa-keys.md) | MEDIUM | candidate | top-callers-classification |
 | [contract-70213959-owner-keys](../findings/contract-70213959-owner-keys.md) | MEDIUM | candidate | top-callers-classification |
 | [contract-54a679e8-fixed-ecdsa-signers](../findings/contract-54a679e8-fixed-ecdsa-signers.md) | MEDIUM | candidate | top-callers-classification |
 | [contract-54805468-owner-keys](../findings/contract-54805468-owner-keys.md) | MEDIUM | candidate | top-callers-classification |
 | [contract-9f199b93-fixed-owner-keys](../findings/contract-9f199b93-fixed-owner-keys.md) | MEDIUM | candidate | top-callers-classification |
 | [proxy-690f0581-owner-ecdsa-keys](../findings/proxy-690f0581-owner-ecdsa-keys.md) | MEDIUM | candidate | top-callers-classification |
-| [bitlagio-fa65bb26-fixed-gas-recovery](../findings/bitlagio-fa65bb26-fixed-gas-recovery.md) | MEDIUM | candidate |  |
 | [contract-4121217c-fixed-ecdsa-signers](../findings/contract-4121217c-fixed-ecdsa-signers.md) | MEDIUM | candidate | top-callers-classification |
 | [contract-0edd5b0d-fixed-signer-keys](../findings/contract-0edd5b0d-fixed-signer-keys.md) | MEDIUM | candidate | top-callers-classification |
 | [contract-8028270e-fixed-ecdsa-signers](../findings/contract-8028270e-fixed-ecdsa-signers.md) | MEDIUM | candidate | top-callers-classification |
@@ -14329,10 +14331,8 @@ No findings.
 | [contract-dbe46a02-fixed-owner-keys](../findings/contract-dbe46a02-fixed-owner-keys.md) | MEDIUM | candidate | top-callers-classification |
 | [contract-aab0039d-owner-keys](../findings/contract-aab0039d-owner-keys.md) | MEDIUM | candidate | top-callers-classification |
 | [contract-6364f21c-fixed-ecdsa-signers](../findings/contract-6364f21c-fixed-ecdsa-signers.md) | MEDIUM | candidate | top-callers-classification |
-| [game-52d757cb-fixed-gas-recovery](../findings/game-52d757cb-fixed-gas-recovery.md) | MEDIUM | candidate |  |
 | [contract-14299ef5-fixed-ecdsa-signers](../findings/contract-14299ef5-fixed-ecdsa-signers.md) | MEDIUM | candidate | top-callers-classification |
 | [contract-00972439-fixed-ecdsa-signers](../findings/contract-00972439-fixed-ecdsa-signers.md) | MEDIUM | candidate | top-callers-classification |
-| [r-28acf731-fixed-gas-recovery](../findings/r-28acf731-fixed-gas-recovery.md) | MEDIUM | candidate |  |
 | [contract-13b64d98-fixed-ecdsa-signers](../findings/contract-13b64d98-fixed-ecdsa-signers.md) | MEDIUM | candidate | top-callers-classification |
 | [contract-688168e7-fixed-signer-keys](../findings/contract-688168e7-fixed-signer-keys.md) | MEDIUM | candidate | top-callers-classification |
 | [contract-9c9c8f4f-owner-keys](../findings/contract-9c9c8f4f-owner-keys.md) | MEDIUM | candidate | top-callers-classification |

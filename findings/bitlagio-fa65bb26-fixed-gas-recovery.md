@@ -3,9 +3,9 @@ id: bitlagio-fa65bb26-fixed-gas-recovery
 format: 2
 title: Bitlagio dice bets can no longer settle once EIP-8151 raises the signature cost
 status: candidate
-severity: MEDIUM
-justification: Every bet placed after the change stays unsettled, with its stake stuck in the pot; only the owner
-  can empty it.
+severity: CRITICAL
+justification: 'No update path: the fixed gas makes the check fail for good under EIP-8151, whatever the contract
+  holds then.'
 category: breaks-at-activation
 pattern: PQ-14
 study: eip-8151-impact
@@ -465,6 +465,7 @@ A non-owner's ETH to the fallback calls makeBet, which records the bet and asks 
 - Ruled out: open bets whose stakes would be players' money: betsKeys has six entries and every bet has numberRolled > 0, so the 2.65 ETH is the house pot.
 - Ruled out: a closed path: bets are still accepted at the block (an eth_call from an unrelated address to the fallback succeeded, paid from the pot); not a card check, the check kinds cannot send value.
 - Ruled out: an owner that cannot act: owner() is an account without code that has sent 6 transactions.
+- Ruled out: Rating: Anon's rule (D-029): a gas amount fixed in the code with no update path is CRITICAL whatever the contract holds or locks today. It was MEDIUM under the older rubric row for nothing locked or the operator's own money.
 
 ### Questions
 

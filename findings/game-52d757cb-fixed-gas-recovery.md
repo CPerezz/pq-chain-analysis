@@ -3,9 +3,9 @@ id: game-52d757cb-fixed-gas-recovery
 format: 2
 title: Dice game refunds every bet instead of playing it once EIP-8151 is live
 status: candidate
-severity: MEDIUM
-justification: Every randomness proof fails, so no bet resolves; the owner can still withdraw the ETH and the code
-  cannot change.
+severity: CRITICAL
+justification: 'No update path: the fixed gas makes the check fail for good under EIP-8151, whatever the contract
+  holds then.'
 category: breaks-at-activation
 pattern: PQ-14
 study: eip-8151-impact
@@ -217,6 +217,7 @@ placeBet asks Oraclize for a random number (oraclize_newRandomDSQuery). __callba
 - Ruled out: lottery: no lottery can start at the block, since bonusToken() is zero and ethLottery calls it first (line 2299); if the owner set one, a draw would revert on a failed proof (line 2462).
 - Ruled out: funds-locked: owner getFund (lines 2403-2405) withdraws any ETH; the owner is an EOA with 17 transactions.
 - Ruled out: funds-loss: a failed proof refunds the player's own stake (query.amount); it cannot pay a prize.
+- Ruled out: Rating: Anon's rule (D-029): a gas amount fixed in the code with no update path is CRITICAL whatever the contract holds or locks today. It was MEDIUM under the older rubric row for nothing locked or the operator's own money.
 
 ### Questions
 

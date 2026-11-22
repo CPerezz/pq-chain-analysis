@@ -3,8 +3,9 @@ id: r-28acf731-fixed-gas-recovery
 format: 2
 title: Random-number contract rejects every oracle answer once EIP-8151 is live
 status: candidate
-severity: MEDIUM
-justification: Its code cannot change, so once EIP-8151 raises the recovery cost it stops for good; nothing is locked.
+severity: CRITICAL
+justification: 'No update path: the fixed gas makes the check fail for good under EIP-8151, whatever the contract
+  holds then.'
 category: breaks-at-activation
 pattern: PQ-14
 study: eip-8151-impact
