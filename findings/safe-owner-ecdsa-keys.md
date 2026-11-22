@@ -121,16 +121,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-08-28
   txs_30d: 0
-- address: "0x29065a4c1f2f20d1e263930088890d6f49fe715a"
-  implementation: "0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
-  name: "SafeProxy → Safe 1.3.0 (3 of 6)"
-  upgradeable: "yes"
-  admin: "owners, 3 of 6 (all EOAs), via self-call (swapOwner/addOwnerWithThreshold, changeMasterCopy); singleton 0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
-  value_usd: 31933111
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-11-15
-  txs_30d: 312
 - address: "0x81ad394c0fa87e99ca46e1aca093bee020f203f4"
   implementation: "0x41675c099f32341bf84bfc5382af534df5c7461a"
   name: "SafeProxy → Safe 1.4.1 (6 of 11)"
@@ -151,16 +141,6 @@ contracts:
   value_as_of: null
   last_active: 2026-05-25
   txs_30d: 0
-- address: "0x52cfa98fb7339f6e2e70f2f68acbb7b7dcebe46a"
-  implementation: "0xd9db270c1b5e3bd161e8c8503c55ceabee709552"
-  name: "SafeProxy → Safe 1.3.0 (2 of 5)"
-  upgradeable: "yes"
-  admin: "owners, 2 of 5 (all EOAs), via self-call (swapOwner/addOwnerWithThreshold, changeMasterCopy); singleton 0xd9db270c1b5e3bd161e8c8503c55ceabee709552; modules: AllowanceModule"
-  value_usd: 31550968
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-11-13
-  txs_30d: 18
 - address: "0x748aed55d2a85d84e30558ed4798b0a47cb7dde6"
   implementation: "0x41675c099f32341bf84bfc5382af534df5c7461a"
   name: "SafeProxy → Safe 1.4.1 (3 of 5)"
@@ -251,16 +231,6 @@ contracts:
   value_as_of: 2026-11-17
   last_active: 2026-06-10
   txs_30d: 0
-- address: "0x63b2c1985e1d061fe3ff050ef44c7174292d7334"
-  implementation: "0x41675c099f32341bf84bfc5382af534df5c7461a"
-  name: "SafeProxy → Safe 1.4.1 (2 of 2)"
-  upgradeable: "yes"
-  admin: "owners, 2 of 2 (all EOAs), via self-call (swapOwner/addOwnerWithThreshold, changeMasterCopy); singleton 0x41675c099f32341bf84bfc5382af534df5c7461a; modules: AllowanceModule"
-  value_usd: 29720216
-  value_basis: held
-  value_as_of: 2026-11-17
-  last_active: 2026-11-14
-  txs_30d: 6
 families:
 - code: "0x41675c099f32341bf84bfc5382af534df5c7461a"
   name: SafeProxy instances of Safe 1.4.1 that called ecrecover in the trace
