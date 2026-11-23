@@ -1,11 +1,12 @@
 # pq-chain-analysis
 
 What the move to post-quantum cryptography breaks, exposes or leaves unprotected on Ethereum mainnet: the studies that
-looked, and what they found, one file per contract and issue.
+looked, and what they found, one file per contract and issue. A fork of
+[kevaundray/pq-chain-analysis](https://github.com/kevaundray/pq-chain-analysis), where this work started.
 
 - **Rules for findings:** [AGENTS.md](AGENTS.md), for people and agents
 - **Report:** [REPORT.md](REPORT.md), the census of pre-quantum cryptography in mainnet contracts (November 2026)
-- **Check a contract:** <https://kevaundray.github.io/pq-chain-analysis/>, the census and every finding of an address
+- **Check a contract:** <https://cperezz.github.io/pq-chain-analysis/>, the census and every finding of an address
 
 ## How it works
 
@@ -27,7 +28,8 @@ flowchart LR
 3. Someone other than the author reviews it and moves it to `findings/`. Its card is what readers see; its Reviewer
    notes are never shown.
 4. Every push and pull request runs `.github/workflows/check.yml`: the rules and their self-test, the outreach board's
-   check and import of every card, and the public site's data built from that import.
+   check and import of every card, and the public site's data built from that import. `main` takes only pull
+   requests whose `check` and `board` jobs pass.
 5. After a merge to `main`, `pages.yml` publishes the site with that commit's cards, and the board's server pulls it
    and rebuilds its database within a minute.
 
