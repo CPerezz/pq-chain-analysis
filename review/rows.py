@@ -75,7 +75,7 @@ def load(c: sqlite3.Connection) -> None:
     c.execute("BEGIN IMMEDIATE")
     c.executemany("INSERT INTO rows (key, src, issue, address, wave, ord, rank) VALUES (?, ?, ?, ?, ?, ?, ?)",
                   [(r["key"], r["src"], r["issue"], r["address"], r["wave"], r["ord"], RANK.get(r.get("old_sev"), 4)) for r in rows().values()])
-    if HELD.exists():  # rows settled and not yet filed (a CRITICAL or HIGH card waiting for sign-off): their work comes back
+    if HELD.exists():  # rows settled and not yet filed (a removal waiting for its second refuter): their work comes back
         for folder in HELD.iterdir():
             for sub in ("out", "refute1"):
                 if (folder / sub).exists() and not (WORK / sub / folder.name).exists():

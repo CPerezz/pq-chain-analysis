@@ -127,16 +127,16 @@ never start agents and never open another row's folder.
 ## Filing and committing
 
 After every batch of settled rows (any size), one pull request against `main` of `CPerezz/pq-chain-analysis`.
-`main` takes nothing else. The verifier (`verify.yml`) checks every card of the pull request against an archive node
-and merges it when every card holds and the `check` and `board` jobs pass; otherwise its comment lists the cards in
-doubt and the owner reviews them. It only checks cards whose file changed since its last run, so fixing the cards in
-doubt and pushing again is enough.
+`main` takes nothing else. The verifier (`verify.yml`) reviews every card the pull request adds or changes against an
+archive node, and merges the pull request when every card holds and the `check` and `board` jobs pass. Otherwise its
+comment gives the reason for each card it rejects: fix the card and push, or answer in the pull request, then comment
+`/verify`; only the cards not accepted are reviewed again.
 
 ```
 $R review.file --who reader-1                     # writes findings/, removes the old entries, saves the queue's state
 uv run tools/build.py
 git switch -c review-batch-N                      # from an up-to-date main
-git add -A findings triage code review/queue.tsv review/ledger.tsv review/held review/added.jsonl review/signoff.txt
+git add -A findings triage code review/queue.tsv review/ledger.tsv review/held review/added.jsonl
 git commit -m "review: N rows settled (kept K, re-rated R, moved M, removed X)"
 git push -u origin review-batch-N                 # without write access to the repository: push to your fork
 gh pr create --repo CPerezz/pq-chain-analysis --base main --fill
@@ -145,12 +145,9 @@ gh pr create --repo CPerezz/pq-chain-analysis --base main --fill
 - **One open pull request at a time.** Each carries the queue's state, so two would conflict: start the next batch's
   branch from `main` after the previous one is merged (`git switch main && git pull`). Keep reviewing meanwhile; only
   filing waits.
-- **CRITICAL and HIGH cards wait for the owner's sign-off.** The filer holds them until their key is a line of
-  `review/signoff.txt`. List them for the owner with their sheets. The owner names the keys he signs off; add exactly
-  those to `review/signoff.txt`, file, and name them in the pull request. A pull request that changes
-  `review/signoff.txt` is never merged by the verifier: the owner's merge is the sign-off.
 - Commit `queue.tsv`, `ledger.tsv` and `held/` with every filing: they are the queue's state (`held/` keeps the
-  work of rows settled but not filed yet, such as a card waiting for sign-off), and a fresh clone continues from them.
+  work of rows settled but not filed yet, such as a removal waiting for its second refuter), and a fresh clone
+  continues from them.
   Run `$R review.rows save` before any other commit. Never commit `review/work/` (it is ignored): it holds the
   database, the dossiers in use, the agents' folders and the caches.
 - `review.sheet reopen 'KEY'` takes back a row settled in this review whose filed card turns out wrong. A card filed
@@ -228,7 +225,6 @@ What you refute: `review/work/out/DIR/refuter_input.md`. Dossier: `review/work/d
 | `data/dossiers.jsonl.gz`, `data/decompiled.jsonl.gz` | Their dossiers, built from the study's tables at block 26,438,999, and decompiled code by code hash | yes |
 | `added.jsonl` | Rows added in review | yes |
 | `queue.tsv`, `ledger.tsv`, `held/` | The state of every row that left `todo`, every step taken, and the work of rows settled but not filed yet (written by `review.file` and `review.rows save`) | yes |
-| `signoff.txt` | CRITICAL and HIGH rows the owner signed off, one key per line | yes |
 | `work/` | `state.db`, `dossier/`, `out/` (each row's draft, card, refutation, results), `refute1/`, `sources/`, `gateway/` | no |
 | `*.py` | `rows` (the queue), `dossier`, `submit` (author), `refute` (refuter), `sheet` (reader), `file` (filer), `gateway` | yes |
 

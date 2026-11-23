@@ -11,8 +11,7 @@ Takes settled rows that are not filed since they were last settled, in settle or
   change), validated, and written to findings/<id>.md;
 - removed: nothing new is written.
 A row waits when it is not ready: any card but a trusted one needs its refuter's results; a removal whose refuter agreed needs a second
-refuter's answer (work/refute1/ holds the first); CRITICAL and HIGH need the owner's sign-off (review/signoff.txt, one
-key per line). Questions are never filed.
+refuter's answer (work/refute1/ holds the first). Questions are never filed.
 
 Then the old entry goes: a triage row's line leaves its triage file; an old finding file is deleted once every row
 that came from it is filed (a first-study file shared by several contracts waits for its last row). Then every
@@ -29,16 +28,11 @@ from pathlib import Path
 
 import yaml
 
-from . import HERE, REGISTRY, WORK, key_dir
+from . import REGISTRY, WORK, key_dir
 from . import rows as R
 from . import submit as S
 
 RATED = ("CRITICAL", "HIGH", "MEDIUM", "LOW")
-
-
-def keys_in(name: str) -> set[str]:
-    p = HERE / name
-    return {x.strip() for x in p.read_text().splitlines() if x.strip() and not x.startswith("#")} if p.exists() else set()
 
 
 def due(c) -> list[tuple[str, str]]:
@@ -51,7 +45,7 @@ def due(c) -> list[tuple[str, str]]:
         ORDER BY r.settled_at""").fetchall()
 
 
-def ready(key: str, outcome: str, head: dict | None, signed: set, now: set = frozenset()) -> str | None:
+def ready(key: str, outcome: str, head: dict | None, now: set = frozenset()) -> str | None:
     """Why this row waits, or None."""
     out = WORK / "out" / key_dir(key)
     if outcome == "unused":  # the reader's own settlement under the owner's rule: no agent to wait for
@@ -64,8 +58,6 @@ def ready(key: str, outcome: str, head: dict | None, signed: set, now: set = fro
     if (outcome == "removed" and not (WORK / "refute1" / key_dir(key) / "refute.json").exists()
             and (out / "refute.json").exists() and json.loads((out / "refute.json").read_text()).get("verdict") == "agree"):
         return "waits for its second refuter"
-    if (head or {}).get("severity") in ("CRITICAL", "HIGH") and key not in signed:
-        return "waits for the owner's sign-off (review/signoff.txt)"
     return None
 
 
@@ -216,7 +208,6 @@ def main():
     for r in rows.values():
         if r.get("old_path"):
             by_old.setdefault(r["old_path"], []).append(r["key"])
-    signed = keys_in("signoff.txt")
     filed, waiting, problems = [], {}, []
     for key, outcome in sorted(due(c), key=lambda ko: ko[1] == "covered"):  # covered rows last: their covering card may be filed in this run
         if len(filed) >= args.batch:
@@ -235,7 +226,7 @@ def main():
             if shape_problems:
                 problems.append(f"{key}: {'; '.join(shape_problems)[:300]}")
                 continue
-        why = ready(key, outcome, head, signed, {f[0] for f in filed})
+        why = ready(key, outcome, head, {f[0] for f in filed})
         if why:
             waiting[why] = waiting.get(why, 0) + 1
             continue
