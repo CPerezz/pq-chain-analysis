@@ -52,7 +52,7 @@ your verdict only if they support it; if they do not, answer the argument in you
 
 ## Answer
 verdict: accept or reject. class: empty when accepted. reason: one sentence of at most 200 characters naming the
-claim and what shows it (for an accepted card, what settled it), for example
-  false: "no function changes who may sign": grantAccess (contracts/AlwaysProofNFT.sol:293) sets authorizedSigners
-  duplicate: the same permit signature issue as aave-v3-pool-87870bca-signed-shortcut-lost
+claim and what shows it (for an accepted card, what settled it), without the class, for example
+  (false) "no function changes who may sign": grantAccess (contracts/AlwaysProofNFT.sol:293) sets authorizedSigners
+  (duplicate) the same permit signature issue as aave-v3-pool-87870bca-signed-shortcut-lost
 notes: at most two short points that do not block.
