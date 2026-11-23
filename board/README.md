@@ -103,12 +103,12 @@ First setup, or a move to another server (Python 3 with PyYAML, git, rsync, clou
 ```
 ssh-keygen -t ed25519 -N '' -f ~/.ssh/pq-chain-analysis        # add the .pub as a read-only deploy key of the repository
 git clone --depth 1 --branch main -c core.sshCommand="ssh -i ~/.ssh/pq-chain-analysis -o IdentitiesOnly=yes" \
-  git@github.com:kevaundray/pq-chain-analysis.git /home/ubuntu/pq-outreach/registry
+  git@github.com:CPerezz/pq-chain-analysis.git /home/ubuntu/pq-outreach/registry
 sh /home/ubuntu/pq-outreach/registry/board/deploy/install.sh   # units, app/, the first import
 cd /home/ubuntu/pq-outreach/app && BOARD_DATA=../data python3 server.py user NAME
 ```
 
-Protect `main` (pull requests with the `check` workflow passing) so that only checked commits reach the server.
+Protect `main` (pull requests with the `check` and `board` jobs passing) so that only checked commits reach the server.
 
 ## Operate
 

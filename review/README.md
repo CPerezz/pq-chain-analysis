@@ -126,17 +126,25 @@ never start agents and never open another row's folder.
 
 ## Filing and committing
 
-After every batch of settled rows (any size):
+After every batch of settled rows (any size), one pull request against `main` of `CPerezz/pq-chain-analysis`.
+`main` takes nothing else: it merges once the `check` and `board` jobs pass, and the owner merges it.
 
 ```
 $R review.file --who reader-1                     # writes findings/, removes the old entries, saves the queue's state
 uv run tools/build.py
+git switch -c review-batch-N                      # from an up-to-date main
 git add -A findings triage code review/queue.tsv review/ledger.tsv review/held review/added.jsonl review/signoff.txt
 git commit -m "review: N rows settled (kept K, re-rated R, moved M, removed X)"
+git push -u origin review-batch-N                 # without write access to the repository: push to your fork
+gh pr create --repo CPerezz/pq-chain-analysis --base main --fill
 ```
 
+- **One open pull request at a time.** Each carries the queue's state, so two would conflict: start the next batch's
+  branch from `main` after the previous one is merged (`git switch main && git pull`). Keep reviewing meanwhile; only
+  filing waits.
 - **CRITICAL and HIGH cards wait for the owner's sign-off.** The filer holds them until their key is a line of
-  `review/signoff.txt`. List them for the owner with their sheets; the owner adds the keys.
+  `review/signoff.txt`. List them for the owner with their sheets. The owner names the keys he signs off; add exactly
+  those to `review/signoff.txt`, file, and name them in the pull request: its merge is the sign-off.
 - Commit `queue.tsv`, `ledger.tsv` and `held/` with every filing: they are the queue's state (`held/` keeps the
   work of rows settled but not filed yet, such as a card waiting for sign-off), and a fresh clone continues from them.
   Run `$R review.rows save` before any other commit. Never commit `review/work/` (it is ignored): it holds the
