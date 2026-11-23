@@ -102,7 +102,7 @@ related: []
 
 ## What happens
 
-AlwaysProofNFT accepts a call to mint only with an ECDSA signature of an address on the signer list it keeps. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. grantAccess changes who may sign.
+AlwaysProofNFT accepts a call to mint only with an ECDSA signature of an address on the signer list it keeps. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. grantAccess and revokeAccess change who may sign.
 
 ## Evidence
 
