@@ -127,7 +127,10 @@ never start agents and never open another row's folder.
 ## Filing and committing
 
 After every batch of settled rows (any size), one pull request against `main` of `CPerezz/pq-chain-analysis`.
-`main` takes nothing else: it merges once the `check` and `board` jobs pass, and the owner merges it.
+`main` takes nothing else. The verifier (`verify.yml`) checks every card of the pull request against an archive node
+and merges it when every card holds and the `check` and `board` jobs pass; otherwise its comment lists the cards in
+doubt and the owner reviews them. It only checks cards whose file changed since its last run, so fixing the cards in
+doubt and pushing again is enough.
 
 ```
 $R review.file --who reader-1                     # writes findings/, removes the old entries, saves the queue's state
@@ -144,7 +147,8 @@ gh pr create --repo CPerezz/pq-chain-analysis --base main --fill
   filing waits.
 - **CRITICAL and HIGH cards wait for the owner's sign-off.** The filer holds them until their key is a line of
   `review/signoff.txt`. List them for the owner with their sheets. The owner names the keys he signs off; add exactly
-  those to `review/signoff.txt`, file, and name them in the pull request: its merge is the sign-off.
+  those to `review/signoff.txt`, file, and name them in the pull request. A pull request that changes
+  `review/signoff.txt` is never merged by the verifier: the owner's merge is the sign-off.
 - Commit `queue.tsv`, `ledger.tsv` and `held/` with every filing: they are the queue's state (`held/` keeps the
   work of rows settled but not filed yet, such as a card waiting for sign-off), and a fresh clone continues from them.
   Run `$R review.rows save` before any other commit. Never commit `review/work/` (it is ignored): it holds the

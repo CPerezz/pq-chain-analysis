@@ -14,7 +14,7 @@ looked, and what they found, one file per contract and issue. A fork of
 flowchart LR
   S["studies/&lt;id&gt;/"] --> T["triage/&lt;id&gt;.md"]
   T -->|reviewed| F["findings/&lt;id&gt;.md"]
-  F -->|"pull request: check.yml"| M[(main)]
+  F -->|"pull request: check.yml, verify.yml"| M[(main)]
   M -->|"the board's server pulls"| B["board/: outreach"]
   M -->|pages.yml| P["docs/: the public site"]
 ```
@@ -30,7 +30,10 @@ flowchart LR
 4. Every push and pull request runs `.github/workflows/check.yml`: the rules and their self-test, the outreach board's
    check and import of every card, and the public site's data built from that import. `main` takes only pull
    requests whose `check` and `board` jobs pass.
-5. After a merge to `main`, `pages.yml` publishes the site with that commit's cards, and the board's server pulls it
+5. A pull request that adds or changes cards is also checked by `verify.yml` (`tools/verify_pr.py`): Claude re-reads
+   every card against an archive node, its facts, checks, source and transaction traces, and the pull request is
+   merged when every card holds. Otherwise its comment lists the cards in doubt and a maintainer reviews it.
+6. After a merge to `main`, `pages.yml` publishes the site with that commit's cards, and the board's server pulls it
    and rebuilds its database within a minute.
 
 Format-1 files in `findings/` (from the EIP-8151 study) and the root-issue entries
@@ -48,7 +51,7 @@ one contract at a time.
 | `patterns.md` | The patterns (`PQ-n`) findings are grouped by, each with its category and the words a card shows | |
 | `code/` | Decompiled code that findings link, for contracts without verified source | [`code/README.md`](code/README.md) |
 | `templates/` | Blank forms; `examples/` holds filled ones, which the rules are tested against | |
-| `tools/` | `build.py` (the rules and their self-test), `find.py`, `new_finding.py`, `verify.py`, `site_data.py` (the site's data), `tokens.json` (the tokens a value counts) | Each file's docstring |
+| `tools/` | `build.py` (the rules and their self-test), `find.py`, `new_finding.py`, `verify.py`, `verify_pr.py` (the pull request verifier), `site_data.py` (the site's data), `tokens.json` (the tokens a value counts) | Each file's docstring |
 | `board/` | The outreach board: the cards in SQLite, rebuilt whenever `main` changes and checked against the files, and the private page where the outreach team records contact | [`board/README.md`](board/README.md) |
 | `docs/` | The public site: `index.html`, and `lookup/`, the census per address (a snapshot built outside this repository); CI adds the cards a reader may see | `tools/site_data.py` |
 | `REPORT.md` | The census report | |

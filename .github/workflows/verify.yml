@@ -1,0 +1,56 @@
+# A pull request that adds or changes cards: Claude checks every card against the archive node, and the pull request
+# is merged when every card holds; otherwise a maintainer reviews it (tools/verify_pr.py). pull_request_target runs
+# this file from main, with the secrets: the pull request's files are read as data, and nothing from them runs.
+name: verify
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths: ["findings/**"]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: Pull request number
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  statuses: write
+  actions: write
+
+concurrency:
+  group: verify-${{ github.event.pull_request.number || inputs.pr }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      PR: ${{ github.event.pull_request.number || inputs.pr }}
+      GH_TOKEN: ${{ github.token }}
+      MAINTAINERS: CPerezz
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v6
+      - run: npm install -g @anthropic-ai/claude-code@2.1.323
+      - name: The archive node, through an SSH account that can only forward to its RPC port
+        env:
+          NODE_SSH_KEY: ${{ secrets.NODE_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "157.180.2.180 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA67uLCwQjK5aOpYzUEMuN0J/nwhrtVW26k+DEqzUILB" > ~/.ssh/known_hosts
+          key=$(mktemp)
+          printf '%s\n' "$NODE_SSH_KEY" > "$key"
+          chmod 600 "$key"
+          ssh -i "$key" -o BatchMode=yes -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -f -N -L 8545:127.0.0.1:8545 rpc-ci@157.180.2.180
+          rm -f "$key"
+          curl -sSf -X POST -H 'content-type: application/json' --data '{"jsonrpc":"2.0","id":1,"method":"eth_blockNumber","params":[]}' http://127.0.0.1:8545
+      - run: uv run tools/verify_pr.py "$PR"
+        env:
+          ETH_RPC_URL: http://127.0.0.1:8545
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
