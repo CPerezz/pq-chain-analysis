@@ -99,3 +99,4 @@ _mintAuthorizedClaim (src/CardBreakCollectionV2.sol, line 232) recovers a signer
 
 - 2026-11-19: reported by study eip-8151-impact.
 - 2026-11-20: reviewed again and rewritten from checks that were re-run.
+- 2026-11-23: a History line only, to test the verifier.

@@ -2,7 +2,7 @@
 id: bonkosaurs-354d62b0-rotate-signer-before-migrating
 format: 2
 title: 'Bonkosaurs: replace a signer before its account moves to real code'
-status: confirmed
+status: maybe
 severity: INFORMATIONAL
 justification: Nothing breaks unless a signer moves its account to real code, and the signer can be replaced first.
 category: migration-notice

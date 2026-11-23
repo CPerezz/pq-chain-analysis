@@ -102,12 +102,12 @@ related: []
 
 ## What happens
 
-AlwaysProofNFT accepts a call to mint only with an ECDSA signature of an address on the signer list it keeps. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. grantAccess changes who may sign.
+AlwaysProofNFT accepts a call to mint only with an ECDSA signature of an address on the signer list it keeps. If that account takes real code its signatures are refused; an EIP-7702 delegation keeps working. The signer list is fixed at deployment and no function changes who may sign.
 
 ## Evidence
 
 - [mint](https://etherscan.io/address/0xf0c76a1e2e672044bd59b7b521ea6063e733614d#code) recovers the signature with ECDSA and accepts only an address on the signer list it keeps; the code never asks that account.
-- [grantAccess](https://etherscan.io/address/0xf0c76a1e2e672044bd59b7b521ea6063e733614d#code) changes who may sign; only the owner can call it.
+- [The constructor](https://etherscan.io/address/0xf0c76a1e2e672044bd59b7b521ea6063e733614d#code) sets the signer list for good; no function changes it afterwards.
 - Its latest signed [transaction](https://etherscan.io/tx/0xeeb5839aaddccbf0720880d6799b20150c19d697c315a9e324c16491239a7914) on record recovered [0xfd03…a58d](https://etherscan.io/address/0xfd03edc10636b732b45935b7f19161c67b71a58d), an account without code.
 
 ## Reviewer notes

@@ -72,7 +72,7 @@ sources:
   verdict: reported
   rating: LOW
 reviews: []
-related: []
+related: [burrows-e51aac67-signer-moves-to-code]
 ---
 
 ## What happens
