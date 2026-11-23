@@ -406,8 +406,9 @@ def ask(ev: Path, block: int) -> dict:
     if not out.get("is_error") and isinstance(v, dict) and v.get("verdict") in ("accept", "reject"):
         (ev / "answer.json").write_text(json.dumps(out, indent=1))
         cls = (v.get("class") or "") if v["verdict"] == "reject" else ""
-        return {"verdict": v["verdict"], "class": cls, "reason": re.sub(rf"^{re.escape(cls)}:\s*", "", str(v.get("reason") or "")) if cls
-                else str(v.get("reason") or ""), "notes": [str(x) for x in v.get("notes") or []][:2]}
+        reason = str(v.get("reason") or "")
+        return {"verdict": v["verdict"], "class": cls, "reason": re.sub(rf"^{re.escape(cls)}:\s*", "", reason, flags=re.IGNORECASE) if cls else reason,
+                "notes": [str(x) for x in v.get("notes") or []][:2]}
     msg = str(out.get("result") or out.get("error") or r.stderr)[-400:]
     low = msg.lower()
     if re.search(r"\b401\b|invalid api key|/login|oauth|authenticat|unauthori[sz]ed|revoked", low):

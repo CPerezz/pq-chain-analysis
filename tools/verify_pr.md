@@ -48,7 +48,8 @@ Stop at the first false or unproven claim. To accept, every claim must be settle
 ## Re-review
 Judge only what decided your last verdict. If diff.md changes the rejected claim, check the changed lines and accept
 unless they are false. If thread.md argues you were wrong, test the argument against the files and the node; change
-your verdict only if they support it; if they do not, answer the argument in your reason.
+your verdict only if they support it. When you keep it, the reason answers the argument (what it gets wrong), not
+the finding again.
 
 ## Answer
 verdict: accept or reject. class: empty when accepted. reason: one sentence of at most 200 characters naming the
