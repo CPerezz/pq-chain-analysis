@@ -130,7 +130,8 @@ After every batch of settled rows (any size), one pull request against `main` of
 `main` takes nothing else. The verifier (`verify.yml`) reviews every card the pull request adds or changes against an
 archive node, and merges the pull request when every card holds and the `check` and `board` jobs pass. Otherwise its
 comment gives the reason for each card it rejects: fix the card and push, or answer in the pull request, then comment
-`/verify`; only the cards not accepted are reviewed again.
+`/verify`; only the cards not accepted are reviewed again. A batch with no new or changed card (only removals) is
+merged the same way once its jobs pass.
 
 ```
 $R review.file --who reader-1                     # writes findings/, removes the old entries, saves the queue's state
