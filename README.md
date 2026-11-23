@@ -30,9 +30,10 @@ flowchart LR
 4. Every push and pull request runs `.github/workflows/check.yml`: the rules and their self-test, the outreach board's
    check and import of every card, and the public site's data built from that import. `main` takes only pull
    requests whose `check` and `board` jobs pass.
-5. A pull request that adds or changes cards is also checked by `verify.yml` (`tools/verify_pr.py`): Claude re-reads
-   every card against an archive node, its facts, checks, source and transaction traces, and the pull request is
-   merged when every card holds. Otherwise its comment lists the cards in doubt and a maintainer reviews it.
+5. A pull request that adds cards or changes what one claims is also reviewed by `verify.yml` (`tools/verify_pr.py`):
+   Claude checks every such card against an archive node (its facts, checks, source, transaction traces and the other
+   findings for its contract), and the pull request is merged when every card holds. Otherwise its comment gives the
+   reason for each card it rejects; after a fix or a reply, a `/verify` comment reviews those cards again.
 6. After a merge to `main`, `pages.yml` publishes the site with that commit's cards, and the board's server pulls it
    and rebuilds its database within a minute.
 

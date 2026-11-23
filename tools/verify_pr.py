@@ -309,7 +309,8 @@ def rules(pattern: str) -> str:
 
 
 def brief(text: str, rows: list, other: list[str], txs: list[str]) -> str:
-    """The card's claims, each with the checks behind it and what the node returned; facts, other findings, txs."""
+    """The card's claims and the checks behind each; every check once, with what the node returned; header facts,
+    other findings for the contract, cited transactions."""
     head, body = split(text)
     sec, c = sections(body), head.get("contract") or {}
     result, facts = {}, []
@@ -320,10 +321,6 @@ def brief(text: str, rows: list, other: list[str], txs: list[str]) -> str:
         else:
             facts.append(f"- {what}: {status}: {found}")
     checks = [x for x in head.get("checks") or [] if isinstance(x, dict)]
-
-    def behind(part: str) -> list[str]:
-        return [f"  - `{x.get('id')}` says {x.get('says')!r} (" + ", ".join(f"{k} {v}" for k, v in x.items() if k not in ("id", "says", "for"))
-                + f") → node {result.get(str(x.get('id')), 'not re-run')}" for x in checks if part in (x.get("for") or [])]
     bullets = [b[2:] for b in sec.get("Evidence", "").splitlines() if b.startswith("- ")]
     parts = ([("title", head.get("title")), ("what", sec.get("What happens"))] + [(f"evidence-{i}", b) for i, b in enumerate(bullets, 1)]
              + [("justification", head.get("justification")), ("action", head.get("action")), ("notes", sec.get("Mechanism"))]
@@ -333,10 +330,14 @@ def brief(text: str, rows: list, other: list[str], txs: list[str]) -> str:
             f"{head.get('severity')} (not judged) · study {head.get('study')}"),
            (f"Contract {c.get('address')} ({c.get('name') or 'no name'}) · code {c.get('code')} · proxy of "
             f"{c.get('proxy_of') or 'none'} · upgradeable {c.get('upgradeable')} · admin {c.get('admin') or 'none'} · block {head.get('block')}"),
-           "", "## Claims, each with the checks behind it and what the node returned"]
+           "", "## Claims (← the checks behind each)"]
     for part, txt in parts:
         if txt:
-            out += [f"- **{part}**: {' '.join(str(txt).split())}"] + behind(part)
+            ids = [str(x.get("id")) for x in checks if part in (x.get("for") or [])]
+            out.append(f"- **{part}**: {' '.join(str(txt).split())}" + (f" ← {', '.join(ids)}" if ids else " ← no check"))
+    out += ["", "## Checks, re-run on the node at the block"] + [
+        f"- `{x.get('id')}` says {x.get('says')!r} (" + ", ".join(f"{k} {v}" for k, v in x.items() if k not in ("id", "says", "for"))
+        + f") → {result.get(str(x.get('id')), 'not re-run')}" for x in checks]
     out += ["", "## Header facts re-read on the node"] + (facts or ["- none"])
     if sec.get("Questions"):
         out += ["", "## Open questions", sec["Questions"]]
@@ -745,16 +746,17 @@ def run(n: int, dry: bool) -> int:
     rejected = [c for c in cards if reg.get(c, {}).get("verdict") == "reject"]
     unchecked = [c for c in cards if reg.get(c, {}).get("verdict") == "unchecked"]
     trusted = author in MAINTAINERS
+    many = lambda k, noun: f"{k} {noun}" + ("" if k == 1 else "s")
     if len(waiting) > len(todo):
-        state = f"**{len(waiting) - len(todo)} cards are left for the next run**, which starts by itself."
+        state = f"**{many(len(waiting) - len(todo), 'card')} left for the next run**, which starts by itself."
     elif unchecked:
-        state = f"**{len(unchecked)} cards are not checked yet.** Comment `/verify` to try them again."
+        state = f"**{many(len(unchecked), 'card')} not checked yet.** Comment `/verify` to try again."
     elif not (rejected or blocked or orphans or loose) and trusted:
         state = "**Every card holds.** Approved; merging once the `check` and `board` jobs pass."
     else:
         state = "**A maintainer decides:** " + ", ".join(x for x in [
-            f"{len(rejected)} cards rejected" if rejected else "", f"{len(blocked)} files outside the cards" if blocked else "",
-            f"{len(orphans)} cards removed without a new card" if orphans else "", "other files fail tools/build.py" if loose else "",
+            f"{many(len(rejected), 'card')} rejected" if rejected else "", f"{many(len(blocked), 'file')} outside the cards" if blocked else "",
+            f"{many(len(orphans), 'card')} removed without a new card" if orphans else "", "other files fail tools/build.py" if loose else "",
             f"@{author} is not a maintainer" if not trusted else ""] if x) + "."
     publish(state, extra)
     if dry:
@@ -762,11 +764,11 @@ def run(n: int, dry: bool) -> int:
         return 0
     if len(waiting) > len(todo):
         gh("workflow", "run", "verify.yml", "-R", repo, "--ref", "main", "-f", f"pr={n}")
-        status("pending", f"{len(waiting) - len(todo)} cards left for the next run")
+        status("pending", f"{many(len(waiting) - len(todo), 'card')} left for the next run")
         return 0
     if unchecked:
-        status("pending", f"{len(unchecked)} cards not checked")
-        ping(f"{len(unchecked)} cards of this pull request could not be checked; see the verifier's comment.")
+        status("pending", f"{many(len(unchecked), 'card')} not checked")
+        ping(f"{many(len(unchecked), 'card')} of this pull request could not be checked; see the verifier's comment.")
         return 0
     if state.startswith("**Every card holds"):
         status("success", f"all {len(cards)} cards hold")
