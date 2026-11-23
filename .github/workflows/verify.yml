@@ -8,7 +8,7 @@ name: verify
 on:
   pull_request_target:
     types: [opened, synchronize, reopened, ready_for_review]
-    paths: ["findings/**"]
+    paths: ["findings/**", "triage/**", "review/queue.tsv", "review/ledger.tsv"]
   issue_comment:
     types: [created]
   schedule:

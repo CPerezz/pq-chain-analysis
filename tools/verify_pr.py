@@ -15,7 +15,9 @@ maintainer) reviews again the cards not accepted and the cards changed since the
 since; `/verify all` (a maintainer) reviews every card afresh; `/accept CARD REASON` (a maintainer) accepts one card.
 
 A card is reviewed when the pull request adds it to findings/ or changes what it claims: an edit of `related`,
-`reviews`, `sources` or History alone changes no claim. A pull request with no such card gets no comment. Per card:
+`reviews`, `sources` or History alone changes no claim. A pull request with no such card is merged without review when
+a maintainer opened it and it only removes entries or edits bookkeeping (no new file outside review/held/, no card
+removed without a new card for its contract); any other gets no comment. Per card:
 - tools/build.py (this checkout's) checks the pull request's files: a card it refuses is rejected as `format`;
 - tools/verify.py re-runs its facts and checks on the archive node (ETH_RPC_URL): one the node contradicts rejects it
   as `unproven`; one that could not run is tried 3 times, 5 minutes apart, then the card is left not checked;
@@ -574,8 +576,28 @@ def run(n: int, dry: bool) -> int:
                     cards[Path(path).stem] = (path, text)
             elif status == "added":
                 blocked.append(f"{path} (a new format 1 file)")
+    addresses = {str((split(t)[0].get("contract") or {}).get("address") or "").lower() for _, t in cards.values()}
+    orphans = [(p, a) for p, a in removed if a not in addresses]
     if not cards:
-        print(f"pull request {n}: no card added or changed in what it claims")
+        added = [f["filename"] for f in files if f["status"] in ("added", "copied") and not f["filename"].startswith("review/held/")]
+        if blocked or orphans or added or author not in MAINTAINERS:
+            print(f"pull request {n}: no card added or changed in what it claims")
+            return 0
+        # only removals and bookkeeping, opened by a maintainer: nothing for Claude to check
+        body = (f"{MARK}\n**Verifier:** no card to review: this pull request only removes entries or edits bookkeeping. "
+                "Approved; merging once the `check` and `board` jobs pass.")
+        if dry:
+            print(body)
+            return 0
+        comment = load_registry(repo, n)[0]
+        if comment:
+            gh("api", "-X", "PATCH", f"repos/{repo}/issues/comments/{comment}", body={"body": body})
+        else:
+            gh("api", "-X", "POST", f"repos/{repo}/issues/{n}/comments", body={"body": body})
+        gh("api", "-X", "POST", f"repos/{repo}/statuses/{head}", body={"state": "success", "context": "verifier", "description": "no card to review"})
+        why = merge(repo, n, head, "Only removals and bookkeeping: no card to review.")
+        if why:
+            gh("api", "-X", "POST", f"repos/{repo}/issues/{n}/comments", body={"body": " ".join(f"@{m}" for m in MAINTAINERS) + f" not merged: {why}."})
         return 0
     for path in {str((split(t)[0].get("contract") or {}).get("code_url") or "") for _, t in cards.values()}:
         if path.startswith("code/") and path not in code:
@@ -583,8 +605,6 @@ def run(n: int, dry: bool) -> int:
                 code[path] = show(head, path)
             except subprocess.CalledProcessError:
                 pass
-    addresses = {str((split(t)[0].get("contract") or {}).get("address") or "").lower() for _, t in cards.values()}
-    orphans = [(p, a) for p, a in removed if a not in addresses]
 
     comment, reg = load_registry(repo, n)
     shas = {c: sha16(t) for c, (_, t) in cards.items()}
@@ -778,16 +798,9 @@ def run(n: int, dry: bool) -> int:
         return 0
     if state.startswith("**Every card holds"):
         status("success", f"all {len(cards)} cards hold")
-        gh("pr", "review", str(n), "-R", repo, "--approve", "--body", "Every card holds: see the verifier's comment.")
-        why = wait_checks(repo, head)
-        if not why:
-            try:
-                gh("pr", "merge", str(n), "-R", repo, "--merge", "--match-head-commit", head)
-                gh("workflow", "run", "pages.yml", "-R", repo, "--ref", "main")  # a merge by the workflow's token triggers no workflow
-                return 0
-            except subprocess.CalledProcessError as e:
-                why = f"the merge was refused: {e.stderr.strip()[:300]}"
-        publish(f"**Every card holds, but it is not merged:** {why}.", extra)
+        why = merge(repo, n, head, "Every card holds: see the verifier's comment.")
+        if why:
+            publish(f"**Every card holds, but it is not merged:** {why}.", extra)
         return 0
     status("failure", f"{len(cards) - len(rejected)} of {len(cards)} cards hold; a maintainer decides")
     for m in MAINTAINERS:
@@ -795,6 +808,20 @@ def run(n: int, dry: bool) -> int:
     if todo:
         ping(state.removeprefix("**A maintainer decides:** ").rstrip(".") + ": see the verifier's comment.")
     return 0
+
+
+def merge(repo: str, n: int, head: str, review: str) -> str | None:
+    """Approve, wait for the check and board jobs, merge, publish the site; None once merged, else why not."""
+    gh("pr", "review", str(n), "-R", repo, "--approve", "--body", review)
+    why = wait_checks(repo, head)
+    if why:
+        return why
+    try:
+        gh("pr", "merge", str(n), "-R", repo, "--merge", "--match-head-commit", head)
+    except subprocess.CalledProcessError as e:
+        return f"the merge was refused: {e.stderr.strip()[:300]}"
+    gh("workflow", "run", "pages.yml", "-R", repo, "--ref", "main")  # a merge by the workflow's token triggers no workflow
+    return None
 
 
 def resume() -> int:
