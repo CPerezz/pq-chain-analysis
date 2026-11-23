@@ -120,3 +120,4 @@ Verifiers._verifySignature (Verifiers.sol 90-137) is reached from OrderValidator
 
 - 2026-11-04: reported by study top-callers-classification.
 - 2026-11-22: reviewed again and rewritten from checks that were re-run.
+
