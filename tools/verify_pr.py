@@ -186,6 +186,10 @@ def essence(text: str) -> str:
     return json.dumps([{k: v for k, v in head.items() if k not in BOOKKEEPING}, sec], sort_keys=True, default=str)
 
 
+def many(k: int, noun: str) -> str:
+    return f"{k} {noun}" + ("" if k == 1 else "s")
+
+
 def sha16(text: str) -> str:
     return hashlib.sha256(text.encode()).hexdigest()[:16]
 
@@ -401,8 +405,9 @@ def ask(ev: Path, block: int) -> dict:
             v = None
     if not out.get("is_error") and isinstance(v, dict) and v.get("verdict") in ("accept", "reject"):
         (ev / "answer.json").write_text(json.dumps(out, indent=1))
-        return {"verdict": v["verdict"], "class": (v.get("class") or "") if v["verdict"] == "reject" else "",
-                "reason": str(v.get("reason") or ""), "notes": [str(x) for x in v.get("notes") or []][:2]}
+        cls = (v.get("class") or "") if v["verdict"] == "reject" else ""
+        return {"verdict": v["verdict"], "class": cls, "reason": re.sub(rf"^{re.escape(cls)}:\s*", "", str(v.get("reason") or "")) if cls
+                else str(v.get("reason") or ""), "notes": [str(x) for x in v.get("notes") or []][:2]}
     msg = str(out.get("result") or out.get("error") or r.stderr)[-400:]
     low = msg.lower()
     if re.search(r"\b401\b|invalid api key|/login|oauth|authenticat|unauthori[sz]ed|revoked", low):
@@ -467,14 +472,15 @@ def load_registry(repo: str, n: int) -> tuple[int | None, dict]:
 
 
 def wait_checks(repo: str, head: str, names=("check", "board"), minutes: int = 90) -> str | None:
-    """None once the required jobs have passed on the head commit, else what is wrong."""
+    """None once each required job has passed on the head commit, else what is wrong."""
     for _ in range(minutes * 2):
-        runs = {r["name"]: r for r in gh_list(f"repos/{repo}/commits/{head}/check-runs", "{name, conclusion}")}
-        bad = [x for x in names if runs.get(x, {}).get("conclusion") not in (None, "success")]
+        out = gh("api", f"repos/{repo}/commits/{head}/check-runs", "--paginate", "--jq", ".check_runs[] | [.name, .status, .conclusion] | @json")
+        runs = [json.loads(x) for x in out.splitlines() if x]
+        if all(any(nm == x and c == "success" for nm, _, c in runs) for x in names):
+            return None
+        bad = [x for x in names if any(nm == x for nm, _, _ in runs) and all(nm != x or (st == "completed" and c != "success") for nm, st, c in runs)]
         if bad:
             return f"the {', '.join(bad)} job failed"
-        if all(runs.get(x, {}).get("conclusion") == "success" for x in names):
-            return None
         time.sleep(30)
     return f"the {', '.join(names)} jobs did not finish within {minutes} minutes"
 
@@ -487,10 +493,10 @@ def render(cards: dict, reg: dict, extra: list[str], state: str, link) -> str:
     left = [c for c in cards if c not in reg]
     out = [MARK, f"**Verifier:** {len(by['accept'])} accepted · {len(by['reject'])} rejected"
            + (f" · {len(by['unchecked'])} not checked" if by["unchecked"] else "") + (f" · {len(left)} to check" if left else "")
-           + f", of {len(cards)} cards", ""]
-    out += [f"- ❌ [`{c}`]({link(cards[c][0])}) {reg[c]['class']}: {cut(reg[c]['reason'])}" for c in by["reject"]]
-    out += [f"- ⏳ [`{c}`]({link(cards[c][0])}) not checked: {cut(reg[c]['reason'])}" for c in by["unchecked"]]
-    out += extra + ["", state, ""]
+           + f", of {many(len(cards), 'card')}"]
+    rows = [f"- ❌ [`{c}`]({link(cards[c][0])}) {reg[c]['class']}: {cut(reg[c]['reason'])}" for c in by["reject"]] + [
+        f"- ⏳ [`{c}`]({link(cards[c][0])}) not checked: {cut(reg[c]['reason'])}" for c in by["unchecked"]]
+    out += ([""] + rows if rows else []) + extra + ["", state, ""]
     if by["accept"]:
         out += [f"<details><summary>{len(by['accept'])} accepted</summary>\n"] + [
             f"- `{c}`" + (f" (by @{reg[c]['by']}: {cut(reg[c]['reason'], 200)})" if reg[c].get("by") else "") for c in by["accept"]] + ["</details>", ""]
@@ -746,7 +752,6 @@ def run(n: int, dry: bool) -> int:
     rejected = [c for c in cards if reg.get(c, {}).get("verdict") == "reject"]
     unchecked = [c for c in cards if reg.get(c, {}).get("verdict") == "unchecked"]
     trusted = author in MAINTAINERS
-    many = lambda k, noun: f"{k} {noun}" + ("" if k == 1 else "s")
     if len(waiting) > len(todo):
         state = f"**{many(len(waiting) - len(todo), 'card')} left for the next run**, which starts by itself."
     elif unchecked:
