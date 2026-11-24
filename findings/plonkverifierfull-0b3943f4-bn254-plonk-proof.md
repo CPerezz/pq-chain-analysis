@@ -523,7 +523,32 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: MEDIUM
-reviews: []
+reviews:
+- who: r-0b3943f4, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: refuted
+  note: 'disagree: action: proof type 1 is set to a second BN254 PLONK verifier (0x1d93…, same G2 setup point) and
+    the operator picks the type; repointing type 0 alone leaves forged finalizations open. Say: replace or unset
+    every set proof type (0 and 1).; what-3: the 10,000 ETH/day limit counts only claimed ETH; the TokenBridge''s
+    tokens (6.92M USDT, 674 wstETH, 28.97 WBTC, 98.8K DAI…) leave uncapped through forged roots, and 11,813 ETH
+    staked through the YieldManager is paid out as LST. State the stake without im (the card was edited after this
+    answer)'
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 're-rated: The BN254 PLONK verifier LineaRollup uses for proof type 0, last used at block 26,438,921: a
+    quantum computer that derives the setup secret from points in its code, with an operator key, could pass false
+    withdrawal roots. LOW, PQ-7 (was MEDIUM): one known multisig, the Security Council''s 5-of-9 Safe, changes a
+    setting through a timelock with no delay, which the rubric rates LOW, as on the World ID, Hyperbridge and Rarimo
+    verifier cards. Author A-0b3943f4. Refuter R-0b3943f4 agreed with the rating and disagreed on three points,
+    all right; the reader corrected the card with the refuter''s checks: (1) the action now covers every set proof
+    type, since type 1 is a second PLONK verifier with the same setup point and the operator picks the type; (2)
+    the card no longer implies a total cap: the 10,000 ETH daily limit counts only ETH, the token bridge''s tokens
+    (6.92M USDT, 674 wstETH, 28.97 WBTC, 98.8K DAI) have none, and ETH beyond the rollup''s balance is paid as LST;
+    (3) whose funds: users who bridged.'
 related: []
 ---
 

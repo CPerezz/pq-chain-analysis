@@ -114,7 +114,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-eb513003, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Author and refuter agree; sheet read by Claude. Intent executor: an intent runs only if ECDSA recovers
+    the named user (refuter''s throwaway-key call accepts and rejects accordingly); no ERC-1271; prepaid fees withdraw
+    by a direct call with all gas (the decompiler''s 2,300-gas transfer is not in the bytecode). INFORMATIONAL (was
+    LOW). The intent registry 0x419e2b34… may deserve its own row.'
 related: []
 ---
 

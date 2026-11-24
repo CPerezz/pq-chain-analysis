@@ -98,7 +98,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-f1c9acdc, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: HIGH
+  note: 'kept: Kev''s first-study finding, HIGH (PQ-1): osETH''s permit (OZ ERC20Permit) checks only an ECDSA signature
+    against the holder, so a holder that moves to post-quantum authorisation at the same address stays forgeable;
+    no proxy, no upgrade, owner and pending owner renounced. Holders should move their osETH to a fresh address
+    before switching. Two refuters agree; Claude read the sheet. Waits for Anon''s sign-off.'
 related: []
 ---
 

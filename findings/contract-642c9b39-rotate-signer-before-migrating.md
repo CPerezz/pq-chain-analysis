@@ -138,7 +138,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-642c9b39, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL candidate (PQ-17): a WalletCore EIP-7702 account (312 ETH) whose signatures recover
+    against the account itself, with addValidator (self-only) to register another validator first; an account that
+    takes real code without one loses its own signatures and, by EIP-3607, its sending. This card carries the account''s
+    notice: PQ-20''s detection needs no stored key or validator path beside the own-key check, and WalletCore has
+    one, so the 7702-own-key-only row is covered by this card. Refuter agrees; Claude read the sheet.'
 related: []
 ---
 

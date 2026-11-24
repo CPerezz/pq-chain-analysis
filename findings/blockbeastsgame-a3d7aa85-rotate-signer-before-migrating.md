@@ -126,7 +126,27 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-a3d7aa85, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: refuted
+  note: 'disagree: breaks-by-itself: the dossier''s own replay of a real claim (0xf48860ab...ea1c) fails under ''eip8151''
+    while it succeeds under ''today'', with the signer unmigrated. The card is silent on this; it should at least
+    flag that claims break at activation independent of any migration, or route it to a rated finding if the study''s
+    rules call for one. I could not run an ''eip8151_more_gas'' replay (not in the dossier) to say why it fails,
+    only that it does.; what-3 / evidence-2: the only dossier replay with a'
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Wording pass (''real code''). The fresh refuter held the mechanism but objected that a real claim
+    (tx 0xf48860ab…, block 26,373,884, index 18) fails under EIP-8151 alone and that the delegated run fails too.
+    Claude replayed it on the fork engine: as sent it reverts (75,644 of 75,838 gas); with 300,000 more gas it succeeds
+    (78,058); with a delegation at the signer and more gas it succeeds; with real code at the signer and more gas
+    it reverts (38,140). So the activation-day failure is the sender''s gas limit, which belongs to the row sender-gas-limits|0xa3d7aa85…
+    (wave 1; these replays go to it), and the card''s claims hold. Kept.'
 related: []
 ---
 

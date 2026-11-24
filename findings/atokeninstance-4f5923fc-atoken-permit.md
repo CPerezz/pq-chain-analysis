@@ -196,7 +196,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-4f5923fc, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-1): aEthUSDe''s permit accepts only ECDSA.recover (no ERC-1271),
+    so a forged permit moves a holder''s aTokens even after the holder migrates; Aave''s pool admin can replace
+    the implementation through the PoolConfigurator (updateAToken reaches this proxy). Token supply affected (upper
+    bound) about $627.7M. Two refuters agree; Claude read the sheet.'
 related: []
 ---
 

@@ -346,7 +346,24 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-245cc372, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection (the card was edited after this answer)
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: A Safe 1.3.0 proxy, 4 of 8 owners, none with code, no module; about 1.37M USD at the address (the
+    first study''s 58.2M was not this address''s own). MEDIUM, PQ-12: four forged owner keys move everything; owners
+    can be swapped for signer contracts answering the legacy isValidSignature(bytes,bytes). Author A-245cc372; refuter
+    R-245cc372 agreed with no objection and noted that the card undercounted exposure. The reader recovered the
+    four approvals of transaction 0x2f92f80f itself (three ECDSA signatures: 0x680ff9bd, 0xb7eb9049, 0xf0be8f75;
+    one approval by the sender) and corrected the card: seven of the eight public keys are on-chain, not five. Whose
+    funds and activity stay as the tool states them.'
 related: []
 ---
 

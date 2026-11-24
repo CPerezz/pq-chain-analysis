@@ -8,7 +8,8 @@
                                                    for it); the row's draft keeps the link for a later re-file
 Takes settled rows that are not filed since they were last settled, in settle order, up to --batch:
 - kept, re-rated, moved or trusted: the card is rendered again from its draft (no check is re-run, the row's state does not
-  change), validated, and written to findings/<id>.md;
+  change), with a `reviews` entry for its refuter and one for its reader (none for a trusted card), validated, and written
+  to findings/<id>.md;
 - removed: nothing new is written.
 A row waits when it is not ready: any card but a trusted one needs its refuter's results; a removal whose refuter agreed needs a second
 refuter's answer (work/refute1/ holds the first). Questions are never filed.

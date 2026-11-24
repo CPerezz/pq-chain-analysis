@@ -117,7 +117,25 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-42069313, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: refuted
+  note: 'disagree: breaks-by-itself: the bridge-mint relays (joinParty / multiJoinParty, the only recoveries seen
+    at this address) fail under EIP-8151 alone. Replay of tx 0x505347f4… (direct joinParty, gas limit 67,007, used
+    66,162) is ok today and OutOfGas under eip8151 with an EOA minter; tx 0x374752dd… fails the same way. A rated
+    finding is missing: probably LOW under the protocol-change rubric (the minting relayer raises its gas limit),
+    stated as ''probably'' because no more-gas replay is in the dossier to rule '
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Wording pass (''real code''). The fresh refuter could not break the permit card; its objection is
+    that the minter-signed bridge mints (joinParty, multiJoinParty) fail with OutOfGas under EIP-8151 alone in the
+    dossier''s replays. That is covered by the row sender-gas-limits|0x42069313… (wave 1), not by this notice. Kept
+    as before.'
 related: []
 ---
 

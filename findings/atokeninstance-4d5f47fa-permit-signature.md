@@ -148,7 +148,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-4d5f47fa, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-1): Aave aEthWETH accepts ECDSA permits that a quantum attacker
+    could forge. A forged permit lets anyone spend a holder''s aWETH; the fix is an Aave governance upgrade of the
+    aToken. Fix: Upgrade the aToken implementation so permit asks accounts with real code through ERC-1271 instead
+    of ECDSA. One refuter agrees on the current card with no objection (D-029: a second refuter only for removals);
+    Claude read the card and the answer.'
 related: []
 ---
 

@@ -213,7 +213,21 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-ec7dc36c, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL notice (PQ-17): a TokenDistributor copy whose claims trust one ECDSA signer the live
+    operator can rotate with setSigner; its window ended (TooLate) but the operator can reopen it; holds 6 iZi,
+    withdrawable by the owner (a different key from the operator: refuter''s wording note). Refuter agrees; Claude
+    read the sheet.'
 related: []
 ---
 

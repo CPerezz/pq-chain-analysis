@@ -234,7 +234,18 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL candidate (PQ-17): Polygon''s StakeManagerProxy (about 3.97B POL of validators'' and
+    delegators'' stake, unpriced) reverts a whole checkpoint when any signer''s account has real code; each validator
+    can rotate its signer with updateSigner (100-epoch cooldown) first. The refuter''s only open point, checkpoints
+    failing at activation with nobody migrating, is settled by Claude''s fork replays (two real checkpoints revert
+    under EIP-8151 as sent and pass with 1,000,000 more gas) and filed as its own row, sender-gas-limits|0x86e4dc95…
+    (RootChainProxy), which this card names. The rest held under three refuters'' reads; Claude read the sheet.'
 related: []
 ---
 

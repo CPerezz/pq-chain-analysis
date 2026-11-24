@@ -133,7 +133,22 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-3ee18b22, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: LOW (PQ-18), a lead from the Wormhole core row: the token bridge''s completeTransfer asks Wormhole
+    core to verify with no gas amount set; a real redeem (gas limit 303,653) fails under EIP-8151 and passes with
+    more gas, needing 40,300 more (13 guardian recoveries x 3,100). Claude fixed the action to the measured figure
+    and stated upgradeable (guardian-governed upgrade) after the second refuter; two refuters agree on the final
+    card. Claude read the sheet.'
 related: []
 ---
 

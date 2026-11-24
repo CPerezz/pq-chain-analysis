@@ -168,7 +168,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: CRITICAL
-reviews: []
+reviews:
+- who: r-ed470553, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): Multisig wallet clone trusts a fixed set of ECDSA signer
+    keys. Three forged signer keys move its funds; the signer set is fixed, so the fix is moving funds to a new
+    wallet. Fix: Move any funds to a wallet whose signers can change to post-quantum keys; this wallet''s signer
+    set cannot change. One refuter agrees on the current card with no objection (D-029: a second refuter only for
+    removals); Claude read the card and the answer.'
 related: []
 ---
 

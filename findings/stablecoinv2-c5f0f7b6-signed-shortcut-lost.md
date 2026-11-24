@@ -151,7 +151,19 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-c5f0f7b6, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Sent back once (a replay bullet that could not isolate the token); the new card drops it, sets evidence
+    to source, says real code and that no balance is at risk. A fresh refuter agrees; sheet read by Claude.'
 related: []
 ---
 

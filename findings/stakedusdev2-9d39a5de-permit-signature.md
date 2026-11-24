@@ -126,7 +126,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-9d39a5de, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: HIGH
+  note: 'kept: Kev''s first-study finding, HIGH (PQ-1): sUSDe''s permit checks only an ECDSA recovery and never
+    asks the owner''s account, so a holder that moves to post-quantum authorisation at the same address stays forgeable
+    through permit and transferFrom; the permit path cannot change (no proxy, no upgrade), though a live admin holds
+    other roles (Claude''s justification fix after the first refuter). Token supply affected (upper bound) about
+    $1.18B. Two refuters agree on the final card; Claude read the sheet. Waits for Anon''s sign-off.'
 related: []
 ---
 

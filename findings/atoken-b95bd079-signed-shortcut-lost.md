@@ -111,7 +111,20 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-b95bd079, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL notice (PQ-19): UwU''s uDAI aToken (implementation 0x3435ccfa…) accepts permit only
+    through ECDSA (no ERC-1271), so a holder whose account takes real code loses gasless approval but keeps approve;
+    $31,494 DAI backs it; DAI reserve frozen, transfers open. Refuter agrees; Claude read the sheet.'
 related: []
 ---
 

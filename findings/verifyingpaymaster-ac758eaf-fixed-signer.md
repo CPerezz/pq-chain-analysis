@@ -158,7 +158,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews: []
+reviews:
+- who: r-ac758eaf, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Author and refuter agree; sheet read by Claude. VerifyingPaymaster: immutable verifyingSigner, ECDSA
+    only; withdrawTo is a direct owner call. The card''s $6 is this address''s own idle balance; the EntryPoint
+    deposits across copies (~1.28 ETH) are what it discusses (refuter''s soft note, for the wording pass). 2 of
+    27 copies'' signers unchecked.'
 related: []
 ---
 

@@ -224,7 +224,23 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-a0b86991, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: LOW (PQ-18), a lead found in review: USDC''s transferWithAuthorization asks a signer with code (an
+    EIP-7702 delegation) through ERC-1271 in an external library, each nested call keeping back 1/64; two real relayed
+    transfers (limits 92,282 and 92,657) fail under EIP-8151 as sent and pass with more gas, needing only 200 more
+    yet failing about 745 below their limits. A third relayer''s permit (0x9f2b80e0…) fails the same way. Claude
+    corrected the action twice and evidence-3 once after refuters; a fresh refuter agrees on the final card, the
+    second refuter on the rest. Claude read the sheet.'
 related: []
 ---
 

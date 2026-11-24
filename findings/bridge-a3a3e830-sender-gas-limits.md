@@ -126,7 +126,20 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-a3a3e830, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: Second refuter (D-028) agrees: a real wrap (871 gas of headroom) reverts under EIP-8151 at its sender''s
+    limit and is resendable with more gas (processed is set only after the check; Claude''s replay with +300,000
+    succeeds). Both refuters agree; Claude read the sheet. LOW, kept as before.'
 related: []
 ---
 

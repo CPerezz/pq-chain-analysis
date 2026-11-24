@@ -265,7 +265,22 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-0aa6f298, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL candidate (PQ-17, bytecode): the proxy in use over 0x44480f17 accepts relayed batches
+    (0x952a2970, only from relayer 0xa18f…e7aa) when the recovered ECDSA signer is a registered operator; an operator
+    whose account takes real code loses only that relayed path and keeps five direct entries checked on msg.sender;
+    the 2-of-2 owner Safe can register a new key. Seven operators registered, none with code (Claude''s log read,
+    cited). Refuter agrees after disassembling the code; Claude read the sheet.'
 related: []
 ---
 

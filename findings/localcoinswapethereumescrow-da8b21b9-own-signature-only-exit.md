@@ -104,7 +104,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews: []
+reviews:
+- who: r-da8b21b9, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Sent back after the wording-pass refuter found a false justification and an understated impact. The
+    redone card: a migrated party cannot cancel or dispute, and getting its ETH back waits on the other side (direct
+    release and buyerCancel pay the other party); impact funds-locked. A fresh refuter agrees; sheet read by Claude.
+    INFORMATIONAL; candidate (which trades the 1.227 ETH belongs to needs logs).'
 related: []
 ---
 

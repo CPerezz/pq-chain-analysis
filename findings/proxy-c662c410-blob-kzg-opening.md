@@ -370,7 +370,23 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: MEDIUM
-reviews: []
+reviews:
+- who: r-c662c410, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: Kev''s first-study finding (old LOW), LOW (PQ-8): Starknet''s core binds blob-DA state updates to
+    the proven output only through a KZG point-evaluation opening, so the setup trapdoor plus an operator key could
+    post a proven state whose data the blob lacks; calldata data availability (updateState) already exists and is
+    usable with the OS in force, and nothing can be taken through the check (exits can only freeze): the rubric''s
+    LOW row. Claude''s earlier MEDIUM feedback misread the rubric and was reversed. Final card: a fresh refuter
+    agrees; the refuter whose LOW reading it applies agreed on every other part. Claude read the sheet.'
 related: []
 ---
 

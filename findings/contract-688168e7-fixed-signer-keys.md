@@ -262,7 +262,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: CRITICAL
-reviews: []
+reviews:
+- who: r-688168e7, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): Multisig wallet trusts ECDSA signer keys and its setup
+    cannot be run again. Three forged signer keys move the wallet''s assets; setup is closed, so the fix is the
+    owners moving to a new wallet. Signers read by Claude from the setup block; the fresh refuter agrees with no
+    objection. Claude read the card and the answers.'
 related: []
 ---
 

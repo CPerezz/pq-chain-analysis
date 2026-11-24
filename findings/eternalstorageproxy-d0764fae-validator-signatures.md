@@ -360,7 +360,25 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-d0764fae, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: The Ethereum side of a PulseChain bridge (an upgradeable proxy) executes a message once 5 of its
+    8 validators sign it with ECDSA; all eight are code-less; its Omnibridge then pays out locked tokens (11.42M
+    USDC, 10.41M DAI, 4,051 WETH, 3.79M USDT) with execution limits far above its balances. MEDIUM, PQ-5: five forged
+    validator keys release the escrow; the upgradeability owner, one code-less account that has sent no transaction,
+    can replace the code. Author A-d0764fae; refuter R-d0764fae agreed with no objection; the reader changed nothing.
+    The header shows nothing held because the tokens sit in the Omnibridge. The dossier''s replay 0x7657de29 (works
+    today, reverts under EIP-8151 alone) was sent to another address and is routed as a gas-limit lead, not cited
+    here.'
 related: []
 ---
 

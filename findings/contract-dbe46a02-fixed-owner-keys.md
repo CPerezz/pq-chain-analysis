@@ -242,7 +242,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: CRITICAL
-reviews: []
+reviews:
+- who: r-dbe46a02, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): Fixed-signer multisig stays forgeable through its signers''
+    ECDSA keys. Only fixable by the signers moving the funds to a new wallet: the signer set and the code cannot
+    change. Fix: Move the funds to a wallet whose signers can be replaced by post-quantum ones, then stop using
+    this one. One refuter agrees on the current card with no objection (D-029: a second refuter only for removals);
+    Claude read the card and the answer.'
 related: []
 ---
 

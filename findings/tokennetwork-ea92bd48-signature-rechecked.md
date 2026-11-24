@@ -170,7 +170,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: CRITICAL
-reviews: []
+reviews:
+- who: r-ea92bd48, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: CRITICAL
+  note: 'kept: Second refuter (D-028) agrees on every part: closeChannel and updateNonClosingBalanceProof recover
+    a balance-proof signature taken as payment earlier; no ERC-1271, no proxy or upgrade; the only privileged key
+    flips a deprecation switch that does not gate close or settle; channels 1, 142, 159 and 168 open and 58 closed
+    but unsettled at the block. Both refuters agree; Claude read the sheet. CRITICAL, kept; waits for Anon''s sign-off
+    before filing.'
 related: []
 ---
 

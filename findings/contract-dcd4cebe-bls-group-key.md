@@ -267,7 +267,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: ''
-reviews: []
+reviews:
+- who: r-dcd4cebe, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: Kev''s first-study finding, re-rated MEDIUM -> LOW after two returns: anyone can shut the signed
+    path now (the 30-day timeout passed; checkAndHandleTimeout), and only the owner, one known key holding all WGNK,
+    can reopen it; submitGroupKey (no owner check) keeps the state, so it never reopens a shut bridge (second refuter,
+    by a state-override simulation and the bytecode). Dormant since 2025-11-21; the live Gonka bridge 0x972a… is
+    its own row. Both refuters agree; Claude read the sheet. Candidate (bytecode).'
 related: []
 ---
 

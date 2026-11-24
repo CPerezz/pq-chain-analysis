@@ -735,7 +735,21 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-da8e1708, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Sent back once (the action assumed the platform held every Blob key). The redone card splits the
+    keys: coins 0-8 use the launcher''s own wallet (barSelf), coins 9 and 10 are barred, coin 11''s platform key
+    is unbarred, and the team relays a signed bar for it. A fresh refuter agrees (28 checks, the replay re-read);
+    sheet read by Claude. INFORMATIONAL; candidate (who holds coin 11''s key rests on a source comment).'
 related: []
 ---
 

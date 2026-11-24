@@ -251,7 +251,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: CRITICAL
-reviews: []
+reviews:
+- who: r-9f199b93, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM candidate (PQ-12, bytecode): a custodian multisig clone of 0x0d424072
+    holding 10,000,018 USDT, whose spend needs a signer as sender plus two other signers'' ECDSA signatures (three
+    keys); its five signers were set once and cannot be replaced, so the only fix is the signers moving the funds.
+    Signers read by Claude from the setup block (isSigner, code and nonce checks). The refuter agrees with no objection;
+    Claude read the card and the answer.'
 related: []
 ---
 

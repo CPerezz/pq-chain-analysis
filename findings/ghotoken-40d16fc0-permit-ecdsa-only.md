@@ -110,7 +110,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-40d16fc0, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: HIGH
+  note: 'kept: Kev''s first-study finding, HIGH (PQ-1): GHO''s permit recovers the signer with ecrecover only, so
+    a holder that moves to post-quantum authorisation at the same address stays forgeable; no proxy or upgrade,
+    and the admin roles manage facilitators only. Token supply affected (upper bound) at 699M GHO. Claude fixed
+    the title (no drain is under way: holders stay forgeable). Two refuters agree on the final card; Claude read
+    the sheet. Waits for Anon''s sign-off.'
 related: []
 ---
 

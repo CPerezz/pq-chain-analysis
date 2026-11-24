@@ -261,7 +261,34 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews: []
+reviews:
+- who: r-59bd11f8, the row's refuter
+  date: 2026-11-24
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection (the card was edited after this answer)
+- who: reader-1, the reader who settled the row (also its author)
+  date: 2026-11-24
+  by: ai-assisted
+  verdict: confirmed
+  rating: CRITICAL
+  note: 'kept: An early Fuel v1 rollup deployment (name() Fuel, version() 1.0.0), unverified code: the one routine
+    that calls the precompile at address 1 gives it a constant 3,000 gas and reverts when the call fails, and only
+    proveInvalidWitness and proveInvalidSum reach it. Kept fixed-gas-recovery, PQ-14, CRITICAL, candidate (bytecode
+    evidence): under EIP-8151 every signature that recovers costs more than 3,000, so those two fraud proofs revert
+    from activation day, a spend signed by the wrong key cannot be challenged, and the code has no proxy slot, upgrade
+    function or delegate-call, which the rubric rates CRITICAL whatever the contract holds (45 USD). Fix: exit and
+    retire it before activation. The refuter agreed with no objection. Reader''s own reads: disassembly of the routine
+    at 0x1891 and a reachability pass over the 35 dispatcher cases (only selectors 0x67df9aa7 and 0x84e9520c reach
+    the call), the tip''s history by eth_call, the first day''s logs. Reader''s corrections, marked (reader) in
+    the notes: evidence-3 now says the tip has been 3 since 1 January 2021 and links the commit transaction, with
+    new checks (tip 2 at block 11,566,104, tip 3 at 11,566,105, that block''s time, the commit transaction and its
+    event); the mechanism says the proofs revert for every signature that recovers an address, not for any signature
+    (one that recovers nothing still costs 3,000); the author''s two log questions are answered in two ruled-out
+    lines (idle since block 11,566,105; everything held equals five deposits by one account, 0xd2a8dd8f, and the
+    three 0.5 ETH bonds have left) with logs checks, and replaced by the one question that stays open: whether that
+    depositor is a user or the team''s own test account, so whose stays empty. The refuter''s answer is kept as
+    refute-before-edit.json and the author''s draft as draft-author.json.'
 related: []
 ---
 

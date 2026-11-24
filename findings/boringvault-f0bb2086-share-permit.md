@@ -285,7 +285,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-f0bb2086, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding (old bundled MEDIUM), MEDIUM (PQ-1): the ether.fi Liquid ETH BoringVault''s
+    solmate permit grants allowances on ECDSA alone; the vault cannot be upgraded, but a one-day-timelocked role
+    can install a transfer hook that refuses third-party transfers (the author''s HIGH became MEDIUM after the refuter).
+    About 122,746 shares at about 1.1117 WETH (roughly 136,450 ETH) as an upper bound. Third version after two returns;
+    two refuters agree on it; Claude read the sheet.'
 related: []
 ---
 

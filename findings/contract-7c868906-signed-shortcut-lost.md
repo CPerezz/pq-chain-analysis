@@ -221,7 +221,23 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-7c868906, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Sent back once (who can sweep was hidden behind ''nothing is locked''; the action was empty). The
+    card now names the order''s payee as the only party that can sweep an expired deposit (the refund address has
+    no path) and tells signer-key holders to open or sweep before migrating. A fresh refuter agrees; sheet read
+    by Claude. INFORMATIONAL; candidate (unverified; who funds deposits and holds signer keys needs logs). The signed
+    sweep has no deadline: if anyone keeps pre-signed sweeps as vouchers, that would be a rated case, not shown
+    on chain.'
 related: []
 ---
 

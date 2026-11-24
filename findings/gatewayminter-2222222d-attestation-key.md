@@ -268,7 +268,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-2222222d, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-4): Circle''s GatewayMinter mints USDC, EURC and cirBTC on
+    one ECDSA attestation key (a code-less account); forging it mints up to the unused allowances (86.6M USDC, 20M
+    EURC, 300 cirBTC: newly minted, not held funds); only the owner key''s upgrade changes the scheme (rotating
+    swaps one ECDSA key for another). Second version after the first refuter (cirBTC added); two refuters agree
+    on it. Claude read the sheet. The tight-gas mint replay is its own sender-gas-limits row.'
 related: []
 ---
 

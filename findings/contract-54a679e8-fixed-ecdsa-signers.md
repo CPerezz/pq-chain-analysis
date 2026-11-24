@@ -255,7 +255,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: CRITICAL
-reviews: []
+reviews:
+- who: r-54a679e8, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM candidate (PQ-12, bytecode): a custodian multisig clone of 0x0d424072
+    whose spend needs a signer as sender plus two other signers'' ECDSA signatures (three keys); the five signers
+    were set once at setup and no function replaces them, so the only fix is the signers moving the funds. Claude
+    read the signer set from the setup block and added isSigner, code and nonce checks (logreads/custodian-clones-signers.md).
+    Two refuters agree; Claude read the sheet.'
 related: []
 ---
 

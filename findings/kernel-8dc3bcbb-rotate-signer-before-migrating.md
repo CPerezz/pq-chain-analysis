@@ -237,7 +237,22 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-8dc3bcbb, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Returned twice: addUser is admin-gated on the account code that runs and, per the verified Account
+    code and the same error text in the running master''s bytecode, also needs a signature from a current user of
+    the account (otherwise it adds nobody). The card now says a Config admin submits addUser signed by the borrower''s
+    current key. A fresh refuter agrees; sheet read by Claude. Q2-class: no loan since August 2020. INFORMATIONAL;
+    candidate.'
 related: []
 ---
 

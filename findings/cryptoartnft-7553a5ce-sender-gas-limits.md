@@ -176,7 +176,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-7553a5ce, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection (the card was edited after this answer)
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: LOW (PQ-18): Cryptoart NFT claims sent with a tight gas limit fail after EIP-8151. A real claim fails
+    under the new price with its sender''s gas limit and succeeds when given more gas, so it rates low. Two refuters
+    had agreed (one objected to the flat per-signature figure); Claude replaced that figure with what the replays
+    measured. Settled by Claude (D-029). Claude read the card and the answers.'
 related: []
 ---
 

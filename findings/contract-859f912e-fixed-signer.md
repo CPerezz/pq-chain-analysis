@@ -323,7 +323,34 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews: []
+reviews:
+- who: r-859f912e, the row's refuter
+  date: 2026-11-24
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection (the card was edited after this answer)
+- who: reader-1, the reader who settled the row (also its author)
+  date: 2026-11-24
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 're-rated: One-way payment channel, unverified code read from opcodes: its three exits (settle and settleAndWithdraw
+    by the counterparty, withdraw by anyone after 387 idle days) pay only on a message signed by the signator fixed
+    at deployment; no setter, no upgrade, no ERC-1271 path, the pause is never read by the exits. Re-rated from
+    CRITICAL to INFORMATIONAL and kept under fixed-signer, PQ-17: nothing breaks unless the holder of the signator
+    key moves that account to real code, and then nothing pays out and the 1 ETH is locked; the fix is to settle
+    and withdraw first. This row was first settled as moved to signature-rechecked, PQ-15, CRITICAL (the author''s
+    draft, its refuter agreeing) and filed in pull request 15; the verifier rejected that card: each exit checks
+    the signature once and a failed check only reverts, with no second step and no fallback, which is PQ-17. The
+    reader checked that against the bytecode (one comparison with slot 1 per exit, two CALL sites both in the pay
+    routine after it, no refund path) and found it right, adding that no signed payment is known and that with the
+    387 days over one signed withdraw already overrides any earlier payment, so moving to real code gives the signer
+    no new power over a counterparty. Reopened, the draft''s pattern, issue, severity, title, justification, action
+    and first two sentences rewritten by the reader as a notice, one ruled-out line replaced to record the rejected
+    reading; the facts, checks and the reader''s earlier corrections (nothing paid out since deployment on 11 August
+    2022; who funded and deployed it) are unchanged. The refuter''s answer to the first card is kept as refute-before-edit.json;
+    no new agent was sent. Still open on the card: whether an unsettled signed payment exists, and who the parties
+    and the project are.'
 related: []
 ---
 

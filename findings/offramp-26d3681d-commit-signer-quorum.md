@@ -592,7 +592,24 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-26d3681d, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM candidate (PQ-5): CCIP OffRamp 1.6.0 accepts a commit report on
+    6 of 16 ECDSA signers with the risk network''s blessing off on all 37 lanes; forged commits execute after an
+    hour and release pool tokens (the LINK pool: 315,416 LINK, 50,000 per lane at once). Fix is new verification
+    code: deploy a post-quantum off-ramp, add it to the Router and remove this one (the Router lists several off-ramps
+    per lane: second refuter''s point, made by Claude). Claude also left whose open (the pool''s rebalancer Safe
+    may hold part of the LINK; question kept) and named the timelock''s bypasser. Refuters agree on the final card;
+    Claude read the sheet.'
 related: []
 ---
 

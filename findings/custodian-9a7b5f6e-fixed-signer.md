@@ -201,7 +201,21 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-9a7b5f6e, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL notice (PQ-17), dormant: a retired Gemini dollar custodian whose six signers are fixed
+    in its constructor (no setter, no ERC-1271); GUSD''s proxy and store now name another custodian, a live key
+    that could point custody back here with one confirmation (D-028 rule 4, consistent with the settled copy 0x1789cca7).
+    Author''s not-affected reversed by Claude; two refuters agree on the notice; Claude read the sheet.'
 related: []
 ---
 

@@ -191,7 +191,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-f955c57f, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-5): Peggy pays out locked tokens or installs a new validator
+    set when validators holding over two thirds of the power sign with ECDSA; owner() is zero (no pause), and only
+    the ProxyAdmin''s 3-of-5 Safe upgrade (with an Injective chain change) fixes it. Holds $4.45M priced plus 94,968,243
+    unpriced INJ. The updateValset replay failing under EIP-8151 alone is a relayer gas-limit failure, its own row
+    (sender-gas-limits|0xf955c57f…). Two refuters agree; Claude read the sheet.'
 related: []
 ---
 

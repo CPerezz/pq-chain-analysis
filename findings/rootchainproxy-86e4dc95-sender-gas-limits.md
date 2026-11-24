@@ -209,7 +209,22 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-86e4dc95, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: LOW (PQ-18, liveness): a Polygon checkpoint whose gas limit was estimated before EIP-8151 activates
+    and that is mined after runs out of gas at its limit (replays: about 307,100 more gas per checkpoint; +300,000
+    still fails, +1M passes); Heimdall v2 estimates gas for every checkpoint (refuter read SendCheckpoint at 1f88b5c),
+    so later checkpoints include the new cost. Rewritten to this narrow claim after the first refuter; two refuters
+    agree on it. Claude read the sheet.'
 related: []
 ---
 

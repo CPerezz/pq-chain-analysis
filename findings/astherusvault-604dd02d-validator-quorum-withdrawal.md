@@ -257,7 +257,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-604dd02d, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-5): Aster''s vault (about $183M) pays withdrawals on ECDSA
+    signatures from two thirds of its one registered validator set (3 validators, power 90, all also operators;
+    Claude''s log read), or through the immutable withdraw validator''s two fixed ECDSA keys; draws within the $6M
+    hourly budget pay out; only a vault upgrade (4-of-7 Safe through a one-day timelock) fixes both paths. Two refuters
+    agree; Claude read the sheet.'
 related: []
 ---
 

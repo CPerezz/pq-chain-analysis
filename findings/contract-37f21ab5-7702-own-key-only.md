@@ -145,7 +145,20 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-37f21ab5, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Sent back once (the lock happens only if an account takes this logic as its real code, not any real
+    code); the new card says so. A fresh refuter re-read both codes byte by byte and agrees; sheet read by Claude.
+    Bitget Wallet 7702 v0.0.1: $621,881 across 10,579 delegated accounts; INFORMATIONAL notice.'
 related: []
 ---
 

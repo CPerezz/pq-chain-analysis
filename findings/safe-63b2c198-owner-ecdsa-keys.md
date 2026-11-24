@@ -459,7 +459,29 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-63b2c198, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: refuted
+  note: 'disagree: justification: ''both owners must move to new post-quantum signers'' is not required by the code:
+    with threshold 2 and distinct owners (Safe.sol 262/284/331), swapping one owner for a post-quantum signer (or
+    adding one with threshold 3) already stops a forged transaction; it should say both owners must approve the
+    move to post-quantum signers (and the module''s ECDSA delegates must go). Severity MEDIUM stands. (the card
+    was edited after this answer)'
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: A 2-of-2 Safe on the 1.4.1 singleton holding about 15.5M USDT and 14.2M USDC; both owners are code-less
+    keys that have sent transactions. MEDIUM, PQ-12: forging the two owner keys moves everything. Its Allowance
+    Module also lets three ECDSA delegates, both owners among them, each send a daily amount of USDC and USDT alone
+    (100,000 of each for one delegate, 30,000 for each owner); the action swaps the owners and removes or replaces
+    those delegates. Author A-63b2c198. Refuter R-63b2c198 kept the rating and disagreed on the severity reason,
+    rightly: the code does not need both owners to change, since every transaction needs two distinct owners and
+    one post-quantum owner already stops a forged one. The reader corrected that sentence and added the point to
+    ruled_out with the refuter''s two checks.'
 related: []
 ---
 

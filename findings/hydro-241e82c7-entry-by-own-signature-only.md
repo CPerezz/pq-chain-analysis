@@ -183,7 +183,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-241e82c7, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Impact corrected by Claude from liveness to funds-locked through submit, for consistency with LocalCoinSwap
+    and R1Exchange (findings/README.md: impact if the key holder migrates unprepared; ETH leaves only by a 2,300-gas
+    transfer, trading needs the trader''s signature). A fresh refuter agrees on every part; Claude read the changed
+    field. Kept; INFORMATIONAL. Another refuter drafted replay checks it never ran and removed them before submitting
+    (the fourth such case).'
 related: []
 ---
 

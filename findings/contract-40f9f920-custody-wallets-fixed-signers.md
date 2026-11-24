@@ -295,7 +295,25 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews: []
+reviews:
+- who: r-40f9f920, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 're-rated: An unverified 3-of-7 wallet holding 20,205.93 ETH whose owners are fixed: no function adds, removes
+    or replaces one, and nothing upgrades it; all seven owners are code-less at the block; 621 more addresses run
+    this code. INFORMATIONAL, PQ-17 (was HIGH): nothing breaks unless owners move their accounts to real code, and
+    three owners can first move the ETH; the same reading as the five wallets-fixed-signers rows already settled.
+    Evidence is bytecode, one real payout of November 2026 and the replays of a same-code wallet (works today and
+    under EIP-8151, fails with code at a signer, works with a delegation there). Author A-40f9f920; refuter R-40f9f920
+    disassembled the code itself and agreed with no objection; the reader changed nothing. Not this row''s card:
+    three forged owner keys would move the ETH (PQ-12); no row carries that for this wallet, parked for Anon.'
 related: []
 ---
 

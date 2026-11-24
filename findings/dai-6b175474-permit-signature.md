@@ -160,7 +160,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-6b175474, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: HIGH
+  note: 'kept: Kev''s first-study finding, HIGH (PQ-1): DAI''s permit accepts only the holder''s ECDSA signature,
+    sets an unlimited allowance, and the token cannot change (no proxy or upgrade; wards only rely, deny and mint).
+    Token supply affected (upper bound) $4.43B. Both refuters agree; Claude read the sheet. Waits for Anon''s sign-off
+    before filing.'
 related: []
 ---
 

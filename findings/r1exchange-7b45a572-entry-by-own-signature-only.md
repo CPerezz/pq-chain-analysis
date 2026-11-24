@@ -227,7 +227,21 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-7b45a572, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'moved: Moved from signed-shortcut-lost to entry-by-own-signature-only (PQ-21), like Hydro, after two returns:
+    trading needs both traders'' ECDSA signatures and has no direct call; impact funds-locked for ETH (every ETH
+    payout is a 2,300-gas send); whose empty (fee accounts share the depositors'' ledger). A fresh refuter agrees;
+    sheet read by Claude. INFORMATIONAL; candidate (admins cannot be listed without logs).'
 related: []
 ---
 

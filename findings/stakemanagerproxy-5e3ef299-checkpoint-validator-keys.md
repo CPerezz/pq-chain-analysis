@@ -275,7 +275,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-5e3ef299, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-5): Polygon''s StakeManager accepts a checkpoint on its validators''
+    ECDSA signatures, so forged validator keys could pass a false checkpoint and release what the bridge''s predicates
+    hold (1,046,805,900 USDC and 89,027 ETH at the block: $1.21B, stated as escrow after the first refuter''s objection;
+    the address''s own $499 and its 3.97B unpriced POL are not the figure). The proxy can be upgraded by its owner.
+    A fresh refuter agrees with the corrected card; Claude read the sheet.'
 related: []
 ---
 

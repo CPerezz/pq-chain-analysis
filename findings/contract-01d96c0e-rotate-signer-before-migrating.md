@@ -230,7 +230,19 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-01d96c0e, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Wording pass (''real code'', title shortened to fit); a fresh refuter agrees on every part and re-ran
+    all four replay runs; Claude read the changed sentences. Kept as before.'
 related: []
 ---
 

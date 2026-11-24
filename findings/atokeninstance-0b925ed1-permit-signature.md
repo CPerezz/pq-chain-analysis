@@ -137,7 +137,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-0b925ed1, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-1): aEthwstETH''s permit accepts only ECDSA.recover, so a
+    forged permit moves a holder''s aTokens even after the holder migrates; Aave governance can replace the implementation
+    through the PoolConfigurator (updateAToken, pool-admin gated). Token supply affected (upper bound) at the underlying''s
+    price. Both refuters agree; Claude read the sheet.'
 related: []
 ---
 

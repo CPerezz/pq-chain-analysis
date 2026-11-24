@@ -175,7 +175,21 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-55691473, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL notice (PQ-17): a TokenDistributor copy whose claims trust one ECDSA signer the live
+    operator can rotate with setSigner; its window ended (TooLate) and its 0.01 ASTEROID is the owner''s to withdraw
+    (whose: operator, Claude''s fix after the first refuter, backed by its checks). Fresh refuter agrees; Claude
+    read the sheet.'
 related: []
 ---
 

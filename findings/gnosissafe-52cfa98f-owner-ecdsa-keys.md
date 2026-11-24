@@ -481,7 +481,23 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-52cfa98f, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: A Safe 1.3.0 proxy holding about 9.95M USDT, 2 of 5 owners, all code-less keys that have sent transactions.
+    MEDIUM, PQ-12: two forged owner keys move everything or replace the owners; the fix is swapOwner to signer contracts
+    answering the legacy isValidSignature(bytes,bytes). The card also states the second path: the allowance module
+    lets a delegate, itself a 2-of-4 Safe of ECDSA owners, move up to 2,000,000 USDT every 7 days, and the action
+    covers that Safe too. Author A-52cfa98f; refuter R-52cfa98f agreed with no objection; the reader changed nothing.
+    The author''s lead, three of this Safe''s transactions that left about 2,000 gas unused, gets a gas-limit row.'
 related: []
 ---
 

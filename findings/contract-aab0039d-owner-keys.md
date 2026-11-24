@@ -308,7 +308,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: CRITICAL
-reviews: []
+reviews:
+- who: r-aab0039d, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): Multisig wallet pays out on three ECDSA signer keys it
+    cannot replace. Three forged signer keys empty the wallet; its code and signer setup cannot change, so the funds
+    have to move. Fix: Move what the wallet holds to a wallet with post-quantum signers; this wallet''s setup cannot
+    run again. One refuter agrees on the current card with no objection (D-029: a second refuter only for removals);
+    Claude read the card and the answer.'
 related: []
 ---
 

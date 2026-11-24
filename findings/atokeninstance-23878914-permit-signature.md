@@ -141,7 +141,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-23878914, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-1): A post-quantum aEthUSDT holder can still be drained by
+    a forged ECDSA permit. A forged permit can move a holder''s aTokens; a pool-admin upgrade through the PoolConfigurator
+    can fix it. Fix: Upgrade the aToken via the PoolConfigurator so permit checks owners with real code by ERC-1271
+    only, never by ecrecover. One refuter agrees on the current card with no objection (D-029: a second refuter
+    only for removals); Claude read the card and the answer.'
 related: []
 ---
 

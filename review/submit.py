@@ -186,6 +186,28 @@ def slug(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", str(text).lower()).strip("-")
 
 
+def reviews(c, key: str, severity: str | None) -> list[dict]:
+    """The card's `reviews`, from the ledger lines since the row last went back to an author (requeue, or settled as redo):
+    the refuter's answer and the reader's settlement. Empty until both are in, and for a card settled without a refuter
+    (trusted). A reopened row keeps its refuter's answer, as the filing does. An unsure refuter has no verdict to record:
+    the reader's note says how its points were settled."""
+    since = c.execute("SELECT coalesce(max(at), '') FROM ledger WHERE key = ? AND (step = 'requeue' OR (step = 'reader' AND outcome = 'redo'))",
+                      (key,)).fetchone()[0]
+    last = lambda step: c.execute("SELECT at, who, outcome, detail FROM ledger WHERE key = ? AND step = ? AND at > ? "
+                                  "ORDER BY at DESC, rowid DESC", (key, step, since)).fetchone()
+    ref, settle, author = last("refuter"), last("reader"), last("author")
+    if not (ref and settle) or settle[2] not in ("kept", "re-rated", "moved"):
+        return []
+    also = " (also its author)" if author and author[1] == settle[1] else ""
+    edited = " (the card was edited after this answer)" if author and author[0] > ref[0] else ""
+    verdict = {"agree": "confirmed", "disagree": "refuted"}.get(ref[2])
+    entries = [{"who": f"{ref[1]}, the row's refuter", "date": ref[0][:10], "by": "ai-assisted", "verdict": verdict,
+                "note": (f"{ref[2]}: {ref[3]}" if ref[3] else f"{ref[2]}, no objection") + edited}] if verdict else []
+    entries.append({"who": f"{settle[1]}, the reader who settled the row{also}", "date": settle[0][:10], "by": "ai-assisted",
+                    "verdict": "confirmed", "rating": severity, "note": f"{settle[2]}: {settle[3]}" if settle[3] else settle[2]})
+    return [{k: v for k, v in e.items() if v} for e in entries]
+
+
 def render(draft: dict, d: dict, backs: dict[str, set]) -> tuple[str, str, dict]:
     """(finding id, file text, header) from the tool's facts and the draft's judgment."""
     patterns, _, _ = registry()
@@ -243,7 +265,7 @@ def render(draft: dict, d: dict, backs: dict[str, set]) -> tuple[str, str, dict]
                           int(float(r["txs"])) if solo and r.get("txs") not in (None, "") and r.get("txs_window") == "90d" else None}),
         "impact": draft.get("impact"), "action": (draft.get("action") or {}).get("text"), "evidence_level": draft.get("evidence_level"),
     })
-    head.update({"checks": checks, "sources": sources, "reviews": [], "related": []})
+    head.update({"checks": checks, "sources": sources, "reviews": reviews(R.db(), d["key"], draft.get("severity")), "related": []})
     first = (sources[0].get("date"), sources[0].get("study"))
     notes = ["### Mechanism", "", draft["mechanism"].strip(), "", "### Checks", ""]
     notes += [f"- Header facts: this address alone, at block {H:,}" + ("" if solo else f"; {r['copies']:,} addresses run this code") + "."]

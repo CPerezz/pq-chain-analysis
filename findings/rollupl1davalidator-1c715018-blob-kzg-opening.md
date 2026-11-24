@@ -330,7 +330,24 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: MEDIUM
-reviews: []
+reviews:
+- who: r-1c715018, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: refuted
+  note: 'disagree: whose: the card names no money at stake although its impact is funds-locked; What happens should
+    say the users'' funds of the four chains, escrowed in the shared bridge, would be stuck if batch data were withheld
+    (this contract itself holds $0) (the card was edited after this answer)'
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: Kev''s first-study finding, LOW (PQ-8): Four ZK chains accept blob data for their batches on a KZG
+    opening. A calldata path without KZG is already in the contract, and the check returns hashes: nothing is taken
+    through it. The refuter''s one objection (the card did not say whose money would be stuck) is resolved: users''
+    deposits in the shared vault, with the vault checks. Settled by Claude (D-029). Claude read the card and the
+    answers.'
 related: []
 ---
 

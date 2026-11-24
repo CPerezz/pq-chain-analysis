@@ -156,7 +156,21 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-c51397b7, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: LOW (PQ-18, liveness): a CCTP V1 relay contract whose receiveTokens forwards to the MessageTransmitter
+    with no gas cap; a real delivery passes today, fails as sent under EIP-8151 and passes with 300,000 more gas,
+    so it is the sender''s limit, not a gas amount fixed in the code, and the message stays deliverable. The refuter
+    agrees with no objection; Claude read the card and the answer.'
 related: []
 ---
 

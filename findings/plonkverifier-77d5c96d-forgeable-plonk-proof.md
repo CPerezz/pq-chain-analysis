@@ -220,7 +220,19 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: LOW
-reviews: []
+reviews:
+- who: r-77d5c96d, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: Second refuter (D-028) agrees on every part. Both refuters agree; Claude read the sheet. LOW, kept
+    as before.'
 related: []
 ---
 

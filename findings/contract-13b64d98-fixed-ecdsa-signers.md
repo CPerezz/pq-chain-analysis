@@ -292,7 +292,23 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: CRITICAL
-reviews: []
+reviews:
+- who: r-13b64d98, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM candidate (PQ-12, bytecode): a custodian multisig clone of 0x0d424072
+    whose spend needs a signer as sender plus two other signers'' ECDSA signatures (three keys); its five signers
+    were set once and cannot be replaced, so the only fix is the signers moving the funds. It holds under 0.0001
+    ETH and has sent nothing since April 2025, which the card says. Its signer set is its own, not the big wallets''
+    (Claude''s read of the setup block; isSigner, code and nonce checks). After the first refuter''s dormancy objection
+    the card was corrected; a fresh refuter agrees with no objection. Claude read the sheet.'
 related: []
 ---
 

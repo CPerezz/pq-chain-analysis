@@ -322,7 +322,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-76a495b0, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Sent back after the wording-pass refuter found the card named only one of the row''s two live feeds.
+    The redone card names RedStone''s pufETH/ETH and ETH+/ETH feeds (same five keys fixed in code, threshold 2,
+    the same ProxyAdmin owned by a 2-of-3 Safe) and says pufETH/USD feeds read the pufETH/ETH one; the third proxy
+    0x1bb8…144b has never updated. A fresh refuter agrees; sheet read by Claude. INFORMATIONAL.'
 related: []
 ---
 

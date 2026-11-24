@@ -266,7 +266,21 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-64d14595, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Returned twice, like the Kernel: addUser needs both a Config admin and a signature from a current
+    user of the account, on the masters that run (bytecode checks on 0x78b37409…; the refuter sampled three masters).
+    A fresh refuter agrees; sheet read by Claude. Q2-class: no order since August 2020, the newest cancelled; escrow
+    empty for the 13 tokens read. INFORMATIONAL; candidate.'
 related: []
 ---
 

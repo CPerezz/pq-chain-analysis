@@ -104,7 +104,20 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-99991c6a, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Author and refuter agree; sheet read by Claude. CAP: permit ECDSA-only through the proxy''s implementation,
+    approve direct. INFORMATIONAL (was LOW). For the wording pass: the UUPS owner, a TimelockController with a 30-day
+    delay, could also upgrade to add ERC-1271.'
 related: []
 ---
 

@@ -302,7 +302,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-225d3822, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): a 3-of-4 Safe 1.4.1 whose owners are plain ECDSA keys,
+    three exposed; checkNSignatures never asks the owner''s account; fix: swapOwner to post-quantum signer contracts
+    answering the legacy isValidSignature(bytes,bytes) (Claude named the interface after settling; a fresh refuter
+    agrees, as two did before on the rest). Claude read the sheet.'
 related: []
 ---
 

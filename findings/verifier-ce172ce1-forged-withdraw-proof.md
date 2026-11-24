@@ -808,7 +808,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: CRITICAL
-reviews: []
+reviews:
+- who: r-ce172ce1, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: CRITICAL
+  note: 'kept: Kev''s first-study finding, CRITICAL (PQ-7): Tornado Cash''s 19 classic pools pay out on proofs this
+    Groth16 verifier accepts, its key fixed in code, and no pool can switch verifier (updateVerifier is operator-only,
+    operator gone); a quantum computer that computes the discrete logs behind the verifying key can forge withdrawal
+    proofs; the four ETH pools hold 306,226.2 ETH, owned by depositors who cannot all move (2,780 unspent 100 ETH
+    notes). Two refuters agree; Claude read the sheet. Waits for Anon''s sign-off.'
 related: []
 ---
 

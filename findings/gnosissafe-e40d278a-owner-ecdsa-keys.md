@@ -291,7 +291,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-e40d278a, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: A Safe 1.3.0 proxy, 2 of 5 owners, all five code-less keys that have sent transactions; no module,
+    no guard; about 218,294 LINK at the block (the old row''s 65.3M USD was stale, the card states the tool''s read).
+    MEDIUM, PQ-12: two forged owner keys move everything; the owners can replace each key with swapOwner by a signer
+    contract answering the legacy isValidSignature(bytes,bytes). Author A-e40d278a, refuter R-e40d278a agreed with
+    no objection; the reader checked the 29 checks and changed nothing.'
 related: []
 ---
 

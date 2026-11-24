@@ -205,7 +205,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-2ceb3e99, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'moved: Moved to signed-shortcut-lost, INFORMATIONAL (PQ-19), by Claude for consistency with 0xf4ac5a5d:
+    a 4-of-5 GnosisSafeL2 1.3.0 owner whose account takes real code loses only its off-chain ECDSA signature and
+    still approves on-chain (approveHash or sending the transaction), or through the legacy isValidSignature(bytes,bytes);
+    swapOwner replaces it. Fresh refuter agrees (its only note: evidence-1 could say ''legacy''). Claude read the
+    sheet.'
 related: []
 ---
 

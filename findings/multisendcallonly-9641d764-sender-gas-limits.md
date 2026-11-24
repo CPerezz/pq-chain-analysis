@@ -108,7 +108,22 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-9641d764, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: LOW (PQ-18): Safe batches sent with a tight gas limit run out of gas under EIP-8151. A real batch
+    fails under EIP-8151 as sent and passes with more gas; its sender only has to raise the gas limit. Fix: Re-estimate
+    the gas limit of batches under EIP-8151: this one used 15,100 more gas, 10,185 above its limit. One refuter
+    agrees on the current card with no objection (D-029: a second refuter only for removals); Claude read the card
+    and the answer.'
 related: []
 ---
 

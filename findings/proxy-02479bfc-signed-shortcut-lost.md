@@ -243,7 +243,22 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-02479bfc, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'moved: A re-opened removal that was wrong: a Safe 1.2.0 owner that takes real code loses ECDSA signing
+    (moved to signed-shortcut-lost, INFORMATIONAL); approveHash and the old contract-signature path stay. Sent back
+    once, and Claude scoped the justification through submit (a real transaction of this code fails under EIP-8151
+    alone: the separate row sender-gas-limits|0x02479bfc, to be linked). A fourth refuter agrees; sheet read by
+    Claude.'
 related: []
 ---
 

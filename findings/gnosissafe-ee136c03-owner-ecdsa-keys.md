@@ -292,7 +292,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-ee136c03, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): a 4-of-7 Safe 1.3.0 (about $113.8M) whose seven owners
+    are plain ECDSA keys, four with exposed public keys (exactly the threshold); no module or guard. Fix: swapOwner
+    to post-quantum signer contracts answering Safe 1.3.0''s legacy isValidSignature(bytes,bytes) (Claude''s action
+    fix; two refuters agreed before it, a fresh one after). whose not established. Claude read the sheet.'
 related: []
 ---
 

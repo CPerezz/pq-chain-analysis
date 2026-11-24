@@ -241,7 +241,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: MEDIUM
-reviews: []
+reviews:
+- who: r-70303aa3, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: Kev''s first-study finding, LOW (PQ-7) after four returns and Claude''s rescoping: this verifier''s
+    BN254 Groth16 proof is forgeable with the setup secret; the host manager''s 2-of-2 Safe or Hyperbridge governance
+    switches the host''s consensus client by a setting (rubric reading confirmed in D-028: one known operator);
+    the router''s ECDSA route and the Polkadot BEEFY keys are a separate finding. Two refuters agree on the final
+    card; Claude read the sheet. Candidate: what a forged update reaches behind the host is not measured.'
 related: []
 ---
 

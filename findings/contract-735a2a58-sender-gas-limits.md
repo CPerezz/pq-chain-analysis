@@ -125,7 +125,24 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-735a2a58, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: 'agree: action (minor, not a refutation): no check on the card ties the failing tx''s sender to the owner;
+    true by the tx''s from field (0x39ace7e3…), which a tx check cannot express; whose (card gap): the card does
+    not say whose money the bridged USDC is'
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: LOW (PQ-18), a lead from the CCTP V2 row: a StorageHyperEVM clone forwards cctpReceiveMessage to
+    CCTP''s MessageTransmitterV2 (2 attester recoveries) with no gas cap; a real call by the clone''s owner (gas
+    limit 186,621) fails under EIP-8151 and passes with more gas (+6,200 used), failing even below its limit because
+    nested calls keep 1/64. Claude fixed the action (no flat figure; names the owner) after the first refuter; two
+    refuters agree on the final card. Claude read the sheet.'
 related: []
 ---
 

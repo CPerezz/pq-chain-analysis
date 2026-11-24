@@ -346,7 +346,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: CRITICAL
-reviews: []
+reviews:
+- who: r-0edd5b0d, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): A multisig wallet''s five ECDSA signer keys cannot be
+    replaced. Three forged signer keys can take the funds; the fix is the signers moving them to a new wallet. Fix:
+    Move the funds to a wallet whose signers can be post-quantum; this wallet''s signer set cannot be changed. One
+    refuter agrees on the current card with no objection (D-029: a second refuter only for removals); Claude read
+    the card and the answer.'
 related: []
 ---
 

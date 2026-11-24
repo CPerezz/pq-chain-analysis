@@ -222,7 +222,22 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-e1753f2e, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: MEDIUM (PQ-1), a lead added by Anon (D-029): sGHO permit keeps holders forgeable through ECDSA after
+    they migrate. Holders stay forgeable after migrating; fixing it takes an upgrade by the owner of the vault''s
+    proxy admin. Fix: Upgrade sGHO to a permit that asks owners with real code through ERC-1271 only and refuses
+    their ECDSA signatures. Unlike GHO''s HIGH card, this vault''s proxy can be upgraded. The refuter agrees; Claude
+    read the card and the answer.'
 related: []
 ---
 

@@ -193,7 +193,20 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-1dd0c7cb, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Sent back once (the signed releases are live despite the disabled flag); re-rendered once by Claude
+    for the code line (decompiled, not verified). A third refuter agrees on every part; sheet read by Claude. Enjin
+    bridge: three manager keys, rotation by direct calls. Stays a candidate.'
 related: []
 ---
 

@@ -255,7 +255,25 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-e00c629a, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: OmniBridge releases its escrow (2,191 ETH and 17 tokens, 14.53M USDC among them) and mints on any
+    transfer whose ECDSA signature recovers to one stored key, nearBridgeDerivedAddress, a code-less account whose
+    signature is already on-chain; no ERC-1271 path; the bridge is not paused. MEDIUM, PQ-4 (the old finding said
+    PQ-5, a committee: it is one key): a forged key drains the escrow, and only an upgrade by the 3-of-5 admin Safe
+    changes the scheme, since a new key stays ECDSA-only. Author A-e00c629a; refuter R-e00c629a agreed with no objection;
+    the reader changed nothing. The project stays empty: names in the code point to NEAR''s MPC network but nothing
+    checkable names the team. The author''s lead, a rotate-before-migrating notice for the same key, gets its own
+    row.'
 related: []
 ---
 

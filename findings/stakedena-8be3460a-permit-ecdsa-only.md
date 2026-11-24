@@ -145,7 +145,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-8be3460a, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding (old bundled HIGH), MEDIUM (PQ-1): sENA inherits OZ ERC20PermitUpgradeable''s
+    ECDSA-only permit (no ERC-1271), so a holder that migrates stays forgeable; the proxy''s ProxyAdmin is owned
+    by a 5-of-10 Safe, so an upgrade fixes it. It holds 962.9M ENA (unpriced) for stakers. Two refuters agree; Claude
+    read the sheet.'
 related: []
 ---
 

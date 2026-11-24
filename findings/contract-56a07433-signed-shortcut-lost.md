@@ -118,7 +118,21 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-56a07433, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'moved: Moved from rotate-signer-before-migrating to signed-shortcut-lost (PQ-19): there is no signer key
+    to rotate; the relayer is checked as the sender, and the recovered address is the USDC owner named in the intent,
+    who can still call Circle''s depositForBurn directly. Author and refuter agree (the replay passes under EIP-8151
+    alone and fails only with code at the owner). Sheet read by Claude. INFORMATIONAL; candidate (unverified).'
 related: []
 ---
 

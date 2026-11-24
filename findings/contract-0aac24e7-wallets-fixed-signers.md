@@ -119,7 +119,20 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews: []
+reviews:
+- who: r-0aac24e7, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Author and refuter agree (refuter disassembled the runtime: one owner at slot 3, threshold 1, only
+    the nonce is written, the only CALL follows the signature loop). Sheet read by Claude. Single-owner wallet,
+    no setter, holds about $0; INFORMATIONAL (was HIGH). Stays a candidate (unverified).'
 related: []
 ---
 

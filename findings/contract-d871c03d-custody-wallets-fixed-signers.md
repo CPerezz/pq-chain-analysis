@@ -218,7 +218,23 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews: []
+reviews:
+- who: r-d871c03d, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 're-rated: An unverified 4-of-8 ECDSA wallet holding 20,100 ETH with no function that replaces a signer.
+    INFORMATIONAL, PQ-17, candidate (bytecode evidence, read with a decompiler''s help; was HIGH): nothing breaks
+    unless five of the eight signers move their accounts to real code, and the funds can be moved first; the same
+    reading as the two wallets of this kind settled before. Author A-d871c03d asked for the signer comparison to
+    be re-derived; refuter R-d871c03d made its 12 attempts against the code and agreed with no objection. The reader
+    changed nothing. Whose funds stay not established.'
 related: []
 ---
 

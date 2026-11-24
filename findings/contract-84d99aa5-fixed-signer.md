@@ -378,7 +378,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews: []
+reviews:
+- who: r-84d99aa5, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'moved: Moved to fixed-signer, INFORMATIONAL (PQ-17): the order resolver answers ERC-1271 only for five
+    owners fixed in its code, with no setter or upgrade; an owner moving to real code stops counting (an EIP-7702
+    delegation still works). Claude fixed the first refuter''s point (its 0.001294 ETH is already stuck: the only
+    ETH-sending call pays what it unwraps from 3 wei of WETH). Fresh refuter agrees; Claude read the sheet. Copy
+    0x4d8f74de… is its own row.'
 related: []
 ---
 

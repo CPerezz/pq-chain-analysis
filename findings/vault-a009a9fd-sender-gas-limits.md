@@ -127,7 +127,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-a009a9fd, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection (the card was edited after this answer)
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: LOW (PQ-18): Relayed deposits with tight gas limits fail once signature checks cost more. A real
+    deposit reverts under the change with its signer unchanged; the sender''s gas limit is a simple fix. Two refuters
+    had agreed (one objected to the flat per-signature figure); Claude replaced that figure with what the replays
+    measured. Settled by Claude (D-029). Claude read the card and the answers.'
 related: []
 ---
 

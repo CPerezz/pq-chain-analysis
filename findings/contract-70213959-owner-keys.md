@@ -255,7 +255,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: CRITICAL
-reviews: []
+reviews:
+- who: r-70213959, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection (the card was edited after this answer)
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): Custody wallet with five fixed ECDSA signers can be drained
+    by forged keys. Forging three of five fixed signer keys takes everything; the fix needs the signers to move
+    the funds. Settled before with two agreeing refuters; Claude afterwards only removed a reviewer note that did
+    not belong in the registry. Settled again by Claude (D-029). Claude read the card and the answers.'
 related: []
 ---
 

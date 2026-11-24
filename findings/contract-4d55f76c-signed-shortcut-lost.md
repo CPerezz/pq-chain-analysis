@@ -106,7 +106,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-4d55f76c, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Wording pass (''real code'', title shortened to fit); a fresh refuter agrees on every part; Claude
+    read the changed sentences. Kept as before. Remarks for Anon''s EtherDelta lead: the card does not say none
+    of the $4.47M held is at risk; only the admin can set accountMap[user], which decides where a user''s ETH withdrawals
+    are paid (outside this card).'
 related: []
 ---
 

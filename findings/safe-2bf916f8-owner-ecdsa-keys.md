@@ -299,7 +299,30 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-2bf916f8, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: refuted
+  note: 'disagree: action: while verifying the card I found a fault usable today, unrelated to quantum forgery,
+    that lets funds leave this Safe without the owners'' threshold; a fault usable today; details withheld. The
+    card and its action should be reviewed by someone with authority to handle a live disclosure before this row
+    is published; whose: not established; from the card alone a reader cannot tell whose money is at stake (open,
+    not shown wrong)'
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: A Safe 1.5.0 proxy, 2 of 4 owners, all four code-less keys that have sent transactions; no transaction
+    guard; 27,027 ETH at the block. MEDIUM, PQ-12: two forged owner keys move everything; the owners can replace
+    a key with swapOwner by a signer contract answering isValidSignature(bytes32,bytes), and a real swapOwner shows
+    that path in use. Author A-2bf916f8. Refuter R-2bf916f8 found every statement, the rating and the action to
+    hold, and disagreed on two points the reader settles without changing the card: (1) a fault usable today that
+    it met on the way, unrelated to this review: not this review''s output, kept out of the card and recorded by
+    pointer in disclosures/safe-2bf916f8-refuter-lead.md for Anon; (2) whose funds are not established: true, and
+    the header says so, as on the other Safe cards. The enabled AllowanceModule is named in ruled_out and has its
+    own rows.'
 related: []
 ---
 

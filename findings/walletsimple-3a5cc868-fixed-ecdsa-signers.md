@@ -289,7 +289,25 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-3a5cc868, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 're-rated: A standalone 2-of-3 WalletSimple (verified source): one signer sends, a second signer''s ECDSA
+    signature is checked by ecrecover; the three signers are code-less accounts fixed at creation, with no proxy
+    and no upgrade; about 49.4M USD at the address. MEDIUM, PQ-12 (the old group of 23 wallets was rated HIGH):
+    two recovered signer keys move everything, and the fix needs no protocol change, since two signers can move
+    the funds to a wallet that takes post-quantum signers; the same rating as the BitGo wallets settled before.
+    Author A-3a5cc868; refuter R-3a5cc868 recovered the co-signer of the cited transfer itself and agreed with no
+    objection; the reader changed nothing. Whose funds and the project stay empty: the source does not name the
+    operator. The author named an EIP-8151 notice for this wallet in ruled_out and did not file it here.'
 related: []
 ---
 

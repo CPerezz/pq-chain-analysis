@@ -134,7 +134,20 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-e794ffec, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Wording pass (''real code''); a fresh refuter agrees on every part; Claude read the changed sentences.
+    Kept as before. Notes: only type-0 quotes depend on the stored signer (the body says so; the title is broader);
+    the clone''s code has no working delegatecall, so ''not upgradeable'' could replace ''not established''.'
 related: []
 ---
 

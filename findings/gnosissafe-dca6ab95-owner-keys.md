@@ -483,7 +483,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-dca6ab95, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): a 2-of-3 Safe 1.1.1 ($86.17M) whose three owners are
+    plain ECDSA keys; checkNSignatures never asks the owner''s account; fix: swapOwner to post-quantum signer contracts
+    answering the legacy isValidSignature(bytes,bytes), and remove the spending-limit delegate key. Two refuters
+    agree; Claude read the sheet.'
 related: []
 ---
 

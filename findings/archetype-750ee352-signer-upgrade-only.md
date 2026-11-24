@@ -298,7 +298,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-750ee352, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL notice (PQ-17): Mondo Megabits (a live, upgradeable Archetype proxy) accepts a referral
+    mint only when its affiliate signer 0x1f28…9383 signed the referrer; only an upgrade replaces that signer, so
+    if its account takes real code referral mints revert until the proxy admin upgrades. Mints without a referrer
+    keep working, referrers withdraw their commissions by their own call. Its two EIP-1167 clones are their own
+    fixed-signer rows. Refuter agrees; Claude read the sheet.'
 related: []
 ---
 

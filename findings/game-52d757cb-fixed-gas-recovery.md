@@ -189,7 +189,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews: []
+reviews:
+- who: r-52d757cb, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection (the card was edited after this answer)
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: CRITICAL
+  note: 're-rated: CRITICAL (PQ-14): Dice game refunds every bet instead of playing it once EIP-8151 is live. No
+    update path: the fixed gas makes the check fail for good under EIP-8151, whatever the contract holds then. Re-rated
+    MEDIUM -> CRITICAL by Anon''s rule (D-029): a gas amount fixed in the code with no update path is CRITICAL whatever
+    the contract holds today. The facts are those the refuters checked. Waits for Anon''s sign-off. Claude read
+    the card and the answers.'
 related: []
 ---
 

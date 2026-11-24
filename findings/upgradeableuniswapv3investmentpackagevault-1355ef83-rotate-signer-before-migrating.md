@@ -153,7 +153,23 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-1355ef83, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: 'agree: what-2 (minor, not blocking): ''until the owner replaces it'' omits that the owner could instead
+    lower requiredSettleSignatures or upgrade; it would be more exact to say ''until the owner replaces it (or lowers
+    the quorum)'''
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Author and refuter agree (47 checks). Sheet read by Claude. Investment vault proxy: settle and refund
+    need all 3 of 3 stored settle signers; the owner (an EOA) can swap a signer first (add the new one before removing
+    the old). For the wording pass: the owner could also lower the quorum (setRequiredSettleSignatures) or upgrade.
+    Candidate: the three signers cannot be listed without logs.'
 related: []
 ---
 
