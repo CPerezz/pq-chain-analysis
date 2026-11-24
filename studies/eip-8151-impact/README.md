@@ -61,6 +61,11 @@ Not yet possible: the code will be linked at a commit when it is published.
 Filed in `findings/` (format 2: reviewed cards) and, until the review reaches them, in `findings/` (format 1) and
 `triage/`. The open rows are in `review/`.
 
+`results/` holds what the site needs of the scan's code families, from `board/value.py export`: what each family of
+more than one address behind a card or a review row holds (`family_value.csv`, ETH and every priced token, on the
+date it gives) and the code hashes that run as each (`code_family.csv.gz`). The site shows a card's family total
+beside the card's own figure, and finds the cards of whatever code an address runs.
+
 ## Limits
 
 - Code at a signer is simulated: no account can take real code before the fork.

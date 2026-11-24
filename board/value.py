@@ -12,6 +12,10 @@ vdata/ beside it:
   .venv/bin/python value.py prices         prices of the tokens CoinGecko lists on Ethereum: DefiLlama, confidence >= 0.9
   .venv/bin/python value.py balances       ETH and token balances at the chain head: eth_call through Multicall3
   .venv/bin/python value.py publish        data/values.db: value per address and per code family, and the blocks
+  .venv/bin/python value.py export         for the site (tools/site_data.py), in vdata/: family_value.csv, what each code
+                                           family of more than one address behind a card or a review row holds, and
+                                           code_family.csv.gz, the code hashes that run as it; a maintainer copies
+                                           both to studies/eip-8151-impact/results/
 
 Two inputs come from the EIP-8151 study's scan, which is not in this repository: vdata/flagged_addresses.parquet and
 flagged_codes.parquet (every address of the code families it flagged), and, when it is there, vdata/deployers.csv
@@ -374,8 +378,27 @@ def publish() -> None:
     print(meta, c.sql("SELECT COUNT(*), SUM(usd) FROM addr").fetchall())
 
 
+def export() -> None:
+    import gzip
+    c = duck()
+    c.sql("INSTALL sqlite; LOAD sqlite")
+    fams = {f for (f,) in sqlite3.connect(DATA / "registry.db").execute("SELECT DISTINCT family FROM finding WHERE family IS NOT NULL")}
+    for line in gzip.open(DATA.parent / "registry" / "review" / "data" / "rows.jsonl.gz", "rt"):  # the board's clone of the repository
+        fams.update(x for x in str(json.loads(line).get("family") or "").split(", ") if x)
+    c.execute("CREATE TABLE f (family VARCHAR)")
+    c.executemany("INSERT INTO f VALUES (?)", [(x,) for x in sorted(fams)])
+    at = sqlite3.connect(DATA / "values.db").execute("SELECT value FROM meta WHERE key = 'at'").fetchone()[0][:10]
+    c.sql(f"""COPY (SELECT family, addresses, with_value, round(usd)::BIGINT usd, '{at}' as_of
+                    FROM sqlite_scan('{DATA}/values.db', 'family_value') WHERE addresses > 1 AND family IN (SELECT family FROM f) ORDER BY family)
+              TO '{V}/family_value.csv' (HEADER)""")
+    c.sql(f"""COPY (SELECT DISTINCT '0x' || lower(hex(h)) code_hash, family FROM read_parquet('{V}/flagged_codes.parquet')
+                    WHERE family IN (SELECT family FROM read_csv('{V}/family_value.csv')) ORDER BY 1)
+              TO '{V}/code_family.csv.gz' (HEADER, COMPRESSION gzip)""")
+    print(c.sql(f"SELECT COUNT(*) FROM read_csv('{V}/family_value.csv')").fetchall(), c.sql(f"SELECT COUNT(*) FROM read_csv('{V}/code_family.csv.gz')").fetchall())
+
+
 if __name__ == "__main__":
-    steps = {"universe": universe, "discover": discover, "prices": prices, "balances": balances, "publish": publish}
+    steps = {"universe": universe, "discover": discover, "prices": prices, "balances": balances, "publish": publish, "export": export}
     if len(sys.argv) != 2 or sys.argv[1] not in steps:
         sys.exit(__doc__)
     V.mkdir(exist_ok=True)

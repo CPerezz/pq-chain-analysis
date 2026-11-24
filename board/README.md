@@ -130,8 +130,10 @@ Protect `main` (pull requests with the `check` and `board` jobs passing) so that
 - The server is Python's standard library server: enough for a team, behind the tunnel.
 - Comments cannot be edited or deleted: the log is the record. Correct one with a new comment.
 - The backup is one copy on the same server.
-- Held now is what the addresses hold, not always what is at risk: a verifier holds nothing while the pools behind it
-  do, and a permit token's exposure is its holders' balances. The card's own figure, with its basis, stays beside it.
+- Held now is what the card's address holds, not always what is at risk: a verifier holds nothing while the pools
+  behind it do, and a permit token's exposure is its holders' balances. The card's own figure, with its basis, stays
+  beside it, and a card with copies shows what its whole code family holds; the value sort and filter read the
+  address's own figure.
   Tokens Etherscan prices but CoinGecko does not list at that address count as zero.
 
 ## The public site

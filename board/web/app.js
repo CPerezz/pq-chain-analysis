@@ -88,8 +88,9 @@ function valueTitle(key, v) {
   return null;
 }
 function valueTip(r) {
-  return (r.held_at ? `Held on ${r.held_at} in ETH and every priced token, over ${num(r.held_addresses)} address${r.held_addresses === 1 ? '' : 'es'}`
-    + (r.holdings ? `\n${holdingsText(r.holdings, 5)}` : '') + '\n' : '')
+  return (r.held_at ? `Held on ${r.held_at} in ETH and every priced token, at this address`
+    + (r.holdings ? `\n${holdingsText(r.holdings, 5)}` : '')
+    + (r.family_held != null ? `\nSame code: ${num(r.family_addresses)} addresses hold ${money(r.family_held)}` : '') + '\n' : '')
     + (r.value_usd != null ? `Card: ${money(r.value_usd)} ${r.value_basis || ''}` : '');
 }
 
@@ -479,8 +480,9 @@ function cardView(d) {
   const holds = d.value_usd == null ? null : [money(d.value_usd), d.value_whose ? `, ${WHOSE[d.value_whose] || d.value_whose}` : '',
     d.value_basis && d.value_basis !== 'held' ? ` (${d.value_basis})` : '', d.as_of ? `, on ${d.as_of}` : ''].join('');
   const held = d.held_now == null ? null : [
-    h('div', {}, h('b', {}, money(d.held_now)), ` on ${d.held_at}, in ETH and every priced token, over ${num(d.held_addresses)} address${d.held_addresses === 1 ? '' : 'es'}`),
-    d.holdings ? h('div', { class: 'sub' }, holdingsText(d.holdings, 5)) : ''];
+    h('div', {}, h('b', {}, money(d.held_now)), ` on ${d.held_at}, in ETH and every priced token, at this address`),
+    d.holdings ? h('div', { class: 'sub' }, holdingsText(d.holdings, 5)) : '',
+    d.family_held != null ? h('div', {}, 'Same code: ', h('b', {}, money(d.family_held)), ` over ${num(d.family_addresses)} addresses`) : ''];
   return [
     h('h3', {}, 'Card'),
     h('div', { class: 'card fcard' },

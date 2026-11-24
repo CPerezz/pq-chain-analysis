@@ -5,14 +5,20 @@
 """Build the site's data from the studies' result tables and the registry's cards.
 
   uv run --with pyyaml python board/ingest.py . DB    the cards in SQLite, checked against the files
-  uv run tools/site_data.py DB [OUT]                  OUT/data.json and OUT/cards/<xx>.json; OUT defaults to docs
+  uv run tools/site_data.py DB [OUT]                  OUT/data.json, OUT/cards/<xx>.json and OUT/copies/<xx>.json;
+                                                      OUT defaults to docs
 
 data.json holds the census tables, the hand-classified contracts and, for every card, its severity, title, level and
 address, with `finding_of`: address -> card ids (the address users call, and the implementation behind a proxy).
 cards/<xx>.json holds the cards themselves, by the first two hex digits of their address, with only what AGENTS.md
-lets a reader see: never `admin`, `activity.last`, `primitive`, `checks` or the Reviewer notes.
+lets a reader see: never `admin`, `activity.last`, `primitive`, `checks` or the Reviewer notes. A card with copies
+also gets `family_value`, what its whole code family holds: [addresses, addresses holding something, USD, date].
+copies/<xx>.json maps a code hash to the cards of its code family, by the hash's first two hex digits: the lookup
+finds the cards of the code an address runs. Both come from the EIP-8151 study's results (board/value.py export).
 """
 
+import csv
+import gzip
 import json
 import math
 import sqlite3
@@ -31,7 +37,7 @@ CONTRACT_COLS = ["address", "protocol", "contract_name", "is_account", "function
                  "upgradeability", "crypto_role", "admin", "pq_replacement", "evidence", "confidence", "cats",
                  "txs_y1", "usd_tx_y1", "usd_held_now"]
 PUBLIC = ("id", "title", "level", "severity", "justification", "category_name", "pattern_words", "study", "as_of", "address",
-          "name", "project", "label", "code", "code_url", "proxy_of", "copies", "upgradeable", "value_usd", "value_whose",
+          "name", "project", "label", "code", "code_url", "proxy_of", "copies", "family", "upgradeable", "value_usd", "value_whose",
           "value_basis", "txs_90d", "impact", "action", "evidence_level", "what_happens", "evidence", "related", "duplicate_of")
 
 
@@ -72,6 +78,20 @@ def main():
     cc["is_account"] = cc.is_account.astype(str).str.lower() == "true"
     data["contracts"] = records(cc.sort_values("txs_y1", ascending=False, na_position="last"))
     cs = cards(db)
+    families = {r["family"]: [int(r["addresses"]), int(r["with_value"]), int(r["usd"]), r["as_of"]]
+                for r in csv.DictReader(open(table("family_value.csv")))}
+    of_family: dict[str, list[str]] = {}
+    for c in cs:
+        whole = families.get(c.get("family")) if c["copies"] > 1 else None
+        if whole and whole[0] <= c["copies"]:  # its whole family, not a part of it (board/ingest.py, Values.of)
+            c["family_value"] = whole
+        if c.get("family"):
+            of_family.setdefault(c["family"], []).append(c["id"])
+    copies: dict[str, dict] = {}
+    with gzip.open(table("code_family.csv.gz"), "rt") as f:
+        for r in csv.DictReader(f):
+            if r["family"] in of_family:
+                copies.setdefault(r["code_hash"][2:4], {})[r["code_hash"]] = of_family[r["family"]]
     data["findings"] = {c["id"]: {"severity": c["severity"], "title": c["title"], "level": c["level"], "address": c["address"],
                                   "who": c.get("project") or c.get("label") or c.get("name")} for c in cs}
     data["finding_of"] = {}
@@ -81,11 +101,13 @@ def main():
     shards: dict[str, dict] = {}
     for c in cs:
         shards.setdefault(c["address"][2:4], {})[c["id"]] = c
-    (out / "cards").mkdir(parents=True, exist_ok=True)
-    for k, v in shards.items():
-        (out / "cards" / f"{k}.json").write_text(json.dumps(v, separators=(",", ":")))
+    for name, data_ in (("cards", shards), ("copies", copies)):
+        (out / name).mkdir(parents=True, exist_ok=True)
+        for k, v in data_.items():
+            (out / name / f"{k}.json").write_text(json.dumps(v, separators=(",", ":")))
     (out / "data.json").write_text(json.dumps(data, separators=(",", ":")))
-    print(f"tables {len(TABLES)}, contracts {len(cc)}, cards {len(cs)} in {len(shards)} files")
+    print(f"tables {len(TABLES)}, contracts {len(cc)}, cards {len(cs)} in {len(shards)} files, "
+          f"code hashes of carded families {sum(map(len, copies.values()))} in {len(copies)} files")
 
 
 if __name__ == "__main__":

@@ -76,7 +76,7 @@ SORTS = {
 }
 LIST = ("f.id, f.title, f.severity, f.level, f.category, f.category_name, f.pattern, f.justification, f.who, f.project, "
         "f.label, f.name, f.address, f.copies, f.upgradeable, f.impact, f.value_usd, f.value_basis, f.held_now, f.holdings, "
-        "f.held_addresses, f.held_at, f.txs_90d, f.gaps, "
+        "f.held_at, f.family_held, f.family_addresses, f.txs_90d, f.gaps, "
         "COALESCE(o.status, 'not-contacted') AS status, o.assignee, o.updated_at, o.updated_by, "
         "COALESCE(c.n, 0) AS comments, lc.new AS last_comment, lc.who AS last_comment_by, lc.at AS last_comment_at")
 # What the page may show of a finding: the card without the fields AGENTS.md marks "not shown" (admin,
@@ -84,7 +84,7 @@ LIST = ("f.id, f.title, f.severity, f.level, f.category, f.category_name, f.patt
 SHOWN = ("id, title, level, severity, justification, category, category_name, pattern, pattern_words, study, as_of, block, "
          "address, name, project, label, code, code_url, proxy_of, copies, family, upgradeable, value_usd, value_whose, "
          "value_basis, txs_90d, impact, action, evidence_level, what_happens, evidence, who, held_now, holdings, "
-         "held_addresses, held_at, deployer, factory, studies, reported, related, duplicate_of, gaps, problems")
+         "held_at, family_held, family_addresses, deployer, factory, studies, reported, related, duplicate_of, gaps, problems")
 BOARD_SCHEMA = """
 CREATE TABLE IF NOT EXISTS outreach (
     finding_id TEXT PRIMARY KEY, status TEXT NOT NULL, assignee TEXT, updated_by TEXT NOT NULL, updated_at TEXT NOT NULL);
