@@ -44,14 +44,14 @@ For EIP-8151 (PQ-14 to PQ-21), in this order:
    when, at the block, the signer can already take back what that party relies on without migrating (a channel whose
    timeout has passed, so that the signer alone withdraws the balance; a voucher the signer can cancel): migrating
    then adds nothing, and it is a notice below.
-3. Otherwise a key holder loses something only by moving its own account to real code, a migration notice, named by
-   what it loses:
-   - its own funds or rights, released only by its own signature, with no direct call for the same act: PQ-16;
-   - a signed shortcut, while a direct call does the same act: PQ-19 (a Safe owner too: it still approves on chain);
-   - entry or registration, with nothing held yet: PQ-21;
-   - its account's own logic, when that logic accepts only the account's own key: PQ-20;
-   - a key the contract trusts to sign for others (an operator, a signer set, a wallet that refuses an owner whose
-     account has code): PQ-17.
+3. Otherwise a key holder loses something only by moving its own account to real code: a migration notice, chosen by
+   the code, whatever the holder would lose:
+   - if the holder can still do the same act by a direct call (approve beside a permit, a Safe owner's approveHash):
+     PQ-19;
+   - else by what the code compares the recovered address with: a stored key, an immutable or a constant (a signer,
+     an operator, a signer set, a wallet's owners), PQ-17; the user named in the call or the caller, PQ-16 when that
+     releases the user's own funds or rights and PQ-21 when it only lets the account enter or register; the address
+     the code runs at (an account's own logic, such as EIP-7702 delegate code), PQ-20.
 
 For a user's signature exposed to a quantum computer, by the order of the checks on its path:
 
