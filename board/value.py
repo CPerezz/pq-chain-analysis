@@ -15,7 +15,8 @@ vdata/ beside it:
   .venv/bin/python value.py export         for the site (tools/site_data.py), in vdata/: family_value.csv, what each code
                                            family of more than one address behind a card or a review row holds, and
                                            code_family.csv.gz, the code hashes that run as it; a maintainer copies
-                                           both to studies/eip-8151-impact/results/
+                                           both to studies/eip-8151-impact/results/. For the review: copies.tsv.gz,
+                                           the copies a review agent writes a card for, to review/data/
 
 Two inputs come from the EIP-8151 study's scan, which is not in this repository: vdata/flagged_addresses.parquet and
 flagged_codes.parquet (every address of the code families it flagged), and, when it is there, vdata/deployers.csv
@@ -383,10 +384,15 @@ def export() -> None:
     c = duck()
     c.sql("INSTALL sqlite; LOAD sqlite")
     fams = {f for (f,) in sqlite3.connect(DATA / "registry.db").execute("SELECT DISTINCT family FROM finding WHERE family IS NOT NULL")}
+    own = {a for (a,) in sqlite3.connect(DATA / "registry.db").execute("SELECT lower(address) FROM finding")}
     for line in gzip.open(DATA.parent / "registry" / "review" / "data" / "rows.jsonl.gz", "rt"):  # the board's clone of the repository
-        fams.update(x for x in str(json.loads(line).get("family") or "").split(", ") if x)
+        r = json.loads(line)
+        fams.update(x for x in str(r.get("family") or "").split(", ") if x)
+        own.add(str(r.get("address") or "").lower())
     c.execute("CREATE TABLE f (family VARCHAR)")
     c.executemany("INSERT INTO f VALUES (?)", [(x,) for x in sorted(fams)])
+    c.execute("CREATE TABLE own (address VARCHAR)")
+    c.executemany("INSERT INTO own VALUES (?)", [(x,) for x in sorted(own)])
     at = sqlite3.connect(DATA / "values.db").execute("SELECT value FROM meta WHERE key = 'at'").fetchone()[0][:10]
     c.sql(f"""COPY (SELECT family, addresses, with_value, round(usd)::BIGINT usd, '{at}' as_of
                     FROM sqlite_scan('{DATA}/values.db', 'family_value') WHERE addresses > 1 AND family IN (SELECT family FROM f) ORDER BY family)
@@ -394,7 +400,22 @@ def export() -> None:
     c.sql(f"""COPY (SELECT DISTINCT '0x' || lower(hex(h)) code_hash, family FROM read_parquet('{V}/flagged_codes.parquet')
                     WHERE family IN (SELECT family FROM read_csv('{V}/family_value.csv')) ORDER BY 1)
               TO '{V}/code_family.csv.gz' (HEADER, COMPRESSION gzip)""")
-    print(c.sql(f"SELECT COUNT(*) FROM read_csv('{V}/family_value.csv')").fetchall(), c.sql(f"SELECT COUNT(*) FROM read_csv('{V}/code_family.csv.gz')").fetchall())
+    # The owner's rule (2026-11-24): a copy holding over $1,000, with no card or review row of its own, gets a card from a
+    # review agent (review.rows copies), except Safes, EIP-7702 accounts and the pairs of Uniswap V2 and its forks (a
+    # contract name ending in Pair), which reach their family's card through the site's lookup. One line per copy and family.
+    safes = ("GnosisSafe", "GnosisSafeL2", "GnosisSafeProxy", "Safe", "SafeL2", "SafeProxy")
+    c.sql(f"""COPY (
+        WITH m AS (SELECT '0x' || lower(hex(a.address)) address, a.via, k.family, coalesce(k.source_name, '') name
+                   FROM read_parquet('{V}/flagged_addresses.parquet') a JOIN read_parquet('{V}/flagged_codes.parquet') k ON k.h = a.f),
+             out AS (SELECT address FROM m GROUP BY 1
+                     HAVING bool_or(via = 'account delegated to it') OR bool_or(name IN {safes}) OR bool_or(name LIKE '%Pair'))
+        SELECT DISTINCT m.address, m.family, round(v.usd)::BIGINT usd
+        FROM m JOIN sqlite_scan('{DATA}/values.db', 'address_value') v USING (address)
+        WHERE v.usd > 1000 AND m.family IN (SELECT family FROM read_csv('{V}/family_value.csv'))
+          AND m.address NOT IN (SELECT address FROM out) AND m.address NOT IN (SELECT address FROM own)
+        ORDER BY 2, 3 DESC) TO '{V}/copies.tsv.gz' (HEADER, DELIMITER '\t', COMPRESSION gzip)""")
+    print(c.sql(f"SELECT COUNT(*) FROM read_csv('{V}/family_value.csv')").fetchall(), c.sql(f"SELECT COUNT(*) FROM read_csv('{V}/code_family.csv.gz')").fetchall(),
+          c.sql(f"SELECT COUNT(*), COUNT(DISTINCT address), COUNT(DISTINCT family) FROM read_csv('{V}/copies.tsv.gz', delim='\\t')").fetchall())
 
 
 if __name__ == "__main__":

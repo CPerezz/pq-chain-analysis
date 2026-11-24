@@ -1,13 +1,15 @@
 """The queue: the open rows, who holds which, and every step taken on them.
 
     ... -m review.rows status                          counts by old rating and state, and who holds what
-    ... -m review.rows take --who NAME [--n 5] [--wave N]   claim the next rows: CRITICAL first, then HIGH, MEDIUM, LOW
+    ... -m review.rows take --who NAME [--n 5] [--wave N]   claim the next rows: CRITICAL first, then HIGH, MEDIUM, LOW;
+                                                       copies (wave 5) only with --wave 5
     ... -m review.rows take --who NAME --keys KEY,KEY  claim these rows
     ... -m review.rows release KEY --who NAME          give back a claimed row that has no draft yet
     ... -m review.rows requeue KEY[,KEY] --who NAME --note TEXT   a settled row back to todo for a full review; its
                                                        filed card stays until the review files the row again
     ... -m review.rows show KEY                        the row (its old claim), its state and its steps
     ... -m review.rows add KEY --note TEXT [--from KEY] a row found in review: a copy in use, or another issue of an address
+    ... -m review.rows copies --who NAME [--dry]       rows for the copies of filed cards in data/copies.tsv.gz (wave 5)
     ... -m review.rows save                            write queue.tsv and ledger.tsv (run before every commit)
 
 A row is one contract under one root issue; its key is <issue>|<address> (for a first-study row, first/<finding id>).
@@ -18,6 +20,7 @@ A claim runs in one database transaction, so a row is never handed to two review
 """
 
 import argparse
+import csv
 import gzip
 import json
 import re
@@ -26,10 +29,11 @@ import sqlite3
 import sys
 from datetime import datetime, timezone
 
-from . import DATA, HERE, ISSUES, WORK, key_dir
+from . import DATA, HERE, ISSUES, REGISTRY, WORK, key_dir
 
 STATES = ("todo", "taken", "authored", "refuted", "settled")
 RANK = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "LOW": 3}
+COPY_WAVE = 5  # the copies' wave: `take --wave 5` takes only them
 SCHEMA = """CREATE TABLE IF NOT EXISTS rows (key TEXT PRIMARY KEY, src TEXT, issue TEXT, address TEXT, wave INT, ord INT,
     state TEXT DEFAULT 'todo', who TEXT, taken_at TEXT, settled_at TEXT, outcome TEXT, reason TEXT, rank INT);
 CREATE TABLE IF NOT EXISTS ledger (key TEXT, at TEXT, who TEXT, step TEXT, outcome TEXT, detail TEXT);
@@ -160,7 +164,8 @@ def cmd_take(args):
     if args.keys:
         keys = [k for k in args.keys.split(",") if c.execute("SELECT 1 FROM rows WHERE key = ? AND state = 'todo'", (k,)).fetchone()]
     else:
-        q = "SELECT key FROM rows WHERE state = 'todo'" + (" AND wave = ?" if args.wave else "") + " ORDER BY rank, ord LIMIT ?"
+        wave = " AND wave = ?" if args.wave else f" AND wave != {COPY_WAVE}"  # copies get one author: their own run
+        q = "SELECT key FROM rows WHERE state = 'todo'" + wave + " ORDER BY rank, ord LIMIT ?"
         keys = [k for (k,) in c.execute(q, ((args.wave,) if args.wave else ()) + (args.n,))]
     for k in keys:
         c.execute("UPDATE rows SET state = 'taken', who = ?, taken_at = ? WHERE key = ?", (args.who, now(), k))
@@ -221,6 +226,59 @@ def cmd_add(args):
     print(f"added {args.key}")
 
 
+def cmd_copies(args):
+    """Rows for the copies of filed cards (the owner's rule of 2026-11-24): each address of data/copies.tsv.gz (board/value.py
+    export: over $1,000, no card or row of its own, not a Safe, an EIP-7702 account or a pair of Uniswap V2 or a fork)
+    whose code family has a format 2 card gets a row per card of that family, naming it in `copy_of`. A copy whose family
+    has no card yet waits for one: run this again after filing."""
+    import yaml
+    cards, carded = {}, set()
+    for p in sorted((REGISTRY / "findings").glob("*.md")):
+        text = p.read_text()
+        if not re.search(r"^format: 2$", text, re.M):
+            continue
+        carded.add(re.search(r"^  address: ['\"]?(0x[0-9a-fA-F]{40})", text, re.M).group(1).lower())
+        if re.search(r"^  family: ", text, re.M):
+            head = yaml.safe_load(text.split("\n---", 1)[0])
+            cards.setdefault(head["contract"]["family"], []).append((p.stem, head))
+    c = db()
+    held = {k.split("|")[1] for (k,) in c.execute("SELECT key FROM rows")}  # addresses with a row of their own
+    last = c.execute("SELECT COALESCE(MAX(ord), 0) FROM rows").fetchone()[0]
+    new, waiting, seen = [], set(), set()
+    with gzip.open(DATA / "copies.tsv.gz", "rt") as f:
+        for line in csv.DictReader(f, delimiter="\t"):
+            address, family, usd = line["address"], line["family"], int(line["usd"])
+            if address in carded or address in held:
+                continue
+            if family not in cards:
+                waiting.add(address)
+                continue
+            for cid, head in sorted(cards[family], key=lambda ch: RANK.get(ch[1].get("severity"), 4)):  # one row per issue: its most severe card
+                own = str(head["contract"]["address"]).lower()
+                issue = re.split(rf"-{own[2:10]}[0-9a-f]*-", cid, maxsplit=1)[-1]
+                key = f"first/{cid}|{address}" if head.get("study") != "eip-8151-impact" else f"{issue}|{address}"
+                if key in seen:
+                    continue
+                seen.add(key)
+                copies = head["contract"].get("copies") or 1
+                new.append({"key": key, "src": "review", "issue": key.split("|")[0], "pattern": head.get("pattern"), "address": address,
+                            "study": head.get("study"), "family": family, "copies": copies, "old_sev": head.get("severity"),
+                            "sources": head.get("sources"), "copy_of": cid, "wave": COPY_WAVE, "ord": last + len(new) + 1,
+                            "old_note": f"Copy of findings/{cid}.md: this address runs the same code, one of {copies:,}, and holds "
+                                        f"${usd:,} (board/value.py, 2026-11-20). Read that card first: it describes the code's fault; "
+                                        "this card is this address's own."})
+    print(f"{len(new)} rows for {len({r['address'] for r in new})} copies; {len(waiting)} copies wait for their family's card")
+    if args.dry:
+        return
+    for r in new:
+        c.execute("INSERT INTO rows (key, src, issue, address, wave, ord, rank) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                  (r["key"], "review", r["issue"], r["address"], COPY_WAVE, r["ord"], RANK.get(r["old_sev"], 4)))
+        log(c, r["key"], args.who, "add", None, f"copy of {r['copy_of']}")
+    with open(ADDED, "a") as f:
+        f.writelines(json.dumps(r, default=str) + "\n" for r in new)
+    _ROWS.clear()
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -245,10 +303,14 @@ def main():
     a.add_argument("--from", dest="src")
     a.add_argument("--who", default="reader")
     sub.add_parser("save")
+    cp = sub.add_parser("copies")
+    cp.add_argument("--who", required=True)
+    cp.add_argument("--dry", action="store_true")
     args = ap.parse_args()
     if args.cmd == "save":
         return print(save())
-    {"status": cmd_status, "take": cmd_take, "release": cmd_release, "requeue": cmd_requeue, "show": cmd_show, "add": cmd_add}[args.cmd](args)
+    {"status": cmd_status, "take": cmd_take, "release": cmd_release, "requeue": cmd_requeue, "show": cmd_show, "add": cmd_add,
+     "copies": cmd_copies}[args.cmd](args)
 
 
 if __name__ == "__main__":

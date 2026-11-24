@@ -12,8 +12,9 @@ author's disproof, and the refuter's agreement or a note saying how the reader r
 (stays open for the owner, never filed), redo (back to the author with the note), covered (--by: another row of the
 same address carries the card; this row is filed with it, like a removal), unused (no agent: a row for one address
 that holds nothing and that nothing called in the 90 days before the block; the tool checks the dossier), trusted
-(a first-study row whose finding the owner takes as valid: the author's draft is accepted with every check re-run,
-and no refuter is sent). Nothing is filed into the registry here.
+(a first-study row whose finding the owner takes as valid, or a copy of a filed card (review.rows copies): the author's
+draft is accepted with every check re-run, and no refuter is sent). A copy the author finds not affected is removed on
+the author's disproof and the reader's note, also without a refuter. Nothing is filed into the registry here.
 
 A card the reader corrected after its refuter answered keeps that answer as refute-before-edit.json and is settled
 with --note saying how each objection was resolved; no second refuter is sent.
@@ -180,15 +181,21 @@ def main():
                 sys.exit("--by must name a row of the same address whose draft is a finding, with --note saying why it covers this row")
             R.advance(args.key, "settled", args.who, "reader", "covered", f"by {args.by}. {args.note}")
             return print("settled as covered")
+        copy = R.row(args.key).get("copy_of")
         if args.outcome == "trusted":
-            # the owner's rule for the first study's findings: they are taken as valid; the card is the author's accepted
-            # draft, its checks re-run by review.submit, and no refuter is sent
-            if not args.key.startswith("first/"):
-                sys.exit("trusted is only for first-study rows (first/…)")
+            # the owner's rules: the first study's findings are taken as valid, and a copy of a filed card gets one author
+            # (2026-11-24); the card is the author's accepted draft, its checks re-run by review.submit, and no refuter is sent
+            if not (args.key.startswith("first/") or copy):
+                sys.exit("trusted is only for first-study rows (first/…) and copies (review.rows copies)")
             if not ((out / "finding.md").exists() and json.loads((out / "draft.json").read_text()).get("verdict") == "finding" and args.note):
                 sys.exit("trusted needs an accepted finding (review.submit printed ACCEPTED) and --note")
             R.advance(args.key, "settled", args.who, "reader", "trusted", args.note)
             return print("settled as trusted")
+        if args.outcome == "removed" and copy:
+            if not (json.loads((out / "draft.json").read_text()).get("verdict") == "not-affected" and args.note):
+                sys.exit("a copy is removed on its author's disproof (verdict not-affected) and --note")
+            R.advance(args.key, "settled", args.who, "reader", "removed", args.note)
+            return print("settled as removed")
         answer = next((p for p in (out / "refute.json", out / "refute-before-edit.json") if p.exists()), None)
         if answer is None or (answer.name != "refute.json" and not args.note):
             sys.exit("not refuted yet: a row is settled only after the author, the refuter and your own reading"

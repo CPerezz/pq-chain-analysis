@@ -31,6 +31,11 @@ worse than no card.
 - The rules: `AGENTS.md` (the format, the severity rules, the checks), `patterns.md` (PQ-14 to
   PQ-21 for the EIP-8151 study), `studies/eip-8151-impact/README.md` (what the change does), and the filled examples
   in `templates/examples/findings/`. Read them before you write.
+- **A copy** (the row's `copy_of` names a filed card; its `old_note` starts "Copy of"): this address runs the same code
+  as that card's contract. Read the card first: its mechanism and checks are your leads for this code. Your card is
+  this address's own: its state, keys, holdings and use, each from a check that re-runs here. Where this address
+  differs (not in use, its parties or keys, what it holds), say so; if the fault does not reach it, the verdict is
+  `not-affected` with the disproof.
 
 ## What EIP-8151 changes, in two lines
 
