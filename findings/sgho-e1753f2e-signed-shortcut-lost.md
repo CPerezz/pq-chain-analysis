@@ -142,7 +142,22 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-e1753f2e, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL notice (PQ-19): the live sGHO vault (198.9M GHO): an account that takes real code can
+    no longer use share permit, and its depositWithPermit reverts unless it approved GHO earlier (GHO''s permit
+    is ECDSA-only and the failure is swallowed before the pull); approve and deposit stay open; an EIP-7702 delegation
+    keeps both working. Second version after the first refuter found the deposit path; the fresh refuter agrees.
+    Claude read the sheet. sGHO''s own PQ-1 exposure is parked for Anon.'
 related: []
 ---
 

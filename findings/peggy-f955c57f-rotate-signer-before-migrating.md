@@ -200,7 +200,22 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-f955c57f, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL (PQ-17): Injective''s Peggy bridge counts only ECDSA validator signatures for payouts
+    and valset changes, so a validator whose account takes real code stops counting (replay 0x532303a4 under signer_code
+    reverts, under signer_delegated passes); validators can rotate first through updateValset, and the ProxyAdmin''s
+    3-of-5 Safe can upgrade. Its tight-gas valset replay is the sibling PQ-18 row. Refuter agrees; Claude read the
+    sheet.'
 related: []
 ---
 

@@ -120,7 +120,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-35fa1647, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-1): eETH''s permit approves on ECDSA recovery alone (no ERC-1271),
+    so a holder that migrates stays forgeable; fixable only by ether.fi''s upgrade through its 10-day EtherFiTimelock.
+    Split from the old bundled card (weETH and the Liquid ETH vault are their own rows). Two refuters agree; Claude
+    read the sheet.'
 related: []
 ---
 

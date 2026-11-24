@@ -453,7 +453,24 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: MEDIUM
-reviews: []
+reviews:
+- who: r-0459d576, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 're-rated: Re-rated MEDIUM -> LOW (PQ-7): this immutable SP1 v5.0.0 verifier accepts any proof passing a
+    BN254 pairing on a fixed setup. What still points at it: two unfrozen AgglayerGateway routes (0x00000004, 0x00000008)
+    for Polygon''s 3,474 ETH bridge, and rollup type 11; Polygon''s 5-signature freeze Safe can close all three
+    alone (a team multisig changing a setting, the rubric''s LOW), and route 0x0000000e already carries the proofs.
+    A Lido report contract also names it, but Lido''s sanity checker has no second-opinion oracle set. Rewritten
+    after two refuters (the unbacked last-use date dropped, rollup type 11 added, project set to polygon, the team
+    that can act); the last two refuters agree on the substance and the final card. Claude read the sheet.'
 related: []
 ---
 

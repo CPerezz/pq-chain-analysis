@@ -171,7 +171,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-4c9edd58, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: HIGH
+  note: 'kept: Kev''s first-study finding, HIGH (PQ-1): USDe''s permit is OZ ERC20Permit (ECDSA only, no ERC-1271),
+    no proxy or upgrade; the owner can only set the minter. Token supply affected (upper bound) $4.84B, the market-cap
+    basis now computed by the tool (the first refuter''s only objection). Both refuters agree; Claude read the sheet.
+    Waits for Anon''s sign-off before filing. sUSDe, sENA and USDtb are their own rows.'
 related: []
 ---
 

@@ -170,7 +170,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-cd5fe23c, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-1): weETH''s permit is unmodified OZ ERC20PermitUpgradeable
+    (ECDSA only); the fix is an upgrade through ether.fi''s upgrade timelock (10-day delay, the only UPGRADE_TIMELOCK_ROLE
+    holder); the action routes accounts with code through ERC-1271 only. Token supply affected (upper bound) $3.98B.
+    Both refuters agree; Claude read the sheet.'
 related: []
 ---
 

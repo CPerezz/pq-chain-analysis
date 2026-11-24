@@ -119,7 +119,19 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-f04e4fa4, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Claude dropped one unbacked word (''signed'' batch: a nonce of 1 does not show a signed batch) through
+    submit; a fresh refuter agrees on every part. 606 delegated accounts.'
 related: []
 ---
 

@@ -218,7 +218,23 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-8d12a197, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 're-rated: Re-rated to LOW, pattern PQ-1, as Anon decided (D-028 rule 6): trade() fills an order posted
+    on-chain or signed with ECDSA, so a forged signature can trade away a depositor''s balance (15,154 ETH and priced
+    tokens held as deposits); the live admin (3,347 txs) can halt all trading with one setting (changeAccountLevelsAddr)
+    while withdrawals stay open. A second refuter''s PQ-2 reading is parked for Anon; Claude applied its wording
+    point (the trade-time call is unset today) and a fresh refuter agrees on the final card; the first refuter agreed
+    before. Claude read the sheet.'
 related: []
 ---
 

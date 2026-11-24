@@ -142,7 +142,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-235f7d42, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL notice (PQ-20): a live EOA (2,826.7 ETH) delegated via EIP-7702 to Trust Wallet''s
+    verified Biz logic, whose every path requires the account''s own ECDSA key; the delegation keeps working under
+    EIP-8151, but taking Biz as real code would lock the funds (the family replay reverts under eip8151_self_real_code).
+    Refuter agrees; Claude read the sheet.'
 related: []
 ---
 

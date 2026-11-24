@@ -290,7 +290,23 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: MEDIUM
-reviews: []
+reviews:
+- who: r-9b9671db, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-7): FflonkVerifier_12 (BN254, fixed setup) gates new exit
+    roots for three Agglayer rollups (8, 13, 15); with the setup trapdoor and the trusted aggregator''s key (one
+    plain ECDSA account, 104,752 txs: Claude''s log read of the role) a false proof passes and the shared bridge
+    (3,473.9 ETH and tokens) pays claims against the false root; the timelock (3 days, proposed by a 5-signature
+    Safe) can move the rollups to a new verifier type. Claude added the aggregator fact and dropped the question
+    after the first refuter; a fresh refuter agrees on the final card. Claude read the sheet.'
 related: []
 ---
 

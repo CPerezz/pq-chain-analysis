@@ -195,7 +195,17 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: The refuter held every part and was unsure only on value-whose: no check kind it knew reads an ETH
+    balance. Claude read it through the gateway at block 26,438,999 with a call to Multicall3 getEthBalance: 0 at
+    this address, matching the tool''s $0 (REFUTER.md and AUTHOR.md now say how). Sheet read by Claude. Unverified
+    signer contract: one stored key, replaceable by the admin (a 1-of-2 Safe) with setSigner; INFORMATIONAL (was
+    LOW); candidate.'
 related: []
 ---
 

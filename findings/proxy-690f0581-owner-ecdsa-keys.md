@@ -644,7 +644,25 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-690f0581, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): a 3-of-7 Safe 1.3.0 ($4.09M) whose seven owners are ECDSA-key
+    accounts (one an EIP-7702 delegation that still recovers); three forged owner keys move everything. One forged
+    delegate key of its AllowanceModule spends that delegate''s allowance (22,000 USDC and 3 ETH per period in all).
+    Its Roles module moves nothing out: role 1 may only call claim on two vesting contracts with the recipient pinned
+    to the Safe (storage and call checks; Claude read every permission event since the module''s deployment). Fix:
+    swapOwner to signer contracts answering the legacy isValidSignature(bytes,bytes), and remove the ECDSA allowance
+    delegates. Earlier refuters objected to the Roles claim, now removed; a fresh refuter agrees with no objection.
+    Claude read the sheet.'
 related: []
 ---
 

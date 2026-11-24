@@ -251,7 +251,23 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-7440cd37, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: A Safe proxy on the 1.4.1 singleton, 2 of 3 owners, holding 22,000 ETH; no module, no guard; it has
+    executed one transaction, which carries two owners'' ECDSA signatures. MEDIUM, PQ-12: two forged owner keys
+    move the ETH; the plain-ECDSA branch checks only owner membership and the contract path is asked only when the
+    submitter chooses it, so the fix is swapOwner to signer contracts answering the legacy isValidSignature(bytes,bytes).
+    Author A-7440cd37; refuter R-7440cd37 recomputed the transaction hash, recovered both owner keys itself and
+    agreed with no objection; the reader changed nothing.'
 related: []
 ---
 

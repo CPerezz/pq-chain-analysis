@@ -316,7 +316,25 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-54805468, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection (the card was edited after this answer)
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: An unverified 9-of-15 multisig behind a proxy that always runs the implementation its factory names
+    as a constant; all 15 owners are code-less keys and nine signed a real transfer in the window; it holds about
+    64.5M USD of USDT. MEDIUM, PQ-12, candidate (bytecode evidence only): nine forged owner keys move everything
+    and the code cannot change, so the fix is the owners moving the funds. Author A-54805468; refuter R-54805468
+    agreed with no objection and noted two gaps. The reader added the second to the card with the refuter''s checks:
+    after 180 days without a signature the required count falls by one every 3 days, down to 1 (it last signed about
+    40 hours before the block). Whose funds these are stays not established: neither agent could show it from the
+    chain.'
 related: []
 ---
 

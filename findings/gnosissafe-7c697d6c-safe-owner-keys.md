@@ -258,7 +258,26 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-7c697d6c, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: refuted
+  note: 'disagree: whose: the card never says whose the $82.7M is. The dossier does not establish it (no signers,
+    no notes), so the card should say outright that the owner of these funds is not established. Every other part
+    holds: what-3''s ''four of them'' is exact (owner 2 nonce 0), and swapOwner to a contract that answers isValidSignature(bytes,bytes)
+    does remove ECDSA acceptance.'
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): a 3-of-5 Safe 1.3.0 ($82.66M) whose five owners are plain
+    ECDSA keys, four exposed; checkNSignatures never asks the owner''s account; fix: swapOwner to post-quantum signer
+    contracts answering the legacy isValidSignature(bytes,bytes). Both refuters agree on every part; their one objection,
+    that the card is silent on whose money it is, is resolved by the card header, which now says ''whose funds not
+    established'' when the value is held but whose cannot be shown (nothing on-chain names the owners). Claude read
+    the sheet.'
 related: []
 ---
 

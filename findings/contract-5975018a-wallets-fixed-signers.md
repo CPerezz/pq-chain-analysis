@@ -161,7 +161,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews: []
+reviews:
+- who: r-5975018a, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Author and refuter agree; the refuter disassembled all 7,356 bytes (one SSTORE, the sequence id;
+    no DELEGATECALL, CREATE or SELFDESTRUCT; output slot zeroed, all gas forwarded). Sheet read by Claude. A 2-of-3
+    wallet that owns the USDG token; locks only once all three signers take real code. Stays a candidate (bytecode).
+    INFORMATIONAL (was HIGH).'
 related: []
 ---
 

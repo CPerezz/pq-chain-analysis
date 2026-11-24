@@ -246,7 +246,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews: []
+reviews:
+- who: r-b7edb5d7, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: 'agree: evidence-3 (wording only, facts hold): ''none with code at the block'' is a working-note phrase;
+    say ''none has code'' and let the as-of date carry the time'
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL notice (PQ-17): an Ownbit 2-of-3 wallet holding 466,463.99 USDT whose owners are fixed
+    in the constructor; once two owners move to real code it can never spend again (an EIP-7702 delegation still
+    counts). Move the funds first. The replay on a same-code copy reverts under eip8151_signer_code only. Refuter
+    agrees (wording nit only); Claude read the sheet.'
 related: []
 ---
 

@@ -159,7 +159,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-dc035d45, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-2): USDS''s _isValidSignature returns on an ecrecover match
+    before the ERC-1271 branch, so a holder that migrates in place stays forgeable; the fix is a ward-gated UUPS
+    upgrade behind Sky''s 48-hour pause proxy. Token supply affected (upper bound) $5.24B. Action corrected by Claude
+    after the first refuter; two refuters agree on the final card; Claude read the sheet.'
 related: []
 ---
 

@@ -119,7 +119,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-5ca1ed24, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL notice (PQ-20): an account (3,860 ETH and tokens) delegated via EIP-7702 to Fireblocks''
+    UniversalGaslessDelegate, whose every path requires the recovered signer to be the account itself; the delegation
+    keeps working under EIP-8151, but taking that logic as real code would lock it (a real transaction passes under
+    eip8151 and reverts under eip8151_self_real_code). Refuter agrees; Claude read the sheet.'
 related: []
 ---
 

@@ -183,7 +183,20 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: LOW
-reviews: []
+reviews:
+- who: r-7d3201fa, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Second refuter (D-028) agrees on every part (both paymasters, signer 0x5437… a codeless EOA, owner
+    Safes 3-of-6 and 2-of-4, deposits, stakes and ETH all 0). Both refuters agree; Claude read the sheet. MEDIUM,
+    kept as before.'
 related: []
 ---
 

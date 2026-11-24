@@ -122,7 +122,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-7d3ecda2, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL notice (PQ-20): a live account (2,298 transactions, about 2,435 ETH) delegated to MetaMask''s
+    EIP7702StatelessDeleGator, which accepts only signatures recovering to the account itself; the delegation keeps
+    working under EIP-8151, but if the account takes this logic as real code its key stops counting and EIP-3607
+    stops it from sending, locking what it holds. Refuter agrees; Claude read the sheet. Its sender-gas-limits row
+    is separate (a question: the cited replay is USDC''s own recovery).'
 related: []
 ---
 

@@ -259,7 +259,24 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: CRITICAL
-reviews: []
+reviews:
+- who: r-59708733, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: 'agree: check only (card text holds): evidence-2''s `distinct` check matches ''secondSigner should not be
+    equal to msg.sender'', not the first-vs-second rule; use the ''to secondSigner'' text (746f207365636f6e645369676e6572);
+    check only (card text holds): `need2`''s ''signature need 2'' sits on a constant 2 == 2 require and does not
+    by itself show that two signatures are needed (the card was edited after this answer)'
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): Unidentified multisig wallet trusts five fixed ECDSA
+    signer keys. Forging three of five fixed signer keys drains it; three signers must move the funds. Settled before
+    with two agreeing refuters; Claude then added the signer checks and removed a reviewer note, and repaired one
+    check as the fresh refuter asked. That refuter agrees. Claude read the card and the answers.'
 related: []
 ---
 

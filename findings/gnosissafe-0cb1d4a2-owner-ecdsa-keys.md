@@ -324,7 +324,23 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-0cb1d4a2, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: A Safe 1.1.1 proxy, 2 of 4 owners, all four code-less ECDSA keys; about 12,131 ETH at the block.
+    MEDIUM, PQ-12: two forged owner keys move everything; the singleton has only the legacy isValidSignature(bytes,bytes),
+    so the fix is swapOwner to a signer contract that answers it. Author A-0cb1d4a2; refuter R-0cb1d4a2 agreed with
+    no objection and checked the one enabled module: the Allowance Module''s two delegates have an ETH allowance
+    of 0 at the block, so that path moves nothing today. The reader changed nothing. The family replay that fails
+    under EIP-8151 alone belongs to another Safe and is not cited.'
 related: []
 ---
 

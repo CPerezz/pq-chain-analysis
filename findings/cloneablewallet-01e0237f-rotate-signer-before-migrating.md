@@ -174,7 +174,20 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-01e0237f, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Sent back once (the action could be stated; a key with real code acts only while its cosigner signs);
+    the new card says both. A fresh refuter agrees; sheet read by Claude. Stays a candidate (current key pair and
+    whose money not read).'
 related: []
 ---
 

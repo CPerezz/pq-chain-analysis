@@ -330,7 +330,23 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-97bb9bee, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: LOW (PQ-15): this tBTC DKG validator re-checks operators'' signatures when a result is challenged;
+    if a signer''s account takes real code after submission, within the 115-block challenge window, the honest submitter
+    is slashed 400 WBGL. Fix: upgrade the wallet registry (ProxyAdmin, one-day timelock whose proposer and executor
+    are a 6-of-9 Safe) to check signatures at submission. Claude''s measured gas bound rules out a fake out-of-gas
+    failure. Second refuter agreed on the substance and its wording points were applied; a fresh refuter agrees
+    on the final card. Claude read the sheet.'
 related: []
 ---
 

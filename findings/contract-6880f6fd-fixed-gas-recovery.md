@@ -211,7 +211,25 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: CRITICAL
-reviews: []
+reviews:
+- who: r-6880f6fd, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: CRITICAL
+  note: 'kept: CRITICAL candidate (PQ-14), drafted by Claude by hand (D-028 rule 7): Fuel v1''s witness recovery
+    calls the precompile with a fixed 3,000 gas and ignores failure, a zero signer counts as fraud, and fraud in
+    a block not yet final rolls the rollup back and pays the caller half the producer''s 0.5 ETH bond; no update
+    path. Under EIP-8151 any block holding a key-signed transaction can be proved invalid within its 93,046-block
+    window. Corrected after the first refuter (whose: depositors'' $18; action covers the 13 days before activation;
+    Caller and Producer witnesses recover nothing). Block 8 is final (committed 26,332,442; bond left at 26,425,638):
+    both later refuters'' summaries called it open but agreed with the card. Two refuters agree; waits for Anon''s
+    sign-off.'
 related: []
 ---
 

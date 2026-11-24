@@ -144,7 +144,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-7f39c581, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: HIGH
+  note: 'kept: Kev''s first-study finding, HIGH (PQ-1): wstETH''s permit recovers with plain ecrecover and requires
+    the owner, no ERC-1271, no upgrade or owner path, so a holder that migrates stays forgeable and a forged permit''s
+    spender moves its wstETH (4,682,948 stETH back 3,747,979 wstETH). The first refuter''s only objection was the
+    header''s last-activity date (the study''s datum was stale; new cards no longer show it); its second run and
+    the second refuter agree. Claude read the sheet. Waits for Anon''s sign-off.'
 related: []
 ---
 

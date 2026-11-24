@@ -310,7 +310,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-f4ac5a5d, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection (the card was edited after this answer)
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'moved: INFORMATIONAL (PQ-19): Safe owner whose account takes real code loses its ECDSA confirmation. Nothing
+    breaks until an owner''s account takes code; it can confirm by call, approveHash, or legacy isValidSignature.
+    Moved to signed-shortcut-lost (PQ-19). The first refuter''s objections (the observer guard, ''can no longer
+    sign'', the action) were answered by the author''s rewrite, which a refuter then agreed with; Claude shortened
+    the action as that refuter noted. Settled by Claude (D-029). Claude read the card and the answers.'
 related: []
 ---
 

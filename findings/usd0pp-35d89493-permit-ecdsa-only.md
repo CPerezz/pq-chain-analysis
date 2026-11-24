@@ -141,7 +141,20 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-35d89493, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-1): Usd0PP (bUSD0) inherits an ECDSA-only permit with no ERC-1271,
+    so a holder that migrates stays forgeable; the proxy is upgradeable only by an 8-of-15 Safe through its ProxyAdmin.
+    Value: its USD0 equals bUSD0''s supply (499.7M), users'' funds. Two refuters agree; Claude read the sheet.'
 related: []
 ---
 

@@ -175,7 +175,20 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews: []
+reviews:
+- who: r-ede26ccc, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Sent back once (the action suggested pre-signing, which cannot help; the lock condition named the
+    wrong party); the new card fixes both. A fresh refuter agrees on every part; sheet read by Claude. INFORMATIONAL
+    (was HIGH). Stays a candidate (open escrows not read).'
 related: []
 ---
 

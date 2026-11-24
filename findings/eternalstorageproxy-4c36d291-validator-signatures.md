@@ -354,7 +354,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-4c36d291, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-5): Gnosis''s ForeignAMB runs any message 4 of its 7 validators
+    sign with ECDSA; Hashi is enabled but HASHI_IS_MANDATORY is fixed false; a forged message can release all 12.94M
+    USDC from the Omnibridge in one message and GNO up to 36,000 a day; an 8-of-15 Safe can upgrade. Claude added
+    the execution limits after a refuter; a fresh refuter agrees on the final card, as two did before on the rest.
+    Claude read the sheet. A relay replay failing on its sender''s gas limit is noted for a possible row.'
 related: []
 ---
 

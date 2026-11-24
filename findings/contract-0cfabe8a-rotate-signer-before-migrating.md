@@ -154,7 +154,23 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-0cfabe8a, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL (PQ-17): an EIP-7702 delegation to SemiModularAccount7702 with no fallback signer stored,
+    so the account''s own ECDSA key is what its code checks; if the account takes real code unprepared, that check
+    and the ERC-1271 path (which loops back to it) both fail. Fix first: updateFallbackSignerData. No validation
+    or execution module installed since the delegation at block 26,302,590 (Claude''s log read, two logs checks).
+    Rewritten from the 7702-own-key-only draft; project and label dropped after the first refuter (Alchemy cannot
+    act on it); a fresh refuter agrees. Claude read the sheet.'
 related: []
 ---
 

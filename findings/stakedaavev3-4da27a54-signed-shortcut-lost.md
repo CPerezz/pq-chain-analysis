@@ -152,7 +152,21 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-4da27a54, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL notice (PQ-19): the stkAAVE proxy (2.46M AAVE staked, about $273.8M) accepts permit
+    and metaDelegate(ByType) only through ECDSA.recover against the owner or delegator, no ERC-1271; a holder whose
+    account takes real code loses the signed shortcut but keeps approve and delegate. Refuter agrees; Claude read
+    the sheet.'
 related: []
 ---
 

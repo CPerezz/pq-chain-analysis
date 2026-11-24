@@ -88,7 +88,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-b5aee319, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL notice (PQ-19): VaultV2 (''Splits Earn USDT'') permit checks only ecrecover against
+    the owner, so a holder whose account takes real code loses the signed path, while approve and transferFrom stay
+    open; at the block all 1e18 shares sit at the burn address, no live holder is affected. Refuter agrees; Claude
+    read the sheet.'
 related: []
 ---
 

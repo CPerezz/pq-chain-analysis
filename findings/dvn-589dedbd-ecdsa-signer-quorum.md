@@ -470,7 +470,31 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-589dedbd, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: refuted
+  note: 'disagree: what-3: the USDC pool pays out only when Stargate''s TokenMessaging 0x6d6620ef... calls it, and
+    that contract requires this DVN plus two others (0xa4fe5a5b..., 0xa59ba433...), not three; the four-DVN list
+    is LayerZero''s default, read for the pool''s address, which gets no messages. Should say: ''needs it and two
+    other verifiers''.; action/justification checks: pool-config-30110 and default-config-30110 do not govern the
+    pool; back them with TokenMessaging''s config (getAppUlnConfig shows Stargate''s o (the card was edited after
+    this answer)'
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: A LayerZero verifier (DVN) that confirms cross-chain messages on 2 of its 3 signers'' ECDSA signatures;
+    quorumChangeAdmin grants the admin role on those signatures alone; the code cannot change and setSigner only
+    installs another ECDSA-checked address. MEDIUM, PQ-5: two forged signer keys make it confirm any message, and
+    apps must move to a new verifier. Author A-589dedbd. Refuter R-589dedbd disagreed on two points, both right,
+    and the reader corrected the card with the refuter''s checks: (1) Stargate''s USDC pool (43.25M USDC) pays out
+    only through TokenMessaging 0x6d6620ef, whose own config requires this verifier and two others, not three; the
+    four-verifier list was LayerZero''s default read at the pool''s address, which receives no messages; (2) the
+    action and the justification now cite TokenMessaging''s config and its owner, who sets it. Not claimed: whether
+    any app relies on this verifier alone (needs logs).'
 related: []
 ---
 

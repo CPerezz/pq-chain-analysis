@@ -399,7 +399,25 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: MEDIUM
-reviews: []
+reviews:
+- who: r-d19d4b5d, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Linea''s rollup (an upgradeable proxy holding 19,601 ETH) takes L2 data only as blobs: submitBlobs
+    opens every blob at the point-evaluation precompile before recording it, finalizeBlocks reverts without a recorded
+    final blob, and the running code has no calldata path; both need the operator role, held by two code-less accounts.
+    MEDIUM, PQ-8: someone who breaks the KZG setup with a quantum computer and holds an operator key could finalize
+    a state whose data is not on L1; the Security Council''s 5-of-9 Safe can upgrade through a timelock with no
+    delay. Author A-d19d4b5d; refuter R-d19d4b5d agreed with no objection and corrected one check''s line numbers
+    before accepting; the reader changed nothing. The card counts the proxy''s ETH only; the token bridge''s value
+    was not re-read.'
 related: []
 ---
 

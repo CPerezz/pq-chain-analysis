@@ -454,7 +454,23 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-cde525bd, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: A Safe 1.3.0 proxy holding about 36.2M USD, 3 of 6 owners: five code-less keys that have sent transactions
+    and a sixth owner that is itself a Safe (0x705199fe…, its own row). MEDIUM, PQ-12: three forged owner keys move
+    everything; the fix is swapOwner to signer contracts answering the legacy isValidSignature(bytes,bytes). Author
+    A-cde525bd counted only the five keys as forgeable here and left the sixth owner to its own row; refuter R-cde525bd
+    agreed with no objection; the reader changed nothing and links the two findings at filing, since the owner Safe''s
+    three-of-ten keys fill one seat here.'
 related: [gnosissafe-705199fe-owner-ecdsa-keys]
 ---
 

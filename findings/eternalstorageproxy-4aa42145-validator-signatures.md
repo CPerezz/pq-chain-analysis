@@ -382,7 +382,28 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-4aa42145, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: refuted
+  note: 'disagree: evidence-1: ''Hashi is off by a constant'' is false as written. HASHI_IS_ENABLED is the constant
+    true, and deposits are dispatched to Hashi. What a constant turns off is the Hashi approval on payouts. Say
+    e.g. ''Hashi approval is not required: a constant makes it optional''. Everything else on the card holds. (the
+    card was edited after this answer)'
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: The xDAI bridge''s Ethereum side (an upgradeable proxy) pays out the USDS and sUSDS it holds, about
+    47.2M USD, on a message signed with ECDSA by 4 of its 7 validators, up to 10M per message and 15M per day. MEDIUM,
+    PQ-5: four forged validator keys forge a withdrawal; the 8-of-15 Safe that owns the validator contract can upgrade
+    the bridge. Author A-4aa42145. Refuter R-4aa42145 found the mechanism, the rating and the fix to hold and disagreed
+    on one sentence, rightly: Hashi is not off. HASHI_IS_ENABLED is a constant true and deposits go through Hashi;
+    what a constant makes optional is Hashi''s approval of payouts. The reader corrected evidence 1 and the mechanism
+    note with the refuter''s two checks. The author''s lead (a real transaction that reverts under EIP-8151 on its
+    own gas) is its own row, sender-gas-limits at this address.'
 related: []
 ---
 

@@ -149,7 +149,17 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews: []
+reviews:
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Sent back once (the action asked the team to manage the oracle service''s key); the new card addresses
+    the service, names the USD feed 0x297b85af… that pins this feed, and says staleness is normal. A fresh refuter
+    finds every part true; it could not check whether the consuming vault also pins the feed (the vault is not named
+    in any read at the block). For the wording pass: add that as a question, which makes the card a candidate, and
+    say who relies on the price if a check shows it. INFORMATIONAL (was MEDIUM).'
 related: []
 ---
 

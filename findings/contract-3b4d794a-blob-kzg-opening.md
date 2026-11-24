@@ -292,7 +292,23 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: MEDIUM
-reviews: []
+reviews:
+- who: r-3b4d794a, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM candidate (PQ-8): zkLighter''s commitBatch accepts only blob mode
+    and binds each blob through a KZG point-evaluation opening; with the setup trapdoor and a validator key a batch
+    can be committed and honestly proven while its blob lacks the data, stranding desert-mode exits (funds-locked;
+    the batch verifier is its own card). No alternative path, so MEDIUM: the 3-of-5 Safe''s upgrade through the
+    gatekeeper is the fix. Claude corrected its own earlier wrong feedback; the fifth version has two agreeing refuters
+    (R-3b4d794a-6, -7). Claude read the sheet.'
 related: []
 ---
 

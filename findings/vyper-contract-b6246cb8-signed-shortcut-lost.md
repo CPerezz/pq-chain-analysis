@@ -104,7 +104,20 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-b6246cb8, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Author and refuter agree; sheet read by Claude. Yearn vault (Vyper): permit ECDSA-only (line 802),
+    approve direct. The card says this vault has no shares and its copies do (258 copies, $2,271 held across them):
+    one way to word Anon''s question 1. INFORMATIONAL (was LOW).'
 related: []
 ---
 

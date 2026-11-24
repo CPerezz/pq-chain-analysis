@@ -143,7 +143,20 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-64043a98, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Author and refuter agree; sheet read by Claude. Dach: six relayed Dai/Chai actions gate on sender
+    == ecrecover; direct transfers stay open; the 400 UNI it holds is not attributed to users. INFORMATIONAL (was
+    LOW).'
 related: []
 ---
 

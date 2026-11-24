@@ -471,7 +471,24 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-5427fefa, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Returned three times (the 7-day notice holds here only; a false ''nothing breaks'' while two real
+    withdrawals fail on gas; the dependents). The card now names all eight contracts that verify signatures through
+    it (two vaults, about $1.7M USDC and USDT and 473 WETH; two pegged-token bridges; four others), each with a
+    sigsVerifier call and a bytecode check, and points the gas failure to its own row. A fresh refuter agrees (50
+    checks); sheet read by Claude. The refuter''s open point is answered by Claude''s replays in replays_extra.jsonl:
+    the vault withdrawal 0xd9f99412… succeeds with 300,000 more gas, so its limit is the sender''s (for the row
+    sender-gas-limits|0x5427fefa…). INFORMATIONAL.'
 related: []
 ---
 

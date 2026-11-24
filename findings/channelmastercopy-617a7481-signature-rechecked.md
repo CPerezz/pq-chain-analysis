@@ -401,7 +401,27 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: CRITICAL
-reviews: []
+reviews:
+- who: r-617a7481, the row's refuter
+  date: 2026-11-24
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: reader-1, the reader who settled the row
+  date: 2026-11-24
+  by: ai-assisted
+  verdict: confirmed
+  rating: CRITICAL
+  note: 'kept: Connext Vector two-party channel, a 45-byte clone of ChannelMastercopy 0xd105b6b4: every way out
+    (withdraw, or disputeChannel then defundChannel and exit) needs ECDSA signatures of both participants fixed
+    at setup, with no ERC-1271 path, no owner or rescue function and no upgrade. Kept PQ-15 CRITICAL: a participant
+    that moves its account to real code voids the co-signed channel state the other relied on (today the other can
+    still dispute alone with it), there is no update path, and the other loses; the only fix is a withdrawal with
+    both signatures first. The refuter agreed with no objection. Reader''s own reads: CMCWithdraw 85-100, CMCAdjudicator
+    85-122 and 343-359, CMCAsset exit, CMCCore setup; at the block getAlice, getBob, storage slots 3 to 8 zero (no
+    dispute), 94,373.88 DAI, both participants without code. No correction made. Open for the owner: the old entry
+    stood for 1,647 clones (125 with value, 272,963 USD); this card is this address alone, the dossier lists no
+    copies, so the other funded channels have no row.'
 related: []
 ---
 

@@ -436,7 +436,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-705199fe, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: A Safe needing 3 of its 10 owners, all code-less ECDSA keys, nine with public keys on-chain. MEDIUM,
+    PQ-12: three forged owner keys empty it; the fix is swapOwner to post-quantum signer contracts. It also holds
+    one owner seat in the Safe 0xcde525bd… (threshold 3, about 36.2M USD): the two findings are linked at filing.
+    Author A-705199fe; refuter R-705199fe re-ran 48 checks and agreed with no objection; the reader changed nothing.
+    Whose funds stay not established.'
 related: [gnosissafe-cde525bd-owner-ecdsa-keys]
 ---
 

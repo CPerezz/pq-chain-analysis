@@ -404,7 +404,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-0632dcc3, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: A Safe 1.3.0 proxy, 2 of 3 owners, all code-less keys that have sent transactions; no guard; 4,598.55
+    ETH and stETH at the block. MEDIUM, PQ-12: two forged owner keys move everything; the fix is swapOwner to signer
+    contracts answering the legacy isValidSignature(bytes,bytes). The only module, the AllowanceModule, has no live
+    allowance for any delegate, so it is not a second path today. Author A-0632dcc3; refuter R-0632dcc3 agreed with
+    no objection; the reader changed nothing.'
 related: []
 ---
 

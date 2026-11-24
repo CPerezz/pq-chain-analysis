@@ -173,7 +173,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-197f58de, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Sent back once (the title named only the DAI copy; the $1,419 was called holders'' money). The redone
+    card names the VaultCraft Idle junior adapter family and leaves whose empty: the $1,419 is idle underlying at
+    three copies, outside each vault''s totalAssets. A fresh refuter agrees, disassembling the implementation; sheet
+    read by Claude. INFORMATIONAL (was LOW); candidate (unverified).'
 related: []
 ---
 

@@ -238,7 +238,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: MEDIUM
-reviews: []
+reviews:
+- who: r-ac3ce44b, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM candidate (PQ-7): the proxy runs zkLighter''s gnark PLONK verifier,
+    a BN254 pairing against fixed setup points, which ZkLighter (about 11,248 ETH and 463M USDC) uses for every
+    batch proof (slot 4, Storage.sol declaration); the 3-of-5 Safe can upgrade through the gatekeeper. Claude swapped
+    what-3''s check chain for the slot-4 declaration after the first refuter; the second refuter agrees on the final
+    card (and replayed the slot-4 call path on a fork). Claude read the sheet.'
 related: []
 ---
 

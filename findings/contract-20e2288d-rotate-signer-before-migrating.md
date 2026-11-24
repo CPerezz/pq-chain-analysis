@@ -175,7 +175,22 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-20e2288d, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'moved: A triage row, moved from signed-shortcut-lost to rotate-signer-before-migrating (PQ-17): the recovered
+    address is a quote provider the vault''s owner approves (setter 0x96e041d5, owner a live EOA), not a user acting
+    beside a direct call. Author and refuter agree (the refuter traced vault proxy -> library -> this checker, and
+    all four replay runs match). Sheet read by Claude. INFORMATIONAL. The refuter''s nit on PQ-17''s Detection line
+    (written for keys no function writes) is a registry wording problem, recorded in decisions.md.'
 related: []
 ---
 

@@ -172,7 +172,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-5ee5bf7a, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-1): aEthWBTC''s permit accepts only ECDSA.recover (no ERC-1271),
+    so a forged permit moves a holder''s aTokens even after the holder migrates; Aave governance can replace the
+    implementation through the PoolConfigurator (updateAToken, pool-admin gated). Token supply affected (upper bound)
+    at the underlying''s price. Two refuters agree; Claude read the sheet. Soft spot recorded: a holder with debt
+    loses only what the health check allows.'
 related: []
 ---
 

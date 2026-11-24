@@ -172,7 +172,21 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-4d8f74de, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL candidate (PQ-17, bytecode): a copy of the order resolver 0x84d99aa5 answering ERC-1271
+    only for five owners fixed in its code (no storage, no setter); an owner moving to real code stops counting
+    (an EIP-7702 delegation still works) and owners keep direct calls. Refuter agrees (it disassembled the code
+    itself); Claude read the sheet.'
 related: []
 ---
 

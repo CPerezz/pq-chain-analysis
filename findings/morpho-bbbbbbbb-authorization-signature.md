@@ -187,7 +187,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-bbbbbbbb, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: HIGH
+  note: 'kept: Kev''s first-study finding, HIGH (PQ-1): Morpho''s setAuthorizationWithSig accepts an authorization
+    through ecrecover alone, the recovered manager can withdraw, borrow and withdraw collateral for the user, and
+    the contract cannot change; a holder that migrates without real code stays forgeable (the dossier''s delegated
+    replay). Named ''Morpho'' as its verified source does (the second refuter''s only objection, fixed by Claude).
+    Refuters agree on the final card; Claude read the sheet. Waits for Anon''s sign-off before filing.'
 related: []
 ---
 

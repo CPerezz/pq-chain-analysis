@@ -150,7 +150,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-beef0173, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: HIGH
+  note: 'kept: Split from Kev''s bundled Morpho card, HIGH (PQ-1): the Steakhouse USDC MetaMorpho vault''s share
+    permit accepts only an ECDSA-recovered owner (no ERC-1271), the vault cannot be upgraded, and it holds $71.79M
+    of depositors'' assets; a holder that migrates stays forgeable. Two refuters agree; Claude read the sheet. Waits
+    for Anon''s sign-off.'
 related: []
 ---
 

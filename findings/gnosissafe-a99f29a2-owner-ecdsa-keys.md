@@ -546,7 +546,27 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-a99f29a2, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: refuted
+  note: 'disagree: action: swapping the owners leaves the AllowanceModule delegate 0x65eca235e51a71c850f91af2852c00596073f649,
+    one exposed ECDSA key, able to take the remaining 25,242.97 USDC (650,000 allowance, no reset). The action should
+    also have the Safe remove that delegate, e.g. ''Swap each owner for a post-quantum signer contract answering
+    isValidSignature(bytes,bytes), and remove the AllowanceModule delegate.'' (the card was edited after this answer)'
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: A Safe 1.3.0 proxy, 5 of 9 owners: eight code-less keys that have sent transactions and one with
+    an EIP-7702 delegation. MEDIUM, PQ-12: five forged owner keys move all its funds; the fix is swapOwner to signer
+    contracts answering the legacy isValidSignature(bytes,bytes). Author A-a99f29a2. Refuter R-a99f29a2 found the
+    mechanism, the rating and the evidence to hold and disagreed on the action, rightly: swapping the owners leaves
+    the AllowanceModule''s one delegate, an exposed ECDSA key, able to take the 25,242.97 USDC left of its allowance.
+    The reader corrected the action (it now also removes that delegate) and the ruled_out note, with the refuter''s
+    checks. The amount is bounded by the allowance and does not change the rating.'
 related: []
 ---
 

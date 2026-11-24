@@ -178,7 +178,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-1c94126f, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Returned twice for the money: the gauge holds 941,126 crvUSDe LP tokens (99.4% of the pool''s LP
+    supply, unpriced, so the money line reads $0 in ETH and priced tokens); the card now gives the proportional
+    withdrawal (about 838,263 USDT and 145,205 USDe) with a remove_liquidity check. A fresh refuter agrees; sheet
+    read by Claude. INFORMATIONAL.'
 related: []
 ---
 

@@ -228,7 +228,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: MEDIUM
-reviews: []
+reviews:
+- who: r-fa7093cd, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-7): Railgun''s shielded pool ($98.4M of users'' tokens) pays
+    out an unshield when a Groth16 proof over BN254 verifies (transact -> Verifier.verify -> Snark.verify -> the
+    pairing precompile, then transferTokenOut from the pool''s own balance); the pool is live and not paused; the
+    fix is new circuits and an upgrade through the ProxyAdmin owned by Railgun''s Delegator, which the token-vote
+    Voting contract owns. Two refuters agree; Claude read the sheet.'
 related: []
 ---
 

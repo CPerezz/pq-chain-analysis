@@ -104,7 +104,22 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-2173f6ec, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: LOW candidate (PQ-18), a lead from the Wormhole core row: this relay proxy asks Wormhole core to
+    verify a 13-signature VAA with all its gas; a real relay (gas limit 624,732) fails under EIP-8151 and passes
+    with more gas, using about 48,700 more than today, 36,600 above its limit. Claude corrected the action twice
+    (no flat per-signature figure, no attribution of the whole difference to the signatures); two refuters agree
+    on the final card. Claude read the sheet.'
 related: []
 ---
 

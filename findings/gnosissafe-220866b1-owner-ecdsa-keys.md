@@ -294,7 +294,23 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-220866b1, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: 'agree: none that break the card; cold read: the card never says whose money the $404.6M is (whose left
+    empty)'
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM candidate (PQ-12): a 4-of-6 Safe 1.1.1 (224,221 ETH, about $404.6M)
+    whose owners are ECDSA keys (one with an EIP-7702 delegation, still ECDSA); no module. Fix: swapOwner to post-quantum
+    signer contracts with real code that answer the legacy isValidSignature(bytes,bytes) (0x20c13b0b; the final
+    selector is absent), not a singleton swap alone (Claude''s action fix after the refuter). whose not established
+    (question kept). Two refuters agree on the final card; Claude read the sheet.'
 related: []
 ---
 

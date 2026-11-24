@@ -150,7 +150,21 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-2222222d, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: LOW (PQ-18): Gateway mints sent with a tight gas limit fail under EIP-8151. A real mint fails under
+    EIP-8151 on its sender''s gas limit alone; a higher limit makes it pass. Fix: Tell gatewayMint senders to re-estimate
+    gas under EIP-8151: this mint used 3,100 more, 726 above its limit. One refuter agrees on the current card with
+    no objection (D-029: a second refuter only for removals); Claude read the card and the answer.'
 related: []
 ---
 

@@ -101,7 +101,26 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-f406f7a9, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: refuted
+  note: 'disagree: what-1/title: permitBuy (VisionToken.sol 2032-2034) is a third signed shortcut lost the same
+    way, with direct buy (2008) as its twin; the card should say approve, buy or sell.; what-2/justification: the
+    row also stands for copy 0x4129b789a5d6cf48588868ad76a81afe4db8e440, which is paused and stuck in its initial
+    state: there direct approve reverts (''Pausable: paused'') and sell reverts, and it holds nothing; the card
+    should limit ''direct approve and sell still work'' to 0xf406f7a9 and note the copy'
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Refuter disagreed; resolved by Claude from the source. (1) permitBuy is not a lost shortcut: the
+    currency is ETH (currency() is 0) and permitBuy is not payable, so _buy -> _collectInvestment requires _currencyValue
+    == msg.value == 0 (VisionToken.sol 1607-1628, 2012-2035); it can buy nothing, as the author said. (2) The copy
+    0x4129b789… is paused and holds nothing, so it has nothing to lose; the card is true for this live address.
+    Kept; INFORMATIONAL (was LOW).'
 related: []
 ---
 

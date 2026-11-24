@@ -226,7 +226,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-81d40f21, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-5): CCTP V2''s MessageTransmitterV2 accepts a message on 2
+    enabled ECDSA attesters (both code-less EOAs), and TokenMessengerV2 then mints USDC through a minter allowed
+    698.69M USDC; only the proxy admin''s upgrade changes the scheme (attester rotation swaps ECDSA keys). The dossier''s
+    replays failing under EIP-8151 alone are sender gas-limit failures, their own rows (0xd89ab654…, 0x735a2a58…).
+    Two refuters agree; Claude read the sheet. Gap noted by both: whose is not stated.'
 related: []
 ---
 

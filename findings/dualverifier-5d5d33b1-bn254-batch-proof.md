@@ -406,7 +406,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: MEDIUM
-reviews: []
+reviews:
+- who: r-5d5d33b1, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-7): the DualVerifier of four ZK chains (324, 50104, 2741,
+    232) ends in a BN254 pairing on a fixed setup; a forged proof from a validator executes a batch whose logs root
+    finalizes withdrawals, capped at chain 324''s own 35,429 ETH in the shared vault; the fix is a governance upgrade
+    through the chain type manager. Two refuters agree; Claude read the sheet.'
 related: []
 ---
 

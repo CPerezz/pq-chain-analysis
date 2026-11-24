@@ -412,7 +412,24 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-77627828, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Zama''s KMSVerifier (an upgradeable proxy) accepts a decryption result when 7 of its 13 registered
+    signers sign it with ECDSA; no ERC-1271 path. Confidential-token wrappers that use it pay out the signed amount:
+    cUSDT holds 6,099,162 USDT, is not paused and has no pauser set. MEDIUM, PQ-5: seven forged signer keys let
+    someone unwrap more than they wrapped; the DAO contract that owns Zama''s ACL and cUSDT can upgrade the verifier,
+    and a new ECDSA signer set does not help. Author A-77627828; refuter R-77627828 agreed with no objection; the
+    reader changed nothing. Not read: which plugin makes the DAO act (needs logs); the old 38.5M escrow total. The
+    author''s lead, a real cUSDT unwrap that reverts under EIP-8151 alone, gets its own gas-limit row at the wrapper.'
 related: []
 ---
 

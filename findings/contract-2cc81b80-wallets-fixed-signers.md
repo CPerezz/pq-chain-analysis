@@ -342,7 +342,24 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews: []
+reviews:
+- who: r-2cc81b80, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'moved: An unverified wallet that moves ETH and tokens only with ECDSA signatures of three of its five signers;
+    no function changes the signers or the number; it holds 26,588 ETH; 30 more addresses run this code and were
+    not read. INFORMATIONAL, PQ-17, candidate (bytecode evidence; was HIGH): nothing breaks unless three signers
+    move their accounts to real code, and the funds can be moved first. Moved from custody-wallets-fixed-signers
+    to wallets-fixed-signers: whose money the wallet holds cannot be shown, so ''custody'' is not established. Author
+    A-2cc81b80; refuter R-2cc81b80 agreed with no objection; the reader changed nothing. Not tested: a sender''s
+    tight gas limit, since no replay exists for this contract.'
 related: []
 ---
 

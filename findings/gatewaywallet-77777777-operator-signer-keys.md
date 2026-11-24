@@ -486,7 +486,26 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-77777777, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Circle''s GatewayWallet (an EIP-1967 proxy the owner can upgrade) holds 56.8M USDC of depositors''
+    balances. MEDIUM, PQ-4: submitBatch moves balances between any depositors on one registered batch signer''s
+    ECDSA signature; four batch signers are registered, none ever removed, all code-less, and each has signed a
+    processed batch, so its public key is on-chain. Taking USDC out then needs the 50,400-block withdrawal delay,
+    during which the operator can pause; the fix is an upgrade, since another ECDSA key does not help. The old finding
+    named the burn signer, which alone debits nobody. Author A-77777777 stopped with a question that needed events;
+    the reader read them (logreads/circle-gateway-signers.md) and wrote the card from the author''s checks (D-029:
+    no second author). Refuter R-77777777 agreed with no objection on that card. Not claimed: the second path, a
+    TEE signer''s key with the burn signer''s.'
 related: []
 ---
 

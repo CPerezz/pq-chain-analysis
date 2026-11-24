@@ -106,7 +106,20 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-34b5f666, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Author and refuter agree; sheet read by Claude. The card is true for both copies and says this address
+    has no supply while 0x3bbaf639…1538 holds the 386M FAIR. Depending on Anon''s question 1, the card may move
+    to the live copy; its text stays true either way.'
 related: []
 ---
 

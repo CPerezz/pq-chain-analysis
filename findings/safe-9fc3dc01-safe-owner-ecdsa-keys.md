@@ -264,7 +264,20 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-9fc3dc01, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): a 3-of-5 Safe 1.4.1 ($80.6M: 20,176 ETH and 22.93M USDC)
+    whose five owners are plain ECDSA keys, all exposed; no module or guard; fix: swapOwner to post-quantum signer
+    contracts answering the legacy isValidSignature(bytes,bytes). Two refuters agree; Claude read the sheet.'
 related: []
 ---
 

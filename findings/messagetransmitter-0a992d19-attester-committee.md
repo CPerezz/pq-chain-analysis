@@ -340,7 +340,26 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-0a992d19, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: 'agree: (not blocking) The card never says whose money is at stake: holds $0, and the reader must infer
+    that a forged mint dilutes USDC (issuer and holders). A ''value.whose'' or a word in What happens would close
+    that.; (not blocking) evidence-3 ''can only swap one ECDSA key for another'' omits that the attester manager
+    can also change the threshold; still true that it cannot change the scheme.; (not blocking) Activity shows ''not
+    established'' though the author''s own real-tx check and the study''s window (6,'
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-5): CCTP V1''s MessageTransmitter mints USDC on two ECDSA
+    attester signatures (both key-held accounts), to any address the message names, up to USDC''s 74.0M minter allowance;
+    the transmitter cannot be upgraded, so only pausing or swapping one ECDSA key for another is possible, not a
+    post-quantum scheme. Two refuters agree; their non-blocking notes (whose money, the settable threshold) do not
+    change a sentence. Claude read the sheet.'
 related: []
 ---
 

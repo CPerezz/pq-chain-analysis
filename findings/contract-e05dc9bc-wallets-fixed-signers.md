@@ -159,7 +159,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: HIGH
-reviews: []
+reviews:
+- who: r-e05dc9bc, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Sent back once (''five signers'' was unshown; whose money; send conditions); the new card says up
+    to five signers, the balance, and the unexpired-signature rule. A fresh refuter agrees and found the clone''s
+    creation tx: five distinct signers, all isSigner, all without code. Sheet read by Claude. Stays a candidate
+    (unverified implementation). INFORMATIONAL under D-026 (was HIGH).'
 related: []
 ---
 

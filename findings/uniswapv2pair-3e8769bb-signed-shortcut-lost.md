@@ -153,7 +153,20 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-3e8769bb, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL notice (PQ-19): a Uniswap V2 pair whose permit requires ecrecover to return the owner,
+    so it stops working for an owner whose account takes real code; approve, transfer and transferFrom need no signature.
+    Today only the dead and zero addresses hold its liquidity tokens. Refuter agrees; Claude read the sheet.'
 related: []
 ---
 

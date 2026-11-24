@@ -252,7 +252,23 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-100ae042, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 're-rated: A 2-of-3 WalletSimple clone (verified source) whose three signers are fixed, with no setter and
+    no upgrade; two of its three keys have signed on-chain. MEDIUM, PQ-12 (the old file rated 23 wallets together
+    as HIGH; a wallet is rated as one wallet): two recovered signer keys empty it, and its own signers can move
+    the funds to a wallet that takes post-quantum signers. Author A-100ae042; refuter R-100ae042 agreed with no
+    objection; the reader changed nothing. The refuter''s remark, that the header says activity is not established
+    while the dossier counts 8,311 calling transactions in 90 days, is a gap of the renderer, not of this card.'
 related: []
 ---
 

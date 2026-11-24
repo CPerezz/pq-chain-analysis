@@ -356,7 +356,24 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-1a5f4f75, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: LOW (PQ-15): tBTC''s current DKG validator (WalletRegistry slot 152) re-checks operators'' signatures
+    at challenge and approval; if a signer''s account takes real code after submission the honest result is rejected
+    and the submitter marked malicious (losing nothing today). Approvals are gated today: the registry is not authorized
+    on the reimbursement pool, and the governance Safe authorized, approved and withdrew it in one batch at block
+    26,409,794. Fix: stop re-checking signatures after submission, by a registry upgrade through the one-day timelock.
+    Third version; two refuters agree on it (the second measured validate() at about 1.68M gas, far inside the gas
+    guard). Claude read the sheet.'
 related: []
 ---
 

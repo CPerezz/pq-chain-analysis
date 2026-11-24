@@ -135,7 +135,20 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-7d30e81e, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Author and refuter agree; sheet read by Claude. BlockBrokerEngine: withdrawAllWithSig pays a broker
+    NFT''s vault to the ecrecovered holder; withdrawAll, withdrawAsset and pushOut let the holder pull the same
+    vault directly; the owner cannot touch broker vaults. INFORMATIONAL.'
 related: []
 ---
 

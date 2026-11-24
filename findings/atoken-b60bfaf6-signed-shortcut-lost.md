@@ -84,7 +84,24 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-b60bfaf6, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: 'agree: header Upgradeable (not established, not wrong): the proxy has upgradeTo and its immutable admin
+    is the Edel PoolConfigurator 0xceae10fc... (getPoolConfigurator of the Edel Market provider); the card could
+    show Upgradeable: yes, and the action could add that the pool admin can upgrade permit to accept ERC-1271; header
+    Activity (not established, not wrong): the wCOINx reserve was last updated 2026-07-01 (~140 days before the
+    block), so no supply, withdraw, borrow or repay since; transfers/permits'
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Author and refuter agree; sheet read by Claude. Edel wCOINx aToken: permit ECDSA-only (AToken.sol
+    190), approve direct. INFORMATIONAL. For a later pass: the proxy is upgradeable by the Edel PoolConfigurator
+    (an option for the action); the reserve was last updated 2026-07-01.'
 related: []
 ---
 

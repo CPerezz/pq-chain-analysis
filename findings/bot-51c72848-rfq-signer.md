@@ -284,7 +284,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-51c72848, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-4): this market maker''s isValidSignature approves an RFQ
+    order when one ECDSA key recovers, with no second key and no call to the signer, so a forged key lets Bebop
+    and the 1inch routers pull its $67.65M of approved tokens to the forger''s own order; the code is immutable,
+    so a post-quantum check needs a new contract; killContract stops the signed path meanwhile. Two refuters agree;
+    Claude read the sheet.'
 related: []
 ---
 

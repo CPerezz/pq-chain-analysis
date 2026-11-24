@@ -361,7 +361,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-5be9a495, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): a 3-of-5 Safe 1.3.0 whose five owners are plain ECDSA
+    keys with exposed public keys; it holds about $581.6M (mostly WLFI) and owns the WLFI token and its ProxyAdmin,
+    so three forged keys can also upgrade WLFI and reach every holder (whose: mixed). Fix: swapOwner to post-quantum
+    signer contracts answering Safe 1.3.0''s legacy isValidSignature(bytes,bytes). Second version after a return;
+    two refuters agree; Claude read the sheet.'
 related: []
 ---
 

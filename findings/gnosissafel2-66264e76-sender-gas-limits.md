@@ -141,7 +141,21 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-66264e76, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: LOW (PQ-18), a lead found in review: a 2-of-3 GnosisSafeL2 whose real execTransaction (gas limit
+    94,345; 93,392 used) fails under EIP-8151 and passes with more gas (3,300 more used, 2,347 above its limit);
+    the Safe fixes no gas amount for the recovery, so the sender re-estimates. Two refuters agree; Claude read the
+    sheet.'
 related: []
 ---
 

@@ -243,7 +243,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-b203e117, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): a 3-of-4 MultiSigV1 wallet (37,006.85 ETH and 83.49M
+    USDT, about $150M) whose four owners are plain key accounts with no code; a sender plus two ECDSA co-signatures
+    move funds, and the proxy''s admin is a multisig of the same keys; owners can rotate themselves and hand over
+    the admin (changeAdmin). Two refuters agree on the substance; Claude fixed one wording error (what-1) and a
+    fresh refuter agrees. whose not established (operator unidentified). Claude read the sheet.'
 related: []
 ---
 

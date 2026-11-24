@@ -176,7 +176,23 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-98f3c9e6, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-5): Wormhole''s core bridge accepts any message on 13 of 19
+    ECDSA guardian signatures, so a holder of 13 guardian keys can forge transfers (the token bridge holds 48,661
+    WETH) and governance upgrades; the guardians can fix it by a governance-signed upgrade while their keys are
+    safe. The dossier''s two replays that fail under EIP-8151 alone are sender gas-limit failures (Claude''s more-gas
+    replays) and are their own rows on 0x2173f6ec… and the token bridge 0x3ee18b22…. Two refuters agree; Claude
+    read the sheet.'
 related: []
 ---
 

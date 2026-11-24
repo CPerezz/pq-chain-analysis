@@ -121,7 +121,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-c139190f, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 're-rated: Re-rated HIGH -> MEDIUM (PQ-1): USDtb (Anchorage) inherits OZ ERC20PermitUpgradeable''s ECDSA-only
+    permit, so a holder that migrates stays forgeable; unlike USDe and sUSDe it is an upgradeable proxy whose ProxyAdmin
+    is owned by a live EOA (nonce 15), so the fix is a reachable upgrade. Token supply affected (upper bound) about
+    $325.1M. Two refuters agree; Claude read the sheet.'
 related: []
 ---
 

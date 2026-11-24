@@ -453,7 +453,24 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-3d3c73e9, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Axelar''s auth module for its Ethereum gateway: a command batch runs only with ECDSA signatures of
+    operators whose weights reach the threshold; no ERC-1271 path; 16,701 recoveries in the traced two weeks. MEDIUM,
+    PQ-5: enough forged operator keys make the gateway pay out its tokens (13.2M USDC, 47.9 WBTC, 909 WETH, 540M
+    ZIG, with no mint limit on any at the block; the old card assumed a cap) and replace the operators; only a governance
+    upgrade of the gateway changes the module, and governance has done one before. Author A-3d3c73e9; refuter R-3d3c73e9
+    agreed with no objection; the reader changed nothing. The module holds nothing itself, so the header shows nothing
+    held. The author''s lead, a rotate-before-migrating notice for the operators, gets its own row.'
 related: []
 ---
 

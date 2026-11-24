@@ -195,7 +195,21 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-6b581546, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Author and refuter agree; sheet read by Claude. StakeWise Keeper: 6 of 11 oracle signatures; the
+    4-of-7 Safe owner replaces an oracle with no notice period. For the wording pass: say whose service is at stake
+    (StakeWise vault stakers if updates stall), that exit-signature updates need the same signatures, and that the
+    owner can also lower the required count.'
 related: []
 ---
 

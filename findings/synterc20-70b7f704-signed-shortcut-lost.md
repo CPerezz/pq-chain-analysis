@@ -120,7 +120,19 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-70b7f704, the row's refuter
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-20
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: Author and refuter agree; sheet read by Claude. Symbiosis SyntERC20 (5 copies on one permit domain):
+    OZ permit ECDSA-only, approve direct; the project slug rests on the source''s own domain name. INFORMATIONAL.'
 related: []
 ---
 

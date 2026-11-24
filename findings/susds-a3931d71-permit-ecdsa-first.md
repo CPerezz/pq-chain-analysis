@@ -220,7 +220,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-a3931d71, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-2): sUSDS''s _isValidSignature returns on an ECDSA match before
+    it reaches ERC-1271, so a holder that migrates in place stays forgeable; the fix (ERC-1271 only for owners with
+    code) is a ward-gated UUPS upgrade through Sky''s 48-hour pause proxy. Token supply affected (upper bound) $3.68B.
+    Both refuters agree; Claude read the sheet.'
 related: []
 ---
 

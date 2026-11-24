@@ -356,7 +356,21 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-a700b4eb, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding (old bundled HIGH), MEDIUM (PQ-1): aEthAAVE''s permit and metaDelegate
+    accept only an ECDSA-recovered owner and never ask the account, so a holder that migrates stays forgeable; the
+    immutable-admin proxy upgrades only through Aave''s PoolConfigurator (pool-admin role). $89M of holders'' AAVE.
+    Two refuters agree; Claude read the sheet.'
 related: []
 ---
 

@@ -257,7 +257,23 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-4a2d57d6, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 're-rated: A 2-of-3 WalletSimple clone (verified source) with fixed signers and fixed code; safe mode off;
+    it holds ETH and LINK and has made 1,209 sends. MEDIUM, PQ-12 (was HIGH for 23 wallets together; a wallet is
+    rated as one wallet): the two keys needed to move funds are exposed, one by its transactions and one by its
+    on-chain signature, and the wallet''s own signers can move the funds out. Author A-4a2d57d6; refuter R-4a2d57d6
+    recomputed the operation hash of the cited co-signed transfer, recovered the co-signer itself and agreed with
+    no objection; the reader changed nothing.'
 related: []
 ---
 

@@ -87,7 +87,25 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-d89ab654, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: refuted
+  note: 'disagree: action: ''add at least 3,200 gas per attestation signature'' is unbacked and wrong as a minimum.
+    A recovery costs at most 3,100 more (cold) and 200 more (warm). The cited batch (8 attestations x 2 signatures)
+    needed only 9,000 more gas. The card should say: re-estimate the gas limit of batch claims under EIP-8151 (up
+    to 3,100 more gas per signature check; 9,000 more for the cited 16-signature batch). (the card was edited after
+    this answer)'
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: LOW (PQ-18): Batch claims of Circle transfers fail on tight gas limits after EIP-8151. A real batch
+    claim fails only on its sender''s gas limit, and a higher limit fixes it. Two refuters had agreed (one objected
+    to the flat per-signature figure); Claude replaced that figure with what the replays measured. Settled by Claude
+    (D-029). Claude read the card and the answers.'
 related: []
 ---
 

@@ -271,7 +271,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-c61b9bb3, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): Safe wallet can be emptied by anyone who forges three
+    of its five owner keys. Three forged owner keys move everything; three owners must act to swap in post-quantum
+    signer contracts. Fix: Swap each ECDSA owner for a post-quantum owner contract with legacy isValidSignature(bytes,bytes),
+    or first upgrade the Safe to 1.5.0. One refuter agrees on the current card with no objection (D-029: a second
+    refuter only for removals); Claude read the card and the answer.'
 related: []
 ---
 

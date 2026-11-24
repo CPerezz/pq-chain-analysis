@@ -222,7 +222,28 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: CRITICAL
-reviews: []
+reviews:
+- who: r-f207b2f9, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: refuted
+  note: 'disagree: what-3: ''two signers'' public keys are on-chain'' is only a lower bound. The nonce checks show
+    at least two; every send this wallet (or a sibling clone with the same signers) has executed published two more
+    signers'' signatures in calldata, which reveal their keys, and at least one of them belongs to a signer that
+    never sent a transaction. With a threshold of three the difference decides whether the wallet is takeable. The
+    card should say ''at least two signers'' public keys are on-chain, and each ex (the card was edited after this
+    answer)'
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-12): Multisig wallet with fixed ECDSA signers that a quantum
+    computer can forge. The signers cannot be replaced and the code cannot change; the fix is the signers moving
+    the funds to a new wallet. Two refuters objected in turn: the signers were unidentified (Claude read them from
+    the setup block and added checks), then Claude''s sentence on exposed keys overstated (now ''at least two'').
+    Settled by Claude after resolving both (D-029: the reader settles an objection). Claude read the card and the
+    answers.'
 related: []
 ---
 

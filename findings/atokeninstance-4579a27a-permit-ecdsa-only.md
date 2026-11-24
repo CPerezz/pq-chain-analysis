@@ -111,7 +111,22 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-4579a27a, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: Kev''s first-study finding, MEDIUM (PQ-1): aEthsUSDe''s permit accepts only ECDSA.recover (no ERC-1271),
+    so a forged permit moves a holder''s aTokens after the holder migrates; Aave''s PoolConfigurator (the proxy''s
+    immutable admin, upgradeable stated with checks by Claude after the second refuter) installs the fix through
+    updateAToken. About $263M for this address alone (supply equals the sUSDe held). Two refuters agreed on the
+    card, a fresh one on the facts fix; Claude read the sheet.'
 related: []
 ---
 

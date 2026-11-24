@@ -150,7 +150,21 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-ab8cba5e, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL notice (PQ-17): the live TokenDistributor copy (window open to 2027-01-31, 8,884.70
+    USDT, 10 recoveries in the window) whose claims trust one ECDSA signer the operator can rotate with setSigner;
+    no ERC-1271. The remainder after the window returns to owner() 0x3360…3cf8, not the operator (refuter''s wording
+    note). Refuter agrees; Claude read the sheet.'
 related: []
 ---
 

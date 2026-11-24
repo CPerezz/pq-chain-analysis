@@ -203,7 +203,22 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: LOW
-reviews: []
+reviews:
+- who: r-1f6bd7a1, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: INFORMATIONAL
+  note: 'kept: INFORMATIONAL notice (PQ-20): an EIP-7702 account delegating to Nexus whose two validators store
+    the account itself as owner; if the account takes the Nexus logic as real code no signature can succeed and
+    its 0.111 ETH locks. Claude fixed the first refuter''s two points (the nonce came from its own authorization
+    in a relayer''s tx, not a sent tx; the code link now goes to the Nexus delegate via a renderer fix). Fresh refuter
+    agrees; Claude read the sheet.'
 related: []
 ---
 

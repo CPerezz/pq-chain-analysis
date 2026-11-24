@@ -129,7 +129,21 @@ sources:
   date: 2026-11-19
   by: ai-assisted
   verdict: reported
-reviews: []
+reviews:
+- who: r-f955c57f, the row's refuter
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row (also its author)
+  date: 2026-11-21
+  by: ai-assisted
+  verdict: confirmed
+  rating: LOW
+  note: 'kept: LOW (PQ-18), a lead from the Peggy row: a real updateValset (gas limit 312,037) fails under EIP-8151
+    as sent and passes with more gas, using about 49,600 more (16 recoveries) than today, 46,000 above its limit;
+    the contract fixes no gas amount. Two refuters agreed on the card; Claude changed the action to the measured
+    figure and a fresh refuter agrees. Claude read the sheet.'
 related: []
 ---
 

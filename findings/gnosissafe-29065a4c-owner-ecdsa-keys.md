@@ -340,7 +340,23 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-29065a4c, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: 'agree: whose (not blocking): the card cannot say whose the $25.7M is; nothing read at the block names the
+    holder, so ''not established'' is the honest entry'
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 'kept: A Safe 1.3.0 proxy, 3 of 6 owners, all code-less ECDSA accounts; no module, no guard. MEDIUM, PQ-12:
+    three forged owner keys empty it; the owners can replace each key with swapOwner by a signer contract answering
+    the legacy isValidSignature(bytes,bytes). Author A-29065a4c; refuter R-29065a4c agreed with no objection; the
+    reader changed nothing. Whose funds stay not established. The author''s lead, one transaction of this Safe that
+    left 895 gas under its limit, gets a gas-limit row.'
 related: []
 ---
 

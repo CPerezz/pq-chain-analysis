@@ -318,7 +318,24 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
-reviews: []
+reviews:
+- who: r-273a4db9, the row's refuter
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  note: agree, no objection
+- who: claude-main, the reader who settled the row
+  date: 2026-11-22
+  by: ai-assisted
+  verdict: confirmed
+  rating: MEDIUM
+  note: 're-rated: A fixed 2-of-3 WalletSimple clone (verified source) holding 20,517.63 ETH: one-time init, no
+    rotation, no upgrade, no ERC-1271 path, safe mode off. MEDIUM, PQ-12 (was HIGH for 23 wallets together): two
+    recovered signer keys empty it; the fix is the signers moving the funds to a new wallet. Two signers'' keys
+    are public on-chain; the third has sent no transaction and is not shown to have co-signed, so the card claims
+    two. Author A-273a4db9; refuter R-273a4db9 recomputed the operation hash of the cited transfer, recovered the
+    co-signer itself and agreed with no objection; the reader changed nothing. The project and whose funds stay
+    empty: nothing checkable names BitGo.'
 related: []
 ---
 
