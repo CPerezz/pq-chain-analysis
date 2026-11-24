@@ -308,16 +308,24 @@ def others(path: str, text: str, idx: dict) -> list[str]:
 
 
 def rules(pattern: str) -> str:
-    """The card's pattern in full, the categories, and every pattern in one line (patterns.md)."""
+    """The card's pattern in full (its Detection notes marked as hints), the category rule of AGENTS.md for its
+    category, the categories, and every pattern in one line (patterns.md)."""
     text = (ROOT / "patterns.md").read_text(encoding="utf-8")
-    own, every = f"{pattern}: not in patterns.md", []
+    own, mine, every = f"{pattern}: not in patterns.md", "", []
     for m in re.finditer(r"^## (PQ-\d+): (.+?)\n(.*?)(?=^## |\Z)", text, re.M | re.S):
         cat, words = re.search(r"\*\*Category:\*\* (\S+)", m.group(3)), re.search(r"\*\*In words:\*\* (.+)", m.group(3))
         every.append(f"- {m.group(1)} ({cat.group(1) if cat else '?'}): {words.group(1).strip() if words else m.group(2)}")
         if m.group(1) == pattern:
-            own = m.group(0).strip()
+            own = m.group(0).strip().replace("**Detection:**", "**Detection** (how a study finds it: search hints, not part of the definition):")
+            mine = cat.group(1) if cat else ""
     cats = text[text.find("## Categories"):text.find("## Classes")].strip()
-    return "\n\n".join(["# The card's pattern\n\n" + own, cats, "## Every pattern\n\n" + "\n".join(every)]) + "\n"
+    agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+    head = "### Category `quantum-exposure`" if mine == "quantum-exposure" else "### Categories of a protocol change"
+    start = agents.find(head)
+    end = re.search(r"\n#{2,3} ", agents[start + len(head):]) if start >= 0 else None
+    rule = agents[start:start + len(head) + end.start()].strip() if end else agents[start:].strip() if start >= 0 else ""
+    return "\n\n".join(x for x in ["# The card's pattern\n\n" + own, "# The category rule (AGENTS.md)\n\n" + rule if rule else "",
+                                   cats, "## Every pattern\n\n" + "\n".join(every)] if x) + "\n"
 
 
 def brief(text: str, rows: list, other: list[str], txs: list[str]) -> str:

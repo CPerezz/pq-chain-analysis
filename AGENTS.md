@@ -210,8 +210,11 @@ never rated as a whole.
 Decided by Anon for the EIP-8151 study. First question: does the change break it by itself? A consequence that needs
 a key holder to move its own account to code is the same as that holder no longer signing, which any holder can
 already do; it is a migration notice, `INFORMATIONAL`, whatever it would lock. The ratings below apply to what the
-change breaks with nobody acting (a gas cost), and to a signature someone already relied on that its signer can void
-by migrating (a payment voucher, a channel balance proof, a DKG result, a fraud proof).
+change breaks with nobody acting (a gas cost), and to a signature another party already holds and acted on, which the
+contract checks later on chain, so that its signer can void it by migrating (a payment voucher, a channel balance
+proof, a DKG result, a fraud proof). When the signer can already take back what that party relies on without
+migrating (a channel past its timeout), migrating adds nothing: a migration notice. `patterns.md`, "Choosing between
+patterns", picks the pattern.
 
 | Rating | Rule |
 |---|---|
