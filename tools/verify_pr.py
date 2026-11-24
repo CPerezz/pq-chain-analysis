@@ -29,8 +29,9 @@ The pull request's files are data: nothing from them runs, and Claude works in a
 The bot's comment carries the registry of verdicts (SHA-256 of each card, verdict, class, reason, commit). The pull
 request is approved and merged when every card is accepted, its author is a maintainer (MAINTAINERS), no card is
 removed without a new card for its contract, and it touches only cards, triage entries, decompiled code and the
-queue's files. Otherwise the maintainers are asked. A node that does not answer (3 tries, 5 minutes apart) or a
-failed Claude login stops the review with a comment; a Claude usage limit pauses it until the limit resets.
+queue's files. Otherwise the maintainers are asked. A pull request labeled `no-merge` is reviewed the same way and
+never merged by the verifier. A node that does not answer (3 tries, 5 minutes apart) or a failed Claude login stops
+the review with a comment; a Claude usage limit pauses it until the limit resets.
 """
 
 import argparse
@@ -547,6 +548,7 @@ def run(n: int, dry: bool) -> int:
     repo = os.environ.get("GITHUB_REPOSITORY") or gh("repo", "view", "--json", "nameWithOwner", "-q", ".nameWithOwner").strip()
     pr = json.loads(gh("api", f"repos/{repo}/pulls/{n}"))
     author = pr["user"]["login"]
+    held = any(label["name"] == "no-merge" for label in pr.get("labels") or [])
     cmd = command(repo, author)
     if pr["state"] != "open" or cmd is None:
         return 0
@@ -590,7 +592,7 @@ def run(n: int, dry: bool) -> int:
             return 0
         # only removals and bookkeeping, opened by a maintainer: nothing for Claude to check
         body = (f"{MARK}\n**Verifier:** no card to review: this pull request only removes entries or edits bookkeeping. "
-                "Approved; merging once the `check` and `board` jobs pass.")
+                + ("Not merged: it is labeled `no-merge`." if held else "Approved; merging once the `check` and `board` jobs pass."))
         if dry:
             print(body)
             return 0
@@ -600,6 +602,8 @@ def run(n: int, dry: bool) -> int:
         else:
             gh("api", "-X", "POST", f"repos/{repo}/issues/{n}/comments", body={"body": body})
         gh("api", "-X", "POST", f"repos/{repo}/statuses/{head}", body={"state": "success", "context": "verifier", "description": "no card to review"})
+        if held:
+            return 0
         why = merge(repo, n, head, "Only removals and bookkeeping: no card to review.")
         if why:
             gh("api", "-X", "POST", f"repos/{repo}/issues/{n}/comments", body={"body": " ".join(f"@{m}" for m in MAINTAINERS) + f" not merged: {why}."})
@@ -783,7 +787,8 @@ def run(n: int, dry: bool) -> int:
     elif unchecked:
         state = f"**{many(len(unchecked), 'card')} not checked yet.** Comment `/verify` to try again."
     elif not (rejected or blocked or orphans or loose) and trusted:
-        state = "**Every card holds.** Approved; merging once the `check` and `board` jobs pass."
+        state = ("**Every card holds.** Not merged: the pull request is labeled `no-merge`." if held else
+                 "**Every card holds.** Approved; merging once the `check` and `board` jobs pass.")
     else:
         state = "**A maintainer decides:** " + ", ".join(x for x in [
             f"{many(len(rejected), 'card')} rejected" if rejected else "", f"{many(len(blocked), 'file')} outside the cards" if blocked else "",
@@ -803,7 +808,7 @@ def run(n: int, dry: bool) -> int:
         return 0
     if state.startswith("**Every card holds"):
         status("success", f"all {len(cards)} cards hold")
-        why = merge(repo, n, head, "Every card holds: see the verifier's comment.")
+        why = None if held else merge(repo, n, head, "Every card holds: see the verifier's comment.")
         if why:
             publish(f"**Every card holds, but it is not merged:** {why}.", extra)
         return 0
