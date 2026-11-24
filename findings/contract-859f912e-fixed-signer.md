@@ -1,13 +1,13 @@
 ---
-id: contract-859f912e-signature-rechecked
+id: contract-859f912e-fixed-signer
 format: 2
-title: Payment channel cannot settle signed payments if its signer takes real code
+title: Payment channel locks its funds if its signing key's account takes real code
 status: candidate
-severity: CRITICAL
-justification: 'No update path: once the signator''s account has real code, payments it signed are void and nothing
-  else pays out.'
-category: voided-by-migration
-pattern: PQ-15
+severity: INFORMATIONAL
+justification: Breaks only if the holder of the signator key moves that account to real code; the key cannot be
+  replaced.
+category: migration-notice
+pattern: PQ-17
 study: eip-8151-impact
 as_of: 2026-11-18
 block: 26438999
@@ -24,7 +24,8 @@ value:
 activity:
   txs_90d: 0
 impact: funds-locked
-action: Settle every signed payment and withdraw the rest before the signator's account takes real code.
+action: Settle every signed payment and withdraw the rest before moving the signator's account to real code; the
+  key cannot be replaced.
 evidence_level: bytecode
 checks:
 - id: sig-cmp
@@ -52,6 +53,7 @@ checks:
   says: 'slot 1: the signator 0xd2ffe8f8f98b162f02140611e49c87de043021d5 and a pause flag of zero'
   for:
   - evidence-2
+  - justification
   - what
 - id: recover-gas
   bytecode: '0x859f912e02a3f44b15cdf73dc8e66722deb1a6ae'
@@ -65,6 +67,7 @@ checks:
   says: 'the whole dispatcher: eleven selectors (three exits, two views of balances and counters, six pause and
     pauser-role functions)'
   for:
+  - action
   - evidence-1
   - evidence-2
   - justification
@@ -123,6 +126,7 @@ checks:
   has: 6001805460ff19169055
   says: unpause clears only the lowest byte of slot 1 and keeps the signator bytes
   for:
+  - action
   - evidence-2
   - justification
   - what
@@ -131,6 +135,7 @@ checks:
   has: 6001805460ff191681179055
   says: pause sets only the lowest byte of slot 1 and keeps the signator bytes
   for:
+  - action
   - evidence-2
   - justification
   - what
@@ -158,6 +163,7 @@ checks:
   says: the signator's account has no code at the block
   for:
   - evidence-2
+  - justification
 - id: signator-nonce
   nonce: '0xd2ffe8f8f98b162f02140611e49c87de043021d5'
   is: 0
@@ -322,7 +328,7 @@ related: []
 
 ## What happens
 
-This payment channel pays its counterparty only on messages signed by one fixed signator key. If that key's account takes real code, payments already signed can no longer be settled, and the 1 ETH it holds stays locked. It has paid out nothing since it was deployed on 11 August 2022.
+This payment channel pays out only on messages signed by one signator key fixed at deployment. If that key's account takes real code, nothing it signed can be settled or withdrawn, and the 1 ETH held stays locked. It has paid out nothing since it was deployed on 11 August 2022.
 
 ## Evidence
 
@@ -345,8 +351,8 @@ Unverified code, read from opcodes; decompiled.sol was a lead only. Slot 1 holds
 - Ruled out: a pause closing the path: paused() is false, and the exits never read the flag.
 - Ruled out: breaking with nobody migrating: the recovery forwards all gas; no call in 90 days, no replay in the dossier.
 - Ruled out: unused code: slots 1-3 are set and the address holds 1 ETH.
-- Ruled out: a separate notice for the rest of the deposit: not filed; the same failing check locks it, and this card says so.
-- Ruled out: the other 6 addresses with this code: not read; facts and value here are this address's own.
+- Ruled out: a rated finding for signed payments (first draft; the verifier rejected it): each exit checks the signature once and a failed check only reverts, with no refund; no signed payment is known, and with the 387 days over one signed withdraw already overrides any earlier payment.
+- Ruled out: the code's 6 other addresses: not read.
 - Ruled out: a payout since deployment (reader): slot 3 still holds the time of the deployment block 15,317,518; the pay routine rewrites it at every payout above zero, and that block has no Settle or Withdraw event.
 - Ruled out: who funded it (reader): one transaction sent the 1 ETH in block 10,719,615, before the code existed; the channel was deployed through the factory 0x9469d0b3915fe1d4175f3e2b539586d6aa16dcdc, its only pauser.
 
