@@ -24,8 +24,7 @@ value:
 activity:
   txs_90d: 0
 impact: funds-locked
-action: Settle every signed payment and withdraw the rest before moving the signator's account to real code; the
-  key cannot be replaced.
+action: Before the key's account takes real code, the counterparty settles its payments and the key holder withdraws the rest.
 evidence_level: bytecode
 checks:
 - id: sig-cmp
@@ -98,6 +97,7 @@ checks:
   has: 5b6002546001600160a01b0316331461
   says: settle and settleAndWithdraw require the caller to be the address in slot 2, the counterparty
   for:
+  - action
   - what
 - id: counterparty
   storage: '0x859f912e02a3f44b15cdf73dc8e66722deb1a6ae'
@@ -105,6 +105,7 @@ checks:
   is: '0x0000000000000000000000003ef230bc8eee62fb65f137b59381b6c7a1d0c859'
   says: 'slot 2: the counterparty that is paid, 0x3ef230bc8eee62fb65f137b59381b6c7a1d0c859'
   for:
+  - action
   - what
 - id: timelock
   bytecode: '0x859f912e02a3f44b15cdf73dc8e66722deb1a6ae'
