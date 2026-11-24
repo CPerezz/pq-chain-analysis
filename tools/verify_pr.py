@@ -287,18 +287,23 @@ def view(changed: dict[str, str], gone: set[str]) -> dict[str, list[tuple[str, s
 
 
 def others(path: str, text: str, idx: dict) -> list[str]:
-    """One line per other finding filed for the card's contract or the code behind it."""
+    """One line per other card filed for this address, then up to 3 cards of the proxies that run its code or of the
+    code it runs. Format 1 entries are left out: they were filed in bulk before any review, and the review's cards
+    replace them."""
     c = split(text)[0].get("contract") or {}
-    seen, out = {path}, []
-    for a in (c.get("address"), c.get("proxy_of")):
-        for p, t in idx.get(str(a or "").lower(), []):
-            if p not in seen:
-                seen.add(p)
-                h, b = split(t)
-                what = " ".join(str(sections(b).get("What happens") or b.strip()).split())[:300]
-                out.append(f"- `{Path(p).stem}` · {h.get('pattern') or ', '.join(h.get('patterns') or [])} · {h.get('status')} · "
-                           f"{h.get('title')} — {what}")
-    return out
+    a, impl = str(c.get("address") or "").lower(), str(c.get("proxy_of") or "").lower()
+    seen, same, near = {path}, [], []
+    for key in dict.fromkeys(x for x in (a, impl) if x):
+        for p, t in idx.get(key, []):
+            if p in seen or not CARD.search(t.split("\n---", 1)[0]):
+                continue
+            seen.add(p)
+            h, b = split(t)
+            at = str((h.get("contract") or {}).get("address") or "").lower()
+            what = " ".join(str(sections(b).get("What happens") or "").split())[:300]
+            where = "this address" if at == a else "the code this address runs" if at == impl else f"{at}, a proxy that runs this code"
+            (same if at == a else near).append(f"- `{Path(p).stem}` ({where}) · {h.get('pattern')} · {h.get('status')} · {h.get('title')} — {what}")
+    return same + near[:3] + ([f"- and {len(near) - 3} more cards of proxies that run this code"] if len(near) > 3 else [])
 
 
 def rules(pattern: str) -> str:
