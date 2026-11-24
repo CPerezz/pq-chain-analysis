@@ -11,8 +11,9 @@ Takes settled rows that are not filed since they were last settled, in settle or
   change), with a `reviews` entry for its refuter and one for its reader (none for a trusted card), validated, and written
   to findings/<id>.md;
 - removed: nothing new is written.
-A row waits when it is not ready: any card but a trusted one needs its refuter's results; a removal whose refuter agreed needs a second
-refuter's answer (work/refute1/ holds the first). Questions are never filed.
+A row waits when it is not ready: any card but a trusted one or a copy's (review.rows copies) needs its refuter's
+results; a removal whose refuter agreed needs a second refuter's answer (work/refute1/ holds the first), except a copy's,
+which has no refuter. Questions are never filed.
 
 Then the old entry goes: a triage row's line leaves its triage file; an old finding file is deleted once every row
 that came from it is filed (a first-study file shared by several contracts waits for its last row). Then every
@@ -49,7 +50,7 @@ def due(c) -> list[tuple[str, str]]:
 def ready(key: str, outcome: str, head: dict | None, now: set = frozenset()) -> str | None:
     """Why this row waits, or None."""
     out = WORK / "out" / key_dir(key)
-    if outcome == "unused":  # the reader's own settlement under the owner's rule: no agent to wait for
+    if outcome == "unused" or (outcome == "removed" and R.row(key).get("copy_of")):  # the owner's rules: no agent to wait for, or a copy's one author
         return None
     if outcome == "covered":  # its card is another row's (sheet settle --by); it goes once that row is filed, this run included
         by = R.db().execute("SELECT reason FROM rows WHERE key = ?", (key,)).fetchone()[0].split(". ", 1)[0].removeprefix("by ")

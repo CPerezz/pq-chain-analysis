@@ -125,6 +125,15 @@ For each row you hold:
 Run at most as many agents at once as your budget allows (the previous reader ran five). One row per agent; agents
 never start agents and never open another row's folder.
 
+**Copies of filed cards** (the owner's rule of 2026-11-24). A copy that holds over $1,000 and has no card or row of
+its own gets a card written by one author, with no refuter; Safes, EIP-7702 accounts and the pairs of Uniswap V2 and
+its forks never do (the site's lookup shows them their family's card). `$R review.rows copies --who reader-1` adds a
+row per copy and card from `data/copies.tsv.gz` (`board/value.py export`), in wave 5; copies whose family has no card
+yet wait, so run it again after filing. `take` leaves wave 5 alone unless asked: `$R review.rows take --who reader-1
+--n 5 --wave 5`. Start one author per row with the AUTHOR brief (it reads the card named in `copy_of` first), read the
+sheet, and settle `trusted` with a note, or `removed` on the author's disproof. The verifier still reviews every card
+the pull request adds.
+
 ## Filing and committing
 
 After every batch of settled rows (any size), one pull request against `main` of `CPerezz/pq-chain-analysis`.
@@ -231,6 +240,7 @@ What you refute: `review/work/out/DIR/refuter_input.md`. Dossier: `review/work/d
 | `AUTHOR.md`, `REFUTER.md` | The two agents' instructions | yes |
 | `data/rows.jsonl.gz` | The open rows at the hand-over: each row's old claim (untrusted), old rating, value, family | yes |
 | `data/dossiers.jsonl.gz`, `data/decompiled.jsonl.gz` | Their dossiers, built from the study's tables at block 26,438,999, and decompiled code by code hash | yes |
+| `data/copies.tsv.gz` | The copies that get a card of their own (`review.rows copies`): address, code family, USD held on 2026-11-20 (`board/value.py export`) | yes |
 | `added.jsonl` | Rows added in review | yes |
 | `queue.tsv`, `ledger.tsv`, `held/` | The state of every row that left `todo`, every step taken, and the work of rows settled but not filed yet (written by `review.file` and `review.rows save`) | yes |
 | `work/` | `state.db`, `dossier/`, `out/` (each row's draft, card, refutation, results), `refute1/`, `sources/`, `gateway/` | no |
@@ -238,4 +248,4 @@ What you refute: `review/work/out/DIR/refuter_input.md`. Dossier: `review/work/d
 
 A row's states: `todo`, `taken`, `authored` (the author's draft is accepted), `refuted`, `settled`. The outcomes of
 a settled row: `kept`, `re-rated`, `moved`, `removed`, `covered`, `unused`, `trusted` (a first-study row the owner
-took as valid, without a refuter), `question`.
+took as valid, or a copy of a filed card, without a refuter), `question`.
