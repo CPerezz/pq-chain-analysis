@@ -4,8 +4,8 @@
     ... -m review.sheet list [--state refuted] [--who NAME]
     ... -m review.sheet settle KEY --as OUTCOME --who NAME [--note TEXT] [--by KEY]
     ... -m review.sheet reopen KEY --who NAME --note TEXT    a row settled in this review and found wrong: its filed card
-                                                             leaves the registry, its folder is kept as
-                                                             work/out/<row>.reopened-<time>, and it is todo again
+                                                             leaves the registry and the row is NAME's again, with its
+                                                             folder as it was: correct draft.json, submit, settle, file
 
 Outcomes: kept (a finding of the row's issue), re-rated, moved (another root issue), removed (not affected: needs the
 author's disproof, and the refuter's agreement or a note saying how the reader resolved each objection), question
@@ -39,12 +39,12 @@ def reopen(key: str, who: str, note: str) -> str:
     if filed and filed[0] and filed[0].startswith("findings/") and (REGISTRY / filed[0]).exists():
         (REGISTRY / filed[0]).unlink()
         gone = f"; deleted {filed[0]}"
-    out = out_dir(key)
-    if out.exists():
-        out.rename(out.with_name(f"{out.name}.reopened-{R.now().replace(':', '')}"))
-    c.execute("UPDATE rows SET state = 'todo', who = NULL, taken_at = NULL, settled_at = NULL, outcome = NULL, reason = NULL WHERE key = ?", (key,))
+    c.execute("UPDATE rows SET state = 'taken', who = ?, taken_at = ?, settled_at = NULL, outcome = NULL, reason = NULL WHERE key = ?",
+              (who, R.now(), key))
     R.log(c, key, who, "reopen", None, note + gone)
-    return f"reopened {key}{gone}"
+    if not out_dir(key).joinpath("draft.json").exists():  # settled and filed in another clone: review/work is not committed
+        return f"reopened {key}{gone}; its folder is not in this clone: settle --as redo to send it to a fresh author"
+    return f"reopened {key}{gone}; correct {out_dir(key)}/draft.json, then submit, settle and file"
 
 
 def money(v) -> str:

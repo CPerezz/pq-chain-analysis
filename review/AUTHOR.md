@@ -225,8 +225,9 @@ You write judgment and checks. The tool writes the finding file from the dossier
   code loses only its off-chain ECDSA signature; it still approves on-chain (`approveHash`, or by sending the
   transaction itself), so the Safe does not refuse it.
 - **A fault someone could use today** (a replay across wallets, a missing check that lets anyone take funds now) is
-  not this review's output. Do not write it in the draft, the card or your message; say only "a fault usable today
-  needs the owner's attention" in your final message, and the reader tells the owner privately.
+  not this review's output. Do not write it in the draft, the card or your message, and do not investigate it
+  further; say only "a fault usable today needs the owner's attention" in your final message, and the reader tells
+  the owner privately.
 
 `not-affected`: `{"verdict": "not-affected", "disproof": {"text": "…", "checks": [ids]}, "checks": […]}`.
 `question`: `{"verdict": "question", "questions": ["…"], "checks": […]}`.

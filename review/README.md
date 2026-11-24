@@ -93,8 +93,9 @@ $R review.dossier 'KEY'                           # unpack the row's dossier and
 For each row you hold:
 
 1. **Author**: start one sub-agent with the AUTHOR brief. It writes `review/work/out/<address>-<issue>/draft.json`
-   and stops at `ACCEPTED`. If it stops with questions only you can answer (event logs, a decision), answer them in
-   `feedback.md` in the row's folder with a check it can cite, and start a fresh author.
+   and stops at `ACCEPTED`. If it stops without `ACCEPTED`, with questions only you can answer (event logs, a
+   decision), answer them in `feedback.md` in the row's folder with a check it can cite, and start a fresh author.
+   Questions left in an accepted candidate you answer yourself when you settle, as a correction (step 4).
 2. **Refuter**: start one sub-agent with the REFUTER brief. It writes `refute.json` and stops at `ACCEPTED`.
 3. **A removal** (`not-affected`) whose refuter agrees gets a second refuter: move the first answer aside, then start a
    fresh refuter on the same row:
@@ -137,10 +138,10 @@ merged the same way once its jobs pass.
 $R review.file --who reader-1                     # writes findings/, removes the old entries, saves the queue's state
 uv run tools/build.py
 git switch -c review-batch-N                      # from an up-to-date main
-git add -A findings triage code review/queue.tsv review/ledger.tsv review/held review/added.jsonl
+git add -A findings triage code review                # review/work is ignored
 git commit -m "review: N rows settled (kept K, re-rated R, moved M, removed X)"
 git push -u origin review-batch-N                 # without write access to the repository: push to your fork
-gh pr create --repo CPerezz/pq-chain-analysis --base main --fill
+gh pr create --repo CPerezz/pq-chain-analysis --base main --head review-batch-N --fill
 ```
 
 - **One open pull request at a time.** Each carries the queue's state, so two would conflict: start the next batch's
@@ -151,8 +152,12 @@ gh pr create --repo CPerezz/pq-chain-analysis --base main --fill
   continues from them.
   Run `$R review.rows save` before any other commit. Never commit `review/work/` (it is ignored): it holds the
   database, the dossiers in use, the agents' folders and the caches.
-- `review.sheet reopen 'KEY'` takes back a row settled in this review whose filed card turns out wrong. A card filed
-  before the hand-over that you believe wrong: do not edit it; list it for the owner.
+- `review.sheet reopen 'KEY' --who reader-1 --note "..."` takes back a row settled in this review whose card turns
+  out wrong (a verifier's rejection you agree with, or your own finding): its card leaves `findings/`, and the row
+  comes back to you with its folder as it was. Correct `draft.json` (keep the refuter's answer as
+  `refute-before-edit.json`), run `$R review.submit` until `ACCEPTED`, settle with a note, and file again; settle
+  `--as redo` instead to send it to a fresh author. A card filed before the hand-over that you believe wrong: do not
+  edit it; list it for the owner.
 
 ## Rules that are not in the briefs
 
@@ -165,15 +170,17 @@ gh pr create --repo CPerezz/pq-chain-analysis --base main --fill
   sits in another contract, as with a proof verifier) nor for `fixed-gas-recovery` and `signature-rechecked` rows,
   which are rated whatever they hold. Anything that holds value gets a full review.
 - **Faults usable today** (anyone could take funds now, a signature that replays across wallets) are not this
-  review's output. Write nothing about how they work in any file, card, commit or message of this repository; tell
-  the owner privately and name the row only.
+  review's output. Write nothing about how they work in any file, card, commit or message of this repository; do not
+  investigate them further, and open nothing outside your clone: name the row and the kind of fault in one line of
+  your report to the owner, then go on.
 - **Facts come from the tools.** An agent never types an address, an owner or an amount it did not read through the
   gateway; `review.submit` re-runs every check and refuses what does not hold.
 
 ## Briefs
 
-Replace ISSUE, 0xADDRESS and ADDR8 (the address's first 8 hex digits). DIR is `0xADDRESS-ISSUE`, with a `/` in the
-issue written as `_` (`first/safe-owner-ecdsa-keys` gives `0xADDRESS-first_safe-owner-ecdsa-keys`).
+Replace ROOT (the absolute path of the clone you work in: sub-agents may start in another folder), ISSUE, 0xADDRESS
+and ADDR8 (the address's first 8 hex digits). DIR is `0xADDRESS-ISSUE`, with a `/` in the issue written as `_`
+(`first/safe-owner-ecdsa-keys` gives `0xADDRESS-first_safe-owner-ecdsa-keys`).
 
 ### AUTHOR
 
@@ -182,7 +189,7 @@ issue written as `_` (`first/safe-owner-ecdsa-keys` gives `0xADDRESS-first_safe-
 Review ONE contract of this registry: find out what is true for it, back every sentence with a check that can be re-run, and never guess. Earlier findings were filed in bulk and many are wrong; a wrong card is worse than no card.
 
 # Contract
-- Read `review/AUTHOR.md` and follow it exactly, start to end. It names every file you need. Work from the registry's root.
+- Read `review/AUTHOR.md` and follow it exactly, start to end. It names every file you need. Work in ROOT, the registry's root, and open nothing outside it.
 - Node reads only through the gateway: `export ETH_RPC_URL=http://127.0.0.1:8546/a-ADDR8`, and every read names the block: `--block 26438999`. No other node address, no traces, no wide log scans.
 - One row only. Start no other agents. Write only inside `review/work/out/DIR/`. Do not edit the registry, the dossier or any tool. Do not open any other row's folder.
 - When you are not sure of a fact or a judgment: do not guess; say so the way `review/AUTHOR.md` tells you to.
@@ -203,7 +210,7 @@ Dossier: `review/work/dossier/DIR/`. Your draft: `review/work/out/DIR/draft.json
 Try to prove ONE card of this registry wrong. Earlier findings were filed in bulk and many are wrong; a wrong card that you let through is the failure.
 
 # Contract
-- Read `review/REFUTER.md` and follow it exactly, start to end. Work from the registry's root.
+- Read `review/REFUTER.md` and follow it exactly, start to end. Work in ROOT, the registry's root, and open nothing outside it.
 - Node reads only through the gateway: `export ETH_RPC_URL=http://127.0.0.1:8546/r-ADDR8`, and every read names the block: `--block 26438999`. No other node address, no traces, no wide log scans.
 - One row only. Start no other agents. Write only `review/work/out/DIR/refute.json`. From that folder read only `refuter_input.md`. Do not open any other row's folder.
 - Never guess: an attempt you could not make is `could-not-check`.
