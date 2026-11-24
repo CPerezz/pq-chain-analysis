@@ -5,6 +5,10 @@ category, and the card shows the pattern's **In words** line, never its id. To a
 here in the same pull request as the finding that needs it. Ids are never renumbered or reused; new patterns continue
 the numbering.
 
+A pattern is defined by its **In words** line and its description. Its **Detection** notes say how a study finds and
+confirms it (a scan, a replay); they are not conditions, and a finding may rest on source or bytecode without them.
+When more than one pattern could fit a contract, "Choosing between patterns" below decides.
+
 ## Categories
 
 What a reader sees instead of a class. The card shows the name in quotes; `<change>` is the change the study examines.
@@ -20,6 +24,46 @@ What a reader sees instead of a class. The card shows the name in quotes; `<chan
 
 "Real code" is contract code. Under EIP-8151 an account that holds an EIP-7702 delegation still signs as before; only
 an account with real code stops counting.
+
+## Choosing between patterns
+
+Decide by the code and the state at the finding's block, and say in the finding, with a check, the state that
+decided. A path is closed for good only when no function and no live key can open it again (an unpause, a setter, an
+upgrade); a contract that could be restarted keeps its finding and says it is dormant. A key left unset, or held by an
+account with real code (not a delegation), cannot sign here today: unless a live key can set another, its path is
+closed.
+
+For EIP-8151 (PQ-14 to PQ-21), in this order:
+
+1. Something fails with nobody migrating: a gas amount fixed in the code is PQ-14; a real transaction that fails only
+   on its sender's gas limit is PQ-18.
+2. Another party already holds a signature and has acted on it in a way it cannot undo (a service delivered against a
+   voucher, a channel state it relies on instead of disputing, a submitted result, a fraud proof), and the contract
+   checks that signature later, on chain: PQ-15. One on-chain check is enough; the first step can be off chain. A
+   signature checked in the same call that uses it (a permit, a quote, a relayed call) is not this. Nor is it PQ-15
+   when, at the block, the signer can already take back what that party relies on without migrating (a channel whose
+   timeout has passed, so that the signer alone withdraws the balance; a voucher the signer can cancel): migrating
+   then adds nothing, and it is a notice below.
+3. Otherwise a key holder loses something only by moving its own account to real code, a migration notice, named by
+   what it loses:
+   - its own funds or rights, released only by its own signature, with no direct call for the same act: PQ-16;
+   - a signed shortcut, while a direct call does the same act: PQ-19 (a Safe owner too: it still approves on chain);
+   - entry or registration, with nothing held yet: PQ-21;
+   - its account's own logic, when that logic accepts only the account's own key: PQ-20;
+   - a key the contract trusts to sign for others (an operator, a signer set, a wallet that refuses an owner whose
+     account has code): PQ-17.
+
+For a user's signature exposed to a quantum computer, by the order of the checks on its path:
+
+- the signer's code is checked first and ERC-1271 gets the full signature: PQ-13 (not affected); it gets only
+  `(v, r, s)`: PQ-3;
+- ECDSA is tried before ERC-1271, or the signer picks the scheme: PQ-2;
+- ECDSA only: PQ-1.
+
+When functions differ, the finding names the most exposed path (ECDSA only, then ECDSA first). For keys that sign
+for others: one key that authorises value (quotes, claims, sponsorship, vouchers) is PQ-4; a set of keys with a
+threshold that attests a message, a price or a report is PQ-5; the owner keys of a wallet that holds its own assets
+are PQ-12, whatever its threshold.
 
 ## Classes (format 1, until every finding is converted)
 
@@ -238,7 +282,8 @@ migrates to post-quantum authorisation with real code is not forgeable here, and
 safe as its own key. Recorded so these contracts are not counted as exposed. If the ERC-1271 call passes only
 `(v, r, s)`, it is PQ-3 instead.
 
-**Detection:** verified source; `code.length > 0` (or `extcodesize`) checked before `ecrecover`.
+**Detection:** verified source; `code.length > 0` (or `extcodesize`) checked before `ecrecover`, and the full signature
+passed to ERC-1271 (only `(v, r, s)` makes it PQ-3).
 
 ## PQ-14: Fixed or capped gas on the way to `ecrecover`
 
@@ -265,17 +310,22 @@ same gas forwarded to `0x01` in unrelated transactions. Confirmed by replaying a
 
 **In words:** Checks a signature again after others relied on it; if the signer moves its account to real code in between, whoever relied on it loses.
 
-A party signs once. Later, when someone else has already acted on that signature, the contract recovers it again: to
-approve a group's result, to judge a challenge against it, to pay a seller who has already delivered. The second check
-reads the signer's account code at that time. Under EIP-8151 it returns no address once the signer's account has real
-code, so a signature that was valid when others relied on it fails afterwards. The loss falls on whoever relied on it:
-an honest submitter is judged malicious, a seller who delivered is not paid while the buyer gets a refund. The signer
-can cause this on purpose by migrating between the two steps. Unlike PQ-14, nothing happens on activation day; it
-starts when a signer's account takes real code.
+A party signs once. Later, when someone else has already acted on that signature, the contract recovers it: to
+approve a group's result, to judge a challenge against it, to pay a seller who has already delivered. The first step
+can be off chain: a voucher or a channel state that another party holds and acted on counts like a signature checked
+on chain before, and one on-chain check, when that party redeems or answers, is enough. A signature checked in the
+same call that uses it (a permit, a quote) is not this pattern. The later check reads the signer's account code at
+that time. Under EIP-8151 it returns no address once the signer's account has real code, so a signature that was
+valid when others relied on it fails afterwards. The loss falls on whoever relied on it: an honest submitter is judged
+malicious, a seller who delivered is not paid while the buyer gets a refund, a payee's voucher no longer pays. The
+signer can cause this on purpose by migrating between the two steps. Unlike PQ-14, nothing happens on activation day;
+it starts when a signer's account takes real code. When the signer can already take back what the other party relies
+on without migrating, migrating adds nothing: a migration notice ("Choosing between patterns").
 
-**Detection:** the same signer checked at two steps separated in time (lock and settle, submit and approve or
-challenge), with a fallback when the later check fails (a refund, a rejection, a punishment). Confirmed by replaying
-the later step with code at the signer.
+**Detection:** the same signer's signature relied on at one step and checked on chain at a later one (lock and
+settle, submit and approve or challenge, a voucher redeemed, a channel state disputed), often with a fallback when
+the later check fails (a refund, a rejection, a punishment). Confirmed by replaying the later step with code at the
+signer.
 
 ## PQ-16: One's own ECDSA signature is the only way out
 

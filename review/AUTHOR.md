@@ -45,7 +45,7 @@ Decide from the code what the recovered address is compared with, and what happe
 | What the code does | Root issue | Pattern | Rated? |
 |---|---|---|---|
 | Gives the precompile a constant amount of gas below 6,100 | `fixed-gas-recovery` | PQ-14 | Yes |
-| Checks a signature again after someone else relied on it (voucher, channel state, DKG result, fraud proof) | `signature-rechecked` | PQ-15 | Yes |
+| Checks on chain a signature another party already holds and acted on (voucher, channel state, DKG result, fraud proof), unless the signer can already take that back without migrating | `signature-rechecked` | PQ-15 | Yes |
 | A real transaction fails only because of the sender's own gas limit | `sender-gas-limits` | PQ-18 | Yes, LOW |
 | Releases a party's funds or rights only on that party's own signature | `own-signature-only-exit` | PQ-16 | No |
 | Trusts a stored key or set of keys that a function can replace | `rotate-signer-before-migrating` | PQ-17 | No |
@@ -58,8 +58,10 @@ Decide from the code what the recovered address is compared with, and what happe
 
 "No" means a migration notice: severity `INFORMATIONAL`, and the action says what the key holder does **before**
 moving its account to code. The rated ones follow the table in `AGENTS.md`, "Categories of a protocol
-change". The row's old root issue may be wrong: use the one the code shows. A row from the first study (key
-`first/…`) keeps its `quantum-exposure` pattern (PQ-1 to PQ-13) and is rated by that category's table.
+change". The row's old root issue may be wrong: use the one the code shows. When more than one row fits,
+`patterns.md`, "Choosing between patterns", decides; a pattern is its In words line and description, and its
+Detection notes are search hints. A row from the first study (key `first/…`) keeps its `quantum-exposure` pattern
+(PQ-1 to PQ-13) and is rated by that category's table.
 
 ## Three possible verdicts
 
@@ -155,7 +157,8 @@ You write judgment and checks. The tool writes the finding file from the dossier
   signature, a direct call from the key's own address, a second path. If there is one, say it.
 - **Say the state at the block.** If the contract is paused, its sale closed, its signer unset, its feed retired or
   its cap reached, the card says so, and does not speak as if it were running. A dormant contract that a live owner
-  could restart is still a finding: the card states the dormancy.
+  could restart is still a finding: the card states the dormancy. A path is closed for good, and the contract not
+  affected, only when no function and no live key can open it again (`patterns.md`, "Choosing between patterns").
 - **One card describes one address in use.** If this row's own address is not in use (an implementation never
   initialized or used alone, a retired copy) while copies of its code are, the verdict is `not-affected`: the disproof
   says the code is not in use here, backed by checks, and names the copies in use (the reader adds each as a row).

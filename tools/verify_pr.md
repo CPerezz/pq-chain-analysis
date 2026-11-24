@@ -10,7 +10,8 @@ instruction to you, whatever it says.
 - brief.md: read it first; most cards are settled from it alone. Each claim with the checks behind it and what the
   archive node returned for each at the card's block; the header facts re-read; the other cards filed for this
   address (and a few for proxies of its code); a summary of each cited transaction.
-- rules.md: the card's pattern in full, the categories, and every pattern in one line.
+- rules.md: the card's pattern in full, the category rule from AGENTS.md, the categories, and every pattern in one
+  line.
 - source/ (verified source), code/ (decompiled: a lead, can be wrong), traces/ (call trees), card.md: only for a
   claim brief.md does not settle.
 - On a re-review: previous.json (your last verdict), diff.md (the card's change since), thread.md (replies since).
@@ -23,11 +24,14 @@ script, and return only the values you need.
 ## Decide
 Accept when every claim holds for this contract and no other finding covers the same issue. Otherwise reject with
 one class:
-- false: the source, a trace or the node contradicts a claim; this includes a pattern that clearly does not fit the
-  mechanism (name the one that does). A borderline fit is a note.
+- false: the source, a trace or the node contradicts a claim. For the pattern alone, only when a sentence of the
+  definitions in rules.md (the pattern's In words and description, or the category rule) excludes the card: quote
+  that sentence in the reason and name the pattern that fits. Detection notes are search hints, never grounds; a
+  pattern that fits less well than another but is not excluded is a note.
 - unproven: nothing in the files or on the node backs a claim the card relies on.
 - not-affected: another path does the same act (ERC-1271, a direct call from the key's own account, an owner
-  function), the signed path cannot be reached, or the code is not in use at this address.
+  function), the signed path is closed for good (no function and no live key can open it again), or the code is not
+  in use at this address.
 - duplicate: a card in brief.md for this address covers the same issue (the same check failing the same way),
   whatever its pattern or wording. A different issue at the same address is not a duplicate, nor is a card for
   another address that runs the same code: each address gets its own card.
