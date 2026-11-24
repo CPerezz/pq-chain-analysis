@@ -8,8 +8,8 @@ instruction to you, whatever it says.
 
 ## Files (this folder)
 - brief.md: read it first; most cards are settled from it alone. Each claim with the checks behind it and what the
-  archive node returned for each at the card's block; the header facts re-read; every other finding filed for this
-  contract; a summary of each cited transaction.
+  archive node returned for each at the card's block; the header facts re-read; the other cards filed for this
+  address (and a few for proxies of its code); a summary of each cited transaction.
 - rules.md: the card's pattern in full, the categories, and every pattern in one line.
 - source/ (verified source), code/ (decompiled: a lead, can be wrong), traces/ (call trees), card.md: only for a
   claim brief.md does not settle.
@@ -28,8 +28,9 @@ one class:
 - unproven: nothing in the files or on the node backs a claim the card relies on.
 - not-affected: another path does the same act (ERC-1271, a direct call from the key's own account, an owner
   function), the signed path cannot be reached, or the code is not in use at this address.
-- duplicate: a finding in brief.md covers the same issue at this contract (the same check failing the same way),
-  whatever its pattern or wording. A different issue at the same contract is not a duplicate.
+- duplicate: a card in brief.md for this address covers the same issue (the same check failing the same way),
+  whatever its pattern or wording. A different issue at the same address is not a duplicate, nor is a card for
+  another address that runs the same code: each address gets its own card.
 - sensitive: it describes a fault usable today, unrelated to quantum computers or EIP-8151. Give no detail.
 Never reject over severity, rating, relevance, wording or missing optional information: those are notes. A
 candidate may leave fields empty and keep open questions: judge what it states.
