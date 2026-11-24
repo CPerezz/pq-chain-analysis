@@ -17,8 +17,8 @@ contract:
   code: verified
   code_url: https://etherscan.io/address/0x43506849d7c04f9138d1a2050bbf3a0c054402dd#code
   proxy_of: '0x43506849d7c04f9138d1a2050bbf3a0c054402dd'
-  copies: 341287
-  family: 51dfccec0e9ce7b13786b6898dc14964
+  copies: 126
+  family: 0e8d4075ae67416750b494f3e00dbd8b
   upgradeable: 'yes'
   admin: '0xfcb19e6a322b27c06842a71e8c725399f049ae3a'
 value:
@@ -262,7 +262,7 @@ The proxy delegates every call with all gas to the implementation in the zeppeli
 
 ### Checks
 
-- Header facts: this address alone, at block 26,438,999; 341,287 addresses run this code.
+- Header facts: this address alone, at block 26,438,999; 126 addresses run this code.
 - Ruled out: a gas amount fixed in code: the proxy delegatecall forwards all gas, SignatureChecker staticcalls the signer without a gas argument, and both replays pass under EIP-8151 with 300,000 more gas.
 - Ruled out: another signed step failing in the same transaction: both transactions are direct calls to USDC with a single transferWithAuthorization and one signer.
 - Ruled out: a paused or retired token: paused() is false at the block.

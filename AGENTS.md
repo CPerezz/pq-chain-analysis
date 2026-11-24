@@ -89,10 +89,10 @@ Refuted: the contract is not affected; delete the file from `triage/` and file i
 | `contract.code` | `verified`, `decompiled`, `bytecode` | Where a reader sees the code (see "Code") |
 | `contract.code_url` | link | `verified` and `bytecode`: the Etherscan or Sourcify page; `decompiled`: `code/<code hash>.sol` (`code/README.md`) |
 | `contract.proxy_of` | address | The implementation, when the address is a proxy |
-| `contract.copies` | integer | Addresses running the same code; above 1 with `contract.family`, and the value covers them all |
+| `contract.copies` | integer | Addresses running the same code; above 1 with `contract.family`. The site and the board show what the family holds beside `value.usd` |
 | `contract.upgradeable` | `yes`, `no`, `config-only` | The card shows only yes or no |
 | `contract.admin` | address or `none` | Who can upgrade or reconfigure. Not shown |
-| `value.usd` | integer | What the address (and its copies) holds: ETH and the priced tokens of `tools/tokens.json`, on-chain prices |
+| `value.usd` | integer | What this address holds, its copies not included: ETH and the priced tokens of `tools/tokens.json`, on-chain prices |
 | `value.whose` | `users`, `operator`, `mixed` | Whose money it is |
 | `value.basis` | `held`, `market-cap`, `escrow` | `held`: what it holds; `market-cap`: the supply of a token whose permit is affected, an upper bound; `escrow`: what a forged message could release elsewhere |
 | `activity.txs_90d` | integer | Transactions with a call to it, any function, in the 90 days to `block` |

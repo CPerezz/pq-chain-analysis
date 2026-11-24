@@ -15,8 +15,7 @@ contract:
   name: EcdsaDkgValidator
   code: verified
   code_url: https://etherscan.io/address/0x1a5f4f753bd071c907714aefb6e0bcee32401406#code
-  copies: 3
-  family: c7877dc4855722a5f03bf4c0c064af61
+  copies: 1
   upgradeable: 'no'
 value:
   usd: 0
@@ -395,13 +394,13 @@ WalletRegistry (proxy 0x46d52e41, implementation 0x14fad0c1) stores this address
 
 ### Checks
 
-- Header facts: this address alone, at block 26,438,999; 3 addresses run this code.
+- Header facts: this address alone, at block 26,438,999.
 - Ruled out: ERC-1271 or a code-size branch for operators with code: validateSignatures has none (lines 278-298).
 - Ruled out: A path to approve without revalidation: approveResult always calls isResultValid before the submitter check.
 - Ruled out: Approvals closed for good: no. The pool's owner, governance Safe 0x9f6e831c, authorized the registry for the approval and can do so again; rejection needs no authorization.
 - Ruled out: Funds lost by the submitter: none today. The punishment goes to staking contract 0x01b67b11, whose implementation has no processSlashing and whose notifiersTreasury() is 0; the registry's source (lines 1069-1078) says the submitter keeps its stake.
 - Ruled out: Breaks with nobody migrating: no. A rejection must leave resultChallengeExtraGas (50,000) unspent, so the validator gets about 3.15M gas. The main reviewer's replay of tx 0xdad12778 used 3,263,068 gas today and 3,347,668 under EIP-8151 (+84,600 for 104 recoveries), below that floor; not in the dossier, not cited as a check.
-- Ruled out: Copies 0x0125c897 (retired in tx 0xdad12778), 0x66efd639 and 0x97bb9bee run the same code for other registries; not judged here, each is its own row.
+- Ruled out: 0x0125c897 (retired in tx 0xdad12778), 0x66efd639 and 0x97bb9bee run another build of this validator (6,256 bytes of code against this one's 6,204) for other registries; not judged here, each is its own row.
 - Ruled out: State: getWalletCreationState() is 0 (IDLE) at the block, so no result is pending; the finding applies to the next wallet creation.
 
 ### History

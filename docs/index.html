@@ -476,17 +476,21 @@ let FIND = null;
 dataP.then(D => { FIND = D; });
 const CARDS = new Map();  // cards/<xx>.json, by the first two hex digits of a card's address
 const cardShard = a => { const k = a.slice(2, 4); if (!CARDS.has(k)) CARDS.set(k, getJSON(`cards/${k}.json`).then(x => x || {})); return CARDS.get(k); };
+const COPIES = new Map();  // copies/<xx>.json: code hash -> the cards of its code family, by the hash's first two hex digits
+const copyShard = h => { const k = h.slice(2, 4); if (!COPIES.has(k)) COPIES.set(k, getJSON(`copies/${k}.json`).then(x => x || {})); return COPIES.get(k); };
 const SEV_RANK = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', 'INFORMATIONAL', 'NONE', 'UNRATED'];
 const md = s => esc(s).replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
   .replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 const BASIS = { held: 'Holds', 'market-cap': 'Token supply', escrow: 'Can release' };
 const WHOSE = { users: "users' money", operator: "the operator's money", mixed: "users' and the operator's money" };
 const CODE_T = { verified: 'Verified source', decompiled: 'Bytecode, decompiled', bytecode: 'Bytecode' };
-function cardHtml(c, a, open) {
+function cardHtml(c, a, open, copy) {
   const ev = (c.evidence || '').split('\n').map(l => l.replace(/^\s*-\s*/, '').trim()).filter(Boolean);
+  const fam = c.family_value;
   const facts = [
-    ['Contract', `${esc(c.name || 'Unnamed contract')}${c.address === a ? '' : `<span class="sub">on the proxy ${addrLink(c.address)}, which runs this code</span>`}`],
-    c.value_usd != null && ['Value', `${c.value_usd ? `${BASIS[c.value_basis] || 'Holds'} ${fmtUSD(c.value_usd)}${c.value_whose ? `, ${WHOSE[c.value_whose]}` : ''}` : 'Holds no ETH or priced tokens'}<span class="sub">as of ${esc(c.as_of)}</span>`],
+    ['Contract', `${esc(c.name || 'Unnamed contract')}${c.address === a ? '' : copy ? `<span class="sub">reviewed at ${addrLink(c.address)}, which runs the same code</span>` : `<span class="sub">on the proxy ${addrLink(c.address)}, which runs this code</span>`}`],
+    c.value_usd != null && ['Value', `${c.value_usd ? `${BASIS[c.value_basis] || 'Holds'} ${fmtUSD(c.value_usd)}${c.value_whose ? `, ${WHOSE[c.value_whose]}` : ''}` : 'Holds no ETH or priced tokens'}${c.copies > 1 ? ' (this address)' : ''}<span class="sub">as of ${esc(c.as_of)}</span>` +
+      (fam ? `<span class="sub">Same code: ${fmtN(fam[0])} addresses, ${fmtN(fam[1])} of them holding funds, ${fmtUSD(fam[2])} in all (${esc(fam[3])})</span>` : '')],
     c.upgradeable && ['Upgradeable', c.upgradeable === 'no' ? 'No' : 'Yes'],
     c.txs_90d != null && ['Activity', `${fmtN(c.txs_90d)} transactions in the 90 days to ${esc(c.as_of)}`],
     c.code_url && ['Code', `<a href="${esc(c.code_url)}" target="_blank" rel="noopener">${CODE_T[c.code] || 'Code'} ↗</a>`],
@@ -501,17 +505,32 @@ function cardHtml(c, a, open) {
     (c.action ? `<h4>What its team can do</h4><p>${md(c.action)}</p>` : '') +
     `<dl class="r-dl">${facts.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl></div></details>`;
 }
-async function showFindings(a, token) {
+// The cards of the code an address without a card of its own runs, found by code hash: its own code, its
+// implementation's, its delegate's (eth_getProof), looked up in copies/<xx>.json.
+async function sameCode(a, live) {
+  if (!live || live.error || live.kind === 'eoa') return [];
+  try {
+    const hashes = (await rpc([...new Set([a, live.target, live.inner].filter(Boolean))].map(x => ['eth_getProof', [x, [], 'latest']]))).map(p => p.codeHash);
+    const found = (await Promise.all(hashes.map(h => copyShard(h).then(s => s[h] || [])))).flat();
+    return [...new Set(found)].filter(id => FIND?.findings?.[id]);
+  } catch (e) { return []; }
+}
+async function showFindings(a, token, live) {
   const ids = FIND?.finding_of?.[a] || [];
-  if (!ids.length) return;
-  const shards = await Promise.all([...new Set(ids.map(id => FIND.findings[id].address))].map(cardShard));
+  const same = ids.length ? [] : await sameCode(a, live);
+  if (!ids.length && !same.length) return;
+  const shards = await Promise.all([...new Set([...ids, ...same].map(id => FIND.findings[id].address))].map(cardShard));
   const el = $('#rFindings');
   if (token !== LK.token || !el) return;
-  const cards = ids.map(id => shards.find(s => s[id])?.[id]).filter(Boolean)
+  const pick = list => list.map(id => shards.find(s => s[id])?.[id]).filter(Boolean)
     .sort((x, y) => SEV_RANK.indexOf(x.severity) - SEV_RANK.indexOf(y.severity));
-  el.innerHTML = `<div class="r-sec"><h3>${cards.length === 1 ? 'A finding' : `${cards.length} findings`} for this contract</h3>` +
+  const cards = pick(ids), copies = pick(same);
+  el.innerHTML = (cards.length ? `<div class="r-sec"><h3>${cards.length === 1 ? 'A finding' : `${cards.length} findings`} for this contract</h3>` +
     `<div class="r-cards">${cards.map((c, i) => cardHtml(c, a, i === 0)).join('')}</div>` +
-    `<p class="note">Each finding says what is wrong with this contract, how bad it is and why, and what its team can do. Every fact on it was read from the chain at the date it gives.</p></div>`;
+    `<p class="note">Each finding says what is wrong with this contract, how bad it is and why, and what its team can do. Every fact on it was read from the chain at the date it gives.</p></div>` : '') +
+    (copies.length ? `<div class="r-sec"><h3>${copies.length === 1 ? 'A finding' : `${copies.length} findings`} for the code it runs</h3>` +
+    `<div class="r-cards">${copies.map((c, i) => cardHtml(c, a, !cards.length && i === 0, true)).join('')}</div>` +
+    `<p class="note">This address runs the same code as the contract each finding describes, so the code's issue is here too. This address itself was not reviewed: whether and how the issue reaches it depends on its own keys, settings and holdings.</p></div>` : '');
   el.querySelectorAll('[data-lookup]').forEach(x => x.onclick = () => openLookup(x.dataset.lookup));
 }
 
@@ -586,7 +605,7 @@ async function rpc(calls) {
       if (!Array.isArray(j)) continue;
       const out = new Array(calls.length);
       for (const o of j) out[o.id] = o.result;
-      if (out.every(x => typeof x === 'string')) return out;
+      if (out.every(x => x != null)) return out;
     } catch (e) { /* try the next endpoint */ }
   }
   throw new Error('no public RPC endpoint answered');
@@ -793,7 +812,7 @@ function renderResult(a, meta, fams, rec, cur, live, tgtRec, label) {
   box.querySelectorAll('[data-lookup]').forEach(el => el.onclick = () => openLookup(el.dataset.lookup));
   const copy = $('#lkCopy');
   if (copy) copy.onclick = () => { navigator.clipboard?.writeText(location.href); copy.textContent = 'Link copied'; };
-  showFindings(a, LK.token);
+  showFindings(a, LK.token, live);
 }
 
 async function openLookup(input, { push = true, scroll = true } = {}) {

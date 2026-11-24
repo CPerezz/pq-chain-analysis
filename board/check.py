@@ -8,10 +8,10 @@ Runs in CI on every push and pull request, and on the server before a new commit
 REPO/templates/examples/findings/ (tools/build.py keeps them valid), never live findings, so it passes whatever
 findings/ holds. Covers: only cards imported (a format 1 file waits for review), the database checked against the files
 (a broken card stops the import and the old database stays), login, filters, search (cards and comments), counts, a
-card without its Reviewer notes or the fields no page shows, value.py's holdings joined to cards (a whole code family,
-a single address, a family it does not know), outreach writes and their log (assignees with an account, a change
-someone made meanwhile refused), filters by assignee and comments, what a cross-site form cannot do, outreach records
-surviving a re-import and a finding leaving the registry, and the backup.
+card without its Reviewer notes or the fields no page shows, value.py's holdings joined to cards (an address alone, a
+card's whole code family beside its own figure, a family it does not know), outreach writes and their log (assignees
+with an account, a change someone made meanwhile refused), filters by assignee and comments, what a cross-site form
+cannot do, outreach records surviving a re-import and a finding leaving the registry, and the backup.
 """
 
 import base64
@@ -168,19 +168,22 @@ def main(repo: Path) -> None:
         v.execute("INSERT INTO valued VALUES (?)", (ed_address,))
         v.execute("INSERT INTO address_value VALUES (?, 100, 10, 1, ?)", (ed_address, json.dumps([["ETH", "0.005", "10"], ["DAI", "90", "90"]])))
         v.execute("INSERT INTO deployer VALUES (?, '0x1111111111111111111111111111111111111111', NULL)", (ed_address,))
-        family, copies = sqlite3.connect(db).execute("SELECT family, copies FROM finding WHERE id = ?", (FAMILY,)).fetchone()
+        family, copies, f_address = sqlite3.connect(db).execute("SELECT family, copies, address FROM finding WHERE id = ?", (FAMILY,)).fetchone()
         v.execute("INSERT INTO family_value VALUES (?, ?, 2, 1234, NULL, 1000, ?)", (family, copies, json.dumps([["USDC", "1234", "1234"]])))
+        v.execute("INSERT INTO valued VALUES (?)", (f_address,))
+        v.execute("INSERT INTO address_value VALUES (?, 34, 34, 0, ?)", (f_address, json.dumps([["ETH", "0.02", "34"]])))
         v.commit()
         assert not ingest.current(small, db, vals), "new values are imported"
         ingest.main(small, db, vals)
         assert ingest.current(small, db, vals) and not ingest.current(small, db, None), "the sync skips only what is built"
         e = call(f"/api/finding/{ED}")[1]
-        assert (e["held_now"], e["held_addresses"], e["held_at"]) == (100, 1, "2026-11-20") and "value-floor" not in (e["gaps"] or "")
+        assert (e["held_now"], e["family_held"], e["held_at"]) == (100, None, "2026-11-20") and "value-floor" not in (e["gaps"] or "")
         assert json.loads(e["holdings"])[0] == ["DAI", 90, 90] and e["deployer"].startswith("0x1111")
         f = call(f"/api/finding/{FAMILY}")[1]
-        assert (f["held_now"], f["held_addresses"]) == (1234, copies) and "value-floor" not in (f["gaps"] or ""), "the whole family"
+        assert (f["held_now"], f["family_held"], f["family_addresses"]) == (34, 1234, copies) and "value-floor" not in (f["gaps"] or ""), \
+            "its own holdings, its whole family's beside them"
         assert "value-floor" in call(f"/api/finding/{FLOOR}")[1]["gaps"], "copies value.py cannot single out make a floor"
-        assert ids("min_value=1000") == [FAMILY]
+        assert ids("min_value=50") == [ED], "the value filter reads what the address itself holds"
 
         assert call("/api/meta")[1]["users"] == ["checker"]
         assert call("/api/outreach", b"ids=" + ED.encode(), ctype="application/x-www-form-urlencoded")[0] == 415

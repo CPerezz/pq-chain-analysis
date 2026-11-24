@@ -9,8 +9,8 @@ rows review has not reached; each one arrives here when review files its card. T
 registry's own checker, REPO/tools/build.py, so a field means here what it means there, and the problems it reports
 are kept per finding. A finding is one card: one contract, what a reader sees, and what the card keeps but never shows
 (`admin`, `activity.last`, `primitive`, `checks`, the Reviewer notes), which the board never sends. With VALUES
-(value.py's output) a finding also gets what its address and its copies hold now, in ETH and every priced token,
-beside the card's own figure.
+(value.py's output) a finding also gets what its address holds now, in ETH and every priced token, beside the card's
+own figure, and for a card with copies what its whole code family holds.
 
 The new DB is written beside the old one and checked against the files before it replaces it: the same cards, each
 with the SHA-256 of its file. A mismatch stops the import and the old DB stays, so DB is always some commit's cards
@@ -33,7 +33,7 @@ from pathlib import Path
 # Data the outreach board needs and a card lacks. One flag per finding and gap; the page filters by them.
 GAPS = {
     "team-unknown": "No project, explorer tag or contract name: nothing says whose it is",
-    "value-floor": "Its copies are more than value.py could single out (or value.py never saw the address): held now is a floor",
+    "value-floor": "value.py never saw the address, or the card has more copies than value.py could single out: a figure is a floor",
     "invalid": "tools/build.py reports problems with this file",
 }
 GENERIC_CHANGE = "the change"  # a category name's <change> when the study names none (patterns.md, Categories)
@@ -67,8 +67,9 @@ CREATE TABLE finding (                    -- one card (AGENTS.md, format 2): one
     what_happens TEXT, evidence TEXT,     -- the card's sections; Evidence as Markdown bullets
     admin TEXT, last_active TEXT, primitive TEXT,  -- on the card but "not shown": the board never sends them
     who TEXT,                             -- what to call it: project, else explorer tag, else contract name, else address
-    held_now REAL, holdings TEXT,         -- value.py: ETH and every priced token now, over the address and its copies;
-    held_addresses INTEGER, held_at TEXT, -- JSON [[symbol, amount, usd], ...] the largest five; addresses summed; date
+    held_now REAL, holdings TEXT,         -- value.py: ETH and every priced token now, at the address alone;
+    held_at TEXT,                         -- JSON [[symbol, amount, usd], ...] the largest five; the date
+    family_held REAL, family_addresses INTEGER,  -- a card with copies: what its whole code family holds now, and its addresses
     deployer TEXT, factory TEXT,          -- who sent the creating transaction; the contract that created it, if not the sender
     studies TEXT, reported TEXT, related TEXT, duplicate_of TEXT,
     gaps TEXT, problems TEXT              -- space-separated GAPS keys; build.py's messages, one per line
@@ -104,19 +105,17 @@ class Values:
         self.deployer = {r[0]: r[1:] for r in self.con.execute("SELECT address, deployer, factory FROM deployer")}
         self.valued = {r[0] for r in self.con.execute("SELECT address FROM valued")}  # absent from address_value = held nothing
 
-    def of(self, address: str, family: str | None, copies: int) -> tuple[float, int, str | None, bool]:
-        """What the address holds with its copies, the addresses summed, the largest five holdings, and whether the
-        total is only a floor. Copies count through their code family when `copies` is the family's size (the usual
-        case), or its known addresses when there are more copies than value.py knows. A card that covers part of its
-        family (Ambire's 1 of 172,118) counts its own address: the other copies cannot be singled out."""
+    def of(self, address: str, family: str | None, copies: int) -> tuple[float, str | None, float | None, int | None, bool]:
+        """What the address holds and its largest five holdings; for a card with copies, what its code family holds
+        and the family's addresses; and whether a figure is only a floor (value.py never saw the address, or the card
+        has more copies than value.py knows). A card that covers part of its family (Ambire's 1 of 172,118) gets no
+        family figure: the other copies are not its."""
+        usd, top = self.con.execute("SELECT usd, top FROM address_value WHERE address = ?", (address.lower(),)).fetchone() or (0.0, None)
         whole = self.family.get(family) if family and copies > 1 else None
-        if whole and whole[1] <= copies:
-            usd, n, top, floor = *whole, whole[1] < copies
-        else:
-            usd, top = self.con.execute("SELECT usd, top FROM address_value WHERE address = ?", (address.lower(),)).fetchone() or (0.0, None)
-            n, floor = 1, copies > 1 or address.lower() not in self.valued
+        whole = whole if whole and whole[1] <= copies else None
+        floor = address.lower() not in self.valued or (copies > 1 and (not whole or whole[1] < copies))
         top5 = sorted(([s, round(float(a), 6), round(float(u))] for s, a, u in json.loads(top or "[]")), key=lambda x: -x[2])[:5]
-        return usd, n, json.dumps(top5) if top5 else None, floor
+        return usd, json.dumps(top5) if top5 else None, whole[0] if whole else None, whole[1] if whole else None, floor
 
 
 def row_of(f: dict, body: str, problems: list[str], build, values: Values | None, names: dict[str, str],
@@ -130,10 +129,10 @@ def row_of(f: dict, body: str, problems: list[str], build, values: Values | None
     address = str(c.get("address") or "")
     copies = c["copies"] if isinstance(c.get("copies"), int) else 1
     gaps = [] if c.get("project") or c.get("label") or c.get("name") else ["team-unknown"]
-    held = dict.fromkeys(("held_now", "holdings", "held_addresses", "held_at", "deployer", "factory"))
+    held = dict.fromkeys(("held_now", "holdings", "held_at", "family_held", "family_addresses", "deployer", "factory"))
     if values and address:
-        usd, n, top, floor = values.of(address, c.get("family"), copies)
-        held.update(held_now=usd, holdings=top, held_addresses=n, held_at=values.meta["at"][:10])
+        usd, top, family_usd, family_n, floor = values.of(address, c.get("family"), copies)
+        held.update(held_now=usd, holdings=top, held_at=values.meta["at"][:10], family_held=family_usd, family_addresses=family_n)
         held["deployer"], held["factory"] = values.deployer.get(address.lower()) or (None, None)
         if floor:
             gaps.append("value-floor")
