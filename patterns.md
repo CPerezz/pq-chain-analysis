@@ -33,8 +33,10 @@ upgrade); a contract that could be restarted keeps its finding and says it is do
 account with real code (not a delegation), cannot sign here today: unless a live key can set another, its path is
 closed.
 
-For EIP-8151 (PQ-14 to PQ-21), in this order:
+For EIP-8151 (PQ-14 to PQ-22), in this order:
 
+0. The contract answers another chain's recovery with this chain's precompile and keeps the answer, for a later
+   step that decides a dispute about that chain (a fault-proof preimage oracle): PQ-22.
 1. Something fails with nobody migrating: a gas amount fixed in the code is PQ-14; a real transaction that fails only
    on its sender's gas limit is PQ-18.
 2. Another party already holds a signature and has acted on it in a way it cannot undo (a service delivered against a
@@ -421,3 +423,30 @@ Registering, joining or placing an order requires an ECDSA signature of the entr
 Under EIP-8151 an account with real code can no longer enter. Nothing it already holds is affected.
 
 **Detection:** a function whose recovered address becomes the participant, with no function that registers the caller.
+
+## PQ-22: Another chain's recovery answered by this chain's precompile
+
+**Class:** regression
+
+**Category:** voided-by-migration
+
+**In words:** Answers another chain's signature checks with this chain's precompile; once a signer has real code here, a dispute about that chain can be decided wrongly.
+
+A fault-proof system replays another chain's execution step by step when a claim about it is disputed. When that
+execution recovers a signer, the system does not compute the recovery itself: it calls this chain's `ecrecover`
+precompile with the same input and keeps the answer, which the dispute's last step reads. Under EIP-8151 the
+precompile's answer depends on the recovered address's code on this chain, which the other chain never saw. Once
+that address has real code here, the kept answer is empty, while the other chain's execution got the address. The
+last step then disagrees with the honest execution: an honest claim loses its dispute, and a false one (for example a
+withdrawal that never happened) can be defended. Anyone can trigger it: a key whose public key is known recovers from
+an input anyone can build, so the trigger is any address with real code on this chain, including the attacker's own.
+Who can play the dispute game decides who can use it: anyone in a permissionless game, only the chain's proposer
+and challenger in a permissioned one. The fix is in the proof program (stop answering `ecrecover` with the
+precompile), which needs a new prestate and new game implementations, shipped before the fork. Rated by the rule
+for a fix that needs new software ("Severity" in `AGENTS.md`).
+
+**Detection:** a function that calls a precompile address taken from calldata and stores the answer, found by a
+static flag on the call site and confirmed by a call aimed at `0x01` with a recovery for a known key, on chain state,
+with nothing sent; the systems that rely on it found from the dispute game factories (`DisputeGameCreated`, the
+registered implementations, `vm()`, `oracle()`). Confirmed by loading one recovery with and without code at the
+signer: the kept answer is the address, then empty.
