@@ -33,10 +33,12 @@ upgrade); a contract that could be restarted keeps its finding and says it is do
 account with real code (not a delegation), cannot sign here today: unless a live key can set another, its path is
 closed.
 
-For EIP-8151 (PQ-14 to PQ-22), in this order:
+For EIP-8151 (PQ-14 to PQ-23), in this order:
 
 0. The contract answers another chain's recovery with this chain's precompile and keeps the answer, for a later
    step that decides a dispute about that chain (a fault-proof preimage oracle): PQ-22.
+   An ERC-4337 entry point, which re-checks on chain the validations a bundler simulated, so that one signer taking
+   code voids every pending operation that recovers it: PQ-23.
 1. Something fails with nobody migrating: a gas amount fixed in the code is PQ-14; a real transaction that fails only
    on its sender's gas limit is PQ-18.
 2. Another party already holds a signature and has acted on it in a way it cannot undo (a service delivered against a
@@ -450,3 +452,26 @@ static flag on the call site and confirmed by a call aimed at `0x01` with a reco
 with nothing sent; the systems that rely on it found from the dispute game factories (`DisputeGameCreated`, the
 registered implementations, `vm()`, `oracle()`). Confirmed by loading one recovery with and without code at the
 signer: the kept answer is the address, then empty.
+
+## PQ-23: Validations a bundler relied on, voided for many operations at once
+
+**Class:** regression
+
+**Category:** voided-by-migration
+
+**In words:** Re-checks on chain the signatures a bundler already simulated; one signer taking real code voids every pending operation that recovers it, and the whole bundle reverts.
+
+ERC-4337 bundlers simulate each operation's validation before they put it in a bundle. They rely on ERC-7562, which
+allows precompiles in validation because they read no state, and which bounds how many pending operations one state
+change can invalidate by limiting what storage validation may read. Under EIP-8151 `ecrecover` reads the code of the
+recovered address, an address outside the operation's storage that no rule tracks. One transaction that gives a
+shared signer real code (the owner of many accounts, a paymaster's signer, or an attacker's key that many attacker
+accounts recover) voids every pending operation that depends on it. The entry point checks validation again on chain
+and reverts the whole bundle on the first failure, so a bundle that carries one of them fails and the bundler pays.
+No ERC-7562 rule charges anyone for it. The fix is in bundler software and in ERC-7562 (track each recovered address
+as a dependency and limit how many pending operations share one), shipped before the fork. Rated by the rule for a
+fix that needs new software ("Severity" in `AGENTS.md`).
+
+**Detection:** traced validation frames of an entry point that call `0x01`, grouped by the address recovered;
+confirmed by replaying a real bundle with code at a signer that several of its operations recover: today and with a
+7702 delegation the bundle passes, with code it reverts.
