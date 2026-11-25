@@ -79,10 +79,6 @@ more than one address behind a card or a review row holds (`family_value.csv`, E
 date it gives) and the code hashes that run as each (`code_family.csv.gz`). The site shows a card's family total
 beside the card's own figure, and finds the cards of whatever code an address runs.
 
-`results/area-s/` holds area S: the sweep and what kept the recovered address, the dispute game factories and the
-oracles they use (at the block and today), the executed oracle check, the replayed ERC-4337 bundles, the value each
-oracle's chains could release, an inventory of 662 L2s, bridges, provers and other projects, and the scripts.
-
 ## Limits
 
 - Code at a signer is simulated: no account can take real code before the fork.

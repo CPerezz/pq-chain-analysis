@@ -94,4 +94,4 @@ Under EIP-8151 that model is not sound for properties that depend on the signer'
 
 A chain that copies L1's EVM on its own schedule answers the same signature differently until it adopts the rule.
 That matters for signatures verified on several chains, and for any system that answers one chain's `ecrecover` with
-another chain's precompile. OP Stack fault proofs do exactly that: see the PQ-22 cards and `results/area-s/`.
+another chain's precompile. OP Stack fault proofs do exactly that: see the PQ-22 cards.
