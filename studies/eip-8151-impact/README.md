@@ -63,7 +63,7 @@ Find every deployed contract whose behaviour EIP-8151 changes, as specified at t
      replayed with code at a signer that several of their operations recover.
    - **Registries for context.** L2BEAT, DefiLlama and the OP Superchain registry.
    - **Off-chain components.** Code that assumes `ecrecover` reads no state (clients, bundlers, zkVM provers, SDKs,
-     tools) is read and recorded as notes for implementers; it has no address to file.
+     tools) is read. It has no address, so the registry holds none of it.
 
 ## Reproduce
 
@@ -78,10 +78,6 @@ Filed in `findings/` (format 2: reviewed cards) and, until the review reaches th
 more than one address behind a card or a review row holds (`family_value.csv`, ETH and every priced token, on the
 date it gives) and the code hashes that run as each (`code_family.csv.gz`). The site shows a card's family total
 beside the card's own figure, and finds the cards of whatever code an address runs.
-
-`results/area-s/` holds area S: the sweep and what kept the recovered address, the dispute game factories and the
-oracles they use (at the block and today), the executed oracle check, the replayed ERC-4337 bundles, the value each
-oracle's chains could release, an inventory of 662 L2s, bridges, provers and other projects, and the scripts.
 
 ## Limits
 
