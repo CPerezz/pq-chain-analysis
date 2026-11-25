@@ -459,7 +459,7 @@ signer: the kept answer is the address, then empty.
 
 **Category:** voided-by-migration
 
-**In words:** Re-checks on chain the signatures a bundler already simulated; one signer taking real code voids every pending operation that recovers it, and the whole bundle reverts.
+**In words:** Re-checks signatures a bundler already simulated; one signer taking real code voids every pending operation that recovers it.
 
 ERC-4337 bundlers simulate each operation's validation before they put it in a bundle. They rely on ERC-7562, which
 allows precompiles in validation because they read no state, and which bounds how many pending operations one state
