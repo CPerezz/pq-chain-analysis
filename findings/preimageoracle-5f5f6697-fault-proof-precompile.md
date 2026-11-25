@@ -1,5 +1,5 @@
 ---
-id: contract-5f5f6697-fault-proof-precompile
+id: preimageoracle-5f5f6697-fault-proof-precompile
 format: 2
 title: Permissioned fault proofs can rule wrongly once a signer has real code on L1
 status: reproduced
@@ -12,10 +12,10 @@ as_of: 2026-11-18
 block: 26438999
 contract:
   address: "0x5f5f669747b58b77f7c9536539730f4b7b7708e7"
-  name:
+  name: "PreimageOracle"
   project:
   label:
-  code: bytecode
+  code: verified
   code_url: https://etherscan.io/address/0x5f5f669747b58b77f7c9536539730f4b7b7708e7#code
   proxy_of:
   copies: 1
@@ -122,3 +122,4 @@ Fault proofs for the OP Stack chain chain 1679 get each recovered signer from th
 
 - 2026-11-25: reported and executed (study eip-8151-impact, area S: static flag, manufactured calls, dispute game factories).
 - 2026-11-25: reviewed by a refuter agent; value evidence committed and two value notes corrected; settled as reproduced.
+- 2026-11-25: the code was verified on Blockscout after the card was written; name and code updated, id renamed.
