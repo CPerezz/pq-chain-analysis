@@ -8,7 +8,7 @@ justification: A validator can rotate its signer key with updateSigner before mo
   code.
 category: migration-notice
 pattern: PQ-17
-study: top-callers-classification
+study: eip-8151-impact
 as_of: 2026-11-18
 block: 26438999
 contract:

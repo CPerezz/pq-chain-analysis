@@ -406,12 +406,6 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: MEDIUM
-- study: eip-8151-impact
-  who: Claude (study families read, judged from bytecode or placed by rules; not reviewed by a person)
-  date: 2026-11-19
-  by: ai-assisted
-  verdict: reported
-  rating: LOW
 reviews:
 - who: r-77627828, the row's refuter
   date: 2026-11-22
