@@ -271,6 +271,7 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
+  pattern: PQ-12
 reviews:
 - who: r-c61b9bb3, the row's refuter
   date: 2026-11-21

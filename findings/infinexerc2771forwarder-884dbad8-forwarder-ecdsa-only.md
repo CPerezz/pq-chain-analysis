@@ -101,6 +101,7 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
+  pattern: PQ-1
 reviews: []
 related: []
 ---

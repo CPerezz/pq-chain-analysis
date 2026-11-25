@@ -94,6 +94,7 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: ''
+  pattern: PQ-2
 reviews: []
 related: []
 ---

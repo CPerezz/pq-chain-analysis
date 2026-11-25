@@ -112,6 +112,7 @@ sources:
   by: ai-assisted
   verdict: reported
   rating: ''
+  pattern: PQ-4
 reviews: []
 related: []
 ---

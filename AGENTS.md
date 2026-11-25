@@ -103,7 +103,7 @@ Refuted: the contract is not affected; delete the file from `triage/` and file i
 | `primitive` | `ecrecover`, `bn254`, `kzg`, `bls12381`, `p256`, `sw_*`, `rsa` | For search; not shown |
 | `duplicate_of`, `repro` | | As in "Levels" |
 | `checks[]` | see "Checks" | What `tools/verify.py` re-runs. Not shown |
-| `sources[]` | `study`, `who`, `date`, `by`, `verdict`, `rating` | One entry per study that found or checked this card's issue: another issue a study finds on the same contract is a card of its own, never a source here; `by` is `ai-assisted`, `project-team` or `other` |
+| `sources[]` | `study`, `who`, `date`, `by`, `verdict`, `rating`, `pattern` | One entry per study that found or checked this card's issue, the card's own `study` first: another issue a study finds on the same contract is a card of its own, never a source here. An entry from another study names the `pattern` it found or checked, which is this card's. `by` is `ai-assisted`, `project-team` or `other` |
 | `reviews[]` | `who`, `date`, `by`, `verdict`, `rating`, `note` | Checks by someone other than the reporter |
 | `related` | ids | Other findings on the same contract or code |
 
