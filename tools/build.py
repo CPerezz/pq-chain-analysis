@@ -259,6 +259,8 @@ def load_finding(path: Path, patterns: dict[str, dict], studies: dict[str, dict]
             p.add(w, f"unknown pattern {pid}")
     if not pats and status in LEVELS:
         p.add(w, "patterns empty")
+    if len(pats) > 1:
+        p.add(w, f"one pattern per entry, found {pats}: another issue is an entry of its own (a merged entry loses it on conversion)")
     f["patterns"] = pats
     f["_class"] = patterns.get(pats[0], {}).get("class") if pats else None
     exposure_class = f["_class"] == "exposure"
@@ -586,6 +588,12 @@ def load_finding2(path: Path, head: dict, body: str, patterns: dict[str, dict], 
     check_people(p, w, f, studies, pool, status, light=not final)
     if f.get("study") in studies:
         f["_studies"] = list(dict.fromkeys([f["study"]] + f["_studies"]))
+        if not (f["sources"] and isinstance(f["sources"][0], dict) and f["sources"][0].get("study") == f["study"]):
+            p.add(w, f"the first source is its study, {f['study']}: the study that flagged it reports it")
+    for i, s in enumerate(f["sources"]):
+        if isinstance(s, dict) and s.get("study") != f.get("study") and s.get("pattern") != f.get("pattern"):
+            p.add(f"{w} sources[{i}]", f"a source from another study names the pattern it found or checked, which is this card's "
+                                       f"{f.get('pattern')}: another issue is a card of its own")
 
     before, secs = section_texts(body)
     heads = [h for h, _ in secs]
@@ -795,6 +803,16 @@ def selftest(patterns: dict[str, dict], studies: dict[str, dict]) -> list[str]:
         ("format 1: an unidentified project in triage",
          {"extra": {"triage/example-root-issue.md": ROOT_ISSUE.replace('label: "Some Exchange: Deposit"', "project: unidentified-1234")}},
          "no `unidentified-*` project"),
+        ("format 1: two patterns in one entry", {"extra": {"findings/example-minimal.md": MINIMAL.replace("patterns: [PQ-4]", "patterns: [PQ-4, PQ-17]")}},
+         "one pattern per entry"),
+        ("a card whose study is not its first source", {"change": (ed, "\nstudy: top-callers-classification\n", "\nstudy: eip-8151-impact\n")},
+         "the first source is its study"),
+        ("another study's source about another issue",
+         {"change": (ed, "\nreviews:\n", "\n- study: eip-8151-impact\n  who: someone-else\n  date: 2026-11-19\n  by: ai-assisted\n"
+                     "  verdict: reported\n  rating: LOW\n  pattern: PQ-17\nreviews:\n")}, "names the pattern it found or checked"),
+        ("another study's source that names no pattern",
+         {"change": (ed, "\nreviews:\n", "\n- study: eip-8151-impact\n  who: someone-else\n  date: 2026-11-19\n  by: ai-assisted\n"
+                     "  verdict: confirmed\nreviews:\n")}, "names the pattern it found or checked"),
     ]
     wrong = []
     for name, kw, expect in cases:
@@ -804,10 +822,9 @@ def selftest(patterns: dict[str, dict], studies: dict[str, dict]) -> list[str]:
         if expect is not None and not any(expect in g for g in got):
             wrong.append(f"{name}: expected a problem containing {expect!r}, got {got}")
 
-    # a finding that two studies found keeps both
-    one = "sources:\n- study: top-callers-classification"
-    two = "sources:\n- study: eip-8151-impact\n  who: someone-else\n  date: 2026-11-19\n  by: ai-assisted\n  verdict: confirmed\n" + one[9:]
-    got, found = run(change=(ed, one, two))
+    # a finding that two studies found or checked keeps both; the later one names the card's pattern
+    later = "\n- study: eip-8151-impact\n  who: someone-else\n  date: 2026-11-19\n  by: ai-assisted\n  verdict: confirmed\n  pattern: PQ-2\nreviews:\n"
+    got, found = run(change=(ed, "\nreviews:\n", later))
     if got or set(found[ed_id]["_studies"]) != {"top-callers-classification", "eip-8151-impact"}:
         wrong.append(f"found by two studies: {got or found[ed_id]['_studies']}")
 

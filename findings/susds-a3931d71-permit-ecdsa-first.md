@@ -220,6 +220,7 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
+  pattern: PQ-2
 reviews:
 - who: r-a3931d71, the row's refuter
   date: 2026-11-21

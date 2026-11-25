@@ -90,6 +90,7 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: ''
+  pattern: PQ-2
 reviews: []
 related: []
 ---

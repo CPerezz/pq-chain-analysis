@@ -244,7 +244,7 @@ def render(draft: dict, d: dict, backs: dict[str, set]) -> tuple[str, str, dict]
                                (d["key"],)).fetchone()
         p = next((x for x in (REGISTRY / r["old_path"], out_dir(d["key"]) / "finding.md", REGISTRY / (filed or ("-",))[0]) if x.exists()), None)
         old = build.split(p, build.Problems())[0] if p else None
-    sources = [{k: s[k] for k in ("study", "who", "date", "by", "verdict", "rating") if s.get(k) is not None} for s in (old or {}).get("sources") or r.get("sources") or []] or [
+    sources = [{k: s[k] for k in ("study", "who", "date", "by", "verdict", "rating", "pattern") if s.get(k) is not None} for s in (old or {}).get("sources") or r.get("sources") or []] or [
         {"study": "eip-8151-impact", "who": "Claude (families read, judged from bytecode or placed by measured rules)", "date": "2026-11-19",
          "by": "ai-assisted", "verdict": "reported"}]
     drop = lambda m: {k: v for k, v in m.items() if v not in (None, "", [])}
