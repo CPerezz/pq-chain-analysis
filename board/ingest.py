@@ -243,7 +243,8 @@ def main(repo: Path, db: Path, values_path: Path | None = None) -> None:
         rowid = con.execute(f"INSERT INTO finding ({', '.join(r)}) VALUES ({', '.join('?' * len(r))})", list(r.values())).lastrowid
         con.execute("INSERT INTO finding_text VALUES (?, ?, ?)", (f["id"], notes,
                     json.dumps({k: v for k, v in f.items() if not k.startswith("_") and k not in DERIVED}, default=str)))
-        tags = {("study", x) for x in f["_studies"]} | {("gap", g) for g in (r["gaps"] or "").split()}
+        # a card is filed under the study that flagged it (AGENTS.md, `study`), not under every study in its sources
+        tags = {("study", f["study"])} | {("gap", g) for g in (r["gaps"] or "").split()}
         con.executemany("INSERT INTO tag VALUES (?, ?, ?)", [(f["id"], k, v) for k, v in tags])
         # Search sees what readers see: the card, never the Reviewer notes or the fields it does not show.
         searchable = (f["id"], r["title"], r["justification"], r["action"], r["what_happens"], r["evidence"], r["address"],

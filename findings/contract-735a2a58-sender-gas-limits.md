@@ -7,7 +7,7 @@ severity: LOW
 justification: A real call fails under EIP-8151 at the gas limit its sender chose and passes with more gas, so LOW.
 category: breaks-at-activation
 pattern: PQ-18
-study: top-callers-classification
+study: eip-8151-impact
 as_of: 2026-11-18
 block: 26438999
 contract:

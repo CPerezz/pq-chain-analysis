@@ -8,7 +8,7 @@ justification: Holders stay forgeable after migrating; fixing it takes an upgrad
   admin.
 category: quantum-exposure
 pattern: PQ-1
-study: top-callers-classification
+study: eip-8151-impact
 as_of: 2026-11-18
 block: 26438999
 contract:

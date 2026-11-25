@@ -90,13 +90,6 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: LOW
-- study: eip-8151-impact
-  who: Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not
-    reviewed by a person)
-  date: 2026-11-19
-  by: ai-assisted
-  verdict: reported
-  rating: LOW
 reviews: []
 related: []
 ---

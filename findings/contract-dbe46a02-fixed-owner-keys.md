@@ -235,13 +235,6 @@ sources:
   by: ai-assisted
   verdict: confirmed
   rating: MEDIUM
-- study: eip-8151-impact
-  who: Claude (study families read, judged from bytecode or placed by rules; replayed on real transactions; not
-    reviewed by a person)
-  date: 2026-11-19
-  by: ai-assisted
-  verdict: reported
-  rating: CRITICAL
 reviews:
 - who: r-dbe46a02, the row's refuter
   date: 2026-11-21

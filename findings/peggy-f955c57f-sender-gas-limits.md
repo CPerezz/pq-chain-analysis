@@ -7,7 +7,7 @@ severity: LOW
 justification: A real relayed update fails on its sender's gas limit; a higher limit fixes it, so LOW.
 category: breaks-at-activation
 pattern: PQ-18
-study: top-callers-classification
+study: eip-8151-impact
 as_of: 2026-11-18
 block: 26438999
 contract:

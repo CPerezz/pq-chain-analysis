@@ -500,7 +500,9 @@ function cardView(d) {
         ['Holds', holds], ['Activity', d.txs_90d != null ? `${num(d.txs_90d)} transactions in the 90 days to ${d.as_of}` : null],
         ['Impact', d.impact], ['Evidence level', d.evidence_level]])),
     h('h3', {}, 'On the board'),
-    h('dl', { class: 'facts' }, [['Held now', held], ['Studies', d.studies], ['Reported', d.reported],
+    h('dl', { class: 'facts' }, [['Held now', held], ['Found by', META.studies[d.study] || d.study],
+      ['Also checked by', (d.studies || '').split(' ').filter(s => s && s !== d.study).map(s => META.studies[s] || s).join(', ')],
+      ['Reported', d.reported],
       ['Related', d.related ? d.related.split(' ').map(r => [h('a', { href: '#', onclick: e => { e.preventDefault(); openFinding(r); } }, r), ' ']) : null],
       ['Duplicate of', d.duplicate_of]].filter(([, x]) => x != null && x !== '').map(([k, x]) => [h('dt', {}, k), h('dd', {}, x)]))];
 }
