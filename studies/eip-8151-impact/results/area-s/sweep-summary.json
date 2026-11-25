@@ -1,0 +1,20 @@
+{
+ "block_population": 26438999,
+ "codes": 580618,
+ "calls": 12454947,
+ "reverted": 6306553,
+ "rpc_errors": 0,
+ "verdicts": {
+  "keeps": 10220,
+  "returns": 2239,
+  "forwards": 4,
+  "reaches_and_drops": 16266,
+  "not_reached": 551889
+ },
+ "keepers_by_class": {
+  "PreimageOracle: keeps the L1 answer for another chain's fault proof": 30,
+  "owner-only executor: logs the return data of its owner's own call": 10169,
+  "permissionless executor or checker: logs or compares the return data of the caller's own call (judged by function name)": 15,
+  "account factory: caller-chosen setup call; the caller's own account": 6
+ }
+}

@@ -228,6 +228,13 @@ A gas amount fixed in the code (pattern PQ-14) with no update path is `CRITICAL`
 today: nobody can know whether value arrives later, and the function is dead for good. With an update path it is
 `LOW`. The `HIGH` and `MEDIUM` rows above do not apply to it.
 
+A simple update is a change to the contract itself, or to the contracts that trust it: an upgrade or a setting
+(Anon, 2026-11-25). When the fix needs new software from the team first, such as a new proof program and prestate,
+it is not a simple update. The card does not judge how hard that is, and the fix must ship before the fork. A wrong
+verdict that loses others' funds is then `HIGH` while the team can still switch what it trusts, and `CRITICAL` when
+nobody can. When only the system's own permissioned actors can bring that verdict about (a permissioned dispute game,
+where only the chain's proposer and challenger may play), it is `MEDIUM`.
+
 A key that has never sent a transaction is presumed live; an admin is unable to act only when that is shown (zero or
 dead address, renounced, a contract with no way to call). For a migration notice, when the holder's only ETH exit
 is a 2,300-gas transfer (`transfer`, `send`) and every other path needs its signature, `impact` is `funds-locked`.

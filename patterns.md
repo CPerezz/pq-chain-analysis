@@ -33,8 +33,12 @@ upgrade); a contract that could be restarted keeps its finding and says it is do
 account with real code (not a delegation), cannot sign here today: unless a live key can set another, its path is
 closed.
 
-For EIP-8151 (PQ-14 to PQ-21), in this order:
+For EIP-8151 (PQ-14 to PQ-23), in this order:
 
+0. The contract answers another chain's recovery with this chain's precompile and keeps the answer, for a later
+   step that decides a dispute about that chain (a fault-proof preimage oracle): PQ-22.
+   An ERC-4337 entry point, which re-checks on chain the validations a bundler simulated, so that one signer taking
+   code voids every pending operation that recovers it: PQ-23.
 1. Something fails with nobody migrating: a gas amount fixed in the code is PQ-14; a real transaction that fails only
    on its sender's gas limit is PQ-18.
 2. Another party already holds a signature and has acted on it in a way it cannot undo (a service delivered against a
@@ -421,3 +425,53 @@ Registering, joining or placing an order requires an ECDSA signature of the entr
 Under EIP-8151 an account with real code can no longer enter. Nothing it already holds is affected.
 
 **Detection:** a function whose recovered address becomes the participant, with no function that registers the caller.
+
+## PQ-22: Another chain's recovery answered by this chain's precompile
+
+**Class:** regression
+
+**Category:** voided-by-migration
+
+**In words:** Answers another chain's signature checks with this chain's precompile; once a signer has real code here, a dispute about that chain can be decided wrongly.
+
+A fault-proof system replays another chain's execution step by step when a claim about it is disputed. When that
+execution recovers a signer, the system does not compute the recovery itself: it calls this chain's `ecrecover`
+precompile with the same input and keeps the answer, which the dispute's last step reads. Under EIP-8151 the
+precompile's answer depends on the recovered address's code on this chain, which the other chain never saw. Once
+that address has real code here, the kept answer is empty, while the other chain's execution got the address. The
+last step then disagrees with the honest execution: an honest claim loses its dispute, and a false one (for example a
+withdrawal that never happened) can be defended. Anyone can trigger it: a key whose public key is known recovers from
+an input anyone can build, so the trigger is any address with real code on this chain, including the attacker's own.
+Who can play the dispute game decides who can use it: anyone in a permissionless game, only the chain's proposer
+and challenger in a permissioned one. The fix is in the proof program (stop answering `ecrecover` with the
+precompile), which needs a new prestate and new game implementations, shipped before the fork. Rated by the rule
+for a fix that needs new software ("Severity" in `AGENTS.md`).
+
+**Detection:** a function that calls a precompile address taken from calldata and stores the answer, found by a
+static flag on the call site and confirmed by a call aimed at `0x01` with a recovery for a known key, on chain state,
+with nothing sent; the systems that rely on it found from the dispute game factories (`DisputeGameCreated`, the
+registered implementations, `vm()`, `oracle()`). Confirmed by loading one recovery with and without code at the
+signer: the kept answer is the address, then empty.
+
+## PQ-23: Validations a bundler relied on, voided for many operations at once
+
+**Class:** regression
+
+**Category:** voided-by-migration
+
+**In words:** Re-checks signatures a bundler already simulated; one signer taking real code voids every pending operation that recovers it.
+
+ERC-4337 bundlers simulate each operation's validation before they put it in a bundle. They rely on ERC-7562, which
+allows precompiles in validation because they read no state, and which bounds how many pending operations one state
+change can invalidate by limiting what storage validation may read. Under EIP-8151 `ecrecover` reads the code of the
+recovered address, an address outside the operation's storage that no rule tracks. One transaction that gives a
+shared signer real code (the owner of many accounts, a paymaster's signer, or an attacker's key that many attacker
+accounts recover) voids every pending operation that depends on it. The entry point checks validation again on chain
+and reverts the whole bundle on the first failure, so a bundle that carries one of them fails and the bundler pays.
+No ERC-7562 rule charges anyone for it. The fix is in bundler software and in ERC-7562 (track each recovered address
+as a dependency and limit how many pending operations share one), shipped before the fork. Rated by the rule for a
+fix that needs new software ("Severity" in `AGENTS.md`).
+
+**Detection:** traced validation frames of an entry point that call `0x01`, grouped by the address recovered;
+confirmed by replaying a real bundle with code at a signer that several of its operations recover: today and with a
+7702 delegation the bundle passes, with code it reverts.

@@ -51,6 +51,19 @@ Find every deployed contract whose behaviour EIP-8151 changes, as specified at t
    whose shape a reviewed card fixes (a token permit, a stored or fixed signer) are written by script from the
    contract's own source and state, each saying what it did not read. An address that held nothing at the block and
    that nothing called in the 90 days before it is dropped without review.
+9. **Systems around contracts (area S, added 2026-11-25).** Systems that reuse `ecrecover`'s answer outside the call
+   that produced it leave no trace on mainnet: the fault-proof oracles below have never received a transaction. They
+   are found from code and state instead.
+   - **Manufactured calls.** Every code alive at the block that calls a target taken from calldata is called on chain
+     state, with nothing sent. Each address argument is aimed at `0x01` and each bytes argument carries a valid
+     recovery for our own key. A tracer follows the recovered address into storage, logs, hashes and calls.
+   - **Consumers from on-chain registration.** Every dispute game factory, its games, their VM and the VM's oracle.
+   - **ERC-4337 validation frames.** Taken from the traces, grouped by the address they recover.
+   - **Execution.** Each oracle in use loads one recovery with and without code at the signer. Real bundles are
+     replayed with code at a signer that several of their operations recover.
+   - **Registries for context.** L2BEAT, DefiLlama and the OP Superchain registry.
+   - **Off-chain components.** Code that assumes `ecrecover` reads no state (clients, bundlers, zkVM provers, SDKs,
+     tools) is read and recorded as notes for implementers; it has no address to file.
 
 ## Reproduce
 
@@ -65,6 +78,10 @@ Filed in `findings/` (format 2: reviewed cards) and, until the review reaches th
 more than one address behind a card or a review row holds (`family_value.csv`, ETH and every priced token, on the
 date it gives) and the code hashes that run as each (`code_family.csv.gz`). The site shows a card's family total
 beside the card's own figure, and finds the cards of whatever code an address runs.
+
+`results/area-s/` holds area S: the sweep and what kept the recovered address, the dispute game factories and the
+oracles they use (at the block and today), the executed oracle check, the replayed ERC-4337 bundles, the value each
+oracle's chains could release, an inventory of 662 L2s, bridges, provers and other projects, and the scripts.
 
 ## Limits
 
@@ -83,3 +100,7 @@ beside the card's own figure, and finds the cards of whatever code an address ru
 - Value is ETH plus 49 tokens at the pinned block.
 - Format-1 entries are AI-assisted and unreviewed. Format-2 cards written by script were read by no agent; each
   says so in its Reviewer notes.
+- Area S calls each function once with one filling. A function behind access control is reached only through its
+  `owner()`, and tuple arguments are not filled. Selectors that no signature database decodes get six fixed argument
+  layouts. Consumers are found for dispute games only. Other systems that answer another chain's computation with an
+  L1 precompile would need their own registration graph.
