@@ -63,7 +63,7 @@ Find every deployed contract whose behaviour EIP-8151 changes, as specified at t
      replayed with code at a signer that several of their operations recover.
    - **Registries for context.** L2BEAT, DefiLlama and the OP Superchain registry.
    - **Off-chain components.** Code that assumes `ecrecover` reads no state (clients, bundlers, zkVM provers, SDKs,
-     tools) is read and recorded as notes for implementers; it has no address to file.
+     tools) is read. It has no address, so the registry holds none of it.
 
 ## Reproduce
 
