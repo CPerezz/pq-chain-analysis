@@ -49,6 +49,7 @@ signer that validation recovers is none of these.
 | v0.6 | `0xce9afa8f…` | 8 (a paymaster's signer) | reverts after 127,875 gas |
 | v0.7 | `0x8843c889…` | 5 (a paymaster's signer) | reverts after 214,362 gas |
 | v0.8 | `0xca4949f1…` | 10 (a paymaster's signer) | reverts after 290,490 gas |
+| v0.9 | `0xe1247287…` | 1 (a paymaster's signer) | reverts after 94,101 gas |
 
 **What ERC-7562 would need:**
 - record every address whose code a validation-phase precompile reads, as a dependency of the operation;
