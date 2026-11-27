@@ -1,0 +1,50 @@
+[
+ {
+  "id": "checksig",
+  "says": "checkSig recovers a signer with ECDSA",
+  "status": "ok",
+  "found": "RelayHub.sol lines 893-898: function checkSig(address signer, bytes32 hash, bytes memory sig) pure internal returns (bool) { // Check if @v,@r,@s ar"
+ },
+ {
+  "id": "canrelay-recover",
+  "says": "canRelay recovers the client's signature",
+  "status": "ok",
+  "found": "RelayHub.sol lines 1520-1520: if (hashedMessage.toEthSignedMessageHash().recover(signature) != from) {"
+ },
+ {
+  "id": "relaycall-same-call",
+  "says": "relayCall checks the signature via canRelay in the same call that would pay or release anything, and on failure only emits CanRelayFailed and returns",
+  "status": "ok",
+  "found": "RelayHub.sol lines 1566-1599: function relayCall( address from, address recipient, bytes memory encodedFunction, uint256 transactionFee, uint256 gasPr"
+ },
+ {
+  "id": "penalize-repeated",
+  "says": "penalizeRepeatedNonce recovers the relay's own previously-signed raw transactions and requires both recoveries to match",
+  "status": "ok",
+  "found": "RelayHub.sol lines 1789-1793: address addr1 = keccak256(abi.encodePacked(unsignedTx1)).recover(signature1); address addr2 = keccak256(abi.encodePacked"
+ },
+ {
+  "id": "penalize-states",
+  "says": "penalize only succeeds for an address currently Staked, Registered or Removed; address(0) is none of these",
+  "status": "ok",
+  "found": "RelayHub.sol lines 1822-1829: require((relays[relay].state == RelayState.Staked) || (relays[relay].state == RelayState.Registered) || (relays[relay].s"
+ },
+ {
+  "id": "register-eoa",
+  "says": "a relay only has to be an EOA at registration time, not afterward",
+  "status": "ok",
+  "found": "RelayHub.sol lines 1411-1411: require(relay == tx.origin, \"Contracts cannot register as relays\");"
+ },
+ {
+  "id": "relay1-empty",
+  "says": "the relay that recently called unstake has no entry left",
+  "status": "ok",
+  "found": "0, 0, 0, 0x0000000000000000000000000000000000000000, 0"
+ },
+ {
+  "id": "relay2-empty",
+  "says": "the relay that recently called withdraw has no entry left",
+  "status": "ok",
+  "found": "0, 0, 0, 0x0000000000000000000000000000000000000000, 0"
+ }
+]
