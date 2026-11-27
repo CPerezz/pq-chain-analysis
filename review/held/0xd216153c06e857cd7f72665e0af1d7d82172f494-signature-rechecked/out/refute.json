@@ -1,0 +1,34 @@
+{
+ "cold_read": {"what_is_wrong": "no card (question proposal)", "how_bad": "n/a", "whose_money": "n/a", "what_can_the_team_do": "n/a"},
+ "parts": [
+  {"part": "question-1", "holds": true, "why": "RelayHub.sol 1566-1599: relayCall calls canRelay (recover at 1520) and on failure emits CanRelayFailed and returns before nonce, call or charge; a relayed call checked in the same call is excluded from PQ-15 by patterns.md", "checks": ["relaycall-same"]},
+  {"part": "question-2", "holds": true, "why": "penalizeRepeatedNonce/IllegalTransaction (1789-1829) recover relay-signed raw txs later; a zero recovery hits penalize's 'Unstaked relay' require. Caveat: the party who migrates is the offending relay itself, the stake belongs to its separate owner, who can already removeRelayByOwner+unstake after the delay; the loser is a would-be reporter's reward, so PQ-15 fit and severity remain a judgment for the registry", "checks": ["penalize-state", "unstake-owner"]},
+  {"part": "question-3", "holds": true, "why": "both relays the author named read all-zero at the pinned block and 0x7a6D... has no code; hub holds 10.169 ETH (recipient deposits and/or stakes, not separable without logs)", "checks": ["hub-eth", "relay1-zero"]}
+ ],
+ "attempts": {
+  "erc1271": {"result": "tried-holds", "note": "recovery paths use ECDSA.recover/ecrecover only; no isValidSignature selector in code", "checks": ["no-1271"]},
+  "unused-implementation": {"result": "does-not-apply", "note": "not a proxy target; holds 10.17 ETH itself"},
+  "key-state": {"result": "could-not-check", "note": "whether any relay is Staked/Registered/Removed now needs Staked/RelayAdded/Unstaked logs over the whole history; gateway refuses wide log scans"},
+  "setter": {"result": "does-not-apply", "note": "no card naming a setter"},
+  "path-closed": {"result": "tried-holds", "note": "stake/registerRelay have no admin gate (1376,1408), so the penalize path can reopen any time", "checks": ["stake-open"]},
+  "direct-path": {"result": "does-not-apply", "note": "no card"},
+  "rechecked-later": {"result": "tried-holds", "note": "the later recheck is penalize*, as the author says; the relayCall recheck is same-call", "checks": ["penalize-state"]},
+  "taken-back": {"result": "tried-holds", "note": "relay owner can removeRelayByOwner then unstake after the delay without migrating, limiting the window the reporter relies on; registry must weigh this", "checks": ["unstake-owner"]},
+  "wrong-code": {"result": "tried-holds", "note": "verified source at this address is the RelayHub read", "checks": ["relaycall-same"]},
+  "value-whose": {"result": "could-not-check", "note": "10.169 ETH split between recipient deposits and relay stakes unknown without logs", "checks": ["hub-eth"]},
+  "children": {"result": "does-not-apply", "note": "recoveries are in this contract"},
+  "gas": {"result": "does-not-apply", "note": "no fixed gas around the recovery; relayCall charges measured gas"},
+  "breaks-by-itself": {"result": "tried-holds", "note": "no fixed gas on recovery; failure needs a signer with code", "checks": ["relaycall-same"]}
+ },
+ "verdict": "unsure",
+ "objections": ["whether any relay is staked now (live slashing path) cannot be read without full-history logs", "penalize path: the migrating party is the cheating relay and its owner can already exit after the unstake delay; PQ-15 fit is doubtful, more likely no rated finding"],
+ "checks": [
+  {"id": "relaycall-same", "source": "0xd216153c06e857cd7f72665e0af1d7d82172f494", "file": "RelayHub.sol", "lines": [1566, 1612], "has": "emit CanRelayFailed(msg.sender, from, recipient, functionSelector, preconditionCheck);"},
+  {"id": "penalize-state", "source": "0xd216153c06e857cd7f72665e0af1d7d82172f494", "file": "RelayHub.sol", "lines": [1822, 1829], "has": "\"Unstaked relay\""},
+  {"id": "unstake-owner", "source": "0xd216153c06e857cd7f72665e0af1d7d82172f494", "file": "RelayHub.sol", "lines": [1433, 1443], "has": "require(relays[relay].owner == msg.sender, \"not owner\");"},
+  {"id": "stake-open", "source": "0xd216153c06e857cd7f72665e0af1d7d82172f494", "file": "RelayHub.sol", "lines": [1376, 1381], "has": "relays[relay].owner = msg.sender;"},
+  {"id": "no-1271", "bytecode": "0xd216153c06e857cd7f72665e0af1d7d82172f494", "has": "1626ba7e", "absent": true, "says": "no ERC-1271 selector in the code"},
+  {"id": "hub-eth", "call": "0xcA11bde05977b3631167028862bE2a173976CA11", "fn": "getEthBalance(address)(uint256)", "args": ["0xd216153c06e857cd7f72665e0af1d7d82172f494"], "is": "10169385814178602675"},
+  {"id": "relay1-zero", "call": "0xd216153c06e857cd7f72665e0af1d7d82172f494", "fn": "getRelay(address)(uint256,uint256,uint256,address,uint8)", "args": ["0x7a6D8b5b5CF3773Cb518271e24aee626D9f6FF91"], "is": ["0", "0", "0", "0x0000000000000000000000000000000000000000", "0"]}
+ ]
+}

@@ -1,0 +1,44 @@
+[
+ {
+  "id": "relaycall-same",
+  "says": null,
+  "status": "ok",
+  "found": "RelayHub.sol lines 1566-1612: function relayCall( address from, address recipient, bytes memory encodedFunction, uint256 transactionFee, uint256 gasPr"
+ },
+ {
+  "id": "penalize-state",
+  "says": null,
+  "status": "ok",
+  "found": "RelayHub.sol lines 1822-1829: require((relays[relay].state == RelayState.Staked) || (relays[relay].state == RelayState.Registered) || (relays[relay].s"
+ },
+ {
+  "id": "unstake-owner",
+  "says": null,
+  "status": "ok",
+  "found": "RelayHub.sol lines 1433-1443: function unstake(address relay) public { require(canUnstake(relay), \"canUnstake failed\"); require(relays[relay].owner =="
+ },
+ {
+  "id": "stake-open",
+  "says": null,
+  "status": "ok",
+  "found": "RelayHub.sol lines 1376-1381: function stake(address relay, uint256 unstakeDelay) external payable { if (relays[relay].state == RelayState.Unknown) { "
+ },
+ {
+  "id": "no-1271",
+  "says": "no ERC-1271 selector in the code",
+  "status": "ok",
+  "found": "absent in 15,132 bytes"
+ },
+ {
+  "id": "hub-eth",
+  "says": null,
+  "status": "ok",
+  "found": "10169385814178602675"
+ },
+ {
+  "id": "relay1-zero",
+  "says": null,
+  "status": "ok",
+  "found": "0, 0, 0, 0x0000000000000000000000000000000000000000, 0"
+ }
+]
